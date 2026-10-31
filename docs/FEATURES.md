@@ -47,6 +47,8 @@ applications show them working.
   - [Charts](#charts)
   - [Games](#games)
   - [Diagrams](#diagrams)
+  - [Maps](#maps)
+  - [Embeds](#embeds)
   - [Month calendar](#month-calendar)
   - [Syntax highlighting](#syntax-highlighting)
   - [QR codes and barcodes](#qr-codes-and-barcodes)
@@ -615,6 +617,24 @@ a country the view does not show is named in the title. A view is added by addin
 no new outlines needed, every view is a crop of the same Natural Earth outlines
 (`pad/maps/_lib/world.json`).
 
+### Embeds
+```
+{embed 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}   # the provider from the address
+{embed:vimeo '76979871', title='The new Vimeo player', at='1:30'/}          # the embed: type, a bare id
+{openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}              # bare, when nothing else has the name
+{embed 'https://soundcloud.com/forss/flickermood', title='Flickermood'/}     # also spotify, peertube, dailymotion, internetarchive, codepen
+{audio 'sounds/bell.mp3', title='The bell'/}                                # a file: <audio preload="none">; videofile, pdffile
+```
+A frame of another site is a click-to-load facade: a poster drawn for its kind (or `poster=`,
+or the provider's own picture with `thumbnail`), the title, "Plays from YouTube", a button -
+nothing is asked of the provider before the click, which swaps the frame in by a script written
+once per page with the CSP nonce; without script a `<noscript>` link to the address on its
+own site. The providers are the files of `pad/embeds/types/` - each says the addresses it
+knows (`match`), its frame (`embed`), its origin for `frame-src` and its own options - and a
+provider is added by adding its file. `padEmbedSources ()` lists the origins a Content
+Security Policy needs: `$padCsp = "...; frame-src " . implode ( ' ', padEmbedSources () )`.
+`{video}` is the video-only form of the same providers, its markup as before.
+
 ### Month calendar
 ```
 {calendar data='agenda', title='what'/}         # this month (or ?month=2026-11), events, links ‹ ›
@@ -661,7 +681,7 @@ no new outlines needed, every view is a crop of the same Natural Earth outlines
 {copy 'npm install pad', label='Copy'/}             # the text in <pre>, a copy-to-clipboard button
 {poll 'lang', options='PHP, Go', title='Favourite?'/}   # one vote per session, results as bars; DATA/poll/
 {img 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
-{video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click
+{video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click; {embed} for more sites
 {pdf file='invoice', download}...{/pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
 {map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region

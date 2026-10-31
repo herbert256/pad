@@ -19,6 +19,6 @@ PAD;
     'at'     => 'The moment to start at - <code>90</code>, <code>1m30s</code> or <code>1:30</code>; a <code>t=</code>, <code>start=</code> or <code>#t=</code> in the address says it too.',
     'ratio'  => 'The proportion, default <code>16:9</code>; a short is <code>9:16</code> and kept to a phone\'s width.' ];
 
-  $tagSee     = [ 'img', 'asset', 'modal' ];
+  $tagSee     = [ 'embed', 'img', 'asset', 'modal' ];
 
 ?>

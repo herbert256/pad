@@ -61,6 +61,7 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 21. **chart** - Chart type, a file of `PAD/charts/types/`
 22. **game** - Game, a file of `PAD/games/types/`
 23. **diagram** - Diagram kind, a file of `PAD/diagrams/types/`
+23. **embed** - Embed provider, a file of `PAD/embeds/types/`
 24. **function** - PAD function (fallback)
 
 A field or array that exists only as a request value - a GET, POST or cookie value the page's PHP
@@ -490,6 +491,25 @@ subsystem in `PAD/diagrams/` lays it out, as the `{diagram}` tag lays out the ki
 its file. Bare, a diagram kind comes after every other kind of tag, the chart kinds and the
 games too - so `{sequence}` is the sequence tag, and the sequence diagram is
 `{diagram:sequence}` or `{diagram type='sequence'}`.
+## Embed Types
+
+### embed
+
+A video, a sound, a map, a pen or a document of the provider the tag names, behind a
+click-to-load facade - the embed subsystem in `PAD/embeds/` writes it, as the `{embed}` tag
+writes the provider that knows its address. Named, a provider reads its own bare ids too.
+
+```
+{embed:youtube 'aqz-KE-bpKQ', title='Big Buck Bunny'/}
+{vimeo '76979871', title='The new Vimeo player'/}
+{openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}
+```
+
+**Resolution:** a file `PAD/embeds/types/<name>.php` (`padEmbedProviders()` in `PAD/lib/embed.php`):
+the files there are the providers, and a provider is added by adding its file. Bare, a provider
+comes after every other kind of tag, the chart kinds and the games too, so a tag, a store, a
+field or a sequence of the name wins. `{embed:zigzag/}` is "there is no embed provider named
+'zigzag'".
 
 ---
 
@@ -623,6 +643,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `chart` | PAD/charts/types/ | Chart kinds |
 | `game` | PAD/games/types/ | Games |
 | `diagram` | PAD/diagrams/types/ | Diagram kinds |
+| `embed` | PAD/embeds/types/ | Embed providers |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -647,6 +668,7 @@ types/
 ├── content.php     → Content store
 ├── data.php        → Data store
 ├── diagram.php     → Diagram kind
+├── embed.php       → Embed provider
 ├── field.php       → Field value
 ├── game.php        → Game
 ├── flag.php        → Sequence membership flags

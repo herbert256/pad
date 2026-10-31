@@ -16,6 +16,7 @@ pad/
 ├── constructs/    # @name@ construct handlers
 ├── data/          # Data format handlers (CSV, JSON, XML, YAML)
 ├── database/      # SQL schema definitions
+├── embeds/        # Embed subsystem (a provider per file of embeds/types/)
 ├── error/         # Error handling
 ├── eval/          # Expression parser
 ├── events/        # Event hooks
@@ -60,6 +61,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | constructs/ | `@name@` construct handlers (page, content, start, end, tidy) |
 | data/ | Data format handlers (CSV, JSON, XML, YAML) |
 | database/ | SQL schema definitions for PAD internal database |
+| embeds/ | The embed subsystem - `{embed}`, the `embed:` type and the addresses of `{video}`; a provider is a file of `embeds/types/` - the addresses it knows and the frame it writes - the click-to-load facade and `{video}`'s own markup in `embeds/_lib/` |
 | error/ | Boot-time and runtime error handling |
 | eval/ | Expression parser and evaluator |
 | events/ | Event hooks of the info modes (trace, stats, xref) - an application's own hooks are its `_events/`, run by lib/events.php |

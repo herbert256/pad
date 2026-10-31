@@ -2,8 +2,10 @@
 
   // {video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'} - a
   // YouTube or Vimeo video as its poster with a play button, the player's iframe loaded only
-  // when it is pressed, from youtube-nocookie.com or with Vimeo's dnt=1 (tags/_lib/video.php):
-  // nothing of the video site runs before the visitor asks for it. Without script the poster
+  // when it is pressed, from youtube-nocookie.com or with Vimeo's dnt=1 (embeds/_lib/video.php,
+  // the addresses those of the youtube and vimeo providers of the embed subsystem, whose
+  // {embed} tag knows more sites): nothing of the video site runs before the visitor asks
+  // for it. Without script the poster
   // links to the video on its own site. The addresses it knows: youtube.com/watch?v=,
   // youtu.be/, /shorts/ (upright), /embed/, vimeo.com/<id>, player.vimeo.com/video/<id>.
   //
@@ -14,6 +16,8 @@
   // A file of www/<application>/ - {video 'clips/sunrise.webm', poster='photos/sunrise.jpg'}
   // - is a <video controls preload="none">. title= is required: the button's text, the
   // iframe's title, what a screen reader says.
+
+  include_once PAD . 'embeds/_lib/video.php';
 
   $padVideoTitle = trim ( padParmText ( padTagParm ( 'title' ) ) );
 

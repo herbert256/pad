@@ -2354,8 +2354,10 @@ written instead. The colour behind a picture still loading is `--pad-img-placeho
 
 ### video
 A YouTube or Vimeo video as its poster with a play button; the player's iframe is loaded
-only when the button is pressed (`tags/_lib/video.php`) - nothing of the video site runs before the
-visitor asks for it. A file of `www/<application>/` is a `<video>` element.
+only when the button is pressed (`embeds/_lib/video.php`) - nothing of the video site runs before the
+visitor asks for it. A file of `www/<application>/` is a `<video>` element. The addresses are
+those the youtube and vimeo providers of the embed subsystem read; [`{embed}`](#embed) is the
+general form, of more sites and without the site's thumbnail.
 
 ```html
 {video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}
@@ -2384,6 +2386,65 @@ itself a link stays valid HTML. A file is `<video controls preload="none" playsi
 its poster: nothing is loaded before play. The colours are `--pad-video-*` custom properties
 with `light-dark()` steps on `.pad-video`. An address that is no known video and a missing
 `title` are errors under the strict check.
+
+---
+
+### embed
+A video, a sound, a map, a pen or a document of another site behind a click-to-load facade -
+the embed subsystem in `pad/embeds/` - nothing of the provider is asked for before the visitor
+presses the button; a file of the application is an element that loads nothing before play.
+
+```html
+{embed 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'/}
+{embed:vimeo '76979871', title='The new Vimeo player', at='1:30'/}
+{openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}
+{embed 'https://codepen.io/team/codepen/pen/PNaGbb', title='A pen', tab='html,result'/}
+{audio 'sounds/bell.mp3', title='The bell'/}
+{embed 'docs/leaflet.pdf', title='The leaflet'/}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | An address a provider knows - a file of `pad/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
+| `title` | Required - the button's text, the frame's title, the element's name |
+| `poster` | A picture of `www/<application>/` (versioned as `{asset}`) in place of the drawn poster |
+| `thumbnail` | Bare: the provider's own picture as the poster where it has one at a known address (YouTube) - asked of the provider before the click |
+| `ratio` | The proportion - `16:9`, SoundCloud and Spotify `2:1`, a PDF `4:5`, a YouTube short `9:16` (kept to a phone's width) |
+| `at` | youtube, vimeo, peertube, dailymotion: the moment to start at - `90`, `1m30s`, `1:30` |
+| `lat`, `lon`, `zoom` | openstreetmap: the place and the zoom, 1 to 19 (13) |
+| `tab` | codepen: the panes - `result` (default), `html`, `css`, `js`, or two of them |
+
+**Behavior:** a frame of another site is a facade first: a poster drawn for its kind (video,
+audio, map, code, document), the title, "Plays from YouTube" / "Loads from OpenStreetMap" - a
+PeerTube instance and the site of a PDF by their host - and a button holding the frame's
+address in `data-pad-embed`. A script written once per page with the CSP nonce puts the frame
+in the poster's place on a click, with the provider's `allow`, and moves the focus into it;
+without script the button is hidden (`@media (scripting:none)`) and a `<noscript>` link to the
+address on its own site stands in. The players come privacy-friendly where the site offers it:
+youtube-nocookie.com, Vimeo with `dnt=1`. A file of the application is `<video controls
+preload="none">`, `<audio controls preload="none">` named by the title under it, or for a PDF
+a frame of the application loaded lazily with a link to open it; of the web, a PDF is a facade
+too. A proportion other than 16:9 is a class with its own nonce'd rule - no `style=`
+attribute, so a strict `style-src` holds. The colours are `--pad-embed-*` custom properties
+with `light-dark()` steps on `.pad-embed`.
+
+**Providers:** a provider is a file of `pad/embeds/types/<name>.php` answering its `name`,
+`kind`, the `frame` origin(s), whether it is `generic` (known by the shape of its addresses,
+tried after those that know their host), its own `options`, `match` - the address read into
+its parts, or NULL - and `embed` - the frame's address, the link, the ratio, the `allow`. The
+files there are the providers there are (`padEmbedProviders`), and a provider is added by
+adding its file. A bare provider name comes after every other kind of tag, so a tag, a store
+or a field of the name wins.
+
+**Content Security Policy:** the frames need the providers' origins in `frame-src` -
+`padEmbedSources ()` (`lib/embed.php`) lists the ones the files name:
+`$padCsp = "default-src 'self'; script-src 'self' 'nonce'; style-src 'self' 'nonce'; frame-src " . implode ( ' ', padEmbedSources () );`.
+A PeerTube instance is added by hand, so is `img-src https://i.ytimg.com` for `thumbnail` and
+`media-src` for a sound or a video of another site. An address no provider knows, a missing
+`title`, a provider's id or place it cannot read and an option of another provider are errors
+under the strict check; `{embed:zigzag}` is "there is no embed provider named 'zigzag'".
 
 ---
 
@@ -3455,6 +3516,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `poll` | Web | A vote once per visitor, results as bars - a live region, a plain form without scripting |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
+| `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |
 | `pdf` | Output | The rendered content sent as a PDF, written in plain PHP - fonts, tables, JPEG pictures |
 | `diagram` | Output | A flowchart, sequence, state, class, entity-relationship, mind map, tree, user journey or commit graph diagram from Mermaid-style lines, laid out on the server as inline SVG |
 | `map` | Output | A choropleth map of the world or a region as inline SVG, a colour step per value |

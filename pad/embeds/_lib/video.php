@@ -1,9 +1,13 @@
 <?php
 
-  // Video embeds - the {video} tag. A YouTube or Vimeo video is shown as its poster with a
-  // play button, and the player's iframe comes only when the button is pressed: the page
-  // loads nothing of the video site before then - no player, no cookies, no tracking - and
-  // a page with ten videos stays as light as one with ten pictures. The player that comes is
+  // Video embeds - the {video} tag, the video form of the embed subsystem: the addresses it
+  // knows are those the youtube and vimeo providers of embeds/types/ read, and the player's
+  // address, the video's own and its thumbnail are those the providers write, so a new form
+  // of a YouTube address is learnt in one place; the markup is the tag's own, as it was
+  // before {embed} came. A YouTube or Vimeo video is shown as its poster with a play button,
+  // and the player's iframe comes only when the button is pressed: the page loads nothing of
+  // the video site before then - no player, no cookies, no tracking - and a page with ten
+  // videos stays as light as one with ten pictures. The player that comes is
   // youtube-nocookie.com's or Vimeo's with dnt=1.
   //
   //   {video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'}
@@ -12,10 +16,11 @@
   //
   // padVideo        the HTML of a video, '' when the address is no video it knows
   // padVideoParse   a YouTube or Vimeo address as [ site, id, start, short ], NULL when not
-  // padVideoStart   a start time - 90, 1m30s, 1:30 - in seconds
   // padVideoEmbed   the lazy embed: poster, button, the address to open without script
   // padVideoLocal   a file of www/<application>/ as a <video> element
   // padVideoStyle   the rules and the script, written once per request
+  //
+  // A start time - 90, 1m30s, 1:30 - is read by padEmbedStart (embeds/_lib/embed.php).
   //
   // Without JavaScript the play button is no use, so it is hidden (@media (scripting:none))
   // and a link to the video on its own site stands in its place, inside <noscript> - which
@@ -31,6 +36,8 @@
   //
   // A file of www/<application>/ - .mp4, .webm, .ogv, .mov - is a <video controls
   // preload="none"> with its poster: nothing is loaded until it is played.
+
+  include_once PAD . 'embeds/_lib/embed.php';
 
   function padVideo ( $source, $title, $opts ) {
 
@@ -52,86 +59,40 @@
 
   }
 
-  // youtube.com/watch?v=, youtu.be/, /shorts/, /embed/, /live/ and youtube-nocookie.com/
-  // embed/ with an id of eleven; vimeo.com/<id>, vimeo.com/channels/x/<id>, .../video/<id>
-  // and player.vimeo.com/video/<id>. A t= or start= in the address - or a #t= - is the
-  // start time.
+  // The addresses the youtube and vimeo providers read (embeds/types/), as [ site, id,
+  // start, short ] - a short is upright - or NULL: youtube.com/watch?v=, youtu.be/,
+  // /shorts/, /embed/, /live/ and youtube-nocookie.com/embed/ with an id of eleven;
+  // vimeo.com/<id>, vimeo.com/channels/x/<id>, .../video/<id> and player.vimeo.com/video/<id>.
+  // A t= or start= in the address - or a #t= - is the start time. The bare ids the
+  // providers read when they are named are no address here.
 
   function padVideoParse ( $url ) {
 
-    $parts = parse_url ( $url );
+    $found = padEmbedFind ( $url, [ 'youtube', 'vimeo' ] );
 
-    if ( ! $parts or ! in_array ( strtolower ( $parts ['scheme'] ?? '' ), [ 'http', 'https' ], TRUE ) )
+    if ( $found === NULL )
       return NULL;
 
-    $host = preg_replace ( '/^(www\.|m\.)/', '', strtolower ( $parts ['host'] ?? '' ) );
-    $path = $parts ['path'] ?? '';
+    list ( $site, $parts ) = $found;
 
-    parse_str ( $parts ['query']    ?? '', $query );
-    parse_str ( $parts ['fragment'] ?? '', $mark  );
-
-    $start = padVideoStart ( $query ['t'] ?? $query ['start'] ?? $mark ['t'] ?? '' );
-
-    if ( in_array ( $host, [ 'youtube.com', 'youtube-nocookie.com', 'music.youtube.com' ], TRUE ) ) {
-
-      if ( $path == '/watch' and is_string ( $query ['v'] ?? NULL ) and preg_match ( '/^[A-Za-z0-9_-]{11}$/D', $query ['v'] ) )
-        return [ 'youtube', $query ['v'], $start, FALSE ];
-
-      if ( preg_match ( '#^/(embed|shorts|live|v)/([A-Za-z0-9_-]{11})/?$#D', $path, $m ) )
-        return [ 'youtube', $m [2], $start, $m [1] == 'shorts' ];
-
-    }
-
-    if ( $host == 'youtu.be' and preg_match ( '#^/([A-Za-z0-9_-]{11})/?$#D', $path, $m ) )
-      return [ 'youtube', $m [1], $start, FALSE ];
-
-    if ( $host == 'vimeo.com' and preg_match ( '#^/(?:(?:channels|groups)/[\w-]+/(?:videos/)?|video/)?(\d{4,12})/?$#D', $path, $m ) )
-      return [ 'vimeo', $m [1], $start, FALSE ];
-
-    if ( $host == 'player.vimeo.com' and preg_match ( '#^/video/(\d{4,12})/?$#D', $path, $m ) )
-      return [ 'vimeo', $m [1], $start, FALSE ];
-
-    return NULL;
-
-  }
-
-  function padVideoStart ( $value ) {
-
-    $value = trim ( (string) ( is_array ( $value ) ? '' : $value ) );
-
-    if ( ctype_digit ( $value ) )
-      return (int) $value;
-
-    if ( preg_match ( '/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/D', $value, $m ) and $value !== '' )
-      return 3600 * (int) ( $m [1] ?? 0 ) + 60 * (int) ( $m [2] ?? 0 ) + (int) ( $m [3] ?? 0 );
-
-    if ( preg_match ( '/^(?:(\d+):)?(\d{1,2}):(\d{2})$/D', $value, $m ) )
-      return 3600 * (int) $m [1] + 60 * (int) $m [2] + (int) $m [3];
-
-    return 0;
+    return [ $site, $parts ['id'], $parts ['start'], $parts ['short'] ?? FALSE ];
 
   }
 
   // The poster with its button. The iframe's address waits in data-pad-video; the
-  // address of the video on its own site is the noscript link.
+  // address of the video on its own site is the noscript link - both as the provider
+  // writes them, with the start time at= gives or else the address's.
 
   function padVideoEmbed ( $video, $source, $title, $opts ) {
 
     list ( $site, $id, $start, $short ) = $video;
 
-    $start = padVideoStart ( $opts ['start'] ?? '' ) ?: $start;
-
-    if ( $site == 'youtube' ) {
-      $embed = "https://www.youtube-nocookie.com/embed/$id?autoplay=1&rel=0" . ( $start ? "&start=$start" : '' );
-      $watch = "https://www.youtube.com/watch?v=$id" . ( $start ? "&t={$start}s" : '' );
-      $name  = 'YouTube';
-      $thumb = "https://i.ytimg.com/vi/$id/hqdefault.jpg";
-    } else {
-      $embed = "https://player.vimeo.com/video/$id?autoplay=1&dnt=1" . ( $start ? "#t={$start}s" : '' );
-      $watch = "https://vimeo.com/$id" . ( $start ? "#t={$start}s" : '' );
-      $name  = 'Vimeo';
-      $thumb = '';
-    }
+    $provider = padEmbedProvider ( $site );
+    $written  = $provider ['embed'] ( [ 'id' => $id, 'start' => $start, 'short' => $short ], [ 'at' => $opts ['start'] ?? '' ] );
+    $embed    = $written ['src'];
+    $watch    = $written ['link'];
+    $name     = $provider ['name'];
+    $thumb    = $written ['thumb'] ?? '';
 
     $ratio  = padVideoRatio ( $opts ['ratio'] ?? '', $short ? '9:16' : '16:9' );
     $poster = padVideoPoster ( $opts ['poster'] ?? '', $thumb );
