@@ -1057,6 +1057,17 @@
       foreach ( $points as list ( $x, $y ) )
         $boxes [] = [ $x, $y, $x, $y ];
 
+    // What a label keeps clear of - the loops, then the labels in the order they are placed -
+    // in a grid of cells (padDiagramTake), so a spot is weighed against the few near it:
+    // weighed against all of them at every step of every label, 800 labelled edges between
+    // two nodes took 8 seconds and 1600 a minute. The first of them in that order that a spot
+    // touches is the one it steps past, as before, so every label stands where it stood.
+
+    $taken = [ 'all' => [], 'grid' => [], 'jumps' => [] ];
+
+    foreach ( array_merge ( $curves, array_values ( $labels ) ) as $one )
+      padDiagramTake ( $taken, $one );
+
     // The labels sit half way along their edge, on a plate of the background.
 
     foreach ( $edges as $e => list ( $a, $b, $label ) )
@@ -1068,16 +1079,6 @@
         // stepped aside from the first loop it met, a label that only neared a loop's turn half
         // way along was pushed below it and on past other labels, far from its edge.
 
-        $clash = function ( $x, $y ) use ( &$labels, $curves, $w ) {
-          foreach ( array_merge ( $curves, array_values ( $labels ) ) as $one ) {
-            list ( $ox, $oy, $ow ) = $one;
-            $oh = $one [3] ?? 9;
-            if ( abs ( $ox - $x ) < ( $ow + $w ) / 2 + 2 and abs ( $oy - $y ) < $oh + 11 )
-              return [ $ox, $oy, $ow, $oh, $one [4] ?? '' ];
-          }
-          return NULL;
-        };
-
         $carrier = NULL;
 
         foreach ( $chains [$e] ?? [] as $one )
@@ -1086,11 +1087,11 @@
 
         if ( $carrier !== NULL ) {
           list ( $x, $y ) = $flip ( [ $nodes [$carrier] ['cross'], $nodes [$carrier] ['main'] ] );
-          $other = $clash ( $x, $y );
+          $other = padDiagramClash ( $taken, $x, $y, $w );
         } else
           foreach ( [ 0.5, 0.35, 0.65, 0.22, 0.78, 0.5 ] as $part ) {
             list ( $x, $y ) = padDiagramMiddle ( $paths [$e], $part );
-            if ( ! ( $other = $clash ( $x, $y ) ) )
+            if ( ( $other = padDiagramClash ( $taken, $x, $y, $w ) ) === NULL )
               break;
           }
 
@@ -1098,19 +1099,13 @@
         // the next one in the way, on the same side, until it stands free: moved once, it
         // could land on a label moved there before, and the two were written on one spot.
 
-        for ( $step = 0, $sign = 0; $other and $step <= count ( $labels ) + count ( $curves ); $step++ ) {
-          if ( $vertical ) {
-            $sign = $sign ?: ( $x >= $other [0] ? 1 : -1 );
-            $x    = $other [0] + $sign * ( ( $other [2] + $w ) / 2 + 4 );
-          } else {
-            $sign = $sign ?: ( $y >= $other [1] ? 1 : -1 );
-            $y    = $other [1] + $sign * ( $other [3] + 12 );
-          }
-          $other = $clash ( $x, $y );
-        }
+        if ( $other !== NULL )
+          list ( $x, $y ) = padDiagramStep ( $taken, $other, $x, $y, $w, $vertical );
 
         $labels [$e] = [ $x, $y, $w ];
         $boxes []    = [ $x - $w / 2, $y - 9, $x + $w / 2, $y + 9 ];
+
+        padDiagramTake ( $taken, $labels [$e] );
 
       }
 
@@ -1205,6 +1200,100 @@
         $svg .= padDiagramNode ( $node, $X, $Y, $minX, $minY );
 
     return "$svg</svg>";
+
+  }
+
+  // A spot a label keeps clear of, taken: [ x, y, width, half height, kind ] - a label is
+  // 9 high either side of its middle, a loop as high as its curve - kept in the order
+  // taken, and in every cell of 64 by 32 its box touches.
+
+  function padDiagramTake ( &$taken, $one ) {
+
+    $one += [ 3 => 9, 4 => '' ];
+    $i    = count ( $taken ['all'] );
+
+    $taken ['all'] [] = $one;
+
+    for ( $cx = (int) floor ( ( $one [0] - $one [2] / 2 ) / 64 ); $cx <= (int) floor ( ( $one [0] + $one [2] / 2 ) / 64 ); $cx++ )
+      for ( $cy = (int) floor ( ( $one [1] - $one [3] ) / 32 ); $cy <= (int) floor ( ( $one [1] + $one [3] ) / 32 ); $cy++ )
+        $taken ['grid'] [$cx] [$cy] [] = $i;
+
+  }
+
+  // The first spot taken, in the order taken, that a label $w wide at x, y would touch - it
+  // keeps 2 clear of another's side and 11 of its middle line - as its number, or NULL:
+  // only the cells within reach are looked in, a pixel further than the label reaches, so
+  // a rounding in the cells never loses a spot the test itself would find.
+
+  function padDiagramClash ( $taken, $x, $y, $w ) {
+
+    $first = NULL;
+
+    for ( $cx = (int) floor ( ( $x - $w / 2 - 3 ) / 64 ); $cx <= (int) floor ( ( $x + $w / 2 + 3 ) / 64 ); $cx++ )
+      for ( $cy = (int) floor ( ( $y - 12 ) / 32 ); $cy <= (int) floor ( ( $y + 12 ) / 32 ); $cy++ )
+        foreach ( $taken ['grid'] [$cx] [$cy] ?? [] as $i )
+          if ( $first === NULL or $i < $first ) {
+            list ( $ox, $oy, $ow, $oh ) = $taken ['all'] [$i];
+            if ( abs ( $ox - $x ) < ( $ow + $w ) / 2 + 2 and abs ( $oy - $y ) < $oh + 11 )
+              $first = $i;
+          }
+
+    return $first;
+
+  }
+
+  // Where a label $w wide stands that meets the spot $other at x, y: past it, across the
+  // flow - in TB and BT beside it, in LR and RL under or over it, on the side the label was
+  // nearer - and past the next one in the way there, on the same side, until it stands free.
+  //
+  // A step always goes on past the spot in the way, never back, so a spot is passed once,
+  // and where a label lands after passing one is the same for every label of that width on
+  // that line across the flow: the next spot in the way there is the first one taken that
+  // touches it, and a spot taken later comes after it. Which spot follows which is kept, by
+  // the side, the width and the line - and the labels that meet the same spot after it go on
+  // in one jump to the last spot passed: every label of 2500 between two nodes passed the
+  // ones before it one at a time, and the three million steps took four seconds.
+
+  function padDiagramStep ( &$taken, $other, $x, $y, $w, $vertical ) {
+
+    $sign  = $vertical ? ( $x >= $taken ['all'] [$other] [0] ? 1 : -1 ) : ( $y >= $taken ['all'] [$other] [1] ? 1 : -1 );
+    $line  = $sign . ':' . $w . ':' . pack ( 'd', $vertical ? $y : $x );
+    $jumps = $taken ['jumps'] [$line] ?? [];
+    $path  = [];
+
+    unset ( $taken ['jumps'] [$line] );
+
+    while ( TRUE ) {
+
+      while ( isset ( $jumps [$other] ) ) {
+        $path [] = $other;
+        $other   = $jumps [$other];
+      }
+
+      list ( $ox, $oy, $ow, $oh ) = $taken ['all'] [$other];
+
+      if ( $vertical )
+        $x = $ox + $sign * ( ( $ow + $w ) / 2 + 4 );
+      else
+        $y = $oy + $sign * ( $oh + 12 );
+
+      $next = padDiagramClash ( $taken, $x, $y, $w );
+
+      if ( $next === NULL )
+        break;
+
+      $path []        = $other;
+      $jumps [$other] = $next;
+      $other          = $next;
+
+    }
+
+    foreach ( $path as $one )
+      $jumps [$one] = $other;
+
+    $taken ['jumps'] [$line] = $jumps;
+
+    return [ $x, $y ];
 
   }
 
