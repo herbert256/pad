@@ -1,0 +1,7 @@
+.pad-toy .pta-rule{display:flex;flex-wrap:wrap;gap:6px}
+.pad-toy .pta-case{display:grid;grid-template-columns:repeat(3,10px);grid-template-rows:10px 10px;gap:2px;padding:5px;border:1px solid var(--pad-toy-line);border-radius:6px;background:var(--pad-toy-canvas);cursor:pointer}
+.pad-toy .pta-case:hover{border-color:var(--pad-toy-accent)}
+.pad-toy .pta-cell,.pad-toy .pta-out{width:10px;height:10px;border:1px solid var(--pad-toy-line);background:var(--pad-toy-canvas)}
+.pad-toy .pta-cell.is-on{background:var(--pad-toy-ink);border-color:var(--pad-toy-ink)}
+.pad-toy .pta-out{grid-column:2}
+.pad-toy .pta-case[aria-pressed="true"] .pta-out{background:var(--pad-toy-accent);border-color:var(--pad-toy-accent)}

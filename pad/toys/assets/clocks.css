@@ -1,0 +1,8 @@
+.pad-toy .ptc-words{display:flex;flex-direction:column;gap:2px;padding:16px 18px 12px;border:1px solid var(--pad-toy-line);border-radius:6px;background:var(--pad-toy-canvas);font:600 15px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:0;height:260px;justify-content:center}
+.pad-toy .ptc-row{display:flex;gap:0}
+.pad-toy .ptc-letter{width:1.35em;text-align:center;padding:2px 0;color:color-mix(in srgb,var(--pad-toy-muted) 32%,transparent);transition:color .4s,text-shadow .4s}
+.pad-toy .ptc-letter.is-lit{color:var(--pad-toy-ink);text-shadow:0 0 6px var(--pad-toy-accent)}
+.pad-toy .ptc-dots{display:flex;justify-content:center;gap:10px;margin-top:8px}
+.pad-toy .ptc-dot{width:7px;height:7px;border-radius:50%;background:var(--pad-toy-grid)}
+.pad-toy .ptc-dot.is-lit{background:var(--pad-toy-accent)}
+@media (prefers-reduced-motion:reduce){.pad-toy .ptc-letter{transition:none}}
