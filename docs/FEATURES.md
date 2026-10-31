@@ -45,6 +45,7 @@ applications show them working.
   - [Markdown](#markdown)
   - [Markdown collections](#markdown-collections)
   - [Charts](#charts)
+  - [Games](#games)
   - [Month calendar](#month-calendar)
   - [Syntax highlighting](#syntax-highlighting)
   - [QR codes and barcodes](#qr-codes-and-barcodes)
@@ -541,6 +542,31 @@ Code: the chart subsystem in `pad/charts/` - `chart.php` the body every form run
 `_lib/` the drawing (`chart.php` bar, line and sparkline, the files beside it the other
 kinds), `types/` the kinds; `pad/types/chart.php` the chart type.
 
+### Games
+```
+{game 'memory', pairs=6/}                      # 18 little games, played in the browser
+{game:tictactoe opens='computer'/}             # the game: type - or bare, {tictactoe/}
+{sudoku givens=26, seed=7/}                    # a new puzzle with one solution; seed= the same one
+{sudoku '53..7....6..195....98...', paper/}    # print: drawn to print, solve: solved, no script
+{hangman data='words'/}                        # the words of a store, else between the tags
+{crossword}                                    # a line per word, WORD: clue - laid out on the
+  ECHO: Writes a value without the sanitize    #   server, typed into in the page
+  PIPE: The | that hands a value to a function
+{/crossword}
+{quiz}
+  Which tag repeats its content? | while | if | set     # the right answer first
+{/quiz}
+```
+The games are the files of `pad/games/types/` - `<game>.php` checks the options and writes the
+board, `<game>.js` plays it, `<game>.css` draws it - and the files there are the games there
+are: bullscows, crossword, fifteen, gomoku (five in a row), hangman, hanoi, maze, memory, nim,
+nonogram, pegsolitaire, quiz, reversi, scramble, snake, sudoku, tictactoe, wordsearch. The
+script of every game and a small runtime (`pad/games/_lib/game.js`: a seeded random number,
+the status line, the buttons) are written once per page with the CSP nonce; a game a fragment
+or a live region brings later starts too. A finished game carries `data-result="won"` or
+`"lost"` and sends `pad-game-end`. The `games` application plays every one of them, the
+reference lists them with the pages that play them.
+
 ### Month calendar
 ```
 {calendar data='agenda', title='what'/}         # this month (or ?month=2026-11), events, links ‹ ›
@@ -576,8 +602,7 @@ kinds), `types/` the kinds; `pad/types/chart.php` the chart type.
 {icon 'arrow-right', size=20, label='Next'/}   # built-in line icon in currentColor; decorative unless label=
 {gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
 {chess $fen, flip, highlight='e2,e4', arrow='e2-e4'/}   # a FEN as an SVG board, pieces described for a screen reader
-{sudoku '53..7....6..195...', solve/}             # 81 cells as a table, givens bold; solve fills the solution in
-{crossword}ECHO: Writes a value{/crossword}       # WORD: clue lines laid out, numbered SVG grid + Across/Down clues; solution
+{sudoku '53..7....6..195...'/}                   # a game - played in the page; see Games
 {diff $old, $new/}                              # word diff with <del>/<ins>, escaped; lines, side, from=, to=
 {excerpt $body, words=24, highlight=$q/}         # whole words around the first match, <mark>ed, escaped; html
 {lorem paragraphs=3, seed=7/}                    # placeholder text, classic start, reproducible; words=, sentences=, varied

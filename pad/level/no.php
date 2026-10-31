@@ -80,6 +80,7 @@
         'flag'     => 'sequence type',     'keep'     => 'sequence type',
         'make'     => 'sequence type',     'remove'   => 'sequence type',
         'function' => 'function',          'chart'    => 'chart type',
+        'game'     => 'game',
       ];
 
       if ( isset ( $padNoKinds [$padNoPrefix] ) ) {

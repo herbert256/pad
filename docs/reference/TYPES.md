@@ -59,7 +59,8 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 19. **sequence** - Sequence type
 20. **action** - Sequence action
 21. **chart** - Chart type, a file of `PAD/charts/types/`
-22. **function** - PAD function (fallback)
+22. **game** - Game, a file of `PAD/games/types/`
+23. **function** - PAD function (fallback)
 
 A field or array that exists only as a request value - a GET, POST or cookie value the page's PHP
 (its configuration, `_inits.php`, the page, `_exits.php`) does not name, held by no row - comes
@@ -450,6 +451,25 @@ comes after every other kind of tag, so a tag, a store, a field or a sequence of
 
 ---
 
+## Game Types
+
+### game
+
+A little game played in the browser, of the kind the tag names - the games subsystem in
+`PAD/games/` sets it up, as the `{game}` tag sets up the game its parameter names.
+
+```
+{game:memory pairs=6/}
+{sudoku givens=26/}
+{hangman}lighthouse{/hangman}
+```
+
+**Resolution:** a PHP file `PAD/games/types/<name>.php` (`padGameType()` in `PAD/lib/game.php`),
+its script and style beside it: the files there are the games, and a game is added by adding
+its files. Bare, a game comes after every other kind of tag, the chart kinds too.
+
+---
+
 ## Sequence Types
 
 These types integrate with the PAD sequence subsystem.
@@ -578,6 +598,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `sequence` | PQ | Sequence types |
 | `action` | PQ | Sequence actions |
 | `chart` | PAD/charts/types/ | Chart kinds |
+| `game` | PAD/games/types/ | Games |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -602,6 +623,7 @@ types/
 ├── content.php     → Content store
 ├── data.php        → Data store
 ├── field.php       → Field value
+├── game.php        → Game
 ├── flag.php        → Sequence membership flags
 ├── function.php    → PAD function
 ├── include.php     → Include file

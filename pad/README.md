@@ -21,6 +21,7 @@ pad/
 ├── events/        # Event hooks
 ├── exits/         # Shutdown and output handling
 ├── functions/     # Pipe functions
+├── games/         # Games subsystem (a game per file of games/types/)
 ├── get/           # Content retrieval
 ├── handling/      # Data post-processing (sort, page, dedup)
 ├── info/          # Debugging and tracing
@@ -63,6 +64,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | events/ | Event hooks of the info modes (trace, stats, xref) - an application's own hooks are its `_events/`, run by lib/events.php |
 | exits/ | Shutdown, output formatting, and HTTP responses |
 | functions/ | Pipe functions (trim, upper, date, html, etc.) |
+| games/ | The games subsystem - `{game}` and the `game:` type; a game is a file of `games/types/` with its `.js` and `.css`, the runtime and the sudoku and crossword code in `games/_lib/` |
 | get/ | Variable getter system for content retrieval |
 | handling/ | Data array post-processing (sort, page, dedup) |
 | info/ | Debugging, tracing, and profiling system |

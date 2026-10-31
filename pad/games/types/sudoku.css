@@ -1,0 +1,17 @@
+.pad-game-sudoku .sdk-wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start}
+.pad-game-sudoku .sdk-grid{display:grid;grid-template-columns:repeat(9,40px);grid-template-rows:repeat(9,40px);border:3px solid var(--pad-game-ink);width:max-content;background:var(--pad-game-ink);gap:1px}
+.pad-game-sudoku .sdk-cell{border:0;padding:0;background:var(--pad-game-cell);color:var(--pad-game-accent);font:500 21px/1 system-ui,sans-serif;cursor:pointer;position:relative}
+.pad-game-sudoku .sdk-cell:nth-child(9n+3),.pad-game-sudoku .sdk-cell:nth-child(9n+6){margin-right:2px}
+.pad-game-sudoku .sdk-cell:nth-child(n+19):nth-child(-n+27),.pad-game-sudoku .sdk-cell:nth-child(n+46):nth-child(-n+54){margin-bottom:2px}
+.pad-game-sudoku .sdk-cell.is-given{color:var(--pad-game-ink);font-weight:700;background:var(--pad-game-shade)}
+.pad-game-sudoku .sdk-cell.is-peer{background:color-mix(in srgb,var(--pad-game-accent) 9%,var(--pad-game-cell))}
+.pad-game-sudoku .sdk-cell.is-given.is-peer{background:color-mix(in srgb,var(--pad-game-accent) 9%,var(--pad-game-shade))}
+.pad-game-sudoku .sdk-cell.is-same{background:color-mix(in srgb,var(--pad-game-accent) 24%,var(--pad-game-cell))}
+.pad-game-sudoku .sdk-cell.is-selected{background:var(--pad-game-mark)}
+.pad-game-sudoku .sdk-cell.is-clash{color:var(--pad-game-bad)}
+.pad-game-sudoku .sdk-cell.is-wrong{background:color-mix(in srgb,var(--pad-game-bad) 30%,var(--pad-game-cell))}
+.pad-game-sudoku .sdk-notes{position:absolute;inset:2px;display:grid;grid-template-columns:repeat(3,1fr);font-size:10px;line-height:12px;color:var(--pad-game-muted)}
+.pad-game-sudoku .sdk-pad{display:grid;grid-template-columns:repeat(5,44px);gap:6px}
+.pad-game-sudoku .sdk-key{height:44px;border:1px solid var(--pad-game-line);border-radius:6px;background:var(--pad-game-cell);color:var(--pad-game-ink);font:600 19px/1 system-ui,sans-serif;cursor:pointer;padding:0}
+.pad-game-sudoku .sdk-key:hover{border-color:var(--pad-game-accent)}
+@media (max-width:520px){.pad-game-sudoku .sdk-grid{grid-template-columns:repeat(9,32px);grid-template-rows:repeat(9,32px)}}

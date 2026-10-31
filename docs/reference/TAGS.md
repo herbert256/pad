@@ -1976,64 +1976,67 @@ under the strict check.
 
 ---
 
-### sudoku
-A sudoku as a table - the givens bold, the open cells empty, or with `solve` the solution
-filled in by a backtracking solver in another colour (`tags/_lib/sudoku.php`).
+### game
+A little game played in the browser: the server checks what the game is given and writes its
+board, the game's script - once per page, with the CSP nonce - plays it. Every game is a file of
+`pad/games/types/` with its `.js` and `.css` beside it, and the files there are the games there
+are (`padGameTypes()`); the subsystem is `pad/games/`.
 
 ```html
+{game 'memory', pairs=6/}
+{game:tictactoe opens='computer'/}
 {sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79'/}
-{sudoku $puzzle, solve, title='Saturday puzzle'/}
-```
-
-**Parameters:**
-
-| Option | Description |
-|--------|-------------|
-| first parameter | The 81 cells row by row: a digit 1-9 for a given, `.` `0` `_` or `-` for an open cell; whitespace and the bars and plus signs of a drawn grid are passed over, so nine lines will do |
-| `solve` | Fill the open cells with the solution |
-| `title` | A caption; without it the table is named by `aria-label` (`Sudoku, 30 givens`) |
-
-**Behavior:** the solver fills the cell with the fewest candidates first, a bit mask per row,
-column and box - the hardest published puzzles take well under a second. An open cell says
-`empty` to a screen reader. The colours are `--pad-sudoku-line`, `-box`, `-given`, `-solved`,
-`-cell` and `-shade` on `.pad-sudoku`, `light-dark()` defaults, written once per page, every
-rule under `:where()`. A wrong cell count, an unknown character, two equal givens in a row,
-column or box, and - with `solve` - a puzzle without a solution are errors under the strict
-check.
-
----
-
-### crossword
-A crossword made from a list of words: laid out across and down so they cross, numbered,
-drawn as an empty SVG grid beside the Across and Down clues (`tags/_lib/crossword.php`).
-
-```html
+{sudoku givens=26, seed=7/}
 {crossword}
   ECHO: Writes a value without the sanitize chain
   PIPE: The | that hands a value to a function
-  ARRAY: An ordered map
 {/crossword}
-
-{crossword solution, title='Week 41'}...{/crossword}
+{quiz}
+  Which tag repeats its content? | while | if | set
+{/quiz}
 ```
 
-**Parameters:**
+A game is written three ways, the same game each time: the tag, `{game 'memory'/}`; the game:
+type, `{game:memory/}`; and bare, `{memory/}`, when no tag, store, field or sequence has the
+name. The words, clues, questions, symbols or picture a game takes stand between its tags, a
+line each - taken as they are written, so they may hold braces - or come from a store named by
+`data=`, or as a comma list in its first value.
 
-| Option | Description |
-|--------|-------------|
-| content | A line per word, `WORD: clue` - taken as it stands, so a clue may hold braces; spaces, hyphens and apostrophes in a word are dropped, letters only |
-| `solution` | The letters in the grid and the answers behind the clues |
-| `title` | The grid's accessible name, default `Crossword` |
+| Game | Plays | Its options |
+|------|-------|-------------|
+| `bullscows` | Bulls and cows: find a number of different digits from the bulls and cows of each guess | `digits` (4), `tries` (10) |
+| `crossword` | A crossword from `WORD: clue` lines, laid out on the server; type into the squares, check, reveal | `paper`, `solution` |
+| `fifteen` | The sliding puzzle | `size` (4) |
+| `gomoku` | Five in a row against the computer | `size` (15), `first`, `two` |
+| `hangman` | Guess a word a letter at a time | `tries` (6), the words |
+| `hanoi` | The towers of Hanoi | `disks` (4) |
+| `maze` | Find the way through a new maze each game | `height` (12), `width` (18) |
+| `memory` | Pairs of cards face down | `pairs` (8), the faces |
+| `nim` | Take matches from heaps; the last one wins - or loses | `heaps` ('3, 4, 5'), `misere`, `opens` |
+| `nonogram` | Uncover a picture from the runs of each row and column | the picture, `#` and `.` |
+| `pegsolitaire` | Peg solitaire on the English cross | |
+| `quiz` | Questions with answers to choose from: `question \| right \| wrong ...` | `order`; by `data=` the fields question, answer, wrong |
+| `reversi` | Reversi against the computer | `opens`, `two` |
+| `scramble` | Spell shuffled words again | `rounds` (10), the words |
+| `snake` | Steer the snake to the apples | `size` (18), `speed` (6), `wrap` |
+| `sudoku` | A given puzzle, or a new one with one solution; notes, hint, check | `givens` (30), `paper`, `solve` |
+| `tictactoe` | Tic-tac-toe against the computer, which never loses | `opens`, `two` |
+| `wordsearch` | Find the words in a square of letters | `size`, the words |
 
-**Behavior:** the layout is greedy and the same every time - the longest word first, across;
-then each next word, longest first, where it crosses the most letters already down on the
-smallest grid, never side by side with another word. A word that fits nowhere is left out
-and named under the clues (`Not placed: ...`) and in the grid's `<desc>`. The squares are
-numbered row by row where a word starts; each clue carries its length. The colours are
-`--pad-crossword-square`, `-line`, `-number`, `-letter` and `-answer` on `.pad-crossword`,
-`light-dark()` defaults, written once per page. The tag written alone, a line without `:`, a
-word that is no letters, a word without a clue or written twice are errors under the strict
-check.
+**Every game:** `seed=` makes the shuffles, boards and puzzles the same on every load (without
+it the browser picks), `title=` names it. The board carries `data-result="won"` or `"lost"`
+when a game ends and sends a `pad-game-end` event. The colours are `--pad-game-ink`,
+`-accent`, `-accent2`, `-good`, `-bad`, `-mark` and their like on `.pad-game`, `light-dark()`
+defaults. An option out of its bounds, a word that is no letters, a quiz line without two
+answers, a picture row of another length, a sudoku without a solution are errors under the
+strict check.
+
+**Printed:** a sudoku or a crossword drawn on the server, no script - `paper` the puzzle,
+`solve` the sudoku solved by a backtracking solver (the cell with the fewest candidates first;
+the hardest published puzzles well under a second), `solution` the crossword filled in with
+the answers behind the clues. The crossword's layout is greedy and the same every time: the
+longest word first, across, then each next word where it crosses the most letters already
+down, on the smallest grid; a word that fits nowhere is left out and named under the clues.
 
 ---
 
@@ -3329,8 +3332,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `icon` | Output | One of 79 built-in line icons as inline SVG in `currentColor` |
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
 | `chess` | Output | A chess position from FEN as inline SVG - pieces, coordinates, marked squares, arrows |
-| `sudoku` | Output | A sudoku grid as a table, givens bold - solved on the server with `solve` |
-| `crossword` | Output | Words and clues laid out as a numbered crossword grid (SVG) with the Across and Down lists |
+| `game` | Output | A little game played in the browser - 18 of them, the files of `pad/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |

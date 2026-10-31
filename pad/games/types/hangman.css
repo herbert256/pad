@@ -1,0 +1,10 @@
+.pad-game-hangman .hgm-wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.pad-game-hangman .hgm-gallows{width:130px;height:160px;stroke:var(--pad-game-ink);stroke-width:4;stroke-linecap:round;fill:none}
+.pad-game-hangman .hgm-side{max-width:420px}
+.pad-game-hangman .hgm-word{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;font:700 26px/1 ui-monospace,Menlo,monospace;text-transform:uppercase}
+.pad-game-hangman .hgm-letter{width:26px;border-bottom:3px solid var(--pad-game-ink);text-align:center;min-height:32px}
+.pad-game-hangman.is-lost .hgm-letter{color:var(--pad-game-bad)}
+.pad-game-hangman .hgm-keys{display:grid;grid-template-columns:repeat(9,36px);gap:5px}
+.pad-game-hangman .hgm-key{height:36px;border:1px solid var(--pad-game-line);border-radius:6px;background:var(--pad-game-cell);color:var(--pad-game-ink);font:600 16px/1 system-ui,sans-serif;text-transform:uppercase;cursor:pointer;padding:0}
+.pad-game-hangman .hgm-key.is-hit{background:var(--pad-game-good);color:#fff;border-color:transparent}
+.pad-game-hangman .hgm-key.is-miss{opacity:.35}

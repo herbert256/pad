@@ -1,6 +1,6 @@
-sudoku {sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79', title='{$t}' | php:substr_count(@, 'Q&amp;A Å')/};
+sudoku {sudoku '53..7....6..195....98....6.8...6...34..8.3..17...2...6.6....28....419..5....8..79', title='{$t}', paper | php:substr_count(@, 'Q&amp;A Å')/};
 chess {chess 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1', title='{$t}' | php:substr_count(@, 'Q&amp;A Å')/};
-crossword {crossword title='{$t}'}
+crossword {crossword title='{$t}', paper}
   ECHO: Writes a value
   HELLO: The first page
 {/crossword | php:substr_count(@, 'Q&amp;A Å')};

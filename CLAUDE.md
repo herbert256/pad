@@ -692,6 +692,7 @@ Resolve naming conflicts with explicit prefixes:
 | `script:` | Script from `_scripts/` | `{script:backup}` |
 | `sequence:` | Sequence type | `{sequence:fibonacci}` as a tag, `sequence:fibonacci(8)` in an expression - the 8th term |
 | `chart:` | Chart type | `{chart:pie data='budget'/}`, the same chart as `{chart 'pie', data='budget'/}` - a kind is a file of `pad/charts/types/` |
+| `game:` | Game | `{game:memory pairs=6/}`, the same game as `{game 'memory', pairs=6/}` - a game is a file of `pad/games/types/` |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
 
@@ -776,6 +777,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Markdown](docs/FEATURES.md#markdown) | `{markdown}`, `\| markdown` |
 | [Markdown collections](docs/FEATURES.md#markdown-collections) | `{collection 'blog'}`, `_content/` |
 | [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/charts/types/`; `{sparkline/}` |
+| [Games](docs/FEATURES.md#games) | `{game 'memory'/}`, `{game:sudoku/}`, `{crossword}...{/crossword}` - 18 games played in the browser, a game per file of `pad/games/types/` |
 | [Month calendar](docs/FEATURES.md#month-calendar) | `{calendar}` |
 | [Syntax highlighting](docs/FEATURES.md#syntax-highlighting) | `{highlight 'php'}`, `{source}` |
 | [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{qr}`, `{barcode}` |
@@ -1013,7 +1015,8 @@ drawn in [docs/PAD.md](docs/PAD.md#processing-pipeline).
   CORS (`inits/_lib/`), toolbar, live reload (`exits/_lib/`), error pages, dumps, the source
   map's error-time walk (`error/_lib/`), data answers, the designer preview (`build/_lib/`),
   the select builder (`select/_lib/`), lookup (`functions/_lib/`), group aggregates
-  (`handling/_lib/`), the charts (`charts/_lib/`, a kind per file of `charts/types/`) -
+  (`handling/_lib/`), the charts (`charts/_lib/`, a kind per file of `charts/types/`), the
+  games (`games/_lib/`, a game per file of `games/types/`) -
   included where the feature runs. What the engine calls on every
   request, a pipe, a documented PHP helper or a page calls stays in `pad/lib/` - as the
   entry, which includes the rest when it runs (`padMarkdown`, `padMail`, `padHighlight`,
@@ -1133,6 +1136,7 @@ the `claude` line of `./ci.sh`.
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | `develop` | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | `edit` | Standard | A browser editor for every application, behind a login, this machine only by default - file tree with new, copy, rename, delete, upload and trash; Monaco with PAD colouring, completion, hover, go-to-definition and PAD's own checks, PHP completion; preview, history, search, git, a terminal, an Xdebug step debugger; the framework's own pad/ in the tree too |
+| `games` | Standard | Every game of the games subsystem to play - a card per game, a page per game with the template that plays it, all read from `pad/games/types/` |
 | `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |
 | `hello` | Minimal | Hello World example demonstrating page pairing |
 | `htmx` | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates and server-sent events - htmx asks for a part, PAD answers its `{fragment}` (by `HX-Target`), each example with a request log and its sources |

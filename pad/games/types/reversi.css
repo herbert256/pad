@@ -1,0 +1,9 @@
+.pad-game-reversi .rvs-grid{display:grid;grid-template-columns:repeat(8,44px);grid-template-rows:repeat(8,44px);gap:2px;background:#145a32;padding:4px;border-radius:6px;width:max-content}
+.pad-game-reversi .rvs-cell{border:0;padding:0;background:#1e7a45;cursor:pointer;position:relative}
+.pad-game-reversi .rvs-cell::after{content:"";position:absolute;inset:5px;border-radius:50%;transition:background .25s}
+.pad-game-reversi .rvs-cell.is-black::after{background:radial-gradient(circle at 35% 35%,#555,#111)}
+.pad-game-reversi .rvs-cell.is-white::after{background:radial-gradient(circle at 35% 35%,#fff,#d4d4cc)}
+.pad-game-reversi .rvs-cell.is-hint::after{inset:17px;background:rgba(255,255,255,.35)}
+.pad-game-reversi .rvs-cell.is-last{box-shadow:inset 0 0 0 2px var(--pad-game-accent2)}
+.pad-game-reversi .rvs-score{margin:8px 0 0;font-variant-numeric:tabular-nums}
+@media (max-width:520px){.pad-game-reversi .rvs-grid{grid-template-columns:repeat(8,34px);grid-template-rows:repeat(8,34px)}}

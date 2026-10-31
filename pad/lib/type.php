@@ -304,6 +304,7 @@
     elseif ( pqSeq              ( $item                          ) ) return 'sequence';
     elseif ( pqAction           ( $item                          ) ) return 'action';
     elseif ( padChartType       ( $item                          ) ) return 'chart';
+    elseif ( padGameType        ( $item                          ) ) return 'game';
 
     return FALSE;
 
@@ -373,6 +374,7 @@
     elseif ( pqSeq              ( $item                          ) and $type == 'sequence' ) return $type;
     elseif ( pqAction           ( $item                          ) and $type == 'action'   ) return $type;
     elseif ( padChartType       ( $item                          ) and $type == 'chart'    ) return $type;
+    elseif ( padGameType        ( $item                          ) and $type == 'game'     ) return $type;
     elseif ( in_array ( padTypeFunction ( $item, 0 ), [ 'app', 'pad' ], TRUE ) and $type == 'function' ) return $type;
 
     return FALSE;

@@ -19,6 +19,6 @@ PAD;
     'size'      => 'Width and height in pixels, 360 when not given (80 at least); the board shrinks to fit a narrower container.',
     'title'     => 'The accessible name of the board. <code>Chess position, White to move</code> when not given.' ];
 
-  $tagSee     = [ 'sudoku', 'crossword', 'chart' ];
+  $tagSee     = [ 'game', 'chart' ];
 
 ?>

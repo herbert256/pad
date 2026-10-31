@@ -1,0 +1,231 @@
+<style>:where(.pad-game){--pad-game-ink:#1a1a19;--pad-game-muted:#6b6a65;--pad-game-line:#c9c8c2;--pad-game-surface:#fcfcfb;--pad-game-cell:#ffffff;--pad-game-shade:#f0efea;--pad-game-accent:#2a78d6;--pad-game-accent2:#eb6834;--pad-game-good:#1a8a5a;--pad-game-bad:#d43c3b;--pad-game-mark:#fff1b8;}@supports (color:light-dark(#000,#fff)){:where(.pad-game){--pad-game-ink:light-dark(#1a1a19,#f4f3ee);--pad-game-muted:light-dark(#6b6a65,#a8a79f);--pad-game-line:light-dark(#c9c8c2,#4a4a46);--pad-game-surface:light-dark(#fcfcfb,#1a1a19);--pad-game-cell:light-dark(#ffffff,#242422);--pad-game-shade:light-dark(#f0efea,#2c2c29);--pad-game-accent:light-dark(#2a78d6,#5598e7);--pad-game-accent2:light-dark(#eb6834,#e8875f);--pad-game-good:light-dark(#1a8a5a,#3fbf86);--pad-game-bad:light-dark(#d43c3b,#ef6b6a);--pad-game-mark:light-dark(#fff1b8,#4a4320);}}:where(.pad-game){display:block;width:fit-content;max-width:100%;margin:1em 0;padding:14px 16px;border:1px solid var(--pad-game-line);border-radius:10px;background:var(--pad-game-surface);color:var(--pad-game-ink);font:15px/1.4 system-ui,sans-serif;box-sizing:border-box}
+.pad-game *,.pad-game *::before,.pad-game *::after{box-sizing:border-box}
+.pad-game .pg-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px;margin:0 0 10px}
+.pad-game .pg-title{font-weight:650;font-size:16px}
+.pad-game .pg-status{color:var(--pad-game-muted);min-height:1.4em}
+.pad-game.is-won .pg-status{color:var(--pad-game-good);font-weight:600}
+.pad-game.is-lost .pg-status{color:var(--pad-game-bad);font-weight:600}
+.pad-game .pg-board{position:relative;max-width:100%;overflow-x:auto}
+.pad-game .pg-bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pad-game .pg-bar:empty{display:none}
+.pad-game .pg-button{font:inherit;font-size:14px;padding:6px 12px;border-radius:6px;border:1px solid var(--pad-game-line);background:var(--pad-game-cell);color:var(--pad-game-ink);cursor:pointer}
+.pad-game .pg-button:hover:not(:disabled){border-color:var(--pad-game-accent)}
+.pad-game .pg-button:disabled{opacity:.45;cursor:default}
+.pad-game .pg-button.is-on{background:var(--pad-game-accent);border-color:var(--pad-game-accent);color:#fff}
+.pad-game button:focus-visible,.pad-game [tabindex]:focus-visible,.pad-game input:focus-visible{outline:2px solid var(--pad-game-accent);outline-offset:2px}
+.pad-game .pg-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.pad-game .pg-noscript{color:var(--pad-game-bad);margin:0}
+.pad-game .pg-note{color:var(--pad-game-muted);font-size:13px;margin:8px 0 0}
+.pad-game .pg-input{font:inherit;padding:6px 8px;border:1px solid var(--pad-game-line);border-radius:6px;background:var(--pad-game-cell);color:var(--pad-game-ink)}
+</style><style>.pad-game-quiz .quz-box{max-width:520px}
+.pad-game-quiz .quz-count{margin:0;color:var(--pad-game-muted);font-size:13px}
+.pad-game-quiz .quz-question{margin:4px 0 12px;font-size:18px;font-weight:600}
+.pad-game-quiz .quz-answers{display:grid;gap:8px}
+.pad-game-quiz .quz-answer{text-align:left;font:inherit;padding:10px 14px;border:1px solid var(--pad-game-line);border-radius:8px;background:var(--pad-game-cell);color:var(--pad-game-ink);cursor:pointer}
+.pad-game-quiz .quz-answer:hover:not(:disabled){border-color:var(--pad-game-accent)}
+.pad-game-quiz .quz-answer:disabled{cursor:default}
+.pad-game-quiz .quz-answer.is-right{border-color:var(--pad-game-good);background:var(--pad-game-good);color:#fff}
+.pad-game-quiz .quz-answer.is-wrong{border-color:var(--pad-game-bad);background:var(--pad-game-bad);color:#fff}
+.pad-game-quiz .quz-next{margin-top:12px}
+</style><section class="pad-game pad-game-quiz" id="pad-game-quiz-f462fc64" data-pad-game="quiz" data-config="{&quot;questions&quot;:[[&quot;Which tag repeats its content?&quot;,[&quot;{while}&quot;,&quot;{if}&quot;,&quot;{set}&quot;]],[&quot;How is a single tag written?&quot;,[&quot;with a slash&quot;,&quot;with a colon&quot;,&quot;with a hash&quot;]],[&quot;Where do an application&#039;s own tags go?&quot;,[&quot;_tags&quot;,&quot;_lib&quot;,&quot;_data&quot;]]],&quot;order&quot;:false,&quot;name&quot;:&quot;Quiz&quot;}" aria-label="Quiz"><header class="pg-head"><strong class="pg-title">Quiz</strong><span class="pg-status" role="status" aria-live="polite"></span></header><div class="pg-board"></div><div class="pg-bar"></div><noscript><p class="pg-noscript">This game is played in the browser and needs JavaScript.</p></noscript></section><script>/* The runtime of the PAD games (pad/games/_lib/game.php writes it once per page). A game's
+   script registers itself - PadGames.register('memory', function (k, cfg) { ... }) - and is
+   started on every board of its kind: the ones on the page, and the ones a fragment, a live
+   region or a script brings later. k is the game's kit: its board, its status line and its
+   bar, a random number seeded by seed= (the same games on every load) or by the browser,
+   timers that stop with the game, and the end of a game, which the board carries as
+   data-result="won" or "lost" and announces with a pad-game-end event. */
+
+(function () {
+  'use strict';
+
+  if (window.PadGames) return;
+
+  var kinds = {};
+
+  // mulberry32: a small, fast generator whose numbers follow from the seed alone.
+
+  function random(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a = (a + 0x6D2B79F5) >>> 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined && text !== null) e.textContent = text;
+    return e;
+  }
+
+  function Kit(root, cfg) {
+    this.root = root;
+    this.cfg = cfg;
+    this.board = root.querySelector('.pg-board');
+    this.bar = root.querySelector('.pg-bar');
+    this.statusEl = root.querySelector('.pg-status');
+    this.seed = (typeof cfg.seed === 'number') ? cfg.seed : Math.floor(Math.random() * 2147483647);
+    this.rand = random(this.seed);
+    this.timers = [];
+  }
+
+  Kit.prototype = {
+    el: el,
+    int: function (n) { return Math.floor(this.rand() * n); },
+    pick: function (list) { return list[this.int(list.length)]; },
+    shuffle: function (list) {
+      for (var i = list.length - 1; i > 0; i--) {
+        var j = this.int(i + 1), t = list[i];
+        list[i] = list[j];
+        list[j] = t;
+      }
+      return list;
+    },
+    status: function (text) { this.statusEl.textContent = text; },
+    button: function (label, fn, cls) {
+      var b = el('button', 'pg-button' + (cls ? ' ' + cls : ''), label);
+      b.type = 'button';
+      b.addEventListener('click', fn);
+      this.bar.appendChild(b);
+      return b;
+    },
+    // A new game: the board emptied, the result and the timers of the last one gone.
+    fresh: function () {
+      this.stop();
+      this.board.textContent = '';
+      this.root.classList.remove('is-won', 'is-lost');
+      this.root.removeAttribute('data-result');
+    },
+    won: function (text) { this.finish('won', text); },
+    lost: function (text) { this.finish('lost', text); },
+    finish: function (result, text) {
+      this.stop();
+      this.root.classList.add(result === 'won' ? 'is-won' : 'is-lost');
+      this.root.setAttribute('data-result', result);
+      this.status(text);
+      this.root.dispatchEvent(new CustomEvent('pad-game-end', { bubbles: true, detail: { result: result } }));
+    },
+    over: function () { return this.root.hasAttribute('data-result'); },
+    later: function (fn, ms) { var t = setTimeout(fn, ms); this.timers.push(t); return t; },
+    every: function (fn, ms) { var t = setInterval(fn, ms); this.timers.push(t); return t; },
+    stop: function () {
+      this.timers.forEach(function (t) { clearTimeout(t); clearInterval(t); });
+      this.timers = [];
+    },
+    // Keys the game reads while it has the focus; the arrows then do not scroll the page.
+    keys: function (map) {
+      this.root.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey) return;
+        var fn = map[e.key];
+        if (fn && fn(e) !== false) e.preventDefault();
+      });
+    },
+    // A swipe over the board, as the arrow it points: 'ArrowUp', 'ArrowLeft' ...
+    swipe: function (fn) {
+      var x0 = null, y0 = null, board = this.board;
+      board.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+      board.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+        x0 = null;
+        if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
+        fn(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'ArrowRight' : 'ArrowLeft') : (dy > 0 ? 'ArrowDown' : 'ArrowUp'));
+      });
+    }
+  };
+
+  function start(root) {
+    if (root.padGameKit) return;
+    var init = kinds[root.getAttribute('data-pad-game')];
+    if (!init) return;
+    var cfg = {};
+    try { cfg = JSON.parse(root.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+    var kit = new Kit(root, cfg);
+    root.padGameKit = kit;
+    root.classList.add('is-ready');
+    init(kit, cfg);
+  }
+
+  function scan(where) {
+    var list = (where || document).querySelectorAll('.pad-game[data-pad-game]');
+    for (var i = 0; i < list.length; i++) start(list[i]);
+  }
+
+  window.PadGames = {
+    register: function (name, init) { kinds[name] = init; scan(); },
+    scan: scan,
+    random: random,
+    el: el
+  };
+
+  document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+  if (window.MutationObserver)
+    new MutationObserver(function (records) {
+      for (var i = 0; i < records.length; i++)
+        for (var j = 0; j < records[i].addedNodes.length; j++) {
+          var n = records[i].addedNodes[j];
+          if (n.nodeType === 1 && (n.matches('.pad-game') || n.querySelector('.pad-game'))) { scan(); return; }
+        }
+    }).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script><script>PadGames.register('quiz', function (k, cfg) {
+  var list, at, score, answered;
+
+  function ask() {
+    k.board.textContent = '';
+    var q = list[at], box = k.el('div', 'quz-box');
+    box.appendChild(k.el('p', 'quz-count', 'Question ' + (at + 1) + ' of ' + list.length));
+    box.appendChild(k.el('p', 'quz-question', q[0]));
+    var answers = k.el('div', 'quz-answers'), shuffled = k.shuffle(q[1].map(function (a, i) { return [a, i === 0]; }));
+    answered = false;
+    shuffled.forEach(function (a) {
+      var b = k.el('button', 'quz-answer', a[0]);
+      b.type = 'button';
+      if (a[1]) b.setAttribute('data-right', '');
+      b.addEventListener('click', function () {
+        if (answered || k.over()) return;
+        answered = true;
+        [].forEach.call(answers.children, function (x) { x.disabled = true; if (x.hasAttribute('data-right')) x.classList.add('is-right'); });
+        if (a[1]) { score++; k.status('Right! ' + score + ' of ' + (at + 1)); }
+        else { b.classList.add('is-wrong'); k.status('Not quite - the answer is "' + q[1][0] + '". ' + score + ' of ' + (at + 1)); }
+        nextBtn.hidden = false;
+        nextBtn.textContent = at + 1 < list.length ? 'Next question' : 'See the score';
+        nextBtn.focus();
+      });
+      answers.appendChild(b);
+    });
+    box.appendChild(answers);
+    nextBtn = k.el('button', 'pg-button quz-next', 'Next question');
+    nextBtn.type = 'button';
+    nextBtn.hidden = true;
+    nextBtn.addEventListener('click', function () {
+      at++;
+      if (at < list.length) return ask();
+      k.board.textContent = '';
+      var text = score + ' of ' + list.length + ' right';
+      score * 2 >= list.length ? k.won(text + (score === list.length ? ' - every one!' : '.')) : k.lost(text + '.');
+    });
+    box.appendChild(nextBtn);
+    k.board.appendChild(box);
+    if (!at) k.status(list.length + ' questions - choose an answer');
+  }
+
+  var nextBtn;
+
+  function newGame() {
+    k.fresh();
+    list = cfg.order ? cfg.questions.slice() : k.shuffle(cfg.questions.slice());
+    at = 0;
+    score = 0;
+    ask();
+  }
+
+  k.button('Start again', newGame);
+  newGame();
+});
+</script>
