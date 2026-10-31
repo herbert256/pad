@@ -28,11 +28,14 @@ and rule (<code>'email.required'</code>):</p>
 
 {example 'fragments/forms_2'/}
 
-<p>The rules: <code>required</code>, <code>email</code>, <code>url</code>, <code>numeric</code>,
-<code>integer</code>, <code>min:n</code> and <code>max:n</code> (a length, or a value with
-<code>numeric</code> or <code>integer</code>), <code>in:a,b,c</code>, <code>regex:/.../</code>,
-<code>same:other_field</code>, <code>accepted</code> and <code>date</code>. An empty field is
-checked for <code>required</code> and <code>accepted</code> only. A rule name nothing knows is an error.</p>
+<p>A rule takes its argument after a colon: <code>min:n</code>, <code>max:n</code> and
+<code>between:a,b</code> are a length, or a value with <code>numeric</code> or
+<code>integer</code>; <code>in:a,b,c</code> a list, <code>regex:/.../</code> a pattern,
+<code>same:other_field</code> another field, <code>digits:4</code> a number of digits. An empty
+field is checked for <code>required</code> and <code>accepted</code> only. Every rule is a file of
+<code>pad/rules/types/</code> - its check in the browser beside it in <code>pad/rules/assets/</code> -
+and these are the {echo php:count(padRuleTypes())/} there are:
+{echo php:implode(', ', padRuleTypes())/}. A rule name nothing knows is an error.</p>
 
 <h2>After a failed post</h2>
 

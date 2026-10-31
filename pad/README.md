@@ -37,6 +37,7 @@ pad/
 ├── occurrence/    # Data iteration
 ├── options/       # Tag options
 ├── properties/    # Tag properties
+├── rules/         # Validation rules (a rule per file of rules/types/)
 ├── select/        # Select subsystem (declared tables)
 ├── sequence/      # Sequence subsystem
 ├── start/         # Execution lifecycle
@@ -87,6 +88,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | occurrence/ | Template iteration tracking and state management |
 | options/ | Tag options processing (quote, glue, toData, etc.) |
 | properties/ | Tag property accessors (first@, last@, count@, etc.) |
+| rules/ | The validation rules of `padValidate`, `rules=` and the browser's checker - a rule is a file of `rules/types/` (its check, message and argument), its check in the browser `rules/assets/<rule>.js` beside the checker's runtime `rules/assets/validate.js` |
 | select/ | The Select subsystem - a `$padSelect` table as a tag, its options (`where`, `order`, `join` ...) in `select/types/` |
 | sequence/ | Mathematical sequence generation (80+ types) |
 | start/ | Execution engine and context management |

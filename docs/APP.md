@@ -863,10 +863,12 @@ message `padValidate` found for them:
 ```
 
 `padValidate($rules, $data = posted, $messages = [])` answers one message per failing field;
-the rules are `required`, `email`, `url`, `numeric`, `integer`, `min:n`, `max:n`,
-`in:a,b,c`, `regex:/.../`, `same:field`, `accepted`, `date`. An empty field is checked for
-`required` and `accepted` only. The field shows the message in the words of its own label, with
-`aria-invalid` and `aria-describedby`.
+the rules are the files of `pad/rules/types/` - `required`, `email`, `url`, `numeric`,
+`integer`, `min:n`, `max:n`, `between:a,b`, `in:a,b,c`, `regex:/.../`, `same:field`,
+`accepted`, `date`, `time`, `digits:n`, `alpha`, `alphanum`, `starts_with:x`, `ends_with:x`,
+`lowercase`, `uppercase`, `color`, `uuid`, `ip`, `slug`, `json`, `iban`. An empty field is
+checked for `required` and `accepted` only. The field shows the message in the words of its own
+label, with `aria-invalid` and `aria-describedby`.
 
 The rules can stand on the fields in the template instead, and the PHP then only acts:
 

@@ -663,7 +663,7 @@ braces writes them as `&open;` and `&close;`, and a backslash as `\\`: `rules='r
 messages stay with `padValidate`'s third argument.
 
 **In the browser too:** `client` on a named form whose fields have rules checks them in the
-browser as well - the same rules, the same messages (`pad/lib/validate.js`, written into the
+browser as well - the same rules, the same messages (the rules' scripts in `pad/rules/assets/`, written into the
 page once, behind the first such form). The rules go in a `data-pad-rules` attribute, the
 `error=` text in `data-pad-error`, and the form gets `novalidate` - the browser's own checks
 would stop the send first, with messages of their own; a field is checked when it is left, again while it is typed
@@ -691,7 +691,7 @@ The browser's checker of `padValidate`'s rules, for a form a component draws.
 {validator/}
 ```
 
-**Behavior:** Writes `pad/lib/validate.js` as one inline script - once a page, also when a
+**Behavior:** Writes the checker - `pad/rules/assets/validate.js` with the script of every rule of `pad/rules/types/` - as one inline script - once a page, also when a
 `{form ..., client}` brought it already - carrying the request's nonce when `$padCsp` asks
 for one. The script defines `padValidate.check(rules, values)` (the message of every field
 that broke a rule), `padValidate.field(spec, value, values)` and `padValidate.form(form)`;

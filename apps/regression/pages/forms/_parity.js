@@ -1,20 +1,28 @@
-// The parity line of ./ci.sh: the browser's checker, pad/lib/validate.js, judges the cases of
+// The parity line of ./ci.sh: the browser's checker judges the cases of
 // forms/client_parity.php as padValidate does - the same field passes or fails, with the
 // same message. The page is rendered on the command line, the checker run in a bare context
-// with what it needs of a browser.
+// with what it needs of a browser. The checker is the one a page gets: the runtime,
+// pad/rules/assets/validate.js, with the script of every rule of pad/rules/types/ - written
+// by {validator}, so a rule added to the directory is judged here as it is in the page.
 
 'use strict';
 
 const { execFileSync } = require('child_process');
-const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
 const home = path.resolve(__dirname, '../../../..');
-const answer = execFileSync('php', [path.join(home, 'editors/render.php'), 'regression/pages', 'forms/client_parity'],
-                            { env: Object.assign({}, process.env, { PAD_HOME: home }), encoding: 'utf8' });
+const render = (page, input) => execFileSync('php', [path.join(home, 'editors/render.php'), 'regression/pages', page].concat(input ? ['--source=-'] : []),
+                                             { env: Object.assign({}, process.env, { PAD_HOME: home }), encoding: 'utf8', input });
 
-const cases = JSON.parse(answer).parity;
+const cases = JSON.parse(render('forms/client_parity')).parity;
+
+const checker = render('forms/client_parity_checker', '{validator/}').match(/<script[^>]*>([\s\S]*)<\/script>/);
+
+if (!checker) {
+  console.error('{validator/} wrote no script');
+  process.exit(1);
+}
 
 // Of a browser: a form whose FormData carries the case's values - the last of a name, every
 // one of a list - with a control for every name, and the message shown beside a field.
@@ -46,7 +54,7 @@ function formOf(one) {
 
 const context = { window: {}, document, URL, FormData };
 
-vm.runInNewContext(fs.readFileSync(path.join(home, 'pad/lib/validate.js'), 'utf8'), context);
+vm.runInNewContext(checker[1], context);
 
 const failed = [];
 

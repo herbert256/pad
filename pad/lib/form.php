@@ -15,7 +15,7 @@
   // padFormError   the message padValidate left for a field, when its form came back
   // padValidateClient  rules as the browser's checker reads them - each with the message
   //                padValidate would give - for {form ..., client} and for a component that
-  //                checks with the same rules the page's PHP checks with (lib/validate.js)
+  //                checks with the same rules the page's PHP checks with (rules/assets/)
   // padFormRules   the rules the page's template gives the fields of its named forms, or
   //                of one of them
   //
@@ -42,8 +42,87 @@
   const padFormName = 'padForm';
   const padFormAt   = 'padFormAt';
 
-  const padValidateRules = [ 'required', 'accepted', 'email', 'url', 'numeric', 'integer',
-                             'min', 'max', 'in', 'regex', 'same', 'date' ];
+  // The rules are the files of pad/rules/types/ - <rule>.php the server's check, and
+  // pad/rules/assets/<rule>.js the browser's - so a rule is added by adding its files, and
+  // padValidate, the browser's checker, the messages that list the rules and the pages that
+  // document them all read the directory (padRuleTypes). A rule's file answers what the rule
+  // is, read once a request (padRule):
+  //
+  //   check     fn ( $value, $arg, $data, $number ) - whether one text holds; the value is
+  //             trimmed, $arg what stands after the colon, $data the whole post (same:
+  //             finds its partner there), $number whether the field is a number field
+  //   list      the same for a list - a field named tags[] - which fails every rule that
+  //             has none: the rules speak about one value
+  //   empty     TRUE when an empty field is judged too - required, accepted; every other
+  //             rule speaks about a value that is there and passes an empty one
+  //   numeric   TRUE when the rule makes its field a number: min, max and between then
+  //             compare values, not lengths
+  //   message   the message, :label the field and :n the argument - or fn ( $arg, $number )
+  //             answering it, for a rule whose words depend on them
+  //   shown     fn ( $arg ) - the argument as the message shows it: same:first_name says
+  //             First name
+  //   argument  fn ( $arg ) - '' when the argument is one the rule can use, else why not:
+  //             a pattern PCRE cannot read is the author's error, named before any value
+  //             is judged
+  //
+  // A rule without a .js file is judged by the server alone: the browser lets it pass.
+
+  function padRuleTypes () {
+
+    return padKinds ( 'rules' );
+
+  }
+
+  function padRule ( $name ) {
+
+    static $rules = [];
+
+    if ( ! array_key_exists ( $name, $rules ) )
+      $rules [$name] = padKind ( 'rules', $name ) ? include PAD . "rules/types/$name.php" : NULL;
+
+    return $rules [$name];
+
+  }
+
+  // The length of a value as min, max and between measure it: mb_strlen counts characters,
+  // and on a number field the value is the number its start spells.
+
+  function padValidateSize ( $value, $number ) {
+
+    return $number ? (float) $value : mb_strlen ( $value );
+
+  }
+
+  // The texts of a rule's comma list - starts_with:a,b - each trimmed, the empty ones left out.
+
+  function padRuleTexts ( $arg ) {
+
+    return array_values ( array_filter ( array_map ( 'trim', explode ( ',', (string) $arg ) ), 'strlen' ) );
+
+  }
+
+  // Whether a field is a number field: one of its rules makes it one - numeric, integer.
+
+  function padValidateNumber ( $list ) {
+
+    foreach ( $list as $rule )
+      if ( padRule ( strtolower ( trim ( explode ( ':', $rule, 2 ) [0] ) ) ) ['numeric'] ?? FALSE )
+        return TRUE;
+
+    return FALSE;
+
+  }
+
+  // Why the argument of a rule is none the rule can use, '' when it is - or when the rule
+  // takes any.
+
+  function padValidateArgument ( $name, $arg ) {
+
+    $check = padRule ( $name ) ['argument'] ?? NULL;
+
+    return $check ? (string) $check ( (string) $arg ) : '';
+
+  }
 
   // Asked without a name, on a page whose template gives fields rules, only a post of a
   // form of that template kept them: a post naming no form - padForm left out - or a form
@@ -142,14 +221,14 @@
       if ( is_object ( $value ) and ! $value instanceof Stringable )
         $value = ( $value instanceof Traversable ) ? iterator_to_array ( $value ) : get_object_vars ( $value );
 
-      $number = (bool) array_intersect ( array_map ( 'strtolower', $list ), [ 'numeric', 'integer' ] );
+      $number = padValidateNumber ( $list );
       $empty  = ( $value === '' or $value === NULL or $value === [] );
 
       foreach ( $list as $rule )
-        if ( ! in_array ( strtolower ( explode ( ':', $rule, 2 ) [0] ), padValidateRules, TRUE ) )
+        if ( ! padRule ( strtolower ( explode ( ':', $rule, 2 ) [0] ) ) )
           padValidateUnknown ( $rule );
-        elseif ( strtolower ( explode ( ':', $rule, 2 ) [0] ) == 'regex' and ( $why = padValidatePattern ( explode ( ':', $rule, 2 ) [1] ?? '' ) ) !== '' )
-          padError ( "padValidate: the rule $rule is no pattern - $why" );
+        elseif ( ( $why = padValidateArgument ( strtolower ( explode ( ':', $rule, 2 ) [0] ), explode ( ':', $rule, 2 ) [1] ?? '' ) ) !== '' )
+          padError ( "padValidate: the rule $rule is $why" );
 
       // A list belongs to a field named for one - tags[] - and a field of one value posted
       // as a list is refused whatever its rules: name[]=x passed required and color[]=red
@@ -170,7 +249,7 @@
         $name  = strtolower ( $parts [0] );
         $arg   = $parts [1] ?? '';
 
-        if ( $empty and $name != 'required' and $name != 'accepted' )
+        if ( $empty and ! ( padRule ( $name ) ['empty'] ?? FALSE ) )
           continue;
 
         if ( padValidateRule ( $name, $arg, $value, $data, $number ) )
@@ -247,73 +326,23 @@
 
   }
 
-  // A list - the value of a field named name[], a multiple choice - asks required for an
-  // item, and in: holds every item to its list. Any other rule speaks about one
-  // value, which a list is not: color[]=evil, posted where the form has one color field,
-  // passed in:, email, integer and every other rule, and the page went on with a list its
-  // rules never looked at.
+  // A list - the value of a field named name[], a multiple choice - is judged by the rules
+  // that say how: required asks for an item, in: holds every item to its list. Any other
+  // rule speaks about one value, which a list is not: color[]=evil, posted where the form
+  // has one color field, passed in:, email, integer and every other rule, and the page went
+  // on with a list its rules never looked at.
 
   function padValidateRule ( $name, $arg, $value, $data, $number ) {
 
-    if ( is_array ( $value ) )
-      return match ( $name ) {
-        'required' => count ( $value ) > 0,
-        'in'       => count ( $value ) == count ( array_filter ( $value, fn ( $one ) =>
-                        is_string ( $one ) and padValidateRule ( 'in', $arg, trim ( $one ), $data, $number ) ) ),
-        default    => FALSE
-      };
+    $rule = padRule ( $name );
 
-    $value = (string) $value;
-    $size  = $number ? (float) $value : mb_strlen ( $value );
-    $other = ( $name == 'same' ) ? ( padFormFind ( $data, $arg ) [1] ?? '' ) : '';
-
-    return match ( $name ) {
-      'required' => $value !== '',
-      'accepted' => in_array ( strtolower ( $value ), [ '1', 'on', 'yes', 'true' ], TRUE ),
-      'email'    => filter_var ( $value, FILTER_VALIDATE_EMAIL ) !== FALSE,
-      'url'      => filter_var ( $value, FILTER_VALIDATE_URL ) !== FALSE && preg_match ( '#^https?://#i', $value ),
-      'numeric'  => is_numeric ( $value ),
-      'integer'  => filter_var ( $value, FILTER_VALIDATE_INT ) !== FALSE,
-      'min'      => $size >= (float) $arg,
-      'max'      => $size <= (float) $arg,
-      'in'       => in_array ( $value, array_map ( 'trim', explode ( ',', $arg ) ), TRUE ),
-      'regex'    => (bool) @preg_match ( $arg, $value ),
-      'same'     => is_scalar ( $other ) and $value === trim ( (string) $other ),
-      'date'     => padValidateDate ( $value ),
-      default    => TRUE
-    };
-
-  }
-
-  function padValidateDate ( $value ) {
-
-    $date = date_parse ( $value );
-
-    return $date ['error_count'] == 0 and $date ['year'] !== FALSE and $date ['month'] !== FALSE and $date ['day'] !== FALSE
-       and checkdate ( $date ['month'], $date ['day'], $date ['year'] );
-
-  }
-
-  // Why a regex: rule is no pattern PCRE reads - '' when it is one. Such a rule failed every
-  // value with "is not valid", the author told nothing, and the browser let it pass: an
-  // error, as a misspelled rule is.
-
-  function padValidatePattern ( $pattern ) {
-
-    $why = '';
-
-    set_error_handler ( function ( $type, $message ) use ( &$why ) {
-      $why = preg_replace ( '/^preg_match\(\):\s*/', '', $message );
+    if ( ! $rule )
       return TRUE;
-    } );
 
-    try {
-      $read = preg_match ( (string) $pattern, '' ) !== FALSE;
-    } finally {
-      restore_error_handler ();
-    }
+    if ( is_array ( $value ) )
+      return isset ( $rule ['list'] ) and (bool) $rule ['list'] ( $value, (string) $arg, $data, $number );
 
-    return $read ? '' : ( $why !== '' ? $why : 'PCRE cannot read it' );
+    return (bool) $rule ['check'] ( (string) $value, (string) $arg, $data, $number );
 
   }
 
@@ -334,26 +363,14 @@
 
   function padValidateMessage ( $field, $rule, $arg, $number, $messages ) {
 
-    $text = $messages ["$field.$rule"] ?? $messages [$field] ?? match ( $rule ) {
-      'required' => ':label is required',
-      'accepted' => ':label must be accepted',
-      'email'    => ':label must be a valid e-mail address',
-      'url'      => ':label must be a valid web address',
-      'numeric'  => ':label must be a number',
-      'integer'  => ':label must be a whole number',
-      'min'      => $number ? ':label must be at least :n' : ':label must be at least :n characters',
-      'max'      => $number ? ':label must be at most :n'  : ':label must be at most :n characters',
-      'in'       => ':label must be one of :n',
-      'same'     => ':label must be the same as :n',
-      'date'     => ':label must be a date',
-      'single'   => ':label must be a single value',
-      default    => ':label is not valid'
-    };
+    $spec = ( $rule == 'single' ) ? NULL : padRule ( $rule );
+    $own  = $spec ['message'] ?? ':label is not valid';
 
-    if ( $rule == 'same' )
-      $arg = padValidateName ( $arg );
-    elseif ( $rule == 'in' )
-      $arg = implode ( ', ', array_map ( 'trim', explode ( ',', $arg ) ) );
+    $text = $messages ["$field.$rule"] ?? $messages [$field]
+         ?? ( ( $rule == 'single' ) ? ':label must be a single value' : ( is_callable ( $own ) ? $own ( (string) $arg, $number ) : $own ) );
+
+    if ( isset ( $spec ['shown'] ) )
+      $arg = $spec ['shown'] ( (string) $arg );
 
     return [ $text, $arg ];
 
@@ -980,7 +997,7 @@
 
   }
 
-  // The rules as lib/validate.js reads them: per field its label (the name made readable,
+  // The rules as the browser's checker reads them: per field its label (the name made readable,
   // the <label> of the field wins in a form), whether it is a number - min and max then
   // compare values, not lengths - and a list (name[]), the message of a list where one
   // value belongs, and per rule [ name, argument, message, the argument as the message
@@ -999,7 +1016,7 @@
 
       $list   = is_array ( $list ) ? $list : padValidateSplit ( $list );
       $list   = array_values ( array_filter ( array_map ( 'trim', $list ), 'strlen' ) );
-      $number = (bool) array_intersect ( array_map ( 'strtolower', $list ), [ 'numeric', 'integer' ] );
+      $number = padValidateNumber ( $list );
       $one    = [];
 
       foreach ( $list as $rule ) {
@@ -1008,7 +1025,7 @@
         $name  = strtolower ( $parts [0] );
         $arg   = $parts [1] ?? '';
 
-        if ( ! in_array ( $name, padValidateRules, TRUE ) ) {
+        if ( ! padRule ( $name ) ) {
           padValidateUnknown ( $rule );
           continue;
         }
@@ -1031,9 +1048,9 @@
 
   }
 
-  // The checker itself, lib/validate.js, as one inline script - once a page, behind the
-  // first {form ..., client} or where {validator} stands. It is the engine's own script,
-  // so it carries this request's nonce when the Content-Security-Policy asks for one.
+  // The checker itself as one inline script - once a page, behind the first {form ...,
+  // client} or where {validator} stands. It is the engine's own script, so it carries this
+  // request's nonce when the Content-Security-Policy asks for one.
 
   function padValidateScript () {
 
@@ -1042,13 +1059,42 @@
     if ( ! padWidgetOnce ( 'script:validate' ) )
       return '';
 
-    $nonce   = str_contains ( (string) $padCsp, "'nonce'" ) ? ' nonce="' . padNonce () . '"' : '';
+    $nonce = str_contains ( (string) $padCsp, "'nonce'" ) ? ' nonce="' . padNonce () . '"' : '';
 
-    // The file's comment lines and blank lines stay in the file: the page gets the code.
+    return padProtect ( "<script$nonce>\n" . padValidateCode () . '</script>' );
 
-    $code = preg_replace ( '~^[ \t]*(//[^\n]*)?\n~m', '', file_get_contents ( PAD . 'lib/validate.js' ) );
+  }
 
-    return padProtect ( "<script$nonce>\n" . $code . '</script>' );
+  // The checker's code: the runtime, rules/assets/validate.js, with the script of every rule
+  // of rules/types/ that has one - rules/assets/<rule>.js - where its /*rules*/ stands, and
+  // the rules that judge an empty field, read from their PHP files, where /*empties*/ does:
+  // what the browser does is what the directory says, as padValidate's is. Each rule's script
+  // runs in a function of its own, inside the runtime's: it reads the runtime's helpers -
+  // trim, toNumber, ipv4 - and its own stay its own, where a function of a rule named like
+  // one of the runtime's would have replaced it. The comment lines and blank lines stay in
+  // the files: the page gets the code.
+
+  function padValidateCode () {
+
+    static $code = NULL;
+
+    if ( $code !== NULL )
+      return $code;
+
+    $rules   = '';
+    $empties = [];
+
+    foreach ( padRuleTypes () as $name ) {
+      if ( padRule ( $name ) ['empty'] ?? FALSE )
+        $empties [$name] = TRUE;
+      if ( ( $script = padFileGet ( PAD . "rules/assets/$name.js" ) ) !== '' )
+        $rules .= "(function () {\n$script})();\n";
+    }
+
+    $code = strtr ( padFileGet ( PAD . 'rules/assets/validate.js' ),
+                    [ '/*empties*/{}' => json_encode ( (object) $empties ), '/*rules*/' => $rules ] );
+
+    return $code = preg_replace ( '~^[ \t]*(//[^\n]*)?\n~m', '', $code );
 
   }
 
@@ -1216,10 +1262,10 @@
 
     foreach ( padValidateSplit ( $list ) as $whole ) {
       $rule = strtolower ( trim ( explode ( ':', $whole, 2 ) [0] ) );
-      if ( $rule !== '' and ! in_array ( $rule, padValidateRules, TRUE ) )
-        return padError ( "the rules of $where have no rule named '$rule' - there are " . implode ( ', ', padValidateRules ) );
-      if ( $rule == 'regex' and ( $why = padValidatePattern ( explode ( ':', trim ( $whole ), 2 ) [1] ?? '' ) ) !== '' )
-        return padError ( "the rules of $where have a regex: that is no pattern - $why" );
+      if ( $rule !== '' and ! padRule ( $rule ) )
+        return padError ( "the rules of $where have no rule named '$rule' - there are " . implode ( ', ', padRuleTypes () ) );
+      if ( $rule !== '' and ( $why = padValidateArgument ( $rule, explode ( ':', trim ( $whole ), 2 ) [1] ?? '' ) ) !== '' )
+        return padError ( "the rules of $where have a $rule: that is $why" );
     }
 
     if ( isset ( $rules [$named] [$name] ) and $rules [$named] [$name] !== $list )

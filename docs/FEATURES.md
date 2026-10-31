@@ -356,8 +356,19 @@ page's own template (and its `_inits.pad`/`_exits.pad`) is read, literal rules o
 a snippet, custom tag, `{page}` or layout, from a variable, in an `action=`/GET form or on a
 file field are errors.
 
+The rules are the files of `pad/rules/types/` - `<rule>.php` answers its check, its message and
+whether an empty field or a list is judged, `pad/rules/assets/<rule>.js` is its check in the
+browser - and the files there are the rules there are: besides `required`, `email`, `url`,
+`numeric`, `integer`, `min:n`, `max:n`, `in:a,b`, `regex:/x/`, `same:field`, `accepted` and
+`date` they are `between:a,b` (a length, or a value with `numeric`), `digits` and `digits:n`,
+`alpha`, `alphanum`, `starts_with:a,b`, `ends_with:a,b`, `lowercase`, `uppercase`, `time`
+(HH:MM), `color` (#rgb, #rrggbb), `uuid`, `ip` (`ip:v4`, `ip:v6`), `slug`, `json` and `iban`
+(its check digits). A rule is added by adding its files; an argument a rule cannot use -
+`digits:four`, `between:9,1` - is an error, as a pattern PCRE cannot read is.
+
 `client` on the form checks the same rules in the browser too, with the same messages, before
-the form leaves (`pad/lib/validate.js`, written once a page). For a form a component draws,
+the form leaves (the runtime `pad/rules/assets/validate.js` with every rule's script, written
+once a page). For a form a component draws,
 keep the rules in PHP - `padValidate ( $rules )` checks the post, `padValidateClient ( $rules )`
 exports them for `padValidate.check ( rules, values )` in the browser, `{validator}` brings the
 checker:
