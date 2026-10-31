@@ -1,37 +1,39 @@
 <?php
 
-  // Inline SVG charts - the {chart} and {sparkline} tags. The server writes the picture: no
-  // JavaScript, so a chart works in an e-mail and in print, and caches like any other
-  // output.
+  // The chart subsystem: inline SVG charts, written by the server - no JavaScript, so a chart
+  // works in an e-mail and in print, and caches like any other output.
   //
-  //   {chart 'bar', data='sales', label='month', value='amount'}
-  //   {chart 'line', data='visits', value='count', title='Visits per day'}
-  //   {sparkline data='visits', value='count'}
-  //   {sparkline sequence='fibonacci', rows=12}
+  //   {chart 'bar', data='sales', label='month', value='amount'/}
+  //   {chart:line data='visits', value='count', title='Visits per day'/}
+  //   {gauge value=72, unit='%'/}
+  //   {sparkline sequence='fibonacci', rows=12/}
   //
-  // padChartRows       the rows behind a chart: a {data} store or a sequence store by name,
-  //                    the page's own array of that name, a _data file, or the data= literal
-  //                    the data option already read - or the first rows terms of a sequence,
-  //                    or the content of a pair, {chart 'bar'}...{/chart}, read as {data}
-  //                    reads its own: JSON, YAML, XML or CSV, told apart on sight (type=
-  //                    names it)
-  // padChartPoints     the rows as [ label, value ] points: value= names the field (else
-  //                    the first numeric one), label= the field for the axis (else the first
-  //                    other one, else the row number); a row without a finite number is
-  //                    left out
-  // padChart           the SVG: bar, line or sparkline of one series
+  // A chart kind is a file of charts/types/: the kinds there are are the kinds a chart has
+  // (padChartTypes, lib/chart.php), the {chart} tag names one by its parameter, the chart:
+  // type by its name - {chart:pie}, or bare, {pie}, when nothing else has the name - and
+  // {sparkline} is the sparkline. charts/chart.php is the body all three run; a kind's file
+  // reads the rows with padChartGather, its size with padChartSize - its own default size -
+  // and answers the SVG, drawn by the functions of this directory.
   //
-  // The other kinds - several series, hbar, pie, donut, scatter, bubble, heatmap, sankey,
-  // network, treemap, sunburst, gauge, radar, waterfall, histogram, boxplot, calendar, gantt,
-  // area, stream, multiples, candlestick, dual, spiral, rose, radialbar, funnel, pyramid,
-  // waffle, marimekko, parliament, venn, density, violin, bullet, rings, parallel,
-  // proportional, chord, arc, pack and orgchart - are drawn by the files of tags/_lib/chart/,
-  // on the same opening, style and number format, all included with this file.
+  //   padChartRows       the rows behind a chart: a {data} store or a sequence store by name,
+  //                      the page's own array of that name, a _data file, or the data=
+  //                      literal the data option already read - or the first rows terms of a
+  //                      sequence, or the content of a pair, {chart 'bar'}...{/chart}, read
+  //                      as {data} reads its own: JSON, YAML, XML or CSV, told apart on sight
+  //                      (type= names it)
+  //   padChartPoints     the rows as [ label, value ] points: value= names the field (else
+  //                      the first numeric one), label= the field for the axis (else the
+  //                      first other one, else the row number); a row without a finite
+  //                      number is left out
+  //   padChartPlain      bar, hbar, line, sparkline, pie and donut, of one series or several
+  //   padChart           the SVG of bar, line or sparkline of one series
   //
-  // The file is included when a page uses {chart}; {sparkline}, and {map}, {timeline},
-  // {datatable}, {calendar} and {diagram} that draw with its parts, include it themselves.
-  // padChartAttr and padChartDedent, which tags that draw no chart use as well, are in
-  // lib/chart.php, loaded on every request.
+  // The other files of this directory draw the other kinds - scatter.php scatter and bubble,
+  // hierarchy.php treemap and sunburst, and so on - and the parts they share: the opening,
+  // the style and the number format. They are all included with this file, which is included
+  // when a page draws a chart; {map}, {timeline}, {datatable}, {calendar} and {diagram}, that
+  // draw with its parts, include it themselves. padChartAttr and padChartDedent, which tags
+  // that draw no chart use as well, are in lib/chart.php, loaded on every request.
   //
   // Accessible: the svg has role="img" and is labelled by its <title> and a <desc> that
   // lists the values, so a screen reader hears the data; each bar and point carries a
@@ -39,13 +41,13 @@
   // properties with light and dark defaults - --pad-chart-series, --pad-chart-text,
   // --pad-chart-grid and --pad-chart-surface - which a page overrides on .pad-chart.
   //
-  // The parts are found in the listing of tags/_lib/chart/ kept between requests (padDirList,
+  // The parts are found in the listing of charts/_lib/ kept between requests (padDirList,
   // lib/dirs.php), the names glob's *.php matched - not hidden, ending in .php - in the same
   // order: the glob read the directory in every request that drew a chart, some 60 us.
 
-  foreach ( padDirList ( PAD . 'tags/_lib/chart' ) ?: [] as $padChartPart )
-    if ( $padChartPart [0] != '.' and str_ends_with ( $padChartPart, '.php' ) )
-      include_once PAD . "tags/_lib/chart/$padChartPart";
+  foreach ( padDirList ( PAD . 'charts/_lib' ) ?: [] as $padChartPart )
+    if ( $padChartPart [0] != '.' and str_ends_with ( $padChartPart, '.php' ) and $padChartPart != 'chart.php' )
+      include_once PAD . "charts/_lib/$padChartPart";
 
   function padChartRows ( $source = '', $what = 'chart' ) {
 
@@ -122,92 +124,97 @@
 
   }
 
-  // The shared body of {chart} and {sparkline}: the options read, the rows gathered and
-  // turned into points, and the level's data put back to its one default occurrence. A
-  // kind reads only the options it draws with, so an option of another kind - stacked on
-  // a line chart - is one that nothing reads, which the strict check reports.
+  // A chart of one kind: its file in charts/types/ draws it. The file runs in this function,
+  // with the kind, the source and the rows the handling options left at hand to padChartGather
+  // in $padChartNow - put back afterwards, for a chart drawn while another one is. A kind
+  // reads only the options it draws with, so an option of another kind - stacked on a line
+  // chart - is one that nothing reads, which the strict check reports.
 
   function padChartTag ( $kind, $source = '', $handled = NULL ) {
 
-    global $pad, $padData;
+    global $padChartNow;
 
-    if ( $kind == 'column' )
-      $kind = 'bar';
+    $before      = $padChartNow ?? NULL;
+    $padChartNow = [ 'kind' => $kind, 'source' => $source, 'handled' => $handled, 'name' => '' ];
 
-    global $padPrm;
+    $svg = include PAD . "charts/types/$kind.php";
+
+    $padChartNow = $before;
+
+    return $svg;
+
+  }
+
+  // The rows the chart draws, and the level's data put back to its one default occurrence:
+  // the data= option has already been read into this level's data by level/start.php, and
+  // the level would iterate it, writing the chart once per row. With $optional - a gauge of
+  // one number - a chart given value= and no data, sequence or content needs no rows: a
+  // value that is no number too, a metric that could not be read, '' or 'n/a', draws nothing
+  // and its @else@ shows, where the chart was "without data" it never needed.
+
+  function padChartGather ( $optional = FALSE ) {
+
+    global $pad, $padData, $padPrm, $padChartNow;
 
     $sequence = padTagParm ( 'sequence' );
+    $source   = $padChartNow ['source'] ?? '';
+    $handled  = $padChartNow ['handled'] ?? NULL;
 
     if ( $handled !== NULL )
       $rows = $handled;
-    // A gauge of one number needs no rows - a value that is no number too: a metric that
-    // could not be read, '' or 'n/a', draws nothing and its @else@ shows, where the chart
-    // was "without data" it never needed.
-
-    elseif ( $kind == 'gauge' and ! isset ( $padPrm [$pad] ['data'] ) and ( $sequence === '' or $sequence === TRUE )
-         and trim ( (string) $source ) === '' and isset ( $padPrm [$pad] ['value'] ) )
+    elseif ( $optional and ! isset ( $padPrm [$pad] ['data'] ) and ( $sequence === '' or $sequence === TRUE )
+             and trim ( (string) $source ) === '' and isset ( $padPrm [$pad] ['value'] ) )
       $rows = [];
     else
-      $rows = padChartRows ( $source, ( $GLOBALS ['padTag'] [ $GLOBALS ['pad'] ] ?? '' ) == 'sparkline' ? 'sparkline' : 'chart' );
+      $rows = padChartRows ( $source, padChartWhat () );
 
     $padData [$pad] = padDefaultData ();
 
-    $wide  = ( $kind == 'sparkline' );
-    $round = in_array ( $kind, [ 'pie', 'donut', 'sunburst', 'rose', 'radialbar', 'rings', 'parliament', 'venn', 'waffle' ] );
-    $tall  = in_array ( $kind, [ 'sankey', 'network', 'treemap', 'radar', 'chord', 'pack', 'orgchart', 'parallel', 'multiples' ] );
-    $size  = [ 'gauge' => [ 320, 200 ], 'calendar' => [ 720, 150 ], 'spiral' => [ 480, 420 ] ] [$kind] ?? NULL;
-
-    $width  = max ( 20, (int) padTagParm ( 'width',  $size [0] ?? ( $wide ? 120 : ( $round ? 480 : 600 ) ) ) );
-    $height = max ( 10, (int) padTagParm ( 'height', $size [1] ?? ( $wide ? 32  : ( $round ? 280 : ( $tall ? 400 : 300 ) ) ) ) );
-
     if ( $sequence !== '' and $sequence !== TRUE )
-      $seqName = ucfirst ( (string) $sequence ) . ', the first ' . count ( $rows ) . ' terms';
-    else
-      $seqName = '';
+      $padChartNow ['name'] = ucfirst ( (string) $sequence ) . ', the first ' . count ( $rows ) . ' terms';
 
-    switch ( $kind ) {
+    return $rows;
 
-      case 'scatter':
-      case 'bubble':   return padChartScatter  ( $kind, $rows, $seqName, $width, $height );
-      case 'heatmap':  return padChartHeatmap  ( $rows, $width, $height );
-      case 'sankey':   return padChartSankey   ( $rows, $width, $height );
-      case 'network':  return padChartNetwork  ( $rows, $width, $height );
-      case 'treemap':
-      case 'sunburst': return padChartHierarchy ( $kind, $rows, $width, $height );
-      case 'gauge':     return padChartGauge     ( $rows, $width, $height );
-      case 'radar':     return padChartRadar     ( $rows, $width, $height );
-      case 'waterfall': return padChartWaterfall ( $rows, $width, $height );
-      case 'histogram': return padChartHistogram ( $rows, $width, $height );
-      case 'boxplot':   return padChartBoxplot   ( $rows, $width, $height );
-      case 'calendar':  return padChartCalendar  ( $rows, $width, $height );
-      case 'gantt':     return padChartGantt     ( $rows, $width, $height );
+  }
 
-      case 'area':
-      case 'stream':       return padChartArea         ( $kind, $rows, $width, $height );
-      case 'multiples':    return padChartMultiples    ( $rows, $width, $height );
-      case 'candlestick':  return padChartCandlestick  ( $rows, $width, $height );
-      case 'dual':         return padChartDual         ( $rows, $width, $height );
-      case 'spiral':       return padChartSpiral       ( $rows, $width, $height );
-      case 'rose':
-      case 'radialbar':    return padChartRadial       ( $kind, $rows, $width, $height );
-      case 'funnel':
-      case 'pyramid':      return padChartFunnel       ( $kind, $rows, $width, $height );
-      case 'waffle':       return padChartWaffle       ( $rows, $width, $height );
-      case 'marimekko':    return padChartMarimekko    ( $rows, $width, $height );
-      case 'parliament':   return padChartParliament   ( $rows, $width, $height );
-      case 'venn':         return padChartVenn         ( $rows, $width, $height );
-      case 'violin':
-      case 'density':      return padChartDensity      ( $kind, $rows, $width, $height );
-      case 'bullet':       return padChartBullet       ( $rows, $width, $height );
-      case 'rings':        return padChartRings        ( $rows, $width, $height );
-      case 'parallel':     return padChartParallel     ( $rows, $width, $height );
-      case 'proportional': return padChartProportional ( $rows, $width, $height );
-      case 'chord':        return padChartChord        ( $rows, $width, $height );
-      case 'arc':          return padChartArcDiagram   ( $rows, $width, $height );
-      case 'pack':         return padChartPack         ( $rows, $width, $height );
-      case 'orgchart':     return padChartOrg          ( $rows, $width, $height );
+  // The name a chart drawn from a sequence= has - "Fibonacci, the first 12 terms" - or ''.
 
-    }
+  function padChartSeqName () {
+
+    return $GLOBALS ['padChartNow'] ['name'] ?? '';
+
+  }
+
+  // The size of the chart: width= and height=, else the default its kind's file gives.
+
+  function padChartSize ( $width, $height ) {
+
+    return [ max ( 20, (int) padTagParm ( 'width',  $width  ) ),
+             max ( 10, (int) padTagParm ( 'height', $height ) ) ];
+
+  }
+
+  // The tag the chart is written as, for what a message says: {sparkline}, {chart}, and
+  // {chart:bar} or {bar} for the chart type.
+
+  function padChartWhat () {
+
+    global $pad, $padTag, $padType, $padPrefix;
+
+    if ( ( $padType [$pad] ?? '' ) == 'chart' )
+      return ( ( $padPrefix [$pad] ?? '' ) !== '' ? 'chart:' : '' ) . ( $padTag [$pad] ?? '' );
+
+    return ( ( $padTag [$pad] ?? '' ) == 'sparkline' ) ? 'sparkline' : 'chart';
+
+  }
+
+  // Bar (and column), hbar, line, sparkline, pie and donut: one series as points, or several
+  // - more than one field in value=, or an hbar - as a table of series.
+
+  function padChartPlain ( $kind, $rows, $width, $height ) {
+
+    $wide    = ( $kind == 'sparkline' );
+    $seqName = padChartSeqName ();
 
     $label = (string) padTagParm ( 'label' );
     $value = (string) padTagParm ( 'value' );

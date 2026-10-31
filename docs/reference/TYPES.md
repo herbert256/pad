@@ -58,7 +58,8 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 18. **php** - PHP function - one that is also a pipe function (`trim`, `date`, `substr` ...) runs as the pipe function
 19. **sequence** - Sequence type
 20. **action** - Sequence action
-21. **function** - PAD function (fallback)
+21. **chart** - Chart type, a file of `PAD/charts/types/`
+22. **function** - PAD function (fallback)
 
 A field or array that exists only as a request value - a GET, POST or cookie value the page's PHP
 (its configuration, `_inits.php`, the page, `_exits.php`) does not name, held by no row - comes
@@ -430,6 +431,25 @@ the page's directory up to the application root.
 
 ---
 
+## Chart Types
+
+### chart
+
+A chart of the kind the tag names - the chart subsystem in `PAD/charts/` draws it, as the
+`{chart}` tag draws the kind its parameter names.
+
+```
+{chart:pie data='budget', label='post', value='amount'/}
+{chart:bar data='sales', label='month', value='amount', stacked/}
+{gauge value=72, unit='%'/}
+```
+
+**Resolution:** a file `PAD/charts/types/<name>.php` (`padChartType()` in `PAD/lib/chart.php`):
+the files there are the kinds, and a kind is added by adding its file. Bare, a chart kind
+comes after every other kind of tag, so a tag, a store, a field or a sequence of the name wins.
+
+---
+
 ## Sequence Types
 
 These types integrate with the PAD sequence subsystem.
@@ -557,6 +577,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `script` | Scripts | Shell scripts |
 | `sequence` | PQ | Sequence types |
 | `action` | PQ | Sequence actions |
+| `chart` | PAD/charts/types/ | Chart kinds |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -575,6 +596,7 @@ types/
 ├── app.php         → Application tag
 ├── array.php       → Array value
 ├── bool.php        → Boolean store
+├── chart.php       → Chart kind
 ├── common.php      → Shared _common tag
 ├── constant.php    → PHP constant
 ├── content.php     → Content store

@@ -303,6 +303,7 @@
     elseif ( padPhpAllowed      ( $item                          ) ) return 'php';
     elseif ( pqSeq              ( $item                          ) ) return 'sequence';
     elseif ( pqAction           ( $item                          ) ) return 'action';
+    elseif ( padChartType       ( $item                          ) ) return 'chart';
 
     return FALSE;
 
@@ -371,6 +372,7 @@
     elseif ( function_exists    ( strstr ( "$item(", '(', TRUE ) ) and $type == 'php'      ) return $type;
     elseif ( pqSeq              ( $item                          ) and $type == 'sequence' ) return $type;
     elseif ( pqAction           ( $item                          ) and $type == 'action'   ) return $type;
+    elseif ( padChartType       ( $item                          ) and $type == 'chart'    ) return $type;
     elseif ( in_array ( padTypeFunction ( $item, 0 ), [ 'app', 'pad' ], TRUE ) and $type == 'function' ) return $type;
 
     return FALSE;

@@ -1,10 +1,43 @@
 <?php
 
-  // The two pieces of the {chart} code that tags drawing no chart use too: padChartAttr, the
-  // text of an attribute or an SVG element escaped - {emoji}, {country}, {countdown},
-  // {timeago}, {jsonview}, {toc} - and padChartDedent, the content of a pair with its shared
-  // indent taken off - {copy}, {diagram}, {highlight}. The rest of the charts is
-  // tags/_lib/chart.php, loaded when a page uses a tag that draws one.
+  // The pieces of the chart code needed where no chart is drawn: padChartTypes and
+  // padChartType, the kinds a chart has - the files of charts/types/ - which the tag types
+  // ask of every name nothing else claims (lib/type.php); padChartAttr, the text of an
+  // attribute or an SVG element escaped - {emoji}, {country}, {countdown}, {timeago},
+  // {jsonview}, {toc} - and padChartDedent, the content of a pair with its shared indent
+  // taken off - {copy}, {diagram}, {highlight}. The rest of the charts is the subsystem in
+  // charts/, its library charts/_lib/ loaded when a page draws one.
+
+  // The kinds of chart: the names of the files of charts/types/, sorted - a kind is added by
+  // adding its file. Read from the listing kept between requests (padDirList, lib/dirs.php),
+  // as written on disk: asked of a file system that ignores case, {Bar} is no kind, as a tag
+  // in another case is none (padTagBuiltIn).
+
+  function padChartTypes () {
+
+    static $types = NULL;
+
+    if ( $types === NULL ) {
+      $types = [];
+      foreach ( padDirList ( PAD . 'charts/types' ) ?: [] as $file )
+        if ( $file [0] != '.' and str_ends_with ( $file, '.php' ) )
+          $types [] = substr ( $file, 0, -4 );
+      sort ( $types );
+    }
+
+    return $types;
+
+  }
+
+  function padChartType ( $name ) {
+
+    static $types = NULL;
+
+    $types ??= array_flip ( padChartTypes () );
+
+    return is_string ( $name ) and isset ( $types [$name] );
+
+  }
 
   // The content of a pair is written indented under its tag: the indent all its lines share
   // is taken off, else the trim of padData would leave YAML's first line out of step with

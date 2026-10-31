@@ -22,9 +22,9 @@
   // --pad-diagram-decision-border, --pad-diagram-round, --pad-diagram-round-border,
   // --pad-diagram-edge and --pad-diagram-note - with light-dark() defaults.
 
-  // The SVG opening and its coordinates are {chart}'s, tags/_lib/chart.php.
+  // The SVG opening and its coordinates are {chart}'s, charts/_lib/chart.php.
 
-  include_once PAD . 'tags/_lib/chart.php';
+  include_once PAD . 'charts/_lib/chart.php';
 
   // The node shapes by their brackets, the edges by their arrows.
 

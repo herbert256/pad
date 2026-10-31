@@ -16,9 +16,9 @@
   // or on Sunday with sunday. padCalendarMonth, which reads a month and which a page's PHP
   // uses as well, is in lib/calendar.php.
 
-  // The rows and their dates are read as {chart} reads them, tags/_lib/chart.php.
+  // The rows and their dates are read as {chart} reads them, charts/_lib/chart.php.
 
-  include_once PAD . 'tags/_lib/chart.php';
+  include_once PAD . 'charts/_lib/chart.php';
 
   function padCalendarWeeks ( $month, $rows, $dField, $sunday ) {
 

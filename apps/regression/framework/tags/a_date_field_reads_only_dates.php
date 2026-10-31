@@ -4,7 +4,7 @@
   // or a timestamp - and nothing else: -44 was tomorrow, 1990s today's clock time in 1990,
   // tomorrow a moment that moved on every request, 2026-02-30 the 2nd of March.
 
-  include_once PAD . 'tags/_lib/chart.php';
+  include_once PAD . 'charts/_lib/chart.php';
 
   $read = [];
 

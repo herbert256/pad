@@ -365,7 +365,7 @@ When a tag is encountered, PAD determines its type:
 | `@` | Property | `{first@tag}` |
 | (none) | Tag/Field | `{users}`, `{if}` |
 
-Types are resolved in order: app → common → pad → pull → bool → content → select → data → include → property → field → array → parm → level → constant → local → script → php → sequence → action → function
+Types are resolved in order: app → common → pad → pull → bool → content → select → data → include → property → field → array → parm → level → constant → local → script → php → sequence → action → chart → function
 
 ### 5. Data Iteration
 
@@ -449,7 +449,7 @@ pad/
 │   ├── parms/           # Calls with arguments - built-in, app, php:, tag, sequence
 │   └── single/          # Lookups without arguments - field:, data:, array: ...
 │
-├── types/               # Tag type handlers (25)
+├── types/               # Tag type handlers (26)
 ├── tags/                # Template tags (90+)
 ├── functions/           # Pipe functions (55)
 ├── options/             # Tag options (25)

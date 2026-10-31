@@ -1257,6 +1257,13 @@ Draw a chart as inline SVG - no JavaScript, so it works in print and caches like
 
 **Kinds:**
 
+A kind is a file of `pad/charts/types/` - its default size and the function that draws it -
+and the files there are the kinds there are; a kind is added by adding its file. The parameter
+names it, or the chart type does: `{chart:pie data='budget'/}` is `{chart 'pie', data='budget'/}`,
+and so is the bare `{pie data='budget'/}` when no tag, store, field or sequence has the name.
+`{sparkline/}` is the sparkline kind. The reference application lists the kinds, each with the
+pages that draw it.
+
 | Kind | Draws | Its options |
 |------|-------|-------------|
 | `bar`, `column` | Columns from a zero baseline; several `value` fields side by side, or one on the other with `stacked` | `label`, `value`, `stacked` |
@@ -3362,7 +3369,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `tidy` | Output | Format HTML |
 | `spaceless` | Output | Remove whitespace between HTML tags |
 | `markdown` | Output | Markdown written as HTML, raw HTML escaped |
-| `chart` | Output | A chart as inline SVG - 46 kinds, from bar and line to candlestick, chord and org chart |
+| `chart` | Output | A chart as inline SVG - 45 kinds, the files of `pad/charts/types/`, from bar and line to candlestick, chord and org chart |
 | `sparkline` | Output | Word-sized line chart as inline SVG |
 | `qr` | Output | QR code as inline SVG |
 | `barcode` | Output | EAN-13, EAN-8, UPC-A or Code 128 barcode as inline SVG |

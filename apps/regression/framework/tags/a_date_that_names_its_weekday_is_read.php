@@ -4,7 +4,7 @@
   // date it is: the weekday alone moves nothing, where the check that refuses tomorrow and
   // -44 (251b2820c) took it for a moment counted from now and the date was refused.
 
-  include_once PAD . 'tags/_lib/chart.php';
+  include_once PAD . 'charts/_lib/chart.php';
 
   $read = [];
 

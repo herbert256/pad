@@ -12,6 +12,7 @@ pad/
 ├── call/          # PHP file inclusion wrappers
 ├── callback/      # Callback execution
 ├── config/        # Configuration
+├── charts/       # Chart subsystem (a kind per file of charts/types/)
 ├── constructs/    # @name@ construct handlers
 ├── data/          # Data format handlers (CSV, JSON, XML, YAML)
 ├── database/      # SQL schema definitions
@@ -53,6 +54,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | call/ | PHP file inclusion with output buffering and error handling |
 | callback/ | Callback execution at lifecycle stages |
 | config/ | Framework configuration and presets |
+| charts/ | The chart subsystem - `{chart}`, `{sparkline}` and the `chart:` type; a chart kind is a file of `charts/types/`, its drawing in `charts/_lib/` |
 | constructs/ | `@name@` construct handlers (page, content, start, end, tidy) |
 | data/ | Data format handlers (CSV, JSON, XML, YAML) |
 | database/ | SQL schema definitions for PAD internal database |

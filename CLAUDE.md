@@ -691,6 +691,7 @@ Resolve naming conflicts with explicit prefixes:
 | `property:` | Tag property | `{property:current}` |
 | `script:` | Script from `_scripts/` | `{script:backup}` |
 | `sequence:` | Sequence type | `{sequence:fibonacci}` as a tag, `sequence:fibonacci(8)` in an expression - the 8th term |
+| `chart:` | Chart type | `{chart:pie data='budget'/}`, the same chart as `{chart 'pie', data='budget'/}` - a kind is a file of `pad/charts/types/` |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
 
@@ -774,7 +775,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Translations, locale formatting](docs/FEATURES.md#translations-and-locale-formatting) | `{trans}`, `_lang/`, `\| currency`, `\| localDate` |
 | [Markdown](docs/FEATURES.md#markdown) | `{markdown}`, `\| markdown` |
 | [Markdown collections](docs/FEATURES.md#markdown-collections) | `{collection 'blog'}`, `_content/` |
-| [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=}` - inline SVG, 46 kinds; `{sparkline}` |
+| [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/charts/types/`; `{sparkline/}` |
 | [Month calendar](docs/FEATURES.md#month-calendar) | `{calendar}` |
 | [Syntax highlighting](docs/FEATURES.md#syntax-highlighting) | `{highlight 'php'}`, `{source}` |
 | [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{qr}`, `{barcode}` |
@@ -1012,7 +1013,8 @@ drawn in [docs/PAD.md](docs/PAD.md#processing-pipeline).
   CORS (`inits/_lib/`), toolbar, live reload (`exits/_lib/`), error pages, dumps, the source
   map's error-time walk (`error/_lib/`), data answers, the designer preview (`build/_lib/`),
   the select builder (`select/_lib/`), lookup (`functions/_lib/`), group aggregates
-  (`handling/_lib/`) - included where the feature runs. What the engine calls on every
+  (`handling/_lib/`), the charts (`charts/_lib/`, a kind per file of `charts/types/`) -
+  included where the feature runs. What the engine calls on every
   request, a pipe, a documented PHP helper or a page calls stays in `pad/lib/` - as the
   entry, which includes the rest when it runs (`padMarkdown`, `padMail`, `padHighlight`,
   `padDump`, `padErrorTemplate`, `padSitemapPages`)
@@ -1122,7 +1124,7 @@ the `claude` line of `./ci.sh`.
 | `admin` | Standard | The web PAD console, the successor of `apps`: every application with its pages, parts and settings, files, search, the pad command (lint, test, migrate, queue, schedule ...) with a history, maintenance, queues, schedules, logs, error dumps, the mail outbox, DATA/ storage, PHP, the PAD settings, git and its own users - behind a login, this machine only |
 | `alpine` | Standard | PAD + Alpine: state from PHP with `x-data="{^field}"`, components in `www/` with `Alpine.data`, live search over `$padExpose`, one set of rules for both sides, a list kept in the session, server-sent events |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
-| `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family (46 kinds), every example a page of three cells: the data, the tag, the chart |
+| `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family (every kind of `pad/charts/types/`), every example a page of three cells: the data, the tag, the chart |
 | `showcase` | Standard | A showcase of the tags that draw, format and interact - a pulldown per group, a section per tag, every example its template beside the result |
 | `tags` | Standard | A page per built-in tag - one line, syntax with the tag's own options, a longer description and live examples - with indexes by name, group, form and option, a cheat sheet and a search |
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |

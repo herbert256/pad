@@ -532,7 +532,14 @@ through; `padCollection('blog')` gives the rows to PHP.
 `role="img"` with `<title>`/`<desc>`; colours are `--pad-chart-*` custom properties on
 `.pad-chart`, following the page's `color-scheme`. A field option left out takes the first
 field that fits; the chart's options keep clear of the handling options (`row`, `group`).
-Code: `pad/tags/_lib/chart.php` (bar, line, sparkline) and `pad/tags/_lib/chart/` (the other kinds).
+The kinds are the files of `pad/charts/types/` - one file a kind, its default size and the
+function that draws it; a kind is added by adding its file. Each is written three ways, the
+same chart: `{chart 'pie', data='budget'/}`, the chart type `{chart:pie data='budget'/}`, and
+bare, `{pie data='budget'/}`, when no tag, store, field or sequence has the name (the bare
+name comes last, after every other kind of tag). `{sparkline .../}` is the sparkline kind.
+Code: the chart subsystem in `pad/charts/` - `chart.php` the body every form runs,
+`_lib/` the drawing (`chart.php` bar, line and sparkline, the files beside it the other
+kinds), `types/` the kinds; `pad/types/chart.php` the chart type.
 
 ### Month calendar
 ```
