@@ -93,9 +93,11 @@ PadToys.register('sand', function (k, cfg) {
 
   // The colours of the grains: natural ones that read on a light and a dark canvas, the
   // walls in the page's muted ink; every grain a shade of its own.
-  var table;
+  // bg, the canvas colour, is what smoke fades into.
+  var table, bg;
   function colours() {
-    var wall = k.rgb('muted'), bg = k.rgb('canvas'), dark = k.dark();
+    var wall = k.rgb('muted'), dark = k.dark();
+    bg = k.rgb('canvas');
     table = [bg, [224, 190, 118], dark ? [70, 140, 235] : [52, 120, 220], wall, [128, 82, 46], [255, 140, 30], [56, 168, 82], dark ? [120, 120, 125] : [175, 175, 180]];
   }
   function draw() {
