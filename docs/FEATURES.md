@@ -705,6 +705,7 @@ show them.
 {wizard}{tab 'Address'}...{/tab}{tab 'Payment'}...{/tab}{/wizard}   # steps one at a time, Back and Next
 {lightbox label='Harbour'}{tab 'Dawn'}<img ...>{/tab}...{/lightbox}   # thumbnails, a picture large on :target
 {drawer 'filters', title='Filters', side='left'}...{/drawer}   # a side panel - a <dialog>, with and without JS
+{breadcrumb/}  {breadcrumb}Home | ?index{/breadcrumb}   # the trail to the page: its path, its lines or data=
 {widget 'modal', 'terms', title='Terms'}...{/widget}   # the widget tag: its first parameter names the widget
 {widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type - or bare, as above
 ```

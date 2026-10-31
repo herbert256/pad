@@ -2280,6 +2280,7 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | Widget | What it is | Its options |
 |--------|------------|-------------|
 | `accordion` | Every `{tab}` a `<details>`, opened and closed by the browser | `single`, `open` |
+| `breadcrumb` | Where the page stands - links from home to the page, from its path, its lines or data | `home`, `label`, `data` |
 | `carousel` | Slides that scroll and snap sideways, previous/next and dot links | `label` |
 | `copy` | A text with a copy-to-clipboard button | the text, `label` |
 | `drawer` | A panel that slides in from a side of the window, with the button that opens it | the name, `title`, `button`, `side` |
@@ -2686,6 +2687,41 @@ for. The button, its link and the panel stand in a `<div class="pad-drawer">` of
 `display: contents`, which carries the colours: `--pad-drawer-accent`, `-on`, `-text`, `-muted`,
 `-line`, `-surface` and `-backdrop`, `light-dark()` defaults. A drawer without a valid name and
 an unknown `side` are errors under the strict check.
+
+---
+
+### breadcrumb
+Where the page stands - a `<nav>` around an ordered list of links from the application's home
+to the page, the last step the page itself (`aria-current="page"`), the separators drawn by the
+CSS and never read out (`widgets/_lib/breadcrumb.php`).
+
+```html
+{breadcrumb/}
+{breadcrumb}
+  Home | ?index
+  Kettles | ?products/kettles
+  Aurora
+{/breadcrumb}
+{breadcrumb data='trail'/}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `data` | The steps from the rows of a store, the page's array or a `_data` file - a row's `label` (or `text`, `name`) and `link` (or `href`, `url`) |
+| `home` | The first step's text when the trail is the page's path, default `Home` |
+| `label` | The trail's name for a screen reader, default `Breadcrumb` |
+
+**Behavior:** alone it follows the file tree: Home, then every directory of the page's path - a
+link to its index page where it has one - and the page last, each named by its file name made
+readable (`order_list` is `Order list`); a page a route reached is named as it was asked for,
+`products/42`. A pair takes the steps from its lines as they rendered - a label and, after a
+bar, its link. A label is text; a link of another scheme than http, https and mailto -
+`javascript:`, read as a browser reads it - is left out. The separator is
+`--pad-breadcrumb-separator` (`"/"`), the colours `--pad-breadcrumb-text`, `-muted`, `-link` and
+`-line` on `.pad-breadcrumb`, `light-dark()` defaults. A pair without steps and a `data=` that
+names no data are errors under the strict check.
 
 ---
 
@@ -3896,6 +3932,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `wizard` | Widget | Steps one at a time - every `{tab}` a step, radio buttons and CSS, Back and Next; no JavaScript needed |
 | `lightbox` | Widget | A gallery of thumbnails whose pictures open large over the page by `:target` - no JavaScript |
 | `drawer` | Widget | A panel sliding in from a side - a modal `<dialog>` opened as `{modal}`'s, a `:target` overlay without scripting |
+| `breadcrumb` | Widget | The trail from home to the page - from the page's path, the lines of a pair or `data=` rows; no JavaScript |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |

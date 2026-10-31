@@ -19,6 +19,8 @@
   // padWidgetText    a text option, read as the characters it holds
   // padWidgetName    a widget's name parameter checked - letters, digits, _ and -
   // padWidgetChoice  an option that is one of a few words
+  // padWidgetRows    the rows a data= option names, NULL without one
+  // padWidgetLink    a link a widget writes, a javascript: or data: one refused
 
   // A text a widget shows - a title, a label, a button - read as the characters it holds, so
   // a field inside a quoted option is the text of the field.
@@ -66,6 +68,69 @@
       padError ( "the {" . $kind . "} has no $option '" . padMakeSafe ( $value, 20 ) . "' - " . implode ( ', ', $choices ) );
 
     return $default;
+
+  }
+
+  // The rows a data= option names - a {data} store, a sequence store, the page's array, a
+  // field holding a list or a _data file, as {chart} and the games read them - or NULL
+  // without data=. The level got those rows as its data from the data option, and would
+  // write the widget once per row: it gets its one default occurrence back.
+
+  function padWidgetRows ( $kind ) {
+
+    global $pad, $padPrm, $padData, $padDataStore, $pqStore, $padCheckSyntax;
+
+    if ( ! isset ( $padPrm [$pad] ['data'] ) )
+      return NULL;
+
+    padTagParm ( 'data' );
+
+    $rows = $padData [$pad];
+    $name = $padPrm [$pad] ['data'];
+
+    $padData [$pad] = padDefaultData ();
+
+    if ( ! is_string ( $name ) or ! padValidVar ( $name ) )
+      return $rows;
+
+    if ( isset ( $padDataStore [$name] ) ) return $padDataStore [$name];
+    if ( isset ( $pqStore      [$name] ) ) return $pqStore      [$name];
+
+    if ( isset ( $GLOBALS [$name] ) and is_array ( $GLOBALS [$name] ) )
+      return $GLOBALS [$name];
+
+    if ( padFieldCheck ( $name ) and is_array ( $field = padFieldValue ( $name ) ) )
+      return $field;
+
+    if ( $file = padDataFileName ( $name ) )
+      return padDataFileData ( $file );
+
+    if ( $padCheckSyntax and ! padStrHidden ( $name ) )
+      padError ( "there is no data named '$name' for the {" . $kind . "}" );
+
+    return [];
+
+  }
+
+  // A link a widget writes from what it is given, escaped for its attribute - a page of the
+  // application, a path, an address of the web or a mail address; one of another scheme -
+  // javascript:, data: - is no link, and '' comes back: a row of data may hold what a visitor
+  // typed. The scheme is read as a browser reads it, without the tabs, line breaks and
+  // spaces it skips, and from a link that is markup - a line of rendered content - after
+  // its character references: java&#9;script&#58; is javascript: to a browser.
+
+  function padWidgetLink ( $link, $markup = FALSE ) {
+
+    $link = trim ( (string) $link );
+
+    if ( $markup )
+      $link = html_entity_decode ( $link, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+
+    if ( preg_match ( '/^([a-z][a-z0-9+.-]*):/i', preg_replace ( '/[\x00-\x20]+/', '', $link ), $scheme )
+         and ! in_array ( strtolower ( $scheme [1] ), [ 'http', 'https', 'mailto' ], TRUE ) )
+      return '';
+
+    return htmlspecialchars ( $link, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
 
   }
 
