@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{vite 'src/main.js'}
-{vite 'src/main.jsx', 'src/admin.js', react}
+{vite 'src/main.js'/}
+{vite 'src/main.jsx', 'src/admin.js', react/}
 PAD;
 
   $tagParms   = [

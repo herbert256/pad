@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{break}
-{break 'name'}
+{break/}
+{break 'name'/}
 PAD;
 
   $tagParms   = [

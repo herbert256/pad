@@ -5,7 +5,7 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{exit}
+{exit/}
 PAD;
 
   $tagParms   = [];

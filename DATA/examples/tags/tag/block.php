@@ -6,7 +6,7 @@
 
   $tagSyntax  = <<<'PAD'
 {block 'name'} default content {/block}
-{block 'name'} {parent} more content {/block}
+{block 'name'} {parent/} more content {/block}
 PAD;
 
   $tagParms   = [

@@ -1,0 +1,5 @@
+<ul>
+  {albums join="artists using (artist_id)", fields="albums.title, artists.name", where="artists.country = $country", order="albums.title"}
+  <li>{$title} &mdash; {$name}</li>
+  {/albums}
+</ul>

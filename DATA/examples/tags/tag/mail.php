@@ -5,7 +5,7 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{mail to=$email, template='order', subject='Order confirmation'}
+{mail to=$email, template='order', subject='Order confirmation'/}
 {mail to=$email, subject='Welcome', from='shop@example.com', cc='a@example.com', bcc='b@example.com', replyTo='help@example.com'} ... {/mail}
 PAD;
 

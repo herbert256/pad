@@ -1,5 +1,5 @@
 <?php
 
-  $snippet = 'price is {echo $price ?? \'unknown\'}';
+  $snippet = 'price is {echo $price ?? \'unknown\'/}';
 
 ?>

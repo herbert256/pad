@@ -5,8 +5,8 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{sparkline data='name', label='field', value='field', title='text', width=120, height=32}
-{sparkline sequence='fibonacci', rows=12}
+{sparkline data='name', label='field', value='field', title='text', width=120, height=32/}
+{sparkline sequence='fibonacci', rows=12/}
 {sparkline type='json'} ... {/sparkline}
 PAD;
 

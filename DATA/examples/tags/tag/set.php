@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{set $name = value}
-{set $name = value, $other = value}
+{set $name = value/}
+{set $name = value, $other = value/}
 PAD;
 
   $tagParms   = [

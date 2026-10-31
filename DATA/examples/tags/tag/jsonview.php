@@ -5,9 +5,9 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{jsonview $value}
-{jsonview $value, open=1, title='Label'}
-{jsonview data='name'}
+{jsonview $value/}
+{jsonview $value, open=1, title='Label'/}
+{jsonview data='name'/}
 {jsonview} {"id": 42, "paid": true} {/jsonview}
 PAD;
 

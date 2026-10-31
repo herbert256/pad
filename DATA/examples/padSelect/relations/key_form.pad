@@ -1,0 +1,9 @@
+<h3>Labels and their artists</h3>
+{labels}
+<p><b>{$name}</b> ({$country}): {artists}{$name}{notLast@artists}, {/notLast@artists}{/artists}</p>
+{/labels}
+
+<h3>Artists and their label</h3>
+<ul>
+  {artists}<li>{$name}: {labels}{$name}@else@<em>not signed</em>{/labels}</li>{/artists}
+</ul>

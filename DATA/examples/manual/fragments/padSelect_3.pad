@@ -1,0 +1,4 @@
+{offices where="country = 'USA'"}
+  <p><b>{$city}</b>, {employees fields="count(*) as n"}{$n}{/employees} people:
+    {employees}{$firstName} {$lastName}{notLast@employees}, {/notLast@employees}{/employees}</p>
+{/offices}

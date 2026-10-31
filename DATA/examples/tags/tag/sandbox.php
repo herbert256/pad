@@ -7,7 +7,7 @@
   $tagSyntax  = <<<'PAD'
 {sandbox} ... {/sandbox}
 {sandbox function='name'} ... {/sandbox}
-{echo $snippet | sandbox}
+{echo $snippet | sandbox/}
 PAD;
 
   $tagParms   = [];

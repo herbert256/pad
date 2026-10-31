@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{rating 4.5}
-{rating $score, max=5, size=20, icon='heart', label='text'}
+{rating 4.5/}
+{rating $score, max=5, size=20, icon='heart', label='text'/}
 PAD;
 
   $tagParms   = [

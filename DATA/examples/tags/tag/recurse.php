@@ -5,7 +5,7 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{recurse}
+{recurse/}
 PAD;
 
   $tagParms   = [];

@@ -5,8 +5,8 @@
   $tagForm    = 'both';
 
   $tagSyntax  = <<<'PAD'
-{timeline data='name', date='field', label='field', text='field', color='field', format='Y', title='text', width=720, height=300}
-{timeline data='name', from='field', to='field', date='field', label='field'}
+{timeline data='name', date='field', label='field', text='field', color='field', format='Y', title='text', width=720, height=300/}
+{timeline data='name', from='field', to='field', date='field', label='field'/}
 {timeline date='field', label='field', vertical} ... {/timeline}
 PAD;
 

@@ -1,0 +1,7 @@
+<h3>type='record': one row</h3>
+{albums type='record', $album_id=3}<p><b>{$title}</b>, {$released}, {$price}</p>{/albums}
+
+<h3>type='field': one value</h3>
+<p>Albums: {albums type='field', fields="count(*)"/}</p>
+<p>Average price: {albums type='field', fields="round(avg(price), 2)"/}</p>
+<p>Longest track: {tracks type='field', fields="max(seconds)"/} seconds</p>

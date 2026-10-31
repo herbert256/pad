@@ -1,0 +1,10 @@
+{genres}
+<h3>{$genre}</h3>
+<ul>
+  {artists where="artist_id in (select artist_id from albums where genre_code = $genre_code)"}
+  <li>{$name}: {albums}{$title}{notLast@albums}, {/notLast@albums}{/albums}</li>
+  @else@
+  <li class="dim">no album of its own</li>
+  {/artists}
+</ul>
+{/genres}

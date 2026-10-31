@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{icon 'arrow-right'}
-{icon 'trash', size=20, stroke=2, label='text'}
+{icon 'arrow-right'/}
+{icon 'trash', size=20, stroke=2, label='text'/}
 PAD;
 
   $tagParms   = [

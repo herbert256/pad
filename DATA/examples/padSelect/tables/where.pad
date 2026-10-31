@@ -1,0 +1,9 @@
+<h3>Released since {$from}, under {$under}</h3>
+<ul>
+  {albums where="released >= $from and price < $under"}<li>{$title} ({$released}) {$price}</li>{/albums}
+</ul>
+
+<h3>A text value: quotes, ampersands and all</h3>
+<ul>
+  {artists where="name = $artist"}<li>{$name}, formed {$formed}</li>{/artists}
+</ul>

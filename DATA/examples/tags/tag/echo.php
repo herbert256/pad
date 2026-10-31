@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{echo expression}
-{echo expression | pipe | pipe}
+{echo expression/}
+{echo expression | pipe | pipe/}
 PAD;
 
   $tagParms   = [

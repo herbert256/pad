@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{at 'field@store'}
-{at "path.key='value'.field@store"}
+{at 'field@store'/}
+{at "path.key='value'.field@store"/}
 PAD;
 
   $tagParms   = [

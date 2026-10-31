@@ -6,7 +6,7 @@
 
   $tagSyntax  = <<<'PAD'
 {content 'name'} ... {/content}
-{content 'name', 'text'}
+{content 'name', 'text'/}
 {content} ... {/content 'name'}
 PAD;
 

@@ -1,4 +1,4 @@
-{meta title='Guide - PAD + htmx'}
+{meta title='Guide - PAD + htmx'/}
 <header class="example-head">
   <h1>How PAD answers htmx</h1>
   <p class="lede">
@@ -8,7 +8,7 @@
 </header>
 
 <h2>1. Name the part</h2>
-<p>A {open}fragment{close} around the part that changes; the element around it gets the same name
+<p>A {open/}fragment{close/} around the part that changes; the element around it gets the same name
    as its id:</p>
 {highlight 'pad'}
 <input name="q" hx-get="?products" hx-trigger="input changed delay:300ms" hx-target="#results">
@@ -36,7 +36,7 @@
 
 <h2>3. Posts carry the token</h2>
 <p>With <code>$padCsrf</code> on, a post without the session's token is refused before the page
-   runs. A {open}form{close} carries it as a field; for an <code>hx-post</code> on anything else, put
+   runs. A {open/}form{close/} carries it as a field; for an <code>hx-post</code> on anything else, put
    the header on the body once - the ^ sigil writes the array as JSON for the attribute:</p>
 {highlight 'pad'}
 <body hx-headers="{^headers}">          <!-- $headers = [ 'X-CSRF-Token' => padCsrfToken () ] -->
@@ -49,7 +49,7 @@
 {highlight 'pad'}
 <div id="signup">{fragment 'signup'}
   {form 'signup', client, error, hx-post='?signup', hx-target='#signup'}
-    {input 'email', label='E-mail', rules='required|email'}
+    {input 'email', label='E-mail', rules='required|email'/}
   {/form}
 {/fragment}</div>
 {/highlight}

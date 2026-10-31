@@ -5,9 +5,9 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{textarea 'message'}
-{textarea 'message', label='Message', value='', id='msg', rows=6, required}
-{textarea 'message', label='Message', rows=6, rules='required|max:2000'}
+{textarea 'message'/}
+{textarea 'message', label='Message', value='', id='msg', rows=6, required/}
+{textarea 'message', label='Message', rows=6, rules='required|max:2000'/}
 PAD;
 
   $tagParms   = [

@@ -7,7 +7,7 @@
   $tagSyntax  = <<<'PAD'
 {highlight 'lang'} ... {/highlight}
 {highlight 'lang', lines, mark='3, 5-7'} ... {/highlight}
-{highlight file='_data/products.json'}
+{highlight file='_data/products.json'/}
 PAD;
 
   $tagParms   = [

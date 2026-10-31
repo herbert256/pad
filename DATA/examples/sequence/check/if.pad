@@ -1,6 +1,6 @@
-{sequence '5;10;15;20',  name='q1'}
-{sequence '15;20;25;30', name='q2'}
-{sequence '15;20',       name='q3'}
+{sequence '5;10;15;20',  name='q1'/}
+{sequence '15;20;25;30', name='q2'/}
+{sequence '15;20',       name='q3'/}
 
 {if q3 eq sequence:intersection ( q1,           q2            )} ok @else@ nok {/if}
 {if q3 eq sequence:intersection ( q1,           [15,20,25,30] )} ok @else@ nok {/if}
@@ -14,7 +14,7 @@
 
 <hr>
 
-{sequence '3..5', name='abc'}
+{sequence '3..5', name='abc'/}
 
 {if 4 in abc }  ok @else@ nok {/if}
 {if 6 in abc } nok @else@  ok {/if}
@@ -29,8 +29,8 @@
 {if 3 in sequence:count(abc)}  ok @else@ nok {/if}
 {if 4 in sequence:count(abc)} nok @else@  ok {/if}
 
-{sequence '8..10', name='q1'}
-{sequence '1..10', name='q2'}
+{sequence '8..10', name='q1'/}
+{sequence '1..10', name='q2'/}
 
 <hr>
 

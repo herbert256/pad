@@ -147,10 +147,10 @@
 
     mkdir ( $tests, 0755, TRUE );
 
-    file_put_contents ( "$tests/good.pad",  '<p>{echo 1 + 1}</p>' );
+    file_put_contents ( "$tests/good.pad",  '<p>{echo 1 + 1/}</p>' );
     file_put_contents ( "$tests/good.txt",  '<p>2</p>' );
     file_put_contents ( "$tests/bad.php",   '<?php $total = 41; ?>' );
-    file_put_contents ( "$tests/bad.pad",   '{assert $total eq 42}' );
+    file_put_contents ( "$tests/bad.pad",   '{assert $total eq 42/}' );
     file_put_contents ( "$tests/bad.txt",   '' );
     file_put_contents ( "$tests/fresh.pad", 'fresh' );
 
@@ -158,7 +158,7 @@
     // pattern that cannot be run says so; a failing one-line body of 5000 characters is cut
 
     file_put_contents ( "$tests/big.php",   '<?php $big = str_repeat ( "x<p>", 400000 ); ?>' );
-    file_put_contents ( "$tests/big.pad",   '{echo $big}END' );
+    file_put_contents ( "$tests/big.pad",   '{echo $big/}END' );
     file_put_contents ( "$tests/big.txt",   '/^[\s\S]*?x[\s\S]*?END$/' );
     file_put_contents ( "$tests/odd.pad",   'odd' );
     file_put_contents ( "$tests/odd.txt",   '/(/' );
@@ -312,7 +312,7 @@
     imagepng ( imagecreatetruecolor ( 400, 200 ), "$home/www/gallery/photos/p.png" );
     file_put_contents ( "$home/www/gallery/clip.mp4", '' );
     file_put_contents ( "$home/apps/gallery/pic.pad",
-      "<p>{img 'photos/p.png', width=100, height=50, alt='p'}</p>\n{video 'clip.mp4', title='Clip', poster='photos/p.png'}" );
+      "<p>{img 'photos/p.png', width=100, height=50, alt='p'/}</p>\n{video 'clip.mp4', title='Clip', poster='photos/p.png'/}" );
 
     // a srcset whose addresses hold a comma - a Cloudinary path, a data: URI - on a page one
     // directory down: each address is the run up to whitespace, so the outside ones stay as

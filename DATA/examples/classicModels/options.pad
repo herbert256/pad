@@ -7,4 +7,4 @@
 <p>key: {offices key='city', where="country = 'USA'"}{$city},{/offices}</p>
 <p>union: {offices where="officeCode = 1", union='offices'}{$officeCode},{/offices}</p>
 <p>join: {employees join='offices on employees.officeCode = offices.officeCode', where="offices.city = 'Boston'", order='lastName'}{$lastName},{/employees}</p>
-<p>htmlAttrJson: {select:offices htmlAttrJson='record', fields='officeCode', where="officeCode = 1"}</p>
+<p>htmlAttrJson: {select:offices htmlAttrJson='record', fields='officeCode', where="officeCode = 1"/}</p>

@@ -5,8 +5,8 @@
   $tagForm    = 'single';
 
   $tagSyntax  = <<<'PAD'
-{poll 'name', options='Yes, No'}
-{poll 'name', options='PHP, Python, Go', title='Question?', button='Vote', results}
+{poll 'name', options='Yes, No'/}
+{poll 'name', options='PHP, Python, Go', title='Question?', button='Vote', results/}
 PAD;
 
   $tagParms   = [

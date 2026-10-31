@@ -7,7 +7,7 @@
 
   $curl   = padCurl ( [ 'url'     => $padHost . 'playground/?render',
                         'cookies' => [ 'PHPSESSID' => $form ['cookies'] ['PHPSESSID'] ?? '' ],
-                        'post'    => [ 'source' => '{php:getcwd}', 'padCsrfToken' => $token ] ] );
+                        'post'    => [ 'source' => '{php:getcwd/}', 'padCsrfToken' => $token ] ] );
   $answer = $curl ['result'] . ': ' . ( preg_match ( '/getcwd\S* is not allowed by/', $curl ['data'] ) ? 'refused' : 'ran' );
 
 ?>
