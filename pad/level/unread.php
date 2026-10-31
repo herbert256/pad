@@ -9,14 +9,18 @@
   // Only the built-in types and the sequence tags are swept: an application or _common
   // tag reads its options from its own template, and a branch not taken is allowed to
   // leave one unread - the {example} tag's onlyResult form reads none of its panel
-  // switches.
+  // switches. The kinds of the subsystems (lib/subsystem.php) are built in too, written
+  // with their prefix or bare - {widget:modal}, {modal}, {toy:life}, {life}: they run the
+  // code {widget 'modal'} and {toy 'life'} run, and a misspelled titel= or widht= went by
+  // in silence there, where the tag form named it.
 
   // A custom tag that declares its parameters with {parms} is swept too: a parameter it was
   // given and does not declare is reported by name (lib/slot.php).
 
   $padUnreadDeclared = $padSlot [$pad] ['declared'] ?? NULL;
 
-  if ( $padTagSeq [$pad] or in_array ( $padType [$pad], [ 'pad', 'select' ] ) or $padUnreadDeclared !== NULL )
+  if ( $padTagSeq [$pad] or in_array ( $padType [$pad], [ 'pad', 'select' ] ) or isset ( padSubsystems [ $padType [$pad] ] )
+       or $padUnreadDeclared !== NULL )
 
     foreach ( $padParms [$pad] as $padUnread ) {
 
