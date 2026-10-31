@@ -580,13 +580,21 @@ PadInputs.register('timepicker', function (frame, cfg, kit) {
     options[active].scrollIntoView({ block: 'nearest' });
   }
 
+  // A list that runs past midnight - 22:00 to 06:00 - is in the order of its times from its
+  // first: 01:00 comes after 23:30 there.
+  var wraps = slots.some(function (slot, i) { return i > 0 && slot < slots[i - 1]; });
+  function since(time) {
+    var minutes = +time.slice(0, 2) * 60 + +time.slice(3, 5);
+    return wraps ? (minutes - (+slots[0].slice(0, 2) * 60 + +slots[0].slice(3, 5)) + 1440) % 1440 : minutes;
+  }
+
   function show() {
     var value = (field.value || '').slice(0, 5);
     var at = 0;
     options.forEach(function (one, i) {
       var time = one.getAttribute('data-time');
       one.setAttribute('aria-selected', time === value ? 'true' : 'false');
-      if (value && time <= value) at = i;
+      if (value && since(time) <= since(value)) at = i;
     });
     list.hidden = false;
     opener.setAttribute('aria-expanded', 'true');

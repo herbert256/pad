@@ -24,12 +24,19 @@
     }
   }
 
+  // A range that runs past midnight - min='22:00', max='06:00', a night shift, which a time
+  // field takes: 23:00 and 01:00 are both in it - offers the times from min= to midnight and
+  // on to max=, where it offered none at all.
+
   $padInputSlots = [];
   $padInputFrom  = (int) substr ( $padInputBounds ['min'] [0], 0, 2 ) * 60 + (int) substr ( $padInputBounds ['min'] [0], 3, 2 );
   $padInputTo    = (int) substr ( $padInputBounds ['max'] [0], 0, 2 ) * 60 + (int) substr ( $padInputBounds ['max'] [0], 3, 2 );
 
+  if ( $padInputTo < $padInputFrom )
+    $padInputTo += 1440;
+
   for ( $padInputAt = $padInputFrom; $padInputAt <= $padInputTo and count ( $padInputSlots ) < 1440; $padInputAt += $padInputEvery )
-    $padInputSlots [] = sprintf ( '%02d:%02d', intdiv ( $padInputAt, 60 ), $padInputAt % 60 );
+    $padInputSlots [] = sprintf ( '%02d:%02d', intdiv ( $padInputAt % 1440, 60 ), $padInputAt % 60 );
 
   $padInputNow ['value'] = padInputValue ( '' );
 
