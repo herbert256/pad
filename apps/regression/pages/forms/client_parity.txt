@@ -4789,6 +4789,167 @@
                     ]
                 }
             }
+        },
+        {
+            "field": "word",
+            "data": {
+                "word": "﻿x"
+            },
+            "server": "",
+            "client": {
+                "word": {
+                    "label": "Word",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^\\S+$/u",
+                            ":label is not valid",
+                            "/^\\S+$/u"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "word",
+            "data": {
+                "word": "x"
+            },
+            "server": "",
+            "client": {
+                "word": {
+                    "label": "Word",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^\\s*x$/u",
+                            ":label is not valid",
+                            "/^\\s*x$/u"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "line",
+            "data": {
+                "line": "a\u2028b"
+            },
+            "server": "",
+            "client": {
+                "line": {
+                    "label": "Line",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^.+$/u",
+                            ":label is not valid",
+                            "/^.+$/u"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "line",
+            "data": {
+                "line": "a\rb"
+            },
+            "server": "",
+            "client": {
+                "line": {
+                    "label": "Line",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^.+$/",
+                            ":label is not valid",
+                            "/^.+$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "line",
+            "data": {
+                "line": "a\rb"
+            },
+            "server": "Line is not valid",
+            "client": {
+                "line": {
+                    "label": "Line",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "regex",
+                            "/^[.]+$/",
+                            ":label is not valid",
+                            "/^[.]+$/"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "1\f"
+            },
+            "server": "",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "\f 1"
+            },
+            "server": "",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
         }
     ]
 }

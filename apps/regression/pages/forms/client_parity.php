@@ -206,6 +206,13 @@
     [ 'again',    'same: password',           [ 'again' => 'pw', 'password' => 'pw' ] ],
     [ 'again',    'same: password',           [ 'again' => 'pw', 'password' => 'px' ] ],
     [ 'nick',     'min: 3|max: 5',            [ 'nick' => 'ab' ] ],
+    [ 'word',     'regex:/^\S+$/u',           [ 'word' => "\u{FEFF}x" ] ],
+    [ 'word',     'regex:/^\s*x$/u',          [ 'word' => "\u{85}x" ] ],
+    [ 'line',     'regex:/^.+$/u',            [ 'line' => "a\u{2028}b" ] ],
+    [ 'line',     'regex:/^.+$/',             [ 'line' => "a\rb" ] ],
+    [ 'line',     'regex:/^[.]+$/',           [ 'line' => "a\rb" ] ],
+    [ 'amount',   'numeric',                  [ 'amount' => "1\f" ] ],
+    [ 'amount',   'numeric',                  [ 'amount' => "\f 1" ] ],
   ];
 
   $parity = [];

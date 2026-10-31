@@ -45,9 +45,37 @@ function braces(body) {
   return false;
 }
 
+// Whether the pattern has a . outside a class - one that stands for a character.
+function dots(body) {
+  var inClass = false;
+  for (var i = 0; i < body.length; i++) {
+    var c = body.charAt(i);
+    if (c === '\\') {
+      i++;
+    } else if (inClass) {
+      if (c === ']') inClass = false;
+    } else if (c === '[') {
+      inClass = true;
+      if (body.charAt(i + 1) === '^') i++;
+      if (body.charAt(i + 1) === ']') i++;
+    } else if (c === '.') return true;
+  }
+  return false;
+}
+
+// Whether the value holds a character the pattern reads otherwise here than in PCRE: a .
+// without s stops at a carriage return, U+2028 and U+2029 in JavaScript, at a line feed
+// alone in PCRE; under u JavaScript's \s holds U+FEFF, PCRE's U+0085 and U+180E. A value
+// holding one passes here and is left to the server: regex:/^\S+$/u refused a value with a
+// byte order mark the server takes, regex:/^.+$/u one with a line separator.
+function apart(read, value) {
+  if (!read.dotAll && /[\r\u2028\u2029]/.test(value) && dots(read.source)) return true;
+  return read.unicode && /[\u0085\u180e\ufeff]/.test(value) && /\\[sS]/.test(read.source.replace(/\\\\/g, ''));
+}
+
 addRule('regex', {
   check: function (value, arg) {
     var read = pattern(arg);
-    return read && (read.unicode || !/[^\x00-\x7f]/.test(value)) ? read.test(value) : true;
+    return read && (read.unicode || !/[^\x00-\x7f]/.test(value)) && !apart(read, value) ? read.test(value) : true;
   }
 });
