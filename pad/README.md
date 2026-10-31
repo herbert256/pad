@@ -41,6 +41,7 @@ pad/
 ├── sequence/      # Sequence subsystem
 ├── start/         # Execution lifecycle
 ├── tags/          # Template tags
+├── toys/          # Toys subsystem (a toy per file of toys/types/)
 ├── try/           # Try/catch wrapper
 ├── types/         # Tag type handlers
 └── walk/          # Template tree walking
@@ -89,6 +90,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | sequence/ | Mathematical sequence generation (80+ types) |
 | start/ | Execution engine and context management |
 | tags/ | Template tags (if, while, data, set, echo, etc.) |
+| toys/ | The toys subsystem - `{toy}` and the `toy:` type; a toy is a file of `toys/types/`, its `.js` and `.css` in `toys/assets/` beside the runtime's `toy.js` and `toy.css`, the frame and the option checks in `toys/_lib/` |
 | try/ | Try/catch exception handling wrapper |
 | types/ | Tag type handlers (data, field, function, etc.) |
 | walk/ | Tree walking and iteration utilities |

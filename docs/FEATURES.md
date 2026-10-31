@@ -49,6 +49,7 @@ applications show them working.
   - [Diagrams](#diagrams)
   - [Maps](#maps)
   - [Embeds](#embeds)
+  - [Toys](#toys)
   - [Month calendar](#month-calendar)
   - [Syntax highlighting](#syntax-highlighting)
   - [QR codes and barcodes](#qr-codes-and-barcodes)
@@ -655,6 +656,39 @@ knows (`match`), its frame (`embed`), its origin for `frame-src` and its own opt
 provider is added by adding its file. `padEmbedSources ()` lists the origins a Content
 Security Policy needs: `$padCsp = "...; frame-src " . implode ( ' ', padEmbedSources () )`.
 `{video}` is the video-only form of the same providers, its markup as before.
+### Toys
+```
+{toy 'life', pattern='gun', wrap/}             # small live simulations and visual toys, in the browser
+{toy:mandelbrot center='-0.745, 0.11', zoom=40/}   # the toy: type - or bare, {mandelbrot/}
+{sorting algorithm='heap', bars=100/}          # race: every algorithm side by side on the same bars
+{boids birds=300, cohesion=8, seed=7/}         # seed= the same start on every load
+{pendulum pendulums=3, paused/}                # paused: waits for Play, as under reduced motion
+{life}                                         # a pattern of your own, a row a line: O alive, . dead
+  .O.
+  ..O
+  OOO
+{/life}
+{lsystem}                                      # an L-system of your own: the word, the turn, a rule a line
+  axiom: X
+  X: F[+X]F[-X]+X
+  F: FF
+  angle: 20
+{/lsystem}
+```
+The toys are the files of `pad/toys/types/` - `<toy>.php` checks the options and hands them on;
+`pad/toys/assets/<toy>.js` runs it, `<toy>.css` there styles it when it needs to - and the files
+there are the toys there are (`padToyTypes()`): the Game of Life, Langton's ant, an elementary
+cellular automaton, the Mandelbrot set, sorting algorithms, a double pendulum, boids, fireworks,
+falling sand, a harmonograph, a spirograph, three clocks, a starfield, a flow field, L-systems, a
+ripple tank, orbits, a Galton board and a kaleidoscope. Every toy can be touched - draw, drag,
+click - and has labelled controls, a status line and a canvas with `role="img"` and a label. The
+runtime (`pad/toys/assets/toy.js`: a seeded random number, the palette resolved for the canvas, the
+pointer, the controls, the animation loop) and every toy's script are written once per page with
+the CSP nonce; a toy holds while the page is hidden or it is scrolled away, and waits for Play under
+`prefers-reduced-motion` - a drawing toy shows its figure finished. The root carries
+`data-state="playing"`, `"paused"` or `"held"`; the colours are `--pad-toy-*` on `.pad-toy`, light and
+dark. The `toys` application shows every one of them, the reference lists them with the pages that
+show them.
 
 ### Month calendar
 ```

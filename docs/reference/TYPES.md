@@ -574,6 +574,23 @@ as the `{icon}` tag draws the icon its parameter names.
 the files there are the icons, and an icon is added by adding its file. The type is only ever
 written with its prefix - an icon's name alone is no tag, the names being those of fields and
 pages as well.
+## Toy Types
+
+### toy
+
+A small live simulation or visual toy played in the browser, of the kind the tag names - the toys
+subsystem in `PAD/toys/` sets it up, as the `{toy}` tag sets up the toy its parameter names.
+
+```
+{toy:life pattern='gun'/}
+{mandelbrot zoom=40, center='-0.745, 0.11'/}
+{lsystem 'dragon', iterations=14/}
+```
+
+**Resolution:** a PHP file `PAD/toys/types/<name>.php` (`padToyType()` in `PAD/lib/toy.php`), its
+script `PAD/toys/assets/<name>.js` and its style, when it has one, `<name>.css` beside it: the files
+of `types/` are the toys, and a toy is added by adding its files. Bare, a toy comes after every other
+kind of tag, the chart kinds and the games too.
 
 ---
 
@@ -711,6 +728,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `fake` | PAD/fakes/types/ | Fake value kinds |
 | `barcode` | PAD/codes/types/ | Barcode symbologies |
 | `icon` | PAD/icons/types/ | Icons |
+| `toy` | PAD/toys/types/ | Toys |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |

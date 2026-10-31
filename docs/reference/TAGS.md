@@ -2063,6 +2063,69 @@ down, on the smallest grid; a word that fits nowhere is left out and named under
 
 ---
 
+### toy
+A small live simulation or visual toy played in the browser: the server checks the options it is
+given and writes its frame, the toy's script - once per page, with the CSP nonce - runs it. Every
+toy is a file of `pad/toys/types/`, its `.js` (and a `.css` when it needs one) in
+`pad/toys/assets/`, and the files of `types/` are the toys there are (`padToyTypes()`); the
+subsystem is `pad/toys/`.
+
+```html
+{toy 'life', pattern='gun', wrap/}
+{toy:mandelbrot center='-0.745, 0.11', zoom=40, palette='fire'/}
+{sorting race, bars=40/}
+{boids birds=300, seed=7/}
+{life}
+  .O.
+  ..O
+  OOO
+{/life}
+{lsystem}
+  axiom: X
+  X: F[+X]F[-X]+X
+  F: FF
+  angle: 20
+{/lsystem}
+```
+
+A toy is written three ways, the same toy each time: the tag, `{toy 'life'/}`; the toy: type,
+`{toy:life/}`; and bare, `{life/}`, when no tag, store, field or sequence has the name. The pattern
+of a Game of Life and the rules of an L-system stand between its tags, a line each - taken as they
+are written, so they may hold braces; an L-system's first value names one of its systems.
+
+| Toy | Shows | Its options |
+|-----|-------|-------------|
+| `ant` | Langton's ant and the turmites; click to put down another ant | `rule` ('RL'), `ants` (1), `size` (160), `speed` (1000) |
+| `automaton` | An elementary cellular automaton, the rows scrolling up; click a case of the rule to flip it | `rule` (30), `cells` (240), `initial` (single, random), `speed` (30) |
+| `boids` | A flock from separation, alignment and cohesion; the pointer is a hawk | `birds` (150), `separation`, `alignment`, `cohesion` (5), `speed` (5) |
+| `clocks` | An analog, a binary and a word clock; drag the minute hand, run them fast | `show` ('analog, binary, words'), `zone` |
+| `fireworks` | Shells bursting in a night sky; click to send one up | `rate` (4), `gravity` (5), `shell` (mix, peony, ring, willow, palm, crossette) |
+| `flowfield` | Particles drifting on a noise field, painting the flow; the pointer stirs | `particles` (1500), `scale` (4), `speed` (3), `fade` (3) |
+| `galton` | Galton's board, the balls piling into a bell curve | `levels` (12), `balls` (500), `bias` (50) |
+| `harmonograph` | Damped pendulums drawing their figure | `frequencies` ('2, 3, 3, 2.01'), `damping` (3), `rotary` |
+| `kaleidoscope` | Drawing mirrored round the circle; a pen wanders when nobody draws | `mirrors` (8), `brush` (3), `colour` (rainbow, ink, palette) |
+| `life` | Conway's Game of Life; draw cells, step, patterns | `width` (64), `height` (40), `speed` (10), `pattern`, `rule` ('B3/S23'), `wrap`, the pattern |
+| `lsystem` | Plants and fractal curves from rewriting rules; drag to bend the angle, wind sways a plant | the system (plant), `iterations`, `angle`, the rules |
+| `mandelbrot` | The Mandelbrot set and its Julia sets; click to zoom, drag to move, Play cycles the colours | `iterations` (300), `palette` (ocean, fire, rainbow, mono), `center`, `zoom`, `julia` |
+| `orbits` | Bodies under gravity drawing their paths; drag to throw in a planet | `system` (solar, binary, eight, swarm), `trail` (300), `speed` (5) |
+| `pendulum` | A double pendulum, chaotic; drag a bob to hold it | `pendulums` (1), `angles` ('120, -10'), `trail` (400), `gravity` (9.81) |
+| `ripples` | A ripple tank - interference, slits, raindrops; click the water, build walls | `setup` (two, slits, pond), `frequency` (4) |
+| `sand` | Falling sand, water, walls, wood, fire and plants to paint with | `width` (160), `height` (100), `material`, `brush` (3), `scene` (hourglass, garden, empty) |
+| `sorting` | Sorting algorithms on bars, comparisons and swaps counted, with sound | `algorithm` (quick), `bars` (60), `order` (random, reversed, nearly, few), `speed` (120), `race`, `sound` |
+| `spirograph` | A wheel rolling in a ring, layer over layer; drag round to roll it by hand | `ring` (96), `wheel` (52), `pen` (70), `outside` |
+| `starfield` | Flying through stars; the pointer steers, a press speeds up | `stars` (600), `speed` (4), `warp` |
+
+**Every toy:** `seed=` makes what it picks at random the same on every load (without it the
+browser picks), `title=` names it, `paused` has it wait for its Play button. It holds while the
+page is hidden or the toy is out of view, and waits for Play when the visitor asks for reduced
+motion - a drawing toy then shows its figure finished. The root carries `data-state` - `playing`,
+`paused` or `held`; the colours are `--pad-toy-ink`, `-canvas`, `-accent`, `-accent2`, `-night` and
+their like on `.pad-toy`, `light-dark()` defaults, resolved by the script for the canvas and again
+when the scheme changes. An option out of its bounds, a word a choice does not know, a life rule or
+pattern row, an L-system line or a time zone that is none are errors under the strict check.
+
+---
+
 ### diff
 What changed between two texts - word by word in the flow of the text, or line by line in
 one column or side by side - with `<del>` and `<ins>` marked and styled (`tags/_lib/diff.php`).
@@ -3570,6 +3633,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
 | `chess` | Output | A chess position from FEN as inline SVG - pieces, coordinates, marked squares, arrows |
 | `game` | Output | A little game played in the browser - 18 of them, the files of `pad/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
+| `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |
