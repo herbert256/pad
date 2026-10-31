@@ -1440,7 +1440,8 @@ space and `- . $ / + %`. `itf` is Interleaved 2 of 5 (a 0 in front of an odd num
 digits), `itf14` the GS1 carton number between bearer bars, `codabar` digits and `- $ : / . +`
 between start and stop letters A to D (A at both ends when the text has none), `msi` digits
 with a Luhn check digit. `datamatrix` is Data Matrix ECC 200 in the smallest of its 24 square
-sizes, 10 by 10 to 144 by 144 modules; `qr` the QR code of `{qr}`. A wrong check digit, a wrong
+sizes, 10 by 10 to 144 by 144 modules, a text beyond ASCII marked as UTF-8 by its ECI
+designator; `qr` the QR code of `{qr}`. A wrong check digit, a wrong
 length, a character the symbology cannot hold, a text too long for it or an unknown type is an
 error under the strict check, and writes nothing.
 

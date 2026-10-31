@@ -12,8 +12,9 @@
   // padDataMatrixMatrix    the symbol: rows of TRUE (dark) and FALSE (light), no quiet zone
   //
   // The text is encoded in the ASCII encodation: two digits to a codeword, a character of
-  // ASCII to one, a byte above it - of the text's UTF-8 - to two, after the upper shift. The
-  // codewords that are left are padding, the first 129 and the rest scrambled as the standard
+  // ASCII to one, a byte above it - of the text's UTF-8 - to two, after the upper shift, and
+  // the ECI designator of UTF-8 before them all where there is such a byte. The codewords
+  // that are left are padding, the first 129 and the rest scrambled as the standard
   // says; the error correction is Reed-Solomon over GF(256) of the polynomial 0x12D, a block
   // of it for the small symbols and the codewords spread over 2 to 10 blocks for the large.
 
@@ -44,12 +45,16 @@
 
   }
 
-  // The codewords of the ASCII encodation.
+  // The codewords of the ASCII encodation. A text with a character beyond ASCII starts with
+  // the ECI designator of UTF-8 - codeword 241 and 27, ECI 000026: without it a symbol is
+  // read in its default interpretation, ISO/IEC 8859-1, and a reader that follows the
+  // standard showed the UTF-8 bytes of Zoë as ZoÃ«. A text that is no UTF-8 keeps the bytes
+  // it has, without the designator.
 
   function padDataMatrixAscii ( $text ) {
 
-    $codewords = [];
     $length    = strlen ( $text );
+    $codewords = ( preg_match ( '/[\x80-\xff]/', $text ) and preg_match ( '//u', $text ) ) ? [ 241, 27 ] : [];
 
     for ( $i = 0; $i < $length; $i++ ) {
       $byte = ord ( $text [$i] );
