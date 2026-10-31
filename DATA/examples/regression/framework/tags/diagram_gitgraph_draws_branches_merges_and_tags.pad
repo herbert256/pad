@@ -1,0 +1,10 @@
+{diagram:gitgraph}
+  commit id: "Init"
+  branch develop
+  commit id: "Parser" type: HIGHLIGHT
+  checkout main
+  commit id: "Fix" type: REVERSE
+  merge develop tag: "v1.0"
+  checkout develop
+  cherry-pick id: "Fix"
+{/diagram:gitgraph}

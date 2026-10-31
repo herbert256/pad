@@ -1,0 +1,27 @@
+{meta title='The tables of a shop', about='An entity-relationship diagram - every entity a table of its attributes with their keys, the relations drawn with the feet of a crow.'/}
+{diagram:er title='The tables of a shop'}
+  CUSTOMER ||--o{ ORDER : places
+  ORDER ||--|{ LINE : contains
+  PRODUCT ||--o{ LINE : "is in"
+  CUSTOMER }|..|{ ADDRESS : "lives at"
+  CUSTOMER {
+    int id PK
+    string name
+    string email UK "for the receipts"
+  }
+  ORDER {
+    int id PK
+    int customer FK
+    date placed
+  }
+  LINE {
+    int order PK, FK
+    int product PK, FK
+    int quantity
+  }
+  PRODUCT {
+    int id PK
+    string name
+    decimal price
+  }
+{/diagram:er}

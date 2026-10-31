@@ -1,0 +1,11 @@
+{meta title='An entity-relationship diagram', about='Entities as tables of their attributes, the feet of a crow for how many.'/}
+{diagram:er direction='LR', title='A shop'}
+  CUSTOMER ||--o{ ORDER : places
+  ORDER ||--|{ LINE-ITEM : contains
+  PRODUCT ||--o{ LINE-ITEM : "is in"
+  ORDER {
+    int id PK
+    int customer FK
+    date placed
+  }
+{/diagram:er}

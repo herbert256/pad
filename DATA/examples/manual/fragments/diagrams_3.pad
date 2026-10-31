@@ -1,0 +1,10 @@
+{diagram:state title='A ticket'}
+  [*] --> Open
+  Open --> Working : take
+  Working --> Open : give back
+  state Done <<choice>>
+  Working --> Done : finish
+  Done --> Closed : accepted
+  Done --> Working : rejected
+  Closed --> [*]
+{/diagram:state}

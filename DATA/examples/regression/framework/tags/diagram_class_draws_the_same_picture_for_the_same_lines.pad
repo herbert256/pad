@@ -1,0 +1,10 @@
+{diagram:class direction='LR'}
+  class Customer {
+    +String name
+    +orders() List~Order~
+  }
+  Customer "1" --> "*" Order : places
+  Order *-- "1..*" Line
+  Line --> Product
+  Order ..> Invoice
+{/diagram:class | php:md5(@)}

@@ -1,0 +1,15 @@
+{diagram:class title='Shapes'}
+  class Shape {
+    <<abstract>>
+    +area()* double
+  }
+  class Circle {
+    +double radius
+  }
+  class Square {
+    +double side
+  }
+  Shape <|-- Circle
+  Shape <|-- Square
+  Drawing o-- "*" Shape : holds
+{/diagram:class}

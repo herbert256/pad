@@ -1,0 +1,9 @@
+{diagram:er direction='LR'}
+  CUSTOMER ||--o{ ORDER : places
+  ORDER ||--|{ LINE-ITEM : contains
+  PRODUCT ||--o{ LINE-ITEM : "is in"
+  ORDER {
+    int id PK
+    int customer FK
+  }
+{/diagram:er | php:md5(@)}

@@ -1,0 +1,33 @@
+{meta title='A shop in classes', about='A class diagram - fields and methods, an interface, inheritance and realization, composition, aggregation and multiplicities, the parents and the wholes above.'/}
+{diagram:class title='A shop'}
+  class Customer {
+    +String name
+    +String email
+    +orders() int
+  }
+  class Order {
+    +Date placed
+    +total() Money
+    +pay(Card card) bool
+  }
+  class Line {
+    +int quantity
+    +price() Money
+  }
+  class Product {
+    <<abstract>>
+    +String name
+    +price()* Money
+  }
+  class Payable {
+    <<interface>>
+    +pay(Card card) bool
+  }
+  Customer "1" --> "*" Order : places
+  Order *-- "1..*" Line
+  Line --> "1" Product
+  Product <|-- Book
+  Product <|-- Ticket
+  Payable <|.. Order
+  Catalog o-- Product
+{/diagram:class}

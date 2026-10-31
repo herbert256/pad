@@ -1,6 +1,6 @@
 <?php
 
-  $tagAbout   = 'One item of a tabs, accordion or carousel: its label and its content, handed to that owner.';
+  $tagAbout   = 'One item of a tabs, accordion, carousel, wizard or lightbox widget: its label and its content, handed to that owner.';
   $tagGroup   = 'widgets';
   $tagForm    = 'pair';
 
@@ -13,6 +13,6 @@ PAD;
 
   $tagOptions = [];
 
-  $tagSee     = [ 'tabs', 'accordion', 'carousel' ];
+  $tagSee     = [ 'widget' ];
 
 ?>

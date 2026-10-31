@@ -1,0 +1,11 @@
+{meta title='A state diagram', about='The start and the end, labelled transitions, a choice and a line of description.'/}
+{diagram:state title='A ticket'}
+  [*] --> Open
+  Open --> Working : take
+  Working : the clock runs
+  state Done <<choice>>
+  Working --> Done : finish
+  Done --> Closed : accepted
+  Done --> Working : rejected
+  Closed --> [*]
+{/diagram:state}

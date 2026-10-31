@@ -1,0 +1,10 @@
+{diagram:sequence title='Paying an order'}
+  participant S as Shop
+  participant B as Bank
+  S ->> B: Charge 42.00
+  alt Enough funds
+    B -->> S: Approved
+  else Declined
+    B -->> S: Refused
+  end
+{/diagram:sequence}

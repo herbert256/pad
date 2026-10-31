@@ -1,0 +1,13 @@
+{meta title='Slider'/}
+{about/}
+
+{form 'try', class='inputs-try', error}
+  {slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}
+  {input:slider 'tempo', label='Tempo', min=40, max=200, step=4, value=120, unit=' bpm', marks='60, 90, 120, 150, 180'/}
+  <button class="inputs-send">Send</button>
+{/form}
+
+{received/}
+
+<h2>The template</h2>
+{source/}

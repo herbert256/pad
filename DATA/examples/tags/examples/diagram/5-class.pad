@@ -1,0 +1,13 @@
+{meta title='A class diagram', about='Classes with fields and methods, inheritance, composition and an association with its multiplicities.'/}
+{diagram:class title='An order'}
+  class Order {
+    +Date placed
+    +total() Money
+  }
+  class Line {
+    +int quantity
+  }
+  Customer "1" --> "*" Order : places
+  Order *-- "1..*" Line
+  Line --> Product
+{/diagram:class}

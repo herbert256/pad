@@ -1,0 +1,13 @@
+{diagram:state direction='LR'}
+  [*] --> Wait
+  state "Waiting for payment" as Wait
+  Wait : after 14 days / remind
+  state Paid <<choice>>
+  Wait --> Paid
+  state Split <<fork>>
+  Paid --> Split : yes
+  Paid --> Wait : no
+  Split --> Pack
+  Split --> Invoice
+  Pack --> [*]
+{/diagram:state | php:md5(@)}
