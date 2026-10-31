@@ -96,9 +96,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">name</span>=<span class="hl-var">$value</span>, <span class="hl-opt">other</span>=<span class="hl-var">$value</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">attrs</span> required, <span class="hl-opt">aria-expanded</span>=<span class="hl-var">$open</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$array</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">name</span>=<span class="hl-var">$value</span>, <span class="hl-opt">other</span>=<span class="hl-var">$value</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">attrs</span> required, <span class="hl-opt">aria-expanded</span>=<span class="hl-var">$open</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$array</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -116,13 +116,13 @@
               Description
             </h2>
             <p>
-              <code>{attrs}</code> stands inside an HTML start tag and writes the attributes its items describe, separated by spaces: <code>&lt;button {attrs disabled=$busy, title=$help}&gt;</code>. Each value is escaped for the attribute, so a quote in a value cannot end it. The items are read raw - <code>content=</code>, <code>data=</code> or <code>print=</code> are attribute names here, not the options they are on other tags.
+              <code>{attrs}</code> stands inside an HTML start tag and writes the attributes its items describe, separated by spaces: <code>&lt;button {attrs disabled=$busy, title=$help/}&gt;</code>. Each value is escaped for the attribute, so a quote in a value cannot end it. The items are read raw - <code>content=</code>, <code>data=</code> or <code>print=</code> are attribute names here, not the options they are on other tags.
             </p>
             <h3>
               True, false and the rest
             </h3>
             <p>
-              A boolean HTML attribute - <code>disabled</code>, <code>checked</code>, <code>selected</code>, <code>required</code>, <code>hidden</code>, <code>readonly</code> and the like - is written bare when its value is true and left out otherwise. Any other attribute is left out for FALSE and NULL, written bare for TRUE, and otherwise written with its value: the text <code>'false'</code> stays <code>aria-expanded="false"</code>, an empty text is an empty attribute, an array is joined with spaces. A name alone - <code>{attrs required}</code> - is a bare attribute.
+              A boolean HTML attribute - <code>disabled</code>, <code>checked</code>, <code>selected</code>, <code>required</code>, <code>hidden</code>, <code>readonly</code> and the like - is written bare when its value is true and left out otherwise. Any other attribute is left out for FALSE and NULL, written bare for TRUE, and otherwise written with its value: the text <code>'false'</code> stays <code>aria-expanded="false"</code>, an empty text is an empty attribute, an array is joined with spaces. A name alone - <code>{attrs required/}</code> - is a bare attribute.
             </p>
             <h3>
               Attributes from an array
@@ -150,11 +150,11 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/attrs/1-boolean.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$busy</span> = TRUE<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$help</span> = <span class="hl-str">'Saves the "draft" now'</span><span class="hl-brc">}</span>
-<span class="hl-htm">&lt;button</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">disabled</span>=<span class="hl-var">$busy</span>, <span class="hl-opt">title</span>=<span class="hl-var">$help</span>, <span class="hl-opt">aria-expanded</span>=<span class="hl-str">'false'</span>, <span class="hl-opt">data-step</span>=<span class="hl-num">2</span><span class="hl-brc">}</span><span class="hl-htm">&gt;</span>Save<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;button</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">disabled</span>=FALSE, <span class="hl-opt">title</span>=<span class="hl-var">$help</span><span class="hl-brc">}</span><span class="hl-htm">&gt;</span>Publish<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;pre</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">disabled</span>=<span class="hl-var">$busy</span>, <span class="hl-opt">title</span>=<span class="hl-var">$help</span>, <span class="hl-opt">aria-expanded</span>=<span class="hl-str">'false'</span>, <span class="hl-opt">data-step</span>=<span class="hl-num">2</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$busy</span> = TRUE<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$help</span> = <span class="hl-str">'Saves the "draft" now'</span><span class="hl-brc">/}</span>
+<span class="hl-htm">&lt;button</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">disabled</span>=<span class="hl-var">$busy</span>, <span class="hl-opt">title</span>=<span class="hl-var">$help</span>, <span class="hl-opt">aria-expanded</span>=<span class="hl-str">'false'</span>, <span class="hl-opt">data-step</span>=<span class="hl-num">2</span><span class="hl-brc">/}</span><span class="hl-htm">&gt;</span>Save<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;button</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">disabled</span>=FALSE, <span class="hl-opt">title</span>=<span class="hl-var">$help</span><span class="hl-brc">/}</span><span class="hl-htm">&gt;</span>Publish<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;pre</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-opt">disabled</span>=<span class="hl-var">$busy</span>, <span class="hl-opt">title</span>=<span class="hl-var">$help</span>, <span class="hl-opt">aria-expanded</span>=<span class="hl-str">'false'</span>, <span class="hl-opt">data-step</span>=<span class="hl-num">2</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -179,10 +179,10 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/attrs/2-array.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;a</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$link</span><span class="hl-brc">}</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;input</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$field</span>, required<span class="hl-brc">}</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;pre</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$link</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$field</span>, required<span class="hl-brc">}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;a</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$link</span><span class="hl-brc">/}</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/a</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;input</span> <span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$field</span>, required<span class="hl-brc">/}</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;pre</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$link</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">attrs</span> <span class="hl-var">$field</span>, required<span class="hl-brc">/}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/attrs/2-array.php</span>
                   </div>

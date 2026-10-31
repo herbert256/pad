@@ -97,7 +97,7 @@
               Syntax
             </h2>
             <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">content</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/content</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">content</span> <span class="hl-str">'name'</span>, <span class="hl-str">'text'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">content</span> <span class="hl-str">'name'</span>, <span class="hl-str">'text'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">content</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/content</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span></code></pre>
             <h3>
               Parameters
@@ -154,7 +154,7 @@
 <span class="hl-htm">&lt;h4</span><span class="hl-htm">&gt;</span>Staff<span class="hl-htm">&lt;/h4</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">contentStaff</span> <span class="hl-opt">content</span>=<span class="hl-str">'contentRow'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/contentStaff</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;h4</span><span class="hl-htm">&gt;</span>Volunteers<span class="hl-htm">&lt;/h4</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">contentHelpers</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">contentRow</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/contentHelpers</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
+<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">contentHelpers</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">contentRow</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">/contentHelpers</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/content/1-reuse.php</span>
                   </div>
@@ -205,12 +205,12 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/content/2-snapshot.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$price</span> = <span class="hl-num">10</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$price</span> = <span class="hl-num">10</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">content</span> <span class="hl-str">'contentLive'</span><span class="hl-brc">}</span>the price is <span class="hl-brc">{</span><span class="hl-var">$price</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/content</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">content</span><span class="hl-brc">}</span>the price was <span class="hl-brc">{</span><span class="hl-var">$price</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/content</span> <span class="hl-str">'contentFixed'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$price</span> = <span class="hl-num">12</span><span class="hl-brc">}</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Live: <span class="hl-brc">{</span><span class="hl-tag">contentLive</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Snapshot: <span class="hl-brc">{</span><span class="hl-tag">contentFixed</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$price</span> = <span class="hl-num">12</span><span class="hl-brc">/}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Live: <span class="hl-brc">{</span><span class="hl-tag">contentLive</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Snapshot: <span class="hl-brc">{</span><span class="hl-tag">contentFixed</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">

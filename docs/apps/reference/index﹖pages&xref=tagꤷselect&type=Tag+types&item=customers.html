@@ -126,6 +126,174 @@
                     </td>
                   </tr>
                 </table><br>
+                <hr>
+                App: manual - Page: fragments/padSelect_2<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/padSelect_2.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/padSelect_2.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$country </span><span style="color: #007700">= </span><span style="color: #DD0000">'France'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$minimum </span><span style="color: #007700">= </span><span style="color: #0000BB">100000</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">customers </font><font color="red">where="country = <font color="red">$</font>country and creditLimit &gt; <font color="red">$</font>minimum"<font color="black">,</font><br>           order="creditLimit desc"<font color="black">,</font> rows=3<font color="black">,</font> fields="customerName<font color="black">,</font> creditLimit"</font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>customerName</font>}</b>: <b>{<font color="green"><font color="red">$</font>creditLimit</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">customers</font><font color="red"></font>}</b><br><br>&lt;p&gt;Customer 103 is <b>{<font color="blue">customers </font><font color="red"><font color="red">$</font>customerNumber=103</font>}</b><b>{<font color="green"><font color="red">$</font>customerName</font>}</b><b>{/<font color="blue">customers</font><font color="red"></font>}</b>.&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax54cf12cd2f5052c0473fe8d09f5f0309"></div>
+                      <script>
+                      padAjax54cf12cd2f5052c0473fe8d09f5f0309 = new XMLHttpRequest();
+                      padAjax54cf12cd2f5052c0473fe8d09f5f0309.onreadystatechange=function() {
+                      if (padAjax54cf12cd2f5052c0473fe8d09f5f0309.readyState === 4) {
+                      if (padAjax54cf12cd2f5052c0473fe8d09f5f0309.status === 200) {
+                      document.getElementById("padAjax54cf12cd2f5052c0473fe8d09f5f0309").innerHTML=padAjax54cf12cd2f5052c0473fe8d09f5f0309.responseText;
+                      } else {
+                      document.getElementById("padAjax54cf12cd2f5052c0473fe8d09f5f0309").innerHTML=padAjax54cf12cd2f5052c0473fe8d09f5f0309.statusText;
+                      }
+                      }
+                      }
+                      padAjax54cf12cd2f5052c0473fe8d09f5f0309.open("GET","http://localhost/pad/manual/?fragments/padSelect_2&padInclude",true);
+                      padAjax54cf12cd2f5052c0473fe8d09f5f0309.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: fragments/padSelect_6<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/padSelect_6.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/padSelect_6.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'payments'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber,checkNumber' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">customers </font><font color="red">fields="country<font color="black">,</font> count(*) as n"<font color="black">,</font> group="country"<font color="black">,</font> having="count(*) &gt;= 10"<font color="black">,</font> order="n desc"</font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>country</font>}</b>: <b>{<font color="green"><font color="red">$</font>n</font>}</b> customers&lt;/p&gt;<br><b>{/<font color="blue">customers</font><font color="red"></font>}</b><br><br><b>{<font color="blue">payments </font><font color="red">fields="year(paymentDate) as year<font color="black">,</font> sum(amount) as total"<font color="black">,</font> group="year"<font color="black">,</font> rollup</font>}</b><br>  &lt;p&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>year</font>}</b><b>{<font color="green"><font color="red">$</font>year</font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>All years<b>{/<font color="blue">if</font><font color="red"></font>}</b>: <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">payments</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax4071db57d457764f2ec0fec8369abe48"></div>
+                      <script>
+                      padAjax4071db57d457764f2ec0fec8369abe48 = new XMLHttpRequest();
+                      padAjax4071db57d457764f2ec0fec8369abe48.onreadystatechange=function() {
+                      if (padAjax4071db57d457764f2ec0fec8369abe48.readyState === 4) {
+                      if (padAjax4071db57d457764f2ec0fec8369abe48.status === 200) {
+                      document.getElementById("padAjax4071db57d457764f2ec0fec8369abe48").innerHTML=padAjax4071db57d457764f2ec0fec8369abe48.responseText;
+                      } else {
+                      document.getElementById("padAjax4071db57d457764f2ec0fec8369abe48").innerHTML=padAjax4071db57d457764f2ec0fec8369abe48.statusText;
+                      }
+                      }
+                      }
+                      padAjax4071db57d457764f2ec0fec8369abe48.open("GET","http://localhost/pad/manual/?fragments/padSelect_6&padInclude",true);
+                      padAjax4071db57d457764f2ec0fec8369abe48.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: fragments/padSelect_7<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/padSelect_7.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/padSelect_7.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">customers </font><font color="red">rows=4<font color="black">,</font> page=<font color="red">$</font>pg ?? 1</font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>customerName</font>}</b>&lt;/li&gt;<b>{/<font color="blue">customers</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br><br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>customers<font color="black">'</font><font color="black">,</font> window=1</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax99d3a741c447fbd0eb8485ac2ced6757"></div>
+                      <script>
+                      padAjax99d3a741c447fbd0eb8485ac2ced6757 = new XMLHttpRequest();
+                      padAjax99d3a741c447fbd0eb8485ac2ced6757.onreadystatechange=function() {
+                      if (padAjax99d3a741c447fbd0eb8485ac2ced6757.readyState === 4) {
+                      if (padAjax99d3a741c447fbd0eb8485ac2ced6757.status === 200) {
+                      document.getElementById("padAjax99d3a741c447fbd0eb8485ac2ced6757").innerHTML=padAjax99d3a741c447fbd0eb8485ac2ced6757.responseText;
+                      } else {
+                      document.getElementById("padAjax99d3a741c447fbd0eb8485ac2ced6757").innerHTML=padAjax99d3a741c447fbd0eb8485ac2ced6757.statusText;
+                      }
+                      }
+                      }
+                      padAjax99d3a741c447fbd0eb8485ac2ced6757.open("GET","http://localhost/pad/manual/?fragments/padSelect_7&padInclude",true);
+                      padAjax99d3a741c447fbd0eb8485ac2ced6757.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A select with a join meets its key and its relations with its own table's columns: a<br>  // field both tables hold - orderNumber in orders and orderdetails, customerNumber in orders<br>  // and payments - is named with the table. Over the Classic Models tables of the demo<br>  // database.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'lineDetail'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderdetails'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'productCode' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'product' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'orderLines'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders.orderNumber'</span><span style="color: #007700">,<br>                                </span><span style="color: #DD0000">'join' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'inner' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lineDetail'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders.orderNumber' </span><span style="color: #007700">],<br>                                </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderdetails.orderLineNumber' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">key: [<b>{<font color="blue">orderLines </font><font color="red"><font color="red">$</font>orderNumber=10100</font>}</b><b>{<font color="green"><font color="red">$</font>product</font>}</b> <b>{/<font color="blue">orderLines</font><font color="red"></font>}</b>]<br>nested: [<b>{<font color="blue">customers </font><font color="red"><font color="red">$</font>customerNumber=103</font>}</b><b>{<font color="blue">orders </font><font color="red">join="payments on payments.customerNumber = orders.customerNumber"<font color="black">,</font> fields="count(*) as n"</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">orders</font><font color="red"></font>}</b><b>{/<font color="blue">customers</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxafb783debb071b09f0871592e437e1c1"></div>
+                      <script>
+                      padAjaxafb783debb071b09f0871592e437e1c1 = new XMLHttpRequest();
+                      padAjaxafb783debb071b09f0871592e437e1c1.onreadystatechange=function() {
+                      if (padAjaxafb783debb071b09f0871592e437e1c1.readyState === 4) {
+                      if (padAjaxafb783debb071b09f0871592e437e1c1.status === 200) {
+                      document.getElementById("padAjaxafb783debb071b09f0871592e437e1c1").innerHTML=padAjaxafb783debb071b09f0871592e437e1c1.responseText;
+                      } else {
+                      document.getElementById("padAjaxafb783debb071b09f0871592e437e1c1").innerHTML=padAjaxafb783debb071b09f0871592e437e1c1.statusText;
+                      }
+                      }
+                      }
+                      padAjaxafb783debb071b09f0871592e437e1c1.open("GET","http://localhost/pad/regression/pages/?select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation&padInclude",true);
+                      padAjaxafb783debb071b09f0871592e437e1c1.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
               </center>
             </td>
           </tr>

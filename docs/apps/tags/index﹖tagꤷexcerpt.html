@@ -99,9 +99,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$text</span>, <span class="hl-opt">words</span>=<span class="hl-num">40</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$text</span>, <span class="hl-opt">words</span>=<span class="hl-num">24</span>, <span class="hl-opt">highlight</span>=<span class="hl-var">$q</span>, <span class="hl-opt">ellipsis</span>=<span class="hl-str">'...'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$html</span>, <span class="hl-opt">words</span>=<span class="hl-num">30</span>, html<span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$text</span>, <span class="hl-opt">words</span>=<span class="hl-num">40</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$text</span>, <span class="hl-opt">words</span>=<span class="hl-num">24</span>, <span class="hl-opt">highlight</span>=<span class="hl-var">$q</span>, <span class="hl-opt">ellipsis</span>=<span class="hl-str">'...'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$html</span>, <span class="hl-opt">words</span>=<span class="hl-num">30</span>, html<span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -148,7 +148,7 @@
               Description
             </h2>
             <p>
-              <code>{excerpt $body, words=24}</code> writes the first 24 words of the text and an ellipsis where it goes on - always whole words, never a word cut in half. A text no longer than <code>words</code> stays whole, without an ellipsis.
+              <code>{excerpt $body, words=24/}</code> writes the first 24 words of the text and an ellipsis where it goes on - always whole words, never a word cut in half. A text no longer than <code>words</code> stays whole, without an ellipsis.
             </p>
             <p>
               With <code>highlight=</code> it is a search result: the query is split into words at everything that is no letter or digit, a word matches at the start of a word whatever its case - <code>templ</code> finds <code>Templates</code> - and the whole matched word is put in a <code>&lt;mark&gt;</code>. The window of <code>words</code> words is centred on the first match and moved in where it would run past either end, with an ellipsis on each side that was cut.
@@ -177,8 +177,8 @@
                     <span>Template</span><span class="cell-file">examples/excerpt/1-search.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Results for <span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$q</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span>:<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$body</span>, <span class="hl-opt">words</span>=<span class="hl-num">20</span>, <span class="hl-opt">highlight</span>=<span class="hl-var">$q</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The first twenty words, no query: <span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$body</span>, <span class="hl-opt">words</span>=<span class="hl-num">20</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$body</span>, <span class="hl-opt">words</span>=<span class="hl-num">20</span>, <span class="hl-opt">highlight</span>=<span class="hl-var">$q</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The first twenty words, no query: <span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$body</span>, <span class="hl-opt">words</span>=<span class="hl-num">20</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/excerpt/1-search.php</span>
                   </div>
@@ -223,7 +223,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/excerpt/2-html.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$post</span>, <span class="hl-opt">words</span>=<span class="hl-num">28</span>, html, <span class="hl-opt">ellipsis</span>=<span class="hl-str">'[more]'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">excerpt</span> <span class="hl-var">$post</span>, <span class="hl-opt">words</span>=<span class="hl-num">28</span>, html, <span class="hl-opt">ellipsis</span>=<span class="hl-str">'[more]'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/excerpt/2-html.php</span>
                   </div>

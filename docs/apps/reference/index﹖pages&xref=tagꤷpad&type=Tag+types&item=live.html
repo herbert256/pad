@@ -171,46 +171,6 @@
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/errors - Page: syntax/a_live_region_must_close<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">syntax/a_live_region_must_close.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>a<font color="black">'</font></font>}</b>x</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax01132016e531bbf3bdef8a776419c820"></div>
-                      <script>
-                      padAjax01132016e531bbf3bdef8a776419c820 = new XMLHttpRequest();
-                      padAjax01132016e531bbf3bdef8a776419c820.onreadystatechange=function() {
-                      if (padAjax01132016e531bbf3bdef8a776419c820.readyState === 4) {
-                      if (padAjax01132016e531bbf3bdef8a776419c820.status === 200) {
-                      document.getElementById("padAjax01132016e531bbf3bdef8a776419c820").innerHTML=padAjax01132016e531bbf3bdef8a776419c820.responseText;
-                      } else {
-                      document.getElementById("padAjax01132016e531bbf3bdef8a776419c820").innerHTML=padAjax01132016e531bbf3bdef8a776419c820.statusText;
-                      }
-                      }
-                      }
-                      padAjax01132016e531bbf3bdef8a776419c820.open("GET","http://localhost/pad/regression/errors/?syntax/a_live_region_must_close&padInclude",true);
-                      padAjax01132016e531bbf3bdef8a776419c820.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
                 App: regression/errors - Page: syntax/a_live_region_needs_a_name<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -313,7 +273,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $n </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">() + </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>box<font color="black">'</font></font>}</b>&lt;ul&gt;<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>items<font color="black">'</font></font>}</b>&lt;/ul&gt;<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>items<font color="black">'</font></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b>&lt;/li&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>box<font color="black">'</font></font>}</b>&lt;ul&gt;<b>{<font color="blue">stack </font><font color="red"><font color="black">'</font>items<font color="black">'</font></font>/}</b>&lt;/ul&gt;<b>{<font color="blue">push </font><font color="red"><font color="black">'</font>items<font color="black">'</font></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b>&lt;/li&gt;<b>{/<font color="blue">push</font><font color="red"></font>}</b><b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax4e10d31979e116e20dcdd27fb0821c33"></div>
@@ -393,7 +353,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;p&gt;head&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>}</b><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>box<font color="black">'</font></font>}</b>&lt;p&gt;box&lt;/p&gt;<b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;head&lt;/p&gt;<b>{<font color="blue">flush</font><font color="red"></font>/}</b><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>box<font color="black">'</font></font>}</b>&lt;p&gt;box&lt;/p&gt;<b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax1eadad53c57714dc22724108a4a0ecd5"></div>
@@ -645,7 +605,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $clicks </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">padLiveValue </span><span style="color: #007700">();<br><br>  if ( </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'add'   </span><span style="color: #007700">) </span><span style="color: #0000BB">$clicks</span><span style="color: #007700">++;<br>  if ( </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'reset' </span><span style="color: #007700">) </span><span style="color: #0000BB">$clicks </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A counter<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A click posts the event to the page; only the region is rendered again and swapped in.<font color="black">'</font></font>}</b><br><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>liveCounter<font color="black">'</font></font>}</b><br>  &lt;p&gt;Clicked <b>{<font color="green"><font color="red">$</font>clicks</font>}</b> times&lt;/p&gt;<br>  &lt;button pad-click="add" pad-value="<b>{<font color="green"><font color="red">$</font>clicks</font>}</b>"&gt;Add one&lt;/button&gt;<br>  &lt;button pad-click="reset"&gt;Reset&lt;/button&gt;<br><b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A counter<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A click posts the event to the page; only the region is rendered again and swapped in.<font color="black">'</font></font>/}</b><br><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>liveCounter<font color="black">'</font></font>}</b><br>  &lt;p&gt;Clicked <b>{<font color="green"><font color="red">$</font>clicks</font>}</b> times&lt;/p&gt;<br>  &lt;button pad-click="add" pad-value="<b>{<font color="green"><font color="red">$</font>clicks</font>}</b>"&gt;Add one&lt;/button&gt;<br>  &lt;button pad-click="reset"&gt;Reset&lt;/button&gt;<br><b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax260e3c495b8dd486cd23553ce5d7ef0a"></div>
@@ -687,7 +647,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $visitor </span><span style="color: #007700">= </span><span style="color: #0000BB">padLiveEvent </span><span style="color: #007700">() == </span><span style="color: #DD0000">'greet' </span><span style="color: #007700">? </span><span style="color: #0000BB">trim </span><span style="color: #007700">( (string) </span><span style="color: #0000BB">padRequest </span><span style="color: #007700">( </span><span style="color: #DD0000">'visitor'</span><span style="color: #007700">, </span><span style="color: #DD0000">'' </span><span style="color: #007700">) ) : </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A form in a region<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>pad-submit posts the form\<font color="black">'</font>s fields with the event; the answer replaces the region.<font color="black">'</font></font>}</b><br><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>liveGreet<font color="black">'</font></font>}</b><br>  &lt;form pad-submit="greet"&gt;<br>    &lt;label&gt;Name &lt;input name="visitor" value="<b>{<font color="green"><font color="red">$</font>visitor</font>}</b>"&gt;&lt;/label&gt;<br>    &lt;button&gt;Greet&lt;/button&gt;<br>  &lt;/form&gt;<br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>visitor ne <font color="black">'</font><font color="black">'</font></font>}</b>&lt;p&gt;Hello, <b>{<font color="green"><font color="red">$</font>visitor</font>}</b>!&lt;/p&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A form in a region<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>pad-submit posts the form\<font color="black">'</font>s fields with the event; the answer replaces the region.<font color="black">'</font></font>/}</b><br><b>{<font color="blue">live </font><font color="red"><font color="black">'</font>liveGreet<font color="black">'</font></font>}</b><br>  &lt;form pad-submit="greet"&gt;<br>    &lt;label&gt;Name &lt;input name="visitor" value="<b>{<font color="green"><font color="red">$</font>visitor</font>}</b>"&gt;&lt;/label&gt;<br>    &lt;button&gt;Greet&lt;/button&gt;<br>  &lt;/form&gt;<br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>visitor ne <font color="black">'</font><font color="black">'</font></font>}</b>&lt;p&gt;Hello, <b>{<font color="green"><font color="red">$</font>visitor</font>}</b>!&lt;/p&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{/<font color="blue">live</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax7ed08ba7b7ccb8f93aad833fdbdcb597"></div>

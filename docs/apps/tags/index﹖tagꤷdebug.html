@@ -96,9 +96,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">debug</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-var">$value</span>, <span class="hl-var">$other</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-opt">label</span>=<span class="hl-var">$value</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">debug</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-var">$value</span>, <span class="hl-var">$other</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-opt">label</span>=<span class="hl-var">$value</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -116,7 +116,7 @@
               Description
             </h2>
             <p>
-              <code>{debug $order}</code> writes the value where the tag stands, as a <code>&lt;details&gt;</code> box with its type and size in the summary - <code>array(3)</code>, <code>string(12)</code>, <code>int</code> - and nested arrays as a tree you can fold open. Unlike <a href="index%EF%B9%96tag%EA%A4%B7dump.html">{dump}</a> the request goes on: the rest of the page renders as usual, so several <code>{debug}</code> tags can follow a value through a loop.
+              <code>{debug $order/}</code> writes the value where the tag stands, as a <code>&lt;details&gt;</code> box with its type and size in the summary - <code>array(3)</code>, <code>string(12)</code>, <code>int</code> - and nested arrays as a tree you can fold open. Unlike <a href="index%EF%B9%96tag%EA%A4%B7dump.html">{dump}</a> the request goes on: the rest of the page renders as usual, so several <code>{debug}</code> tags can follow a value through a loop.
             </p>
             <p>
               The items are read raw, the way <a href="index%EF%B9%96tag%EA%A4%B7attrs.html">{attrs}</a> reads them. A plain <code>$name</code> is looked up as a field or a page array, and when it does not exist the box says <em>missing</em> instead of ending the request under the strict syntax check. Any other item - <code>$price * 2</code>, <code>count@items</code> - is evaluated as an expression, and <code>total=$price * 2</code> puts the label <code>total</code> on the box. Values whose name looks like a credential (passwords, tokens, keys) show redacted, as in the debug toolbar.
@@ -144,7 +144,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/debug/1-one-value.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-var">$order</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-var">$order</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">order</span><span class="hl-brc">}</span><span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$sku</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$qty</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/order</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
@@ -165,7 +165,7 @@
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">orders</span><span class="hl-brc">}</span>
   <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$number</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$total</span> gt <span class="hl-num">1000</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">debug</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$total</span> gt <span class="hl-num">1000</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">debug</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/orders</span><span class="hl-brc">}</span></code></pre>
                 </div>
               </div>
@@ -182,7 +182,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/debug/3-labels.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-var">$cart</span>, <span class="hl-opt">vat</span>=<span class="hl-var">$total</span> * <span class="hl-num">0.21</span>, <span class="hl-var">$typo</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">debug</span> <span class="hl-var">$cart</span>, <span class="hl-opt">vat</span>=<span class="hl-var">$total</span> * <span class="hl-num">0.21</span>, <span class="hl-var">$typo</span><span class="hl-brc">/}</span></code></pre>
                 </div>
               </div>
             </div>

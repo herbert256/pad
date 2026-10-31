@@ -96,7 +96,7 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">recurse</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">recurse</span><span class="hl-brc">/}</span></code></pre>
           </section>
           <section class="block prose" aria-labelledby="description">
             <h2 id="description">
@@ -138,8 +138,8 @@
 ]
 <span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">tree</span> <span class="hl-str">'recurseThread'</span><span class="hl-brc">}</span>
-  <span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"margin-left: {echo (depth@tree - 1) * 2}em"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$who</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span>: <span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">recurse</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"margin-left: {echo (depth@tree - 1) * 2/}em"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$who</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span>: <span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">recurse</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/tree</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
@@ -189,7 +189,7 @@
 <span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">tree</span> <span class="hl-str">'recurseSite'</span>, <span class="hl-opt">where</span>=<span class="hl-str">'$hidden eq 0'</span><span class="hl-brc">}</span>
-  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$page</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">branch</span><span class="hl-brc">}</span><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">recurse</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/branch</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$page</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">branch</span><span class="hl-brc">}</span><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">recurse</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/branch</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/tree</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>

@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'catalog'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'catalog'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Options
             </h3>
@@ -127,7 +127,7 @@
               Description
             </h2>
             <p>
-              <code>{reactData id='products'}</code> runs the provider <code>_providers/products.php</code> and writes <code>&lt;div id="products" data="..."&gt;&lt;/div&gt;</code>, the provider's result as JSON, HTML-escaped for the attribute. A React component mounted on the div reads it with <code>JSON.parse ( el.getAttribute ( 'data' ) )</code> - <code>getAttribute</code>, not <code>dataset.data</code>, which reads <code>data-data</code>.
+              <code>{reactData id='products'/}</code> runs the provider <code>_providers/products.php</code> and writes <code>&lt;div id="products" data="..."&gt;&lt;/div&gt;</code>, the provider's result as JSON, HTML-escaped for the attribute. A React component mounted on the div reads it with <code>JSON.parse ( el.getAttribute ( 'data' ) )</code> - <code>getAttribute</code>, not <code>dataset.data</code>, which reads <code>data-data</code>.
             </p>
             <p>
               <code>provider=</code> names another file than the id; it must be a plain name, so no path outside <code>_providers/</code> can be run. The result keeps the types the provider gave it - numbers stay numbers, a text like <code>"007"</code> stays a text. It is also kept in <code>$padProviders</code> under the id, for a later provider. <code>type='check'</code> collapses it to 1 or 0.
@@ -153,8 +153,8 @@
                     <span>Template</span><span class="cell-file">examples/reactData/1-mount.src</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span>Products<span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">}</span>
-<span class="hl-htm">&lt;script</span> <span class="hl-opt">src</span>=<span class="hl-str">"{asset 'products.js'}"</span> <span class="hl-opt">type</span>=<span class="hl-str">"module"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'products'</span><span class="hl-brc">/}</span>
+<span class="hl-htm">&lt;script</span> <span class="hl-opt">src</span>=<span class="hl-str">"{asset 'products.js'/}"</span> <span class="hl-opt">type</span>=<span class="hl-str">"module"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
               </div>
             </div>
@@ -170,8 +170,8 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/reactData/2-provider.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'bestSellers'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'hasStock'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'stock'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'check'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'bestSellers'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'products'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'array'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">reactData</span> <span class="hl-opt">id</span>=<span class="hl-str">'hasStock'</span>, <span class="hl-opt">provider</span>=<span class="hl-str">'stock'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'check'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
               </div>
             </div>

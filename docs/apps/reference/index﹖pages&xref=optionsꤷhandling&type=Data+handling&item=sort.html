@@ -267,7 +267,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $menu </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Home' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shop'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; [<br>        [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Shoes'</span><span style="color: #007700">, </span><span style="color: #DD0000">'items' </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Boots' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sandals' </span><span style="color: #007700">] ] ],<br>        [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Hats' </span><span style="color: #007700">] ] ],<br>    [ </span><span style="color: #DD0000">'title' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'About' </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>menu<font color="black">'</font><font color="black">,</font> children=<font color="black">'</font>items<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>title<font color="black">'</font></font>}</b><br>  &lt;p style="margin: 0 0 0 <b>{<font color="blue">echo </font><font color="red">depth<font color="black">@</font>tree <font color="black">|</font> * 20</font>}</b>px"&gt;<br>    <b>{<font color="blue">branch</font><font color="red"></font>}</b>&amp;#9662;@else@&amp;middot;<b>{/<font color="blue">branch</font><font color="red"></font>}</b><br>    <b>{<font color="green"><font color="red">$</font>title</font>}</b> &lt;small&gt;(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>}</b> of <b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>}</b>)&lt;/small&gt;<br>  &lt;/p&gt;<br>  <b>{<font color="blue">branch</font><font color="red"></font>}</b><b>{<font color="blue">recurse</font><font color="red"></font>}</b><b>{/<font color="blue">branch</font><font color="red"></font>}</b><br><b>{/<font color="blue">tree</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>menu<font color="black">'</font><font color="black">,</font> children=<font color="black">'</font>items<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>title<font color="black">'</font></font>}</b><br>  &lt;p style="margin: 0 0 0 <b>{<font color="blue">echo </font><font color="red">depth<font color="black">@</font>tree <font color="black">|</font> * 20</font>/}</b>px"&gt;<br>    <b>{<font color="blue">branch</font><font color="red"></font>}</b>&amp;#9662;@else@&amp;middot;<b>{/<font color="blue">branch</font><font color="red"></font>}</b><br>    <b>{<font color="green"><font color="red">$</font>title</font>}</b> &lt;small&gt;(<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>/}</b> of <b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>tree</font><font color="red"></font>/}</b>)&lt;/small&gt;<br>  &lt;/p&gt;<br>  <b>{<font color="blue">branch</font><font color="red"></font>}</b><b>{<font color="blue">recurse</font><font color="red"></font>/}</b><b>{/<font color="blue">branch</font><font color="red"></font>}</b><br><b>{/<font color="blue">tree</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax8c4b9affa864dac29f1cbbcfda684b90"></div>
@@ -284,6 +284,46 @@
                       }
                       padAjax8c4b9affa864dac29f1cbbcfda684b90.open("GET","http://localhost/pad/manual/?fragments/trees_2&padInclude",true);
                       padAjax8c4b9affa864dac29f1cbbcfda684b90.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: output/handling<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">output/handling.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;h3&gt;order= sorts in the SQL, sort= sorts what came back&lt;/h3&gt;<br>&lt;p&gt;<b>{<font color="blue">albums </font><font color="red">order="price"<font color="black">,</font> rows=4<font color="black">,</font> sort="title"</font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b> <b>{<font color="green"><font color="red">$</font>price</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>albums</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>albums</font><font color="red"></font>}</b><b>{/<font color="blue">albums</font><font color="red"></font>}</b>&lt;/p&gt;<br><br>&lt;h3&gt;first= and last= after the query&lt;/h3&gt;<br>&lt;p&gt;<b>{<font color="blue">artists </font><font color="red">first=3</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>artists</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>artists</font><font color="red"></font>}</b><b>{/<font color="blue">artists</font><font color="red"></font>}</b>&lt;/p&gt;<br><br>&lt;h3&gt;The properties of the loop&lt;/h3&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">labels</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>labels</font><font color="red"></font>/}</b> of <b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>labels</font><font color="red"></font>/}</b>: <b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue">if </font><font color="red">first<font color="black">@</font>labels</font>}</b> &lt;span class="dim"&gt;(first)&lt;/span&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/li&gt;<b>{/<font color="blue">labels</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8162671780671191b4d01783502ff66a"></div>
+                      <script>
+                      padAjax8162671780671191b4d01783502ff66a = new XMLHttpRequest();
+                      padAjax8162671780671191b4d01783502ff66a.onreadystatechange=function() {
+                      if (padAjax8162671780671191b4d01783502ff66a.readyState === 4) {
+                      if (padAjax8162671780671191b4d01783502ff66a.status === 200) {
+                      document.getElementById("padAjax8162671780671191b4d01783502ff66a").innerHTML=padAjax8162671780671191b4d01783502ff66a.responseText;
+                      } else {
+                      document.getElementById("padAjax8162671780671191b4d01783502ff66a").innerHTML=padAjax8162671780671191b4d01783502ff66a.statusText;
+                      }
+                      }
+                      }
+                      padAjax8162671780671191b4d01783502ff66a.open("GET","http://localhost/pad/padSelect/?output/handling&padInclude",true);
+                      padAjax8162671780671191b4d01783502ff66a.send();
                       </script>
                     </td>
                   </tr>
@@ -387,7 +427,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;table border=1&gt;<br>    &lt;tr&gt;<br>      &lt;th&gt; volume   &lt;/th&gt;<br>      &lt;th&gt; edition  &lt;/th&gt;<br>      &lt;th&gt; file     &lt;/th&gt;<br>    &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>volume</font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>edition</font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>file</font>}</b>     &lt;/td&gt;<br>      &lt;/tr&gt;    <br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  [ { "volume": 55, "edition": 3, "file": "file1.xml"  },<br>    { "volume": 33, "edition": 1, "file": "file2.xml"  },<br>    { "volume": 55, "edition": 2, "file": "file11.xml" },<br>    { "volume": 33, "edition": 3, "file": "file12.xml" },<br>    { "volume": 55, "edition": 1, "file": "file21.xml" },<br>    { "volume": 33, "edition": 2, "file": "file8.xml"  } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font></font>}</b><br><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>volume;edition<font color="black">'</font></font>}</b><br><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>volume DESC; edition DESC<font color="black">'</font></font>}</b><br><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>file<font color="black">'</font></font>}</b><br><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>file NATURAL<font color="black">'</font></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;table border=1&gt;<br>    &lt;tr&gt;<br>      &lt;th&gt; volume   &lt;/th&gt;<br>      &lt;th&gt; edition  &lt;/th&gt;<br>      &lt;th&gt; file     &lt;/th&gt;<br>    &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>volume</font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>edition</font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>file</font>}</b>     &lt;/td&gt;<br>      &lt;/tr&gt;    <br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  [ { "volume": 55, "edition": 3, "file": "file1.xml"  },<br>    { "volume": 33, "edition": 1, "file": "file2.xml"  },<br>    { "volume": 55, "edition": 2, "file": "file11.xml" },<br>    { "volume": 33, "edition": 3, "file": "file12.xml" },<br>    { "volume": 55, "edition": 1, "file": "file21.xml" },<br>    { "volume": 33, "edition": 2, "file": "file8.xml"  } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font></font>/}</b><br><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>volume;edition<font color="black">'</font></font>/}</b><br><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>volume DESC; edition DESC<font color="black">'</font></font>/}</b><br><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>file<font color="black">'</font></font>/}</b><br><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>file NATURAL<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax96b81b0ea20c4e1ddaceb28b1cbf023f"></div>
@@ -648,46 +688,6 @@
                       }
                       padAjax57cb656e649916512335843a05933d1a.open("GET","http://localhost/pad/regression/framework/?options/negative_inverts_the_selection_and_leaves_the_order_alone&padInclude",true);
                       padAjax57cb656e649916512335843a05933d1a.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: options/negative_leaves_sort_reverse_and_shuffle_their_rows<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">options/negative_leaves_sort_reverse_and_shuffle_their_rows.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>n<font color="black">'</font></font>}</b><br>  [3,1,5,2,4]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br>[<b>{<font color="blue">n </font><font color="red">where=<font color="black">'</font><font color="red">$</font>n gt 2<font color="black">'</font><font color="black">,</font> sort<font color="black">,</font> negative</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b>][<b>{<font color="blue">n </font><font color="red">first=2<font color="black">,</font> reverse<font color="black">,</font> negative</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b>][<b>{<font color="blue">n </font><font color="red">sort<font color="black">,</font> last=2<font color="black">,</font> negative</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>n</font>}</b>,<br><b>{/<font color="blue">n</font><font color="red"></font>}</b>][<b>{<font color="blue">n </font><font color="red">first=3<font color="black">,</font> shuffle<font color="black">,</font> negative</font>}</b><br>  x<br><b>{/<font color="blue">n</font><font color="red"></font>}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax95f9d9119f7de1712ebbca22fe38aece"></div>
-                      <script>
-                      padAjax95f9d9119f7de1712ebbca22fe38aece = new XMLHttpRequest();
-                      padAjax95f9d9119f7de1712ebbca22fe38aece.onreadystatechange=function() {
-                      if (padAjax95f9d9119f7de1712ebbca22fe38aece.readyState === 4) {
-                      if (padAjax95f9d9119f7de1712ebbca22fe38aece.status === 200) {
-                      document.getElementById("padAjax95f9d9119f7de1712ebbca22fe38aece").innerHTML=padAjax95f9d9119f7de1712ebbca22fe38aece.responseText;
-                      } else {
-                      document.getElementById("padAjax95f9d9119f7de1712ebbca22fe38aece").innerHTML=padAjax95f9d9119f7de1712ebbca22fe38aece.statusText;
-                      }
-                      }
-                      }
-                      padAjax95f9d9119f7de1712ebbca22fe38aece.open("GET","http://localhost/pad/regression/framework/?options/negative_leaves_sort_reverse_and_shuffle_their_rows&padInclude",true);
-                      padAjax95f9d9119f7de1712ebbca22fe38aece.send();
                       </script>
                     </td>
                   </tr>

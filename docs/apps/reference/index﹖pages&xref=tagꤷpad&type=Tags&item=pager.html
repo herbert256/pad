@@ -87,6 +87,48 @@
             <td>
               <center>
                 <hr>
+                App: manual - Page: fragments/padSelect_7<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/padSelect_7.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/padSelect_7.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">customers </font><font color="red">rows=4<font color="black">,</font> page=<font color="red">$</font>pg ?? 1</font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>customerName</font>}</b>&lt;/li&gt;<b>{/<font color="blue">customers</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br><br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>customers<font color="black">'</font><font color="black">,</font> window=1</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax99d3a741c447fbd0eb8485ac2ced6757"></div>
+                      <script>
+                      padAjax99d3a741c447fbd0eb8485ac2ced6757 = new XMLHttpRequest();
+                      padAjax99d3a741c447fbd0eb8485ac2ced6757.onreadystatechange=function() {
+                      if (padAjax99d3a741c447fbd0eb8485ac2ced6757.readyState === 4) {
+                      if (padAjax99d3a741c447fbd0eb8485ac2ced6757.status === 200) {
+                      document.getElementById("padAjax99d3a741c447fbd0eb8485ac2ced6757").innerHTML=padAjax99d3a741c447fbd0eb8485ac2ced6757.responseText;
+                      } else {
+                      document.getElementById("padAjax99d3a741c447fbd0eb8485ac2ced6757").innerHTML=padAjax99d3a741c447fbd0eb8485ac2ced6757.statusText;
+                      }
+                      }
+                      }
+                      padAjax99d3a741c447fbd0eb8485ac2ced6757.open("GET","http://localhost/pad/manual/?fragments/padSelect_7&padInclude",true);
+                      padAjax99d3a741c447fbd0eb8485ac2ced6757.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: manual - Page: fragments/pager_1<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -107,7 +149,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $products </span><span style="color: #007700">= </span><span style="color: #0000BB">range </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">47 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">products </font><font color="red">page=<font color="red">$</font>pg ?? 1<font color="black">,</font> rows=5</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>products</font>}</b><br><b>{/<font color="blue">products</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>products<font color="black">'</font><font color="black">,</font> window=1</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">products </font><font color="red">page=<font color="red">$</font>pg ?? 1<font color="black">,</font> rows=5</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>products</font>}</b><br><b>{/<font color="blue">products</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>products<font color="black">'</font><font color="black">,</font> window=1</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax6aeba8b1bb9b1c89b295fabdb3d9b6ae"></div>
@@ -171,6 +213,86 @@
                   </tr>
                 </table><br>
                 <hr>
+                App: padSelect - Page: paging/distinct<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">paging/distinct.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;Artist&lt;/th&gt;&lt;th&gt;Genre&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">albums </font><font color="red">join="artists on artists.artist_id = albums.artist_id join genres on genres.genre_code = albums.genre_code"<font color="black">,</font> fields="distinct artists.name<font color="black">,</font> genres.genre"<font color="black">,</font> order="artists.name<font color="black">,</font> genres.genre"<font color="black">,</font> rows=5<font color="black">,</font> page=<font color="red">$</font>pg ?? 1</font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>genre</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue">albums</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>albums<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax6a3ea71e22f845834ade6a0cf68e0213"></div>
+                      <script>
+                      padAjax6a3ea71e22f845834ade6a0cf68e0213 = new XMLHttpRequest();
+                      padAjax6a3ea71e22f845834ade6a0cf68e0213.onreadystatechange=function() {
+                      if (padAjax6a3ea71e22f845834ade6a0cf68e0213.readyState === 4) {
+                      if (padAjax6a3ea71e22f845834ade6a0cf68e0213.status === 200) {
+                      document.getElementById("padAjax6a3ea71e22f845834ade6a0cf68e0213").innerHTML=padAjax6a3ea71e22f845834ade6a0cf68e0213.responseText;
+                      } else {
+                      document.getElementById("padAjax6a3ea71e22f845834ade6a0cf68e0213").innerHTML=padAjax6a3ea71e22f845834ade6a0cf68e0213.statusText;
+                      }
+                      }
+                      }
+                      padAjax6a3ea71e22f845834ade6a0cf68e0213.open("GET","http://localhost/pad/padSelect/?paging/distinct&padInclude",true);
+                      padAjax6a3ea71e22f845834ade6a0cf68e0213.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: paging/pager<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">paging/pager.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;Album&lt;/th&gt;&lt;th class="n"&gt;#&lt;/th&gt;&lt;th&gt;Track&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">tracks </font><font color="red">rows=6<font color="black">,</font> page=<font color="red">$</font>pg ?? 1</font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="blue">albums</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b><b>{/<font color="blue">albums</font><font color="red"></font>}</b>&lt;/td&gt;&lt;td class="n"&gt;<b>{<font color="green"><font color="red">$</font>track_no</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue">tracks</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>tracks<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax64852ce417d0897cd2b0e031ff41c31c"></div>
+                      <script>
+                      padAjax64852ce417d0897cd2b0e031ff41c31c = new XMLHttpRequest();
+                      padAjax64852ce417d0897cd2b0e031ff41c31c.onreadystatechange=function() {
+                      if (padAjax64852ce417d0897cd2b0e031ff41c31c.readyState === 4) {
+                      if (padAjax64852ce417d0897cd2b0e031ff41c31c.status === 200) {
+                      document.getElementById("padAjax64852ce417d0897cd2b0e031ff41c31c").innerHTML=padAjax64852ce417d0897cd2b0e031ff41c31c.responseText;
+                      } else {
+                      document.getElementById("padAjax64852ce417d0897cd2b0e031ff41c31c").innerHTML=padAjax64852ce417d0897cd2b0e031ff41c31c.statusText;
+                      }
+                      }
+                      }
+                      padAjax64852ce417d0897cd2b0e031ff41c31c.open("GET","http://localhost/pad/padSelect/?paging/pager&padInclude",true);
+                      padAjax64852ce417d0897cd2b0e031ff41c31c.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/errors - Page: syntax/a_pager_needs_its_paged_tag_before_it<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -189,7 +311,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>products<font color="black">'</font></font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>products<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">products </font><font color="red">page=1<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>products</font>}</b><b>{/<font color="blue">products</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>products<font color="black">'</font></font>/}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>products<font color="black">'</font></font>}</b>[1,2,3]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">products </font><font color="red">page=1<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>products</font>}</b><b>{/<font color="blue">products</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxde855d5bbb1b07e709fbb76115d09878"></div>
@@ -231,7 +353,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $sbxRows </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">] ]; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>[{"id":1,"name":"Ann"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">sandbox</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxSet<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxRows<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>][<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>][<b>{<font color="blue">sbxRows </font><font color="red">page=1<font color="black">,</font> rows=1</font>}</b>r<b>{/<font color="blue">sbxRows</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>]<b>{/<font color="blue">sandbox</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>[{"id":1,"name":"Ann"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">sandbox</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxSet<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>/}</b>][<b>{<font color="blue">echo </font><font color="red">1 <font color="black">|</font> lookup(<font color="black">'</font>sbxRows<font color="black">'</font><font color="black">,</font> <font color="black">'</font>id<font color="black">'</font><font color="black">,</font> <font color="black">'</font>name<font color="black">'</font>)</font>/}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">tree </font><font color="red"><font color="black">'</font>sbxSet<font color="black">'</font></font>}</b>x<b>{/<font color="blue">tree</font><font color="red"></font>}</b>][<b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>sbxRows<font color="black">'</font></font>/}</b>][<b>{<font color="blue">sparkline </font><font color="red">data=<font color="black">'</font>sbxSet<font color="black">'</font></font>/}</b>][<b>{<font color="blue">sbxRows </font><font color="red">page=1<font color="black">,</font> rows=1</font>}</b>r<b>{/<font color="blue">sbxRows</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>sbxRows<font color="black">'</font></font>/}</b>]<b>{/<font color="blue">sandbox</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxd1fc24dd95f5e487a375619f1388da23"></div>
@@ -511,7 +633,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">prime </font><font color="red">5<font color="black">,</font> page=2</font>}</b><b>{<font color="green"><font color="red">$</font>prime</font>}</b> <b>{/<font color="blue">prime</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>prime<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">4<font color="black">,</font> page=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>sequence<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>]<b>{<font color="blue">set </font><font color="red"><font color="red">$</font>n = 10 ** 30</font>}</b>[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=<font color="red">$</font>n</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> page=<font color="red">$</font>n<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>sequence<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>]</code></pre>
+                      <pre><code style="color: #000000">[<b>{<font color="blue">prime </font><font color="red">5<font color="black">,</font> page=2</font>}</b><b>{<font color="green"><font color="red">$</font>prime</font>}</b> <b>{/<font color="blue">prime</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>prime<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red">4<font color="black">,</font> page=3</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>sequence<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>]<b>{<font color="blue">set </font><font color="red"><font color="red">$</font>n = 10 ** 30</font>/}</b>[<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> page=1<font color="black">,</font> rows=<font color="red">$</font>n</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>][<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> page=<font color="red">$</font>n<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>sequence<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax3d1066dc3f49c21ab7581c0452f711ec"></div>
@@ -570,132 +692,6 @@
                       }
                       padAjax786bf5cf99d6400a4985040b8441ba73.open("GET","http://localhost/pad/regression/framework/?tags/a_pager_after_a_cached_paged_tag_pages_its_rows&padInclude",true);
                       padAjax786bf5cf99d6400a4985040b8441ba73.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: tags/a_pager_after_a_cached_section_finds_the_paged_tag_in_it<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">tags/a_pager_after_a_cached_section_finds_the_paged_tag_in_it.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">tags/a_pager_after_a_cached_section_finds_the_paged_tag_in_it.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An earlier request renders the named section and stores it; in this one the section is<br>  // a hit, and the paged tag inside it never runs.<br><br>  </span><span style="color: #0000BB">$items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">] ];<br><br>  if ( ! isset ( </span><span style="color: #0000BB">$warm </span><span style="color: #007700">) ) {<br>    </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fwPagedSection' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">padCurl </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$padHost </span><span style="color: #007700">. </span><span style="color: #DD0000">'regression/framework/?tags/a_pager_after_a_cached_section_finds_the_paged_tag_in_it&amp;padInclude&amp;warm=1' </span><span style="color: #007700">] );<br>  }<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwPagedSection<font color="black">'</font></font>}</b><b>{<font color="blue">items </font><font color="red">page=2<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">items</font><font color="red"></font>}</b><b>{/<font color="blue">cache</font><font color="red"></font>}</b>|<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>items<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax245cf0c0fa53230d15444ff5062552c5"></div>
-                      <script>
-                      padAjax245cf0c0fa53230d15444ff5062552c5 = new XMLHttpRequest();
-                      padAjax245cf0c0fa53230d15444ff5062552c5.onreadystatechange=function() {
-                      if (padAjax245cf0c0fa53230d15444ff5062552c5.readyState === 4) {
-                      if (padAjax245cf0c0fa53230d15444ff5062552c5.status === 200) {
-                      document.getElementById("padAjax245cf0c0fa53230d15444ff5062552c5").innerHTML=padAjax245cf0c0fa53230d15444ff5062552c5.responseText;
-                      } else {
-                      document.getElementById("padAjax245cf0c0fa53230d15444ff5062552c5").innerHTML=padAjax245cf0c0fa53230d15444ff5062552c5.statusText;
-                      }
-                      }
-                      }
-                      padAjax245cf0c0fa53230d15444ff5062552c5.open("GET","http://localhost/pad/regression/framework/?tags/a_pager_after_a_cached_section_finds_the_paged_tag_in_it&padInclude",true);
-                      padAjax245cf0c0fa53230d15444ff5062552c5.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: tags/pager_as_a_pair_hands_the_links_over_as_rows<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">tags/pager_as_a_pair_hands_the_links_over_as_rows.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">tags/pager_as_a_pair_hands_the_links_over_as_rows.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $products </span><span style="color: #007700">= </span><span style="color: #0000BB">range </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">100 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$pg       </span><span style="color: #007700">= </span><span style="color: #0000BB">6</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">"q"</span><span style="color: #007700">] = </span><span style="color: #DD0000">"red shoe"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">products </font><font color="red">page=<font color="red">$</font>pg<font color="black">,</font> rows=10</font>}</b><b>{/<font color="blue">products</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>products<font color="black">'</font><font color="black">,</font> window=1</font>}</b>[<b>{<font color="green"><font color="red">$</font>kind</font>}</b> <b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{<font color="green"><font color="red">$</font>label</font>}</b>]<b>{/<font color="blue">pager</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax732a070e25a5ff30c325dc29e7411ee3"></div>
-                      <script>
-                      padAjax732a070e25a5ff30c325dc29e7411ee3 = new XMLHttpRequest();
-                      padAjax732a070e25a5ff30c325dc29e7411ee3.onreadystatechange=function() {
-                      if (padAjax732a070e25a5ff30c325dc29e7411ee3.readyState === 4) {
-                      if (padAjax732a070e25a5ff30c325dc29e7411ee3.status === 200) {
-                      document.getElementById("padAjax732a070e25a5ff30c325dc29e7411ee3").innerHTML=padAjax732a070e25a5ff30c325dc29e7411ee3.responseText;
-                      } else {
-                      document.getElementById("padAjax732a070e25a5ff30c325dc29e7411ee3").innerHTML=padAjax732a070e25a5ff30c325dc29e7411ee3.statusText;
-                      }
-                      }
-                      }
-                      padAjax732a070e25a5ff30c325dc29e7411ee3.open("GET","http://localhost/pad/regression/framework/?tags/pager_as_a_pair_hands_the_links_over_as_rows&padInclude",true);
-                      padAjax732a070e25a5ff30c325dc29e7411ee3.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: tags/pager_counts_the_rows_the_options_before_the_page_left<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">tags/pager_counts_the_rows_the_options_before_the_page_left.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">tags/pager_counts_the_rows_the_options_before_the_page_left.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $products </span><span style="color: #007700">= </span><span style="color: #0000BB">range </span><span style="color: #007700">( </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">100 </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$pg       </span><span style="color: #007700">= </span><span style="color: #0000BB">6</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$_GET </span><span style="color: #007700">[</span><span style="color: #DD0000">"q"</span><span style="color: #007700">] = </span><span style="color: #DD0000">"red shoe"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">products </font><font color="red">where=<font color="black">'</font><font color="red">$</font>products gt 70<font color="black">'</font><font color="black">,</font> page=2<font color="black">,</font> rows=10</font>}</b><b>{/<font color="blue">products</font><font color="red"></font>}</b><b>{<font color="blue">pager</font><font color="red"></font>}</b>[<b>{<font color="green"><font color="red">$</font>kind</font>}</b> <b>{<font color="green"><font color="red">$</font>page</font>}</b>]<b>{/<font color="blue">pager</font><font color="red"></font>}</b>|<b>{<font color="blue">products </font><font color="red">page=2<font color="black">,</font> rows=10<font color="black">,</font> where=<font color="black">'</font><font color="red">$</font>products gt 95<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>products</font>}</b> <b>{/<font color="blue">products</font><font color="red"></font>}</b><b>{<font color="blue">pager </font><font color="red">window=0</font>}</b>[<b>{<font color="green"><font color="red">$</font>page</font>}</b>]<b>{/<font color="blue">pager</font><font color="red"></font>}</b>|<b>{<font color="blue">pager </font><font color="red">query=<font color="black">'</font>p<font color="black">'</font></font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>pager</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>href</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>pager</font><font color="red"></font>}</b><b>{/<font color="blue">pager</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxa8ed2c7630b739f9b242c4f2d40d269f"></div>
-                      <script>
-                      padAjaxa8ed2c7630b739f9b242c4f2d40d269f = new XMLHttpRequest();
-                      padAjaxa8ed2c7630b739f9b242c4f2d40d269f.onreadystatechange=function() {
-                      if (padAjaxa8ed2c7630b739f9b242c4f2d40d269f.readyState === 4) {
-                      if (padAjaxa8ed2c7630b739f9b242c4f2d40d269f.status === 200) {
-                      document.getElementById("padAjaxa8ed2c7630b739f9b242c4f2d40d269f").innerHTML=padAjaxa8ed2c7630b739f9b242c4f2d40d269f.responseText;
-                      } else {
-                      document.getElementById("padAjaxa8ed2c7630b739f9b242c4f2d40d269f").innerHTML=padAjaxa8ed2c7630b739f9b242c4f2d40d269f.statusText;
-                      }
-                      }
-                      }
-                      padAjaxa8ed2c7630b739f9b242c4f2d40d269f.open("GET","http://localhost/pad/regression/framework/?tags/pager_counts_the_rows_the_options_before_the_page_left&padInclude",true);
-                      padAjaxa8ed2c7630b739f9b242c4f2d40d269f.send();
                       </script>
                     </td>
                   </tr>

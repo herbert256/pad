@@ -99,8 +99,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-str">'text'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-var">$value</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Copy command'</span><span class="hl-brc">}</span>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-str">'text'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-var">$value</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Copy command'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-opt">label</span>=<span class="hl-str">'Copy'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/copy</span><span class="hl-brc">}</span></code></pre>
             <h3>
               Parameters
@@ -156,9 +156,9 @@
                     <span>Template</span><span class="cell-file">examples/copy/1-command.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Add the package:<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-str">'composer require pad/pad'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-str">'composer require pad/pad'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Or start a fresh application:<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-var">$command</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Copy command'</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-var">$command</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Copy command'</span><span class="hl-brc">/}</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/copy/1-command.php</span>
                   </div>
@@ -239,7 +239,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/copy/2-pair.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$app</span> = <span class="hl-str">'shop'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$app</span> = <span class="hl-str">'shop'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">copy</span> <span class="hl-opt">label</span>=<span class="hl-str">'Copy settings'</span><span class="hl-brc">}</span>
 <span class="hl-opt">padSqlDriver</span>=sqlite
 <span class="hl-opt">padSqlDatabase</span>=<span class="hl-brc">{</span><span class="hl-var">$app</span><span class="hl-brc">}</span>/<span class="hl-brc">{</span><span class="hl-var">$app</span><span class="hl-brc">}</span>.sqlite

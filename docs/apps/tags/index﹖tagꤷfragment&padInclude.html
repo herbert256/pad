@@ -9,7 +9,7 @@ is the one sent.</p>
 
 <p>This is the server side of partial page updates: htmx
 (<code>hx-get="?orders&amp;padFragment=order-list"</code>) and
-<a href="index%EF%B9%96tag%EA%A4%B7ajax.html"><code>{ajax 'orders', fragment='order-list'}</code></a>. An htmx request
+<a href="index%EF%B9%96tag%EA%A4%B7ajax.html"><code>{ajax 'orders', fragment='order-list'/}</code></a>. An htmx request
 that names no fragment asks for the one called like its target: with
 <code>hx-target="#order-list"</code> htmx sends <code>HX-Target: order-list</code>, and a page
 with a fragment of that name answers it alone. A page without one renders whole.</p>

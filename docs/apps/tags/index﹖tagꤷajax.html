@@ -96,10 +96,10 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span>, <span class="hl-opt">fragment</span>=<span class="hl-str">'fragmentName'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span>, <span class="hl-opt">app</span>=<span class="hl-str">'other'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span>, <span class="hl-var">$colour</span> = <span class="hl-str">'red'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span>, <span class="hl-opt">fragment</span>=<span class="hl-str">'fragmentName'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span>, <span class="hl-opt">app</span>=<span class="hl-str">'other'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'name'</span>, <span class="hl-var">$colour</span> = <span class="hl-str">'red'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -134,10 +134,10 @@
               Description
             </h2>
             <p>
-              <code>{ajax 'name'}</code> does not render the page itself. It writes an empty <code>&lt;div&gt;</code> and a small script; once the page is in the browser, the script requests the named page with <code>&amp;padInclude</code> - bare, without its wrappers - and puts the answer in the div. The page around it is sent at once, and a slow part arrives when it is ready. When the request fails, the div shows the status text.
+              <code>{ajax 'name'/}</code> does not render the page itself. It writes an empty <code>&lt;div&gt;</code> and a small script; once the page is in the browser, the script requests the named page with <code>&amp;padInclude</code> - bare, without its wrappers - and puts the answer in the div. The page around it is sent at once, and a slow part arrives when it is ready. When the request fails, the div shows the status text.
             </p>
             <p>
-              The div's id is <code>padAjax</code> followed by a hash of the page and its query, so the markup is the same on every request. Variables assigned on the tag - <code>{ajax 'orders', $status = 'open'}</code> - go on the query string, and <code>fragment='name'</code> asks for one <a href="index%EF%B9%96tag%EA%A4%B7fragment.html">{fragment}</a> of the page alone: the page renders whole on the server, but only that part is sent back.
+              The div's id is <code>padAjax</code> followed by a hash of the page and its query, so the markup is the same on every request. Variables assigned on the tag - <code>{ajax 'orders', $status = 'open'/}</code> - go on the query string, and <code>fragment='name'</code> asks for one <a href="index%EF%B9%96tag%EA%A4%B7fragment.html">{fragment}</a> of the page alone: the page renders whole on the server, but only that part is sent back.
             </p>
             <p>
               With <code>app='other'</code> the page belongs to another application. Under the strict check the page must exist, in this application or the one named - a typo is reported when the template renders, not later as a 404 in the visitor's browser.
@@ -162,7 +162,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/ajax/1-load.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'examples/ajax/parts/note'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'examples/ajax/parts/note'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -200,7 +200,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/ajax/2-fragment.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'examples/ajax/parts/list'</span>, <span class="hl-opt">fragment</span>=<span class="hl-str">'ajaxItems'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">ajax</span> <span class="hl-str">'examples/ajax/parts/list'</span>, <span class="hl-opt">fragment</span>=<span class="hl-str">'ajaxItems'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">

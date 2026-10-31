@@ -170,6 +170,90 @@
                     </td>
                   </tr>
                 </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/a_select_nested_in_a_select_of_one_value_has_no_row_to_follow<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">syntax/a_select_nested_in_a_select_of_one_value_has_no_row_to_follow.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_select_nested_in_a_select_of_one_value_has_no_row_to_follow.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A select nested in a select of one value - type='field' - has no row to follow, and is<br>  // told so: the field select was passed over as one rendering its @else@, and the nested<br>  // select listed every row of its table without a word.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'outerSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'innerSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'innerSel'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'outerSel'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'name'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">outerSel </font><font color="red">type=<font color="black">'</font>field<font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>name<font color="black">'</font><font color="black">,</font> <font color="red">$</font>name=<font color="black">'</font>bob<font color="black">'</font></font>}</b><b>{<font color="blue">innerSel</font><font color="red"></font>}</b>x<b>{/<font color="blue">innerSel</font><font color="red"></font>}</b><b>{/<font color="blue">outerSel</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax651b7694ddfc2e2e1e7520b2023d4f84"></div>
+                      <script>
+                      padAjax651b7694ddfc2e2e1e7520b2023d4f84 = new XMLHttpRequest();
+                      padAjax651b7694ddfc2e2e1e7520b2023d4f84.onreadystatechange=function() {
+                      if (padAjax651b7694ddfc2e2e1e7520b2023d4f84.readyState === 4) {
+                      if (padAjax651b7694ddfc2e2e1e7520b2023d4f84.status === 200) {
+                      document.getElementById("padAjax651b7694ddfc2e2e1e7520b2023d4f84").innerHTML=padAjax651b7694ddfc2e2e1e7520b2023d4f84.responseText;
+                      } else {
+                      document.getElementById("padAjax651b7694ddfc2e2e1e7520b2023d4f84").innerHTML=padAjax651b7694ddfc2e2e1e7520b2023d4f84.statusText;
+                      }
+                      }
+                      }
+                      padAjax651b7694ddfc2e2e1e7520b2023d4f84.open("GET","http://localhost/pad/regression/errors/?syntax/a_select_nested_in_a_select_of_one_value_has_no_row_to_follow&padInclude",true);
+                      padAjax651b7694ddfc2e2e1e7520b2023d4f84.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/errors - Page: syntax/an_empty_relation_relates_nothing<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">syntax/an_empty_relation_relates_nothing.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/an_empty_relation_relates_nothing.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A relation declared empty - the form classicModels once wrote every relation in - names<br>  // no field to follow, so it relates nothing, and the strict check says so as for a<br>  // relation never declared. It counted as one: every row met every row without a word.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'outerSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'innerSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'innerSel'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'outerSel'</span><span style="color: #007700">] = [];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">outerSel</font><font color="red"></font>}</b><b>{<font color="blue">innerSel</font><font color="red"></font>}</b>x<b>{/<font color="blue">innerSel</font><font color="red"></font>}</b><b>{/<font color="blue">outerSel</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxb60309ca16484901044fe30827d3f1f9"></div>
+                      <script>
+                      padAjaxb60309ca16484901044fe30827d3f1f9 = new XMLHttpRequest();
+                      padAjaxb60309ca16484901044fe30827d3f1f9.onreadystatechange=function() {
+                      if (padAjaxb60309ca16484901044fe30827d3f1f9.readyState === 4) {
+                      if (padAjaxb60309ca16484901044fe30827d3f1f9.status === 200) {
+                      document.getElementById("padAjaxb60309ca16484901044fe30827d3f1f9").innerHTML=padAjaxb60309ca16484901044fe30827d3f1f9.responseText;
+                      } else {
+                      document.getElementById("padAjaxb60309ca16484901044fe30827d3f1f9").innerHTML=padAjaxb60309ca16484901044fe30827d3f1f9.statusText;
+                      }
+                      }
+                      }
+                      padAjaxb60309ca16484901044fe30827d3f1f9.open("GET","http://localhost/pad/regression/errors/?syntax/an_empty_relation_relates_nothing&padInclude",true);
+                      padAjaxb60309ca16484901044fe30827d3f1f9.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
               </center>
             </td>
           </tr>

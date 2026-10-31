@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">'rocket'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">':tada:'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Party!'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">'rocket'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">':tada:'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Party!'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -126,7 +126,7 @@
               Description
             </h2>
             <p>
-              <code>{emoji 'rocket'}</code> writes <code>&lt;span class="pad-emoji" role="img" aria-label="rocket"&gt;</code> around the emoji, so a screen reader names it instead of reading out a code point - and <code>label=</code> gives it another name to say. The shortcodes are the common ones of GitHub and Slack, a few hundred with their aliases: faces, hands, people at work, animals, food, travel, objects and symbols, keycaps. They may be written with or without the colons, in any case.
+              <code>{emoji 'rocket'/}</code> writes <code>&lt;span class="pad-emoji" role="img" aria-label="rocket"&gt;</code> around the emoji, so a screen reader names it instead of reading out a code point - and <code>label=</code> gives it another name to say. The shortcodes are the common ones of GitHub and Slack, a few hundred with their aliases: faces, hands, people at work, animals, food, travel, objects and symbols, keycaps. They may be written with or without the colons, in any case.
             </p>
             <p>
               An emoji that also has a plain text form - a heart, a sun, a check mark - carries the variation selector that asks for the colour picture, so it does not show as a black glyph in one font and a colour one in another.
@@ -153,7 +153,7 @@
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">reactions</span><span class="hl-brc">}</span>
-    <span class="hl-htm">&lt;span</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:inline-block;padding:3px 10px;margin:2px;border:1px solid rgba(128,128,128,.35);border-radius:999px"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-var">$code</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$count</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;span</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:inline-block;padding:3px 10px;margin:2px;border:1px solid rgba(128,128,128,.35);border-radius:999px"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-var">$code</span><span class="hl-brc">/}</span> <span class="hl-brc">{</span><span class="hl-var">$count</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">/reactions</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
@@ -194,8 +194,8 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/emoji/2-label.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Status: <span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">'white_check_mark'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Build passed'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">'warning'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Two warnings'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$message</span> = <span class="hl-str">'Shipped :rocket: at 10:30:00 - thanks all :clap:'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Status: <span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">'white_check_mark'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Build passed'</span><span class="hl-brc">/}</span> <span class="hl-brc">{</span><span class="hl-tag">emoji</span> <span class="hl-str">'warning'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Two warnings'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$message</span> = <span class="hl-str">'Shipped :rocket: at 10:30:00 - thanks all :clap:'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$message</span> | emoji<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">

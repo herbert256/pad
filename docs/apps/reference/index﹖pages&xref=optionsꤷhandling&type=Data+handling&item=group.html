@@ -105,7 +105,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;p&gt;where: <b>{<font color="blue">offices </font><font color="red">where="country = <font color="black">'</font>USA<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>officeCode<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinct: <b>{<font color="blue">offices </font><font color="red">distinct<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinctrow: <b>{<font color="blue">offices </font><font color="red">distinctrow<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;group: <b>{<font color="blue">payments </font><font color="red">fields=<font color="black">'</font>customerNumber<font color="black">,</font> count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>customerNumber<font color="black">'</font><font color="black">,</font> having=<font color="black">'</font>cnt &gt; 9<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>customerNumber<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>customerNumber</font>}</b>=<b>{<font color="green"><font color="red">$</font>cnt</font>}</b>,<b>{/<font color="blue">payments</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;rollup: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font><font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> rollup</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cnt</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;db: <b>{<font color="blue">sales </font><font color="red">db=<font color="black">'</font>employees<font color="black">'</font><font color="black">,</font> where="jobTitle = <font color="black">'</font>President<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b><b>{/<font color="blue">sales</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;key: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font>city<font color="black">'</font><font color="black">,</font> where="country = <font color="black">'</font>USA<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>city</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;union: <b>{<font color="blue">offices </font><font color="red">where="officeCode = 1"<font color="black">,</font> union=<font color="black">'</font>offices<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;join: <b>{<font color="blue">employees </font><font color="red">join=<font color="black">'</font>offices on employees.officeCode = offices.officeCode<font color="black">'</font><font color="black">,</font> where="offices.city = <font color="black">'</font>Boston<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>lastName<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b>,<b>{/<font color="blue">employees</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;htmlAttrJson: <b>{<font color="blue"><font color="purple">select</font><font color="black"><b>:</b></font>offices </font><font color="red">htmlAttrJson=<font color="black">'</font>record<font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>officeCode<font color="black">'</font><font color="black">,</font> where="officeCode = 1"</font>}</b>&lt;/p&gt;</code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;where: <b>{<font color="blue">offices </font><font color="red">where="country = <font color="black">'</font>USA<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>officeCode<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinct: <b>{<font color="blue">offices </font><font color="red">distinct<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinctrow: <b>{<font color="blue">offices </font><font color="red">distinctrow<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;group: <b>{<font color="blue">payments </font><font color="red">fields=<font color="black">'</font>customerNumber<font color="black">,</font> count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>customerNumber<font color="black">'</font><font color="black">,</font> having=<font color="black">'</font>cnt &gt; 9<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>customerNumber<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>customerNumber</font>}</b>=<b>{<font color="green"><font color="red">$</font>cnt</font>}</b>,<b>{/<font color="blue">payments</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;rollup: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font><font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> rollup</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cnt</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;db: <b>{<font color="blue">sales </font><font color="red">db=<font color="black">'</font>employees<font color="black">'</font><font color="black">,</font> where="jobTitle = <font color="black">'</font>President<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b><b>{/<font color="blue">sales</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;key: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font>city<font color="black">'</font><font color="black">,</font> where="country = <font color="black">'</font>USA<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>city</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;union: <b>{<font color="blue">offices </font><font color="red">where="officeCode = 1"<font color="black">,</font> union=<font color="black">'</font>offices<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;join: <b>{<font color="blue">employees </font><font color="red">join=<font color="black">'</font>offices on employees.officeCode = offices.officeCode<font color="black">'</font><font color="black">,</font> where="offices.city = <font color="black">'</font>Boston<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>lastName<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b>,<b>{/<font color="blue">employees</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;htmlAttrJson: <b>{<font color="blue"><font color="purple">select</font><font color="black"><b>:</b></font>offices </font><font color="red">htmlAttrJson=<font color="black">'</font>record<font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>officeCode<font color="black">'</font><font color="black">,</font> where="officeCode = 1"</font>/}</b>&lt;/p&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxe63c51c50dc7ae55fe7836f4c3f4f48a"></div>
@@ -202,6 +202,170 @@
                       }
                       padAjax63ca17032aa1f6277304c1b3507ff425.open("GET","http://localhost/pad/manual/?fragments/grouping_2&padInclude",true);
                       padAjax63ca17032aa1f6277304c1b3507ff425.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: fragments/padSelect_6<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/padSelect_6.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/padSelect_6.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'payments'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber,checkNumber' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">customers </font><font color="red">fields="country<font color="black">,</font> count(*) as n"<font color="black">,</font> group="country"<font color="black">,</font> having="count(*) &gt;= 10"<font color="black">,</font> order="n desc"</font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>country</font>}</b>: <b>{<font color="green"><font color="red">$</font>n</font>}</b> customers&lt;/p&gt;<br><b>{/<font color="blue">customers</font><font color="red"></font>}</b><br><br><b>{<font color="blue">payments </font><font color="red">fields="year(paymentDate) as year<font color="black">,</font> sum(amount) as total"<font color="black">,</font> group="year"<font color="black">,</font> rollup</font>}</b><br>  &lt;p&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>year</font>}</b><b>{<font color="green"><font color="red">$</font>year</font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>All years<b>{/<font color="blue">if</font><font color="red"></font>}</b>: <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">payments</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax4071db57d457764f2ec0fec8369abe48"></div>
+                      <script>
+                      padAjax4071db57d457764f2ec0fec8369abe48 = new XMLHttpRequest();
+                      padAjax4071db57d457764f2ec0fec8369abe48.onreadystatechange=function() {
+                      if (padAjax4071db57d457764f2ec0fec8369abe48.readyState === 4) {
+                      if (padAjax4071db57d457764f2ec0fec8369abe48.status === 200) {
+                      document.getElementById("padAjax4071db57d457764f2ec0fec8369abe48").innerHTML=padAjax4071db57d457764f2ec0fec8369abe48.responseText;
+                      } else {
+                      document.getElementById("padAjax4071db57d457764f2ec0fec8369abe48").innerHTML=padAjax4071db57d457764f2ec0fec8369abe48.statusText;
+                      }
+                      }
+                      }
+                      padAjax4071db57d457764f2ec0fec8369abe48.open("GET","http://localhost/pad/manual/?fragments/padSelect_6&padInclude",true);
+                      padAjax4071db57d457764f2ec0fec8369abe48.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: aggregates/group<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">aggregates/group.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;Genre&lt;/th&gt;&lt;th class="n"&gt;Albums&lt;/th&gt;&lt;th class="n"&gt;Average price&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">albums </font><font color="red">fields="genre_code<font color="black">,</font> count(*) as n<font color="black">,</font> round(avg(price)<font color="black">,</font> 2) as average"<font color="black">,</font> group="genre_code"<font color="black">,</font> order="n desc<font color="black">,</font> genre_code"</font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="blue">genres</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>genre</font>}</b><b>{/<font color="blue">genres</font><font color="red"></font>}</b>&lt;/td&gt;&lt;td class="n"&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b>&lt;/td&gt;&lt;td class="n"&gt;<b>{<font color="green"><font color="red">$</font>average</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue">albums</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax4e2f96b1ecc730e46e2db4d32a813e9d"></div>
+                      <script>
+                      padAjax4e2f96b1ecc730e46e2db4d32a813e9d = new XMLHttpRequest();
+                      padAjax4e2f96b1ecc730e46e2db4d32a813e9d.onreadystatechange=function() {
+                      if (padAjax4e2f96b1ecc730e46e2db4d32a813e9d.readyState === 4) {
+                      if (padAjax4e2f96b1ecc730e46e2db4d32a813e9d.status === 200) {
+                      document.getElementById("padAjax4e2f96b1ecc730e46e2db4d32a813e9d").innerHTML=padAjax4e2f96b1ecc730e46e2db4d32a813e9d.responseText;
+                      } else {
+                      document.getElementById("padAjax4e2f96b1ecc730e46e2db4d32a813e9d").innerHTML=padAjax4e2f96b1ecc730e46e2db4d32a813e9d.statusText;
+                      }
+                      }
+                      }
+                      padAjax4e2f96b1ecc730e46e2db4d32a813e9d.open("GET","http://localhost/pad/padSelect/?aggregates/group&padInclude",true);
+                      padAjax4e2f96b1ecc730e46e2db4d32a813e9d.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: aggregates/having<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">aggregates/having.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">aggregates/having.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $least </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;Artist&lt;/th&gt;&lt;th class="n"&gt;Albums&lt;/th&gt;&lt;th&gt;Years&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">albums </font><font color="red">fields="artist_id<font color="black">,</font> count(*) as n<font color="black">,</font> min(released) as first<font color="black">,</font> max(released) as last"<font color="black">,</font><br>          group="artist_id"<font color="black">,</font> having="count(*) &gt; <font color="red">$</font>least"<font color="black">,</font> order="n desc<font color="black">,</font> first"</font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="blue">artists</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">artists</font><font color="red"></font>}</b>&lt;/td&gt;&lt;td class="n"&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b>&lt;/td&gt;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>first</font>}</b> - <b>{<font color="green"><font color="red">$</font>last</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue">albums</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxce5a817cabd06673b84544ac8e19ab5c"></div>
+                      <script>
+                      padAjaxce5a817cabd06673b84544ac8e19ab5c = new XMLHttpRequest();
+                      padAjaxce5a817cabd06673b84544ac8e19ab5c.onreadystatechange=function() {
+                      if (padAjaxce5a817cabd06673b84544ac8e19ab5c.readyState === 4) {
+                      if (padAjaxce5a817cabd06673b84544ac8e19ab5c.status === 200) {
+                      document.getElementById("padAjaxce5a817cabd06673b84544ac8e19ab5c").innerHTML=padAjaxce5a817cabd06673b84544ac8e19ab5c.responseText;
+                      } else {
+                      document.getElementById("padAjaxce5a817cabd06673b84544ac8e19ab5c").innerHTML=padAjaxce5a817cabd06673b84544ac8e19ab5c.statusText;
+                      }
+                      }
+                      }
+                      padAjaxce5a817cabd06673b84544ac8e19ab5c.open("GET","http://localhost/pad/padSelect/?aggregates/having&padInclude",true);
+                      padAjaxce5a817cabd06673b84544ac8e19ab5c.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: aggregates/rollup<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">aggregates/rollup.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;table&gt;<br>  &lt;tr&gt;&lt;th&gt;Genre&lt;/th&gt;&lt;th class="n"&gt;Albums&lt;/th&gt;&lt;th class="n"&gt;Price of them all&lt;/th&gt;&lt;/tr&gt;<br>  <b>{<font color="blue">albums </font><font color="red">fields="genre_code<font color="black">,</font> count(*) as n<font color="black">,</font> sum(price) as total"<font color="black">,</font> group="genre_code"<font color="black">,</font> rollup</font>}</b><br>  &lt;tr&gt;&lt;td&gt;<b>{<font color="blue">genres</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>genre</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&lt;b&gt;All genres&lt;/b&gt;<b>{/<font color="blue">genres</font><font color="red"></font>}</b>&lt;/td&gt;&lt;td class="n"&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b>&lt;/td&gt;&lt;td class="n"&gt;<b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/td&gt;&lt;/tr&gt;<br>  <b>{/<font color="blue">albums</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxed664ad4ced04d96ddbeb1405d43609d"></div>
+                      <script>
+                      padAjaxed664ad4ced04d96ddbeb1405d43609d = new XMLHttpRequest();
+                      padAjaxed664ad4ced04d96ddbeb1405d43609d.onreadystatechange=function() {
+                      if (padAjaxed664ad4ced04d96ddbeb1405d43609d.readyState === 4) {
+                      if (padAjaxed664ad4ced04d96ddbeb1405d43609d.status === 200) {
+                      document.getElementById("padAjaxed664ad4ced04d96ddbeb1405d43609d").innerHTML=padAjaxed664ad4ced04d96ddbeb1405d43609d.responseText;
+                      } else {
+                      document.getElementById("padAjaxed664ad4ced04d96ddbeb1405d43609d").innerHTML=padAjaxed664ad4ced04d96ddbeb1405d43609d.statusText;
+                      }
+                      }
+                      }
+                      padAjaxed664ad4ced04d96ddbeb1405d43609d.open("GET","http://localhost/pad/padSelect/?aggregates/rollup&padInclude",true);
+                      padAjaxed664ad4ced04d96ddbeb1405d43609d.send();
                       </script>
                     </td>
                   </tr>
@@ -528,174 +692,6 @@
                       }
                       padAjax5695976b99177b53c8ace0a99edb069e.open("GET","http://localhost/pad/regression/framework/?options/group_runs_in_order_with_sort_and_first&padInclude",true);
                       padAjax5695976b99177b53c8ace0a99edb069e.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: options/group_sum_keeps_the_decimals_of_a_small_float<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">options/group_sum_keeps_the_decimals_of_a_small_float.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">options/group_sum_keeps_the_decimals_of_a_small_float.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A float below 0.0001 is written in E notation, 1.0E-5, so its decimals were never<br>  // counted and the sum was rounded to the one decimal of 0.5.<br><br>  </span><span style="color: #0000BB">$tiny </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'g' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0.00001 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'g' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'x' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0.5 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">tiny </font><font color="red">group="g"<font color="black">,</font> sum="x"</font>}</b><b>{<font color="green"><font color="red">$</font>x</font>}</b><b>{/<font color="blue">tiny</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxf4bcbf6811ad2ff45d06963b61952881"></div>
-                      <script>
-                      padAjaxf4bcbf6811ad2ff45d06963b61952881 = new XMLHttpRequest();
-                      padAjaxf4bcbf6811ad2ff45d06963b61952881.onreadystatechange=function() {
-                      if (padAjaxf4bcbf6811ad2ff45d06963b61952881.readyState === 4) {
-                      if (padAjaxf4bcbf6811ad2ff45d06963b61952881.status === 200) {
-                      document.getElementById("padAjaxf4bcbf6811ad2ff45d06963b61952881").innerHTML=padAjaxf4bcbf6811ad2ff45d06963b61952881.responseText;
-                      } else {
-                      document.getElementById("padAjaxf4bcbf6811ad2ff45d06963b61952881").innerHTML=padAjaxf4bcbf6811ad2ff45d06963b61952881.statusText;
-                      }
-                      }
-                      }
-                      padAjaxf4bcbf6811ad2ff45d06963b61952881.open("GET","http://localhost/pad/regression/framework/?options/group_sum_keeps_the_decimals_of_a_small_float&padInclude",true);
-                      padAjaxf4bcbf6811ad2ff45d06963b61952881.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: options/group_sums_a_field_and_rows_give_the_row_its_own_value_again<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">options/group_sums_a_field_and_rows_give_the_row_its_own_value_again.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">options/group_sums_a_field_and_rows_give_the_row_its_own_value_again.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $orders </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"bob"</span><span style="color: #007700">,   </span><span style="color: #DD0000">"total" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"10.10" </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"alice"</span><span style="color: #007700">, </span><span style="color: #DD0000">"total" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">20      </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"bob"</span><span style="color: #007700">,   </span><span style="color: #DD0000">"total" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"20.20" </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"alice"</span><span style="color: #007700">, </span><span style="color: #DD0000">"total" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7       </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">"number" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #DD0000">"customer" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"carol"</span><span style="color: #007700">, </span><span style="color: #DD0000">"total" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1       </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">orders </font><font color="red">group=<font color="black">'</font>customer<font color="black">'</font><font color="black">,</font> sum=<font color="black">'</font>total<font color="black">'</font></font>}</b>[<b>{<font color="green"><font color="red">$</font>customer</font>}</b> <b>{<font color="green"><font color="red">$</font>total</font>}</b>:<b>{<font color="blue">rows</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>total</font>}</b><b>{/<font color="blue">rows</font><font color="red"></font>}</b>]<b>{/<font color="blue">orders</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax248bc60d9783e5e214e9f205bc3b33c7"></div>
-                      <script>
-                      padAjax248bc60d9783e5e214e9f205bc3b33c7 = new XMLHttpRequest();
-                      padAjax248bc60d9783e5e214e9f205bc3b33c7.onreadystatechange=function() {
-                      if (padAjax248bc60d9783e5e214e9f205bc3b33c7.readyState === 4) {
-                      if (padAjax248bc60d9783e5e214e9f205bc3b33c7.status === 200) {
-                      document.getElementById("padAjax248bc60d9783e5e214e9f205bc3b33c7").innerHTML=padAjax248bc60d9783e5e214e9f205bc3b33c7.responseText;
-                      } else {
-                      document.getElementById("padAjax248bc60d9783e5e214e9f205bc3b33c7").innerHTML=padAjax248bc60d9783e5e214e9f205bc3b33c7.statusText;
-                      }
-                      }
-                      }
-                      padAjax248bc60d9783e5e214e9f205bc3b33c7.open("GET","http://localhost/pad/regression/framework/?options/group_sums_a_field_and_rows_give_the_row_its_own_value_again&padInclude",true);
-                      padAjax248bc60d9783e5e214e9f205bc3b33c7.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: options/group_takes_a_number_and_its_text_as_one_value<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">options/group_takes_a_number_and_its_text_as_one_value.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">options/group_takes_a_number_and_its_text_as_one_value.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The same customer number as an integer and as text - a database row beside a CSV row -<br>  // is one value to group on, as it is one value to dedup.<br><br>  </span><span style="color: #0000BB">$mixed </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'5'</span><span style="color: #007700">, </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">6</span><span style="color: #007700">, </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">mixed </font><font color="red">group="c"</font>}</b>[<b>{<font color="green"><font color="red">$</font>c</font>}</b>:<b>{<font color="green"><font color="red">$</font>count</font>}</b>]<b>{/<font color="blue">mixed</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxf34a7be25253a8540e95f67a2382fa81"></div>
-                      <script>
-                      padAjaxf34a7be25253a8540e95f67a2382fa81 = new XMLHttpRequest();
-                      padAjaxf34a7be25253a8540e95f67a2382fa81.onreadystatechange=function() {
-                      if (padAjaxf34a7be25253a8540e95f67a2382fa81.readyState === 4) {
-                      if (padAjaxf34a7be25253a8540e95f67a2382fa81.status === 200) {
-                      document.getElementById("padAjaxf34a7be25253a8540e95f67a2382fa81").innerHTML=padAjaxf34a7be25253a8540e95f67a2382fa81.responseText;
-                      } else {
-                      document.getElementById("padAjaxf34a7be25253a8540e95f67a2382fa81").innerHTML=padAjaxf34a7be25253a8540e95f67a2382fa81.statusText;
-                      }
-                      }
-                      }
-                      padAjaxf34a7be25253a8540e95f67a2382fa81.open("GET","http://localhost/pad/regression/framework/?options/group_takes_a_number_and_its_text_as_one_value&padInclude",true);
-                      padAjaxf34a7be25253a8540e95f67a2382fa81.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: options/two_sorts_each_sort_on_their_own_value<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">options/two_sorts_each_sort_on_their_own_value.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">options/two_sorts_each_sort_on_their_own_value.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A sort before first= and one after it, a sort before a group and one after it: each<br>  // sorts on its own value - both sorted on the last one written.<br><br>  </span><span style="color: #0000BB">$xs     </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">4 </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$orders </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-03' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'b'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">9</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-01' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-02' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-01' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'c' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'b'</span><span style="color: #007700">, </span><span style="color: #DD0000">'t' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'d' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'2026-02' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">xs </font><font color="red">sort=<font color="black">'</font>n<font color="black">'</font><font color="black">,</font> first=2<font color="black">,</font> sort=<font color="black">'</font>n DESC<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b>] <b>{<font color="blue">orders </font><font color="red">sort=<font color="black">'</font>d<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>c<font color="black">'</font><font color="black">,</font> sum=<font color="black">'</font>t<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>t DESC<font color="black">'</font></font>}</b>[<b>{<font color="green"><font color="red">$</font>c</font>}</b>:<b>{<font color="green"><font color="red">$</font>t</font>}</b>:<b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>d</font>}</b>/<b>{<font color="green"><font color="red">$</font>t</font>}</b>,<b>{/<font color="blue">rows</font><font color="red"></font>}</b>]<b>{/<font color="blue">orders</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax6ce4271bd9740a1908aa43389fe76b5b"></div>
-                      <script>
-                      padAjax6ce4271bd9740a1908aa43389fe76b5b = new XMLHttpRequest();
-                      padAjax6ce4271bd9740a1908aa43389fe76b5b.onreadystatechange=function() {
-                      if (padAjax6ce4271bd9740a1908aa43389fe76b5b.readyState === 4) {
-                      if (padAjax6ce4271bd9740a1908aa43389fe76b5b.status === 200) {
-                      document.getElementById("padAjax6ce4271bd9740a1908aa43389fe76b5b").innerHTML=padAjax6ce4271bd9740a1908aa43389fe76b5b.responseText;
-                      } else {
-                      document.getElementById("padAjax6ce4271bd9740a1908aa43389fe76b5b").innerHTML=padAjax6ce4271bd9740a1908aa43389fe76b5b.statusText;
-                      }
-                      }
-                      }
-                      padAjax6ce4271bd9740a1908aa43389fe76b5b.open("GET","http://localhost/pad/regression/framework/?options/two_sorts_each_sort_on_their_own_value&padInclude",true);
-                      padAjax6ce4271bd9740a1908aa43389fe76b5b.send();
                       </script>
                     </td>
                   </tr>

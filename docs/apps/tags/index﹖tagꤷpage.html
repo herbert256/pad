@@ -96,14 +96,14 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'dir/name'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'products/42'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, <span class="hl-opt">include</span>=false<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, sandbox<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, reset<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, clean<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, <span class="hl-opt">function</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, <span class="hl-opt">app</span>=<span class="hl-str">'other'</span>, <span class="hl-opt">ajax</span>=false<span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'dir/name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'products/42'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, <span class="hl-opt">include</span>=false<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, sandbox<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, reset<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, clean<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, <span class="hl-opt">function</span>=<span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'name'</span>, <span class="hl-opt">app</span>=<span class="hl-str">'other'</span>, <span class="hl-opt">ajax</span>=false<span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -168,7 +168,7 @@
               Description
             </h2>
             <p>
-              <code>{page 'name'}</code> builds another page of the same application in a nested engine pass and puts its output where the tag stands. It is not a second request: the page's PHP runs in this request, its template renders, and the result is the tag's value. The page is named from the application root, as in a URL, and resolved as the router resolves one - a directory means its <code>index</code>, a <code>.html</code> template counts, and a clean URL route binds its segments, so <code>{page 'products/42'}</code> renders <code>products/[id].pad</code> with <code>$id</code> set to 42.
+              <code>{page 'name'/}</code> builds another page of the same application in a nested engine pass and puts its output where the tag stands. It is not a second request: the page's PHP runs in this request, its template renders, and the result is the tag's value. The page is named from the application root, as in a URL, and resolved as the router resolves one - a directory means its <code>index</code>, a <code>.html</code> template counts, and a clean URL route binds its segments, so <code>{page 'products/42'/}</code> renders <code>products/[id].pad</code> with <code>$id</code> set to 42.
             </p>
             <p>
               By default the page renders bare (<code>include</code> is TRUE): the <code>_inits.pad</code> and <code>_exits.pad</code> wrappers are not added a second time. The page's directory guards still decide - a <code>_guard.php</code> that refuses makes the tag render as nothing instead of refusing the whole request. A page that does not exist is an error under the strict check; without it the tag is empty and the rest of the page lives.
@@ -217,7 +217,7 @@
                     <span>Template</span><span class="cell-file">examples/page/1-basic.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Before the page.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/greeting'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/greeting'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>After it.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
@@ -258,10 +258,10 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/page/2-variables.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$colour</span> = <span class="hl-str">'red'</span><span class="hl-brc">}</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$colour</span> = <span class="hl-str">'green'</span><span class="hl-brc">}</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$colour</span> = <span class="hl-str">'red'</span><span class="hl-brc">/}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$colour</span> = <span class="hl-str">'green'</span><span class="hl-brc">/}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -290,9 +290,9 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/page/3-sandbox.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$colour</span> = <span class="hl-str">'red'</span><span class="hl-brc">}</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>plain: <span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>sandbox: <span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span>, sandbox<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$colour</span> = <span class="hl-str">'red'</span><span class="hl-brc">/}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>plain: <span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>sandbox: <span class="hl-brc">{</span><span class="hl-tag">page</span> <span class="hl-str">'examples/page/parts/badge'</span>, sandbox<span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">

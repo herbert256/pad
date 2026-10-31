@@ -98,7 +98,7 @@
             </h2>
             <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'name'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'csv'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'name'</span>, source<span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'name'</span>, source<span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">data</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/data</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span></code></pre>
             <h3>
               Parameters
@@ -200,7 +200,7 @@
 <span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">dataPlanets</span><span class="hl-brc">}</span>
-  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$moons</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$moons</span> eq <span class="hl-num">1</span> ? <span class="hl-str">'moon'</span> : <span class="hl-str">'moons'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$moons</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$moons</span> eq <span class="hl-num">1</span> ? <span class="hl-str">'moon'</span> : <span class="hl-str">'moons'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/dataPlanets</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
@@ -276,7 +276,7 @@ Pear,<span class="hl-num">0.55</span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'dataLetters'</span><span class="hl-brc">}</span>a..f<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'dataSums'</span><span class="hl-brc">}</span>(<span class="hl-num">1</span> + <span class="hl-num">1</span>, <span class="hl-num">2</span> * <span class="hl-num">3</span>, <span class="hl-num">10</span> - <span class="hl-num">7</span>)<span class="hl-brc">{</span><span class="hl-tag">/data</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'dataSteps'</span>, <span class="hl-str">'1..4'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">data</span> <span class="hl-str">'dataSteps'</span>, <span class="hl-str">'1..4'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">dataLetters</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$dataLetters</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/dataLetters</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">dataSums</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$dataSums</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/dataSums</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">dataSteps</span><span class="hl-brc">}</span>step <span class="hl-brc">{</span><span class="hl-var">$dataSteps</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">notLast@dataSteps</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-tag">/notLast@dataSteps</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/dataSteps</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>

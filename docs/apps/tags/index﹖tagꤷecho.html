@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">echo</span> expression<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">echo</span> expression | pipe | pipe<span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">echo</span> expression<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">echo</span> expression | pipe | pipe<span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -115,13 +115,13 @@
               Description
             </h2>
             <p>
-              <code>{echo}</code> evaluates the expression written after its name and prints the value. The whole text up to the closing brace is one expression - it is not split into parameters - so <code>{echo $price * $qty}</code>, <code>{echo $n gt 1 ? 'items' : 'item'}</code> and <code>{echo 'Hello ' . $name}</code> all work. A quoted text is a literal: <code>{echo 5 + 3}</code> prints 8, <code>{echo '5 + 3'}</code> prints the text itself.
+              <code>{echo}</code> evaluates the expression written after its name and prints the value. The whole text up to the closing brace is one expression - it is not split into parameters - so <code>{echo $price * $qty/}</code>, <code>{echo $n gt 1 ? 'items' : 'item'/}</code> and <code>{echo 'Hello ' . $name/}</code> all work. A quoted text is a literal: <code>{echo 5 + 3/}</code> prints 8, <code>{echo '5 + 3'/}</code> prints the text itself.
             </p>
             <p>
-              It is the tag to put in front of a pipe when the value is a literal or an expression: <code>{echo $text | trim | upper}</code>, <code>{echo $value | + 1}</code> (an arithmetic pipe needs the space after its operator). A field can be piped directly as well - <code>{$name | upper}</code> - and that is the difference that matters: the field tag runs the sanitize chain, <code>{echo}</code> does not. <code>{echo $html}</code> writes the value as it stands, markup and all, so use <code>{$html}</code> for anything a visitor typed and keep <code>{echo}</code> for values the application made itself.
+              It is the tag to put in front of a pipe when the value is a literal or an expression: <code>{echo $text | trim | upper/}</code>, <code>{echo $value | + 1/}</code> (an arithmetic pipe needs the space after its operator). A field can be piped directly as well - <code>{$name | upper}</code> - and that is the difference that matters: the field tag runs the sanitize chain, <code>{echo}</code> does not. <code>{echo $html/}</code> writes the value as it stands, markup and all, so use <code>{$html}</code> for anything a visitor typed and keep <code>{echo}</code> for values the application made itself.
             </p>
             <p>
-              A value is text, never template code: with <code>$v = '{php:getcwd}'</code>, <code>{echo $v}</code> prints those characters rather than running them. TRUE prints as <code>1</code>, FALSE and NULL as nothing.
+              A value is text, never template code: with <code>$v = '{php:getcwd}'</code>, <code>{echo $v/}</code> prints those characters rather than running them. TRUE prints as <code>1</code>, FALSE and NULL as nothing.
             </p>
             <p>
               Under the strict syntax check an <code>{echo}</code> with nothing before its first pipe - or nothing at all - is an error, as is an undefined field or a pipe function that does not exist.
@@ -143,11 +143,11 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/echo/1-expression.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$price</span> = <span class="hl-num">4.5</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$qty</span> = <span class="hl-num">3</span><span class="hl-brc">}</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Total: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$price</span> * <span class="hl-var">$qty</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$qty</span> . <span class="hl-str">' '</span> . ( <span class="hl-var">$qty</span> gt <span class="hl-num">1</span> ? <span class="hl-str">'tickets'</span> : <span class="hl-str">'ticket'</span> )<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-num">5</span> + <span class="hl-num">3</span><span class="hl-brc">}</span> versus <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-str">'5 + 3'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$price</span> = <span class="hl-num">4.5</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$qty</span> = <span class="hl-num">3</span><span class="hl-brc">/}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Total: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$price</span> * <span class="hl-var">$qty</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$qty</span> . <span class="hl-str">' '</span> . ( <span class="hl-var">$qty</span> gt <span class="hl-num">1</span> ? <span class="hl-str">'tickets'</span> : <span class="hl-str">'ticket'</span> )<span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-num">5</span> + <span class="hl-num">3</span><span class="hl-brc">/}</span> versus <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-str">'5 + 3'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -179,9 +179,9 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/echo/2-pipes.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-str">'  hello world  '</span> | trim | upper<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-num">20</span> | + <span class="hl-num">1</span> | * <span class="hl-num">2</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-str">'herbert@example.com'</span> | after(<span class="hl-str">'@'</span>) | before(<span class="hl-str">'.'</span>)<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-str">'  hello world  '</span> | trim | upper<span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-num">20</span> | + <span class="hl-num">1</span> | * <span class="hl-num">2</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-str">'herbert@example.com'</span> | after(<span class="hl-str">'@'</span>) | before(<span class="hl-str">'.'</span>)<span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -213,9 +213,9 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/echo/3-raw.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$note</span> = <span class="hl-str">'&lt;em&gt;fresh&lt;/em&gt; & hot'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$note</span> = <span class="hl-str">'&lt;em&gt;fresh&lt;/em&gt; & hot'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Field tag: <span class="hl-brc">{</span><span class="hl-var">$note</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>echo: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$note</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>echo: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$note</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">

@@ -104,10 +104,10 @@
                   </tr>
                   <tr>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Text that came from somewhere else - a database, a form, a file.<br><br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo 6 * 7}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Text that came from somewhere else - a database, a form, a file.<br><br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo 6 * 7/}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet . <font color="black">'</font> is text<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b>&lt;/p&gt;</code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet . <font color="black">'</font> is text<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>/}</b>&lt;/p&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxd85f39d99054a6a6184e8d99a3831176"></div>
@@ -149,7 +149,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A snippet kept as a value, run as PAD by the page: the field it names is missing, and<br>  // the page's own template holds the same field once, in a branch that never runs.<br><br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">"line1\n{\$notInTheSnippetsData}"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">top<br><b>{<font color="blue">if</font><font color="red">0</font>}</b>never <b>{<font color="green"><font color="red">$</font>notInTheSnippetsData</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b></code></pre>
+                      <pre><code style="color: #000000">top<br><b>{<font color="blue">if</font><font color="red">0</font>}</b>never <b>{<font color="green"><font color="red">$</font>notInTheSnippetsData</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax3fd75ff62cb3c82f44326ca200a749e2"></div>
@@ -188,10 +188,10 @@
                   </tr>
                   <tr>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $v </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo 6 * 7}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $v </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo 6 * 7/}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>v <font color="black">|</font> code</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>v <font color="black">|</font> code</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax4c16be2b7681f9d4ea9073e7c83abbc1"></div>
@@ -233,7 +233,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $s </span><span style="color: #007700">= </span><span style="color: #DD0000">'A@start@B@end@C'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>s <font color="black">|</font> code</font>}</b>]</code></pre>
+                      <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>s <font color="black">|</font> code</font>/}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax9640cefc0575b9ca4980a8c96ee39824"></div>
@@ -275,7 +275,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $src </span><span style="color: #007700">= </span><span style="color: #DD0000">'{data "n"}[1,2,3]{/data}{n callback="rowfield.php"}{$n},{/n}{$sumRows}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>src <font color="black">|</font> code</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>src <font color="black">|</font> code</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax8fa94f4fc18e1efcedf2e57fd92519de"></div>
@@ -314,10 +314,10 @@
                   </tr>
                   <tr>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'The total is {echo 19 + 23}.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'The total is {echo 19 + 23/}.'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A value run as PAD<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A value is text; piped into code it runs as a template.<font color="black">'</font></font>}</b><br>&lt;p&gt;As text: <b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Run: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b>&lt;/p&gt;</code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>A value run as PAD<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A value is text; piped into code it runs as a template.<font color="black">'</font></font>/}</b><br>&lt;p&gt;As text: <b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Run: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>/}</b>&lt;/p&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax106c8c9865f15e40bdab425838cd4dfb"></div>
@@ -356,10 +356,10 @@
                   </tr>
                   <tr>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'price is {echo $price ?? \'unknown\'}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'price is {echo $price ?? \'unknown\'/}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>The sandbox pipe<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A value run as PAD<font color="black">,</font> isolated - a snippet kept elsewhere cannot touch the page.<font color="black">'</font></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>price = 10</font>}</b><br>&lt;p&gt;code: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b>&lt;/p&gt;<br>&lt;p&gt;sandbox: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> sandbox</font>}</b>&lt;/p&gt;</code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">meta </font><font color="red">title=<font color="black">'</font>The sandbox pipe<font color="black">'</font><font color="black">,</font> about=<font color="black">'</font>A value run as PAD<font color="black">,</font> isolated - a snippet kept elsewhere cannot touch the page.<font color="black">'</font></font>/}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>price = 10</font>/}</b><br>&lt;p&gt;code: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;sandbox: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> sandbox</font>/}</b>&lt;/p&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxa9139a1855a0d4e67b8405b2483b07ea"></div>

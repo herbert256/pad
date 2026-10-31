@@ -1,10 +1,10 @@
 
-<p><code>{page 'name'}</code> builds another page of the same application in a nested engine
+<p><code>{page 'name'/}</code> builds another page of the same application in a nested engine
 pass and puts its output where the tag stands. It is not a second request: the page's PHP runs
 in this request, its template renders, and the result is the tag's value. The page is named
 from the application root, as in a URL, and resolved as the router resolves one - a directory
 means its <code>index</code>, a <code>.html</code> template counts, and a clean URL route
-binds its segments, so <code>{page 'products/42'}</code> renders <code>products/[id].pad</code>
+binds its segments, so <code>{page 'products/42'/}</code> renders <code>products/[id].pad</code>
 with <code>$id</code> set to 42.</p>
 
 <p>By default the page renders bare (<code>include</code> is TRUE): the

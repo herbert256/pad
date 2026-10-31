@@ -129,46 +129,6 @@
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/errors - Page: syntax/a_markdown_never_closes<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">syntax/a_markdown_never_closes.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">markdown</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxa78cde669ba6c6feac6ef8a0288ae274"></div>
-                      <script>
-                      padAjaxa78cde669ba6c6feac6ef8a0288ae274 = new XMLHttpRequest();
-                      padAjaxa78cde669ba6c6feac6ef8a0288ae274.onreadystatechange=function() {
-                      if (padAjaxa78cde669ba6c6feac6ef8a0288ae274.readyState === 4) {
-                      if (padAjaxa78cde669ba6c6feac6ef8a0288ae274.status === 200) {
-                      document.getElementById("padAjaxa78cde669ba6c6feac6ef8a0288ae274").innerHTML=padAjaxa78cde669ba6c6feac6ef8a0288ae274.responseText;
-                      } else {
-                      document.getElementById("padAjaxa78cde669ba6c6feac6ef8a0288ae274").innerHTML=padAjaxa78cde669ba6c6feac6ef8a0288ae274.statusText;
-                      }
-                      }
-                      }
-                      padAjaxa78cde669ba6c6feac6ef8a0288ae274.open("GET","http://localhost/pad/regression/errors/?syntax/a_markdown_never_closes&padInclude",true);
-                      padAjaxa78cde669ba6c6feac6ef8a0288ae274.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
                 App: regression/framework - Page: build/a_layout_block_in_a_text_pair_other_than_the_plain_ignore_is_left_alone<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -187,7 +147,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">extends </font><font color="red"><font color="black">'</font>_layouts/base<font color="black">'</font></font>}</b>[{~ignore~}<b>{<font color="blue">block </font><font color="red"><font color="black">'</font>title<font color="black">'</font></font>}</b>X<b>{/<font color="blue">block</font><font color="red"></font>}</b>{~/ignore~}] [<b>{<font color="blue">markdown </font><font color="red">ignore</font>}</b><b>{<font color="blue">block </font><font color="red"><font color="black">'</font>nav<font color="black">'</font></font>}</b>N<b>{/<font color="blue">block</font><font color="red"></font>}</b><b>{/<font color="blue">markdown</font><font color="red"></font>}</b>]</code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">extends </font><font color="red"><font color="black">'</font>_layouts/base<font color="black">'</font></font>/}</b>[{~ignore~}<b>{<font color="blue">block </font><font color="red"><font color="black">'</font>title<font color="black">'</font></font>}</b>X<b>{/<font color="blue">block</font><font color="red"></font>}</b>{~/ignore~}] [<b>{<font color="blue">markdown </font><font color="red">ignore</font>}</b><b>{<font color="blue">block </font><font color="red"><font color="black">'</font>nav<font color="black">'</font></font>}</b>N<b>{/<font color="blue">block</font><font color="red"></font>}</b><b>{/<font color="blue">markdown</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax6b4311cb8960ce4b67a985f2d7c7fbd2"></div>
@@ -309,7 +269,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">"# {php:getcwd}\n\n{echo 'x'}"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="green">$text</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>text</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="green">$text</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>text</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxb38cb8f5b42aa30e2f8e592a738c94c9"></div>
@@ -351,7 +311,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value that is all indented code - a comment, a post, a .md file.<br><br>  </span><span style="color: #0000BB">$code </span><span style="color: #007700">= </span><span style="color: #DD0000">"    \$a = 1;\n    echo \$a;"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="green">$code</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>code</font>}</b>|<br>  <b>{<font color="blue">markdown</font><font color="red"></font>}</b><br>    The pair is dedented with the template around it.<br>  <b>{/<font color="blue">markdown</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="green">$code</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>code</font>/}</b>|<br>  <b>{<font color="blue">markdown</font><font color="red"></font>}</b><br>    The pair is dedented with the template around it.<br>  <b>{/<font color="blue">markdown</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax54cd747ad14fe904417fecba1cb3cd32"></div>
@@ -431,7 +391,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">if </font><font color="red">1 eq 1</font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>markdown </font><font color="red">ignore</font>}</b>write `<b>{<font color="blue">else</font><font color="red"></font>}</b>` here<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>markdown</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>]<br>3[<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>sequence </font><font color="red"><font color="black">'</font>1..1<font color="black">'</font> ignore</font>}</b>a {~z~} b<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b>]<br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..2<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> ignore</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>y<font color="black">'</font></font>}</b>z<b>{/<font color="blue">echo</font><font color="red"></font>}</b>]<br>B[<b>{<font color="blue">if </font><font color="red">1 eq 2</font>}</b><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b><b>{<font color="blue">highlight </font><font color="red">file=<font color="black">'</font>_data/nums.json<font color="black">'</font></font>}</b><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>no<b>{/<font color="blue">if</font><font color="red"></font>}</b>]</code></pre>
+                      <pre><code style="color: #000000">[<b>{<font color="blue">if </font><font color="red">1 eq 1</font>}</b><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>markdown </font><font color="red">ignore</font>}</b>write `<b>{<font color="blue">else</font><font color="red"></font>}</b>` here<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>markdown</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>]<br>3[<b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>sequence </font><font color="red"><font color="black">'</font>1..1<font color="black">'</font> ignore</font>}</b>a {~z~} b<b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b>]<br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..2<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> ignore</font>/}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>y<font color="black">'</font></font>}</b>z<b>{/<font color="blue">echo</font><font color="red"></font>}</b>]<br>B[<b>{<font color="blue">if </font><font color="red">1 eq 2</font>}</b><b>{<font color="blue">highlight </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>/}</b><b>{<font color="blue">highlight </font><font color="red">file=<font color="black">'</font>_data/nums.json<font color="black">'</font></font>}</b><b>{/<font color="blue">highlight</font><font color="red"></font>}</b><b>{<font color="blue">else</font><font color="red"></font>}</b>no<b>{/<font color="blue">if</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax2d21f151911aa834d8c5301674fc3bfe"></div>
@@ -513,7 +473,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>a = 1</font>}</b><br>[<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>a eq 1</font>}</b><b>{<font color="blue">markdown </font><font color="red">ignore</font>}</b>Write `<b>{<font color="blue">else</font><font color="red"></font>}</b>` for the other branch.<b>{/<font color="blue">markdown</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">case </font><font color="red"><font color="red">$</font>a</font>}</b><b>{<font color="blue">when </font><font color="red">1</font>}</b>one: <b>{<font color="blue">markdown </font><font color="red">ignore</font>}</b>Write `<b>{<font color="blue">when </font><font color="red">2</font>}</b>` for two.<b>{/<font color="blue">markdown</font><font color="red"></font>}</b><b>{<font color="blue">when </font><font color="red">2</font>}</b>two<b>{/<font color="blue">case</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>a eq 1</font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>el<font color="black">'</font> ignore</font>}</b>["a <b>{<font color="blue">else</font><font color="red"></font>}</b> b"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">el</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>el</font>}</b><b>{/<font color="blue">el</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>]</code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>a = 1</font>/}</b><br>[<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>a eq 1</font>}</b><b>{<font color="blue">markdown </font><font color="red">ignore</font>}</b>Write `<b>{<font color="blue">else</font><font color="red"></font>}</b>` for the other branch.<b>{/<font color="blue">markdown</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">case </font><font color="red"><font color="red">$</font>a</font>}</b><b>{<font color="blue">when </font><font color="red">1</font>}</b>one: <b>{<font color="blue">markdown </font><font color="red">ignore</font>}</b>Write `<b>{<font color="blue">when </font><font color="red">2</font>}</b>` for two.<b>{/<font color="blue">markdown</font><font color="red"></font>}</b><b>{<font color="blue">when </font><font color="red">2</font>}</b>two<b>{/<font color="blue">case</font><font color="red"></font>}</b>]<br>[<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>a eq 1</font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>el<font color="black">'</font> ignore</font>}</b>["a <b>{<font color="blue">else</font><font color="red"></font>}</b> b"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">el</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>el</font>}</b><b>{/<font color="blue">el</font><font color="red"></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax607db64276f0cacdf2b5b3068cb9e956"></div>
@@ -553,7 +513,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">markdown</font><font color="red"></font>}</b>**x** <b>{<font color="blue">cease </font><font color="red"><font color="black">'</font>markdown<font color="black">'</font></font>}</b><b>{/<font color="blue">markdown</font><font color="red"></font>}</b>]</code></pre>
+                      <pre><code style="color: #000000">[<b>{<font color="blue">markdown</font><font color="red"></font>}</b>**x** <b>{<font color="blue">cease </font><font color="red"><font color="black">'</font>markdown<font color="black">'</font></font>/}</b><b>{/<font color="blue">markdown</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax1087b8cbdde1ff1e585e52a54b61d063"></div>
@@ -635,7 +595,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// {markdown $text} with an empty value - a comment nobody wrote - renders nothing, where<br>  // it failed as "the pair {markdown} never closes": the single form asked whether its<br>  // value was empty, not whether a parameter was written.<br><br>  </span><span style="color: #0000BB">$empty </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$space </span><span style="color: #007700">= </span><span style="color: #DD0000">' '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>empty</font>}</b>][<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>space<font color="black">,</font> html</font>}</b>]</code></pre>
+                      <pre><code style="color: #000000">[<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>empty</font>/}</b>][<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>space<font color="black">,</font> html</font>/}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax974b024add9f7944314ec0dd541a9603"></div>
@@ -694,6 +654,46 @@
                       }
                       padAjax6414aace3fb72ca833d5d392e6e861a9.open("GET","http://localhost/pad/regression/framework/?tags/markdown_renders_its_content_as_html&padInclude",true);
                       padAjax6414aace3fb72ca833d5d392e6e861a9.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/markdown_with_the_html_option_keeps_the_authors_markup<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/markdown_with_the_html_option_keeps_the_authors_markup.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">markdown </font><font color="red">html</font>}</b>&lt;b&gt;x&lt;/b&gt; *y* &lt;i&gt;z&lt;/i&gt;<b>{/<font color="blue">markdown</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax3c9b0b2da3b22cf1a0633e89fd51cff0"></div>
+                      <script>
+                      padAjax3c9b0b2da3b22cf1a0633e89fd51cff0 = new XMLHttpRequest();
+                      padAjax3c9b0b2da3b22cf1a0633e89fd51cff0.onreadystatechange=function() {
+                      if (padAjax3c9b0b2da3b22cf1a0633e89fd51cff0.readyState === 4) {
+                      if (padAjax3c9b0b2da3b22cf1a0633e89fd51cff0.status === 200) {
+                      document.getElementById("padAjax3c9b0b2da3b22cf1a0633e89fd51cff0").innerHTML=padAjax3c9b0b2da3b22cf1a0633e89fd51cff0.responseText;
+                      } else {
+                      document.getElementById("padAjax3c9b0b2da3b22cf1a0633e89fd51cff0").innerHTML=padAjax3c9b0b2da3b22cf1a0633e89fd51cff0.statusText;
+                      }
+                      }
+                      }
+                      padAjax3c9b0b2da3b22cf1a0633e89fd51cff0.open("GET","http://localhost/pad/regression/framework/?tags/markdown_with_the_html_option_keeps_the_authors_markup&padInclude",true);
+                      padAjax3c9b0b2da3b22cf1a0633e89fd51cff0.send();
                       </script>
                     </td>
                   </tr>

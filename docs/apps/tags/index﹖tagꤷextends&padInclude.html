@@ -1,5 +1,5 @@
 
-<p><code>{extends 'layout'}</code> makes a page use a layout as its frame. It is not a tag
+<p><code>{extends 'layout'/}</code> makes a page use a layout as its frame. It is not a tag
 that runs while the page renders: it is resolved in the text while the page is assembled,
 after the PHP and before anything renders, and taken out. The layout then replaces the frame
 the page would otherwise get - the <code>_inits.pad</code> and <code>_exits.pad</code> of its
@@ -18,7 +18,7 @@ outermost.</p>
 <p>The tag must stand directly in the page's own template, outside any other tag; one found
 anywhere else - in a snippet, a custom tag, inside an <code>{if}</code> - is an error under
 the strict check. Under the strict check a block of an extending page that overrides nothing
-is reported as well. <code>{meta layout='...'}</code> does the same as
+is reported as well. <code>{meta layout='...'/}</code> does the same as
 <code>{extends}</code>.</p>
 
 <p>Because the frame is replaced, a page that extends a layout and is opened on its own shows

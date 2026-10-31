@@ -105,7 +105,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;p&gt;where: <b>{<font color="blue">offices </font><font color="red">where="country = <font color="black">'</font>USA<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>officeCode<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinct: <b>{<font color="blue">offices </font><font color="red">distinct<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinctrow: <b>{<font color="blue">offices </font><font color="red">distinctrow<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;group: <b>{<font color="blue">payments </font><font color="red">fields=<font color="black">'</font>customerNumber<font color="black">,</font> count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>customerNumber<font color="black">'</font><font color="black">,</font> having=<font color="black">'</font>cnt &gt; 9<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>customerNumber<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>customerNumber</font>}</b>=<b>{<font color="green"><font color="red">$</font>cnt</font>}</b>,<b>{/<font color="blue">payments</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;rollup: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font><font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> rollup</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cnt</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;db: <b>{<font color="blue">sales </font><font color="red">db=<font color="black">'</font>employees<font color="black">'</font><font color="black">,</font> where="jobTitle = <font color="black">'</font>President<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b><b>{/<font color="blue">sales</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;key: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font>city<font color="black">'</font><font color="black">,</font> where="country = <font color="black">'</font>USA<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>city</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;union: <b>{<font color="blue">offices </font><font color="red">where="officeCode = 1"<font color="black">,</font> union=<font color="black">'</font>offices<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;join: <b>{<font color="blue">employees </font><font color="red">join=<font color="black">'</font>offices on employees.officeCode = offices.officeCode<font color="black">'</font><font color="black">,</font> where="offices.city = <font color="black">'</font>Boston<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>lastName<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b>,<b>{/<font color="blue">employees</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;htmlAttrJson: <b>{<font color="blue"><font color="purple">select</font><font color="black"><b>:</b></font>offices </font><font color="red">htmlAttrJson=<font color="black">'</font>record<font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>officeCode<font color="black">'</font><font color="black">,</font> where="officeCode = 1"</font>}</b>&lt;/p&gt;</code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;where: <b>{<font color="blue">offices </font><font color="red">where="country = <font color="black">'</font>USA<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>officeCode<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinct: <b>{<font color="blue">offices </font><font color="red">distinct<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinctrow: <b>{<font color="blue">offices </font><font color="red">distinctrow<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;group: <b>{<font color="blue">payments </font><font color="red">fields=<font color="black">'</font>customerNumber<font color="black">,</font> count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>customerNumber<font color="black">'</font><font color="black">,</font> having=<font color="black">'</font>cnt &gt; 9<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>customerNumber<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>customerNumber</font>}</b>=<b>{<font color="green"><font color="red">$</font>cnt</font>}</b>,<b>{/<font color="blue">payments</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;rollup: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font><font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> rollup</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cnt</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;db: <b>{<font color="blue">sales </font><font color="red">db=<font color="black">'</font>employees<font color="black">'</font><font color="black">,</font> where="jobTitle = <font color="black">'</font>President<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b><b>{/<font color="blue">sales</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;key: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font>city<font color="black">'</font><font color="black">,</font> where="country = <font color="black">'</font>USA<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>city</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;union: <b>{<font color="blue">offices </font><font color="red">where="officeCode = 1"<font color="black">,</font> union=<font color="black">'</font>offices<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;join: <b>{<font color="blue">employees </font><font color="red">join=<font color="black">'</font>offices on employees.officeCode = offices.officeCode<font color="black">'</font><font color="black">,</font> where="offices.city = <font color="black">'</font>Boston<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>lastName<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b>,<b>{/<font color="blue">employees</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;htmlAttrJson: <b>{<font color="blue"><font color="purple">select</font><font color="black"><b>:</b></font>offices </font><font color="red">htmlAttrJson=<font color="black">'</font>record<font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>officeCode<font color="black">'</font><font color="black">,</font> where="officeCode = 1"</font>/}</b>&lt;/p&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxe63c51c50dc7ae55fe7836f4c3f4f48a"></div>
@@ -122,6 +122,46 @@
                       }
                       padAjaxe63c51c50dc7ae55fe7836f4c3f4f48a.open("GET","http://localhost/pad/classicModels/?options&padInclude",true);
                       padAjaxe63c51c50dc7ae55fe7836f4c3f4f48a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: output/json<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">output/json.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;div id="albums" data-albums="<b>{<font color="blue">albums </font><font color="red">htmlAttrJson<font color="black">,</font> fields=<font color="black">'</font>title<font color="black">,</font> released<font color="black">'</font><font color="black">,</font> rows=3</font>/}</b>"&gt;&lt;/div&gt;<br><br>&lt;p&gt;The attribute as the page holds it:&lt;/p&gt;<br>&lt;code&gt;<b>{<font color="blue">albums </font><font color="red">htmlAttrJson<font color="black">,</font> fields=<font color="black">'</font>title<font color="black">,</font> released<font color="black">'</font><font color="black">,</font> rows=3</font>/}</b>&lt;/code&gt;<br><br>&lt;p&gt;One row - htmlAttrJson='record':&lt;/p&gt;<br>&lt;code&gt;<b>{<font color="blue">albums </font><font color="red">htmlAttrJson=<font color="black">'</font>record<font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>title<font color="black">,</font> price<font color="black">'</font><font color="black">,</font> <font color="red">$</font>album_id=7</font>/}</b>&lt;/code&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax2deb1b8946cb69506164fbd5a75e0080"></div>
+                      <script>
+                      padAjax2deb1b8946cb69506164fbd5a75e0080 = new XMLHttpRequest();
+                      padAjax2deb1b8946cb69506164fbd5a75e0080.onreadystatechange=function() {
+                      if (padAjax2deb1b8946cb69506164fbd5a75e0080.readyState === 4) {
+                      if (padAjax2deb1b8946cb69506164fbd5a75e0080.status === 200) {
+                      document.getElementById("padAjax2deb1b8946cb69506164fbd5a75e0080").innerHTML=padAjax2deb1b8946cb69506164fbd5a75e0080.responseText;
+                      } else {
+                      document.getElementById("padAjax2deb1b8946cb69506164fbd5a75e0080").innerHTML=padAjax2deb1b8946cb69506164fbd5a75e0080.statusText;
+                      }
+                      }
+                      }
+                      padAjax2deb1b8946cb69506164fbd5a75e0080.open("GET","http://localhost/pad/padSelect/?output/json&padInclude",true);
+                      padAjax2deb1b8946cb69506164fbd5a75e0080.send();
                       </script>
                     </td>
                   </tr>
@@ -147,7 +187,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">staffSel </font><font color="red">htmlAttrJson=<font color="black">'</font>drop table staff;<font color="black">'</font></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">staffSel </font><font color="red">htmlAttrJson=<font color="black">'</font>drop table staff;<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxa5e601a8609b7382f65704df13ef4257"></div>
@@ -164,6 +204,48 @@
                       }
                       padAjaxa5e601a8609b7382f65704df13ef4257.open("GET","http://localhost/pad/regression/errors/?syntax/a_select_output_mode_is_a_known_shape&padInclude",true);
                       padAjaxa5e601a8609b7382f65704df13ef4257.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/json_rows_are_a_list_in_the_order_of_the_select<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/json_rows_are_a_list_in_the_order_of_the_select.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/json_rows_are_a_list_in_the_order_of_the_select.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// htmlAttrJson hands a component the rows as a JSON list in the order of the select, also<br>  // when they hold an id column - by which db() keys the rows of an array. Over the<br>  // customers of the demo database.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customerSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customers'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">list: [<b>{<font color="blue">customerSel </font><font color="red">htmlAttrJson<font color="black">,</font> fields="customerNumber as id<font color="black">,</font> customerName"<font color="black">,</font> where="country = <font color="black">'</font>Norway<font color="black">'</font>"<font color="black">,</font> order="customerName desc"</font>/}</b>]<br>record: [<b>{<font color="blue">customerSel </font><font color="red">htmlAttrJson=<font color="black">'</font>record<font color="black">'</font><font color="black">,</font> fields="customerNumber as id<font color="black">,</font> customerName"<font color="black">,</font> <font color="red">$</font>customerNumber=121</font>/}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax10199ddb0ab42eaf212e558446bd911c"></div>
+                      <script>
+                      padAjax10199ddb0ab42eaf212e558446bd911c = new XMLHttpRequest();
+                      padAjax10199ddb0ab42eaf212e558446bd911c.onreadystatechange=function() {
+                      if (padAjax10199ddb0ab42eaf212e558446bd911c.readyState === 4) {
+                      if (padAjax10199ddb0ab42eaf212e558446bd911c.status === 200) {
+                      document.getElementById("padAjax10199ddb0ab42eaf212e558446bd911c").innerHTML=padAjax10199ddb0ab42eaf212e558446bd911c.responseText;
+                      } else {
+                      document.getElementById("padAjax10199ddb0ab42eaf212e558446bd911c").innerHTML=padAjax10199ddb0ab42eaf212e558446bd911c.statusText;
+                      }
+                      }
+                      }
+                      padAjax10199ddb0ab42eaf212e558446bd911c.open("GET","http://localhost/pad/regression/pages/?select/demo/json_rows_are_a_list_in_the_order_of_the_select&padInclude",true);
+                      padAjax10199ddb0ab42eaf212e558446bd911c.send();
                       </script>
                     </td>
                   </tr>
@@ -189,7 +271,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The lenient walk under test: what nothing claims stays in the output as written.<br><br>  </span><span style="color: #0000BB">$padCheckSyntax </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">if react needs 2 data objects, is it enough dat only the id is different and that the attribute is always the same, like below:<br><br>&lt;div id="id1" data="html_encoded_json"&gt;&lt;/div&gt;<br>&lt;div id="id2" data="html_encoded_json"&gt;&lt;/div&gt;<br><br>&lt;div id="id2" data="<b>{<font color="blue">forum_topics </font><font color="red"><font color="red">$</font>id=1<font color="black">,</font> htmlAttrJson=<font color="black">'</font>record<font color="black">'</font></font>}</b>"&gt;&lt;/div&gt;<br>&lt;div id="id2" data="<b>{<font color="blue">forum_topics </font><font color="red"><font color="red">$</font>id=1<font color="black">,</font> htmlAttrJson=<font color="black">'</font>record<font color="black">'</font></font>}</b>"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">react </font><font color="red">id=<font color="black">'</font><font color="black">'</font><font color="black">,</font> query=<font color="black">'</font>name in _recact library<font color="black">'</font><font color="black">,</font> <font color="red">$</font>parm1=&lt;expression&gt;<font color="black">,</font> <font color="red">$</font>parm2=&lt;expression&gt;</font>}</b><br><br>you are in a Linux container on a chromebook, what for you localhost is is for me penguin.linux.test, so above link should be http://penguin.linux.test/support/?forum/topic&amp;id=1</code></pre>
+                      <pre><code style="color: #000000">if react needs 2 data objects, is it enough dat only the id is different and that the attribute is always the same, like below:<br><br>&lt;div id="id1" data="html_encoded_json"&gt;&lt;/div&gt;<br>&lt;div id="id2" data="html_encoded_json"&gt;&lt;/div&gt;<br><br>&lt;div id="id2" data="<b>{<font color="blue">forum_topics </font><font color="red"><font color="red">$</font>id=1<font color="black">,</font> htmlAttrJson=<font color="black">'</font>record<font color="black">'</font></font>/}</b>"&gt;&lt;/div&gt;<br>&lt;div id="id2" data="<b>{<font color="blue">forum_topics </font><font color="red"><font color="red">$</font>id=1<font color="black">,</font> htmlAttrJson=<font color="black">'</font>record<font color="black">'</font></font>/}</b>"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">react </font><font color="red">id=<font color="black">'</font><font color="black">'</font><font color="black">,</font> query=<font color="black">'</font>name in _recact library<font color="black">'</font><font color="black">,</font> <font color="red">$</font>parm1=&lt;expression&gt;<font color="black">,</font> <font color="red">$</font>parm2=&lt;expression&gt;</font>/}</b><br><br>you are in a Linux container on a chromebook, what for you localhost is is for me penguin.linux.test, so above link should be http://penguin.linux.test/support/?forum/topic&amp;id=1</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax43f9d2d2b73bc2072e95cf2a0bccf9b0"></div>

@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-str">'layout'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-var">$layout</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-str">'layout'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-var">$layout</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -115,13 +115,13 @@
               Description
             </h2>
             <p>
-              <code>{extends 'layout'}</code> makes a page use a layout as its frame. It is not a tag that runs while the page renders: it is resolved in the text while the page is assembled, after the PHP and before anything renders, and taken out. The layout then replaces the frame the page would otherwise get - the <code>_inits.pad</code> and <code>_exits.pad</code> of its directories, and the <code>_common</code> wrapper.
+              <code>{extends 'layout'/}</code> makes a page use a layout as its frame. It is not a tag that runs while the page renders: it is resolved in the text while the page is assembled, after the PHP and before anything renders, and taken out. The layout then replaces the frame the page would otherwise get - the <code>_inits.pad</code> and <code>_exits.pad</code> of its directories, and the <code>_common</code> wrapper.
             </p>
             <p>
               The layout is a template named from the application root, like a <a href="index%EF%B9%96tag%EA%A4%B7page.html"><code>{page}</code></a>; keeping layouts in a directory that starts with an underscore (<code>_layouts/</code>) keeps them from being pages of their own. What the page holds outside its <a href="index%EF%B9%96tag%EA%A4%B7block.html"><code>{block}</code></a> pairs goes where the layout writes <code>@page@</code> - in front of the layout when it has none. The page's top-level blocks override the layout's blocks of the same name, and <a href="index%EF%B9%96tag%EA%A4%B7parent.html"><code>{parent}</code></a> inside one of them brings back the content it overrides. A layout may extend a layout of its own; the chain is followed up to the outermost.
             </p>
             <p>
-              The tag must stand directly in the page's own template, outside any other tag; one found anywhere else - in a snippet, a custom tag, inside an <code>{if}</code> - is an error under the strict check. Under the strict check a block of an extending page that overrides nothing is reported as well. <code>{meta layout='...'}</code> does the same as <code>{extends}</code>.
+              The tag must stand directly in the page's own template, outside any other tag; one found anywhere else - in a snippet, a custom tag, inside an <code>{if}</code> - is an error under the strict check. Under the strict check a block of an extending page that overrides nothing is reported as well. <code>{meta layout='...'/}</code> does the same as <code>{extends}</code>.
             </p>
             <p>
               Because the frame is replaced, a page that extends a layout and is opened on its own shows the layout and nothing of the application's wrapper. Inside a <code>{page}</code>, as in the examples here, the included page is assembled the same way and brings its layout along.
@@ -143,7 +143,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/extends/1-layout.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-str">'_layouts/extendsCard'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-str">'_layouts/extendsCard'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">block</span> <span class="hl-str">'title'</span><span class="hl-brc">}</span>Monthly report<span class="hl-brc">{</span><span class="hl-tag">/block</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Sales rose by <span class="hl-num">4</span>% in September.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
@@ -179,7 +179,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/extends/2-expression.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-var">$layout</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">extends</span> <span class="hl-var">$layout</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">block</span> <span class="hl-str">'title'</span><span class="hl-brc">}</span>Order <span class="hl-num">10417</span><span class="hl-brc">{</span><span class="hl-tag">/block</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">block</span> <span class="hl-str">'footer'</span><span class="hl-brc">}</span>Shipped on <span class="hl-num">1</span> October <span class="hl-num">2026</span><span class="hl-brc">{</span><span class="hl-tag">/block</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Two kettles and a teapot.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>

@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"column from table where ..."</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"count(*) from orders"</span>, <span class="hl-opt">name</span>=<span class="hl-str">'orderCount'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"column from table where ..."</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"count(*) from orders"</span>, <span class="hl-opt">name</span>=<span class="hl-str">'orderCount'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -126,7 +126,7 @@
               Description
             </h2>
             <p>
-              <code>{field "..."}</code> runs its parameter as a query on the application database and is replaced by the one value it answers - the first column of the first row. It is the template form of <code>db ( "FIELD ..." )</code>: the tag name itself becomes the command word of <code>db()</code>, which is why the parameter starts after the SELECT - <code>{field "count(*) from orders"}</code>, not <code>{field "select count(*) ..."}</code>.
+              <code>{field "..."/}</code> runs its parameter as a query on the application database and is replaced by the one value it answers - the first column of the first row. It is the template form of <code>db ( "FIELD ..." )</code>: the tag name itself becomes the command word of <code>db()</code>, which is why the parameter starts after the SELECT - <code>{field "count(*) from orders"/}</code>, not <code>{field "select count(*) ..."/}</code>.
             </p>
             <p>
               The query runs on the database the application's <code>$padSql*</code> settings name (read from its <code>.env</code>), MySQL or SQLite. A query that finds no row answers an empty value. The parameter is SQL text as written: a value from the request does not belong in it. Fetch such a value in the page's PHP with a placeholder - <code>db ( "FIELD name FROM users WHERE id={0}", [ $id ] )</code> - or write a named query in <code>_data/name.sql</code>, whose <code>{$name}</code> fields are bound as placeholders.
@@ -154,7 +154,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/field/1-count.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>There are <span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"count(*) from orders where status='open'"</span><span class="hl-brc">}</span> open orders.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>There are <span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"count(*) from orders where status='open'"</span><span class="hl-brc">/}</span> open orders.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
               </div>
             </div>
@@ -170,7 +170,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/field/2-sample.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Customers: <span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"count(*) from customers"</span>, <span class="hl-opt">name</span>=<span class="hl-str">'customerCount'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Customers: <span class="hl-brc">{</span><span class="hl-tag">field</span> <span class="hl-str">"count(*) from customers"</span>, <span class="hl-opt">name</span>=<span class="hl-str">'customerCount'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
               </div>
             </div>

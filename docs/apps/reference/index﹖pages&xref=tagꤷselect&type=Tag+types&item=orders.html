@@ -126,6 +126,48 @@
                     </td>
                   </tr>
                 </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A select with a join meets its key and its relations with its own table's columns: a<br>  // field both tables hold - orderNumber in orders and orderdetails, customerNumber in orders<br>  // and payments - is named with the table. Over the Classic Models tables of the demo<br>  // database.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'lineDetail'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderdetails'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'productCode' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'product' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'orderLines'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders.orderNumber'</span><span style="color: #007700">,<br>                                </span><span style="color: #DD0000">'join' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'inner' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lineDetail'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders.orderNumber' </span><span style="color: #007700">],<br>                                </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderdetails.orderLineNumber' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">key: [<b>{<font color="blue">orderLines </font><font color="red"><font color="red">$</font>orderNumber=10100</font>}</b><b>{<font color="green"><font color="red">$</font>product</font>}</b> <b>{/<font color="blue">orderLines</font><font color="red"></font>}</b>]<br>nested: [<b>{<font color="blue">customers </font><font color="red"><font color="red">$</font>customerNumber=103</font>}</b><b>{<font color="blue">orders </font><font color="red">join="payments on payments.customerNumber = orders.customerNumber"<font color="black">,</font> fields="count(*) as n"</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">orders</font><font color="red"></font>}</b><b>{/<font color="blue">customers</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxafb783debb071b09f0871592e437e1c1"></div>
+                      <script>
+                      padAjaxafb783debb071b09f0871592e437e1c1 = new XMLHttpRequest();
+                      padAjaxafb783debb071b09f0871592e437e1c1.onreadystatechange=function() {
+                      if (padAjaxafb783debb071b09f0871592e437e1c1.readyState === 4) {
+                      if (padAjaxafb783debb071b09f0871592e437e1c1.status === 200) {
+                      document.getElementById("padAjaxafb783debb071b09f0871592e437e1c1").innerHTML=padAjaxafb783debb071b09f0871592e437e1c1.responseText;
+                      } else {
+                      document.getElementById("padAjaxafb783debb071b09f0871592e437e1c1").innerHTML=padAjaxafb783debb071b09f0871592e437e1c1.statusText;
+                      }
+                      }
+                      }
+                      padAjaxafb783debb071b09f0871592e437e1c1.open("GET","http://localhost/pad/regression/pages/?select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation&padInclude",true);
+                      padAjaxafb783debb071b09f0871592e437e1c1.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
               </center>
             </td>
           </tr>

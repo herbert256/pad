@@ -96,10 +96,10 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">lorem</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">4</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">sentences</span>=<span class="hl-num">2</span>, <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">paragraphs</span>=<span class="hl-num">3</span>, <span class="hl-opt">sentences</span>=<span class="hl-num">4</span>, varied<span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">lorem</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">4</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">sentences</span>=<span class="hl-num">2</span>, <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">paragraphs</span>=<span class="hl-num">3</span>, <span class="hl-opt">sentences</span>=<span class="hl-num">4</span>, varied<span class="hl-brc">/}</span></code></pre>
             <h3>
               Options
             </h3>
@@ -167,9 +167,9 @@
                     <span>Template</span><span class="cell-file">examples/lorem/1-lengths.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;article</span> <span class="hl-opt">style</span>=<span class="hl-str">"max-width:60ch"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">4</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
-  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">sentences</span>=<span class="hl-num">2</span>, <span class="hl-opt">seed</span>=<span class="hl-num">2</span>, varied<span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">paragraphs</span>=<span class="hl-num">2</span>, <span class="hl-opt">sentences</span>=<span class="hl-num">3</span>, <span class="hl-opt">seed</span>=<span class="hl-num">3</span>, varied<span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">4</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">sentences</span>=<span class="hl-num">2</span>, <span class="hl-opt">seed</span>=<span class="hl-num">2</span>, varied<span class="hl-brc">/}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+  <span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">paragraphs</span>=<span class="hl-num">2</span>, <span class="hl-opt">sentences</span>=<span class="hl-num">3</span>, <span class="hl-opt">seed</span>=<span class="hl-num">3</span>, varied<span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;/article</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
@@ -210,8 +210,8 @@
                   <pre class="code"><code><span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px"</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..3'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'card'</span><span class="hl-brc">}</span>
     <span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"border:1px solid rgba(128,128,128,.35);border-radius:8px;padding:10px 12px"</span><span class="hl-htm">&gt;</span>
-      <span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">2</span>, <span class="hl-opt">seed</span>=<span class="hl-var">$card</span>, varied<span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span>
-      <span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"margin:6px 0 0"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">12</span>, <span class="hl-opt">seed</span>=<span class="hl-var">$card</span> + <span class="hl-num">100</span>, varied<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+      <span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">2</span>, <span class="hl-opt">seed</span>=<span class="hl-var">$card</span>, varied<span class="hl-brc">/}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span>
+      <span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"margin:6px 0 0"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">lorem</span> <span class="hl-opt">words</span>=<span class="hl-num">12</span>, <span class="hl-opt">seed</span>=<span class="hl-var">$card</span> + <span class="hl-num">100</span>, varied<span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
     <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>

@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$name</span> = value<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$name</span> = value, <span class="hl-var">$other</span> = value<span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$name</span> = value<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$name</span> = value, <span class="hl-var">$other</span> = value<span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -115,13 +115,13 @@
               Description
             </h2>
             <p>
-              <code>{set $name = value}</code> evaluates the value and assigns it to a global variable, which every tag after it can read as <code>{$name}</code>. Several assignments go in one tag, separated by commas. The tag prints nothing.
+              <code>{set $name = value/}</code> evaluates the value and assigns it to a global variable, which every tag after it can read as <code>{$name}</code>. Several assignments go in one tag, separated by commas. The tag prints nothing.
             </p>
             <p>
               The assignment sticks: a <code>{set}</code> inside a loop, an <code>{if}</code> or any other level outlives it, so a loop can add up a total that is still there after the loop. That is the difference with a <code>$name = value</code> written on another tag - <code>{orders $n = 5}</code> - which is that level's own and is unwound when the level closes, and with <code>%name = value</code>, which is set again for every occurrence.
             </p>
             <p>
-              The values of one <code>{set}</code> are evaluated before any of them is assigned: in <code>{set $a = 1, $b = $a + 1}</code> the <code>$a</code> on the right is the value from before the tag (an error when there was none). Write two <code>{set}</code> tags when one value builds on another.
+              The values of one <code>{set}</code> are evaluated before any of them is assigned: in <code>{set $a = 1, $b = $a + 1/}</code> the <code>$a</code> on the right is the value from before the tag (an error when there was none). Write two <code>{set}</code> tags when one value builds on another.
             </p>
             <p>
               Under the strict syntax check a <code>{set}</code> written as a pair, or one whose words hold no <code>$name = value</code> assignment (a missing <code>$</code>, a missing value), is an error. To count, <a href="index%EF%B9%96tag%EA%A4%B7increment.html">{increment}</a> and <a href="index%EF%B9%96tag%EA%A4%B7decrement.html">{decrement}</a> are shorter; to keep a list or a piece of template, <a href="index%EF%B9%96tag%EA%A4%B7data.html">{data}</a> and <a href="index%EF%B9%96tag%EA%A4%B7content.html">{content}</a>.
@@ -143,8 +143,8 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/set/1-assign.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$item</span> = <span class="hl-str">'Notebook'</span>, <span class="hl-var">$price</span> = <span class="hl-num">4.50</span>, <span class="hl-var">$qty</span> = <span class="hl-num">3</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$total</span> = <span class="hl-var">$price</span> * <span class="hl-var">$qty</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$item</span> = <span class="hl-str">'Notebook'</span>, <span class="hl-var">$price</span> = <span class="hl-num">4.50</span>, <span class="hl-var">$qty</span> = <span class="hl-num">3</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$total</span> = <span class="hl-var">$price</span> * <span class="hl-var">$qty</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$qty</span><span class="hl-brc">}</span> <span class="hl-var">&amp;times</span>; <span class="hl-brc">{</span><span class="hl-var">$item</span><span class="hl-brc">}</span> at <span class="hl-brc">{</span><span class="hl-var">$price</span><span class="hl-brc">}</span> = <span class="hl-brc">{</span><span class="hl-var">$total</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
@@ -171,9 +171,9 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/set/2-sticks.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$sum</span> = <span class="hl-num">0</span>, <span class="hl-var">$note</span> = <span class="hl-str">'before'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$sum</span> = <span class="hl-num">0</span>, <span class="hl-var">$note</span> = <span class="hl-str">'before'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..4'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'num'</span>, <span class="hl-var">$note</span> = <span class="hl-str">'inside'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$sum</span> = <span class="hl-var">$sum</span> + <span class="hl-var">$num</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$sum</span> = <span class="hl-var">$sum</span> + <span class="hl-var">$num</span><span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$num</span><span class="hl-brc">}</span>: running total <span class="hl-brc">{</span><span class="hl-var">$sum</span><span class="hl-brc">}</span>, note <span class="hl-brc">{</span><span class="hl-var">$note</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>After the loop: total <span class="hl-brc">{</span><span class="hl-var">$sum</span><span class="hl-brc">}</span>, note <span class="hl-brc">{</span><span class="hl-var">$note</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>

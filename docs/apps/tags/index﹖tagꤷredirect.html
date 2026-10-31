@@ -96,9 +96,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'orders/list'</span>, <span class="hl-var">$status</span> = <span class="hl-str">'open'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'https://example.com/'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'orders/list'</span>, <span class="hl-var">$status</span> = <span class="hl-str">'open'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'https://example.com/'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -116,10 +116,10 @@
               Description
             </h2>
             <p>
-              <code>{redirect 'name'}</code> answers the request with a <code>302 Found</code> and a <code>Location</code> header, and ends it there: nothing after the tag runs and nothing of the page is sent. The browser then asks for the new address itself, so its address bar shows it - the pattern after a form post, where a reload must not post again.
+              <code>{redirect 'name'/}</code> answers the request with a <code>302 Found</code> and a <code>Location</code> header, and ends it there: nothing after the tag runs and nothing of the page is sent. The browser then asks for the new address itself, so its address bar shows it - the pattern after a form post, where a reload must not post again.
             </p>
             <p>
-              Variables assigned on the tag - <code>{redirect 'list', $status = 'open'}</code> - are added to the new address's query string. A page name stays on this site and is resolved as <a href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> resolves one; under the strict check a plain page name that does not exist is an error, instead of a clean 302 into a 404.
+              Variables assigned on the tag - <code>{redirect 'list', $status = 'open'/}</code> - are added to the new address's query string. A page name stays on this site and is resolved as <a href="index%EF%B9%96tag%EA%A4%B7page.html">{page}</a> resolves one; under the strict check a plain page name that does not exist is an error, instead of a clean 302 into a 404.
             </p>
             <p>
               An absolute <code>http://</code> or <code>https://</code> address is sent as written, with the assigned values added in front of any <code>#fragment</code>. That means a target taken from the request can leave the site: the template must check it first. <code>padRedirect()</code> in PHP takes page names only and never leaves the site; called without a page it goes back to the page that was asked for.
@@ -145,7 +145,7 @@
                     <span>Template</span><span class="cell-file">examples/redirect/1-after-post.src</span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$saved</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'orders/list'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'orders/list'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span></code></pre>
                 </div>
               </div>
@@ -162,7 +162,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/redirect/2-values.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'orders/list'</span>, <span class="hl-var">$status</span> = <span class="hl-str">'open'</span>, <span class="hl-var">$page</span> = <span class="hl-num">2</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'orders/list'</span>, <span class="hl-var">$status</span> = <span class="hl-str">'open'</span>, <span class="hl-var">$page</span> = <span class="hl-num">2</span><span class="hl-brc">/}</span>
 <span class="hl-com">{# Location: ?orders/list&amp;status=open&amp;page=2 #}</span></code></pre>
                 </div>
               </div>
@@ -179,7 +179,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/redirect/3-external.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'https://example.com/help#contact'</span>, <span class="hl-var">$from</span> = <span class="hl-str">'shop'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">redirect</span> <span class="hl-str">'https://example.com/help#contact'</span>, <span class="hl-var">$from</span> = <span class="hl-str">'shop'</span><span class="hl-brc">/}</span>
 <span class="hl-com">{# Location: https://example.com/help?from=shop#contact #}</span></code></pre>
                 </div>
               </div>

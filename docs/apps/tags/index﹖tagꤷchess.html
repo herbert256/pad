@@ -99,8 +99,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chess</span> <span class="hl-str">'fen'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">chess</span> <span class="hl-str">'fen'</span>, flip, <span class="hl-opt">highlight</span>=<span class="hl-str">'e2, e4'</span>, <span class="hl-opt">arrow</span>=<span class="hl-str">'e2-e4, g8-f6'</span>, <span class="hl-opt">size</span>=<span class="hl-num">320</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Name'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chess</span> <span class="hl-str">'fen'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">chess</span> <span class="hl-str">'fen'</span>, flip, <span class="hl-opt">highlight</span>=<span class="hl-str">'e2, e4'</span>, <span class="hl-opt">arrow</span>=<span class="hl-str">'e2-e4, g8-f6'</span>, <span class="hl-opt">size</span>=<span class="hl-num">320</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Name'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -156,7 +156,7 @@
               <code>{chess}</code> draws a chess position as inline SVG: the board, the pieces as shapes of PAD's own (no font, no image), the coordinates along the edges, and optionally marked squares and arrows - for the last move, a plan or a threat. It is drawn on the server and needs no script.
             </p>
             <p>
-              The position is written in FEN (Forsyth-Edwards Notation). Only the first field, the placement of the pieces rank by rank from rank 8, is required: <code>{chess '8/8/8/4k3/8/8/4K3/8'}</code>. When the other fields are written - side to move, castling rights, en passant square, half-move clock and move number - they are checked, and the side to move is part of the description.
+              The position is written in FEN (Forsyth-Edwards Notation). Only the first field, the placement of the pieces rank by rank from rank 8, is required: <code>{chess '8/8/8/4k3/8/8/4K3/8'/}</code>. When the other fields are written - side to move, castling rights, en passant square, half-move clock and move number - they are checked, and the side to move is part of the description.
             </p>
             <p>
               <code>flip</code> turns the board so Black plays up. <code>highlight=</code> marks squares and <code>arrow=</code> draws arrows from the middle of one square to the middle of another, over the pieces. <code>size=</code> sets the width and height in pixels.
@@ -181,7 +181,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/chess/1-start.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chess</span> <span class="hl-str">'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'</span>, <span class="hl-opt">size</span>=<span class="hl-num">240</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chess</span> <span class="hl-str">'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR'</span>, <span class="hl-opt">size</span>=<span class="hl-num">240</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -432,7 +432,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/chess/2-move.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chess</span> <span class="hl-str">'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'</span>, flip, <span class="hl-opt">highlight</span>=<span class="hl-str">'e2, e4'</span>, <span class="hl-opt">arrow</span>=<span class="hl-str">'c7-c5, e7-e5'</span>, <span class="hl-opt">size</span>=<span class="hl-num">280</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chess</span> <span class="hl-str">'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'</span>, flip, <span class="hl-opt">highlight</span>=<span class="hl-str">'e2, e4'</span>, <span class="hl-opt">arrow</span>=<span class="hl-str">'c7-c5, e7-e5'</span>, <span class="hl-opt">size</span>=<span class="hl-num">280</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -687,7 +687,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/chess/3-opera.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chess</span> <span class="hl-var">$fen</span>, <span class="hl-opt">highlight</span>=<span class="hl-str">'d1, d8'</span>, <span class="hl-opt">arrow</span>=<span class="hl-str">'g5-d8'</span>, <span class="hl-opt">size</span>=<span class="hl-num">280</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Morphy against the Duke and the Count, Paris 1858: 17.Rd8 mate'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chess</span> <span class="hl-var">$fen</span>, <span class="hl-opt">highlight</span>=<span class="hl-str">'d1, d8'</span>, <span class="hl-opt">arrow</span>=<span class="hl-str">'g5-d8'</span>, <span class="hl-opt">size</span>=<span class="hl-num">280</span>, <span class="hl-opt">title</span>=<span class="hl-str">'Morphy against the Duke and the Count, Paris 1858: 17.Rd8 mate'</span><span class="hl-brc">/}</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/chess/3-opera.php</span>
                   </div>

@@ -110,7 +110,7 @@
           Where expressions stand
         </h2>
         <p>
-          An expression is read wherever a tag takes a value: the parameter of <b>{echo}</b> and of <code>{if}</code> and <code>{elseif}</code>, the right side of <code>{set $x = ...}</code>, the value of <code>{case}</code> and its <code>{when}</code>s, the condition of <code>{while}</code> and <code>{until}</code>, a quoted option such as <code>where='...'</code>, and an occurrence assignment <code>%name = ...</code> on a tag that loops:
+          An expression is read wherever a tag takes a value: the parameter of <b>{echo}</b> and of <code>{if}</code> and <code>{elseif}</code>, the right side of <code>{set $x = .../}</code>, the value of <code>{case}</code> and its <code>{when}</code>s, the condition of <code>{while}</code> and <code>{until}</code>, a quoted option such as <code>where='...'</code>, and an occurrence assignment <code>%name = ...</code> on a tag that loops:
         </p>
         <table border="1" cellpadding="10" cellspacing="0">
           <tr>
@@ -129,7 +129,7 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>price = 12.5</font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>qty   = 3</font>}</b><br>&lt;p&gt;Total: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>price * <font color="red">$</font>qty</font>}</b>&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>total = <font color="red">$</font>price * <font color="red">$</font>qty</font>}</b><br>&lt;p&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>total gt 30</font>}</b>Free shipping<b>{<font color="blue">else</font><font color="red"></font>}</b>Shipping: 4.95<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>price = 12.5</font>/}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>qty   = 3</font>/}</b><br>&lt;p&gt;Total: <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>price * <font color="red">$</font>qty</font>/}</b>&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>total = <font color="red">$</font>price * <font color="red">$</font>qty</font>/}</b><br>&lt;p&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>total gt 30</font>}</b>Free shipping<b>{<font color="blue">else</font><font color="red"></font>}</b>Shipping: 4.95<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -187,7 +187,7 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>n = 7</font>}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b> is <b>{<font color="blue">case </font><font color="red"><font color="red">$</font>n <font color="black">%</font> 2</font>}</b><b>{<font color="blue">when</font><font color="red">0</font>}</b>even<b>{<font color="blue">when </font><font color="red">1</font>}</b>odd<b>{/<font color="blue">case</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 1</font>}</b><br>&lt;p&gt;<b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i le 20</font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b> <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = <font color="red">$</font>i * 2</font>}</b><b>{/<font color="blue">while</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>n = 7</font>/}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b> is <b>{<font color="blue">case </font><font color="red"><font color="red">$</font>n <font color="black">%</font> 2</font>}</b><b>{<font color="blue">when</font><font color="red">0</font>}</b>even<b>{<font color="blue">when </font><font color="red">1</font>}</b>odd<b>{/<font color="blue">case</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 1</font>/}</b><br>&lt;p&gt;<b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i le 20</font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b> <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = <font color="red">$</font>i * 2</font>/}</b><b>{/<font color="blue">while</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -219,7 +219,7 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>name = <font color="black">'</font>  ada lovelace  <font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">trim</font> <font color="black">|</font> <font color="blue">ucwords</font>}</b>&lt;/p&gt;<br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>langs<font color="black">'</font></font>}</b>["php", "sql", "pad"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue">langs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>langs</font>}</b> <b>{/<font color="blue">langs </font><font color="red"><font color="black">|</font> upper</font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>name = <font color="black">'</font>  ada lovelace  <font color="black">'</font></font>/}</b><br>&lt;p&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">trim</font> <font color="black">|</font> <font color="blue">ucwords</font>}</b>&lt;/p&gt;<br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>langs<font color="black">'</font></font>}</b>["php", "sql", "pad"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue">langs</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>langs</font>}</b> <b>{/<font color="blue">langs </font><font color="red"><font color="black">|</font> upper</font>}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -253,7 +253,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">42</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">42</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->42<!-- END DEMO RESULT --></span></code>
@@ -262,7 +262,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-7 + 2</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-7 + 2</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->-5<!-- END DEMO RESULT --></span></code>
@@ -271,7 +271,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1.25 * 4</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1.25 * 4</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->5<!-- END DEMO RESULT --></span></code>
@@ -280,7 +280,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">.5 + .25</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">.5 + .25</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0.75<!-- END DEMO RESULT --></span></code>
@@ -289,7 +289,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1e3 + 1</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1e3 + 1</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1001<!-- END DEMO RESULT --></span></code>
@@ -298,7 +298,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2.5E-1 * 4</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2.5E-1 * 4</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1<!-- END DEMO RESULT --></span></code>
@@ -307,7 +307,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0x41</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0x41</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->A<!-- END DEMO RESULT --></span></code>
@@ -316,7 +316,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0x504144</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0x504144</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->PAD<!-- END DEMO RESULT --></span></code>
@@ -343,7 +343,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>single quotes<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>single quotes<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->single quotes<!-- END DEMO RESULT --></span></code>
@@ -352,7 +352,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">"double quotes"</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">"double quotes"</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->double quotes<!-- END DEMO RESULT --></span></code>
@@ -361,7 +361,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>it\<font color="black">'</font>s<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>it\<font color="black">'</font>s<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->it's<!-- END DEMO RESULT --></span></code>
@@ -370,7 +370,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">"say \"hi\""</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">"say \"hi\""</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->say "hi"<!-- END DEMO RESULT --></span></code>
@@ -379,7 +379,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>back\\slash<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>back\\slash<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->back\slash<!-- END DEMO RESULT --></span></code>
@@ -388,7 +388,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>one\ntwo<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>nl2br</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>one\ntwo<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>nl2br</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->one<br>
@@ -398,7 +398,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">"a\tb" <font color="black">|</font> php<font color="black">:</font>strlen</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">"a\tb" <font color="black">|</font> php<font color="black">:</font>strlen</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3<!-- END DEMO RESULT --></span></code>
@@ -407,7 +407,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Order <font color="black">'</font> . 42 . "!"</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Order <font color="black">'</font> . 42 . "!"</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->Order 42!<!-- END DEMO RESULT --></span></code>
@@ -434,7 +434,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">TRUE</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">TRUE</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1<!-- END DEMO RESULT --></span></code>
@@ -443,7 +443,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">FALSE</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">NULL</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">FALSE</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">NULL</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[] []<!-- END DEMO RESULT --></span></code>
@@ -452,7 +452,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">PHP_INT_SIZE</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">PHP_INT_SIZE</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->8<!-- END DEMO RESULT --></span></code>
@@ -461,7 +461,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">M_PI <font color="black">|</font> <font color="black">%</font>.4f</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">M_PI <font color="black">|</font> <font color="black">%</font>.4f</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3.1416<!-- END DEMO RESULT --></span></code>
@@ -470,7 +470,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">hello</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">hello</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->hello<!-- END DEMO RESULT --></span></code>
@@ -479,7 +479,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello<font color="black">'</font> eq hello</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>hello<font color="black">'</font> eq hello</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1<!-- END DEMO RESULT --></span></code>
@@ -488,7 +488,7 @@
         </table>
         <p></p>
         <p>
-          <b>Quote text.</b> A bare word that names something PAD knows - a function, a tag, a property, a data set, a field - is that thing: <code>count</code>, <code>name</code> and <code>first</code> are <a href="index%EF%B9%96pages%EA%A4%B7properties.html">properties</a>, so <code>{echo count}</code> does not write the word count. Text in quotes is always text.
+          <b>Quote text.</b> A bare word that names something PAD knows - a function, a tag, a property, a data set, a field - is that thing: <code>count</code>, <code>name</code> and <code>first</code> are <a href="index%EF%B9%96pages%EA%A4%B7properties.html">properties</a>, so <code>{echo count/}</code> does not write the word count. Text in quotes is always text.
         </p>
         <h3>
           Fields, paths and indirection
@@ -515,7 +515,7 @@
               <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $user  </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada'</span><span style="color: #007700">, </span><span style="color: #DD0000">'address' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'London'</span><span style="color: #007700">, </span><span style="color: #DD0000">'zip' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'W1' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$langs </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'PHP'</span><span style="color: #007700">, </span><span style="color: #DD0000">'SQL'</span><span style="color: #007700">, </span><span style="color: #DD0000">'PAD' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
             </td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>user.name . <font color="black">'</font> from <font color="black">'</font> . <font color="red">$</font>user.address.city</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>langs.0</font>}</b> and <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>langs.2</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$user.address.city</font> <font color="black">|</font> <font color="blue">upper</font>}</b>, <b>{<font color="green"><font color="red">$</font>user.address.zip</font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>user.name . <font color="black">'</font> from <font color="black">'</font> . <font color="red">$</font>user.address.city</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>langs.0</font>/}</b> and <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>langs.2</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$user.address.city</font> <font color="black">|</font> <font color="blue">upper</font>}</b>, <b>{<font color="green"><font color="red">$</font>user.address.zip</font>}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -552,7 +552,7 @@
               <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $lang     </span><span style="color: #007700">= </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_en </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hello'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_nl </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hallo'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hello_de </span><span style="color: #007700">= </span><span style="color: #DD0000">'Guten Tag'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$user     </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ada'</span><span style="color: #007700">, </span><span style="color: #DD0000">'address' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'city' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'London' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$show     </span><span style="color: #007700">= </span><span style="color: #DD0000">'user.address.city'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
             </td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>key = <font color="black">'</font>hello_<font color="black">'</font> . <font color="red">$</font>lang</font>}</b><br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font><font color="red">$</font>key</font>}</b>, <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>user.name</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font><font color="red">$</font>show</font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>key = <font color="black">'</font>hello_<font color="black">'</font> . <font color="red">$</font>lang</font>/}</b><br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font><font color="red">$</font>key</font>/}</b>, <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>user.name</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font><font color="red">$</font>show</font>/}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -598,7 +598,7 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">define </font><font color="red"><font color="black">'</font>gross<font color="black">'</font></font>}</b><b>{<font color="blue">parms </font><font color="red">net<font color="black">,</font> vat=21</font>}</b><b>{<font color="blue">echo </font><font color="red">#net * (1 + #vat / 100) <font color="black">|</font> <font color="black">%</font>.2f</font>}</b><b>{/<font color="blue">define</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue">gross </font><font color="red">net=100</font>}</b> and <b>{<font color="blue">gross </font><font color="red">net=100<font color="black">,</font> vat=9</font>}</b>&lt;/p&gt;<br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>steps<font color="black">'</font></font>}</b>["plan", "build", "ship"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">steps</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="blue">echo </font><font color="red">&amp;current . <font color="black">'</font> of <font color="black">'</font> . &amp;count</font>}</b>: <b>{<font color="green"><font color="red">$</font>steps</font>}</b><b>{<font color="blue">echo </font><font color="red">last<font color="black">@</font>steps ? <font color="black">'</font> - the last one<font color="black">'</font> <font color="black">:</font> <font color="black">'</font><font color="black">'</font></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">steps</font><font color="red"></font>}</b></code></pre>
+              <pre><code style="color: #000000"><b>{<font color="blue">define </font><font color="red"><font color="black">'</font>gross<font color="black">'</font></font>}</b><b>{<font color="blue">parms </font><font color="red">net<font color="black">,</font> vat=21</font>/}</b><b>{<font color="blue">echo </font><font color="red">#net * (1 + #vat / 100) <font color="black">|</font> <font color="black">%</font>.2f</font>/}</b><b>{/<font color="blue">define</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue">gross </font><font color="red">net=100</font>/}</b> and <b>{<font color="blue">gross </font><font color="red">net=100<font color="black">,</font> vat=9</font>/}</b>&lt;/p&gt;<br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>steps<font color="black">'</font></font>}</b>["plan", "build", "ship"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">steps</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="blue">echo </font><font color="red">&amp;current . <font color="black">'</font> of <font color="black">'</font> . &amp;count</font>/}</b>: <b>{<font color="green"><font color="red">$</font>steps</font>}</b><b>{<font color="blue">echo </font><font color="red">last<font color="black">@</font>steps ? <font color="black">'</font> - the last one<font color="black">'</font> <font color="black">:</font> <font color="black">'</font><font color="black">'</font></font>/}</b>&lt;/p&gt;<br><b>{/<font color="blue">steps</font><font color="red"></font>}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -639,7 +639,7 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>book = [ <font color="black">'</font>title<font color="black">'</font> =&gt; <font color="black">'</font>Minutes<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pages<font color="black">'</font> =&gt; 2 * 120 ]</font>}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>book.title</font>}</b>: <b>{<font color="green"><font color="red">$</font>book.pages</font>}</b> pages&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>primes = [2<font color="black">,</font> 3<font color="black">,</font> 5<font color="black">,</font> 7]</font>}</b><br>&lt;p&gt;<b>{<font color="blue">primes</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>primes</font>}</b> <b>{/<font color="blue">primes</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> + <font color="black">'</font><font color="black">,</font> [1<font color="black">,</font> 2<font color="black">,</font> 3]) . <font color="black">'</font> = <font color="black">'</font> . php<font color="black">:</font>array_sum([1<font color="black">,</font> 2<font color="black">,</font> 3])</font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>book = [ <font color="black">'</font>title<font color="black">'</font> =&gt; <font color="black">'</font>Minutes<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pages<font color="black">'</font> =&gt; 2 * 120 ]</font>/}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>book.title</font>}</b>: <b>{<font color="green"><font color="red">$</font>book.pages</font>}</b> pages&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>primes = [2<font color="black">,</font> 3<font color="black">,</font> 5<font color="black">,</font> 7]</font>/}</b><br>&lt;p&gt;<b>{<font color="blue">primes</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>primes</font>}</b> <b>{/<font color="blue">primes</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font> + <font color="black">'</font><font color="black">,</font> [1<font color="black">,</font> 2<font color="black">,</font> 3]) . <font color="black">'</font> = <font color="black">'</font> . php<font color="black">:</font>array_sum([1<font color="black">,</font> 2<font color="black">,</font> 3])</font>/}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -677,7 +677,7 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>colors<font color="black">'</font></font>}</b>["red", "green", "blue"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>nums = [4<font color="black">,</font> 8<font color="black">,</font> 15]</font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>title = <font color="black">'</font>Prefixes<font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">constant<font color="black">:</font>PHP_INT_SIZE</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(data<font color="black">:</font>colors)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(array<font color="black">:</font>nums)</font>}</b> numbers, together <b>{<font color="blue">echo </font><font color="red">array<font color="black">:</font>nums + 0</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>=<font color="black">'</font><font color="black">,</font> 5)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">field<font color="black">:</font>title <font color="black">|</font> upper</font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>colors<font color="black">'</font></font>}</b>["red", "green", "blue"]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>nums = [4<font color="black">,</font> 8<font color="black">,</font> 15]</font>/}</b><br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>title = <font color="black">'</font>Prefixes<font color="black">'</font></font>/}</b><br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">constant<font color="black">:</font>PHP_INT_SIZE</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(data<font color="black">:</font>colors)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(array<font color="black">:</font>nums)</font>/}</b> numbers, together <b>{<font color="blue">echo </font><font color="red">array<font color="black">:</font>nums + 0</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>=<font color="black">'</font><font color="black">,</font> 5)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">field<font color="black">:</font>title <font color="black">|</font> upper</font>/}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -840,7 +840,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 + 3</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 + 3</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->10<!-- END DEMO RESULT --></span></code>
@@ -849,7 +849,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 - 3</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 - 3</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->4<!-- END DEMO RESULT --></span></code>
@@ -858,7 +858,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 * 3</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 * 3</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->21<!-- END DEMO RESULT --></span></code>
@@ -867,7 +867,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 / 2</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 / 2</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3.5<!-- END DEMO RESULT --></span></code>
@@ -876,7 +876,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 <font color="black">%</font> 3</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 <font color="black">%</font> 3</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1<!-- END DEMO RESULT --></span></code>
@@ -885,7 +885,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 ** 10</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 ** 10</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1024<!-- END DEMO RESULT --></span></code>
@@ -894,7 +894,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-(2 + 3)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-(2 + 3)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->-5<!-- END DEMO RESULT --></span></code>
@@ -903,7 +903,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">10 / 3</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">10 / 3</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3.3333333333333<!-- END DEMO RESULT --></span></code>
@@ -927,7 +927,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1 + 2 * 3</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1 + 2 * 3</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->7<!-- END DEMO RESULT --></span></code>
@@ -936,7 +936,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(1 + 2) * 3</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(1 + 2) * 3</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->9<!-- END DEMO RESULT --></span></code>
@@ -945,7 +945,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">10 - 2 + 3</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">10 - 2 + 3</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->11<!-- END DEMO RESULT --></span></code>
@@ -954,7 +954,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">12 / 2 * 3</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">12 / 2 * 3</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->18<!-- END DEMO RESULT --></span></code>
@@ -963,7 +963,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 ** 3 ** 2</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 ** 3 ** 2</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->512<!-- END DEMO RESULT --></span></code>
@@ -972,7 +972,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-3 ** 2</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-3 ** 2</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->-9<!-- END DEMO RESULT --></span></code>
@@ -981,7 +981,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(-3) ** 2</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(-3) ** 2</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->9<!-- END DEMO RESULT --></span></code>
@@ -990,7 +990,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 ** -1</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 ** -1</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0.5<!-- END DEMO RESULT --></span></code>
@@ -1017,7 +1017,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Order <font color="black">'</font> . 42</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Order <font color="black">'</font> . 42</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->Order 42<!-- END DEMO RESULT --></span></code>
@@ -1026,7 +1026,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Total<font color="black">:</font> <font color="black">'</font> . 3 * 4</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Total<font color="black">:</font> <font color="black">'</font> . 3 * 4</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->Total: 12<!-- END DEMO RESULT --></span></code>
@@ -1035,7 +1035,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1 + 2 . 3</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1 + 2 . 3</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->33<!-- END DEMO RESULT --></span></code>
@@ -1044,7 +1044,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1 . 5 + 5</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1 . 5 + 5</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->110<!-- END DEMO RESULT --></span></code>
@@ -1053,7 +1053,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(1 . 5) + 5</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(1 . 5) + 5</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->20<!-- END DEMO RESULT --></span></code>
@@ -1062,7 +1062,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a<font color="black">'</font>.1</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a<font color="black">'</font>.1</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->a1<!-- END DEMO RESULT --></span></code>
@@ -1089,7 +1089,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">3 eq 3</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">3 == <font color="black">'</font>3<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red">3 = 4</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">3 eq 3</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">3 == <font color="black">'</font>3<font color="black">'</font></font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">3 = 4</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1] []<!-- END DEMO RESULT --></span></code>
@@ -1098,7 +1098,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">3 ne 4</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">3 != 4</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">3 &lt;&gt; 3</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">3 ne 4</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">3 != 4</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">3 &lt;&gt; 3</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1] []<!-- END DEMO RESULT --></span></code>
@@ -1107,7 +1107,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">2 lt 10</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">2 &lt; 10</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">9 le 9</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">2 lt 10</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">2 &lt; 10</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">9 le 9</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1] [1]<!-- END DEMO RESULT --></span></code>
@@ -1116,7 +1116,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">5 gt 9</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">5 &gt;= 5</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">5 gt 9</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">5 &gt;= 5</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[] [1]<!-- END DEMO RESULT --></span></code>
@@ -1125,7 +1125,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2<font color="black">'</font> lt <font color="black">'</font>10<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>apple<font color="black">'</font> lt <font color="black">'</font>banana<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2<font color="black">'</font> lt <font color="black">'</font>10<font color="black">'</font></font>/}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>apple<font color="black">'</font> lt <font color="black">'</font>banana<font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1]<!-- END DEMO RESULT --></span></code>
@@ -1134,7 +1134,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> eq <font color="black">'</font>ABC<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> eq 0</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> eq <font color="black">'</font>ABC<font color="black">'</font></font>/}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> eq 0</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[] []<!-- END DEMO RESULT --></span></code>
@@ -1161,7 +1161,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 and 0</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">1 &amp;& 1</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 and 0</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">1 &amp;& 1</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[] [1]<!-- END DEMO RESULT --></span></code>
@@ -1170,7 +1170,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 or 0</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">0 <font color="black">|</font><font color="black">|</font> 0</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 or 0</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">0 <font color="black">|</font><font color="black">|</font> 0</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code>
@@ -1179,7 +1179,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 xor 1</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">1 xor 0</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 xor 1</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">1 xor 0</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[] [1]<!-- END DEMO RESULT --></span></code>
@@ -1188,7 +1188,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">not 1</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">!0</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">not 1</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">!0</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[] [1]<!-- END DEMO RESULT --></span></code>
@@ -1197,7 +1197,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">not 1 eq 2</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">not 1 eq 2</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1206,7 +1206,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 eq 1 and not 2 eq 3</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">1 eq 1 and not 2 eq 3</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1215,7 +1215,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">2 gt 1 and 3 gt 2 or 0</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">2 gt 1 and 3 gt 2 or 0</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1248,7 +1248,7 @@
               <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $nickname </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$count    </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$tags     </span><span style="color: #007700">= [];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
             </td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>nickname ?? <font color="black">'</font>no nickname<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count ?? <font color="black">'</font>no count<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>surname ?? <font color="black">'</font>no surname<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>surname ?? <font color="red">$</font>nickname ?? <font color="black">'</font>nothing at all<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$nickname</font> <font color="black">|</font> <font color="blue">?? 'anonymous'</font>}</b> - <b>{<font color="green">$nickname</font> <font color="black">|</font> <font color="blue">default('anonymous')</font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>nickname ?? <font color="black">'</font>no nickname<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count ?? <font color="black">'</font>no count<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>surname ?? <font color="black">'</font>no surname<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>surname ?? <font color="red">$</font>nickname ?? <font color="black">'</font>nothing at all<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="green">$nickname</font> <font color="black">|</font> <font color="blue">?? 'anonymous'</font>}</b> - <b>{<font color="green">$nickname</font> <font color="black">|</font> <font color="blue">default('anonymous')</font>}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -1288,7 +1288,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">3 gt 1 ? <font color="black">'</font>many<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>one<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">3 gt 1 ? <font color="black">'</font>many<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>one<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->many<!-- END DEMO RESULT --></span></code>
@@ -1297,7 +1297,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">15 gt 10 ? (15 gt 20 ? <font color="black">'</font>L<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>M<font color="black">'</font>) <font color="black">:</font> <font color="black">'</font>S<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">15 gt 10 ? (15 gt 20 ? <font color="black">'</font>L<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>M<font color="black">'</font>) <font color="black">:</font> <font color="black">'</font>S<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->M<!-- END DEMO RESULT --></span></code>
@@ -1306,7 +1306,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">15 gt 20 ? <font color="black">'</font>L<font color="black">'</font> <font color="black">:</font> 15 gt 10 ? <font color="black">'</font>M<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>S<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">15 gt 20 ? <font color="black">'</font>L<font color="black">'</font> <font color="black">:</font> 15 gt 10 ? <font color="black">'</font>M<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>S<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->M<!-- END DEMO RESULT --></span></code>
@@ -1315,7 +1315,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> ?<font color="black">:</font> <font color="black">'</font>Untitled<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> ?<font color="black">:</font> <font color="black">'</font>Untitled<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->Untitled<!-- END DEMO RESULT --></span></code>
@@ -1324,7 +1324,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Draft<font color="black">'</font> ?<font color="black">:</font> <font color="black">'</font>Untitled<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Draft<font color="black">'</font> ?<font color="black">:</font> <font color="black">'</font>Untitled<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->Draft<!-- END DEMO RESULT --></span></code>
@@ -1333,7 +1333,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0 <font color="black">|</font> ? <font color="black">'</font>some<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>none<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0 <font color="black">|</font> ? <font color="black">'</font>some<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>none<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->none<!-- END DEMO RESULT --></span></code>
@@ -1342,7 +1342,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0 ? <font color="black">'</font>yes<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>no<font color="black">'</font> . <font color="black">'</font>!<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0 ? <font color="black">'</font>yes<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>no<font color="black">'</font> . <font color="black">'</font>!<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->no!<!-- END DEMO RESULT --></span></code>
@@ -1367,7 +1367,7 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cart<font color="black">'</font></font>}</b><br>  [ {"item": "pen", "qty": 1}, {"item": "book", "qty": 3}, {"item": "lamp", "qty": 0} ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">cart</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>qty</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>qty eq 1 ? <font color="red">$</font>item <font color="black">:</font> <font color="red">$</font>item . <font color="black">'</font>s<font color="black">'</font></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>qty ? <font color="black">'</font><font color="black">'</font> <font color="black">:</font> <font color="black">'</font> - sold out<font color="black">'</font></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">cart</font><font color="red"></font>}</b></code></pre>
+              <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>cart<font color="black">'</font></font>}</b><br>  [ {"item": "pen", "qty": 1}, {"item": "book", "qty": 3}, {"item": "lamp", "qty": 0} ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">cart</font><font color="red"></font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>qty</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>qty eq 1 ? <font color="red">$</font>item <font color="black">:</font> <font color="red">$</font>item . <font color="black">'</font>s<font color="black">'</font></font>/}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>qty ? <font color="black">'</font><font color="black">'</font> <font color="black">:</font> <font color="black">'</font> - sold out<font color="black">'</font></font>/}</b>&lt;/p&gt;<br><b>{/<font color="blue">cart</font><font color="red"></font>}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -1401,7 +1401,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code>
@@ -1410,7 +1410,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>0<font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>0<font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code>
@@ -1419,7 +1419,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0 ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0 ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code>
@@ -1428,7 +1428,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">NULL ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">NULL ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code>
@@ -1437,7 +1437,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[] ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[] ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code>
@@ -1446,7 +1446,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>0.0<font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>0.0<font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code>
@@ -1455,7 +1455,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>false<font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>false<font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code>
@@ -1464,7 +1464,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font> <font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font> <font color="black">'</font> ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code>
@@ -1473,7 +1473,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-1 ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">-1 ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code>
@@ -1482,7 +1482,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[0] ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[0] ? <font color="black">'</font>true<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>false<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code>
@@ -1506,7 +1506,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">2 gt 1</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">1 gt 2</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">2 gt 1</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">1 gt 2</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code>
@@ -1515,7 +1515,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(2 gt 1) + (3 gt 1) + (0 gt 1)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(2 gt 1) + (3 gt 1) + (0 gt 1)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2<!-- END DEMO RESULT --></span></code>
@@ -1524,7 +1524,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(<font color="black">'</font>a<font color="black">'</font> eq <font color="black">'</font>a<font color="black">'</font>) . <font color="black">'</font>/<font color="black">'</font> . (<font color="black">'</font>a<font color="black">'</font> eq <font color="black">'</font>b<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(<font color="black">'</font>a<font color="black">'</font> eq <font color="black">'</font>a<font color="black">'</font>) . <font color="black">'</font>/<font color="black">'</font> . (<font color="black">'</font>a<font color="black">'</font> eq <font color="black">'</font>b<font color="black">'</font>)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1/<!-- END DEMO RESULT --></span></code>
@@ -1618,7 +1618,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a<font color="black">'</font> in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a<font color="black">'</font> in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code>
@@ -1627,7 +1627,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">3 in (1<font color="black">,</font> 2<font color="black">,</font> 3)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">3 in (1<font color="black">,</font> 2<font color="black">,</font> 3)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1636,7 +1636,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> not in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> not in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1645,7 +1645,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">5 + 1 in (6<font color="black">,</font> 7)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">5 + 1 in (6<font color="black">,</font> 7)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1654,7 +1654,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">not <font color="black">'</font>a<font color="black">'</font> in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">not <font color="black">'</font>a<font color="black">'</font> in (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[]<!-- END DEMO RESULT --></span></code>
@@ -1678,7 +1678,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Alice<font color="black">'</font> like <font color="black">'</font>A<font color="black">%</font><font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>alice<font color="black">'</font> like <font color="black">'</font>A<font color="black">%</font><font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Alice<font color="black">'</font> like <font color="black">'</font>A<font color="black">%</font><font color="black">'</font></font>/}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>alice<font color="black">'</font> like <font color="black">'</font>A<font color="black">%</font><font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1]<!-- END DEMO RESULT --></span></code>
@@ -1687,7 +1687,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Bob<font color="black">'</font> like <font color="black">'</font>B_b<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Barb<font color="black">'</font> like <font color="black">'</font>B_b<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Bob<font color="black">'</font> like <font color="black">'</font>B_b<font color="black">'</font></font>/}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Barb<font color="black">'</font> like <font color="black">'</font>B_b<font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code>
@@ -1696,7 +1696,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Bob<font color="black">'</font> not like <font color="black">'</font>A<font color="black">%</font><font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Bob<font color="black">'</font> not like <font color="black">'</font>A<font color="black">%</font><font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1705,7 +1705,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>50<font color="black">%</font><font color="black">'</font> like <font color="black">'</font>50\\<font color="black">%</font><font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>500<font color="black">'</font> like <font color="black">'</font>50\\<font color="black">%</font><font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>50<font color="black">%</font><font color="black">'</font> like <font color="black">'</font>50\\<font color="black">%</font><font color="black">'</font></font>/}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>500<font color="black">'</font> like <font color="black">'</font>50\\<font color="black">%</font><font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code>
@@ -1729,7 +1729,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>NL1234<font color="black">'</font> matches <font color="black">'</font>/^[A-Z][A-Z][0-9]+<font color="red">$</font>/<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>NL1234<font color="black">'</font> matches <font color="black">'</font>/^[A-Z][A-Z][0-9]+<font color="red">$</font>/<font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1738,7 +1738,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a.b<font color="black">'</font> matches <font color="black">'</font>/a\\.b/<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>axb<font color="black">'</font> matches <font color="black">'</font>/a\\.b/<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a.b<font color="black">'</font> matches <font color="black">'</font>/a\\.b/<font color="black">'</font></font>/}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>axb<font color="black">'</font> matches <font color="black">'</font>/a\\.b/<font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code>
@@ -1747,7 +1747,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> matches <font color="black">'</font>/^h/i<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> matches <font color="black">'</font>/^h/<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> matches <font color="black">'</font>/^h/i<font color="black">'</font></font>/}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> matches <font color="black">'</font>/^h/<font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code>
@@ -1756,7 +1756,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> not matches <font color="black">'</font>/^h/<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> not matches <font color="black">'</font>/^h/<font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1777,7 +1777,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">20 range (20<font color="black">,</font> 40)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">40 range (20<font color="black">,</font> 40)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">41 range (20<font color="black">,</font> 40)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">20 range (20<font color="black">,</font> 40)</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">40 range (20<font color="black">,</font> 40)</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">41 range (20<font color="black">,</font> 40)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1] []<!-- END DEMO RESULT --></span></code>
@@ -1786,7 +1786,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">20 between (20<font color="black">,</font> 40)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">30 between (20<font color="black">,</font> 40)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">20 between (20<font color="black">,</font> 40)</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">30 between (20<font color="black">,</font> 40)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[] [1]<!-- END DEMO RESULT --></span></code>
@@ -1795,7 +1795,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>m<font color="black">'</font> range (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>z<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>m<font color="black">'</font> range (<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>z<font color="black">'</font>)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1804,7 +1804,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">50 not range (20<font color="black">,</font> 40)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">50 not range (20<font color="black">,</font> 40)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1828,7 +1828,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> contains <font color="black">'</font>nan<font color="black">'</font></font>}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> contains <font color="black">'</font>x<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> contains <font color="black">'</font>nan<font color="black">'</font></font>/}</b>] [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> contains <font color="black">'</font>x<font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code>
@@ -1837,7 +1837,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> not contains <font color="black">'</font>x<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>banana<font color="black">'</font> not contains <font color="black">'</font>x<font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1846,7 +1846,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2<font color="black">,</font> 3] contains 3</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">[<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>] contains <font color="black">'</font>c<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2<font color="black">,</font> 3] contains 3</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">[<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>] contains <font color="black">'</font>c<font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] []<!-- END DEMO RESULT --></span></code>
@@ -1870,7 +1870,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>b<font color="black">'</font> <font color="black">|</font> in(<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">in(<font color="black">'</font>b<font color="black">'</font><font color="black">,</font> <font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>b<font color="black">'</font> <font color="black">|</font> in(<font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">in(<font color="black">'</font>b<font color="black">'</font><font color="black">,</font> <font color="black">'</font>a<font color="black">'</font><font color="black">,</font> <font color="black">'</font>b<font color="black">'</font>)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1]<!-- END DEMO RESULT --></span></code>
@@ -1879,7 +1879,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Alice<font color="black">'</font> <font color="black">|</font> like(<font color="black">'</font>A<font color="black">%</font><font color="black">'</font>)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">like(<font color="black">'</font>Alice<font color="black">'</font><font color="black">,</font> <font color="black">'</font>A<font color="black">%</font><font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Alice<font color="black">'</font> <font color="black">|</font> like(<font color="black">'</font>A<font color="black">%</font><font color="black">'</font>)</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">like(<font color="black">'</font>Alice<font color="black">'</font><font color="black">,</font> <font color="black">'</font>A<font color="black">%</font><font color="black">'</font>)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1]<!-- END DEMO RESULT --></span></code>
@@ -1888,7 +1888,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">7 <font color="black">|</font> range(1<font color="black">,</font> 9)</font>}</b>] [<b>{<font color="blue">echo </font><font color="red">range(7<font color="black">,</font> 1<font color="black">,</font> 9)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">7 <font color="black">|</font> range(1<font color="black">,</font> 9)</font>/}</b>] [<b>{<font color="blue">echo </font><font color="red">range(7<font color="black">,</font> 1<font color="black">,</font> 9)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1] [1]<!-- END DEMO RESULT --></span></code>
@@ -1897,7 +1897,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">contains(<font color="black">'</font>banana<font color="black">'</font><font color="black">,</font> <font color="black">'</font>nan<font color="black">'</font>)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">contains(<font color="black">'</font>banana<font color="black">'</font><font color="black">,</font> <font color="black">'</font>nan<font color="black">'</font>)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -1956,7 +1956,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> left(2)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> left(2)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->ab<!-- END DEMO RESULT --></span></code>
@@ -1965,7 +1965,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">left(<font color="black">'</font>abcdef<font color="black">'</font><font color="black">,</font> 2)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">left(<font color="black">'</font>abcdef<font color="black">'</font><font color="black">,</font> 2)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->ab<!-- END DEMO RESULT --></span></code>
@@ -1974,7 +1974,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello <font color="black">'</font> . upper(<font color="black">'</font>world<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello <font color="black">'</font> . upper(<font color="black">'</font>world<font color="black">'</font>)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->Hello WORLD<!-- END DEMO RESULT --></span></code>
@@ -1983,7 +1983,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">upper(left(<font color="black">'</font>abcdef<font color="black">'</font><font color="black">,</font> 3))</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">upper(left(<font color="black">'</font>abcdef<font color="black">'</font><font color="black">,</font> 3))</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->ABC<!-- END DEMO RESULT --></span></code>
@@ -1992,7 +1992,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a-b<font color="black">'</font> <font color="black">|</font> replace(<font color="black">'</font>-<font color="black">'</font><font color="black">,</font> upper(<font color="black">'</font> and <font color="black">'</font>))</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a-b<font color="black">'</font> <font color="black">|</font> replace(<font color="black">'</font>-<font color="black">'</font><font color="black">,</font> upper(<font color="black">'</font> and <font color="black">'</font>))</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->a AND b<!-- END DEMO RESULT --></span></code>
@@ -2022,7 +2022,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> mid(2<font color="black">,</font> 3)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> mid(2<font color="black">,</font> 3)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->bcd<!-- END DEMO RESULT --></span></code>
@@ -2031,7 +2031,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> right(2)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abcdef<font color="black">'</font> <font color="black">|</font> right(2)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->ef<!-- END DEMO RESULT --></span></code>
@@ -2040,7 +2040,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>user<font color="black">@</font>example.com<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font><font color="black">@</font><font color="black">'</font>) <font color="black">|</font> before(<font color="black">'</font>.<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>user<font color="black">@</font>example.com<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font><font color="black">@</font><font color="black">'</font>) <font color="black">|</font> before(<font color="black">'</font>.<font color="black">'</font>)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->example<!-- END DEMO RESULT --></span></code>
@@ -2049,7 +2049,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Crème Brûlée & Co.<font color="black">'</font> <font color="black">|</font> slug</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Crème Brûlée & Co.<font color="black">'</font> <font color="black">|</font> slug</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->creme-brulee-co<!-- END DEMO RESULT --></span></code>
@@ -2058,7 +2058,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1536 <font color="black">|</font> bytes</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1536 <font color="black">|</font> bytes</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1.5 KB<!-- END DEMO RESULT --></span></code>
@@ -2067,7 +2067,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a long sentence that goes on<font color="black">'</font> <font color="black">|</font> truncate(17)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>a long sentence that goes on<font color="black">'</font> <font color="black">|</font> truncate(17)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->a long sentence…<!-- END DEMO RESULT --></span></code>
@@ -2076,7 +2076,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1234567 <font color="black">|</font> abbreviate(1)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1234567 <font color="black">|</font> abbreviate(1)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1.2M<!-- END DEMO RESULT --></span></code>
@@ -2085,7 +2085,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">22 <font color="black">|</font> ordinal</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">22 <font color="black">|</font> ordinal</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->22nd<!-- END DEMO RESULT --></span></code>
@@ -2109,7 +2109,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>strlen(<font color="black">'</font>abc<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>strlen(<font color="black">'</font>abc<font color="black">'</font>)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3<!-- END DEMO RESULT --></span></code>
@@ -2118,7 +2118,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>ab<font color="black">'</font><font color="black">,</font> 3)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>str_repeat(<font color="black">'</font>ab<font color="black">'</font><font color="black">,</font> 3)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->ababab<!-- END DEMO RESULT --></span></code>
@@ -2127,7 +2127,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>strrev</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>strrev</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->cba<!-- END DEMO RESULT --></span></code>
@@ -2136,7 +2136,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>number_format(1234567.891<font color="black">,</font> 2)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>number_format(1234567.891<font color="black">,</font> 2)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1,234,567.89<!-- END DEMO RESULT --></span></code>
@@ -2145,7 +2145,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> php<font color="black">:</font>number_format(<font color="black">@</font><font color="black">,</font> 2<font color="black">,</font> <font color="black">'</font><font color="black">,</font><font color="black">'</font><font color="black">,</font> <font color="black">'</font>.<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> php<font color="black">:</font>number_format(<font color="black">@</font><font color="black">,</font> 2<font color="black">,</font> <font color="black">'</font><font color="black">,</font><font color="black">'</font><font color="black">,</font> <font color="black">'</font>.<font color="black">'</font>)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1.234,50<!-- END DEMO RESULT --></span></code>
@@ -2154,7 +2154,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>str_pad(<font color="black">'</font>7<font color="black">'</font><font color="black">,</font> 3<font color="black">,</font> <font color="black">'</font>0<font color="black">'</font><font color="black">,</font> STR_PAD_LEFT)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>str_pad(<font color="black">'</font>7<font color="black">'</font><font color="black">,</font> 3<font color="black">,</font> <font color="black">'</font>0<font color="black">'</font><font color="black">,</font> STR_PAD_LEFT)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->007<!-- END DEMO RESULT --></span></code>
@@ -2163,7 +2163,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>max(3<font color="black">,</font> 9<font color="black">,</font> 4)</font>}</b> <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>min([3<font color="black">,</font> 9<font color="black">,</font> 4])</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>max(3<font color="black">,</font> 9<font color="black">,</font> 4)</font>/}</b> <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>min([3<font color="black">,</font> 9<font color="black">,</font> 4])</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->9 3<!-- END DEMO RESULT --></span></code>
@@ -2172,7 +2172,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">ucfirst(<font color="black">'</font>word<font color="black">'</font>)</font>}</b> <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>word<font color="black">'</font> <font color="black">|</font> ucfirst</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">ucfirst(<font color="black">'</font>word<font color="black">'</font>)</font>/}</b> <b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>word<font color="black">'</font> <font color="black">|</font> ucfirst</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->Word Word<!-- END DEMO RESULT --></span></code>
@@ -2200,7 +2200,7 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> stars</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> function<font color="black">:</font>stars</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> upper <font color="black">|</font> stars <font color="black">|</font> php<font color="black">:</font>strlen</font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> stars</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> function<font color="black">:</font>stars</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>well done<font color="black">'</font> <font color="black">|</font> upper <font color="black">|</font> stars <font color="black">|</font> php<font color="black">:</font>strlen</font>/}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -2234,7 +2234,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>  ada LOVELACE <font color="black">'</font> <font color="black">|</font> trim <font color="black">|</font> lower <font color="black">|</font> ucwords</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>  ada LOVELACE <font color="black">'</font> <font color="black">|</font> trim <font color="black">|</font> lower <font color="black">|</font> ucwords</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->Ada Lovelace<!-- END DEMO RESULT --></span></code>
@@ -2243,7 +2243,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>user<font color="black">@</font>example.com<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font><font color="black">@</font><font color="black">'</font>) <font color="black">|</font> upper</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>user<font color="black">@</font>example.com<font color="black">'</font> <font color="black">|</font> after(<font color="black">'</font><font color="black">@</font><font color="black">'</font>) <font color="black">|</font> upper</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->EXAMPLE.COM<!-- END DEMO RESULT --></span></code>
@@ -2252,7 +2252,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> upper <font color="black">|</font> . <font color="black">'</font>!<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>str_repeat(<font color="black">@</font><font color="black">,</font> 2)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> upper <font color="black">|</font> . <font color="black">'</font>!<font color="black">'</font> <font color="black">|</font> php<font color="black">:</font>str_repeat(<font color="black">@</font><font color="black">,</font> 2)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->PAD!PAD!<!-- END DEMO RESULT --></span></code>
@@ -2261,7 +2261,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">12 <font color="black">|</font> * 1.21 <font color="black">|</font> <font color="black">%</font>.2f <font color="black">|</font> . <font color="black">'</font> EUR<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">12 <font color="black">|</font> * 1.21 <font color="black">|</font> <font color="black">%</font>.2f <font color="black">|</font> . <font color="black">'</font> EUR<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->14.52 EUR<!-- END DEMO RESULT --></span></code>
@@ -2285,7 +2285,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> + 1</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> + 1</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->6<!-- END DEMO RESULT --></span></code>
@@ -2294,7 +2294,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> * 2 <font color="black">|</font> - 1</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> * 2 <font color="black">|</font> - 1</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->9<!-- END DEMO RESULT --></span></code>
@@ -2303,7 +2303,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> * 4 <font color="black">|</font> / 8</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> * 4 <font color="black">|</font> / 8</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->25<!-- END DEMO RESULT --></span></code>
@@ -2312,7 +2312,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 <font color="black">|</font> <font color="black">%</font> 3</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7 <font color="black">|</font> <font color="black">%</font> 3</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1<!-- END DEMO RESULT --></span></code>
@@ -2321,7 +2321,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 <font color="black">|</font> ** 8</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">2 <font color="black">|</font> ** 8</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->256<!-- END DEMO RESULT --></span></code>
@@ -2330,7 +2330,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> <font color="black">|</font> . <font color="black">'</font> world<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>Hello<font color="black">'</font> <font color="black">|</font> . <font color="black">'</font> world<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->Hello world<!-- END DEMO RESULT --></span></code>
@@ -2351,7 +2351,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">10 <font color="black">|</font> gt 5</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">10 <font color="black">|</font> gt 5</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -2360,7 +2360,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> eq <font color="black">'</font>abc<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>abc<font color="black">'</font> <font color="black">|</font> eq <font color="black">'</font>abc<font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -2369,7 +2369,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">7 <font color="black">|</font> in (1<font color="black">,</font> 7)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">7 <font color="black">|</font> in (1<font color="black">,</font> 7)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -2378,7 +2378,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> * 2 gt 9</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> * 2 gt 9</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -2387,7 +2387,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> <font color="black">|</font> ?? <font color="black">'</font>empty<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font><font color="black">'</font> <font color="black">|</font> ?? <font color="black">'</font>empty<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->empty<!-- END DEMO RESULT --></span></code>
@@ -2396,7 +2396,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">3 <font color="black">|</font> - 1 . <font color="black">'</font> left<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">3 <font color="black">|</font> - 1 . <font color="black">'</font> left<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2 left<!-- END DEMO RESULT --></span></code>
@@ -2420,7 +2420,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">4 <font color="black">|</font> <font color="black">@</font> * <font color="black">@</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">4 <font color="black">|</font> <font color="black">@</font> * <font color="black">@</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->16<!-- END DEMO RESULT --></span></code>
@@ -2429,7 +2429,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">4 <font color="black">|</font> <font color="black">@</font> + <font color="black">@</font> * 2</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">4 <font color="black">|</font> <font color="black">@</font> + <font color="black">@</font> * 2</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->12<!-- END DEMO RESULT --></span></code>
@@ -2438,7 +2438,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . <font color="black">@</font> . <font color="black">'</font>"<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . <font color="black">@</font> . <font color="black">'</font>"<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->"pad"<!-- END DEMO RESULT --></span></code>
@@ -2447,7 +2447,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> <font color="black">@</font> . <font color="black">'</font> <font color="black">'</font> . upper(<font color="black">@</font>)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> <font color="black">@</font> . <font color="black">'</font> <font color="black">'</font> . upper(<font color="black">@</font>)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->pad PAD<!-- END DEMO RESULT --></span></code>
@@ -2456,7 +2456,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> <font color="black">@</font> gt 3 ? <font color="black">'</font>big<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>small<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> <font color="black">@</font> gt 3 ? <font color="black">'</font>big<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>small<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->big<!-- END DEMO RESULT --></span></code>
@@ -2480,7 +2480,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">3.14159 <font color="black">|</font> <font color="black">%</font>.2f</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">3.14159 <font color="black">|</font> <font color="black">%</font>.2f</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3.14<!-- END DEMO RESULT --></span></code>
@@ -2489,7 +2489,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> <font color="black">%</font>05.2f</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">5 <font color="black">|</font> <font color="black">%</font>05.2f</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->05.00<!-- END DEMO RESULT --></span></code>
@@ -2498,7 +2498,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">42 <font color="black">|</font> <font color="black">%</font>05d</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">42 <font color="black">|</font> <font color="black">%</font>05d</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->00042<!-- END DEMO RESULT --></span></code>
@@ -2507,7 +2507,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">42 <font color="black">|</font> <font color="black">%</font>+d</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">42 <font color="black">|</font> <font color="black">%</font>+d</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->+42<!-- END DEMO RESULT --></span></code>
@@ -2516,7 +2516,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">255 <font color="black">|</font> <font color="black">%</font>x</font>}</b> <b>{<font color="blue">echo </font><font color="red">255 <font color="black">|</font> <font color="black">%</font>X</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">255 <font color="black">|</font> <font color="black">%</font>x</font>/}</b> <b>{<font color="blue">echo </font><font color="red">255 <font color="black">|</font> <font color="black">%</font>X</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->ff FF<!-- END DEMO RESULT --></span></code>
@@ -2525,7 +2525,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> <font color="black">%</font>e</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">1234.5 <font color="black">|</font> <font color="black">%</font>e</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1.234500e+3<!-- END DEMO RESULT --></span></code>
@@ -2534,7 +2534,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0.256 <font color="black">|</font> * 100 <font color="black">|</font> <font color="black">%</font>.1f <font color="black">|</font> . <font color="black">'</font><font color="black">%</font><font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0.256 <font color="black">|</font> * 100 <font color="black">|</font> <font color="black">%</font>.1f <font color="black">|</font> . <font color="black">'</font><font color="black">%</font><font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->25.6%<!-- END DEMO RESULT --></span></code>
@@ -2558,7 +2558,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(5 <font color="black">|</font> + 1) * 2</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">(5 <font color="black">|</font> + 1) * 2</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->12<!-- END DEMO RESULT --></span></code>
@@ -2567,7 +2567,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">upper(<font color="black">'</font>  pad  <font color="black">'</font> <font color="black">|</font> trim)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">upper(<font color="black">'</font>  pad  <font color="black">'</font> <font color="black">|</font> trim)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->PAD<!-- END DEMO RESULT --></span></code>
@@ -2576,7 +2576,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>max(1<font color="black">,</font> 5 <font color="black">|</font> + 1)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>max(1<font color="black">,</font> 5 <font color="black">|</font> + 1)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->6<!-- END DEMO RESULT --></span></code>
@@ -2585,7 +2585,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font>-<font color="black">'</font><font color="black">,</font> [5 <font color="black">|</font> + 1<font color="black">,</font> 2 <font color="black">|</font> * 10])</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font>-<font color="black">'</font><font color="black">,</font> [5 <font color="black">|</font> + 1<font color="black">,</font> 2 <font color="black">|</font> * 10])</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->6-20<!-- END DEMO RESULT --></span></code>
@@ -2594,7 +2594,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> . (<font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> upper) . <font color="black">'</font>x<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>x<font color="black">'</font> . (<font color="black">'</font>pad<font color="black">'</font> <font color="black">|</font> upper) . <font color="black">'</font>x<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->xPADx<!-- END DEMO RESULT --></span></code>
@@ -2622,7 +2622,7 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>html = <font color="black">'</font>&lt;i&gt;pad&lt;/i&gt;<font color="black">'</font></font>}</b><br>&lt;p&gt;<b>{<font color="green">$html</font> <font color="black">|</font> <font color="blue">upper</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>html <font color="black">|</font> upper</font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>html = <font color="black">'</font>&lt;i&gt;pad&lt;/i&gt;<font color="black">'</font></font>/}</b><br>&lt;p&gt;<b>{<font color="green">$html</font> <font color="black">|</font> <font color="blue">upper</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>html <font color="black">|</font> upper</font>/}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -2653,7 +2653,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>d M Y<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>d M Y<font color="black">'</font>)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->18 Oct 2026<!-- END DEMO RESULT --></span></code>
@@ -2662,7 +2662,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>l<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>l<font color="black">'</font>)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->Sunday<!-- END DEMO RESULT --></span></code>
@@ -2671,7 +2671,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>Y-m-d<font color="black">'</font><font color="black">,</font> <font color="black">'</font>+1 week<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>Y-m-d<font color="black">'</font><font color="black">,</font> <font color="black">'</font>+1 week<font color="black">'</font>)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2026-10-25<!-- END DEMO RESULT --></span></code>
@@ -2680,7 +2680,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18 14<font color="black">:</font>30<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>H<font color="black">:</font>i<font color="black">'</font>)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18 14<font color="black">:</font>30<font color="black">'</font> <font color="black">|</font> date(<font color="black">'</font>H<font color="black">:</font>i<font color="black">'</font>)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->14:30<!-- END DEMO RESULT --></span></code>
@@ -2689,7 +2689,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">date(<font color="black">'</font>Y<font color="black">'</font><font color="black">,</font> 1000000000)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">date(<font color="black">'</font>Y<font color="black">'</font><font color="black">,</font> 1000000000)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->2001<!-- END DEMO RESULT --></span></code>
@@ -2698,7 +2698,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> gt <font color="black">'</font>2026-01-01<font color="black">'</font></font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>2026-10-18<font color="black">'</font> gt <font color="black">'</font>2026-01-01<font color="black">'</font></font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -2725,7 +2725,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2<font color="black">,</font> 3] + 1</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2<font color="black">,</font> 3] + 1</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->7<!-- END DEMO RESULT --></span></code>
@@ -2734,7 +2734,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2] + [3<font color="black">,</font> 4]</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2] + [3<font color="black">,</font> 4]</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->10<!-- END DEMO RESULT --></span></code>
@@ -2743,7 +2743,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2] * 2</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2] * 2</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->6<!-- END DEMO RESULT --></span></code>
@@ -2752,7 +2752,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2<font color="black">,</font> 3] eq 6</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">[1<font color="black">,</font> 2<font color="black">,</font> 3] eq 6</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[1]<!-- END DEMO RESULT --></span></code>
@@ -2761,7 +2761,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count([1<font color="black">,</font> 2<font color="black">,</font> 3])</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count([1<font color="black">,</font> 2<font color="black">,</font> 3])</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3<!-- END DEMO RESULT --></span></code>
@@ -2770,7 +2770,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[] ?? <font color="black">'</font>an empty list<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">[] ?? <font color="black">'</font>an empty list<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->an empty list<!-- END DEMO RESULT --></span></code>
@@ -2795,7 +2795,7 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>scores = [7<font color="black">,</font> 9<font color="black">,</font> 4<font color="black">,</font> 10]</font>}</b><br>&lt;p&gt;Sum <b>{<font color="blue">echo </font><font color="red">array<font color="black">:</font>scores + 0</font>}</b>, count <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(array<font color="black">:</font>scores)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Average <b>{<font color="blue">echo </font><font color="red">(array<font color="black">:</font>scores + 0) / php<font color="black">:</font>count(array<font color="black">:</font>scores)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;Best <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>max(array<font color="black">:</font>scores)</font>}</b>, worst <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>min(array<font color="black">:</font>scores)</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="black">,</font> array<font color="black">:</font>scores)</font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>scores = [7<font color="black">,</font> 9<font color="black">,</font> 4<font color="black">,</font> 10]</font>/}</b><br>&lt;p&gt;Sum <b>{<font color="blue">echo </font><font color="red">array<font color="black">:</font>scores + 0</font>/}</b>, count <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>count(array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;Average <b>{<font color="blue">echo </font><font color="red">(array<font color="black">:</font>scores + 0) / php<font color="black">:</font>count(array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;Best <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>max(array<font color="black">:</font>scores)</font>/}</b>, worst <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>min(array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>implode(<font color="black">'</font><font color="black">,</font> <font color="black">'</font><font color="black">,</font> array<font color="black">:</font>scores)</font>/}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
@@ -2832,7 +2832,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>sqrt(-1)</font>}</b>]</code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>sqrt(-1)</font>/}</b>]</code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->[]<!-- END DEMO RESULT --></span></code>
@@ -2841,7 +2841,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>sqrt(-1) ?? <font color="black">'</font>not a number<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>sqrt(-1) ?? <font color="black">'</font>not a number<font color="black">'</font></font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->not a number<!-- END DEMO RESULT --></span></code>
@@ -2850,7 +2850,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>intdiv(7<font color="black">,</font> 2)</font>}</b> <b>{<font color="blue">echo </font><font color="red">7 <font color="black">%</font> 2</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>intdiv(7<font color="black">,</font> 2)</font>/}</b> <b>{<font color="blue">echo </font><font color="red">7 <font color="black">%</font> 2</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->3 1<!-- END DEMO RESULT --></span></code>
@@ -2859,7 +2859,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7.5 <font color="black">%</font> 2</font>}</b> <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>fmod(7.5<font color="black">,</font> 2)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">7.5 <font color="black">%</font> 2</font>/}</b> <b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>fmod(7.5<font color="black">,</font> 2)</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->1 1.5<!-- END DEMO RESULT --></span></code>
@@ -2868,7 +2868,7 @@
           <tr>
             <td style="vertical-align:top">
               <!-- START DEMO SOURCE -->
-              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0.1 + 0.2</font>}</b></code></pre><!-- END DEMO SOURCE -->
+              <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">0.1 + 0.2</font>/}</b></code></pre><!-- END DEMO SOURCE -->
             </td>
             <td style="vertical-align:top">
               <code><span style="color: #000000"><!-- START DEMO RESULT -->0.3<!-- END DEMO RESULT --></span></code>
@@ -2898,17 +2898,17 @@
           </tr>
           <tr>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Text that came from somewhere else - a database, a form, a file.<br><br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo 6 * 7}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+              <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Text that came from somewhere else - a database, a form, a file.<br><br>  </span><span style="color: #0000BB">$snippet </span><span style="color: #007700">= </span><span style="color: #DD0000">'{echo 6 * 7/}'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
             </td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet . <font color="black">'</font> is text<font color="black">'</font></font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>}</b>&lt;/p&gt;</code></pre>
+              <pre><code style="color: #000000">&lt;p&gt;<b>{<font color="green"><font color="red">$</font>snippet</font>}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet . <font color="black">'</font> is text<font color="black">'</font></font>/}</b>&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>snippet <font color="black">|</font> code</font>/}</b>&lt;/p&gt;</code></pre>
             </td>
             <td style="vertical-align:top">
               <p>
-                {echo 6 * 7}
+                {echo 6 * 7/}
               </p>
               <p>
-                {echo 6 * 7} is text
+                {echo 6 * 7/} is text
               </p>
               <p>
                 42
@@ -2933,7 +2933,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo (1 + 2}</code>
+              <code>{echo (1 + 2/}</code>
             </td>
             <td>
               the ( opened at position 1 is never closed
@@ -2941,7 +2941,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo 'abc}</code>
+              <code>{echo 'abc/}</code>
             </td>
             <td>
               the string opened with ' at position 1 is never closed
@@ -2949,7 +2949,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo $name | uppr}</code>
+              <code>{echo $name | uppr/}</code>
             </td>
             <td>
               there is no pipe function named 'uppr'
@@ -2957,7 +2957,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo nofunc(1)}</code>
+              <code>{echo nofunc(1)/}</code>
             </td>
             <td>
               there is no function named 'nofunc'
@@ -2973,7 +2973,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo $items + 1}</code>
+              <code>{echo $items + 1/}</code>
             </td>
             <td>
               the field '$items' is a list, not a value
@@ -2989,7 +2989,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo $n + * 3}</code>
+              <code>{echo $n + * 3/}</code>
             </td>
             <td>
               the operators '+' and '*' stand side by side - a value is missing between them
@@ -3005,7 +3005,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo $n | +1}</code>
+              <code>{echo $n | +1/}</code>
             </td>
             <td>
               a pipe operator needs a space before its operand - write '| + 1', not '| +1'
@@ -3013,7 +3013,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo 5 & 3}</code>
+              <code>{echo 5 & 3/}</code>
             </td>
             <td>
               '&amp;' is no operator or value
@@ -3029,7 +3029,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo 7 / 0}</code>
+              <code>{echo 7 / 0/}</code>
             </td>
             <td>
               a division by zero in /
@@ -3037,7 +3037,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo 'a' * 2}</code>
+              <code>{echo 'a' * 2/}</code>
             </td>
             <td>
               'a' is not a number for *
@@ -3045,7 +3045,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo $n ? 'a'}</code>
+              <code>{echo $n ? 'a'/}</code>
             </td>
             <td>
               the ? of an inline ternary has no : - write cond ? then : else
@@ -3053,7 +3053,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo [ 'a' =&gt; ]}</code>
+              <code>{echo [ 'a' =&gt; ]/}</code>
             </td>
             <td>
               the key 'a' of a list has no value after its =&gt;
@@ -3061,7 +3061,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo replace('abc')}</code>
+              <code>{echo replace('abc')/}</code>
             </td>
             <td>
               the function 'replace' wants 2 parameters after the value it works on - written as a call its first argument is that value: replace($value, ...)
@@ -3069,7 +3069,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo php:str_repeat('x', -1)}</code>
+              <code>{echo php:str_repeat('x', -1)/}</code>
             </td>
             <td>
               the PHP function 'str_repeat' refused its arguments: str_repeat(): Argument #2 ($times) must be greater than or equal to 0
@@ -3077,7 +3077,7 @@
           </tr>
           <tr>
             <td>
-              <code>{echo 'a\qb'}</code>
+              <code>{echo 'a\qb'/}</code>
             </td>
             <td>
               Unsupported \ char

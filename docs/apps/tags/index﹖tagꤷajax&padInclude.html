@@ -1,5 +1,5 @@
 
-<p><code>{ajax 'name'}</code> does not render the page itself. It writes an empty
+<p><code>{ajax 'name'/}</code> does not render the page itself. It writes an empty
 <code>&lt;div&gt;</code> and a small script; once the page is in the browser, the script
 requests the named page with <code>&amp;padInclude</code> - bare, without its wrappers - and
 puts the answer in the div. The page around it is sent at once, and a slow part arrives when
@@ -7,7 +7,7 @@ it is ready. When the request fails, the div shows the status text.</p>
 
 <p>The div's id is <code>padAjax</code> followed by a hash of the page and its query, so the
 markup is the same on every request. Variables assigned on the tag -
-<code>{ajax 'orders', $status = 'open'}</code> - go on the query string, and
+<code>{ajax 'orders', $status = 'open'/}</code> - go on the query string, and
 <code>fragment='name'</code> asks for one <a href="index%EF%B9%96tag%EA%A4%B7fragment.html">{fragment}</a> of the page
 alone: the page renders whole on the server, but only that part is sent back.</p>
 

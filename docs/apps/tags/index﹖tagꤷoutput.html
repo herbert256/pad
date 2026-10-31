@@ -96,7 +96,7 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">output</span> <span class="hl-str">'type'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">output</span> <span class="hl-str">'type'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -114,7 +114,7 @@
               Description
             </h2>
             <p>
-              <code>{output 'type'}</code> sets <code>$padOutputType</code> for the rest of the request and loads that type's settings over the current ones. It decides how the whole response is delivered once the page has finished, not what happens at the place of the tag - so it can stand anywhere in the template. It does the same as <code>$padOutputType</code> set in <code>_config/config.php</code> or in the page's PHP, from the template.
+              <code>{output 'type'/}</code> sets <code>$padOutputType</code> for the rest of the request and loads that type's settings over the current ones. It decides how the whole response is delivered once the page has finished, not what happens at the place of the tag - so it can stand anywhere in the template. It does the same as <code>$padOutputType</code> set in <code>_config/config.php</code> or in the page's PHP, from the template.
             </p>
             <ul>
               <li>
@@ -156,7 +156,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/output/1-json.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">output</span> <span class="hl-str">'json'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">output</span> <span class="hl-str">'json'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Shown only to a reader of the template.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
               </div>
@@ -173,7 +173,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/output/2-download.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">output</span> <span class="hl-str">'download'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">output</span> <span class="hl-str">'download'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;h1</span><span class="hl-htm">&gt;</span>Invoice <span class="hl-brc">{</span><span class="hl-var">$number</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/h1</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Total: <span class="hl-brc">{</span><span class="hl-var">$total</span> | money<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>

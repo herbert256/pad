@@ -96,7 +96,7 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">nonce</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">nonce</span><span class="hl-brc">/}</span></code></pre>
           </section>
           <section class="block prose" aria-labelledby="description">
             <h2 id="description">
@@ -129,7 +129,7 @@
                     <span>Template</span><span class="cell-file">examples/nonce/1-script.src</span>
                   </div>
                   <pre class="code"><code><span class="hl-com">{# _config/config.php: $padCsp = "default-src 'self'; script-src 'self' 'nonce'"; #}</span>
-<span class="hl-htm">&lt;script</span> <span class="hl-opt">nonce</span>=<span class="hl-str">"{nonce}"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">ignore</span><span class="hl-brc">}</span>
+<span class="hl-htm">&lt;script</span> <span class="hl-opt">nonce</span>=<span class="hl-str">"{nonce/}"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">ignore</span><span class="hl-brc">}</span>
   document.documentElement.classList.add(<span class="hl-str">'js'</span>);
 <span class="hl-brc">{</span><span class="hl-tag">/ignore</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span>
 
@@ -149,10 +149,10 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/nonce/2-style.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;style</span> <span class="hl-opt">nonce</span>=<span class="hl-str">"{nonce}"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">ignore</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-htm">&lt;style</span> <span class="hl-opt">nonce</span>=<span class="hl-str">"{nonce/}"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">ignore</span><span class="hl-brc">}</span>
   .banner <span class="hl-brc">{</span> color: <span class="hl-var">#b00</span>; <span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/ignore</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/style</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;script</span> <span class="hl-opt">nonce</span>=<span class="hl-str">"{nonce}"</span> <span class="hl-opt">src</span>=<span class="hl-str">"app.js"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span></code></pre>
+<span class="hl-htm">&lt;script</span> <span class="hl-opt">nonce</span>=<span class="hl-str">"{nonce/}"</span> <span class="hl-opt">src</span>=<span class="hl-str">"app.js"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/script</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
               </div>
             </div>

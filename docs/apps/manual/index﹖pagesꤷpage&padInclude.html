@@ -152,7 +152,7 @@ request keeps. They differ on both sides of the boundary:</p>
 
 <h2>Another page as a pass</h2>
 
-<p><code>{page 'name'}</code> runs that page - its .php and its .pad - as a pass,
+<p><code>{page 'name'/}</code> runs that page - its .php and its .pad - as a pass,
 with the same isolation options. A <code>function</code> option runs the pass inside a PHP
 function body, but it still starts from the caller's variables and what it sets comes back
 out - a page whose .php half must not touch the caller's variables wants <code>clean</code>
@@ -195,7 +195,7 @@ or <code>sandbox</code>:</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello/hello<font color="black">'</font></font>}</b></code></pre></td>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello/hello<font color="black">'</font></font>/}</b></code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -334,7 +334,7 @@ counting with it:</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Inside a pass: <b>{<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>first<font color="black">'</font><font color="black">,</font> <font color="black">'</font>second<font color="black">'</font></font>}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;After it: <b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>first<font color="black">'</font><font color="black">,</font> <font color="black">'</font>second<font color="black">'</font></font>}</b>&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;Inside a pass: <b>{<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>first<font color="black">'</font><font color="black">,</font> <font color="black">'</font>second<font color="black">'</font></font>/}</b><b>{/<font color="blue">code</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;After it: <b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>first<font color="black">'</font><font color="black">,</font> <font color="black">'</font>second<font color="black">'</font></font>/}</b>&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">

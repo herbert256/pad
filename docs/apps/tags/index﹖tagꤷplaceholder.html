@@ -99,8 +99,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-str">'600x300'</span>, <span class="hl-opt">text</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-opt">ratio</span>=<span class="hl-str">'16:9'</span>, <span class="hl-opt">width</span>=<span class="hl-num">640</span>, fluid<span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-str">'600x300'</span>, <span class="hl-opt">text</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-opt">ratio</span>=<span class="hl-str">'16:9'</span>, <span class="hl-opt">width</span>=<span class="hl-num">640</span>, fluid<span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -173,9 +173,9 @@
                     <span>Template</span><span class="cell-file">examples/placeholder/1-sizes.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-str">'300x250'</span>, <span class="hl-opt">text</span>=<span class="hl-str">'Medium rectangle'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-str">'160x250'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-str">'320x50'</span>, <span class="hl-opt">text</span>=<span class="hl-str">'Mobile banner'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-str">'300x250'</span>, <span class="hl-opt">text</span>=<span class="hl-str">'Medium rectangle'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-str">'160x250'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-str">'320x50'</span>, <span class="hl-opt">text</span>=<span class="hl-str">'Mobile banner'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
@@ -229,9 +229,9 @@
                     <span>Template</span><span class="cell-file">examples/placeholder/2-fluid.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:grid; gap:12px; max-width:480px"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-opt">ratio</span>=<span class="hl-str">'21:9'</span>, fluid, <span class="hl-opt">text</span>=<span class="hl-str">'Hero image'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-opt">ratio</span>=<span class="hl-str">'21:9'</span>, fluid, <span class="hl-opt">text</span>=<span class="hl-str">'Hero image'</span><span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px"</span><span class="hl-htm">&gt;</span>
-    <span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-opt">ratio</span>=<span class="hl-str">'4:3'</span>, fluid<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-opt">ratio</span>=<span class="hl-str">'4:3'</span>, fluid<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-opt">ratio</span>=<span class="hl-str">'4:3'</span>, fluid<span class="hl-brc">}</span>
+    <span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-opt">ratio</span>=<span class="hl-str">'4:3'</span>, fluid<span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-opt">ratio</span>=<span class="hl-str">'4:3'</span>, fluid<span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">placeholder</span> <span class="hl-opt">ratio</span>=<span class="hl-str">'4:3'</span>, fluid<span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>

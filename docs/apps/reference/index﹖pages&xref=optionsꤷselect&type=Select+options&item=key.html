@@ -105,7 +105,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;p&gt;where: <b>{<font color="blue">offices </font><font color="red">where="country = <font color="black">'</font>USA<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>officeCode<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinct: <b>{<font color="blue">offices </font><font color="red">distinct<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinctrow: <b>{<font color="blue">offices </font><font color="red">distinctrow<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;group: <b>{<font color="blue">payments </font><font color="red">fields=<font color="black">'</font>customerNumber<font color="black">,</font> count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>customerNumber<font color="black">'</font><font color="black">,</font> having=<font color="black">'</font>cnt &gt; 9<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>customerNumber<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>customerNumber</font>}</b>=<b>{<font color="green"><font color="red">$</font>cnt</font>}</b>,<b>{/<font color="blue">payments</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;rollup: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font><font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> rollup</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cnt</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;db: <b>{<font color="blue">sales </font><font color="red">db=<font color="black">'</font>employees<font color="black">'</font><font color="black">,</font> where="jobTitle = <font color="black">'</font>President<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b><b>{/<font color="blue">sales</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;key: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font>city<font color="black">'</font><font color="black">,</font> where="country = <font color="black">'</font>USA<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>city</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;union: <b>{<font color="blue">offices </font><font color="red">where="officeCode = 1"<font color="black">,</font> union=<font color="black">'</font>offices<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;join: <b>{<font color="blue">employees </font><font color="red">join=<font color="black">'</font>offices on employees.officeCode = offices.officeCode<font color="black">'</font><font color="black">,</font> where="offices.city = <font color="black">'</font>Boston<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>lastName<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b>,<b>{/<font color="blue">employees</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;htmlAttrJson: <b>{<font color="blue"><font color="purple">select</font><font color="black"><b>:</b></font>offices </font><font color="red">htmlAttrJson=<font color="black">'</font>record<font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>officeCode<font color="black">'</font><font color="black">,</font> where="officeCode = 1"</font>}</b>&lt;/p&gt;</code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;where: <b>{<font color="blue">offices </font><font color="red">where="country = <font color="black">'</font>USA<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>officeCode<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinct: <b>{<font color="blue">offices </font><font color="red">distinct<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinctrow: <b>{<font color="blue">offices </font><font color="red">distinctrow<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;group: <b>{<font color="blue">payments </font><font color="red">fields=<font color="black">'</font>customerNumber<font color="black">,</font> count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>customerNumber<font color="black">'</font><font color="black">,</font> having=<font color="black">'</font>cnt &gt; 9<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>customerNumber<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>customerNumber</font>}</b>=<b>{<font color="green"><font color="red">$</font>cnt</font>}</b>,<b>{/<font color="blue">payments</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;rollup: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font><font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> rollup</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cnt</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;db: <b>{<font color="blue">sales </font><font color="red">db=<font color="black">'</font>employees<font color="black">'</font><font color="black">,</font> where="jobTitle = <font color="black">'</font>President<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b><b>{/<font color="blue">sales</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;key: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font>city<font color="black">'</font><font color="black">,</font> where="country = <font color="black">'</font>USA<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>city</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;union: <b>{<font color="blue">offices </font><font color="red">where="officeCode = 1"<font color="black">,</font> union=<font color="black">'</font>offices<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;join: <b>{<font color="blue">employees </font><font color="red">join=<font color="black">'</font>offices on employees.officeCode = offices.officeCode<font color="black">'</font><font color="black">,</font> where="offices.city = <font color="black">'</font>Boston<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>lastName<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b>,<b>{/<font color="blue">employees</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;htmlAttrJson: <b>{<font color="blue"><font color="purple">select</font><font color="black"><b>:</b></font>offices </font><font color="red">htmlAttrJson=<font color="black">'</font>record<font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>officeCode<font color="black">'</font><font color="black">,</font> where="officeCode = 1"</font>/}</b>&lt;/p&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxe63c51c50dc7ae55fe7836f4c3f4f48a"></div>
@@ -122,6 +122,46 @@
                       }
                       padAjaxe63c51c50dc7ae55fe7836f4c3f4f48a.open("GET","http://localhost/pad/classicModels/?options&padInclude",true);
                       padAjaxe63c51c50dc7ae55fe7836f4c3f4f48a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: tables/key<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tables/key.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;h3&gt;One field of the key&lt;/h3&gt;<br><b>{<font color="blue">albums </font><font color="red"><font color="red">$</font>album_id=9</font>}</b>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>, <b>{<font color="green"><font color="red">$</font>released</font>}</b>&lt;/p&gt;<b>{/<font color="blue">albums</font><font color="red"></font>}</b><br><br>&lt;h3&gt;Both fields of a key of two&lt;/h3&gt;<br><b>{<font color="blue">tracks </font><font color="red"><font color="red">$</font>album_id=3<font color="black">,</font> <font color="red">$</font>track_no=2</font>}</b>&lt;p&gt;Track <b>{<font color="green"><font color="red">$</font>track_no</font>}</b> of album <b>{<font color="green"><font color="red">$</font>album_id</font>}</b>: <b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/p&gt;<b>{/<font color="blue">tracks</font><font color="red"></font>}</b><br><br>&lt;h3&gt;The first field alone: every row it names&lt;/h3&gt;<br>&lt;ol&gt;<br>  <b>{<font color="blue">tracks </font><font color="red"><font color="red">$</font>album_id=3</font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/li&gt;<b>{/<font color="blue">tracks</font><font color="red"></font>}</b><br>&lt;/ol&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax4e671b82a92088435b7b02209c4841d6"></div>
+                      <script>
+                      padAjax4e671b82a92088435b7b02209c4841d6 = new XMLHttpRequest();
+                      padAjax4e671b82a92088435b7b02209c4841d6.onreadystatechange=function() {
+                      if (padAjax4e671b82a92088435b7b02209c4841d6.readyState === 4) {
+                      if (padAjax4e671b82a92088435b7b02209c4841d6.status === 200) {
+                      document.getElementById("padAjax4e671b82a92088435b7b02209c4841d6").innerHTML=padAjax4e671b82a92088435b7b02209c4841d6.responseText;
+                      } else {
+                      document.getElementById("padAjax4e671b82a92088435b7b02209c4841d6").innerHTML=padAjax4e671b82a92088435b7b02209c4841d6.statusText;
+                      }
+                      }
+                      }
+                      padAjax4e671b82a92088435b7b02209c4841d6.open("GET","http://localhost/pad/padSelect/?tables/key&padInclude",true);
+                      padAjax4e671b82a92088435b7b02209c4841d6.send();
                       </script>
                     </td>
                   </tr>
@@ -164,6 +204,132 @@
                       }
                       padAjaxfa7cde79915d78d2e8526d3e7b09abd0.open("GET","http://localhost/pad/regression/errors/?syntax/a_select_key_is_quoted_as_an_identifier&padInclude",true);
                       padAjaxfa7cde79915d78d2e8526d3e7b09abd0.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A select with a join meets its key and its relations with its own table's columns: a<br>  // field both tables hold - orderNumber in orders and orderdetails, customerNumber in orders<br>  // and payments - is named with the table. Over the Classic Models tables of the demo<br>  // database.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'lineDetail'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderdetails'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'productCode' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'product' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'orderLines'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders.orderNumber'</span><span style="color: #007700">,<br>                                </span><span style="color: #DD0000">'join' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'inner' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lineDetail'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders.orderNumber' </span><span style="color: #007700">],<br>                                </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderdetails.orderLineNumber' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">key: [<b>{<font color="blue">orderLines </font><font color="red"><font color="red">$</font>orderNumber=10100</font>}</b><b>{<font color="green"><font color="red">$</font>product</font>}</b> <b>{/<font color="blue">orderLines</font><font color="red"></font>}</b>]<br>nested: [<b>{<font color="blue">customers </font><font color="red"><font color="red">$</font>customerNumber=103</font>}</b><b>{<font color="blue">orders </font><font color="red">join="payments on payments.customerNumber = orders.customerNumber"<font color="black">,</font> fields="count(*) as n"</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">orders</font><font color="red"></font>}</b><b>{/<font color="blue">customers</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxafb783debb071b09f0871592e437e1c1"></div>
+                      <script>
+                      padAjaxafb783debb071b09f0871592e437e1c1 = new XMLHttpRequest();
+                      padAjaxafb783debb071b09f0871592e437e1c1.onreadystatechange=function() {
+                      if (padAjaxafb783debb071b09f0871592e437e1c1.readyState === 4) {
+                      if (padAjaxafb783debb071b09f0871592e437e1c1.status === 200) {
+                      document.getElementById("padAjaxafb783debb071b09f0871592e437e1c1").innerHTML=padAjaxafb783debb071b09f0871592e437e1c1.responseText;
+                      } else {
+                      document.getElementById("padAjaxafb783debb071b09f0871592e437e1c1").innerHTML=padAjaxafb783debb071b09f0871592e437e1c1.statusText;
+                      }
+                      }
+                      }
+                      padAjaxafb783debb071b09f0871592e437e1c1.open("GET","http://localhost/pad/regression/pages/?select/demo/a_joined_select_names_its_own_table_in_its_key_and_relation&padInclude",true);
+                      padAjaxafb783debb071b09f0871592e437e1c1.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/a_total_is_no_row_the_declared_order_sorts<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/a_total_is_no_row_the_declared_order_sorts.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/a_total_is_no_row_the_declared_order_sorts.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The order a table declares - or its key - sorts the rows of the table, not the rows a<br>  // select makes of them: a rollup, a total over the whole table, one value. Under<br>  // ONLY_FULL_GROUP_BY, as MySQL has it by default, an order by a column the total does not<br>  // hold is an error; with a rollup it is one on MariaDB as well. A view that groups keeps an<br>  // order of its own. Over the four-row staff table of the demo database.<br><br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"set session sql_mode = concat(@@sql_mode, ',ONLY_FULL_GROUP_BY')" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffKey'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'perBand'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'base' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'floor(salary / 2000) as band, sum(bonus) as bonus'</span><span style="color: #007700">,<br>                              </span><span style="color: #DD0000">'group' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'band'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rollup' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'bandDesc'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'base' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'floor(salary / 2000) as band, count(*) as n'</span><span style="color: #007700">,<br>                              </span><span style="color: #DD0000">'group' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'band'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'band desc' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">rollup: [<b>{<font color="blue">staffSel </font><font color="red">fields="floor(salary / 2000) as band<font color="black">,</font> sum(salary) as pay"<font color="black">,</font> group="band"<font color="black">,</font> rollup</font>}</b><b>{<font color="green"><font color="red">$</font>pay</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>key rollup: [<b>{<font color="blue">staffKey </font><font color="red">fields="floor(salary / 2000) as band<font color="black">,</font> sum(salary) as pay"<font color="black">,</font> group="band"<font color="black">,</font> rollup</font>}</b><b>{<font color="green"><font color="red">$</font>pay</font>}</b> <b>{/<font color="blue">staffKey</font><font color="red"></font>}</b>]<br>count: [<b>{<font color="blue">staffSel </font><font color="red">fields="count(*) as n"</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>field: [<b>{<font color="blue">staffKey </font><font color="red">type=<font color="black">'</font>field<font color="black">'</font><font color="black">,</font> fields="max(salary)"</font>/}</b>]<br>view: [<b>{<font color="blue">perBand</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>bonus</font>}</b> <b>{/<font color="blue">perBand</font><font color="red"></font>}</b>]<br>view order: [<b>{<font color="blue">bandDesc</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>band</font>}</b>:<b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">bandDesc</font><font color="red"></font>}</b>]<br>tag order: [<b>{<font color="blue">staffSel </font><font color="red">fields="floor(salary / 2000) as band<font color="black">,</font> count(*) as n"<font color="black">,</font> group="band"<font color="black">,</font> order="n desc<font color="black">,</font> band"</font>}</b><b>{<font color="green"><font color="red">$</font>band</font>}</b>:<b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>rows: [<b>{<font color="blue">staffSel </font><font color="red">order="salary desc"<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxdfeadb893ed5c08de7963b9dde932d93"></div>
+                      <script>
+                      padAjaxdfeadb893ed5c08de7963b9dde932d93 = new XMLHttpRequest();
+                      padAjaxdfeadb893ed5c08de7963b9dde932d93.onreadystatechange=function() {
+                      if (padAjaxdfeadb893ed5c08de7963b9dde932d93.readyState === 4) {
+                      if (padAjaxdfeadb893ed5c08de7963b9dde932d93.status === 200) {
+                      document.getElementById("padAjaxdfeadb893ed5c08de7963b9dde932d93").innerHTML=padAjaxdfeadb893ed5c08de7963b9dde932d93.responseText;
+                      } else {
+                      document.getElementById("padAjaxdfeadb893ed5c08de7963b9dde932d93").innerHTML=padAjaxdfeadb893ed5c08de7963b9dde932d93.statusText;
+                      }
+                      }
+                      }
+                      padAjaxdfeadb893ed5c08de7963b9dde932d93.open("GET","http://localhost/pad/regression/pages/?select/demo/a_total_is_no_row_the_declared_order_sorts&padInclude",true);
+                      padAjaxdfeadb893ed5c08de7963b9dde932d93.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/a_union_is_no_row_the_declared_order_sorts<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/a_union_is_no_row_the_declared_order_sorts.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/a_union_is_no_row_the_declared_order_sorts.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A union makes rows of its own, as a group does: the declared order and the key are the<br>  // order of the table's rows, and after the union only its own columns can be named. A<br>  // select with union= - on the tag, declared, or a view of a table with an order - is<br>  // sorted by an order= written with it, or not at all. Over the staff and offices tables of<br>  // the demo database; sort= puts the answers in a fixed order.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'cityPhones'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'offices'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'phones'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'phone'</span><span style="color: #007700">, </span><span style="color: #DD0000">'union' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cityPhones' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'allPhones'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'base' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'phone'</span><span style="color: #007700">, </span><span style="color: #DD0000">'union' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cityPhones' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">tag: [<b>{<font color="blue">staffSel </font><font color="red">fields="phone"<font color="black">,</font> union="cityPhones"<font color="black">,</font> sort="phone"</font>}</b><b>{<font color="green"><font color="red">$</font>phone</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>key: [<b>{<font color="blue">phones </font><font color="red">sort="phone"</font>}</b><b>{<font color="green"><font color="red">$</font>phone</font>}</b> <b>{/<font color="blue">phones</font><font color="red"></font>}</b>]<br>view: [<b>{<font color="blue">allPhones </font><font color="red">sort="phone"</font>}</b><b>{<font color="green"><font color="red">$</font>phone</font>}</b> <b>{/<font color="blue">allPhones</font><font color="red"></font>}</b>]<br>order: [<b>{<font color="blue">allPhones </font><font color="red">order="phone desc"<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>phone</font>}</b> <b>{/<font color="blue">allPhones</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxde3902927afefab50b5e230ccc337a67"></div>
+                      <script>
+                      padAjaxde3902927afefab50b5e230ccc337a67 = new XMLHttpRequest();
+                      padAjaxde3902927afefab50b5e230ccc337a67.onreadystatechange=function() {
+                      if (padAjaxde3902927afefab50b5e230ccc337a67.readyState === 4) {
+                      if (padAjaxde3902927afefab50b5e230ccc337a67.status === 200) {
+                      document.getElementById("padAjaxde3902927afefab50b5e230ccc337a67").innerHTML=padAjaxde3902927afefab50b5e230ccc337a67.responseText;
+                      } else {
+                      document.getElementById("padAjaxde3902927afefab50b5e230ccc337a67").innerHTML=padAjaxde3902927afefab50b5e230ccc337a67.statusText;
+                      }
+                      }
+                      }
+                      padAjaxde3902927afefab50b5e230ccc337a67.open("GET","http://localhost/pad/regression/pages/?select/demo/a_union_is_no_row_the_declared_order_sorts&padInclude",true);
+                      padAjaxde3902927afefab50b5e230ccc337a67.send();
                       </script>
                     </td>
                   </tr>

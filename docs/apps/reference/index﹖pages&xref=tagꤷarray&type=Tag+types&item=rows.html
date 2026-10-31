@@ -189,7 +189,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">for (</span><span style="color: #0000BB">$row </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$row </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">3</span><span style="color: #007700">; </span><span style="color: #0000BB">$row</span><span style="color: #007700">++)<br>    for (</span><span style="color: #0000BB">$col </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$col </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">5</span><span style="color: #007700">; </span><span style="color: #0000BB">$col</span><span style="color: #007700">++)<br>      </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">$row</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">$col</span><span style="color: #007700">] = </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">rows</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">cols</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red">(&amp;rows<font color="black">:</font>key*10) + &amp;cols<font color="black">:</font>key</font>}</b>&lt;/td&gt;  <br>      <b>{/<font color="blue">cols</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">rows</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">rows</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">cols</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red">(&amp;rows<font color="black">:</font>key*10) + &amp;cols<font color="black">:</font>key</font>/}</b>&lt;/td&gt;  <br>      <b>{/<font color="blue">cols</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">rows</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax2c1e8590cf9a32f9261f999f1ff6b633"></div>
@@ -273,7 +273,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixture of nocache: its build moment in nanoseconds, and rows for a loop. A hit<br>  // of the page cache runs none of this - the {nocache} parts render without it.<br><br>  </span><span style="color: #0000BB">$stamp </span><span style="color: #007700">= </span><span style="color: #0000BB">hrtime </span><span style="color: #007700">( </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$rows  </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'v' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">built <b>{<font color="green"><font color="red">$</font>stamp</font>}</b> live <b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>microtime</font><font color="red"></font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b> rows <b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{<font color="blue">nocache</font><font color="red"></font>}</b>=<b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>;<b>{/<font color="blue">rows</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000">built <b>{<font color="green"><font color="red">$</font>stamp</font>}</b> live <b>{<font color="blue">nocache</font><font color="red"></font>}</b><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>microtime</font><font color="red"></font>/}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b> rows <b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{<font color="blue">nocache</font><font color="red"></font>}</b>=<b>{<font color="green"><font color="red">$</font>v</font>}</b><b>{/<font color="blue">nocache</font><font color="red"></font>}</b>;<b>{/<font color="blue">rows</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxaf6f154aa4b0d2334a38ced88a31de67"></div>
@@ -315,7 +315,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">for (</span><span style="color: #0000BB">$row </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$row </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">3</span><span style="color: #007700">; </span><span style="color: #0000BB">$row</span><span style="color: #007700">++)<br>    for (</span><span style="color: #0000BB">$col </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$col </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">5</span><span style="color: #007700">; </span><span style="color: #0000BB">$col</span><span style="color: #007700">++)<br>      </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">$row</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">$col</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = (</span><span style="color: #0000BB">$row</span><span style="color: #007700">*</span><span style="color: #0000BB">10</span><span style="color: #007700">) + </span><span style="color: #0000BB">$col</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">rows</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">cols</font><font color="red"></font>}</b><br>        <b>{<font color="blue">cell</font><font color="red"></font>}</b>  <br>      <b>{/<font color="blue">cols</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">rows</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">rows</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">cols</font><font color="red"></font>}</b><br>        <b>{<font color="blue">cell</font><font color="red"></font>/}</b>  <br>      <b>{/<font color="blue">cols</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">rows</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxb600d6bef4ca4995102ef205c695445c"></div>
@@ -357,7 +357,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rows </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">11</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">12</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">13</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">4</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">14</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">5</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">15</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">21</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">22</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">23</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">4</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">24</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">5</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">25</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">31</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">32</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">33</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">4</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">34</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">5</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">35</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">rows</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">cols</font><font color="red"></font>}</b><br>        <b>{<font color="blue">cell</font><font color="red"></font>}</b>  <br>      <b>{/<font color="blue">cols</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">rows</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">rows</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">cols</font><font color="red"></font>}</b><br>        <b>{<font color="blue">cell</font><font color="red"></font>/}</b>  <br>      <b>{/<font color="blue">cols</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">rows</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax6a14f1dd530c8ea2fe9cb2adcb7731a7"></div>
@@ -441,7 +441,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rows </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$nums </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">tildelist</font><font color="red"></font>}</b>C<b>{/<font color="blue">tildelist</font><font color="red"></font>}</b> <b>{<font color="blue">tildesnippet</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">tildelist</font><font color="red"></font>}</b>C<b>{/<font color="blue">tildelist</font><font color="red"></font>}</b> <b>{<font color="blue">tildesnippet</font><font color="red"></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxf86d141b3a711f0ce8702f2e98b783dd"></div>
@@ -589,6 +589,48 @@
                   </tr>
                 </table><br>
                 <hr>
+                App: regression/info - Page: probe<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">probe.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">probe.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rows </span><span style="color: #007700">= [ [</span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'one'</span><span style="color: #007700">], [</span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'two'</span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">rows</font><font color="red"></font>}</b>&lt;p&gt;<b>{<font color="green">$n</font> <font color="black">|</font> <font color="blue">upper</font>}</b>&lt;/p&gt;<b>{/<font color="blue">rows</font><font color="red"></font>}</b><br>&lt;p&gt;<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>sequence</font>}</b><b>{/<font color="blue">sequence</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax5eb060e4e35474016f2ef3caea16a13b_3"></div>
+                      <script>
+                      padAjax5eb060e4e35474016f2ef3caea16a13b_3 = new XMLHttpRequest();
+                      padAjax5eb060e4e35474016f2ef3caea16a13b_3.onreadystatechange=function() {
+                      if (padAjax5eb060e4e35474016f2ef3caea16a13b_3.readyState === 4) {
+                      if (padAjax5eb060e4e35474016f2ef3caea16a13b_3.status === 200) {
+                      document.getElementById("padAjax5eb060e4e35474016f2ef3caea16a13b_3").innerHTML=padAjax5eb060e4e35474016f2ef3caea16a13b_3.responseText;
+                      } else {
+                      document.getElementById("padAjax5eb060e4e35474016f2ef3caea16a13b_3").innerHTML=padAjax5eb060e4e35474016f2ef3caea16a13b_3.statusText;
+                      }
+                      }
+                      }
+                      padAjax5eb060e4e35474016f2ef3caea16a13b_3.open("GET","http://localhost/pad/regression/info/?probe&padInclude",true);
+                      padAjax5eb060e4e35474016f2ef3caea16a13b_3.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/framework - Page: expressions/a_long_one_off_expression_is_not_kept_for_the_request<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -609,7 +651,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Four hundred rows, each splicing a body of 10 KB of its own into an expression: kept for<br>  // the request, the texts held some 20 MB after the loop; the 4 MB of the values themselves<br>  // stay, kept by padSpliceRecord for the guards of the splice.<br><br>  </span><span style="color: #0000BB">$rows </span><span style="color: #007700">= [];<br><br>  for ( </span><span style="color: #0000BB">$i </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">; </span><span style="color: #0000BB">$i </span><span style="color: #007700">&lt; </span><span style="color: #0000BB">400</span><span style="color: #007700">; </span><span style="color: #0000BB">$i</span><span style="color: #007700">++ )<br>    </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'body' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">str_repeat </span><span style="color: #007700">( </span><span style="color: #DD0000">'lorem ipsum '</span><span style="color: #007700">, </span><span style="color: #0000BB">850 </span><span style="color: #007700">) . </span><span style="color: #0000BB">$i </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$before </span><span style="color: #007700">= </span><span style="color: #0000BB">memory_get_usage </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>body</font><font color="black">}</font></b> <font color="black">|</font> php<font color="black">:</font>strlen <font color="black">|</font> <font color="black">'</font><font color="black">'</font></font>}</b><b>{/<font color="blue">rows</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>memory_get_usage() - <font color="red">$</font>before lt 16000000 ? <font color="black">'</font>bounded<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>kept<font color="black">'</font></font>}</b>]</code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">rows</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>body</font><font color="black">}</font></b> <font color="black">|</font> php<font color="black">:</font>strlen <font color="black">|</font> <font color="black">'</font><font color="black">'</font></font>/}</b><b>{/<font color="blue">rows</font><font color="red"></font>}</b>[<b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>memory_get_usage() - <font color="red">$</font>before lt 16000000 ? <font color="black">'</font>bounded<font color="black">'</font> <font color="black">:</font> <font color="black">'</font>kept<font color="black">'</font></font>/}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxf753cb5711ed4e5a1b2047cc944e0131"></div>
@@ -666,48 +708,6 @@
                       }
                       padAjaxadb379ee817c794d7e74a4fb907204c7.open("GET","http://localhost/pad/regression/framework/?options/a_group_aggregate_named_rows_or_count_keeps_the_groups_own&padInclude",true);
                       padAjaxadb379ee817c794d7e74a4fb907204c7.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: options/else_leaves_a_hit_and_its_content_alone<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">options/else_leaves_a_hit_and_its_content_alone.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">options/else_leaves_a_hit_and_its_content_alone.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $rows </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">"n" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>E<font color="black">'</font></font>}</b>ELSE<b>{/<font color="blue">content</font><font color="red"></font>}</b><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>C<font color="black">'</font></font>}</b>CONT<b>{/<font color="blue">content</font><font color="red"></font>}</b>[<b>{<font color="blue">rows </font><font color="red">else=<font color="black">'</font>E<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>C<font color="black">'</font></font>}</b>x<b>{/<font color="blue">rows</font><font color="red"></font>}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxf9af4682cb77b2c0388adb0bd342ccc5"></div>
-                      <script>
-                      padAjaxf9af4682cb77b2c0388adb0bd342ccc5 = new XMLHttpRequest();
-                      padAjaxf9af4682cb77b2c0388adb0bd342ccc5.onreadystatechange=function() {
-                      if (padAjaxf9af4682cb77b2c0388adb0bd342ccc5.readyState === 4) {
-                      if (padAjaxf9af4682cb77b2c0388adb0bd342ccc5.status === 200) {
-                      document.getElementById("padAjaxf9af4682cb77b2c0388adb0bd342ccc5").innerHTML=padAjaxf9af4682cb77b2c0388adb0bd342ccc5.responseText;
-                      } else {
-                      document.getElementById("padAjaxf9af4682cb77b2c0388adb0bd342ccc5").innerHTML=padAjaxf9af4682cb77b2c0388adb0bd342ccc5.statusText;
-                      }
-                      }
-                      }
-                      padAjaxf9af4682cb77b2c0388adb0bd342ccc5.open("GET","http://localhost/pad/regression/framework/?options/else_leaves_a_hit_and_its_content_alone&padInclude",true);
-                      padAjaxf9af4682cb77b2c0388adb0bd342ccc5.send();
                       </script>
                     </td>
                   </tr>

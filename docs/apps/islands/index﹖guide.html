@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="4004108ef358823c10531fb99bc0cc2f699a4760491cf90ebc09a78d6d1bae4f">
+  <meta name="csrf-token" content="b62ed2cff5d51490f172ba2afd9dcd9e36a33e9c4f379d3c13a3635f26fd11d6">
   <title>Guide - PAD + islands</title>
   <link rel="stylesheet" href="islands.css">
   <script type="module" src="build/assets/main-2Gb33P07.js"></script>
@@ -56,7 +56,7 @@
   <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$counter.start</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span>
 
-<span class="hl-brc">{</span><span class="hl-tag">vite</span> <span class="hl-str">&#039;src/main.js&#039;</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">vite</span> <span class="hl-str">&#039;src/main.js&#039;</span><span class="hl-brc">/}</span></code></pre>
 
 <h2>2. The registry, in the build</h2>
 <p><code>_frontend/src/main.js</code> names every island and pairs it with its framework. Both are
@@ -116,7 +116,7 @@ npm run build     <span class="hl-com"># www/islands/build/ with .vite/manifest.
 npm run dev       <span class="hl-com"># the dev server; build/hot holds its address</span></code></pre>
   </div>
   <div>
-    <p>{vite 'src/main.js'} reads the manifest and writes the entry's CSS, its chunks as
+    <p>{vite 'src/main.js'/} reads the manifest and writes the entry's CSS, its chunks as
        <code>modulepreload</code> and its module script. While <code>npm run dev</code> runs, a hook of
        <code>vite.config.js</code> writes the dev server's address into <code>build/hot</code>, and
        {vite} asks the dev server instead - a save in the editor shows at once.</p>
@@ -131,7 +131,7 @@ npm run dev       <span class="hl-com"># the dev server; build/hot holds its add
 <footer class="footer">
   <div class="wrap">
     <p><strong>PAD</strong> renders the page and places the islands &middot; <strong>React, Vue, Svelte, Preact, Solid</strong> bring them to life, built by Vite</p>
-    <p class="footer-small">The sources are in <code>apps/islands/_frontend/</code>, the build in <code>www/islands/build/</code>, linked by <code>{vite 'src/main.js'}</code></p>
+    <p class="footer-small">The sources are in <code>apps/islands/_frontend/</code>, the build in <code>www/islands/build/</code>, linked by <code>{vite 'src/main.js'/}</code></p>
   </div>
 </footer>
 

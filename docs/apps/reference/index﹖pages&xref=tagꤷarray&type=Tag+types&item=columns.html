@@ -128,6 +128,48 @@
                     </td>
                   </tr>
                 </table><br>
+                <hr>
+                App: padSelect - Page: model<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">model.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">model.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The tables as the database has them - each column, the ones of the key marked - beside<br>  // the declarations of _lib/select.php that make them tags.<br><br>  </span><span style="color: #0000BB">$columns </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"array table_name as tbl, column_name as col, column_key as pk, column_type as type<br>                     from information_schema.columns<br>                    where table_schema = database()<br>                    order by table_name, ordinal_position" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$tables </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">$columns </span><span style="color: #007700">as </span><span style="color: #0000BB">$one </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$name </span><span style="color: #007700">= </span><span style="color: #0000BB">strtolower </span><span style="color: #007700">( </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'tbl'</span><span style="color: #007700">] );<br><br>    </span><span style="color: #0000BB">$tables </span><span style="color: #007700">[</span><span style="color: #0000BB">$name</span><span style="color: #007700">] [</span><span style="color: #DD0000">'table'</span><span style="color: #007700">]     ??= </span><span style="color: #0000BB">$name</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$tables </span><span style="color: #007700">[</span><span style="color: #0000BB">$name</span><span style="color: #007700">] [</span><span style="color: #DD0000">'rows'</span><span style="color: #007700">]      ??= </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"field count(*) from `</span><span style="color: #0000BB">$name</span><span style="color: #DD0000">`" </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$tables </span><span style="color: #007700">[</span><span style="color: #0000BB">$name</span><span style="color: #007700">] [</span><span style="color: #DD0000">'columns'</span><span style="color: #007700">] [] = [ </span><span style="color: #DD0000">'column' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'col'</span><span style="color: #007700">], </span><span style="color: #DD0000">'type' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'type'</span><span style="color: #007700">], </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$one </span><span style="color: #007700">[</span><span style="color: #DD0000">'pk'</span><span style="color: #007700">] == </span><span style="color: #DD0000">'PRI' </span><span style="color: #007700">];<br><br>  }<br><br>  </span><span style="color: #0000BB">$tables      </span><span style="color: #007700">= </span><span style="color: #0000BB">array_values </span><span style="color: #007700">( </span><span style="color: #0000BB">$tables </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$modelSource </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">preg_replace </span><span style="color: #007700">( </span><span style="color: #DD0000">'/\A&lt;\?php\R|\?&gt;\s*\z/'</span><span style="color: #007700">, </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">file_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">'_lib/select.php' </span><span style="color: #007700">) ), </span><span style="color: #DD0000">"\r\n" </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$modelHtml   </span><span style="color: #007700">= </span><span style="color: #0000BB">padHighlightTokens </span><span style="color: #007700">( </span><span style="color: #0000BB">preg_replace </span><span style="color: #007700">( </span><span style="color: #DD0000">'/^  /m'</span><span style="color: #007700">, </span><span style="color: #DD0000">''</span><span style="color: #007700">, </span><span style="color: #0000BB">$modelSource </span><span style="color: #007700">), </span><span style="color: #DD0000">'php' </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;div class="ps-home"&gt;<br><br>  &lt;p class="ps-lead"&gt;A small music catalogue - labels, artists, genres, albums and their<br>  tracks, singles, playlists and reviews - in the database of this application,<br>  &lt;code&gt;_install/padSelect.sql&lt;/code&gt;. Every name in it is made up.&lt;/p&gt;<br><br>  &lt;div class="ps-tables"&gt;<br>    <b>{<font color="blue">tables</font><font color="red"></font>}</b><br>    &lt;section class="ps-table"&gt;<br>      &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>table</font>}</b> &lt;small&gt;<b>{<font color="green"><font color="red">$</font>rows</font>}</b> rows&lt;/small&gt;&lt;/h3&gt;<br>      &lt;ul&gt;<br>        <b>{<font color="blue">columns</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>key</font>}</b>&lt;span class="key"&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/span&gt;<b>{<font color="blue">else</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>column</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;span class="ref"&gt;<b>{<font color="green"><font color="red">$</font>type</font>}</b>&lt;/span&gt;&lt;/li&gt;<b>{/<font color="blue">columns</font><font color="red"></font>}</b><br>      &lt;/ul&gt;<br>    &lt;/section&gt;<br>    <b>{/<font color="blue">tables</font><font color="red"></font>}</b><br>  &lt;/div&gt;<br><br>  &lt;section class="ps-cell"&gt;<br>    &lt;header class="ps-head"&gt;The declarations &lt;span class="ps-file"&gt;_lib/select.php&lt;/span&gt;&lt;/header&gt;<br>    &lt;pre class="ps-code"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>modelHtml</font>}</b>&lt;/code&gt;<br>  &lt;/section&gt;<br><br>&lt;/div&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax1175c82ea10c7dcb8034658bf4c1b5cf"></div>
+                      <script>
+                      padAjax1175c82ea10c7dcb8034658bf4c1b5cf = new XMLHttpRequest();
+                      padAjax1175c82ea10c7dcb8034658bf4c1b5cf.onreadystatechange=function() {
+                      if (padAjax1175c82ea10c7dcb8034658bf4c1b5cf.readyState === 4) {
+                      if (padAjax1175c82ea10c7dcb8034658bf4c1b5cf.status === 200) {
+                      document.getElementById("padAjax1175c82ea10c7dcb8034658bf4c1b5cf").innerHTML=padAjax1175c82ea10c7dcb8034658bf4c1b5cf.responseText;
+                      } else {
+                      document.getElementById("padAjax1175c82ea10c7dcb8034658bf4c1b5cf").innerHTML=padAjax1175c82ea10c7dcb8034658bf4c1b5cf.statusText;
+                      }
+                      }
+                      }
+                      padAjax1175c82ea10c7dcb8034658bf4c1b5cf.open("GET","http://localhost/pad/padSelect/?model&padInclude",true);
+                      padAjax1175c82ea10c7dcb8034658bf4c1b5cf.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
               </center>
             </td>
           </tr>

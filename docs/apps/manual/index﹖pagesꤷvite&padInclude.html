@@ -7,7 +7,7 @@ and PAD links the result by the name of the source, so a template never names a 
 
 <pre><code>&lt;div data-island="Cart" data-props="{^cart}"&gt;&lt;/div&gt;
 
-{vite 'src/main.js'}</code></pre>
+{vite 'src/main.js'/}</code></pre>
 
 
 <p>In production that is the entry's stylesheet, its chunks as <code>modulepreload</code> and its
@@ -57,7 +57,7 @@ function padHot () {
 <ul>
   <li><code>$padViteDev = 'http://localhost:5173'</code> names the dev server outright, without the
       file.</li>
-  <li><code>{vite 'src/main.jsx', react}</code> writes the preamble the React plugin needs for
+  <li><code>{vite 'src/main.jsx', react/}</code> writes the preamble the React plugin needs for
       fast refresh, when the dev server is asked.</li>
   <li>A file goes out once a page however many entries name it; a script carries the request's
       nonce when <code>$padCsp</code> asks for one.</li>

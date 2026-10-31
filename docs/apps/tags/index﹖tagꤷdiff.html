@@ -99,9 +99,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$old</span>, <span class="hl-var">$new</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$old</span>, <span class="hl-var">$new</span>, lines, <span class="hl-opt">from</span>=<span class="hl-str">'Monday'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'Friday'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$old</span>, <span class="hl-var">$new</span>, side, <span class="hl-opt">from</span>=<span class="hl-str">'before'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'after'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$old</span>, <span class="hl-var">$new</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$old</span>, <span class="hl-var">$new</span>, lines, <span class="hl-opt">from</span>=<span class="hl-str">'Monday'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'Friday'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$old</span>, <span class="hl-var">$new</span>, side, <span class="hl-opt">from</span>=<span class="hl-str">'before'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'after'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -154,7 +154,7 @@
               Description
             </h2>
             <p>
-              <code>{diff $old, $new}</code> compares two texts and writes the new one with what changed marked: the words that went out as <code>&lt;del&gt;</code>, the words that came in as <code>&lt;ins&gt;</code>. The differences are found by Myers' algorithm, the shortest edit script, as <code>git diff</code> finds them. In a run of changes the deletions come before the insertions, and the space between two changed words joins the change, so a rewritten phrase reads as one change instead of a patchwork.
+              <code>{diff $old, $new/}</code> compares two texts and writes the new one with what changed marked: the words that went out as <code>&lt;del&gt;</code>, the words that came in as <code>&lt;ins&gt;</code>. The differences are found by Myers' algorithm, the shortest edit script, as <code>git diff</code> finds them. In a run of changes the deletions come before the insertions, and the space between two changed words joins the change, so a rewritten phrase reads as one change instead of a patchwork.
             </p>
             <p>
               <code>lines</code> compares line by line, in one column: the old and the new line number, a sign and the line. <code>side</code> puts the two versions next to each other, a changed line beside its counterpart. In both a changed line that has a counterpart marks the words that changed within it; a line without one is struck or added whole. <code>from=</code> and <code>to=</code> name the two versions.
@@ -179,7 +179,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/diff/1-words.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$draft</span>, <span class="hl-var">$final</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$draft</span>, <span class="hl-var">$final</span><span class="hl-brc">/}</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/diff/1-words.php</span>
                   </div>
@@ -214,7 +214,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/diff/2-lines.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$monday</span>, <span class="hl-var">$friday</span>, lines, <span class="hl-opt">from</span>=<span class="hl-str">'Monday'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'Friday'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$monday</span>, <span class="hl-var">$friday</span>, lines, <span class="hl-opt">from</span>=<span class="hl-str">'Monday'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'Friday'</span><span class="hl-brc">/}</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/diff/2-lines.php</span>
                   </div>
@@ -337,7 +337,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/diff/3-side.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$before</span>, <span class="hl-var">$after</span>, side, <span class="hl-opt">from</span>=<span class="hl-str">'before'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'after'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">diff</span> <span class="hl-var">$before</span>, <span class="hl-var">$after</span>, side, <span class="hl-opt">from</span>=<span class="hl-str">'before'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'after'</span><span class="hl-brc">/}</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/diff/3-side.php</span>
                   </div>

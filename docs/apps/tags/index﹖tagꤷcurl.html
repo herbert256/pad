@@ -96,11 +96,11 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://example.com/data.json'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-opt">url</span>=<span class="hl-str">'https://example.com/data.json'</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">600</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://example.com/api'</span>, <span class="hl-opt">post</span>=<span class="hl-str">'a=1&amp;b=2'</span>, <span class="hl-opt">user</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">password</span>=<span class="hl-var">$secret</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'SELF://shop/?orders'</span>, <span class="hl-var">$status</span>=<span class="hl-str">'open'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://example.com/api'</span>, <span class="hl-opt">get</span>=<span class="hl-var">$query</span>, <span class="hl-opt">cookies</span>=<span class="hl-var">$jar</span>, <span class="hl-opt">headers</span>=<span class="hl-var">$headers</span>, <span class="hl-opt">options</span>=<span class="hl-var">$curlOptions</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://example.com/data.json'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-opt">url</span>=<span class="hl-str">'https://example.com/data.json'</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">600</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://example.com/api'</span>, <span class="hl-opt">post</span>=<span class="hl-str">'a=1&amp;b=2'</span>, <span class="hl-opt">user</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">password</span>=<span class="hl-var">$secret</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'SELF://shop/?orders'</span>, <span class="hl-var">$status</span>=<span class="hl-str">'open'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://example.com/api'</span>, <span class="hl-opt">get</span>=<span class="hl-var">$query</span>, <span class="hl-opt">cookies</span>=<span class="hl-var">$jar</span>, <span class="hl-opt">headers</span>=<span class="hl-var">$headers</span>, <span class="hl-opt">options</span>=<span class="hl-var">$curlOptions</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -202,7 +202,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/curl/1-fetch.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;pre</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://api.example.com/status.txt'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;pre</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://api.example.com/status.txt'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/pre</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
               </div>
             </div>
@@ -221,7 +221,7 @@
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pad</span> <span class="hl-opt">data</span>=<span class="hl-str">'https://api.example.com/rates.json'</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">600</span><span class="hl-brc">}</span>
   <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$code</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$rate</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/pad</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://api.example.com/rates.json'</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">600</span> | ignore<span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://api.example.com/rates.json'</span>, <span class="hl-opt">ttl</span>=<span class="hl-num">600</span> | ignore<span class="hl-brc">/}</span></code></pre>
                 </div>
               </div>
             </div>
@@ -237,8 +237,8 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/curl/3-post.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://api.example.com/orders'</span>, <span class="hl-opt">post</span>=<span class="hl-str">'number=1042&amp;status=paid'</span>, <span class="hl-opt">user</span>=<span class="hl-str">'shop'</span>, <span class="hl-opt">password</span>=<span class="hl-var">$apiKey</span> | ignore<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'SELF://shop/?orders'</span>, <span class="hl-var">$status</span>=<span class="hl-str">'open'</span> | ignore<span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'https://api.example.com/orders'</span>, <span class="hl-opt">post</span>=<span class="hl-str">'number=1042&amp;status=paid'</span>, <span class="hl-opt">user</span>=<span class="hl-str">'shop'</span>, <span class="hl-opt">password</span>=<span class="hl-var">$apiKey</span> | ignore<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">curl</span> <span class="hl-str">'SELF://shop/?orders'</span>, <span class="hl-var">$status</span>=<span class="hl-str">'open'</span> | ignore<span class="hl-brc">/}</span></code></pre>
                 </div>
               </div>
             </div>

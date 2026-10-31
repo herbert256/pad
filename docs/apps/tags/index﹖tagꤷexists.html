@@ -140,13 +140,13 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/exists/1-pair.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$notes</span> = APP . <span class="hl-str">'_data/filesDemo/notes.txt'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$notes</span> = APP . <span class="hl-str">'_data/filesDemo/notes.txt'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">exists</span> <span class="hl-var">$notes</span><span class="hl-brc">}</span>
   <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The notes are there.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-var">@else@</span>
   <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>No notes yet.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/exists</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$todo</span> = APP . <span class="hl-str">'_data/filesDemo/todo.txt'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$todo</span> = APP . <span class="hl-str">'_data/filesDemo/todo.txt'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">exists</span> <span class="hl-var">$todo</span><span class="hl-brc">}</span>
   <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The to-do list is there.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-var">@else@</span>
@@ -180,8 +180,8 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/exists/2-directory.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$archive</span> = APP . <span class="hl-str">'_data/filesDemo/archive'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$old</span>     = APP . <span class="hl-str">'_data/filesDemo/old'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$archive</span> = APP . <span class="hl-str">'_data/filesDemo/archive'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$old</span>     = APP . <span class="hl-str">'_data/filesDemo/old'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>archive: <span class="hl-brc">{</span><span class="hl-tag">exists</span> <span class="hl-var">$archive</span><span class="hl-brc">}</span>there<span class="hl-var">@else@</span>missing<span class="hl-brc">{</span><span class="hl-tag">/exists</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>old: <span class="hl-brc">{</span><span class="hl-tag">exists</span> <span class="hl-var">$old</span><span class="hl-brc">}</span>there<span class="hl-var">@else@</span>missing<span class="hl-brc">{</span><span class="hl-tag">/exists</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>

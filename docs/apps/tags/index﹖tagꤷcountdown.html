@@ -96,9 +96,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-12-31 00:00'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-var">$moment</span>, <span class="hl-opt">units</span>=<span class="hl-num">3</span>, <span class="hl-opt">past</span>=<span class="hl-str">'We are live!'</span>, live<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-var">$moment</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-12-31 00:00'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-var">$moment</span>, <span class="hl-opt">units</span>=<span class="hl-num">3</span>, <span class="hl-opt">past</span>=<span class="hl-str">'We are live!'</span>, live<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-var">$moment</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -151,7 +151,7 @@
               Description
             </h2>
             <p>
-              <code>{countdown '2026-12-31 00:00'}</code> writes the time left until the moment in words - <code>84 days, 3 hours</code> - inside a <code>&lt;time class="pad-countdown"&gt;</code> whose <code>datetime</code> is the moment and whose <code>title</code> is the moment in full. The words start at the largest unit that is not zero and take <code>units</code> of them, a zero unit among them left out: <code>5 minutes, 12 seconds</code>, <code>1 day</code>. Once the moment has gone, the text of <code>past=</code> stands there instead - <code>ended</code> when not given.
+              <code>{countdown '2026-12-31 00:00'/}</code> writes the time left until the moment in words - <code>84 days, 3 hours</code> - inside a <code>&lt;time class="pad-countdown"&gt;</code> whose <code>datetime</code> is the moment and whose <code>title</code> is the moment in full. The words start at the largest unit that is not zero and take <code>units</code> of them, a zero unit among them left out: <code>5 minutes, 12 seconds</code>, <code>1 day</code>. Once the moment has gone, the text of <code>past=</code> stands there instead - <code>ended</code> when not given.
             </p>
             <p>
               Now is <code>padNow ()</code>, so <code>padNowFreeze ()</code> holds a test still, and <code>now=</code> counts from a given moment - how the first example here stays the same on every request. <code>format=</code> is the PHP date format of the title.
@@ -177,10 +177,10 @@
                     <span>Template</span><span class="cell-file">examples/countdown/1-events.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
-  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>Jazz in the park: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-10-06 20:00'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">past</span>=<span class="hl-str">'Sold out'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
-  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>Pottery workshop: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-10-08 15:20'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
-  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>City half marathon: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-10-12 09:30'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">units</span>=<span class="hl-num">3</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
-  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>New year: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2027-01-01 00:00'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 11:59:30'</span>, <span class="hl-opt">units</span>=<span class="hl-num">4</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>Jazz in the park: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-10-06 20:00'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">past</span>=<span class="hl-str">'Sold out'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>Pottery workshop: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-10-08 15:20'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>City half marathon: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-10-12 09:30'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">units</span>=<span class="hl-num">3</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>New year: <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2027-01-01 00:00'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 11:59:30'</span>, <span class="hl-opt">units</span>=<span class="hl-num">4</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
@@ -214,7 +214,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/countdown/2-live.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Version <span class="hl-num">3.0</span> launches in <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-12-01 10:00'</span>, <span class="hl-opt">units</span>=<span class="hl-num">3</span>, live, <span class="hl-opt">past</span>=<span class="hl-str">'We are live!'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Version <span class="hl-num">3.0</span> launches in <span class="hl-brc">{</span><span class="hl-tag">countdown</span> <span class="hl-str">'2026-12-01 10:00'</span>, <span class="hl-opt">units</span>=<span class="hl-num">3</span>, live, <span class="hl-opt">past</span>=<span class="hl-str">'We are live!'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
               </div>
             </div>

@@ -97,11 +97,11 @@
               Syntax
             </h2>
             <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">macro</span> <span class="hl-str">'name'</span>, required, <span class="hl-opt">optional</span>=<span class="hl-str">'default'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">$required</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$optional</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/macro</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-str">'value'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-str">'value'</span>, <span class="hl-str">'other'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-opt">required</span>=<span class="hl-str">'value'</span>, <span class="hl-opt">optional</span>=<span class="hl-var">$x</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-str">'value'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-str">'value'</span>, <span class="hl-str">'other'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-opt">required</span>=<span class="hl-str">'value'</span>, <span class="hl-opt">optional</span>=<span class="hl-var">$x</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-str">'value'</span><span class="hl-brc">}</span> content for <span class="hl-var">@content@</span> <span class="hl-brc">{</span><span class="hl-tag">/name</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">macro:name</span> ...<span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">macro:name</span> ...<span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -157,9 +157,9 @@
   <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;label</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span> <span class="hl-htm">&lt;input</span> <span class="hl-opt">type</span>=<span class="hl-str">"{$kind}"</span> <span class="hl-opt">name</span>=<span class="hl-str">"{$label}"</span> <span class="hl-opt">value</span>=<span class="hl-str">"{$value}"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/macro</span><span class="hl-brc">}</span>
 
-<span class="hl-brc">{</span><span class="hl-tag">macroEntry</span> <span class="hl-str">'E-mail'</span>, <span class="hl-str">'email'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">macroEntry</span> <span class="hl-opt">label</span>=<span class="hl-str">'Name'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Ada'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">macroEntry</span> <span class="hl-str">'City'</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">macroEntry</span> <span class="hl-str">'E-mail'</span>, <span class="hl-str">'email'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">macroEntry</span> <span class="hl-opt">label</span>=<span class="hl-str">'Name'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Ada'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">macroEntry</span> <span class="hl-str">'City'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -197,7 +197,7 @@
 
 <span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">macroProducts</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">macroPrice</span> <span class="hl-var">$price</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">macroPrice</span> <span class="hl-var">$price</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/macroProducts</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
@@ -288,9 +288,9 @@
   <span class="hl-htm">&lt;label</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span> <span class="hl-htm">&lt;input</span> <span class="hl-opt">type</span>=<span class="hl-str">"{$kind}"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/label</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/macro</span><span class="hl-brc">}</span>
 
-<span class="hl-brc">{</span><span class="hl-tag">entry</span> <span class="hl-opt">kind</span>=<span class="hl-str">'email'</span><span class="hl-brc">}</span>      the required label is missing - an error
-<span class="hl-brc">{</span><span class="hl-tag">entry</span> <span class="hl-str">'Name'</span>, <span class="hl-str">'text'</span>, <span class="hl-str">'x'</span><span class="hl-brc">}</span>   one value too many - an error
-<span class="hl-brc">{</span><span class="hl-tag">entry</span> <span class="hl-str">'Name'</span>, <span class="hl-opt">size</span>=<span class="hl-num">20</span><span class="hl-brc">}</span>   size is not a parameter of entry - an error</code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">entry</span> <span class="hl-opt">kind</span>=<span class="hl-str">'email'</span><span class="hl-brc">/}</span>      the required label is missing - an error
+<span class="hl-brc">{</span><span class="hl-tag">entry</span> <span class="hl-str">'Name'</span>, <span class="hl-str">'text'</span>, <span class="hl-str">'x'</span><span class="hl-brc">/}</span>   one value too many - an error
+<span class="hl-brc">{</span><span class="hl-tag">entry</span> <span class="hl-str">'Name'</span>, <span class="hl-opt">size</span>=<span class="hl-num">20</span><span class="hl-brc">/}</span>   size is not a parameter of entry - an error</code></pre>
                 </div>
               </div>
             </div>

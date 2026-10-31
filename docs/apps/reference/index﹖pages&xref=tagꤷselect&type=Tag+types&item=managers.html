@@ -166,6 +166,48 @@
                     </td>
                   </tr>
                 </table><br>
+                <hr>
+                App: manual - Page: fragments/padSelect_4<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/padSelect_4.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/padSelect_4.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lastName' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'managers'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'base' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'managers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'reportsTo' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">employees </font><font color="red">where="officeCode = 4"</font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>firstName</font>}</b> <b>{<font color="green"><font color="red">$</font>lastName</font>}</b> reports to<br>    <b>{<font color="blue">managers</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>firstName</font>}</b> <b>{<font color="green"><font color="red">$</font>lastName</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>nobody<b>{/<font color="blue">managers</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">employees</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax10610419bddada5e45e54e9e50f976e7"></div>
+                      <script>
+                      padAjax10610419bddada5e45e54e9e50f976e7 = new XMLHttpRequest();
+                      padAjax10610419bddada5e45e54e9e50f976e7.onreadystatechange=function() {
+                      if (padAjax10610419bddada5e45e54e9e50f976e7.readyState === 4) {
+                      if (padAjax10610419bddada5e45e54e9e50f976e7.status === 200) {
+                      document.getElementById("padAjax10610419bddada5e45e54e9e50f976e7").innerHTML=padAjax10610419bddada5e45e54e9e50f976e7.responseText;
+                      } else {
+                      document.getElementById("padAjax10610419bddada5e45e54e9e50f976e7").innerHTML=padAjax10610419bddada5e45e54e9e50f976e7.statusText;
+                      }
+                      }
+                      }
+                      padAjax10610419bddada5e45e54e9e50f976e7.open("GET","http://localhost/pad/manual/?fragments/padSelect_4&padInclude",true);
+                      padAjax10610419bddada5e45e54e9e50f976e7.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
               </center>
             </td>
           </tr>

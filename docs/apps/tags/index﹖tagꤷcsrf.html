@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">csrf</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">csrf</span> token<span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">csrf</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">csrf</span> token<span class="hl-brc">/}</span></code></pre>
             <h3>
               Options
             </h3>
@@ -115,7 +115,7 @@
               Description
             </h2>
             <p>
-              <code>{csrf}</code> writes <code>&lt;input type="hidden" name="padCsrfToken" value="..."&gt;</code> with the token of the visitor's session: 64 hex characters, made on first use - the session starts here when the visitor has none. A form carries it back, and <code>padCsrfValid()</code> in the page's PHP tells whether the request brought the session's token, in that field or an <code>X-CSRF-Token</code> header. <code>{csrf token}</code> is the bare token, for a script that sends the header itself.
+              <code>{csrf}</code> writes <code>&lt;input type="hidden" name="padCsrfToken" value="..."&gt;</code> with the token of the visitor's session: 64 hex characters, made on first use - the session starts here when the visitor has none. A form carries it back, and <code>padCsrfValid()</code> in the page's PHP tells whether the request brought the session's token, in that field or an <code>X-CSRF-Token</code> header. <code>{csrf token/}</code> is the bare token, for a script that sends the header itself.
             </p>
             <p>
               The token is one per session, not one per form: two tabs and the back button keep working. A POST made from another site can make the browser send the session cookie, but cannot read the page to learn the token.
@@ -144,7 +144,7 @@
                     <span>Template</span><span class="cell-file">examples/csrf/1-field.src</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;form</span> <span class="hl-opt">method</span>=<span class="hl-str">"post"</span> <span class="hl-opt">action</span>=<span class="hl-str">"?orders/save"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">csrf</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">csrf</span><span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;input</span> <span class="hl-opt">name</span>=<span class="hl-str">"number"</span> <span class="hl-opt">value</span>=<span class="hl-str">"1042"</span><span class="hl-htm">&gt;</span>
   <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Save<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;/form</span><span class="hl-htm">&gt;</span>
@@ -165,7 +165,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/csrf/2-token.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;meta</span> <span class="hl-opt">name</span>=<span class="hl-str">"csrf-token"</span> <span class="hl-opt">content</span>=<span class="hl-str">"{csrf token}"</span><span class="hl-htm">&gt;</span>
+                  <pre class="code"><code><span class="hl-htm">&lt;meta</span> <span class="hl-opt">name</span>=<span class="hl-str">"csrf-token"</span> <span class="hl-opt">content</span>=<span class="hl-str">"{csrf token/}"</span><span class="hl-htm">&gt;</span>
 
 <span class="hl-htm">&lt;script</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">ignore</span><span class="hl-brc">}</span>
   const token = document.querySelector(<span class="hl-str">'meta[name="csrf-token"]'</span>).content;

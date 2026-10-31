@@ -96,9 +96,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'key'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'key'</span>, <span class="hl-opt">count</span>=<span class="hl-var">$n</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'key'</span>, <span class="hl-opt">name</span>=<span class="hl-var">$value</span>, <span class="hl-opt">other</span>=<span class="hl-var">$value</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'key'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'key'</span>, <span class="hl-opt">count</span>=<span class="hl-var">$n</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'key'</span>, <span class="hl-opt">name</span>=<span class="hl-var">$value</span>, <span class="hl-opt">other</span>=<span class="hl-var">$value</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -133,7 +133,7 @@
               Description
             </h2>
             <p>
-              <code>{trans 'cart.title'}</code> looks the key up in the translation catalog of the request's locale and writes its text. A catalog is a flat JSON object in <code>_lang/&lt;locale&gt;.json</code> - <code>_lang/en.json</code>, <code>_lang/nl.json</code>. The catalogs are looked up from the page's directory up to the application root and then <code>_common</code>, the most specific winning; for a locale <code>nl_NL</code> the files <code>nl_NL.json</code>, <code>nl-NL.json</code> and <code>nl.json</code> all count. A key no catalog knows is written as the key itself, so a missing translation shows rather than disappearing.
+              <code>{trans 'cart.title'/}</code> looks the key up in the translation catalog of the request's locale and writes its text. A catalog is a flat JSON object in <code>_lang/&lt;locale&gt;.json</code> - <code>_lang/en.json</code>, <code>_lang/nl.json</code>. The catalogs are looked up from the page's directory up to the application root and then <code>_common</code>, the most specific winning; for a locale <code>nl_NL</code> the files <code>nl_NL.json</code>, <code>nl-NL.json</code> and <code>nl.json</code> all count. A key no catalog knows is written as the key itself, so a missing translation shows rather than disappearing.
             </p>
             <p>
               The locale is <code>$padLocale</code>. With <code>$padLocales</code> listing several, a <code>?lang=</code> value, the <code>padLang</code> cookie or the browser's <code>Accept-Language</code> picks among them.
@@ -148,7 +148,7 @@
               Escaping
             </h3>
             <p>
-              The catalog's text is the application's own and is written as it stands, markup included. A substitution is data: it is written as <code>{$x}</code> writes a field, sanitized - and so is a key that no catalog knows. The <code>trans</code> pipe does the same for a value: <code>{echo 'cart.title' | trans}</code>. A <code>{trans}</code> without a key is a strict error.
+              The catalog's text is the application's own and is written as it stands, markup included. A substitution is data: it is written as <code>{$x}</code> writes a field, sanitized - and so is a key that no catalog knows. The <code>trans</code> pipe does the same for a value: <code>{echo 'cart.title' | trans/}</code>. A <code>{trans}</code> without a key is a strict error.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -167,9 +167,9 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/trans/1-key.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.title'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.checkout'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.missing'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;h3</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.title'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/h3</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;button</span> <span class="hl-opt">type</span>=<span class="hl-str">"button"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.checkout'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.missing'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -202,7 +202,7 @@
                     <span>Template</span><span class="cell-file">examples/trans/2-plural.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'0..3'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'n'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.items'</span>, <span class="hl-opt">count</span>=<span class="hl-var">$n</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'0..3'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'n'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.cart.items'</span>, <span class="hl-opt">count</span>=<span class="hl-var">$n</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
@@ -236,8 +236,8 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/trans/3-substitute.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$visitor</span> = <span class="hl-str">'Ana &lt;script&gt;'</span><span class="hl-brc">}</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.greeting'</span>, <span class="hl-opt">name</span>=<span class="hl-var">$visitor</span>, <span class="hl-opt">place</span>=<span class="hl-str">'Utrecht'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$visitor</span> = <span class="hl-str">'Ana &lt;script&gt;'</span><span class="hl-brc">/}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">trans</span> <span class="hl-str">'trans.greeting'</span>, <span class="hl-opt">name</span>=<span class="hl-var">$visitor</span>, <span class="hl-opt">place</span>=<span class="hl-str">'Utrecht'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">

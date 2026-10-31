@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">break</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">break</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">break</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">break</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -121,7 +121,7 @@
               It works on rows and on conditions alike: in a data tag or a <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> the rows still to come are emptied, and in a <a href="index%EF%B9%96tag%EA%A4%B7while.html">{while}</a> or <a href="index%EF%B9%96tag%EA%A4%B7until.html">{until}</a> the loop asks for no further pass. For a stop that lets the current pass finish, use <a href="index%EF%B9%96tag%EA%A4%B7cease.html">{cease}</a>; to skip one pass only, <a href="index%EF%B9%96tag%EA%A4%B7continue.html">{continue}</a>.
             </p>
             <p>
-              Without a parameter it leaves the nearest enclosing loop, past an <code>{if}</code>, a <code>{case}</code> and any other level that renders once for the row it stands in - an <code>{ifchanged}</code>, a <code>{guest}</code>, a property pair, a snippet. A name - <code>{break 'orders'}</code>, a tag's name or its <code>name=</code> - leaves an outer loop, and the inner loops with it; a level number or a negative offset picks the level by position. Under the strict syntax check a name no enclosing level has is an error.
+              Without a parameter it leaves the nearest enclosing loop, past an <code>{if}</code>, a <code>{case}</code> and any other level that renders once for the row it stands in - an <code>{ifchanged}</code>, a <code>{guest}</code>, a property pair, a snippet. A name - <code>{break 'orders'/}</code>, a tag's name or its <code>name=</code> - leaves an outer loop, and the inner loops with it; a level number or a negative offset picks the level by position. Under the strict syntax check a name no enclosing level has is an error.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -142,7 +142,7 @@
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">scores</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$points</span> gt <span class="hl-num">90</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$player</span><span class="hl-brc">}</span> scored <span class="hl-brc">{</span><span class="hl-var">$points</span><span class="hl-brc">}</span> - found one, stop.<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">break</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$points</span> gt <span class="hl-num">90</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$player</span><span class="hl-brc">}</span> scored <span class="hl-brc">{</span><span class="hl-var">$points</span><span class="hl-brc">}</span> - found one, stop.<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">break</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
   <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$player</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$points</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/scores</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
@@ -189,11 +189,11 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/break/2-outer.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$target</span> = <span class="hl-num">12</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$target</span> = <span class="hl-num">12</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..6'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'x'</span><span class="hl-brc">}</span>
   <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..6'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'y'</span><span class="hl-brc">}</span>
-    <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$x</span> * <span class="hl-var">$y</span> eq <span class="hl-var">$target</span><span class="hl-brc">}</span>First pair: <span class="hl-brc">{</span><span class="hl-var">$x</span><span class="hl-brc">}</span> <span class="hl-var">&amp;times</span>; <span class="hl-brc">{</span><span class="hl-var">$y</span><span class="hl-brc">}</span> = <span class="hl-brc">{</span><span class="hl-var">$target</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">break</span> <span class="hl-str">'x'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+    <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$x</span> * <span class="hl-var">$y</span> eq <span class="hl-var">$target</span><span class="hl-brc">}</span>First pair: <span class="hl-brc">{</span><span class="hl-var">$x</span><span class="hl-brc">}</span> <span class="hl-var">&amp;times</span>; <span class="hl-brc">{</span><span class="hl-var">$y</span><span class="hl-brc">}</span> = <span class="hl-brc">{</span><span class="hl-var">$target</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">break</span> <span class="hl-str">'x'</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
   <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
@@ -222,13 +222,13 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/break/3-while.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$sum</span> = <span class="hl-num">0</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$add</span> = <span class="hl-num">0</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$sum</span> = <span class="hl-num">0</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$add</span> = <span class="hl-num">0</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">while</span> <span class="hl-var">$add</span> lt <span class="hl-num">100</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">increment</span> <span class="hl-var">$add</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$sum</span> = <span class="hl-var">$sum</span> + <span class="hl-var">$add</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$sum</span> gt <span class="hl-num">20</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">break</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">increment</span> <span class="hl-var">$add</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$sum</span> = <span class="hl-var">$sum</span> + <span class="hl-var">$add</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">if</span> <span class="hl-var">$sum</span> gt <span class="hl-num">20</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">break</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
   <span class="hl-brc">{</span><span class="hl-var">$sum</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/while</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>

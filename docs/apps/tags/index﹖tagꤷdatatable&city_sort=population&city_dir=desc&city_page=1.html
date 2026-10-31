@@ -99,9 +99,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">columns</span>=<span class="hl-str">'a, b, c'</span>, <span class="hl-opt">labels</span>=<span class="hl-str">'A, B, C'</span>, <span class="hl-opt">totals</span>=<span class="hl-str">'c'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">format</span>=<span class="hl-str">"c:currency('EUR')"</span>, sortable, striped, <span class="hl-opt">caption</span>=<span class="hl-str">'Caption'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">10</span>, <span class="hl-opt">query</span>=<span class="hl-str">'prefix_'</span><span class="hl-brc">}</span>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">columns</span>=<span class="hl-str">'a, b, c'</span>, <span class="hl-opt">labels</span>=<span class="hl-str">'A, B, C'</span>, <span class="hl-opt">totals</span>=<span class="hl-str">'c'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">format</span>=<span class="hl-str">"c:currency('EUR')"</span>, sortable, striped, <span class="hl-opt">caption</span>=<span class="hl-str">'Caption'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'name'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">10</span>, <span class="hl-opt">query</span>=<span class="hl-str">'prefix_'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">totals</span>=<span class="hl-str">'amount'</span><span class="hl-brc">}</span> month,amount ... <span class="hl-brc">{</span><span class="hl-tag">/datatable</span><span class="hl-brc">}</span></code></pre>
             <h3>
               Options
@@ -180,7 +180,7 @@
               Columns and numbers
             </h3>
             <p>
-              <code>columns=</code> picks the fields and their order, <code>labels=</code> gives their headers; otherwise every field of the first row shows, its name made a headline. A column whose values are all numbers is right-aligned, written with the most decimals any of its values has and grouped by thousands - unless its name says it identifies (<code>id</code>, <code>number</code>, <code>code</code>, <code>year</code> ...), then the digits stand as they are. <code>format=</code> gives a column a pipe instead, run as <code>{echo $value | pipe}</code>. <code>totals=</code> sums columns in a last row, over all rows. Everything from the data is escaped.
+              <code>columns=</code> picks the fields and their order, <code>labels=</code> gives their headers; otherwise every field of the first row shows, its name made a headline. A column whose values are all numbers is right-aligned, written with the most decimals any of its values has and grouped by thousands - unless its name says it identifies (<code>id</code>, <code>number</code>, <code>code</code>, <code>year</code> ...), then the digits stand as they are. <code>format=</code> gives a column a pipe instead, run as <code>{echo $value | pipe/}</code>. <code>totals=</code> sums columns in a last row, over all rows. Everything from the data is escaped.
             </p>
             <h3>
               Sorting and paging
@@ -208,7 +208,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/datatable/1-orders.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'orders'</span>, <span class="hl-opt">columns</span>=<span class="hl-str">'number, date, customer, items, total'</span>, <span class="hl-opt">totals</span>=<span class="hl-str">'items, total'</span>, <span class="hl-opt">format</span>=<span class="hl-str">"date:date('j M Y')"</span>, striped, <span class="hl-opt">caption</span>=<span class="hl-str">'Orders this week'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'orders'</span>, <span class="hl-opt">columns</span>=<span class="hl-str">'number, date, customer, items, total'</span>, <span class="hl-opt">totals</span>=<span class="hl-str">'items, total'</span>, <span class="hl-opt">format</span>=<span class="hl-str">"date:date('j M Y')"</span>, striped, <span class="hl-opt">caption</span>=<span class="hl-str">'Orders this week'</span><span class="hl-brc">/}</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/datatable/1-orders.php</span>
                   </div>
@@ -450,7 +450,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/datatable/3-paged.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'cities'</span>, <span class="hl-opt">labels</span>=<span class="hl-str">'City, Country, Population'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">4</span>, sortable, <span class="hl-opt">query</span>=<span class="hl-str">'city_'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">datatable</span> <span class="hl-opt">data</span>=<span class="hl-str">'cities'</span>, <span class="hl-opt">labels</span>=<span class="hl-str">'City, Country, Population'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">4</span>, sortable, <span class="hl-opt">query</span>=<span class="hl-str">'city_'</span><span class="hl-brc">/}</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/datatable/3-paged.php</span>
                   </div>

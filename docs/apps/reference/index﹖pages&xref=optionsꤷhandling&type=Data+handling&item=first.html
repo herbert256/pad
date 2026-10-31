@@ -104,6 +104,46 @@
                 padAjax82578a7c6cf0d6b17e8d3ad764a8339f.send();
                 </script><br>
                 <hr>
+                App: padSelect - Page: output/handling<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">output/handling.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;h3&gt;order= sorts in the SQL, sort= sorts what came back&lt;/h3&gt;<br>&lt;p&gt;<b>{<font color="blue">albums </font><font color="red">order="price"<font color="black">,</font> rows=4<font color="black">,</font> sort="title"</font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b> <b>{<font color="green"><font color="red">$</font>price</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>albums</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>albums</font><font color="red"></font>}</b><b>{/<font color="blue">albums</font><font color="red"></font>}</b>&lt;/p&gt;<br><br>&lt;h3&gt;first= and last= after the query&lt;/h3&gt;<br>&lt;p&gt;<b>{<font color="blue">artists </font><font color="red">first=3</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>artists</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>artists</font><font color="red"></font>}</b><b>{/<font color="blue">artists</font><font color="red"></font>}</b>&lt;/p&gt;<br><br>&lt;h3&gt;The properties of the loop&lt;/h3&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">labels</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>labels</font><font color="red"></font>/}</b> of <b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>labels</font><font color="red"></font>/}</b>: <b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{<font color="blue">if </font><font color="red">first<font color="black">@</font>labels</font>}</b> &lt;span class="dim"&gt;(first)&lt;/span&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/li&gt;<b>{/<font color="blue">labels</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8162671780671191b4d01783502ff66a"></div>
+                      <script>
+                      padAjax8162671780671191b4d01783502ff66a = new XMLHttpRequest();
+                      padAjax8162671780671191b4d01783502ff66a.onreadystatechange=function() {
+                      if (padAjax8162671780671191b4d01783502ff66a.readyState === 4) {
+                      if (padAjax8162671780671191b4d01783502ff66a.status === 200) {
+                      document.getElementById("padAjax8162671780671191b4d01783502ff66a").innerHTML=padAjax8162671780671191b4d01783502ff66a.responseText;
+                      } else {
+                      document.getElementById("padAjax8162671780671191b4d01783502ff66a").innerHTML=padAjax8162671780671191b4d01783502ff66a.statusText;
+                      }
+                      }
+                      }
+                      padAjax8162671780671191b4d01783502ff66a.open("GET","http://localhost/pad/padSelect/?output/handling&padInclude",true);
+                      padAjax8162671780671191b4d01783502ff66a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/framework - Page: options/a_dotted_option_value_keeps_the_level_name<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -124,7 +164,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $items </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">"n" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"a" </span><span style="color: #007700">], [ </span><span style="color: #DD0000">"n" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"b" </span><span style="color: #007700">], [ </span><span style="color: #DD0000">"n" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"c" </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$cfg   </span><span style="color: #007700">= [ </span><span style="color: #DD0000">"max" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">items </font><font color="red">first=<font color="red">$</font>cfg.max</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b>:<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>items</font><font color="red"></font>}</b>/<b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>items</font><font color="red"></font>}</b> <b>{/<font color="blue">items</font><font color="red"></font>}</b>]</code></pre>
+                      <pre><code style="color: #000000">[<b>{<font color="blue">items </font><font color="red">first=<font color="red">$</font>cfg.max</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b>:<b>{<font color="blue">current<font color="black"><b><font color="red">@</font></b></font>items</font><font color="red"></font>/}</b>/<b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>items</font><font color="red"></font>/}</b> <b>{/<font color="blue">items</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax1905c0f20d0e7efbc018cf5d50f42794"></div>
@@ -627,48 +667,6 @@
                       }
                       padAjax95f9d9119f7de1712ebbca22fe38aece.open("GET","http://localhost/pad/regression/framework/?options/negative_leaves_sort_reverse_and_shuffle_their_rows&padInclude",true);
                       padAjax95f9d9119f7de1712ebbca22fe38aece.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: options/rows_keyed_by_number_keep_their_keys_under_every_handler<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">options/rows_keyed_by_number_keep_their_keys_under_every_handler.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">options/rows_keyed_by_number_keep_their_keys_under_every_handler.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A set keyed by id - the keys are part of the rows, {&amp;key} names them - and a list, which<br>  // stays a list: numbered from 0 again after the handler.<br><br>  </span><span style="color: #0000BB">$ks </span><span style="color: #007700">= [ </span><span style="color: #0000BB">10 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">], </span><span style="color: #0000BB">20 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], </span><span style="color: #0000BB">30 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$xs </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'a'</span><span style="color: #007700">, </span><span style="color: #DD0000">'b'</span><span style="color: #007700">, </span><span style="color: #DD0000">'c' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000">first:[<b>{<font color="blue">ks </font><font color="red">first=2</font>}</b><b>{<font color="green"><font color="red">&</font>key</font>}</b>,<b>{/<font color="blue">ks</font><font color="red"></font>}</b>] last:[<b>{<font color="blue">ks </font><font color="red">last=2</font>}</b><b>{<font color="green"><font color="red">&</font>key</font>}</b>,<b>{/<font color="blue">ks</font><font color="red"></font>}</b>] reverse:[<b>{<font color="blue">ks </font><font color="red">reverse</font>}</b><b>{<font color="green"><font color="red">&</font>key</font>}</b>,<b>{/<font color="blue">ks</font><font color="red"></font>}</b>] sort:[<b>{<font color="blue">ks </font><font color="red">sort=<font color="black">'</font>n<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">&</font>key</font>}</b>,<b>{/<font color="blue">ks</font><font color="red"></font>}</b>] splice:[<b>{<font color="blue">ks </font><font color="red">splice=<font color="black">'</font>1<font color="black">|</font>1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">&</font>key</font>}</b>,<b>{/<font color="blue">ks</font><font color="red"></font>}</b>] trim:[<b>{<font color="blue">ks </font><font color="red">trim</font>}</b><b>{<font color="green"><font color="red">&</font>key</font>}</b>,<b>{/<font color="blue">ks</font><font color="red"></font>}</b>] left:[<b>{<font color="blue">ks </font><font color="red">trim<font color="black">,</font> left</font>}</b><b>{<font color="green"><font color="red">&</font>key</font>}</b>,<b>{/<font color="blue">ks</font><font color="red"></font>}</b>] random:[<b>{<font color="blue">ks </font><font color="red">random=3<font color="black">,</font> orderly</font>}</b><b>{<font color="green"><font color="red">&</font>key</font>}</b>,<b>{/<font color="blue">ks</font><font color="red"></font>}</b>] list:[<b>{<font color="blue">xs </font><font color="red">reverse</font>}</b><b>{<font color="green"><font color="red">&</font>key</font>}</b><b>{<font color="green"><font color="red">$</font>xs</font>}</b>,<b>{/<font color="blue">xs</font><font color="red"></font>}</b>][<b>{<font color="blue">xs </font><font color="red">last=2</font>}</b><b>{<font color="green"><font color="red">&</font>key</font>}</b><b>{<font color="green"><font color="red">$</font>xs</font>}</b>,<b>{/<font color="blue">xs</font><font color="red"></font>}</b>][<b>{<font color="blue">xs </font><font color="red">splice=<font color="black">'</font>0<font color="black">|</font>1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">&</font>key</font>}</b><b>{<font color="green"><font color="red">$</font>xs</font>}</b>,<b>{/<font color="blue">xs</font><font color="red"></font>}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxf2e5358f311ec12ed1cef06e18808494"></div>
-                      <script>
-                      padAjaxf2e5358f311ec12ed1cef06e18808494 = new XMLHttpRequest();
-                      padAjaxf2e5358f311ec12ed1cef06e18808494.onreadystatechange=function() {
-                      if (padAjaxf2e5358f311ec12ed1cef06e18808494.readyState === 4) {
-                      if (padAjaxf2e5358f311ec12ed1cef06e18808494.status === 200) {
-                      document.getElementById("padAjaxf2e5358f311ec12ed1cef06e18808494").innerHTML=padAjaxf2e5358f311ec12ed1cef06e18808494.responseText;
-                      } else {
-                      document.getElementById("padAjaxf2e5358f311ec12ed1cef06e18808494").innerHTML=padAjaxf2e5358f311ec12ed1cef06e18808494.statusText;
-                      }
-                      }
-                      }
-                      padAjaxf2e5358f311ec12ed1cef06e18808494.open("GET","http://localhost/pad/regression/framework/?options/rows_keyed_by_number_keep_their_keys_under_every_handler&padInclude",true);
-                      padAjaxf2e5358f311ec12ed1cef06e18808494.send();
                       </script>
                     </td>
                   </tr>

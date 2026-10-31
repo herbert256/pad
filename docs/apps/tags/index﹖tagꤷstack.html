@@ -96,7 +96,7 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">stack</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">stack</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -114,7 +114,7 @@
               Description
             </h2>
             <p>
-              <code>{stack 'name'}</code> prints the text that <a href="index%EF%B9%96tag%EA%A4%B7push.html"><code>{push}</code></a> tags added to the stack of that name, in the order they were pushed. The tag itself only prints a marker; the marker is filled in once the whole page has rendered. So a <code>{stack}</code> in the wrapper's <code>&lt;head&gt;</code> gets the pushes of every component further down, and a stack below a push and a stack above it get the same text.
+              <code>{stack 'name'/}</code> prints the text that <a href="index%EF%B9%96tag%EA%A4%B7push.html"><code>{push}</code></a> tags added to the stack of that name, in the order they were pushed. The tag itself only prints a marker; the marker is filled in once the whole page has rendered. So a <code>{stack}</code> in the wrapper's <code>&lt;head&gt;</code> gets the pushes of every component further down, and a stack below a push and a stack above it get the same text.
             </p>
             <p>
               A stack nothing was pushed to prints nothing. From PHP, <code>padStackPush ( 'scripts', $html )</code> adds to a stack like a <code>{push}</code> does. A <code>{stack}</code> without a name is an error under the strict check.
@@ -140,7 +140,7 @@
                     <span>Template</span><span class="cell-file">examples/stack/1-head.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Stylesheets this page needs:<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">stack</span> <span class="hl-str">'stackStyles'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">stack</span> <span class="hl-str">'stackStyles'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>The page's components follow.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">push</span> <span class="hl-str">'stackStyles'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>tabs.css<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/push</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">push</span> <span class="hl-str">'stackStyles'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span>chart.css<span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/push</span><span class="hl-brc">}</span></code></pre>
@@ -178,7 +178,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/stack/2-empty.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Before [<span class="hl-brc">{</span><span class="hl-tag">stack</span> <span class="hl-str">'stackNothing'</span><span class="hl-brc">}</span>] after.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Before [<span class="hl-brc">{</span><span class="hl-tag">stack</span> <span class="hl-str">'stackNothing'</span><span class="hl-brc">/}</span>] after.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">

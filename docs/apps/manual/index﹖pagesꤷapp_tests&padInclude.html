@@ -11,7 +11,7 @@ shop
   FAIL  checkout
         want: &lt;p&gt;Total 42&lt;/p&gt;
         got:  HTTP 500 - assert failed: $total eq 42
-              apps/shop/_tests/checkout.pad:1:1  {assert $total eq 42}
+              apps/shop/_tests/checkout.pad:1:1  {assert $total eq 42/}
   2 tests, 1 failed</code></pre>
 
 
@@ -73,7 +73,7 @@ its PHP:</p>
           <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padAssert </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">42</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">assert </font><font color="red"><font color="red">$</font>total eq 42<font color="black">,</font> <font color="black">'</font>the cart total<font color="black">'</font></font>}</b><br>&lt;p&gt;Total <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">assert </font><font color="red"><font color="red">$</font>total eq 42<font color="black">,</font> <font color="black">'</font>the cart total<font color="black">'</font></font>/}</b><br>&lt;p&gt;Total <b>{<font color="green"><font color="red">$</font>total</font>}</b>&lt;/p&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
@@ -99,12 +99,12 @@ its PHP:</p>
 <h2>A test page</h2>
 
 <p>It is a page like any other, rendered bare - without the application's wrappers - and no
-URL reaches it. It can bring in a real page with <code>{page 'cart'}</code>, or
+URL reaches it. It can bring in a real page with <code>{page 'cart'/}</code>, or
 include the page's own PHP and check the data it sets:</p>
 
 
 <pre><code>_tests/cart.php    &lt;?php include APP . 'cart.php'; ?&gt;
-_tests/cart.pad    {assert $total eq 42, 'the cart total'}
+_tests/cart.pad    {assert $total eq 42, 'the cart total'/}
                    &lt;p&gt;Total {$total}&lt;/p&gt;
 _tests/cart.txt    &lt;p&gt;Total 42&lt;/p&gt;</code></pre>
 

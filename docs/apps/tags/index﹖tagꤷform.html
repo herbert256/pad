@@ -178,8 +178,8 @@
                     <span>Template</span><span class="cell-file">examples/form/1-search.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'search'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span>, <span class="hl-opt">class</span>=<span class="hl-str">'search'</span>, <span class="hl-opt">role</span>=<span class="hl-str">'search'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'q'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'search'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Find a tag'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'if, form, chart ...'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'go'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'submit'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Search'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'q'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'search'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Find a tag'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'if, form, chart ...'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'go'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'submit'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Search'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
@@ -207,8 +207,8 @@
                     <span>Template</span><span class="cell-file">examples/form/2-contact.src</span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'contact'</span>, <span class="hl-opt">error</span>=<span class="hl-str">'Please correct the errors below.'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
                 </div>
@@ -227,9 +227,9 @@
                     <span>Template</span><span class="cell-file">examples/form/3-client.src</span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'signup'</span>, client, error<span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span>,  <span class="hl-opt">label</span>=<span class="hl-str">'Name'</span>,   <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:40'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'age'</span>,   <span class="hl-opt">type</span>=<span class="hl-str">'number'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Age'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|integer|min:18'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span>,  <span class="hl-opt">label</span>=<span class="hl-str">'Name'</span>,   <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:40'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'age'</span>,   <span class="hl-opt">type</span>=<span class="hl-str">'number'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Age'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|integer|min:18'</span><span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Sign up<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
                 </div>

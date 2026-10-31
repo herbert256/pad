@@ -96,10 +96,10 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">resume</span> reverse<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">add</span>=<span class="hl-num">10</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">resume</span> keep, prime<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">first</span>=<span class="hl-num">3</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">resume</span> reverse<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">add</span>=<span class="hl-num">10</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> keep, prime<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">first</span>=<span class="hl-num">3</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Options
             </h3>
@@ -117,10 +117,10 @@
               Description
             </h2>
             <p>
-              <code>{resume reverse}</code> picks up the sequence that was stored last - by <code>push=</code> or <code>name=</code> on a <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> - runs the action or play written with it, and writes the result back over that store. It prints nothing: read the store afterwards with <a href="index%EF%B9%96tag%EA%A4%B7pull.html">{pull}</a> or by its own name.
+              <code>{resume reverse/}</code> picks up the sequence that was stored last - by <code>push=</code> or <code>name=</code> on a <a href="index%EF%B9%96tag%EA%A4%B7sequence.html">{sequence}</a> - runs the action or play written with it, and writes the result back over that store. It prints nothing: read the store afterwards with <a href="index%EF%B9%96tag%EA%A4%B7pull.html">{pull}</a> or by its own name.
             </p>
             <p>
-              Each <code>{resume}</code> works on what the one before left, so a list can be built in steps: <code>{resume add=10}</code> then <code>{resume reverse}</code> turns <code>1 2 3</code> into <code>13 12 11</code>. Plays work as well as actions - <code>{resume keep, prime}</code> filters the store, <code>{resume add=100}</code> transforms every value.
+              Each <code>{resume}</code> works on what the one before left, so a list can be built in steps: <code>{resume add=10/}</code> then <code>{resume reverse/}</code> turns <code>1 2 3</code> into <code>13 12 11</code>. Plays work as well as actions - <code>{resume keep, prime/}</code> filters the store, <code>{resume add=100/}</code> transforms every value.
             </p>
             <p>
               It always acts on the store pushed last; it takes no store name. A store named in the tag is not read as one, and the prefix form <code>{resume:name}</code> is an error - <em>there is no type named 'resume'</em>. A <code>{resume}</code> before anything was pushed is an error too: <em>nothing has been pushed</em>. It has nothing to do with <a href="index%EF%B9%96tag%EA%A4%B7cease.html">{cease}</a> or loops; to apply an action without changing the store, use <a href="index%EF%B9%96tag%EA%A4%B7action.html">{action}</a> or <a href="index%EF%B9%96tag%EA%A4%B7pull.html">{pull}</a>.
@@ -142,10 +142,10 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/resume/1-steps.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..5'</span>, <span class="hl-opt">push</span>=<span class="hl-str">'steps'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">add</span>=<span class="hl-num">100</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">resume</span> reverse<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">first</span>=<span class="hl-num">3</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..5'</span>, <span class="hl-opt">push</span>=<span class="hl-str">'steps'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">add</span>=<span class="hl-num">100</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> reverse<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> <span class="hl-opt">first</span>=<span class="hl-num">3</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">pull</span> steps<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$sequence</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/pull</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
@@ -172,8 +172,8 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/resume/2-filter.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..30'</span>, <span class="hl-opt">push</span>=<span class="hl-str">'candidates'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">resume</span> keep, prime<span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..30'</span>, <span class="hl-opt">push</span>=<span class="hl-str">'candidates'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">resume</span> keep, prime<span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">candidates</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$candidates</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/candidates</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">

@@ -140,8 +140,8 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/until/1-countdown.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$left</span> = <span class="hl-num">5</span><span class="hl-brc">}</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">until</span> <span class="hl-var">$left</span> eq <span class="hl-num">0</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$left</span><span class="hl-brc">}</span>... <span class="hl-brc">{</span><span class="hl-tag">decrement</span> <span class="hl-var">$left</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/until</span><span class="hl-brc">}</span>lift-off!<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$left</span> = <span class="hl-num">5</span><span class="hl-brc">/}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">until</span> <span class="hl-var">$left</span> eq <span class="hl-num">0</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$left</span><span class="hl-brc">}</span>... <span class="hl-brc">{</span><span class="hl-tag">decrement</span> <span class="hl-var">$left</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">/until</span><span class="hl-brc">}</span>lift-off!<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -167,11 +167,11 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/until/2-doubling.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$amount</span> = <span class="hl-num">3</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$amount</span> = <span class="hl-num">3</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">until</span> <span class="hl-var">$amount</span> gt <span class="hl-num">100</span><span class="hl-brc">}</span>
   <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$amount</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$amount</span> = <span class="hl-var">$amount</span> * <span class="hl-num">2</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$amount</span> = <span class="hl-var">$amount</span> * <span class="hl-num">2</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/until</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Stopped at <span class="hl-brc">{</span><span class="hl-var">$amount</span><span class="hl-brc">}</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>

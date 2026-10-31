@@ -185,7 +185,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>n = 7</font>}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b> is <b>{<font color="blue">case </font><font color="red"><font color="red">$</font>n <font color="black">%</font> 2</font>}</b><b>{<font color="blue">when</font><font color="red">0</font>}</b>even<b>{<font color="blue">when </font><font color="red">1</font>}</b>odd<b>{/<font color="blue">case</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 1</font>}</b><br>&lt;p&gt;<b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i le 20</font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b> <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = <font color="red">$</font>i * 2</font>}</b><b>{/<font color="blue">while</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>n = 7</font>/}</b><br>&lt;p&gt;<b>{<font color="green"><font color="red">$</font>n</font>}</b> is <b>{<font color="blue">case </font><font color="red"><font color="red">$</font>n <font color="black">%</font> 2</font>}</b><b>{<font color="blue">when</font><font color="red">0</font>}</b>even<b>{<font color="blue">when </font><font color="red">1</font>}</b>odd<b>{/<font color="blue">case</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = 1</font>/}</b><br>&lt;p&gt;<b>{<font color="blue">while </font><font color="red"><font color="red">$</font>i le 20</font>}</b><b>{<font color="green"><font color="red">$</font>i</font>}</b> <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>i = <font color="red">$</font>i * 2</font>/}</b><b>{/<font color="blue">while</font><font color="red"></font>}</b>&lt;/p&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax8930f14fb2c77c4d23a9e57afd278c6e"></div>
@@ -282,46 +282,6 @@
                       }
                       padAjax6bb1b535acfd9940bcd7c492140d53f0.open("GET","http://localhost/pad/regression/errors/?syntax/a_case_needs_a_when&padInclude",true);
                       padAjax6bb1b535acfd9940bcd7c492140d53f0.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/errors - Page: syntax/a_case_never_closes<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">syntax/a_case_never_closes.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">case </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b><b>{<font color="blue">when </font><font color="red"><font color="black">'</font>x<font color="black">'</font></font>}</b>y</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax679f3cba29a436f474cc4832e6786e6f"></div>
-                      <script>
-                      padAjax679f3cba29a436f474cc4832e6786e6f = new XMLHttpRequest();
-                      padAjax679f3cba29a436f474cc4832e6786e6f.onreadystatechange=function() {
-                      if (padAjax679f3cba29a436f474cc4832e6786e6f.readyState === 4) {
-                      if (padAjax679f3cba29a436f474cc4832e6786e6f.status === 200) {
-                      document.getElementById("padAjax679f3cba29a436f474cc4832e6786e6f").innerHTML=padAjax679f3cba29a436f474cc4832e6786e6f.responseText;
-                      } else {
-                      document.getElementById("padAjax679f3cba29a436f474cc4832e6786e6f").innerHTML=padAjax679f3cba29a436f474cc4832e6786e6f.statusText;
-                      }
-                      }
-                      }
-                      padAjax679f3cba29a436f474cc4832e6786e6f.open("GET","http://localhost/pad/regression/errors/?syntax/a_case_never_closes&padInclude",true);
-                      padAjax679f3cba29a436f474cc4832e6786e6f.send();
                       </script>
                     </td>
                   </tr>
@@ -505,7 +465,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>y = <font color="black">'</font>b<font color="black">'</font></font>}</b><b>{<font color="blue">case </font><font color="red"><font color="black">'</font>b<font color="black">'</font></font>}</b><b>{<font color="blue">when </font><font color="red"><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>y</font><font color="black">}</font></b></font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>notY<b>{/<font color="blue">case</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>y = <font color="black">'</font>b<font color="black">'</font></font>/}</b><b>{<font color="blue">case </font><font color="red"><font color="black">'</font>b<font color="black">'</font></font>}</b><b>{<font color="blue">when </font><font color="red"><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>y</font><font color="black">}</font></b></font>}</b>Y<b>{<font color="blue">else</font><font color="red"></font>}</b>notY<b>{/<font color="blue">case</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax5dfac7cd49f69596660347bfae0eda31"></div>
@@ -682,6 +642,48 @@
                       }
                       padAjax15e2ad2123ec7b6a1cad820b786c7f83.open("GET","http://localhost/pad/regression/errors/?syntax/before_the_first_when_nothing_renders&padInclude",true);
                       padAjax15e2ad2123ec7b6a1cad820b786c7f83.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: check/tags_case_1<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">check/tags_case_1.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">check/tags_case_1.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $language </span><span style="color: #007700">= </span><span style="color: #DD0000">'FR'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;p&gt;<br>  <b>{<font color="blue">case </font><font color="red"><font color="red">$</font>language</font>}</b><br>    <b>{<font color="blue">when </font><font color="red"><font color="black">'</font>NL<font color="black">'</font></font>}</b><br>      Hallo Wereld<br>    <b>{<font color="blue">when </font><font color="red"><font color="black">'</font>FR<font color="black">'</font></font>}</b><br>      Bonjour le Monde<br>    <b>{<font color="blue">when </font><font color="red"><font color="black">'</font>DE<font color="black">'</font></font>}</b><br>      Hallo Welt<br>    <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>      Hello World<br>  <b>{/<font color="blue">case</font><font color="red"></font>}</b><br>&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax8dbb27db803562d218694729d9834f23"></div>
+                      <script>
+                      padAjax8dbb27db803562d218694729d9834f23 = new XMLHttpRequest();
+                      padAjax8dbb27db803562d218694729d9834f23.onreadystatechange=function() {
+                      if (padAjax8dbb27db803562d218694729d9834f23.readyState === 4) {
+                      if (padAjax8dbb27db803562d218694729d9834f23.status === 200) {
+                      document.getElementById("padAjax8dbb27db803562d218694729d9834f23").innerHTML=padAjax8dbb27db803562d218694729d9834f23.responseText;
+                      } else {
+                      document.getElementById("padAjax8dbb27db803562d218694729d9834f23").innerHTML=padAjax8dbb27db803562d218694729d9834f23.statusText;
+                      }
+                      }
+                      }
+                      padAjax8dbb27db803562d218694729d9834f23.open("GET","http://localhost/pad/regression/framework/?check/tags_case_1&padInclude",true);
+                      padAjax8dbb27db803562d218694729d9834f23.send();
                       </script>
                     </td>
                   </tr>

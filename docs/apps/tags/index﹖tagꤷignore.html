@@ -113,7 +113,7 @@
               It is what inline code with braces needs. A <code>&lt;script&gt;</code> with an object literal, a <code>&lt;style&gt;</code> with its selector blocks, a JSON sample in a <code>&lt;pre&gt;</code> - without <code>{ignore}</code> each <code>{ ... }</code> would be read as a tag, and the strict check would report it. External files are better still; the pair is for the few lines that belong in the page.
             </p>
             <p>
-              The same protection comes in two more forms. The <code>ignore</code> option on any tag wraps that tag's content in <code>{ignore}</code>: <code>{data 'config' ignore}</code>, <code>{markdown ignore}</code>. The <code>ignore</code> pipe escapes a value: <code>{echo $json | ignore}</code>. For a single brace in text, <a href="index%EF%B9%96tag%EA%A4%B7open.html"><code>{open}</code></a> and <a href="index%EF%B9%96tag%EA%A4%B7close.html"><code>{close}</code></a> are enough. <a href="index%EF%B9%96tag%EA%A4%B7highlight.html"><code>{highlight}</code></a> takes its content as it stands too, so a coloured code sample needs no <code>{ignore}</code>.
+              The same protection comes in two more forms. The <code>ignore</code> option on any tag wraps that tag's content in <code>{ignore}</code>: <code>{data 'config' ignore}</code>, <code>{markdown ignore}</code>. The <code>ignore</code> pipe escapes a value: <code>{echo $json | ignore/}</code>. For a single brace in text, <a href="index%EF%B9%96tag%EA%A4%B7open.html"><code>{open}</code></a> and <a href="index%EF%B9%96tag%EA%A4%B7close.html"><code>{close}</code></a> are enough. <a href="index%EF%B9%96tag%EA%A4%B7highlight.html"><code>{highlight}</code></a> takes its content as it stands too, so a coloured code sample needs no <code>{ignore}</code>.
             </p>
             <p>
               An <code>{ignore}</code> without its <code>{/ignore}</code> protects nothing; the strict check names it rather than blaming some tag inside.
@@ -169,7 +169,7 @@ if ( user.role == 'admin' ) { show ( '{$secret}' ); }</pre>
   .ignore-demo b <span class="hl-brc">{</span> color: <span class="hl-var">#eb6834</span>; <span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/style</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/ignore</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$who</span> = <span class="hl-str">'PAD'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$who</span> = <span class="hl-str">'PAD'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span> <span class="hl-opt">class</span>=<span class="hl-str">"ignore-demo"</span><span class="hl-htm">&gt;</span>Styled by <span class="hl-htm">&lt;b</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$who</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/b</span><span class="hl-htm">&gt;</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">

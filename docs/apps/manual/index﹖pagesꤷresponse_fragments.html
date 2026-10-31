@@ -163,7 +163,7 @@
           <tr>
             <td style="vertical-align:top"></td>
             <td style="vertical-align:top">
-              <pre><code style="color: #000000"><b>{<font color="blue">curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//manual/?fragments/response_fragments_1&amp;padInclude&amp;padFragment=order-list<font color="black">'</font></font>}</b></code></pre>
+              <pre><code style="color: #000000"><b>{<font color="blue">curl </font><font color="red"><font color="black">'</font>SELF<font color="black">:</font>//manual/?fragments/response_fragments_1&amp;padInclude&amp;padFragment=order-list<font color="black">'</font></font>/}</b></code></pre>
             </td>
             <td style="vertical-align:top">
               <ul>
@@ -195,7 +195,7 @@
         </h2>
         <ul>
           <li>
-            <code>{ajax 'orders', fragment='order-list'}</code> fetches only that fragment of the page into its div.
+            <code>{ajax 'orders', fragment='order-list'/}</code> fetches only that fragment of the page into its div.
           </li>
           <li>HTMX: <code>&lt;div hx-get="?orders&amp;padFragment=order-list" hx-trigger="every 5s"&gt;</code> swaps in the fresh list.
           </li>

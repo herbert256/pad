@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">parms</span> name<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">parms</span> title, <span class="hl-opt">subtitle</span>=<span class="hl-str">''</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'info'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">parms</span> name<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">parms</span> title, <span class="hl-opt">subtitle</span>=<span class="hl-str">''</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'info'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -128,7 +128,7 @@
               Once a tag declares its parameters, the strict check also reports a parameter that the caller gives but the tag does not declare - <q>the tag {card} has no parameter 'titel' - it declares title, tone</q> - so a typo at the call is caught instead of silently ignored. The items are read raw, as <a href="index%EF%B9%96tag%EA%A4%B7attrs.html"><code>{attrs}</code></a> reads them, so a default may be any expression.
             </p>
             <p>
-              A <code>{parms}</code> outside any custom tag's template is an error under the strict check. The examples use the application's tag <code>_tags/parmsBadge.pad</code>, which starts with <code>{parms label, tone='info', count=0}</code>.
+              A <code>{parms}</code> outside any custom tag's template is an error under the strict check. The examples use the application's tag <code>_tags/parmsBadge.pad</code>, which starts with <code>{parms label, tone='info', count=0/}</code>.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -148,9 +148,9 @@
                     <span>Template</span><span class="cell-file">examples/parms/1-declare.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'New'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'Inbox'</span>, <span class="hl-opt">count</span>=<span class="hl-num">3</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'Errors'</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'danger'</span>, <span class="hl-opt">count</span>=<span class="hl-num">12</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'New'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'Inbox'</span>, <span class="hl-opt">count</span>=<span class="hl-num">3</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'Errors'</span>, <span class="hl-opt">tone</span>=<span class="hl-str">'danger'</span>, <span class="hl-opt">count</span>=<span class="hl-num">12</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
@@ -177,7 +177,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/parms/2-typo.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'Inbox'</span>, <span class="hl-opt">cuont</span>=<span class="hl-num">3</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">parmsBadge</span> <span class="hl-opt">label</span>=<span class="hl-str">'Inbox'</span>, <span class="hl-opt">cuont</span>=<span class="hl-num">3</span><span class="hl-brc">/}</span></code></pre>
                 </div>
               </div>
             </div>

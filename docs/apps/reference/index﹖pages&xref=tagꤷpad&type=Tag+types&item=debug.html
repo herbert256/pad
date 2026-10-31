@@ -107,7 +107,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $order </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'number' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1042</span><span style="color: #007700">, </span><span style="color: #DD0000">'customer' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'lines' </span><span style="color: #007700">=&gt; [ [ </span><span style="color: #DD0000">'sku' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'A1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'qty' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">] ] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;p&gt;The order as the template sees it:&lt;/p&gt;<br><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>order</font>}</b></code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;The order as the template sees it:&lt;/p&gt;<br><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>order</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxddac84ed847df9ba0fc07093803f115d"></div>
@@ -149,7 +149,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixture of debug: a page with a {debug} in it, which shows its value to this<br>  // machine's own requests only.<br><br>  </span><span style="color: #0000BB">$debugValue </span><span style="color: #007700">= </span><span style="color: #DD0000">'for this machine only'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;p&gt;page&lt;/p&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>debugValue</font>}</b></code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;page&lt;/p&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>debugValue</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax34b6a1d2b150e83d576072442982e65e"></div>
@@ -191,7 +191,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A section whose rendering holds a {debug} box - shown to this machine's own requests<br>  // only - is rendered every time and never kept: built for a local request, the copy went<br>  // to every visitor after it, the value with it. The second section of the name finds no<br>  // stored copy and renders its own content.<br><br>  </span><span style="color: #0000BB">padFragmentForget </span><span style="color: #007700">( </span><span style="color: #DD0000">'fwDebugSection' </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$debugValue </span><span style="color: #007700">= </span><span style="color: #DD0000">'for this machine only'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwDebugSection<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>&lt;i&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>debugValue</font>}</b>&lt;/i&gt;<b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwDebugSection<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>&lt;b&gt;kept&lt;/b&gt;<b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwDebugSection<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>&lt;i&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>debugValue</font>/}</b>&lt;/i&gt;<b>{/<font color="blue">cache</font><font color="red"></font>}</b><b>{<font color="blue">cache </font><font color="red"><font color="black">'</font>fwDebugSection<font color="black">'</font><font color="black">,</font> ttl=60</font>}</b>&lt;b&gt;kept&lt;/b&gt;<b>{/<font color="blue">cache</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax60b12eddfc89197f191eed64f6489d91"></div>
@@ -231,7 +231,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>nowhere</font>}</b>]</code></pre>
+                      <pre><code style="color: #000000">[<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>nowhere</font>/}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxb87153839f39b20612e6b4a60ffe5a2e"></div>
@@ -273,7 +273,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $login </span><span style="color: #007700">= [ </span><span style="color: #DD0000">"user" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"bob"</span><span style="color: #007700">, </span><span style="color: #DD0000">"password"</span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"*REDACTED*" </span><span style="color: #007700">]; </span><span style="color: #0000BB">$apiToken</span><span style="color: #007700">= </span><span style="color: #DD0000">"*REDACTED*"</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>login</font>}</b><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>apiToken</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>login</font>/}</b><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>apiToken</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax0249eb7ff1b32793ea749f894a68e9ba"></div>
@@ -315,7 +315,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $order </span><span style="color: #007700">= [ </span><span style="color: #DD0000">"id" </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7</span><span style="color: #007700">, </span><span style="color: #DD0000">"sku" </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">"x&lt;y" </span><span style="color: #007700">]; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>order</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>order</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxd1d7a504152246c92fcab38849c8679b"></div>
@@ -357,7 +357,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// INF is a value in a tag's answer as it is in a field (a_variable_holding_inf_is_a_value_<br>  // and_no_missing_field): {echo $big}, its pipes and ?? printed nothing, as a tag that<br>  // answered no value, and {debug $big} called it missing.<br><br>  </span><span style="color: #0000BB">$big </span><span style="color: #007700">= </span><span style="color: #0000BB">INF</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$neg </span><span style="color: #007700">= -</span><span style="color: #0000BB">INF</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>big</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>big <font color="black">|</font> + 1</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>big ?? <font color="black">'</font>none<font color="black">'</font></font>}</b>][<b>{<font color="blue">big</font><font color="red"></font>}</b>][<b>{<font color="blue">echo </font><font color="red">1e308 * 10</font>}</b>]<br>[<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>neg <font color="black">|</font> + 1</font>}</b>]<br>[<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>big</font>}</b>]</code></pre>
+                      <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>big</font>/}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>big <font color="black">|</font> + 1</font>/}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>big ?? <font color="black">'</font>none<font color="black">'</font></font>/}</b>][<b>{<font color="blue">big</font><font color="red"></font>/}</b>][<b>{<font color="blue">echo </font><font color="red">1e308 * 10</font>/}</b>]<br>[<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>neg <font color="black">|</font> + 1</font>/}</b>]<br>[<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>big</font>/}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax21fc01baf9c7bdffc35ac7b07849f10b"></div>
@@ -399,7 +399,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $innerPlan </span><span style="color: #007700">= </span><span style="color: #DD0000">'inner plan'</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;p&gt;inner&lt;/p&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>innerPlan</font>}</b></code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;inner&lt;/p&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>innerPlan</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxb574ee58c9bed33db544fb1d3470e382"></div>
@@ -441,7 +441,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The fixture for request/an_exported_page_carries_nothing_only_this_machine_sees: the<br>  // page's own PHP switches the toolbar, live reload and the output check on, and the<br>  // template shows a value with {debug} next to an image the check names.<br><br>  </span><span style="color: #0000BB">$padToolbar     </span><span style="color: #007700">= </span><span style="color: #DD0000">'local'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padReload      </span><span style="color: #007700">= </span><span style="color: #DD0000">'local'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$padCheckOutput </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$order </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">7 </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;p&gt;an exported page&lt;/p&gt;<br>&lt;img src="a.png"&gt;<br><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>order</font>}</b></code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;an exported page&lt;/p&gt;<br>&lt;img src="a.png"&gt;<br><b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>order</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxb3d7130ad5cd049e4f6bd47b15d3b0df"></div>
@@ -483,7 +483,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A page that shows a {debug} box - to a local request only, the remote visitor never sees<br>  // one - fetched with a ttl by curl_ttl_stores_no_debug.<br><br>  </span><span style="color: #0000BB">$innerPlan </span><span style="color: #007700">= </span><span style="color: #DD0000">'inner plan'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;p&gt;inner&lt;/p&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>innerPlan</font>}</b></code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;inner&lt;/p&gt;<b>{<font color="blue">debug </font><font color="red"><font color="red">$</font>innerPlan</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax1ad827792e252acb2b73fefe4a982ea1"></div>

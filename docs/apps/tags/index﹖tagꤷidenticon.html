@@ -99,8 +99,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-var">$email</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-var">$value</span>, <span class="hl-opt">size</span>=<span class="hl-num">64</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-var">$email</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-var">$value</span>, <span class="hl-opt">size</span>=<span class="hl-num">64</span>, <span class="hl-opt">title</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -162,7 +162,7 @@
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">accounts</span><span class="hl-brc">}</span>
-  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-var">$email</span>, <span class="hl-opt">size</span>=<span class="hl-num">40</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$email</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-var">$email</span>, <span class="hl-opt">size</span>=<span class="hl-num">40</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$email</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">/accounts</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
@@ -254,7 +254,7 @@
                     <span>Template</span><span class="cell-file">examples/identicon/2-grid.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:flex; flex-wrap:wrap; gap:10px"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..10'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'id'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-str">'user-'</span> . <span class="hl-var">$id</span>, <span class="hl-opt">size</span>=<span class="hl-num">48</span>, <span class="hl-opt">title</span>=<span class="hl-str">'User '</span> . <span class="hl-var">$id</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..10'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'id'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">identicon</span> <span class="hl-str">'user-'</span> . <span class="hl-var">$id</span>, <span class="hl-opt">size</span>=<span class="hl-num">48</span>, <span class="hl-opt">title</span>=<span class="hl-str">'User '</span> . <span class="hl-var">$id</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">

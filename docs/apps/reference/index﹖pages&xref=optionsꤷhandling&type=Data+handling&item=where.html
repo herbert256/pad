@@ -105,7 +105,7 @@
                   <tr>
                     <td style="vertical-align:top"></td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">&lt;p&gt;where: <b>{<font color="blue">offices </font><font color="red">where="country = <font color="black">'</font>USA<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>officeCode<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinct: <b>{<font color="blue">offices </font><font color="red">distinct<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinctrow: <b>{<font color="blue">offices </font><font color="red">distinctrow<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;group: <b>{<font color="blue">payments </font><font color="red">fields=<font color="black">'</font>customerNumber<font color="black">,</font> count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>customerNumber<font color="black">'</font><font color="black">,</font> having=<font color="black">'</font>cnt &gt; 9<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>customerNumber<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>customerNumber</font>}</b>=<b>{<font color="green"><font color="red">$</font>cnt</font>}</b>,<b>{/<font color="blue">payments</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;rollup: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font><font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> rollup</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cnt</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;db: <b>{<font color="blue">sales </font><font color="red">db=<font color="black">'</font>employees<font color="black">'</font><font color="black">,</font> where="jobTitle = <font color="black">'</font>President<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b><b>{/<font color="blue">sales</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;key: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font>city<font color="black">'</font><font color="black">,</font> where="country = <font color="black">'</font>USA<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>city</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;union: <b>{<font color="blue">offices </font><font color="red">where="officeCode = 1"<font color="black">,</font> union=<font color="black">'</font>offices<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;join: <b>{<font color="blue">employees </font><font color="red">join=<font color="black">'</font>offices on employees.officeCode = offices.officeCode<font color="black">'</font><font color="black">,</font> where="offices.city = <font color="black">'</font>Boston<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>lastName<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b>,<b>{/<font color="blue">employees</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;htmlAttrJson: <b>{<font color="blue"><font color="purple">select</font><font color="black"><b>:</b></font>offices </font><font color="red">htmlAttrJson=<font color="black">'</font>record<font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>officeCode<font color="black">'</font><font color="black">,</font> where="officeCode = 1"</font>}</b>&lt;/p&gt;</code></pre>
+                      <pre><code style="color: #000000">&lt;p&gt;where: <b>{<font color="blue">offices </font><font color="red">where="country = <font color="black">'</font>USA<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>officeCode<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinct: <b>{<font color="blue">offices </font><font color="red">distinct<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;distinctrow: <b>{<font color="blue">offices </font><font color="red">distinctrow<font color="black">,</font> fields=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>country<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>country</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;group: <b>{<font color="blue">payments </font><font color="red">fields=<font color="black">'</font>customerNumber<font color="black">,</font> count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>customerNumber<font color="black">'</font><font color="black">,</font> having=<font color="black">'</font>cnt &gt; 9<font color="black">'</font><font color="black">,</font> order=<font color="black">'</font>customerNumber<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>customerNumber</font>}</b>=<b>{<font color="green"><font color="red">$</font>cnt</font>}</b>,<b>{/<font color="blue">payments</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;rollup: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font><font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>count(*) as cnt<font color="black">'</font><font color="black">,</font> group=<font color="black">'</font>country<font color="black">'</font><font color="black">,</font> rollup</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>cnt</font>}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>offices</font><font color="red"></font>}</b><b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;db: <b>{<font color="blue">sales </font><font color="red">db=<font color="black">'</font>employees<font color="black">'</font><font color="black">,</font> where="jobTitle = <font color="black">'</font>President<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b><b>{/<font color="blue">sales</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;key: <b>{<font color="blue">offices </font><font color="red">key=<font color="black">'</font>city<font color="black">'</font><font color="black">,</font> where="country = <font color="black">'</font>USA<font color="black">'</font>"</font>}</b><b>{<font color="green"><font color="red">$</font>city</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;union: <b>{<font color="blue">offices </font><font color="red">where="officeCode = 1"<font color="black">,</font> union=<font color="black">'</font>offices<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>officeCode</font>}</b>,<b>{/<font color="blue">offices</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;join: <b>{<font color="blue">employees </font><font color="red">join=<font color="black">'</font>offices on employees.officeCode = offices.officeCode<font color="black">'</font><font color="black">,</font> where="offices.city = <font color="black">'</font>Boston<font color="black">'</font>"<font color="black">,</font> order=<font color="black">'</font>lastName<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>lastName</font>}</b>,<b>{/<font color="blue">employees</font><font color="red"></font>}</b>&lt;/p&gt;<br>&lt;p&gt;htmlAttrJson: <b>{<font color="blue"><font color="purple">select</font><font color="black"><b>:</b></font>offices </font><font color="red">htmlAttrJson=<font color="black">'</font>record<font color="black">'</font><font color="black">,</font> fields=<font color="black">'</font>officeCode<font color="black">'</font><font color="black">,</font> where="officeCode = 1"</font>/}</b>&lt;/p&gt;</code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxe63c51c50dc7ae55fe7836f4c3f4f48a"></div>
@@ -207,6 +207,132 @@
                   </tr>
                 </table><br>
                 <hr>
+                App: manual - Page: fragments/padSelect_2<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/padSelect_2.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/padSelect_2.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$country </span><span style="color: #007700">= </span><span style="color: #DD0000">'France'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$minimum </span><span style="color: #007700">= </span><span style="color: #0000BB">100000</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">customers </font><font color="red">where="country = <font color="red">$</font>country and creditLimit &gt; <font color="red">$</font>minimum"<font color="black">,</font><br>           order="creditLimit desc"<font color="black">,</font> rows=3<font color="black">,</font> fields="customerName<font color="black">,</font> creditLimit"</font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>customerName</font>}</b>: <b>{<font color="green"><font color="red">$</font>creditLimit</font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">customers</font><font color="red"></font>}</b><br><br>&lt;p&gt;Customer 103 is <b>{<font color="blue">customers </font><font color="red"><font color="red">$</font>customerNumber=103</font>}</b><b>{<font color="green"><font color="red">$</font>customerName</font>}</b><b>{/<font color="blue">customers</font><font color="red"></font>}</b>.&lt;/p&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax54cf12cd2f5052c0473fe8d09f5f0309"></div>
+                      <script>
+                      padAjax54cf12cd2f5052c0473fe8d09f5f0309 = new XMLHttpRequest();
+                      padAjax54cf12cd2f5052c0473fe8d09f5f0309.onreadystatechange=function() {
+                      if (padAjax54cf12cd2f5052c0473fe8d09f5f0309.readyState === 4) {
+                      if (padAjax54cf12cd2f5052c0473fe8d09f5f0309.status === 200) {
+                      document.getElementById("padAjax54cf12cd2f5052c0473fe8d09f5f0309").innerHTML=padAjax54cf12cd2f5052c0473fe8d09f5f0309.responseText;
+                      } else {
+                      document.getElementById("padAjax54cf12cd2f5052c0473fe8d09f5f0309").innerHTML=padAjax54cf12cd2f5052c0473fe8d09f5f0309.statusText;
+                      }
+                      }
+                      }
+                      padAjax54cf12cd2f5052c0473fe8d09f5f0309.open("GET","http://localhost/pad/manual/?fragments/padSelect_2&padInclude",true);
+                      padAjax54cf12cd2f5052c0473fe8d09f5f0309.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: fragments/padSelect_3<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/padSelect_3.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/padSelect_3.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'offices'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'officeCode'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'city'     </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lastName' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'offices'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'officeCode'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">offices </font><font color="red">where="country = <font color="black">'</font>USA<font color="black">'</font>"</font>}</b><br>  &lt;p&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>city</font>}</b>&lt;/b&gt;, <b>{<font color="blue">employees </font><font color="red">fields="count(*) as n"</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">employees</font><font color="red"></font>}</b> people:<br>    <b>{<font color="blue">employees</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>firstName</font>}</b> <b>{<font color="green"><font color="red">$</font>lastName</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>employees</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>employees</font><font color="red"></font>}</b><b>{/<font color="blue">employees</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">offices</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax51124086356d6ec2aa2c5d2981216667"></div>
+                      <script>
+                      padAjax51124086356d6ec2aa2c5d2981216667 = new XMLHttpRequest();
+                      padAjax51124086356d6ec2aa2c5d2981216667.onreadystatechange=function() {
+                      if (padAjax51124086356d6ec2aa2c5d2981216667.readyState === 4) {
+                      if (padAjax51124086356d6ec2aa2c5d2981216667.status === 200) {
+                      document.getElementById("padAjax51124086356d6ec2aa2c5d2981216667").innerHTML=padAjax51124086356d6ec2aa2c5d2981216667.responseText;
+                      } else {
+                      document.getElementById("padAjax51124086356d6ec2aa2c5d2981216667").innerHTML=padAjax51124086356d6ec2aa2c5d2981216667.statusText;
+                      }
+                      }
+                      }
+                      padAjax51124086356d6ec2aa2c5d2981216667.open("GET","http://localhost/pad/manual/?fragments/padSelect_3&padInclude",true);
+                      padAjax51124086356d6ec2aa2c5d2981216667.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: manual - Page: fragments/padSelect_4<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">fragments/padSelect_4.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">fragments/padSelect_4.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lastName' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'managers'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'base' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'managers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'reportsTo' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">employees </font><font color="red">where="officeCode = 4"</font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>firstName</font>}</b> <b>{<font color="green"><font color="red">$</font>lastName</font>}</b> reports to<br>    <b>{<font color="blue">managers</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>firstName</font>}</b> <b>{<font color="green"><font color="red">$</font>lastName</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>nobody<b>{/<font color="blue">managers</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{/<font color="blue">employees</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax10610419bddada5e45e54e9e50f976e7"></div>
+                      <script>
+                      padAjax10610419bddada5e45e54e9e50f976e7 = new XMLHttpRequest();
+                      padAjax10610419bddada5e45e54e9e50f976e7.onreadystatechange=function() {
+                      if (padAjax10610419bddada5e45e54e9e50f976e7.readyState === 4) {
+                      if (padAjax10610419bddada5e45e54e9e50f976e7.status === 200) {
+                      document.getElementById("padAjax10610419bddada5e45e54e9e50f976e7").innerHTML=padAjax10610419bddada5e45e54e9e50f976e7.responseText;
+                      } else {
+                      document.getElementById("padAjax10610419bddada5e45e54e9e50f976e7").innerHTML=padAjax10610419bddada5e45e54e9e50f976e7.statusText;
+                      }
+                      }
+                      }
+                      padAjax10610419bddada5e45e54e9e50f976e7.open("GET","http://localhost/pad/manual/?fragments/padSelect_4&padInclude",true);
+                      padAjax10610419bddada5e45e54e9e50f976e7.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: manual - Page: miscellaneous/handling<br>
                 <div id="padAjax82578a7c6cf0d6b17e8d3ad764a8339f"></div>
                 <script>
@@ -223,6 +349,252 @@
                 padAjax82578a7c6cf0d6b17e8d3ad764a8339f.open("GET","http://localhost/pad/manual/?miscellaneous/handling&padInclude",true);
                 padAjax82578a7c6cf0d6b17e8d3ad764a8339f.send();
                 </script><br>
+                <hr>
+                App: padSelect - Page: joins/tag<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">joins/tag.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">joins/tag.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $country </span><span style="color: #007700">= </span><span style="color: #DD0000">'USA'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">albums </font><font color="red">join="artists using (artist_id)"<font color="black">,</font> fields="albums.title<font color="black">,</font> artists.name"<font color="black">,</font> where="artists.country = <font color="red">$</font>country"<font color="black">,</font> order="albums.title"</font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b> &amp;mdash; <b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">albums</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax0b87747bccbcf766070841678df00d14"></div>
+                      <script>
+                      padAjax0b87747bccbcf766070841678df00d14 = new XMLHttpRequest();
+                      padAjax0b87747bccbcf766070841678df00d14.onreadystatechange=function() {
+                      if (padAjax0b87747bccbcf766070841678df00d14.readyState === 4) {
+                      if (padAjax0b87747bccbcf766070841678df00d14.status === 200) {
+                      document.getElementById("padAjax0b87747bccbcf766070841678df00d14").innerHTML=padAjax0b87747bccbcf766070841678df00d14.responseText;
+                      } else {
+                      document.getElementById("padAjax0b87747bccbcf766070841678df00d14").innerHTML=padAjax0b87747bccbcf766070841678df00d14.statusText;
+                      }
+                      }
+                      }
+                      padAjax0b87747bccbcf766070841678df00d14.open("GET","http://localhost/pad/padSelect/?joins/tag&padInclude",true);
+                      padAjax0b87747bccbcf766070841678df00d14.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: relations/deep<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">relations/deep.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">artists </font><font color="red">where="country in (<font color="black">'</font>UK<font color="black">'</font><font color="black">,</font> <font color="black">'</font>France<font color="black">'</font>)"</font>}</b><br>&lt;h3&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/h3&gt;<br><b>{<font color="blue">albums</font><font color="red"></font>}</b><br>  &lt;p&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/b&gt; (<b>{<font color="green"><font color="red">$</font>released</font>}</b>)&lt;/p&gt;<br>  &lt;ol&gt;<b>{<font color="blue">tracks</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/li&gt;<b>{/<font color="blue">tracks</font><font color="red"></font>}</b>&lt;/ol&gt;<br><b>{/<font color="blue">albums</font><font color="red"></font>}</b><br><b>{/<font color="blue">artists</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax9d3a9f2fbe84516fdad89a1d4ad5607e"></div>
+                      <script>
+                      padAjax9d3a9f2fbe84516fdad89a1d4ad5607e = new XMLHttpRequest();
+                      padAjax9d3a9f2fbe84516fdad89a1d4ad5607e.onreadystatechange=function() {
+                      if (padAjax9d3a9f2fbe84516fdad89a1d4ad5607e.readyState === 4) {
+                      if (padAjax9d3a9f2fbe84516fdad89a1d4ad5607e.status === 200) {
+                      document.getElementById("padAjax9d3a9f2fbe84516fdad89a1d4ad5607e").innerHTML=padAjax9d3a9f2fbe84516fdad89a1d4ad5607e.responseText;
+                      } else {
+                      document.getElementById("padAjax9d3a9f2fbe84516fdad89a1d4ad5607e").innerHTML=padAjax9d3a9f2fbe84516fdad89a1d4ad5607e.statusText;
+                      }
+                      }
+                      }
+                      padAjax9d3a9f2fbe84516fdad89a1d4ad5607e.open("GET","http://localhost/pad/padSelect/?relations/deep&padInclude",true);
+                      padAjax9d3a9f2fbe84516fdad89a1d4ad5607e.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: relations/every_level<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">relations/every_level.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">genres</font><font color="red"></font>}</b><br>&lt;h3&gt;<b>{<font color="green"><font color="red">$</font>genre</font>}</b>&lt;/h3&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">artists </font><font color="red">where="artist_id in (select artist_id from albums where genre_code = <font color="red">$</font>genre_code)"</font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>: <b>{<font color="blue">albums</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b><b>{<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>albums</font><font color="red"></font>}</b>, <b>{/<font color="blue">notLast<font color="black"><b><font color="red">@</font></b></font>albums</font><font color="red"></font>}</b><b>{/<font color="blue">albums</font><font color="red"></font>}</b>&lt;/li&gt;<br>  <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;li class="dim"&gt;no album of its own&lt;/li&gt;<br>  <b>{/<font color="blue">artists</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br><b>{/<font color="blue">genres</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxf3da89c160287612083efc1eb0a54c2e"></div>
+                      <script>
+                      padAjaxf3da89c160287612083efc1eb0a54c2e = new XMLHttpRequest();
+                      padAjaxf3da89c160287612083efc1eb0a54c2e.onreadystatechange=function() {
+                      if (padAjaxf3da89c160287612083efc1eb0a54c2e.readyState === 4) {
+                      if (padAjaxf3da89c160287612083efc1eb0a54c2e.status === 200) {
+                      document.getElementById("padAjaxf3da89c160287612083efc1eb0a54c2e").innerHTML=padAjaxf3da89c160287612083efc1eb0a54c2e.responseText;
+                      } else {
+                      document.getElementById("padAjaxf3da89c160287612083efc1eb0a54c2e").innerHTML=padAjaxf3da89c160287612083efc1eb0a54c2e.statusText;
+                      }
+                      }
+                      }
+                      padAjaxf3da89c160287612083efc1eb0a54c2e.open("GET","http://localhost/pad/padSelect/?relations/every_level&padInclude",true);
+                      padAjaxf3da89c160287612083efc1eb0a54c2e.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: tables/else<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tables/else.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;h3&gt;Singles after 2025&lt;/h3&gt;<br><b>{<font color="blue">singles </font><font color="red">where="released &gt; 2025"</font>}</b><br>  &lt;p&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p class="dim"&gt;No single came out after 2025.&lt;/p&gt;<br><b>{/<font color="blue">singles</font><font color="red"></font>}</b><br><br>&lt;h3&gt;Each artist's albums&lt;/h3&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">artists </font><font color="red">where="artist_id in (4<font color="black">,</font> 8)"</font>}</b><br>  &lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>: <b>{<font color="blue">albums</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>&lt;span class="dim"&gt;no album yet&lt;/span&gt;<b>{/<font color="blue">albums</font><font color="red"></font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">artists</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxfdaaf51eb8561c9554c837b55acd1cab"></div>
+                      <script>
+                      padAjaxfdaaf51eb8561c9554c837b55acd1cab = new XMLHttpRequest();
+                      padAjaxfdaaf51eb8561c9554c837b55acd1cab.onreadystatechange=function() {
+                      if (padAjaxfdaaf51eb8561c9554c837b55acd1cab.readyState === 4) {
+                      if (padAjaxfdaaf51eb8561c9554c837b55acd1cab.status === 200) {
+                      document.getElementById("padAjaxfdaaf51eb8561c9554c837b55acd1cab").innerHTML=padAjaxfdaaf51eb8561c9554c837b55acd1cab.responseText;
+                      } else {
+                      document.getElementById("padAjaxfdaaf51eb8561c9554c837b55acd1cab").innerHTML=padAjaxfdaaf51eb8561c9554c837b55acd1cab.statusText;
+                      }
+                      }
+                      }
+                      padAjaxfdaaf51eb8561c9554c837b55acd1cab.open("GET","http://localhost/pad/padSelect/?tables/else&padInclude",true);
+                      padAjaxfdaaf51eb8561c9554c837b55acd1cab.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: tables/where<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tables/where.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tables/where.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $from   </span><span style="color: #007700">= </span><span style="color: #0000BB">2010</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$under  </span><span style="color: #007700">= </span><span style="color: #0000BB">14</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$artist </span><span style="color: #007700">= </span><span style="color: #DD0000">"Kite & Compass"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;h3&gt;Released since <b>{<font color="green"><font color="red">$</font>from</font>}</b>, under <b>{<font color="green"><font color="red">$</font>under</font>}</b>&lt;/h3&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">albums </font><font color="red">where="released &gt;= <font color="red">$</font>from and price &lt; <font color="red">$</font>under"</font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b> (<b>{<font color="green"><font color="red">$</font>released</font>}</b>) <b>{<font color="green"><font color="red">$</font>price</font>}</b>&lt;/li&gt;<b>{/<font color="blue">albums</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br><br>&lt;h3&gt;A text value: quotes, ampersands and all&lt;/h3&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">artists </font><font color="red">where="name = <font color="red">$</font>artist"</font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>, formed <b>{<font color="green"><font color="red">$</font>formed</font>}</b>&lt;/li&gt;<b>{/<font color="blue">artists</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxef64bb5bf8c10bf16a05c6819af8fe18"></div>
+                      <script>
+                      padAjaxef64bb5bf8c10bf16a05c6819af8fe18 = new XMLHttpRequest();
+                      padAjaxef64bb5bf8c10bf16a05c6819af8fe18.onreadystatechange=function() {
+                      if (padAjaxef64bb5bf8c10bf16a05c6819af8fe18.readyState === 4) {
+                      if (padAjaxef64bb5bf8c10bf16a05c6819af8fe18.status === 200) {
+                      document.getElementById("padAjaxef64bb5bf8c10bf16a05c6819af8fe18").innerHTML=padAjaxef64bb5bf8c10bf16a05c6819af8fe18.responseText;
+                      } else {
+                      document.getElementById("padAjaxef64bb5bf8c10bf16a05c6819af8fe18").innerHTML=padAjaxef64bb5bf8c10bf16a05c6819af8fe18.statusText;
+                      }
+                      }
+                      }
+                      padAjaxef64bb5bf8c10bf16a05c6819af8fe18.open("GET","http://localhost/pad/padSelect/?tables/where&padInclude",true);
+                      padAjaxef64bb5bf8c10bf16a05c6819af8fe18.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: padSelect - Page: views/narrowed<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">views/narrowed.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">views/narrowed.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'recent'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'base' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'albums'</span><span style="color: #007700">, </span><span style="color: #DD0000">'where' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'released &gt;= 2010'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'released desc' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">&lt;h3&gt;The recent albums under 14&lt;/h3&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">recent </font><font color="red">where="price &lt; 14"</font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b> (<b>{<font color="green"><font color="red">$</font>released</font>}</b>) <b>{<font color="green"><font color="red">$</font>price</font>}</b>&lt;/li&gt;<b>{/<font color="blue">recent</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax08b81de1d70bf59c237186511a7c9dae"></div>
+                      <script>
+                      padAjax08b81de1d70bf59c237186511a7c9dae = new XMLHttpRequest();
+                      padAjax08b81de1d70bf59c237186511a7c9dae.onreadystatechange=function() {
+                      if (padAjax08b81de1d70bf59c237186511a7c9dae.readyState === 4) {
+                      if (padAjax08b81de1d70bf59c237186511a7c9dae.status === 200) {
+                      document.getElementById("padAjax08b81de1d70bf59c237186511a7c9dae").innerHTML=padAjax08b81de1d70bf59c237186511a7c9dae.responseText;
+                      } else {
+                      document.getElementById("padAjax08b81de1d70bf59c237186511a7c9dae").innerHTML=padAjax08b81de1d70bf59c237186511a7c9dae.statusText;
+                      }
+                      }
+                      }
+                      padAjax08b81de1d70bf59c237186511a7c9dae.open("GET","http://localhost/pad/padSelect/?views/narrowed&padInclude",true);
+                      padAjax08b81de1d70bf59c237186511a7c9dae.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
                 <hr>
                 App: regression/errors - Page: error/demand_after_handling_left_no_row<br>
                 <table border="1" cellpadding="10" cellspacing="0">
@@ -301,382 +673,6 @@
                       }
                       padAjax984acb5a4375614fefd2e342870c5a10.open("GET","http://localhost/pad/regression/errors/?syntax/a_bare_name_spliced_far_into_a_long_where_is_refused&padInclude",true);
                       padAjax984acb5a4375614fefd2e342870c5a10.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/errors - Page: syntax/a_comma_outside_brackets_in_a_where_is_reported<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">syntax/a_comma_outside_brackets_in_a_where_is_reported.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>people<font color="black">'</font></font>}</b>[{"name":"Ann","dept":"IT"},{"name":"Bob","dept":"Sales"},{"name":"Cy","dept":"HR"}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">people </font><font color="red">where=<font color="black">'</font><font color="red">$</font>dept in "IT"<font color="black">,</font> "HR"<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">people</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxb695ef08a55736a2b6a1881c6e498086"></div>
-                      <script>
-                      padAjaxb695ef08a55736a2b6a1881c6e498086 = new XMLHttpRequest();
-                      padAjaxb695ef08a55736a2b6a1881c6e498086.onreadystatechange=function() {
-                      if (padAjaxb695ef08a55736a2b6a1881c6e498086.readyState === 4) {
-                      if (padAjaxb695ef08a55736a2b6a1881c6e498086.status === 200) {
-                      document.getElementById("padAjaxb695ef08a55736a2b6a1881c6e498086").innerHTML=padAjaxb695ef08a55736a2b6a1881c6e498086.responseText;
-                      } else {
-                      document.getElementById("padAjaxb695ef08a55736a2b6a1881c6e498086").innerHTML=padAjaxb695ef08a55736a2b6a1881c6e498086.statusText;
-                      }
-                      }
-                      }
-                      padAjaxb695ef08a55736a2b6a1881c6e498086.open("GET","http://localhost/pad/regression/errors/?syntax/a_comma_outside_brackets_in_a_where_is_reported&padInclude",true);
-                      padAjaxb695ef08a55736a2b6a1881c6e498086.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/errors - Page: syntax/a_value_spliced_far_into_a_long_where_is_refused<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">syntax/a_value_spliced_far_into_a_long_where_is_refused.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">syntax/a_value_spliced_far_into_a_long_where_is_refused.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value spliced into a where= more than 4 KB from the tag's opening brace - past the window<br>  // the splice looks back over - is refused as part of the condition: it went in bare and<br>  // unrecorded, and the request value 3 or php:abs(-3) eq 3 ran PHP and let every row pass.<br><br>  </span><span style="color: #0000BB">$q </span><span style="color: #007700">= </span><span style="color: #DD0000">'3 or php:abs(-3) eq 3'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b>[{"n":1},{"n":3}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">xs </font><font color="red">where=<font color="black">'</font><font color="red">$</font>n eq 1 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or 0 or <font color="red">$</font>n eq <b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>q</font><font color="black">}</font></b><font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">xs</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax39b19c12fcc8c3edd74574915d3a4b44"></div>
-                      <script>
-                      padAjax39b19c12fcc8c3edd74574915d3a4b44 = new XMLHttpRequest();
-                      padAjax39b19c12fcc8c3edd74574915d3a4b44.onreadystatechange=function() {
-                      if (padAjax39b19c12fcc8c3edd74574915d3a4b44.readyState === 4) {
-                      if (padAjax39b19c12fcc8c3edd74574915d3a4b44.status === 200) {
-                      document.getElementById("padAjax39b19c12fcc8c3edd74574915d3a4b44").innerHTML=padAjax39b19c12fcc8c3edd74574915d3a4b44.responseText;
-                      } else {
-                      document.getElementById("padAjax39b19c12fcc8c3edd74574915d3a4b44").innerHTML=padAjax39b19c12fcc8c3edd74574915d3a4b44.statusText;
-                      }
-                      }
-                      }
-                      padAjax39b19c12fcc8c3edd74574915d3a4b44.open("GET","http://localhost/pad/regression/errors/?syntax/a_value_spliced_far_into_a_long_where_is_refused&padInclude",true);
-                      padAjax39b19c12fcc8c3edd74574915d3a4b44.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/errors - Page: syntax/a_where_is_written_in_the_template<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">syntax/a_where_is_written_in_the_template.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">syntax/a_where_is_written_in_the_template.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A whole where= condition from a variable - a request could fill it - is refused.<br><br>  </span><span style="color: #0000BB">$cond </span><span style="color: #007700">= </span><span style="color: #DD0000">'php:abs(-1) eq $n'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xs<font color="black">'</font></font>}</b>[{"n":1},{"n":2}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">xs </font><font color="red">where=<font color="red">$</font>cond</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax37ed932fee5a090d237015f7aa3065ae"></div>
-                      <script>
-                      padAjax37ed932fee5a090d237015f7aa3065ae = new XMLHttpRequest();
-                      padAjax37ed932fee5a090d237015f7aa3065ae.onreadystatechange=function() {
-                      if (padAjax37ed932fee5a090d237015f7aa3065ae.readyState === 4) {
-                      if (padAjax37ed932fee5a090d237015f7aa3065ae.status === 200) {
-                      document.getElementById("padAjax37ed932fee5a090d237015f7aa3065ae").innerHTML=padAjax37ed932fee5a090d237015f7aa3065ae.responseText;
-                      } else {
-                      document.getElementById("padAjax37ed932fee5a090d237015f7aa3065ae").innerHTML=padAjax37ed932fee5a090d237015f7aa3065ae.statusText;
-                      }
-                      }
-                      }
-                      padAjax37ed932fee5a090d237015f7aa3065ae.open("GET","http://localhost/pad/regression/errors/?syntax/a_where_is_written_in_the_template&padInclude",true);
-                      padAjax37ed932fee5a090d237015f7aa3065ae.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/errors - Page: syntax/negative_cannot_turn_round_a_select_where<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">syntax/negative_cannot_turn_round_a_select_where.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">syntax/negative_cannot_turn_round_a_select_where.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// negative over a select table's where: the SQL applied it, so nothing was left to turn<br>  // round and the list came out empty, in silence.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">staffSel </font><font color="red">where="salary &gt;= 2000"<font color="black">,</font> negative</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">staffSel</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax69d0835e920518e5eb2215a01f60c1bd"></div>
-                      <script>
-                      padAjax69d0835e920518e5eb2215a01f60c1bd = new XMLHttpRequest();
-                      padAjax69d0835e920518e5eb2215a01f60c1bd.onreadystatechange=function() {
-                      if (padAjax69d0835e920518e5eb2215a01f60c1bd.readyState === 4) {
-                      if (padAjax69d0835e920518e5eb2215a01f60c1bd.status === 200) {
-                      document.getElementById("padAjax69d0835e920518e5eb2215a01f60c1bd").innerHTML=padAjax69d0835e920518e5eb2215a01f60c1bd.responseText;
-                      } else {
-                      document.getElementById("padAjax69d0835e920518e5eb2215a01f60c1bd").innerHTML=padAjax69d0835e920518e5eb2215a01f60c1bd.statusText;
-                      }
-                      }
-                      }
-                      padAjax69d0835e920518e5eb2215a01f60c1bd.open("GET","http://localhost/pad/regression/errors/?syntax/negative_cannot_turn_round_a_select_where&padInclude",true);
-                      padAjax69d0835e920518e5eb2215a01f60c1bd.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: custom/an_application_tag_reads_its_options_as_the_template_gave_them<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">custom/an_application_tag_reads_its_options_as_the_template_gave_them.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">custom/an_application_tag_reads_its_options_as_the_template_gave_them.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $v </span><span style="color: #007700">= </span><span style="color: #DD0000">'a|b'</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">batches </font><font color="red">where=<font color="black">'</font><font color="red">$</font>batches <font color="black">|</font> upper eq "C"<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>batches</font>}</b><b>{/<font color="blue">batches</font><font color="red"></font>}</b>][<b>{<font color="blue">jsonparm </font><font color="red"><font color="black">'</font><font color="black">{</font>"a"<font color="black">:</font>"x"</font>}</b>'}]<b>{<font color="blue">plaincard </font><font color="red">title=<font color="black">'</font>a<font color="black">|</font>b<font color="black">'</font></font>}</b><b>{<font color="blue">plaincard </font><font color="red">title=<font color="red">$</font>v</font>}</b><b>{<font color="blue">phpcard </font><font color="red">title=<font color="red">$</font>v</font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax983b8adee10ed255d8ea2bd5da0e51e2"></div>
-                      <script>
-                      padAjax983b8adee10ed255d8ea2bd5da0e51e2 = new XMLHttpRequest();
-                      padAjax983b8adee10ed255d8ea2bd5da0e51e2.onreadystatechange=function() {
-                      if (padAjax983b8adee10ed255d8ea2bd5da0e51e2.readyState === 4) {
-                      if (padAjax983b8adee10ed255d8ea2bd5da0e51e2.status === 200) {
-                      document.getElementById("padAjax983b8adee10ed255d8ea2bd5da0e51e2").innerHTML=padAjax983b8adee10ed255d8ea2bd5da0e51e2.responseText;
-                      } else {
-                      document.getElementById("padAjax983b8adee10ed255d8ea2bd5da0e51e2").innerHTML=padAjax983b8adee10ed255d8ea2bd5da0e51e2.statusText;
-                      }
-                      }
-                      }
-                      padAjax983b8adee10ed255d8ea2bd5da0e51e2.open("GET","http://localhost/pad/regression/framework/?custom/an_application_tag_reads_its_options_as_the_template_gave_them&padInclude",true);
-                      padAjax983b8adee10ed255d8ea2bd5da0e51e2.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: data/a_csv_row_shorter_than_its_header_has_the_missing_fields_empty<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">data/a_csv_row_shorter_than_its_header_has_the_missing_fields_empty.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">data/a_csv_row_shorter_than_its_header_has_the_missing_fields_empty.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A CSV row with fewer cells than the header - a trailing empty cell left out, as a<br>  // spreadsheet export does - has every header field, the missing ones empty: Bob's row had<br>  // no city, so {$city} on it found the page's own $city, and with no such variable the<br>  // page ended "Field '$c' not found".<br><br>  </span><span style="color: #0000BB">$city </span><span style="color: #007700">= </span><span style="color: #DD0000">'the page city'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>people<font color="black">'</font></font>}</b><br>name,city<br>Ann,Paris<br>Bob<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>c2<font color="black">'</font></font>}</b><br>a,b,c<br>1,2<br>3,4,5<br><b>{/<font color="blue">data</font><font color="red"></font>}</b>[<b>{<font color="blue">people</font><font color="red"></font>}</b>&lt;<b>{<font color="green"><font color="red">$</font>name</font>}</b> lives in <b>{<font color="green"><font color="red">$</font>city</font>}</b>&gt;<b>{/<font color="blue">people</font><font color="red"></font>}</b>][<b>{<font color="blue">c2</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>a</font>}</b><b>{<font color="green"><font color="red">$</font>b</font>}</b>(<b>{<font color="green"><font color="red">$</font>c</font>}</b>)<b>{/<font color="blue">c2</font><font color="red"></font>}</b>][<b>{<font color="blue">people </font><font color="red">where=<font color="black">'</font><font color="red">$</font>city eq ""<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">people</font><font color="red"></font>}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax04ad4ec65b270794c96d27e0dcabcc0b"></div>
-                      <script>
-                      padAjax04ad4ec65b270794c96d27e0dcabcc0b = new XMLHttpRequest();
-                      padAjax04ad4ec65b270794c96d27e0dcabcc0b.onreadystatechange=function() {
-                      if (padAjax04ad4ec65b270794c96d27e0dcabcc0b.readyState === 4) {
-                      if (padAjax04ad4ec65b270794c96d27e0dcabcc0b.status === 200) {
-                      document.getElementById("padAjax04ad4ec65b270794c96d27e0dcabcc0b").innerHTML=padAjax04ad4ec65b270794c96d27e0dcabcc0b.responseText;
-                      } else {
-                      document.getElementById("padAjax04ad4ec65b270794c96d27e0dcabcc0b").innerHTML=padAjax04ad4ec65b270794c96d27e0dcabcc0b.statusText;
-                      }
-                      }
-                      }
-                      padAjax04ad4ec65b270794c96d27e0dcabcc0b.open("GET","http://localhost/pad/regression/framework/?data/a_csv_row_shorter_than_its_header_has_the_missing_fields_empty&padInclude",true);
-                      padAjax04ad4ec65b270794c96d27e0dcabcc0b.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: data/a_list_of_objects_iterates_as_rows_with_their_fields<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">data/a_list_of_objects_iterates_as_rows_with_their_fields.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">data/a_list_of_objects_iterates_as_rows_with_their_fields.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $decoded </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #DD0000">'[{"a":1,"b":"x"},{"a":2,"b":"y"}]' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$people  </span><span style="color: #007700">= [ (object) [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'P1'</span><span style="color: #007700">, </span><span style="color: #DD0000">'age' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">30 </span><span style="color: #007700">], (object) [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'P2'</span><span style="color: #007700">, </span><span style="color: #DD0000">'age' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">40 </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$nested  </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #DD0000">'[{"addr":{"city":"Paris"},"tags":[{"t":1},{"t":2}]}]' </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$dates   </span><span style="color: #007700">= [ new </span><span style="color: #0000BB">DateTimeImmutable </span><span style="color: #007700">( </span><span style="color: #DD0000">'2026-01-02 03:04:05'</span><span style="color: #007700">, new </span><span style="color: #0000BB">DateTimeZone </span><span style="color: #007700">( </span><span style="color: #DD0000">'UTC' </span><span style="color: #007700">) ) ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">decoded</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>a</font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">decoded </font><font color="red">where=<font color="black">'</font><font color="red">$</font>a gt 1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>b</font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">decoded</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>a eq 2</font>}</b>two<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">decoded </font><font color="red">sort=<font color="black">'</font>b DESC<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>b</font>}</b><b>{/<font color="blue">decoded</font><font color="red"></font>}</b>|<b>{<font color="blue">people</font><font color="red"></font>}</b>(<b>{<font color="green"><font color="red">$</font>name</font>}</b>)<b>{/<font color="blue">people</font><font color="red"></font>}</b>|<b>{<font color="blue">nested</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>addr.city</font>}</b>:<b>{<font color="blue">tags</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>t</font>}</b><b>{/<font color="blue">tags</font><font color="red"></font>}</b><b>{/<font color="blue">nested</font><font color="red"></font>}</b>|<b>{<font color="blue">dates</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>dates</font>}</b> <b>{/<font color="blue">dates</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxa9206269f883995050b8b8e4b6ca7441"></div>
-                      <script>
-                      padAjaxa9206269f883995050b8b8e4b6ca7441 = new XMLHttpRequest();
-                      padAjaxa9206269f883995050b8b8e4b6ca7441.onreadystatechange=function() {
-                      if (padAjaxa9206269f883995050b8b8e4b6ca7441.readyState === 4) {
-                      if (padAjaxa9206269f883995050b8b8e4b6ca7441.status === 200) {
-                      document.getElementById("padAjaxa9206269f883995050b8b8e4b6ca7441").innerHTML=padAjaxa9206269f883995050b8b8e4b6ca7441.responseText;
-                      } else {
-                      document.getElementById("padAjaxa9206269f883995050b8b8e4b6ca7441").innerHTML=padAjaxa9206269f883995050b8b8e4b6ca7441.statusText;
-                      }
-                      }
-                      }
-                      padAjaxa9206269f883995050b8b8e4b6ca7441.open("GET","http://localhost/pad/regression/framework/?data/a_list_of_objects_iterates_as_rows_with_their_fields&padInclude",true);
-                      padAjaxa9206269f883995050b8b8e4b6ca7441.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: data/data_named_at_its_close_holds_the_values_not_their_stand_ins<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">data/data_named_at_its_close_holds_the_values_not_their_stand_ins.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">data/data_named_at_its_close_holds_the_values_not_their_stand_ins.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A {data} named on its closing tag parses its walked content, in which a value's<br>  // syntax characters travel as stand-ins - a spliced comma splits no CSV cell, a quote<br>  // closes no JSON string. The parsed fields kept them: "Smith, John" was stored with the<br>  // comma's stand-in, so {if}, where= and php: calls compared and measured another string.<br><br>  </span><span style="color: #0000BB">$people </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Smith, John' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'x=1' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'say "hi"' </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">data</font><font color="red"></font>}</b><br>name<br><b>{<font color="blue">people</font><font color="red"></font>}</b>"<b>{<font color="green"><font color="red">!</font>name</font>}</b>"<br><b>{/<font color="blue">people</font><font color="red"></font>}</b><br><b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>p<font color="black">'</font></font>}</b><b>{<font color="blue">data</font><font color="red"></font>}</b>[<b>{<font color="blue">people</font><font color="red"></font>}</b><b>{<font color="blue">notFirst<font color="black"><b><font color="red">@</font></b></font>people</font><font color="red"></font>}</b>,<b>{/<font color="blue">notFirst<font color="black"><b><font color="red">@</font></b></font>people</font><font color="red"></font>}</b>{"n":"<b>{<font color="green"><font color="red">!</font>name</font>}</b>"}<b>{/<font color="blue">people</font><font color="red"></font>}</b>]<b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>q<font color="black">'</font></font>}</b>A[<b>{<font color="blue">p</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>name eq <font color="black">'</font>Smith<font color="black">,</font> John<font color="black">'</font></font>}</b>eq<b>{<font color="blue">else</font><font color="red"></font>}</b>ne<b>{/<font color="blue">if</font><font color="red"></font>}</b>;<b>{/<font color="blue">p</font><font color="red"></font>}</b>]B[<b>{<font color="blue">p </font><font color="red">where=<font color="black">'</font><font color="red">$</font>name eq "x=1"<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">p</font><font color="red"></font>}</b>]C[<b>{<font color="blue">q</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red">php<font color="black">:</font>strlen(<font color="red">$</font>n)</font>}</b>;<b>{/<font color="blue">q</font><font color="red"></font>}</b>]</code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjaxd52d9b05cfd70cb0c4ade2231ba0f913"></div>
-                      <script>
-                      padAjaxd52d9b05cfd70cb0c4ade2231ba0f913 = new XMLHttpRequest();
-                      padAjaxd52d9b05cfd70cb0c4ade2231ba0f913.onreadystatechange=function() {
-                      if (padAjaxd52d9b05cfd70cb0c4ade2231ba0f913.readyState === 4) {
-                      if (padAjaxd52d9b05cfd70cb0c4ade2231ba0f913.status === 200) {
-                      document.getElementById("padAjaxd52d9b05cfd70cb0c4ade2231ba0f913").innerHTML=padAjaxd52d9b05cfd70cb0c4ade2231ba0f913.responseText;
-                      } else {
-                      document.getElementById("padAjaxd52d9b05cfd70cb0c4ade2231ba0f913").innerHTML=padAjaxd52d9b05cfd70cb0c4ade2231ba0f913.statusText;
-                      }
-                      }
-                      }
-                      padAjaxd52d9b05cfd70cb0c4ade2231ba0f913.open("GET","http://localhost/pad/regression/framework/?data/data_named_at_its_close_holds_the_values_not_their_stand_ins&padInclude",true);
-                      padAjaxd52d9b05cfd70cb0c4ade2231ba0f913.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: expressions/a_field_piped_into_a_fallback_may_be_missing_in_echo_too<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2">expressions/a_field_piped_into_a_fallback_may_be_missing_in_echo_too.php</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">expressions/a_field_piped_into_a_fallback_may_be_missing_in_echo_too.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A field piped into a fallback - default(), ??, optional - may be missing under the strict<br>  // check in {echo} and inside an expression too, not only in {$x | ...}: they named it missing.<br><br>  </span><span style="color: #0000BB">$user </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$xs   </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'n' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'m' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">5 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000">[<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>user.middle <font color="black">|</font> default("-")</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>user.middle <font color="black">|</font> ?? "-"</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>user.middle <font color="black">|</font> optional</font>}</b>][<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>user.name <font color="black">|</font> default("-")</font>}</b>] <b>{<font color="blue">xs </font><font color="red">where=<font color="black">'</font><font color="red">$</font>m <font color="black">|</font> ?? 0 <font color="black">|</font> <font color="black">@</font> gt 1<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">xs</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax4988f31410e021619786ff288b172fc1"></div>
-                      <script>
-                      padAjax4988f31410e021619786ff288b172fc1 = new XMLHttpRequest();
-                      padAjax4988f31410e021619786ff288b172fc1.onreadystatechange=function() {
-                      if (padAjax4988f31410e021619786ff288b172fc1.readyState === 4) {
-                      if (padAjax4988f31410e021619786ff288b172fc1.status === 200) {
-                      document.getElementById("padAjax4988f31410e021619786ff288b172fc1").innerHTML=padAjax4988f31410e021619786ff288b172fc1.responseText;
-                      } else {
-                      document.getElementById("padAjax4988f31410e021619786ff288b172fc1").innerHTML=padAjax4988f31410e021619786ff288b172fc1.statusText;
-                      }
-                      }
-                      }
-                      padAjax4988f31410e021619786ff288b172fc1.open("GET","http://localhost/pad/regression/framework/?expressions/a_field_piped_into_a_fallback_may_be_missing_in_echo_too&padInclude",true);
-                      padAjax4988f31410e021619786ff288b172fc1.send();
                       </script>
                     </td>
                   </tr>

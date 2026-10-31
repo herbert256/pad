@@ -99,9 +99,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-num">72</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-var">$done</span>, <span class="hl-opt">max</span>=<span class="hl-num">100</span>, <span class="hl-opt">label</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'success'</span>, <span class="hl-opt">size</span>=<span class="hl-str">'small'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-num">3</span>, <span class="hl-opt">max</span>=<span class="hl-num">5</span>, steps, <span class="hl-opt">label</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-num">72</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-var">$done</span>, <span class="hl-opt">max</span>=<span class="hl-num">100</span>, <span class="hl-opt">label</span>=<span class="hl-str">'text'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'success'</span>, <span class="hl-opt">size</span>=<span class="hl-str">'small'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-num">3</span>, <span class="hl-opt">max</span>=<span class="hl-num">5</span>, steps, <span class="hl-opt">label</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -183,7 +183,7 @@
                     <span>Template</span><span class="cell-file">examples/progress/1-uploads.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:grid; gap:14px; max-width:420px"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">uploads</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-var">$done</span>, <span class="hl-opt">label</span>=<span class="hl-var">$file</span>, <span class="hl-opt">color</span>=<span class="hl-var">$color</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/uploads</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">uploads</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-var">$done</span>, <span class="hl-opt">label</span>=<span class="hl-var">$file</span>, <span class="hl-opt">color</span>=<span class="hl-var">$color</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">/uploads</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/progress/1-uploads.php</span>
@@ -234,9 +234,9 @@
                     <span>Template</span><span class="cell-file">examples/progress/2-steps.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:grid; gap:18px; max-width:420px"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-num">3</span>, <span class="hl-opt">max</span>=<span class="hl-num">5</span>, steps, <span class="hl-opt">label</span>=<span class="hl-str">'Checkout'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-num">45</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Disk space'</span>, <span class="hl-opt">size</span>=<span class="hl-str">'small'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'neutral'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-num">7.5</span>, <span class="hl-opt">max</span>=<span class="hl-num">10</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Quota'</span>, <span class="hl-opt">size</span>=<span class="hl-str">'large'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'warning'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-num">3</span>, <span class="hl-opt">max</span>=<span class="hl-num">5</span>, steps, <span class="hl-opt">label</span>=<span class="hl-str">'Checkout'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-num">45</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Disk space'</span>, <span class="hl-opt">size</span>=<span class="hl-str">'small'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'neutral'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">progress</span> <span class="hl-num">7.5</span>, <span class="hl-opt">max</span>=<span class="hl-num">10</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Quota'</span>, <span class="hl-opt">size</span>=<span class="hl-str">'large'</span>, <span class="hl-opt">color</span>=<span class="hl-str">'warning'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">

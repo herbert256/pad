@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">assert</span> condition<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">assert</span> condition, <span class="hl-str">'message'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">assert</span> condition<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">assert</span> condition, <span class="hl-str">'message'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -121,7 +121,7 @@
               Description
             </h2>
             <p>
-              <code>{assert $total eq 42, 'the cart total'}</code> states something that must be true at that point of the page. It always renders nothing. What it does depends on <code>$padAssert</code>: off - the default, and so in production - the tag is skipped entirely, the condition is not even evaluated, so an assert on a field that is not there costs nothing and raises nothing. On, a condition that holds passes quietly and a false one is a PAD error: <code>assert failed: $total eq 42 - the cart total</code>.
+              <code>{assert $total eq 42, 'the cart total'/}</code> states something that must be true at that point of the page. It always renders nothing. What it does depends on <code>$padAssert</code>: off - the default, and so in production - the tag is skipped entirely, the condition is not even evaluated, so an assert on a field that is not there costs nothing and raises nothing. On, a condition that holds passes quietly and a false one is a PAD error: <code>assert failed: $total eq 42 - the cart total</code>.
             </p>
             <p>
               <code>pad test &lt;app&gt;</code> switches <code>$padAssert</code> on for its run. An application's tests live in <code>_tests/</code>: <code>cart.pad</code> (with <code>cart.php</code> for its data) is the test page and <code>cart.txt</code> its expected answer; a failing assert fails the test, with the condition, the message and the template position as its report. So the checks can stand in the real pages and templates, and the tests exercise them.
@@ -146,10 +146,10 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/assert/1-silent.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$total</span> = <span class="hl-num">42</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$total</span> = <span class="hl-num">42</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Before the asserts.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">assert</span> <span class="hl-var">$total</span> eq <span class="hl-num">42</span>, <span class="hl-str">'the cart total'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">assert</span> <span class="hl-var">$missing</span> gt <span class="hl-num">0</span>, <span class="hl-str">'never evaluated'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">assert</span> <span class="hl-var">$total</span> eq <span class="hl-num">42</span>, <span class="hl-str">'the cart total'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">assert</span> <span class="hl-var">$missing</span> gt <span class="hl-num">0</span>, <span class="hl-str">'never evaluated'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>After the asserts - nothing between the two paragraphs.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
@@ -179,12 +179,12 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/assert/2-a-test.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$total</span> = <span class="hl-num">0</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$total</span> = <span class="hl-num">0</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">cart</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">assert</span> <span class="hl-var">$price</span> gt <span class="hl-num">0</span>, <span class="hl-str">'every line has a price'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$total</span> = <span class="hl-var">$total</span> + <span class="hl-var">$price</span> * <span class="hl-var">$qty</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">assert</span> <span class="hl-var">$price</span> gt <span class="hl-num">0</span>, <span class="hl-str">'every line has a price'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$total</span> = <span class="hl-var">$total</span> + <span class="hl-var">$price</span> * <span class="hl-var">$qty</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/cart</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">assert</span> <span class="hl-var">$total</span> eq <span class="hl-num">42</span>, <span class="hl-str">'the cart total'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">assert</span> <span class="hl-var">$total</span> eq <span class="hl-num">42</span>, <span class="hl-str">'the cart total'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$total</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
               </div>

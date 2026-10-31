@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-var">$moment</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-var">$moment</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-var">$moment</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-var">$moment</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -132,7 +132,7 @@
               Description
             </h2>
             <p>
-              <code>{timeago $created}</code> writes how long ago the moment was - just now, 5 minutes ago, yesterday, 3 weeks ago, and for a moment still to come, in 2 days - inside a <code>&lt;time class="pad-timeago"&gt;</code>. The element's <code>datetime</code> is the moment in ISO 8601, for machines, and its <code>title</code> the moment in full, which a browser shows on hover. The words are those of the <code>ago</code> pipe, with the semantic element around them.
+              <code>{timeago $created/}</code> writes how long ago the moment was - just now, 5 minutes ago, yesterday, 3 weeks ago, and for a moment still to come, in 2 days - inside a <code>&lt;time class="pad-timeago"&gt;</code>. The element's <code>datetime</code> is the moment in ISO 8601, for machines, and its <code>title</code> the moment in full, which a browser shows on hover. The words are those of the <code>ago</code> pipe, with the semantic element around them.
             </p>
             <p>
               Now is <code>padNow ()</code>, so <code>padNowFreeze ()</code> in PHP holds a page still for a test. <code>now=</code> counts from a given moment instead - which is how the examples here stay the same on every request. <code>format=</code> is the PHP date format of the title.
@@ -159,7 +159,7 @@
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;ul</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">comments</span><span class="hl-brc">}</span>
-    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span> - <span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-var">$posted</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span><span class="hl-brc">}</span>: <span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
+    <span class="hl-htm">&lt;li</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span> - <span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-var">$posted</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span><span class="hl-brc">/}</span>: <span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/li</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">/comments</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/ul</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
@@ -214,9 +214,9 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/timeago/2-format.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Released <span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-str">'2026-09-01'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">}</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Next release <span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-str">'2026-10-22'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">}</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Not dated: [<span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-str">''</span><span class="hl-brc">}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Released <span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-str">'2026-09-01'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">/}</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Next release <span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-str">'2026-10-22'</span>, <span class="hl-opt">now</span>=<span class="hl-str">'2026-10-08 12:00'</span>, <span class="hl-opt">format</span>=<span class="hl-str">'j M Y'</span><span class="hl-brc">/}</span>.<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>Not dated: [<span class="hl-brc">{</span><span class="hl-tag">timeago</span> <span class="hl-str">''</span><span class="hl-brc">/}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">

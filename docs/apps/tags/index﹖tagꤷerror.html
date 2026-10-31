@@ -96,7 +96,7 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">error</span> <span class="hl-str">'message'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">error</span> <span class="hl-str">'message'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -114,7 +114,7 @@
               Description
             </h2>
             <p>
-              <code>{error 'message'}</code> calls <code>padError()</code> - the same function the engine uses for its own errors - from a template. What happens next is up to <code>$padErrorAction</code> in <code>_config/config.php</code>:
+              <code>{error 'message'/}</code> calls <code>padError()</code> - the same function the engine uses for its own errors - from a template. What happens next is up to <code>$padErrorAction</code> in <code>_config/config.php</code>:
             </p>
             <ul>
               <li>
@@ -160,7 +160,7 @@
   <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'open'</span><span class="hl-brc">}</span>    <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">"open"</span><span class="hl-htm">&gt;</span>Open<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'paid'</span><span class="hl-brc">}</span>    <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">"paid"</span><span class="hl-htm">&gt;</span>Paid<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">when</span> <span class="hl-str">'shipped'</span><span class="hl-brc">}</span> <span class="hl-htm">&lt;span</span> <span class="hl-opt">class</span>=<span class="hl-str">"done"</span><span class="hl-htm">&gt;</span>Shipped<span class="hl-htm">&lt;/span</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>           <span class="hl-brc">{</span><span class="hl-tag">error</span> <span class="hl-str">'unknown order status'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">else</span><span class="hl-brc">}</span>           <span class="hl-brc">{</span><span class="hl-tag">error</span> <span class="hl-str">'unknown order status'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/case</span><span class="hl-brc">}</span></code></pre>
                 </div>
               </div>
@@ -178,7 +178,7 @@
                     <span>Template</span><span class="cell-file">examples/error/2-missing-row.src</span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">if</span> not <span class="hl-var">$customer</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">error</span> <span class="hl-str">'order without a customer'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">error</span> <span class="hl-str">'order without a customer'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/if</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;h2</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$customer.name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/h2</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>

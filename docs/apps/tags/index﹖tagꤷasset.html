@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'file'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'file'</span>, tag<span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'file'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'file'</span>, tag<span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -126,7 +126,7 @@
               Description
             </h2>
             <p>
-              <code>{asset 'charts.css'}</code> answers the address of <code>www/&lt;app&gt;/charts.css</code> with <code>?v=</code> and the first ten hex digits of a hash of the file's contents: <code>/charts/charts.css?v=1f3a9c0b2e</code>. The hash is made once per request. A changed file gets a new address, so the server can send its assets with a cache lifetime of a year and a browser still fetches the new version the moment it changes - no build step, no manifest.
+              <code>{asset 'charts.css'/}</code> answers the address of <code>www/&lt;app&gt;/charts.css</code> with <code>?v=</code> and the first ten hex digits of a hash of the file's contents: <code>/charts/charts.css?v=1f3a9c0b2e</code>. The hash is made once per request. A changed file gets a new address, so the server can send its assets with a cache lifetime of a year and a browser still fetches the new version the moment it changes - no build step, no manifest.
             </p>
             <p>
               With the bare <code>tag</code> option it writes the element itself: a <code>&lt;link rel="stylesheet"&gt;</code> for a <code>.css</code> file, a <code>&lt;script defer&gt;</code> for <code>.js</code> and a <code>&lt;script type="module"&gt;</code> for <code>.mjs</code>, carrying the request's nonce when <code>$padCsp</code> asks for one. From PHP, <code>padAsset ( 'charts.css' )</code> and <code>padAssetTag ( 'app.js' )</code> give the same.
@@ -151,8 +151,8 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/asset/1-address.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;link</span> <span class="hl-opt">rel</span>=<span class="hl-str">"stylesheet"</span> <span class="hl-opt">href</span>=<span class="hl-str">"{asset 'tags.css'}"</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;img</span> <span class="hl-opt">src</span>=<span class="hl-str">"{asset 'img/logo.svg'}"</span> <span class="hl-opt">alt</span>=<span class="hl-str">"Logo"</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;link</span> <span class="hl-opt">rel</span>=<span class="hl-str">"stylesheet"</span> <span class="hl-opt">href</span>=<span class="hl-str">"{asset 'tags.css'/}"</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;img</span> <span class="hl-opt">src</span>=<span class="hl-str">"{asset 'img/logo.svg'/}"</span> <span class="hl-opt">alt</span>=<span class="hl-str">"Logo"</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
               </div>
             </div>
@@ -168,9 +168,9 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/asset/2-tag.src</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'tags.css'</span>, tag<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'tags.js'</span>, tag<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'islands.mjs'</span>, tag<span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'tags.css'</span>, tag<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'tags.js'</span>, tag<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">asset</span> <span class="hl-str">'islands.mjs'</span>, tag<span class="hl-brc">/}</span></code></pre>
                 </div>
               </div>
             </div>

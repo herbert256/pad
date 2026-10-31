@@ -102,9 +102,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-var">$email</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-var">$email</span>, <span class="hl-opt">size</span>=<span class="hl-num">64</span>, <span class="hl-opt">default</span>=<span class="hl-str">'identicon'</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-var">$email</span>, <span class="hl-opt">fallback</span>=<span class="hl-str">'avatar'</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'text'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-var">$email</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-var">$email</span>, <span class="hl-opt">size</span>=<span class="hl-num">64</span>, <span class="hl-opt">default</span>=<span class="hl-str">'identicon'</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-var">$email</span>, <span class="hl-opt">fallback</span>=<span class="hl-str">'avatar'</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'text'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -181,7 +181,7 @@
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:grid; gap:12px"</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">comments</span><span class="hl-brc">}</span>
-  <span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:flex; gap:10px; align-items:flex-start"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-var">$email</span>, <span class="hl-opt">size</span>=<span class="hl-num">40</span>, <span class="hl-opt">default</span>=<span class="hl-str">'identicon'</span>, <span class="hl-opt">alt</span>=<span class="hl-var">$name</span><span class="hl-brc">}</span> <span class="hl-htm">&lt;div</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;div</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:flex; gap:10px; align-items:flex-start"</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-var">$email</span>, <span class="hl-opt">size</span>=<span class="hl-num">40</span>, <span class="hl-opt">default</span>=<span class="hl-str">'identicon'</span>, <span class="hl-opt">alt</span>=<span class="hl-var">$name</span><span class="hl-brc">/}</span> <span class="hl-htm">&lt;div</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;strong</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$name</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/strong</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;br</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$text</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">/comments</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/div</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
@@ -233,8 +233,8 @@
                     <span>Template</span><span class="cell-file">examples/gravatar/2-fallback.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"display:flex; gap:10px; align-items:center"</span><span class="hl-htm">&gt;</span>
-  <span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-str">'ada@example.org'</span>, <span class="hl-opt">size</span>=<span class="hl-num">40</span>, <span class="hl-opt">fallback</span>=<span class="hl-str">'avatar'</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'Ada Lovelace'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-str">'ada@example.org'</span>, <span class="hl-opt">size</span>=<span class="hl-num">40</span>, <span class="hl-opt">fallback</span>=<span class="hl-str">'identicon'</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'Ada Lovelace'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-str">'ada@example.org'</span>, <span class="hl-opt">size</span>=<span class="hl-num">40</span>, <span class="hl-opt">fallback</span>=<span class="hl-str">'avatar'</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'Ada Lovelace'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">gravatar</span> <span class="hl-str">'ada@example.org'</span>, <span class="hl-opt">size</span>=<span class="hl-num">40</span>, <span class="hl-opt">fallback</span>=<span class="hl-str">'identicon'</span>, <span class="hl-opt">alt</span>=<span class="hl-str">'Ada Lovelace'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">

@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">switch</span> <span class="hl-str">'odd'</span>, <span class="hl-str">'even'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">switch</span> <span class="hl-str">'red'</span>, <span class="hl-str">'green'</span>, <span class="hl-str">'blue'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">switch</span> <span class="hl-str">'odd'</span>, <span class="hl-str">'even'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">switch</span> <span class="hl-str">'red'</span>, <span class="hl-str">'green'</span>, <span class="hl-str">'blue'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -115,7 +115,7 @@
               Description
             </h2>
             <p>
-              <code>{switch 'odd', 'even'}</code> prints one of its values and moves one step on, so the next time it runs it prints the next one, and after the last it starts over. Written inside a loop it gives alternating values per row - a class or a background colour for zebra stripes - without counting anything yourself.
+              <code>{switch 'odd', 'even'/}</code> prints one of its values and moves one step on, so the next time it runs it prints the next one, and after the last it starts over. Written inside a loop it gives alternating values per row - a class or a background colour for zebra stripes - without counting anything yourself.
             </p>
             <p>
               The position is remembered for the whole request and is keyed on the tag's text as written. Two <code>{switch}</code> tags written exactly alike therefore share one rotation, even in different loops: the second loop goes on where the first one stopped. Write them differently (another value, or other spacing) to give each its own rotation. A nested pass - a <code>{code}</code> or <code>{sandbox}</code> evaluation - takes its rotation steps back when it returns.
@@ -145,7 +145,7 @@
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;table</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-str">'1..5'</span>, <span class="hl-opt">name</span>=<span class="hl-str">'row'</span><span class="hl-brc">}</span>
-  <span class="hl-htm">&lt;tr</span> <span class="hl-opt">style</span>=<span class="hl-str">"background: {switch '#ffffff', '#e8eef7'}"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Row <span class="hl-brc">{</span><span class="hl-var">$row</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
+  <span class="hl-htm">&lt;tr</span> <span class="hl-opt">style</span>=<span class="hl-str">"background: {switch '#ffffff', '#e8eef7'/}"</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span>Row <span class="hl-brc">{</span><span class="hl-var">$row</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span>
 <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
@@ -197,9 +197,9 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/switch/2-three.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-num">4</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">switch</span> <span class="hl-str">'red'</span>, <span class="hl-str">'green'</span>, <span class="hl-str">'blue'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-num">4</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">switch</span> <span class="hl-str">'red'</span>, <span class="hl-str">'green'</span>, <span class="hl-str">'blue'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-num">4</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">switch</span> <span class="hl-str">'red'</span>,<span class="hl-str">'green'</span>,<span class="hl-str">'blue'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-num">4</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">switch</span> <span class="hl-str">'red'</span>, <span class="hl-str">'green'</span>, <span class="hl-str">'blue'</span><span class="hl-brc">/}</span> <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-num">4</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">switch</span> <span class="hl-str">'red'</span>, <span class="hl-str">'green'</span>, <span class="hl-str">'blue'</span><span class="hl-brc">/}</span> <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">sequence</span> <span class="hl-num">4</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">switch</span> <span class="hl-str">'red'</span>,<span class="hl-str">'green'</span>,<span class="hl-str">'blue'</span><span class="hl-brc">/}</span> <span class="hl-brc">{</span><span class="hl-tag">/sequence</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">

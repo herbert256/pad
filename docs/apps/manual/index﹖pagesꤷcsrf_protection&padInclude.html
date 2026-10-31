@@ -18,7 +18,7 @@ site gets no token, and neither does a GET form, whose fields end up in the url.
 
 <p><b>{csrf}</b> writes the field itself, for a form the page builds some other way, or for
 an application that leaves <code>$padCsrf</code> off and checks a post by hand with
-<code>padCsrfValid ()</code>. <code>{csrf token}</code> is the bare token, for a
+<code>padCsrfValid ()</code>. <code>{csrf token/}</code> is the bare token, for a
 script that sends it in an <code>X-CSRF-Token</code> header:</p>
 
 
@@ -58,12 +58,12 @@ script that sends it in an <code>X-CSRF-Token</code> header:</p>
           <td style="vertical-align:top"> </td>
         
         
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;form method="post"&gt;<br>  <b>{<font color="blue">csrf</font><font color="red"></font>}</b><br>  &lt;input type="text" name="note"&gt;<br>  &lt;button&gt;Send&lt;/button&gt;<br>&lt;/form&gt;</code></pre></td>
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;form method="post"&gt;<br>  <b>{<font color="blue">csrf</font><font color="red"></font>/}</b><br>  &lt;input type="text" name="note"&gt;<br>  &lt;button&gt;Send&lt;/button&gt;<br>&lt;/form&gt;</code></pre></td>
         
         
           <td style="vertical-align:top">
   <form method="post">
-  <input type="hidden" name="padCsrfToken" value="e217d73b5d10c6cdf75eac1ad2eacf26e1404abf15238d902ce11e37588d30e0">
+  <input type="hidden" name="padCsrfToken" value="b37f480e7f43ec5d3ef5ac1cb4a84173fecd6a10cb64b1ddfea60b52214fb39e">
   <input type="text" name="note">
   <button>Send</button>
 </form>

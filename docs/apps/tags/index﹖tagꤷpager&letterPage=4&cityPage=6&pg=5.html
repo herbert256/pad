@@ -96,8 +96,8 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'name'</span>, <span class="hl-opt">window</span>=<span class="hl-num">2</span>, <span class="hl-opt">query</span>=<span class="hl-str">'p'</span><span class="hl-brc">}</span>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'name'</span>, <span class="hl-opt">window</span>=<span class="hl-num">2</span>, <span class="hl-opt">query</span>=<span class="hl-str">'p'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">$kind</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$page</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$label</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-var">$href</span><span class="hl-brc">}</span> ... <span class="hl-var">@else@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/pager</span><span class="hl-brc">}</span></code></pre>
             <h3>
               Parameters
@@ -162,7 +162,7 @@
                     <span>Template</span><span class="cell-file">examples/pager/1-links.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">numbers</span> <span class="hl-opt">page</span>=<span class="hl-var">$pg</span> ?? <span class="hl-num">1</span>, <span class="hl-opt">rows</span>=<span class="hl-num">5</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$numbers</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/numbers</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'numbers'</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'numbers'</span><span class="hl-brc">/}</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/pager/1-links.php</span>
                   </div>
@@ -200,7 +200,7 @@
                     <span>Template</span><span class="cell-file">examples/pager/2-window.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">cities</span> <span class="hl-opt">page</span>=<span class="hl-var">$cityPage</span> ?? <span class="hl-num">6</span>, <span class="hl-opt">rows</span>=<span class="hl-num">2</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-var">$cities</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/cities</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'cities'</span>, <span class="hl-opt">window</span>=<span class="hl-num">1</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">'cities'</span>, <span class="hl-opt">window</span>=<span class="hl-num">1</span><span class="hl-brc">/}</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/pager/2-window.php</span>
                   </div>

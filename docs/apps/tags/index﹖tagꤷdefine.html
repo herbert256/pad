@@ -97,10 +97,10 @@
               Syntax
             </h2>
             <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">define</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-var">#parm</span><span class="hl-brc">}</span> ... <span class="hl-var">@content@</span> ... <span class="hl-brc">{</span><span class="hl-tag">/define</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">define</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">parms</span> title, <span class="hl-opt">tone</span>=<span class="hl-str">'info'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">slot</span> <span class="hl-str">'footer'</span><span class="hl-brc">}</span><span class="hl-var">@content@</span><span class="hl-brc">{</span><span class="hl-tag">/slot</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/define</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-opt">parm</span>=<span class="hl-str">'value'</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">define</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">parms</span> title, <span class="hl-opt">tone</span>=<span class="hl-str">'info'</span><span class="hl-brc">/}</span> ... <span class="hl-brc">{</span><span class="hl-tag">slot</span> <span class="hl-str">'footer'</span><span class="hl-brc">}</span><span class="hl-var">@content@</span><span class="hl-brc">{</span><span class="hl-tag">/slot</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/define</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-opt">parm</span>=<span class="hl-str">'value'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">name</span> <span class="hl-opt">parm</span>=<span class="hl-str">'value'</span><span class="hl-brc">}</span> content <span class="hl-brc">{</span><span class="hl-tag">slot</span> <span class="hl-str">'footer'</span><span class="hl-brc">}</span>fill<span class="hl-brc">{</span><span class="hl-tag">/slot</span><span class="hl-brc">}</span> <span class="hl-brc">{</span><span class="hl-tag">/name</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">define:name</span> ...<span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">define:name</span> ...<span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -190,7 +190,7 @@
                     <span>Template</span><span class="cell-file">examples/define/2-parms-slot.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">define</span> <span class="hl-str">'defineNote'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">parms</span> text, <span class="hl-opt">tone</span>=<span class="hl-str">'info'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">parms</span> text, <span class="hl-opt">tone</span>=<span class="hl-str">'info'</span><span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;p</span> <span class="hl-opt">style</span>=<span class="hl-str">"margin:6px 0"</span><span class="hl-htm">&gt;</span>[<span class="hl-brc">{</span><span class="hl-var">#tone</span><span class="hl-brc">}</span>] <span class="hl-brc">{</span><span class="hl-var">#text</span><span class="hl-brc">}</span>
     <span class="hl-brc">{</span><span class="hl-tag">slot</span> <span class="hl-str">'more'</span><span class="hl-brc">}</span><span class="hl-htm">&lt;em</span><span class="hl-htm">&gt;</span>no details<span class="hl-htm">&lt;/em</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">/slot</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/define</span><span class="hl-brc">}</span>

@@ -120,9 +120,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">source</span> <span class="hl-str">'page'</span>, <span class="hl-opt">files</span>=<span class="hl-str">'_lib/orders.php, www:orders.js'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">source</span> <span class="hl-opt">only</span>=<span class="hl-str">'_tags/card.pad, www:card.js'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">source</span> <span class="hl-str">'page'</span>, <span class="hl-opt">files</span>=<span class="hl-str">'_lib/orders.php, www:orders.js'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">source</span> <span class="hl-opt">only</span>=<span class="hl-str">'_tags/card.pad, www:card.js'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -186,7 +186,7 @@
                     <span>Template</span><span class="cell-file">examples/source/1-self.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$greeting</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-var">$visitor</span><span class="hl-brc">}</span>!<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">/}</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/source/1-self.php</span>
                   </div>
@@ -208,9 +208,9 @@
                     <div class="pad-source">
                       <input type="radio" name="pad-source-1" id="pad-source-1-1" checked><label for="pad-source-1-1" data-side="server">examples/source/1-self.pad</label><input type="radio" name="pad-source-1" id="pad-source-1-2"><label for="pad-source-1-2" data-side="server">examples/source/1-self.php</label>
                       <div class="pad-source-panel">
-                        <pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">title</span>=<span class="hl-str">'The page itself'</span>, <span class="hl-opt">about</span>=<span class="hl-str">'Without a parameter: the template and the PHP of the page asked for, as tabs.'</span><span class="hl-brc">}</span></span>
+                        <pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">title</span>=<span class="hl-str">'The page itself'</span>, <span class="hl-opt">about</span>=<span class="hl-str">'Without a parameter: the template and the PHP of the page asked for, as tabs.'</span><span class="hl-brc">/}</span></span>
 <span class="hl-line" data-line="2"><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$greeting</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-var">$visitor</span><span class="hl-brc">}</span>!<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
-<span class="hl-line" data-line="3"><span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">}</span></span></code></pre>
+<span class="hl-line" data-line="3"><span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">/}</span></span></code></pre>
                       </div>
                       <div class="pad-source-panel">
                         <pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
@@ -237,7 +237,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/source/2-files.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">source</span> <span class="hl-str">'examples/source/1-self'</span>, <span class="hl-opt">files</span>=<span class="hl-str">'_lang/en.json'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">source</span> <span class="hl-str">'examples/source/1-self'</span>, <span class="hl-opt">files</span>=<span class="hl-str">'_lang/en.json'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -247,9 +247,9 @@
                     <div class="pad-source">
                       <input type="radio" name="pad-source-2" id="pad-source-2-1" checked><label for="pad-source-2-1" data-side="server">examples/source/1-self.pad</label><input type="radio" name="pad-source-2" id="pad-source-2-2"><label for="pad-source-2-2" data-side="server">examples/source/1-self.php</label><input type="radio" name="pad-source-2" id="pad-source-2-3"><label for="pad-source-2-3" data-side="server">_lang/en.json</label>
                       <div class="pad-source-panel">
-                        <pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">title</span>=<span class="hl-str">'The page itself'</span>, <span class="hl-opt">about</span>=<span class="hl-str">'Without a parameter: the template and the PHP of the page asked for, as tabs.'</span><span class="hl-brc">}</span></span>
+                        <pre class="pad-highlight hl-numbered" data-lang="pad"><code><span class="hl-line" data-line="1"><span class="hl-brc">{</span><span class="hl-tag">meta</span> <span class="hl-opt">title</span>=<span class="hl-str">'The page itself'</span>, <span class="hl-opt">about</span>=<span class="hl-str">'Without a parameter: the template and the PHP of the page asked for, as tabs.'</span><span class="hl-brc">/}</span></span>
 <span class="hl-line" data-line="2"><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$greeting</span><span class="hl-brc">}</span>, <span class="hl-brc">{</span><span class="hl-var">$visitor</span><span class="hl-brc">}</span>!<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></span>
-<span class="hl-line" data-line="3"><span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">}</span></span></code></pre>
+<span class="hl-line" data-line="3"><span class="hl-brc">{</span><span class="hl-tag">source</span><span class="hl-brc">/}</span></span></code></pre>
                       </div>
                       <div class="pad-source-panel">
                         <pre class="pad-highlight hl-numbered" data-lang="php"><code><span class="hl-line" data-line="1"><span class="hl-tag">&lt;?php</span></span>
@@ -284,7 +284,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/source/3-only.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">source</span> <span class="hl-opt">only</span>=<span class="hl-str">'examples/source/1-self.php, _lang/en.json'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">source</span> <span class="hl-opt">only</span>=<span class="hl-str">'examples/source/1-self.php, _lang/en.json'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">

@@ -96,9 +96,9 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'message'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'msg'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, required<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'message'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'msg'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, required<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -170,7 +170,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/textarea/1-basic.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'note'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Note'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">4</span>, <span class="hl-opt">cols</span>=<span class="hl-num">40</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Deliver after &lt;5 pm&gt; & ring twice'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'note'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Note'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">4</span>, <span class="hl-opt">cols</span>=<span class="hl-num">40</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Deliver after &lt;5 pm&gt; & ring twice'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -197,8 +197,8 @@ Deliver after &lt;5 pm&gt; &amp; ring twice</textarea>
                     <span>Template</span><span class="cell-file">examples/textarea/2-form.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'feedback'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'subject'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Subject'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Hello'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'body'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Your message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">5</span>, <span class="hl-opt">maxlength</span>=<span class="hl-num">500</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'Write here'</span>, required<span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'subject'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Subject'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Hello'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'body'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Your message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">5</span>, <span class="hl-opt">maxlength</span>=<span class="hl-num">500</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'Write here'</span>, required<span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
                 </div>
@@ -229,8 +229,8 @@ Deliver after &lt;5 pm&gt; &amp; ring twice</textarea>
                     <span>Template</span><span class="cell-file">examples/textarea/3-rules.src</span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'contact'</span>, error<span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">textarea</span> <span class="hl-str">'message'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Message'</span>, <span class="hl-opt">rows</span>=<span class="hl-num">6</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|max:2000'</span><span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
                 </div>

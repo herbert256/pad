@@ -98,7 +98,7 @@
             </h2>
             <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sandbox</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/sandbox</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">sandbox</span> <span class="hl-opt">function</span>=<span class="hl-str">'name'</span><span class="hl-brc">}</span> ... <span class="hl-brc">{</span><span class="hl-tag">/sandbox</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$snippet</span> | sandbox<span class="hl-brc">}</span></code></pre>
+<span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$snippet</span> | sandbox<span class="hl-brc">/}</span></code></pre>
             <h3>
               Options
             </h3>
@@ -119,10 +119,10 @@
               <code>{sandbox}...{/sandbox}</code> does what <a href="index%EF%B9%96tag%EA%A4%B7code.html">{code}</a> does - renders its content as PAD source in a separate engine pass - with the pass sandboxed. It is <code>{code sandbox}</code> under a name of its own.
             </p>
             <p>
-              Sandboxed means: going in, the page's variables are hidden and the data, content, bool and sequence stores are emptied; coming out, everything is restored and what the pass set is gone. A field of the page is missing inside - write <code>{echo $city ?? 'default'}</code> when a snippet may run either way - and a <code>{push}</code> made inside fills the pass's own stacks, not the page's.
+              Sandboxed means: going in, the page's variables are hidden and the data, content, bool and sequence stores are emptied; coming out, everything is restored and what the pass set is gone. A field of the page is missing inside - write <code>{echo $city ?? 'default'/}</code> when a snippet may run either way - and a <code>{push}</code> made inside fills the pass's own stacks, not the page's.
             </p>
             <p>
-              The pipe form, <code>{echo $snippet | sandbox}</code>, runs a value as a template in the same isolation. It is the safer choice for template text that comes from outside the code - an editor, a database - when that text should not read or change the page's state. It is not a security boundary for untrusted authors on its own: the template language can still call what <code>$padPhpFunctions</code> allows.
+              The pipe form, <code>{echo $snippet | sandbox/}</code>, runs a value as a template in the same isolation. It is the safer choice for template text that comes from outside the code - an editor, a database - when that text should not read or change the page's state. It is not a security boundary for untrusted authors on its own: the template language can still call what <code>$padPhpFunctions</code> allows.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -141,7 +141,7 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/sandbox/1-run.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">sandbox</span><span class="hl-brc">}</span>Three squared is <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-num">3</span> * <span class="hl-num">3</span><span class="hl-brc">}</span>.<span class="hl-brc">{</span><span class="hl-tag">/sandbox</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">sandbox</span><span class="hl-brc">}</span>Three squared is <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-num">3</span> * <span class="hl-num">3</span><span class="hl-brc">/}</span>.<span class="hl-brc">{</span><span class="hl-tag">/sandbox</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -167,9 +167,9 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/sandbox/2-hidden.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$city</span> = <span class="hl-str">'Utrecht'</span><span class="hl-brc">}</span>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$city</span> = <span class="hl-str">'Utrecht'</span><span class="hl-brc">/}</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>outside: <span class="hl-brc">{</span><span class="hl-var">$city</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>inside: [<span class="hl-brc">{</span><span class="hl-tag">sandbox</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$city</span> ?? <span class="hl-str">'not visible'</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$inner</span> = <span class="hl-str">'x'</span>/<span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">/sandbox</span><span class="hl-brc">}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>inside: [<span class="hl-brc">{</span><span class="hl-tag">sandbox</span><span class="hl-brc">}</span><span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$city</span> ?? <span class="hl-str">'not visible'</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$inner</span> = <span class="hl-str">'x'</span><span class="hl-brc">/}</span><span class="hl-brc">{</span><span class="hl-tag">/sandbox</span><span class="hl-brc">}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>after: [<span class="hl-brc">{</span><span class="hl-var">$inner</span> | optional<span class="hl-brc">}</span>]<span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                 </div>
                 <div class="cell">
@@ -202,15 +202,15 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/sandbox/3-pipe.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$price</span> = <span class="hl-num">10</span><span class="hl-brc">}</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>code: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$snippet</span> | code<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
-<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>sandbox: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$snippet</span> | sandbox<span class="hl-brc">}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$price</span> = <span class="hl-num">10</span><span class="hl-brc">/}</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>code: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$snippet</span> | code<span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span>
+<span class="hl-htm">&lt;p</span><span class="hl-htm">&gt;</span>sandbox: <span class="hl-brc">{</span><span class="hl-tag">echo</span> <span class="hl-var">$snippet</span> | sandbox<span class="hl-brc">/}</span><span class="hl-htm">&lt;/p</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/sandbox/3-pipe.php</span>
                   </div>
                   <pre class="code"><code><span class="hl-tag">&lt;?php</span>
 
-  <span class="hl-var">$snippet</span> <span class="hl-pun">=</span> <span class="hl-str">'price is {echo $price ?? \'unknown\'}'</span><span class="hl-pun">;</span>
+  <span class="hl-var">$snippet</span> <span class="hl-pun">=</span> <span class="hl-str">'price is {echo $price ?? \'unknown\'/}'</span><span class="hl-pun">;</span>
 
 <span class="hl-tag">?&gt;</span></code></pre>
                 </div>

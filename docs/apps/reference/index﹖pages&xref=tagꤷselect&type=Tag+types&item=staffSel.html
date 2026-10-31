@@ -87,6 +87,48 @@
             <td>
               <center>
                 <hr>
+                App: regression/errors - Page: syntax/a_nested_select_names_the_select_it_stands_in<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">syntax/a_nested_select_names_the_select_it_stands_in.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/a_nested_select_names_the_select_it_stands_in.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A select related to none of the selects around it is named with the one it stands in,<br>  // the nearest: the outermost was named, a select the inner one was never written in.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'customerSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customers'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'orderSel'</span><span style="color: #007700">]    = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">]    = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'orderSel'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'customerSel'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">customerSel </font><font color="red"><font color="red">$</font>customerNumber=103</font>}</b><b>{<font color="blue">orderSel </font><font color="red">rows=1</font>}</b><b>{<font color="blue">staffSel</font><font color="red"></font>}</b>x<b>{/<font color="blue">staffSel</font><font color="red"></font>}</b><b>{/<font color="blue">orderSel</font><font color="red"></font>}</b><b>{/<font color="blue">customerSel</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxd4d01e9c2f012a2d8ab3d6d388f6726a"></div>
+                      <script>
+                      padAjaxd4d01e9c2f012a2d8ab3d6d388f6726a = new XMLHttpRequest();
+                      padAjaxd4d01e9c2f012a2d8ab3d6d388f6726a.onreadystatechange=function() {
+                      if (padAjaxd4d01e9c2f012a2d8ab3d6d388f6726a.readyState === 4) {
+                      if (padAjaxd4d01e9c2f012a2d8ab3d6d388f6726a.status === 200) {
+                      document.getElementById("padAjaxd4d01e9c2f012a2d8ab3d6d388f6726a").innerHTML=padAjaxd4d01e9c2f012a2d8ab3d6d388f6726a.responseText;
+                      } else {
+                      document.getElementById("padAjaxd4d01e9c2f012a2d8ab3d6d388f6726a").innerHTML=padAjaxd4d01e9c2f012a2d8ab3d6d388f6726a.statusText;
+                      }
+                      }
+                      }
+                      padAjaxd4d01e9c2f012a2d8ab3d6d388f6726a.open("GET","http://localhost/pad/regression/errors/?syntax/a_nested_select_names_the_select_it_stands_in&padInclude",true);
+                      padAjaxd4d01e9c2f012a2d8ab3d6d388f6726a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/errors - Page: syntax/a_select_order_binds_column_names_only<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -149,7 +191,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">staffSel </font><font color="red">htmlAttrJson=<font color="black">'</font>drop table staff;<font color="black">'</font></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">staffSel </font><font color="red">htmlAttrJson=<font color="black">'</font>drop table staff;<font color="black">'</font></font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxa5e601a8609b7382f65704df13ef4257"></div>
@@ -255,6 +297,300 @@
                   </tr>
                 </table><br>
                 <hr>
+                App: regression/pages - Page: db/a_negative_number_after_a_hyphen_stays_as_written_outside_sql_code<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">db/a_negative_number_after_a_hyphen_stays_as_written_outside_sql_code.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">db/a_negative_number_after_a_hyphen_stays_as_written_outside_sql_code.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A negative number spliced right after a minus gets a space before it in the SQL a tag<br>  // writes, outside its quoted literals, where 2000--1000 is a line comment on SQLite - and<br>  // nowhere else: the page's text, an attribute, an echo and a literal keep the value as it is,<br>  // a literal in the fields= or join= of a select too, where no other value may stand.<br><br>  </span><span style="color: #0000BB">$lo  </span><span style="color: #007700">= -</span><span style="color: #0000BB">12</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hi  </span><span style="color: #007700">= -</span><span style="color: #0000BB">4</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$id  </span><span style="color: #007700">= -</span><span style="color: #0000BB">1</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$adj </span><span style="color: #007700">= -</span><span style="color: #0000BB">1000</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">text:    [<b>{<font color="green"><font color="red">$</font>lo</font>}</b>-<b>{<font color="green"><font color="red">$</font>hi</font>}</b>] [row-<b>{<font color="green"><font color="red">$</font>id</font>}</b>] &lt;i id="item-<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;&lt;/i&gt;<br>echo:    [<b>{<font color="blue">echo </font><font color="red"><font color="black">'</font>UTC-<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>id</font><font color="black">}</font></b><font color="black">'</font></font>/}</b>]<br>literal: [<b>{<font color="blue">field </font><font color="red">"concat(<font color="black">'</font>X-<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>id</font><font color="black">}</font></b><font color="black">'</font>)"</font>/}</b>]<br>code:    [<b>{<font color="blue">field </font><font color="red">"2000-<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>adj</font><font color="black">}</font></b>"</font>/}</b>]<br>fields:  [<b>{<font color="blue">staffSel </font><font color="red">fields="name<font color="black">,</font> concat(<font color="black">'</font>X-<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>id</font><font color="black">}</font></b><font color="black">'</font>) as code"<font color="black">,</font> rows=1</font>}</b><b>{<font color="green"><font color="red">$</font>code</font>}</b><b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>join:    [<b>{<font color="blue">staffSel </font><font color="red">join="staff as b on b.name = staff.name and concat(<font color="black">'</font>X-<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>id</font><font color="black">}</font></b><font color="black">'</font>) = <font color="black">'</font>X--1<font color="black">'</font>"<font color="black">,</font> fields="staff.name"<font color="black">,</font> rows=1</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b><b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax68378e0656ad32dee0f6a4802160421c"></div>
+                      <script>
+                      padAjax68378e0656ad32dee0f6a4802160421c = new XMLHttpRequest();
+                      padAjax68378e0656ad32dee0f6a4802160421c.onreadystatechange=function() {
+                      if (padAjax68378e0656ad32dee0f6a4802160421c.readyState === 4) {
+                      if (padAjax68378e0656ad32dee0f6a4802160421c.status === 200) {
+                      document.getElementById("padAjax68378e0656ad32dee0f6a4802160421c").innerHTML=padAjax68378e0656ad32dee0f6a4802160421c.responseText;
+                      } else {
+                      document.getElementById("padAjax68378e0656ad32dee0f6a4802160421c").innerHTML=padAjax68378e0656ad32dee0f6a4802160421c.statusText;
+                      }
+                      }
+                      }
+                      padAjax68378e0656ad32dee0f6a4802160421c.open("GET","http://localhost/pad/regression/pages/?db/a_negative_number_after_a_hyphen_stays_as_written_outside_sql_code&padInclude",true);
+                      padAjax68378e0656ad32dee0f6a4802160421c.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/a_line_comment_ends_its_own_clause<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/a_line_comment_ends_its_own_clause.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/a_line_comment_ends_its_own_clause.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A -- comment written in a clause - where=, group=, having=, order= - ends that clause:<br>  // the clauses of the statement stand on lines of their own. On one line the comment ran to<br>  // its end, so the having, the order and the limit after it were gone without a word, and<br>  // the closing parenthesis of the where with them. Over the staff table of the demo database.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">group: [<b>{<font color="blue">staffSel </font><font color="red">fields="floor(salary / 2000) as band<font color="black">,</font> count(*) as n"<font color="black">,</font> group="band -- per band"<font color="black">,</font> having="n &gt; 1"<font color="black">,</font> order="n desc"<font color="black">,</font> rows=1</font>}</b><b>{<font color="green"><font color="red">$</font>band</font>}</b>=<b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>having: [<b>{<font color="blue">staffSel </font><font color="red">fields="floor(salary / 2000) as band<font color="black">,</font> count(*) as n"<font color="black">,</font> group="band"<font color="black">,</font> having="n &gt; 1 -- the shared ones"<font color="black">,</font> order="n desc"</font>}</b><b>{<font color="green"><font color="red">$</font>band</font>}</b>=<b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>rollup: [<b>{<font color="blue">staffSel </font><font color="red">fields="floor(salary / 2000) as band<font color="black">,</font> sum(salary) as pay"<font color="black">,</font> group="band -- per band"<font color="black">,</font> rollup</font>}</b><b>{<font color="green"><font color="red">$</font>pay</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>where: [<b>{<font color="blue">staffSel </font><font color="red">where="salary &gt; 2000 -- the well paid"<font color="black">,</font> order="name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>order: [<b>{<font color="blue">staffSel </font><font color="red">order="salary desc -- best paid first"<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>pages: [<b>{<font color="blue">staffSel </font><font color="red">fields="floor(salary / 2000) as band<font color="black">,</font> count(*) as n"<font color="black">,</font> group="band"<font color="black">,</font> having="n &gt; 0 -- every band"<font color="black">,</font> page=1<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>band</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>] (<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>staffSel<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>)</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxdd14a456765919e5f7b3e22d73f68c19"></div>
+                      <script>
+                      padAjaxdd14a456765919e5f7b3e22d73f68c19 = new XMLHttpRequest();
+                      padAjaxdd14a456765919e5f7b3e22d73f68c19.onreadystatechange=function() {
+                      if (padAjaxdd14a456765919e5f7b3e22d73f68c19.readyState === 4) {
+                      if (padAjaxdd14a456765919e5f7b3e22d73f68c19.status === 200) {
+                      document.getElementById("padAjaxdd14a456765919e5f7b3e22d73f68c19").innerHTML=padAjaxdd14a456765919e5f7b3e22d73f68c19.responseText;
+                      } else {
+                      document.getElementById("padAjaxdd14a456765919e5f7b3e22d73f68c19").innerHTML=padAjaxdd14a456765919e5f7b3e22d73f68c19.statusText;
+                      }
+                      }
+                      }
+                      padAjaxdd14a456765919e5f7b3e22d73f68c19.open("GET","http://localhost/pad/regression/pages/?select/demo/a_line_comment_ends_its_own_clause&padInclude",true);
+                      padAjaxdd14a456765919e5f7b3e22d73f68c19.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/a_pager_counts_the_rows_of_a_union<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/a_pager_counts_the_rows_of_a_union.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/a_pager_counts_the_rows_of_a_union.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A {pager} after a select with union= counts the rows of the whole union - four staff<br>  // and seven office cities - and not those of a select before it on the same level. Over<br>  // the staff and offices tables of the demo database.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'allNames'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'union' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cities' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'cities'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'offices'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'city' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">alone: [<b>{<font color="blue">allNames </font><font color="red">order="name"<font color="black">,</font> page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">allNames</font><font color="red"></font>}</b>] (<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>allNames<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>)<br>first: [<b>{<font color="blue">staffSel </font><font color="red">page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>] (<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>staffSel<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>)<br>after: [<b>{<font color="blue">allNames </font><font color="red">order="name"<font color="black">,</font> page=2<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">allNames</font><font color="red"></font>}</b>] (<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>allNames<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>)</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax2fed1e1f3811245a984824a576ce4b3d"></div>
+                      <script>
+                      padAjax2fed1e1f3811245a984824a576ce4b3d = new XMLHttpRequest();
+                      padAjax2fed1e1f3811245a984824a576ce4b3d.onreadystatechange=function() {
+                      if (padAjax2fed1e1f3811245a984824a576ce4b3d.readyState === 4) {
+                      if (padAjax2fed1e1f3811245a984824a576ce4b3d.status === 200) {
+                      document.getElementById("padAjax2fed1e1f3811245a984824a576ce4b3d").innerHTML=padAjax2fed1e1f3811245a984824a576ce4b3d.responseText;
+                      } else {
+                      document.getElementById("padAjax2fed1e1f3811245a984824a576ce4b3d").innerHTML=padAjax2fed1e1f3811245a984824a576ce4b3d.statusText;
+                      }
+                      }
+                      }
+                      padAjax2fed1e1f3811245a984824a576ce4b3d.open("GET","http://localhost/pad/regression/pages/?select/demo/a_pager_counts_the_rows_of_a_union&padInclude",true);
+                      padAjax2fed1e1f3811245a984824a576ce4b3d.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/a_pager_of_a_joined_union_reads_its_own_join<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/a_pager_of_a_joined_union_reads_its_own_join.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/a_pager_of_a_joined_union_reads_its_own_join.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The {pager} of a select with a join and a union counts the rows by the select's own join:<br>  // the member's - none here - was read, and the count over a derived table of two columns<br>  // named name ended on "Duplicate column name". Four staff paired with themselves and their<br>  // four phones: eight rows, three pages of three.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'phones'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name, phone' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">joined: [<b>{<font color="blue">staffSel </font><font color="red">join="staff as b on b.name = staff.name"<font color="black">,</font> fields="staff.name<font color="black">,</font> b.name"<font color="black">,</font> union="phones"<font color="black">,</font> order="1<font color="black">,</font> 2"<font color="black">,</font> page=1<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>] (<b>{<font color="blue">pager </font><font color="red"><font color="black">'</font>staffSel<font color="black">'</font><font color="black">,</font> window=0</font>}</b><b>{<font color="green"><font color="red">$</font>kind</font>}</b>:<b>{<font color="green"><font color="red">$</font>page</font>}</b> <b>{/<font color="blue">pager</font><font color="red"></font>}</b>)</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax159b4091c6f6095299ad56f315a3a7f2"></div>
+                      <script>
+                      padAjax159b4091c6f6095299ad56f315a3a7f2 = new XMLHttpRequest();
+                      padAjax159b4091c6f6095299ad56f315a3a7f2.onreadystatechange=function() {
+                      if (padAjax159b4091c6f6095299ad56f315a3a7f2.readyState === 4) {
+                      if (padAjax159b4091c6f6095299ad56f315a3a7f2.status === 200) {
+                      document.getElementById("padAjax159b4091c6f6095299ad56f315a3a7f2").innerHTML=padAjax159b4091c6f6095299ad56f315a3a7f2.responseText;
+                      } else {
+                      document.getElementById("padAjax159b4091c6f6095299ad56f315a3a7f2").innerHTML=padAjax159b4091c6f6095299ad56f315a3a7f2.statusText;
+                      }
+                      }
+                      }
+                      padAjax159b4091c6f6095299ad56f315a3a7f2.open("GET","http://localhost/pad/regression/pages/?select/demo/a_pager_of_a_joined_union_reads_its_own_join&padInclude",true);
+                      padAjax159b4091c6f6095299ad56f315a3a7f2.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/a_subquery_or_a_window_in_fields_keeps_the_declared_order<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/a_subquery_or_a_window_in_fields_keeps_the_declared_order.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/a_subquery_or_a_window_in_fields_keeps_the_declared_order.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// An aggregate in a subquery or over a window is a value of each row, no total: the select<br>  // keeps the order the table declares, and rows= the first page of it. Beside them a total<br>  // still drops that order - under ONLY_FULL_GROUP_BY, MySQL's default, it is an error there -<br>  // and so does one whose alias starts with over, which is no window.<br><br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"set session sql_mode = concat(@@sql_mode, ',ONLY_FULL_GROUP_BY')" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">subquery: [<b>{<font color="blue">staffSel </font><font color="red">fields="name<font color="black">,</font> (select max(s.salary) from staff as s where s.salary &lt; staff.salary) as below"<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>:<b>{<font color="green"><font color="red">$</font>below</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>window: [<b>{<font color="blue">staffSel </font><font color="red">fields="name<font color="black">,</font> sum(bonus) over (order by salary desc) as running"<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b>:<b>{<font color="green"><font color="red">$</font>running</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>total: [<b>{<font color="blue">staffSel </font><font color="red">fields="count(*) as n<font color="black">,</font> (select max(salary) from staff) as top"</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b>:<b>{<font color="green"><font color="red">$</font>top</font>}</b><b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>alias: [<b>{<font color="blue">staffSel </font><font color="red">fields="count(*) overall"</font>}</b><b>{<font color="green"><font color="red">$</font>overall</font>}</b><b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax5f406381e90c6ae689e2bdc3e574889d"></div>
+                      <script>
+                      padAjax5f406381e90c6ae689e2bdc3e574889d = new XMLHttpRequest();
+                      padAjax5f406381e90c6ae689e2bdc3e574889d.onreadystatechange=function() {
+                      if (padAjax5f406381e90c6ae689e2bdc3e574889d.readyState === 4) {
+                      if (padAjax5f406381e90c6ae689e2bdc3e574889d.status === 200) {
+                      document.getElementById("padAjax5f406381e90c6ae689e2bdc3e574889d").innerHTML=padAjax5f406381e90c6ae689e2bdc3e574889d.responseText;
+                      } else {
+                      document.getElementById("padAjax5f406381e90c6ae689e2bdc3e574889d").innerHTML=padAjax5f406381e90c6ae689e2bdc3e574889d.statusText;
+                      }
+                      }
+                      }
+                      padAjax5f406381e90c6ae689e2bdc3e574889d.open("GET","http://localhost/pad/regression/pages/?select/demo/a_subquery_or_a_window_in_fields_keeps_the_declared_order&padInclude",true);
+                      padAjax5f406381e90c6ae689e2bdc3e574889d.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/a_total_is_no_row_the_declared_order_sorts<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/a_total_is_no_row_the_declared_order_sorts.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/a_total_is_no_row_the_declared_order_sorts.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The order a table declares - or its key - sorts the rows of the table, not the rows a<br>  // select makes of them: a rollup, a total over the whole table, one value. Under<br>  // ONLY_FULL_GROUP_BY, as MySQL has it by default, an order by a column the total does not<br>  // hold is an error; with a rollup it is one on MariaDB as well. A view that groups keeps an<br>  // order of its own. Over the four-row staff table of the demo database.<br><br>  </span><span style="color: #0000BB">db </span><span style="color: #007700">( </span><span style="color: #DD0000">"set session sql_mode = concat(@@sql_mode, ',ONLY_FULL_GROUP_BY')" </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffKey'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'perBand'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'base' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'floor(salary / 2000) as band, sum(bonus) as bonus'</span><span style="color: #007700">,<br>                              </span><span style="color: #DD0000">'group' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'band'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rollup' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'bandDesc'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'base' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'floor(salary / 2000) as band, count(*) as n'</span><span style="color: #007700">,<br>                              </span><span style="color: #DD0000">'group' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'band'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'band desc' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">rollup: [<b>{<font color="blue">staffSel </font><font color="red">fields="floor(salary / 2000) as band<font color="black">,</font> sum(salary) as pay"<font color="black">,</font> group="band"<font color="black">,</font> rollup</font>}</b><b>{<font color="green"><font color="red">$</font>pay</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>key rollup: [<b>{<font color="blue">staffKey </font><font color="red">fields="floor(salary / 2000) as band<font color="black">,</font> sum(salary) as pay"<font color="black">,</font> group="band"<font color="black">,</font> rollup</font>}</b><b>{<font color="green"><font color="red">$</font>pay</font>}</b> <b>{/<font color="blue">staffKey</font><font color="red"></font>}</b>]<br>count: [<b>{<font color="blue">staffSel </font><font color="red">fields="count(*) as n"</font>}</b><b>{<font color="green"><font color="red">$</font>n</font>}</b><b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>field: [<b>{<font color="blue">staffKey </font><font color="red">type=<font color="black">'</font>field<font color="black">'</font><font color="black">,</font> fields="max(salary)"</font>/}</b>]<br>view: [<b>{<font color="blue">perBand</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>bonus</font>}</b> <b>{/<font color="blue">perBand</font><font color="red"></font>}</b>]<br>view order: [<b>{<font color="blue">bandDesc</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>band</font>}</b>:<b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">bandDesc</font><font color="red"></font>}</b>]<br>tag order: [<b>{<font color="blue">staffSel </font><font color="red">fields="floor(salary / 2000) as band<font color="black">,</font> count(*) as n"<font color="black">,</font> group="band"<font color="black">,</font> order="n desc<font color="black">,</font> band"</font>}</b><b>{<font color="green"><font color="red">$</font>band</font>}</b>:<b>{<font color="green"><font color="red">$</font>n</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>rows: [<b>{<font color="blue">staffSel </font><font color="red">order="salary desc"<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxdfeadb893ed5c08de7963b9dde932d93"></div>
+                      <script>
+                      padAjaxdfeadb893ed5c08de7963b9dde932d93 = new XMLHttpRequest();
+                      padAjaxdfeadb893ed5c08de7963b9dde932d93.onreadystatechange=function() {
+                      if (padAjaxdfeadb893ed5c08de7963b9dde932d93.readyState === 4) {
+                      if (padAjaxdfeadb893ed5c08de7963b9dde932d93.status === 200) {
+                      document.getElementById("padAjaxdfeadb893ed5c08de7963b9dde932d93").innerHTML=padAjaxdfeadb893ed5c08de7963b9dde932d93.responseText;
+                      } else {
+                      document.getElementById("padAjaxdfeadb893ed5c08de7963b9dde932d93").innerHTML=padAjaxdfeadb893ed5c08de7963b9dde932d93.statusText;
+                      }
+                      }
+                      }
+                      padAjaxdfeadb893ed5c08de7963b9dde932d93.open("GET","http://localhost/pad/regression/pages/?select/demo/a_total_is_no_row_the_declared_order_sorts&padInclude",true);
+                      padAjaxdfeadb893ed5c08de7963b9dde932d93.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/pages - Page: select/demo/a_union_is_no_row_the_declared_order_sorts<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">select/demo/a_union_is_no_row_the_declared_order_sorts.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">select/demo/a_union_is_no_row_the_declared_order_sorts.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A union makes rows of its own, as a group does: the declared order and the key are the<br>  // order of the table's rows, and after the union only its own columns can be named. A<br>  // select with union= - on the tag, declared, or a view of a table with an order - is<br>  // sorted by an order= written with it, or not at all. Over the staff and offices tables of<br>  // the demo database; sort= puts the answers in a fixed order.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'cityPhones'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'offices'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'phones'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'phone'</span><span style="color: #007700">, </span><span style="color: #DD0000">'union' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cityPhones' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'allPhones'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'base' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'phone'</span><span style="color: #007700">, </span><span style="color: #DD0000">'union' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'cityPhones' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000">tag: [<b>{<font color="blue">staffSel </font><font color="red">fields="phone"<font color="black">,</font> union="cityPhones"<font color="black">,</font> sort="phone"</font>}</b><b>{<font color="green"><font color="red">$</font>phone</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>key: [<b>{<font color="blue">phones </font><font color="red">sort="phone"</font>}</b><b>{<font color="green"><font color="red">$</font>phone</font>}</b> <b>{/<font color="blue">phones</font><font color="red"></font>}</b>]<br>view: [<b>{<font color="blue">allPhones </font><font color="red">sort="phone"</font>}</b><b>{<font color="green"><font color="red">$</font>phone</font>}</b> <b>{/<font color="blue">allPhones</font><font color="red"></font>}</b>]<br>order: [<b>{<font color="blue">allPhones </font><font color="red">order="phone desc"<font color="black">,</font> rows=3</font>}</b><b>{<font color="green"><font color="red">$</font>phone</font>}</b> <b>{/<font color="blue">allPhones</font><font color="red"></font>}</b>]</code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxde3902927afefab50b5e230ccc337a67"></div>
+                      <script>
+                      padAjaxde3902927afefab50b5e230ccc337a67 = new XMLHttpRequest();
+                      padAjaxde3902927afefab50b5e230ccc337a67.onreadystatechange=function() {
+                      if (padAjaxde3902927afefab50b5e230ccc337a67.readyState === 4) {
+                      if (padAjaxde3902927afefab50b5e230ccc337a67.status === 200) {
+                      document.getElementById("padAjaxde3902927afefab50b5e230ccc337a67").innerHTML=padAjaxde3902927afefab50b5e230ccc337a67.responseText;
+                      } else {
+                      document.getElementById("padAjaxde3902927afefab50b5e230ccc337a67").innerHTML=padAjaxde3902927afefab50b5e230ccc337a67.statusText;
+                      }
+                      }
+                      }
+                      padAjaxde3902927afefab50b5e230ccc337a67.open("GET","http://localhost/pad/regression/pages/?select/demo/a_union_is_no_row_the_declared_order_sorts&padInclude",true);
+                      padAjaxde3902927afefab50b5e230ccc337a67.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/pages - Page: select/demo/options<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -339,16 +675,16 @@
                   </tr>
                 </table><br>
                 <hr>
-                App: regression/sqlite - Page: select<br>
+                App: regression/pages - Page: select/demo/rows_0_on_a_select_keeps_no_row<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
                     <th bgcolor="#DDDDDD">
                       PHP<br>
-                      <font size="-2">select.php</font>
+                      <font size="-2">select/demo/rows_0_on_a_select_keeps_no_row.php</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       HTML<br>
-                      <font size="-2">select.pad</font>
+                      <font size="-2">select/demo/rows_0_on_a_select_keeps_no_row.pad</font>
                     </th>
                     <th bgcolor="#DDDDDD">
                       Result
@@ -356,26 +692,26 @@
                   </tr>
                   <tr>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The Select subsystem over the same staff table: the statement it builds - backquoted<br>  // names, a quoted key, limit offset,count - is one SQLite reads as MySQL does.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// A union member with rows= of its own keeps them: SQLite takes no member in parentheses,<br>  // so it is a derived table there.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'topPaid'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'salary desc'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rows' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// A value bound into where= is escaped as SQLite wants it: the quote stays in the string.<br><br>  </span><span style="color: #0000BB">$who </span><span style="color: #007700">= </span><span style="color: #DD0000">"x' or name &gt; '"</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// A negative number bound after a minus keeps its distance, so "salary &gt; 2000-$adj" is<br>  // 2000 - (-1000) = 3000 and not a -- comment that leaves SQLite with half a clause - and<br>  // so does one spliced there as {$adj}, in a select's where= and in a {field}.<br>  //<br>  // distinctrow is MySQL's word for distinct, which SQLite reads as a column name: the select<br>  // writes distinct there.<br><br>  </span><span style="color: #0000BB">$adj </span><span style="color: #007700">= -</span><span style="color: #0000BB">1000</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// rows=0 on the tag of a select - or a value there that is no number - keeps no row, as<br>  // it does on every other data, and a declaration's 'rows' =&gt; 0 is no limit: since page=<br>  // and rows= make the limit when they are written, both were read as the 10 of a rows=<br>  // not written. A page= beside the declared 0 is a page of 10. Over the staff and the 122<br>  // customers of the demo database.<br><br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'staffSel'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'staff'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'name' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padSelect </span><span style="color: #007700">[</span><span style="color: #DD0000">'allCustomers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customers'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'rows' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">0 </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">$none  </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$names </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'bea' </span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000">where: [<b>{<font color="blue">staffSel </font><font color="red">where="salary &gt;= 2000"<font color="black">,</font> order="salary"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>order: [<b>{<font color="blue">staffSel </font><font color="red">order="salary desc"<font color="black">,</font> fields="name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>first: [<b>{<font color="blue">staffSel </font><font color="red">order="name"<font color="black">,</font> rows=2</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>bound: [<b>{<font color="blue">staffSel </font><font color="red">where="name = <font color="red">$</font>who"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>minus: [<b>{<font color="blue">staffSel </font><font color="red">where="salary &gt; 2000-<font color="red">$</font>adj"<font color="black">,</font> order="name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>spliced: [<b>{<font color="blue">staffSel </font><font color="red">where="salary &gt; 2000-<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>adj</font><font color="black">}</font></b>"<font color="black">,</font> order="name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>field: [<b>{<font color="blue">field </font><font color="red">"count(*) from staff where salary &gt; 2000-<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>adj</font><font color="black">}</font></b>"</font>}</b>]<br>distinctrow: [<b>{<font color="blue">staffSel </font><font color="red">fields="floor(salary / 2000) as band"<font color="black">,</font> distinctrow<font color="black">,</font> order="band"</font>}</b><b>{<font color="green"><font color="red">$</font>band</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>member: [<b>{<font color="blue">staffSel </font><font color="red">fields="name"<font color="black">,</font> where="salary &lt; 2000"<font color="black">,</font> union="topPaid"<font color="black">,</font> order="name"</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]</code></pre>
+                      <pre><code style="color: #000000">tag: [<b>{<font color="blue">staffSel </font><font color="red">rows=0</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>value: [<b>{<font color="blue">staffSel </font><font color="red">rows=<font color="red">$</font>none</font>}</b><b>{<font color="green"><font color="red">$</font>name</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">staffSel</font><font color="red"></font>}</b>]<br>list: [<b>{<font color="blue">names </font><font color="red">rows=0</font>}</b><b>{<font color="green"><font color="red">$</font>names</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>none<b>{/<font color="blue">names</font><font color="red"></font>}</b>]<br>declared: [<b>{<font color="blue">allCustomers</font><font color="red"></font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>allCustomers</font><font color="red"></font>}</b><b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>allCustomers</font><font color="red"></font>/}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>allCustomers</font><font color="red"></font>}</b><b>{/<font color="blue">allCustomers</font><font color="red"></font>}</b>]<br>paged: [<b>{<font color="blue">allCustomers </font><font color="red">page=2</font>}</b><b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>allCustomers</font><font color="red"></font>}</b><b>{<font color="blue">count<font color="black"><b><font color="red">@</font></b></font>allCustomers</font><font color="red"></font>/}</b><b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>allCustomers</font><font color="red"></font>}</b><b>{/<font color="blue">allCustomers</font><font color="red"></font>}</b>]</code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <div id="padAjaxe9ac1f94341e72a4ee6bce80f01d64ea"></div>
+                      <div id="padAjaxfebd75eb8fb190c941c23e73d9e73c79"></div>
                       <script>
-                      padAjaxe9ac1f94341e72a4ee6bce80f01d64ea = new XMLHttpRequest();
-                      padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.onreadystatechange=function() {
-                      if (padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.readyState === 4) {
-                      if (padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.status === 200) {
-                      document.getElementById("padAjaxe9ac1f94341e72a4ee6bce80f01d64ea").innerHTML=padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.responseText;
+                      padAjaxfebd75eb8fb190c941c23e73d9e73c79 = new XMLHttpRequest();
+                      padAjaxfebd75eb8fb190c941c23e73d9e73c79.onreadystatechange=function() {
+                      if (padAjaxfebd75eb8fb190c941c23e73d9e73c79.readyState === 4) {
+                      if (padAjaxfebd75eb8fb190c941c23e73d9e73c79.status === 200) {
+                      document.getElementById("padAjaxfebd75eb8fb190c941c23e73d9e73c79").innerHTML=padAjaxfebd75eb8fb190c941c23e73d9e73c79.responseText;
                       } else {
-                      document.getElementById("padAjaxe9ac1f94341e72a4ee6bce80f01d64ea").innerHTML=padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.statusText;
+                      document.getElementById("padAjaxfebd75eb8fb190c941c23e73d9e73c79").innerHTML=padAjaxfebd75eb8fb190c941c23e73d9e73c79.statusText;
                       }
                       }
                       }
-                      padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.open("GET","http://localhost/pad/regression/sqlite/?select&padInclude",true);
-                      padAjaxe9ac1f94341e72a4ee6bce80f01d64ea.send();
+                      padAjaxfebd75eb8fb190c941c23e73d9e73c79.open("GET","http://localhost/pad/regression/pages/?select/demo/rows_0_on_a_select_keeps_no_row&padInclude",true);
+                      padAjaxfebd75eb8fb190c941c23e73d9e73c79.send();
                       </script>
                     </td>
                   </tr>

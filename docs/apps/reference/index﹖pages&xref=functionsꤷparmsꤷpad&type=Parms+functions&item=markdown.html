@@ -233,7 +233,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The markdown pipe runs on a value before it is protected, so a value from the request<br>  // may hold a quote's stand-in (U+E022); it is escaped as the quote it will be, in a link<br>  // title and in text alike, where it passed the renderer and became a live quote that<br>  // closed the title attribute the renderer built.<br><br>  </span><span style="color: #0000BB">$b </span><span style="color: #007700">= </span><span style="color: #DD0000">"[a](http://x \"t\u{E022} onx=1\") and \u{E022} text"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>b <font color="black">|</font> markdown</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>b <font color="black">|</font> markdown</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxdc75e116c47109b63ad8597424a305e1"></div>
@@ -275,7 +275,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">"# {php:getcwd}\n\n{echo 'x'}"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="green">$text</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>text</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="green">$text</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>text</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxb38cb8f5b42aa30e2f8e592a738c94c9"></div>
@@ -317,7 +317,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A numeric reference to a control character inside the scheme: html_entity_decode leaves<br>  // &amp;#13; &amp;#x0D; &amp;#1; &amp;#11; as they are, a browser decodes them and drops the control<br>  // character, so java&amp;#13;script: was javascript:. A link with a reference to an ordinary<br>  // character keeps it.<br><br>  </span><span style="color: #0000BB">$text </span><span style="color: #007700">= </span><span style="color: #DD0000">'[a](java&amp;#13;script:alert(1)) [b](&amp;#1;javascript:alert(1)) [c](java&amp;#x0D;script:alert(1)) [d](java&amp;#11;script:x) [ok](https://e.com/?a=1&amp;#38;b=2)'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjaxbc819e03ab1bd944045e3b61391281ff"></div>
@@ -401,7 +401,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'[a](javascript&amp;#58top;alert(1)) ![i](x&amp;#x3Ay;) &amp;#58x; &amp;amp; &amp;#123; &amp;#x7B; &amp;copy;'</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax0a48a8def67a597f0bc2eea7f064b7e8"></div>
@@ -443,7 +443,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">"Hi &lt;script&gt;alert(1)&lt;/script&gt; [x](javascript:alert(1)) [ok](https://example.com \"t\") and `a&lt;b`"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax6d652be3a9d7173096d4b2f13b7fdfa5"></div>
@@ -485,7 +485,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  $text </span><span style="color: #007700">= </span><span style="color: #DD0000">'[a](javascript\:alert(1)) ![i](javascript\:alert(1)) [d](data\:text/html,x) [ok](https://example.com/a\_b) [t](x "&lt;https://x/onmouseover=alert(1)//&gt;") [u](&lt;https://example.com/p&gt;)'</span><span style="color: #007700">;<br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> markdown</font>/}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax18e7890303cf21f7dc11b0636975ffe2"></div>
@@ -569,7 +569,7 @@
                       <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A value that is all indented code - a comment, a post, a .md file.<br><br>  </span><span style="color: #0000BB">$code </span><span style="color: #007700">= </span><span style="color: #DD0000">"    \$a = 1;\n    echo \$a;"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
                     </td>
                     <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="green">$code</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>code</font>}</b>|<br>  <b>{<font color="blue">markdown</font><font color="red"></font>}</b><br>    The pair is dedented with the template around it.<br>  <b>{/<font color="blue">markdown</font><font color="red"></font>}</b></code></pre>
+                      <pre><code style="color: #000000"><b>{<font color="green">$code</font> <font color="black">|</font> <font color="blue">markdown</font>}</b>|<b>{<font color="blue">markdown </font><font color="red"><font color="red">$</font>code</font>/}</b>|<br>  <b>{<font color="blue">markdown</font><font color="red"></font>}</b><br>    The pair is dedented with the template around it.<br>  <b>{/<font color="blue">markdown</font><font color="red"></font>}</b></code></pre>
                     </td>
                     <td style="vertical-align:top">
                       <div id="padAjax54cd747ad14fe904417fecba1cb3cd32"></div>

@@ -96,10 +96,10 @@
             <h2 id="syntax">
               Syntax
             </h2>
-            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, required<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'terms'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'I agree'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span>, checked<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">}</span></code></pre>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">value</span>=<span class="hl-str">''</span>, <span class="hl-opt">id</span>=<span class="hl-str">'mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, required<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'terms'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'I agree'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span>, checked<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">rules</span>=<span class="hl-str">'required|email'</span><span class="hl-brc">/}</span></code></pre>
             <h3>
               Parameters
             </h3>
@@ -158,7 +158,7 @@
               Description
             </h2>
             <p>
-              <code>{input 'email', type='email', label='E-mail'}</code> writes a <code>&lt;label for&gt;</code> and an <code>&lt;input&gt;</code> with the name and an id - the name with every character an id cannot hold made a dash, so <code>user[email]</code> gets the id <code>user-email</code>. The name is required: a field without one is an error under the strict check.
+              <code>{input 'email', type='email', label='E-mail'/}</code> writes a <code>&lt;label for&gt;</code> and an <code>&lt;input&gt;</code> with the name and an id - the name with every character an id cannot hold made a dash, so <code>user[email]</code> gets the id <code>user-email</code>. The name is required: a field without one is an error under the strict check.
             </p>
             <p>
               The tag takes <code>type</code>, <code>label</code>, <code>value</code>, <code>id</code>, <code>checked</code> and <code>rules</code> itself; every other item is an attribute of the input, written as <a href="index%EF%B9%96tag%EA%A4%B7attrs.html">{attrs}</a> writes it - a bare word such as <code>required</code> is a bare attribute, a false value leaves the attribute out.
@@ -187,11 +187,11 @@
                     <span>Template</span><span class="cell-file">examples/input/1-types.pad</span>
                   </div>
                   <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'order'</span>, <span class="hl-opt">method</span>=<span class="hl-str">'get'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Name'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Ann'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'size'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'radio'</span>, <span class="hl-opt">id</span>=<span class="hl-str">'size-s'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Small'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'S'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'size'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'radio'</span>, <span class="hl-opt">id</span>=<span class="hl-str">'size-l'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Large'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'L'</span>, checked<span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'gift'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Gift wrap'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'step'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'hidden'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'2'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Name'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'Ann'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'size'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'radio'</span>, <span class="hl-opt">id</span>=<span class="hl-str">'size-s'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Small'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'S'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'size'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'radio'</span>, <span class="hl-opt">id</span>=<span class="hl-str">'size-l'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Large'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'L'</span>, checked<span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'gift'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'checkbox'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Gift wrap'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'yes'</span><span class="hl-brc">/}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'step'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'hidden'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'2'</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
                 </div>
                 <div class="cell">
@@ -218,9 +218,9 @@
                   <div class="cell-head">
                     <span>Template</span><span class="cell-file">examples/input/2-attributes.pad</span>
                   </div>
-                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$busy</span> = FALSE<span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'qty'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'number'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Quantity'</span>, <span class="hl-opt">value</span>=<span class="hl-num">1</span>, <span class="hl-opt">min</span>=<span class="hl-num">1</span>, <span class="hl-opt">max</span>=<span class="hl-num">10</span>, required, <span class="hl-opt">disabled</span>=<span class="hl-var">$busy</span><span class="hl-brc">}</span>
-<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'user[email]'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, <span class="hl-opt">autocomplete</span>=<span class="hl-str">'email'</span><span class="hl-brc">}</span></code></pre>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">set</span> <span class="hl-var">$busy</span> = FALSE<span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'qty'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'number'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Quantity'</span>, <span class="hl-opt">value</span>=<span class="hl-num">1</span>, <span class="hl-opt">min</span>=<span class="hl-num">1</span>, <span class="hl-opt">max</span>=<span class="hl-num">10</span>, required, <span class="hl-opt">disabled</span>=<span class="hl-var">$busy</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'user[email]'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span>, <span class="hl-opt">placeholder</span>=<span class="hl-str">'you@example.org'</span>, <span class="hl-opt">autocomplete</span>=<span class="hl-str">'email'</span><span class="hl-brc">/}</span></code></pre>
                 </div>
                 <div class="cell">
                   <div class="cell-head">
@@ -246,7 +246,7 @@
                   </div>
                   <pre class="code"><code><span class="hl-com">{# contact.php: if ( padPosted ( 'contact' ) ) $errors = padValidate ( [ 'email' =&gt; 'required|email' ] ); #}</span>
 <span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'contact'</span><span class="hl-brc">}</span>
-  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input</span> <span class="hl-str">'email'</span>, <span class="hl-opt">type</span>=<span class="hl-str">'email'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'E-mail'</span><span class="hl-brc">/}</span>
   <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
 <span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span>
 
