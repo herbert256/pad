@@ -1,23 +1,29 @@
 <?php
 
-  // Choropleth maps - the {map} tag. Every country of the world as inline SVG, coloured by
-  // a value of its row: no JavaScript, no tiles, no remote service, so a map works in print
-  // and in an e-mail and caches like any other output.
+  // Choropleth maps - the map subsystem behind the {map} tag. Every country of the world as
+  // inline SVG, coloured by a value of its row: no JavaScript, no tiles, no remote service,
+  // so a map works in print and in an e-mail and caches like any other output.
   //
   //   {map 'world', data='sales', key='country', value='amount'}
   //   {map 'europe', data='visitors', title='Visitors per country'}
   //
-  // The outlines are tags/_lib/map/world.json: Natural Earth's 1:50m admin-0 countries (public
+  // The outlines are maps/_lib/world.json: Natural Earth's 1:50m admin-0 countries (public
   // domain, naturalearthdata.com) as world-atlas@2.0.2 publishes them (ISC licence), turned
   // from TopoJSON into SVG paths in the Natural Earth projection, each under its ISO 3166
   // alpha-2 code with its alpha-3 code and English names (codes and names from
   // i18n-iso-countries, MIT). A path is kept twice: at full detail for a region, and
   // simplified for the whole world, where the detail is smaller than a pixel.
   //
+  // A view is a file of maps/types/ - the files there are the views there are (padMapViews)
+  // - answering its box of longitude and latitude, and for a region that is a list of
+  // countries rather than a stretch of the globe those countries, with the name its title
+  // takes. Every country the box touches is drawn; with a list, the others are drawn as the
+  // quiet land around it, --pad-map-context, and a value of theirs is named in the title as
+  // one the view does not show.
+  //
   // padMapCountries   the countries, read once per request, and an index of every code and
   //                   name in lower case
-  // padMapViews       the views: the world and the regions, as boxes of longitude and
-  //                   latitude
+  // padMapViews       the names of the views, padMapView the one view a name has
   // padMap            the SVG
   //
   // The colour is the heatmap's: seven steps of one hue, from --pad-chart-heat-0 to
@@ -35,7 +41,7 @@
 
     if ( $countries === NULL ) {
 
-      $countries = json_decode ( file_get_contents ( PAD . 'tags/_lib/map/world.json' ), TRUE ) ['countries'];
+      $countries = json_decode ( file_get_contents ( PAD . 'maps/_lib/world.json' ), TRUE ) ['countries'];
       $index     = [];
 
       // The codes and the own names first, the aliases after them: an alias never takes a
@@ -70,20 +76,31 @@
 
   }
 
-  // The views as [ west, south, east, north ] in degrees: africa reaches Cabo Verde in the
-  // west and Mauritius and the Seychelles in the east, oceania Palau, Guam, Micronesia and
-  // the Marshall Islands north of the equator - the islands across the 180th meridian,
-  // Samoa and Tonga, are not in it and are named in the title (padMap).
+  // The views: the names of the files of maps/types/ (padKinds, lib/subsystem.php) - a view
+  // is added by adding its file.
 
   function padMapViews () {
 
-    return [ 'world'         => [ -180, -58,  180, 84 ],
-             'europe'        => [ -25,   34,   42, 71.5 ],
-             'africa'        => [ -26,  -36,   60, 38 ],
-             'asia'          => [  25,   -11, 150, 56 ],
-             'north-america' => [ -170,   7,  -50, 84 ],
-             'south-america' => [ -83,  -56,  -33, 14 ],
-             'oceania'       => [ 110,  -48,  180, 22 ] ];
+    return padKinds ( 'maps' );
+
+  }
+
+  // A view as its file answers it: 'box', [ west, south, east, north ] in degrees, and
+  // perhaps 'countries', the alpha-2 codes of the countries it is about, and 'name', what
+  // its title says - else the name of the file. Read once per request.
+
+  function padMapView ( $view ) {
+
+    static $views = [];
+
+    if ( ! isset ( $views [$view] ) ) {
+      $one             = padKind ( 'maps', $view ) ? include PAD . "maps/types/$view.php" : [];
+      $one ['box']   ??= [ -180, -58, 180, 84 ];
+      $one ['name']  ??= ucfirst ( $view );
+      $views [$view]   = $one;
+    }
+
+    return $views [$view];
 
   }
 
@@ -106,7 +123,7 @@
 
   function padMapBox ( $view ) {
 
-    list ( $west, $south, $east, $north ) = padMapViews () [$view];
+    list ( $west, $south, $east, $north ) = padMapView ( $view ) ['box'];
 
     $xs = $ys = [];
 
@@ -125,12 +142,15 @@
   // The SVG. $values is code => [ value ]; $width the width of the picture, the height
   // follows from the view unless $height is given; $scale is linear - the steps evenly
   // over the values - or quantile - evenly over their ranks. A country whose box lies
-  // outside the view is not written at all.
+  // outside the view is not written at all; one the box touches that is not of the view's
+  // countries, when it lists them, is the land around them, drawn without a value.
 
   function padMap ( $view, $values, $title, $width, $height, $scale = 'linear' ) {
 
     list ( $countries ) = padMapCountries ();
     list ( $x0, $y0, $x1, $y1 ) = padMapBox ( $view );
+
+    $focus = isset ( padMapView ( $view ) ['countries'] ) ? array_flip ( padMapView ( $view ) ['countries'] ) : NULL;
 
     $boxW   = $x1 - $x0;
     $boxH   = $y1 - $y0;
@@ -157,7 +177,7 @@
 
     foreach ( $values as $code => $value ) {
       $box = $countries [$code] [3];
-      if ( $box [2] < $x0 or $box [0] > $x1 or $box [3] < $y0 or $box [1] > $y1 )
+      if ( $box [2] < $x0 or $box [0] > $x1 or $box [3] < $y0 or $box [1] > $y1 or ( $focus !== NULL and ! isset ( $focus [$code] ) ) )
         $outside [] = $countries [$code] [1];
     }
 
@@ -166,7 +186,7 @@
 
     list ( $id, $svg ) = padChartOpen ( 'map', [ $view, $values ], $desc, $title, $width, $height );
 
-    $svg .= padMapStyle ();
+    $svg .= padMapStyle ( $focus !== NULL );
 
     $all  = array_column ( $values, 0 );
     $min  = $all ? min ( $all ) : 0;
@@ -203,7 +223,9 @@
 
       $d = $simple ? $plain : $detail;
 
-      if ( isset ( $values [$code] ) )
+      if ( $focus !== NULL and ! isset ( $focus [$code] ) )
+        $svg .= "<path class=\"pm-land pm-context\" d=\"$d\"><title>" . padChartAttr ( $name ) . '</title></path>';
+      elseif ( isset ( $values [$code] ) )
         $later .= '<path class="pc-mark pm-land pc-h' . $step ( $values [$code] [0] ) . "\" d=\"$d\"><title>" . padChartAttr ( $name . ': ' . padChartNumber ( $values [$code] [0] ) ) . '</title></path>';
       else
         $svg .= "<path class=\"pm-land pm-empty\" d=\"$d\"><title>" . padChartAttr ( $name ) . '</title></path>';
@@ -238,11 +260,14 @@
   }
 
   // The rules of the map: the land, its borders and the grey of no value. The borders keep
-  // their width whatever the map is scaled to.
+  // their width whatever the map is scaled to. A view of a list of countries draws the land
+  // around them too, a shade quieter than the grey of no value - its rule only written then,
+  // so the maps of the other views stay as they were.
 
-  function padMapStyle () {
+  function padMapStyle ( $context = FALSE ) {
 
-    $roles = [ 'empty' => [ '#e4e3df', '#3a3a37' ], 'border' => [ '#fcfcfb', '#1a1a19' ] ];
+    $roles = [ 'empty' => [ '#e4e3df', '#3a3a37' ], 'border' => [ '#fcfcfb', '#1a1a19' ] ]
+           + ( $context ? [ 'context' => [ '#f0efeb', '#292927' ] ] : [] );
 
     $light = $both = '';
 
@@ -256,6 +281,7 @@
          . "@supports (color:light-dark(#000,#fff)){:where(.pad-chart-map){{$both}}}"
          . '.pad-chart-map .pm-land{stroke:var(--pad-map-border);stroke-width:.6px;vector-effect:non-scaling-stroke;stroke-linejoin:round}'
          . '.pad-chart-map .pm-empty{fill:var(--pad-map-empty)}'
+         . ( $context ? '.pad-chart-map .pm-context{fill:var(--pad-map-context)}' : '' )
          . '.pad-chart-map .pm-land:hover{opacity:.8}'
          . '</style>';
 

@@ -2583,12 +2583,13 @@ direction or edges value are errors under the strict check.
 
 ### map
 A choropleth map as inline SVG - every country coloured by a value of its row, drawn on the
-server from Natural Earth's outlines (`tags/_lib/map.php`, `tags/_lib/map/world.json`) - no JavaScript,
-no tiles, no remote service.
+server by the map subsystem in `pad/maps/` from Natural Earth's outlines (`maps/_lib/map.php`,
+`maps/_lib/world.json`) - no JavaScript, no tiles, no remote service.
 
 ```html
 {map 'world', data='sales', key='country', value='amount'/}
 {map 'europe', data='visitors', scale='quantile', title='Visitors per country'/}
+{map 'benelux', data='shops', key='country', value='count'/}
 {map 'south-america', key='code', value='forest', width=320}
   code,forest
   BRA,59.1
@@ -2599,7 +2600,7 @@ no tiles, no remote service.
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The view: `world` (default), `europe`, `africa`, `asia`, `north-america`, `south-america` or `oceania` |
+| first parameter | The view, a file of `pad/maps/types/`: `world` (default), the continents `europe`, `africa`, `asia`, `north-america`, `south-america`, `oceania`, and the regions `middle-east`, `mediterranean`, `eu`, `nordic`, `benelux`, `baltic`, `british-isles`, `iberia`, `dach`, `balkans`, `central-america`, `caribbean`, `east-asia`, `southeast-asia`, `south-asia`, `central-asia` |
 | `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
 | `key` | The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - else the first field that is no number |
 | `value` | The number - else the first numeric field |
@@ -2617,7 +2618,15 @@ world-atlas@2.0.2 (ISC), codes and names from i18n-iso-countries (MIT), in the N
 projection; a region view is a crop of the same projection at full detail, the world view
 uses paths simplified for its scale; a country too small to keep its outline is a small
 diamond. Without data the map is drawn in grey. An unknown view or scale is an error under
-the strict check.
+the strict check, which lists the views there are.
+
+**Views:** a view is a file of `pad/maps/types/<view>.php` answering its `box` - west, south,
+east, north in degrees - and for a region that is a list of countries rather than a stretch
+of the globe its `countries` (alpha-2 codes) and the `name` the map's title takes; the files
+there are the views there are (`padMapViews`), and a view is added by adding its file. A view
+draws every country its box touches; with a list of countries, the others are the land
+around them, drawn without a value in `--pad-map-context`, and a value of theirs is named in
+the title (`not in this view: Germany`), as one of a country outside the box is.
 
 ---
 

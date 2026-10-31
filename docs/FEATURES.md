@@ -599,6 +599,21 @@ in `pad/diagrams/` - `diagram.php` the body every form runs, `_lib/diagram.php` 
 parts, the flowchart and the layered layout the state, class and entity-relationship diagrams
 share (`padDiagramGraph`), the files beside it the other kinds, `types/` the kinds;
 `pad/types/diagram.php` the diagram type. The `showcase` application has an example of each.
+### Maps
+```
+{map 'world', data='sales', key='country', value='amount'/}   # choropleth as inline SVG, no script, no tiles
+{map 'eu', data='visitors', scale='quantile'/}                 # the 27 member states, the rest of Europe around them
+{map 'benelux'}{"NL": 1200, "BE": 800, "LU": 90}{/map}         # a pair: the content is the rows
+```
+The views are the files of `pad/maps/types/` - each answers its box of longitude and latitude
+and, for a region that is a list of countries, those countries and the name its title takes:
+world, the six continents (europe, africa, asia, north-america, south-america, oceania) and
+middle-east, mediterranean, eu, nordic, benelux, baltic, british-isles, iberia, dach, balkans,
+central-america, caribbean, east-asia, southeast-asia, south-asia, central-asia. A view of a
+list draws the countries around it quieter, without values (`--pad-map-context`); a value of
+a country the view does not show is named in the title. A view is added by adding its file -
+no new outlines needed, every view is a crop of the same Natural Earth outlines
+(`pad/maps/_lib/world.json`).
 
 ### Month calendar
 ```
@@ -650,6 +665,8 @@ share (`padDiagramGraph`), the files beside it the other kinds, `types/` the kin
 {pdf file='invoice', download}...{/pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
 {map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
+{diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # flowchart (or type='sequence') laid out as SVG on the server
+{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/maps/types/ - world, continents, benelux, eu, middle-east ...
 {timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
 {datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
 {toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered

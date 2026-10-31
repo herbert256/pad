@@ -1,6 +1,10 @@
 <?php
 
-  $tagAbout   = 'Draws a choropleth map as inline SVG - every country coloured by a value of its row - of the world or one of its regions.';
+  // The views are the files of pad/maps/types/, as the engine reads them (padMapViews).
+
+  include_once PAD . 'maps/_lib/map.php';
+
+  $tagAbout   = 'Draws a choropleth map as inline SVG - every country coloured by a value of its row - of the world or one of its ' . ( count ( padMapViews () ) - 1 ) . ' regions.';
   $tagGroup   = 'graphics';
   $tagForm    = 'both';
 
@@ -10,7 +14,9 @@
 PAD;
 
   $tagParms   = [
-    'view' => 'The part of the world drawn: <code>world</code> (default), <code>europe</code>, <code>africa</code>, <code>asia</code>, <code>north-america</code>, <code>south-america</code> or <code>oceania</code>.' ];
+    'view' => 'The part of the world drawn, a file of <code>pad/maps/types/</code>: '
+                . implode ( ', ', array_map ( fn ( $view ) => "<code>$view</code>", padMapViews () ) )
+                . ' - <code>world</code> unless given.' ];
 
   $tagOptions = [
     'data'   => 'The rows: a <code>{data}</code> store, a page array or a <code>_data</code> file, as for <code>{chart}</code>. As a pair the content is the rows - JSON, YAML, XML or CSV.',

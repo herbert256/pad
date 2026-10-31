@@ -29,6 +29,7 @@ pad/
 ├── install/       # Installation scripts
 ├── level/         # Tag processing
 ├── lib/           # PHP helpers
+├── maps/          # Map subsystem (a view per file of maps/types/)
 ├── occurrence/    # Data iteration
 ├── options/       # Tag options
 ├── properties/    # Tag properties
@@ -72,6 +73,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | install/ | Installation scripts for database and web server |
 | level/ | Tag processing and scope management |
 | lib/ | Core utility functions (database, file, HTTP, etc.), loaded on every request - the code of one tag is `tags/_lib/<tag>.php`, of one engine feature the `_lib/` of its directory, included when it runs |
+| maps/ | The map subsystem behind `{map}`; a view is a file of `maps/types/` - its box of longitude and latitude, for a region its countries - the outlines and the drawing in `maps/_lib/` |
 | occurrence/ | Template iteration tracking and state management |
 | options/ | Tag options processing (quote, glue, toData, etc.) |
 | properties/ | Tag property accessors (first@, last@, count@, etc.) |
