@@ -2580,10 +2580,13 @@ small information button named 'More information'. A trigger of text gets a stop
 order; content that holds a link, a button or a field takes the focus itself and gets none.
 The tip has the `tooltip` role and stays while the pointer moves onto it, so it can be read; a
 small script, once per page with the CSP nonce, hides a shown tip on Escape and shifts a tip
-that would run off the side of the window back into it. Printed, no tip shows. The colours are
-`--pad-tooltip-accent`, `-muted`, `-surface` and `-on` on `.pad-tooltip`, `light-dark()`
-defaults - a dark tip on a light page, a light one on a dark page. A tooltip without its tip, a
-pair with nothing between its tags and an unknown `place` are errors under the strict check.
+that would run off the side of the window back into it. Its style and script follow it: PHP's
+tidy (`$padTidy`, on by default) moves a `<style>` into the head and ends a `<p>` it stood in, so
+a tip is best written in a `<div>`, a list item or a table cell. Printed, no tip shows. The
+colours are `--pad-tooltip-accent`, `-muted`, `-surface` and `-on` on `.pad-tooltip`,
+`light-dark()` defaults - a dark tip on a light page, a light one on a dark page. A tooltip
+without its tip, a pair with nothing between its tags and an unknown `place` are errors under
+the strict check.
 
 ---
 

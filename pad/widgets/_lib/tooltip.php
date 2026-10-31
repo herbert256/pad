@@ -17,6 +17,11 @@
   // with the CSP nonce (WCAG 1.4.13, content on hover or focus that can be dismissed, hovered
   // and stays). Printed, no tip shows.
   //
+  // A tooltip stands in a line of text, so its style and script follow it rather than lead
+  // it: PHP's tidy ($padTidy) takes a <style> out of the body into the head, and the space
+  // in front of one went with it - 'The {tooltip ...}plan' read 'Theplan'. A <p> it stands
+  // in tidy still ends at that <style>; a tip in a <div>, a list or a cell keeps its line.
+  //
   // padTooltip        the trigger and its tip
   // padTooltipStyle   the CSS, assets/tooltip.css, once per page
   // padTooltipScript  the script, assets/tooltip.js, once per page
@@ -33,11 +38,11 @@
     else
       $open = "<span class=\"pad-tooltip-trigger\"$tabs aria-describedby=\"$id\">";
 
-    return padTooltipStyle ()
-         . padProtect ( "<span class=\"pad-tooltip pad-tooltip-$place\">$open" )
+    return padProtect ( "<span class=\"pad-tooltip pad-tooltip-$place\">$open" )
          . $trigger
          . padProtect ( ( $trigger === '' ? '' : '</span>' )
                       . "<span class=\"pad-tooltip-tip\" role=\"tooltip\" id=\"$id\">$tip</span></span>" )
+         . padTooltipStyle ()
          . padTooltipScript ();
 
   }
