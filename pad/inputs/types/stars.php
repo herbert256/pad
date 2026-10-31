@@ -29,11 +29,12 @@
     // The label= is the legend: a radio group is named by its fieldset, not by a <label> of
     // one of its radios, and the aria-label a field without a label gets is the legend too.
 
-    $rest = preg_replace ( '/\s+aria-label="[^"]*"/', '', $rest );
+    $rest  = preg_replace ( '/\s+aria-label="[^"]*"/', '', $rest );
+    $class = padInputOwn ( $rest, [ 'class' => 'pi-star-input' ] );
 
     for ( $i = 1; $i <= $padInputMax; $i++ ) {
       $one    = ( $i == 1 ) ? $id : "$id-$i";
-      $stars .= "<input type=\"radio\" class=\"pi-star-input\" name=\"$name\" id=\"" . padInputEscape ( $one ) . "\" value=\"$i\""
+      $stars .= "<input type=\"radio\"$class name=\"$name\" id=\"" . padInputEscape ( $one ) . "\" value=\"$i\""
               . ( (string) $i === $value ? ' checked' : '' ) . "$rest>"
               . '<label class="pi-star" for="' . padInputEscape ( $one ) . "\"><span class=\"pi-hide\">$i " . ( $i == 1 ? 'star' : 'stars' )
               . " of $padInputMax</span></label>";

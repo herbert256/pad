@@ -17,12 +17,12 @@
   return padInputField ( function ( $head, $rest, $label, $error, $id, $worded ) use ( $padInputCurrent ) {
 
     $own  = padInputEscape ( $id );
-    $fill = str_contains ( $rest, ' autocomplete=' ) ? '' : ' autocomplete="' . ( $padInputCurrent ? 'current-password' : 'new-password' ) . '"';
+    $mine = padInputOwn ( $rest, [ 'autocomplete' => $padInputCurrent ? 'current-password' : 'new-password', 'spellcheck' => 'false' ] );
 
     return padInputFrame ( 'newpassword', $worded,
              $label
            . '<div class="pi-row pi-pass-row">'
-           . "<input type=\"password\" $head$fill spellcheck=\"false\"$rest>"
+           . "<input type=\"password\" $head$mine$rest>"
            . "<button type=\"button\" class=\"pi-button pi-reveal\" aria-controls=\"$own\" hidden>Show</button>"
            . '</div>'
            . ( $padInputCurrent ? '' :

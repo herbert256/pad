@@ -17,12 +17,14 @@
 
     global $padInputNow;
 
-    $kind = $padInputLetters ? ' autocapitalize="characters"' : ' inputmode="numeric"';
+    $class = padInputOwn ( $rest, [ 'class' => 'pi-otp-whole' ] );
+    $mine  = padInputOwn ( $rest, ( $padInputLetters ? [ 'autocapitalize' => 'characters' ] : [ 'inputmode' => 'numeric' ] )
+                                  + [ 'autocomplete' => 'one-time-code', 'spellcheck' => 'false' ] );
 
     return padInputFrame ( 'otp', $worded,
              $label
-           . "<input type=\"text\" class=\"pi-otp-whole\" $head value=\"" . padInputEscape ( $padInputNow ['value'] ) . "\" maxlength=\"$padInputLength\""
-           . "$kind autocomplete=\"one-time-code\" spellcheck=\"false\"$rest>",
+           . "<input type=\"text\"$class $head value=\"" . padInputEscape ( $padInputNow ['value'] ) . "\" maxlength=\"$padInputLength\""
+           . "$mine$rest>",
              $error, [ 'length' => $padInputLength, 'letters' => $padInputLetters ] );
 
   } );

@@ -18,6 +18,7 @@
     global $padInputNow;
 
     $list = '';
+    $mine = padInputOwn ( $rest, [ 'autocomplete' => 'off' ] );
 
     if ( $padInputSuggest ) {
       $list = '<datalist id="' . padInputEscape ( "$id-suggest" ) . '">';
@@ -30,7 +31,7 @@
     return padInputFrame ( 'taginput', $worded,
              $label
            . '<div class="pi-tags">'
-           . "<input type=\"text\" $head value=\"" . padInputEscape ( $padInputNow ['value'] ) . "\" autocomplete=\"off\"$rest>"
+           . "<input type=\"text\" $head value=\"" . padInputEscape ( $padInputNow ['value'] ) . "\"$mine$rest>"
            . '</div>' . $list
            . '<span class="pi-hide pi-tags-said" aria-live="polite"></span>',
              $error, [ 'most' => $padInputMost ] );

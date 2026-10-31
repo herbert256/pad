@@ -356,9 +356,39 @@
 
     $id = padFormId ( $name, $take );
 
+    $padInputNow ['attrs'] = $attrs;
+
     return padFormField ( $name, $take, $attrs, function ( $head, $rest, $label, $error ) use ( $control, $id, $take ) {
       return $control ( $head, $rest, $label, $error, $id, padInputLabelText ( $take ['label'] ?? NULL ) );
     } );
+
+  }
+
+  // The attributes a kind writes on its main control - the spellcheck of a markdown editor,
+  // the autocomplete of a one-time code, the class of a star - answered for the ones the
+  // template does not give: an item the author wrote is the field's, as every other
+  // attribute is - written beside the kind's, the browser kept the first, the kind's, and
+  // spellcheck="false" or autocomplete="address-level2" was lost. A class joins the kind's
+  // own, and is taken out of $rest, the attributes the control writes after it.
+
+  function padInputOwn ( &$rest, $own ) {
+
+    $given = $GLOBALS ['padInputNow'] ['attrs'] ?? [];
+    $out   = '';
+
+    foreach ( $own as $name => $value )
+      if ( $name == 'class' ) {
+        $more = '';
+        if ( isset ( $given ['class'] ) ) {
+          $rest = str_replace ( ' ' . $given ['class'], '', $rest );
+          if ( preg_match ( '/^[^=]+="(.+)"$/s', $given ['class'], $class ) )
+            $more = " $class[1]";
+        }
+        $out .= " class=\"$value$more\"";
+      } elseif ( ! isset ( $given [$name] ) )
+        $out .= " $name=\"$value\"";
+
+    return $out;
 
   }
 

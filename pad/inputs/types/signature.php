@@ -21,7 +21,9 @@
     global $padInputNow;
 
     $own  = padInputEscape ( $id );
-    $name = padInputEscape ( padInputName () );
+    $name  = padInputEscape ( padInputName () );
+    $class = padInputOwn ( $rest, [ 'class' => 'pi-signature-typed' ] );
+    $mine  = padInputOwn ( $rest, [ 'placeholder' => 'Or type your name', 'autocomplete' => 'name' ] );
 
     // The field a visitor reaches - the typed name - has the field's id, so the label names it
     // and the aria attributes of a message are on it; the hidden field the form posts says it
@@ -33,7 +35,7 @@
            . "<canvas class=\"pi-signature-canvas\" width=\"$padInputWidth\" height=\"$padInputHeight\" role=\"img\" aria-label=\""
            . padInputEscape ( "$worded - drawn with the mouse, a pen or a finger" ) . "\"></canvas></div>"
            . '<div class="pi-row pi-signature-bar" hidden>'
-           . "<input type=\"text\" class=\"pi-signature-typed\" id=\"$own\" placeholder=\"Or type your name\" autocomplete=\"name\"$rest>"
+           . "<input type=\"text\"$class id=\"$own\"$mine$rest>"
            . '<button type="button" class="pi-button pi-signature-clear">Clear</button></div>'
            . "<input type=\"hidden\" name=\"$name\" value=\"" . padInputEscape ( $padInputNow ['value'] ) . "\" data-pad-shows=\"$own\">"
            . '<noscript><p class="pi-noscript">Signing needs JavaScript.</p></noscript>',

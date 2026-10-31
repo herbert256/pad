@@ -20,12 +20,13 @@
 
     $control = padInputEscape ( $id );
     $name    = padInputEscape ( $worded );
+    $mine    = padInputOwn ( $rest, [ 'inputmode' => 'decimal' ] );
 
     return padInputFrame ( 'stepper', $worded,
              $label
            . '<div class="pi-stepper-row">'
            . "<button type=\"button\" class=\"pi-button pi-step\" data-step=\"-1\" aria-controls=\"$control\" aria-label=\"Decrease $name\" tabindex=\"-1\" hidden>&minus;</button>"
-           . "<input type=\"number\" $head inputmode=\"decimal\"$bounds value=\"" . padInputEscape ( $padInputNow ['value'] ) . "\"$rest>"
+           . "<input type=\"number\" $head$mine$bounds value=\"" . padInputEscape ( $padInputNow ['value'] ) . "\"$rest>"
            . "<button type=\"button\" class=\"pi-button pi-step\" data-step=\"1\" aria-controls=\"$control\" aria-label=\"Increase $name\" tabindex=\"-1\" hidden>+</button>"
            . '</div>',
              $error );

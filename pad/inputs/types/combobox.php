@@ -22,6 +22,7 @@
     global $padInputNow;
 
     $list = padInputEscape ( "$id-choices" );
+    $mine = padInputOwn ( $rest, [ 'autocomplete' => 'off' ] );
     $data = "<datalist id=\"$list\">";
 
     foreach ( $padInputChoices as $one )
@@ -30,7 +31,7 @@
     return padInputFrame ( 'combobox', $worded,
              $label
            . '<div class="pi-anchor">'
-           . "<input type=\"text\" $head value=\"" . padInputEscape ( $padInputNow ['value'] ) . "\" list=\"$list\" autocomplete=\"off\"$rest>"
+           . "<input type=\"text\" $head value=\"" . padInputEscape ( $padInputNow ['value'] ) . "\" list=\"$list\"$mine$rest>"
            . '</div>' . $data . '</datalist>'
            . '<span class="pi-hide pi-combo-said" aria-live="polite"></span>',
              $error, [ 'choices' => $padInputChoices ] );

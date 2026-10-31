@@ -18,7 +18,8 @@
 
     global $padInputNow;
 
-    $own = padInputEscape ( $id );
+    $own  = padInputEscape ( $id );
+    $mine = padInputOwn ( $rest, [ 'spellcheck' => 'true' ] );
 
     // A line break follows the opening tag, as {textarea} writes it: the HTML parser drops
     // one right after <textarea>, and a text that began with a blank line lost it.
@@ -27,7 +28,7 @@
              $label
            . '<div class="pi-md-bar" role="toolbar" aria-label="' . padInputEscape ( "Formatting of $worded" ) . "\" aria-controls=\"$own\" hidden></div>"
            . '<div class="pi-md-panes">'
-           . "<textarea $head rows=\"$padInputRows\" spellcheck=\"true\"$rest>\n" . padInputEscape ( $padInputNow ['value'] ) . '</textarea>'
+           . "<textarea $head rows=\"$padInputRows\"$mine$rest>\n" . padInputEscape ( $padInputNow ['value'] ) . '</textarea>'
            . "<div class=\"pi-md-preview\" role=\"region\" aria-label=\"" . padInputEscape ( "Preview of $worded" ) . '" hidden></div>'
            . '</div>',
              $error );
