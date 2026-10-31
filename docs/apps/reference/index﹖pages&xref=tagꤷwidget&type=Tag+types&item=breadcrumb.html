@@ -127,6 +127,48 @@
                   </tr>
                 </table><br>
                 <hr>
+                App: regression/framework - Page: tags/a_breadcrumb_link_from_a_request_value_stays_inside_its_attribute<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_breadcrumb_link_from_a_request_value_stays_inside_its_attribute.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_breadcrumb_link_from_a_request_value_stays_inside_its_attribute.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A link as a request brings it: U+E022 is the stand-in of the double quote<br>  // (lib/encoding.php), which exits.php turns back into the quote as the page is written out<br>  // - after every escaper has run. A row of data holds it as the request handed it, and a<br>  // raw field written in the lines of a pair carries its real quote as that stand-in.<br><br>  </span><span style="color: #0000BB">$next  </span><span style="color: #007700">= </span><span style="color: #DD0000">"?x\u{E022} onmouseover=\u{E022}alert(1)"</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$trail </span><span style="color: #007700">= [ [ </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Home'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'?index' </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Back'</span><span style="color: #007700">, </span><span style="color: #DD0000">'link' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$next </span><span style="color: #007700">],<br>             [ </span><span style="color: #DD0000">'label' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Here' </span><span style="color: #007700">] ];<br>  </span><span style="color: #0000BB">$back  </span><span style="color: #007700">= </span><span style="color: #DD0000">'?y" onmouseover="alert(2)'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">breadcrumb </font><font color="red">data=<font color="black">'</font>trail<font color="black">'</font></font>/}</b><br><b>{<font color="blue">breadcrumb</font><font color="red"></font>}</b><br>  Home | ?index<br>  Back | <b>{<font color="green"><font color="red">!</font>back</font>}</b><br>  Here<br><b>{/<font color="blue">breadcrumb</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxe7f50130572f59d47a5a9c41cc6e313b"></div>
+                      <script>
+                      padAjaxe7f50130572f59d47a5a9c41cc6e313b = new XMLHttpRequest();
+                      padAjaxe7f50130572f59d47a5a9c41cc6e313b.onreadystatechange=function() {
+                      if (padAjaxe7f50130572f59d47a5a9c41cc6e313b.readyState === 4) {
+                      if (padAjaxe7f50130572f59d47a5a9c41cc6e313b.status === 200) {
+                      document.getElementById("padAjaxe7f50130572f59d47a5a9c41cc6e313b").innerHTML=padAjaxe7f50130572f59d47a5a9c41cc6e313b.responseText;
+                      } else {
+                      document.getElementById("padAjaxe7f50130572f59d47a5a9c41cc6e313b").innerHTML=padAjaxe7f50130572f59d47a5a9c41cc6e313b.statusText;
+                      }
+                      }
+                      }
+                      padAjaxe7f50130572f59d47a5a9c41cc6e313b.open("GET","http://localhost/pad/regression/framework/?tags/a_breadcrumb_link_from_a_request_value_stays_inside_its_attribute&padInclude",true);
+                      padAjaxe7f50130572f59d47a5a9c41cc6e313b.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/framework - Page: tags/breadcrumb_alone_follows_the_path_of_the_page<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>

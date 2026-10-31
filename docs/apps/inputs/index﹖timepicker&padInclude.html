@@ -2,7 +2,7 @@
 <p class="inputs-lead">A time of day typed or chosen from the times of a list, every quarter or half hour: a native &lt;input type=&quot;time&quot;&gt;, which posts 09:30 and can be typed into, with the times to choose from every every= minutes - 30 unless given - from min= to max=, 00:00 to 23:59 unless given: a &lt;datalist&gt; the browser offers, and where the script runs a button that opens them as a list the arrow keys walk. step= stays the time field&#039;s own: what the field takes, not what the list offers.</p>
 
 
-<form method="post" class="inputs-try"><input type="hidden" name="padCsrfToken" value="8abf396aff5ef1c28d843b271618f62b138a5ae023d4b615b56f98231205bda9"><input type="hidden" name="padForm" value="try">
+<form method="post" class="inputs-try"><input type="hidden" name="padCsrfToken" value="9e9d05eac56e42f40f1cd3bd64b6c8a540a9c7d71e07370628239e6c5024f4d1"><input type="hidden" name="padForm" value="try">
   <style>:where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
 .pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
 .pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
@@ -165,13 +165,21 @@ PadInputs.register('timepicker', function (frame, cfg, kit) {
     options[active].scrollIntoView({ block: 'nearest' });
   }
 
+  // A list that runs past midnight - 22:00 to 06:00 - is in the order of its times from its
+  // first: 01:00 comes after 23:30 there.
+  var wraps = slots.some(function (slot, i) { return i > 0 && slot < slots[i - 1]; });
+  function since(time) {
+    var minutes = +time.slice(0, 2) * 60 + +time.slice(3, 5);
+    return wraps ? (minutes - (+slots[0].slice(0, 2) * 60 + +slots[0].slice(3, 5)) + 1440) % 1440 : minutes;
+  }
+
   function show() {
     var value = (field.value || '').slice(0, 5);
     var at = 0;
     options.forEach(function (one, i) {
       var time = one.getAttribute('data-time');
       one.setAttribute('aria-selected', time === value ? 'true' : 'false');
-      if (value && time <= value) at = i;
+      if (value && since(time) <= since(value)) at = i;
     });
     list.hidden = false;
     opener.setAttribute('aria-expanded', 'true');

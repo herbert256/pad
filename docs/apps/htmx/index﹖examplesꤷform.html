@@ -9,7 +9,7 @@
   <script src="https://unpkg.com/htmx.org@2.0.11/dist/htmx.min.js"></script>
   <script src="https://unpkg.com/htmx-ext-sse@2.2.4/sse.js"></script>
 </head>
-<body hx-headers="{&quot;X-CSRF-Token&quot;:&quot;103394a4b92eb049feece474625cd01f3eb6dda4115deddd439e9707505bb183&quot;}">
+<body hx-headers="{&quot;X-CSRF-Token&quot;:&quot;46bad15cdea9e20e9f0650cc79fca9e81103a7e7908dcfa5c73a0220c1635c35&quot;}">
 
 <header class="topbar">
   <div class="wrap topbar-inner">
@@ -57,7 +57,7 @@
 <div id="signup">
 
   
-    <form method="post" hx-post="?examples/form" hx-target="#signup" class="stack" novalidate data-pad-rules="{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;age&quot;:{&quot;label&quot;:&quot;Age&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;min&quot;,&quot;18&quot;,&quot;:label must be at least :n&quot;,&quot;18&quot;]]}}" data-pad-error="Please correct the errors below."><input type="hidden" name="padCsrfToken" value="103394a4b92eb049feece474625cd01f3eb6dda4115deddd439e9707505bb183"><input type="hidden" name="padForm" value="signup">
+    <form method="post" hx-post="?examples/form" hx-target="#signup" class="stack" novalidate data-pad-rules="{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;age&quot;:{&quot;label&quot;:&quot;Age&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;min&quot;,&quot;18&quot;,&quot;:label must be at least :n&quot;,&quot;18&quot;]]}}" data-pad-error="Please correct the errors below."><input type="hidden" name="padCsrfToken" value="46bad15cdea9e20e9f0650cc79fca9e81103a7e7908dcfa5c73a0220c1635c35"><input type="hidden" name="padForm" value="signup">
       <label for="name">Name</label><input type="text" name="name" id="name" value="" class="input">
       <label for="email">E-mail</label><input type="email" name="email" id="email" value="" class="input">
       <label for="age">Age</label><input type="text" name="age" id="age" value="" class="input">
@@ -266,7 +266,7 @@ addRule('min', {
 })();
 (function () {
 addRule('numeric', {
-  check: function (value) { return /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/.test(value); }
+  check: function (value) { return /^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?[ \t\n\r\v\f]*$/.test(value); }
 });
 })();
 (function () {
@@ -301,10 +301,30 @@ function braces(body) {
   }
   return false;
 }
+function dots(body) {
+  var inClass = false;
+  for (var i = 0; i < body.length; i++) {
+    var c = body.charAt(i);
+    if (c === '\\') {
+      i++;
+    } else if (inClass) {
+      if (c === ']') inClass = false;
+    } else if (c === '[') {
+      inClass = true;
+      if (body.charAt(i + 1) === '^') i++;
+      if (body.charAt(i + 1) === ']') i++;
+    } else if (c === '.') return true;
+  }
+  return false;
+}
+function apart(read, value) {
+  if (!read.dotAll && /[\r\u2028\u2029]/.test(value) && dots(read.source)) return true;
+  return read.unicode && /[\u0085\u180e\ufeff]/.test(value) && /\\[sS]/.test(read.source.replace(/\\\\/g, ''));
+}
 addRule('regex', {
   check: function (value, arg) {
     var read = pattern(arg);
-    return read && (read.unicode || !/[^\x00-\x7f]/.test(value)) ? read.test(value) : true;
+    return read && (read.unicode || !/[^\x00-\x7f]/.test(value)) && !apart(read, value) ? read.test(value) : true;
   }
 });
 })();

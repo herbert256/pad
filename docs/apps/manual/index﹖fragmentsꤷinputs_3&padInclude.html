@@ -123,12 +123,17 @@
    comma adds the word, a pasted list adds each of its words, leaving the field adds what was
    typed; Backspace in the empty field takes the last word back, and every chip has a button
    that takes it out. A word is in the list once, in the case it was first written in. What
-   happens is said to a screen reader. */
+   happens is said to a screen reader. A required list stays one: the text field the words
+   leave holds the browser's required check while there is no word, and lets it go once a
+   chip holds one - kept on the emptied field, it refused every list. */
 PadInputs.register('taginput', function (frame, cfg, kit) {
   var box = frame.querySelector('.pi-tags input[type=text]');
   var wrap = frame.querySelector('.pi-tags');
   var said = frame.querySelector('.pi-tags-said');
   if (!box || !wrap) return;
+
+  var needed = box.required;
+  if (needed) box.setAttribute('aria-required', 'true');
 
   var words = [];
   var hidden = document.createElement('input');
@@ -148,6 +153,7 @@ PadInputs.register('taginput', function (frame, cfg, kit) {
 
   function sync(quiet) {
     hidden.value = words.join(', ');
+    if (needed) box.required = !words.length;
     chips.textContent = '';
     words.forEach(function (word, i) {
       var li = kit.el('li', 'pi-chip');
@@ -370,7 +376,9 @@ PadInputs.register('combobox', function (frame, cfg, kit) {
    by the phone (autocomplete="one-time-code", on the first box) fills the boxes from where it
    lands - the boxes have no maxlength, so a code a phone puts in the first box whole is
    spread over them rather than cut to its first character. A character the code cannot hold
-   is not taken. */
+   is not taken. The checks the field carried - required, pattern=, minlength= - stay the
+   code's: a hidden field is one the browser does not check, so the first box holds the code
+   to them, with the browser's own message. */
 PadInputs.register('otp', function (frame, cfg, kit) {
   var whole = frame.querySelector('.pi-otp-whole');
   if (!whole) return;
@@ -411,6 +419,19 @@ PadInputs.register('otp', function (frame, cfg, kit) {
   whole.removeAttribute('aria-invalid');
   whole.removeAttribute('aria-describedby');
   whole.setAttribute('data-pad-shows', id);
+
+  // The field's checks on a field of their own, outside the form, that the code is put in:
+  // its answer - and the browser's message - is the first box's. A length is checked by the
+  // browser only on what was typed, so minlength= is a pattern here.
+  var probe = document.createElement('input');
+  probe.type = 'text';
+  probe.required = whole.required;
+  var least = parseInt(whole.getAttribute('minlength'), 10);
+  var shape = whole.getAttribute('pattern');
+  if (least > 0 || shape !== null)
+    probe.pattern = (least > 0 ? '(?=[\\s\\S]{' + least + ',})' : '') + '(?:' + (shape !== null ? shape : '[\\s\\S]*') + ')';
+  if (whole.required) boxes[0].setAttribute('aria-required', 'true');
+
   whole.type = 'hidden';
   whole.parentNode.insertBefore(group, whole);
 
@@ -418,8 +439,14 @@ PadInputs.register('otp', function (frame, cfg, kit) {
     return Array.from(String(text)).filter(function (c) { return allowed.test(c); }).map(function (c) { return c.toUpperCase(); });
   }
 
+  function hold() {
+    probe.value = whole.value;
+    boxes[0].setCustomValidity(probe.checkValidity() ? '' : probe.validationMessage);
+  }
+
   function post() {
     whole.value = boxes.map(function (box) { return box.value; }).join('');
+    hold();
     kit.changed(whole);
   }
 
@@ -433,6 +460,7 @@ PadInputs.register('otp', function (frame, cfg, kit) {
   }
 
   clean(whole.value).slice(0, length).forEach(function (c, i) { boxes[i].value = c; });
+  hold();
 
   boxes.forEach(function (box, i) {
     box.addEventListener('focus', function () { box.select(); });

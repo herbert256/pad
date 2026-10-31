@@ -2,7 +2,7 @@
 <p class="inputs-lead">A signature drawn with the mouse, a pen or a finger: a canvas, and the picture drawn posted as a PNG data URL - data:image/png;base64,... - in a hidden field. The page&#039;s PHP decodes it: base64_decode of what follows the comma is the PNG. Who cannot draw types the name in the field beside it, and the name is drawn on the canvas in a hand of writing; Clear wipes it. width= and height= the canvas, 400 by 150 unless given. A signature needs the script: without it the page says so. After a post that came back the picture is drawn again from the posted field - one that is no PNG data URL is not refilled.</p>
 
 
-<form method="post" class="inputs-try"><input type="hidden" name="padCsrfToken" value="d8a72045de27c6bd606e3cdfe5df9ed83ab3ed0e47b973e1454237440ed17c75"><input type="hidden" name="padForm" value="try">
+<form method="post" class="inputs-try"><input type="hidden" name="padCsrfToken" value="9da183df9cc8b93743ede9f1e0156ea6081388a39c6de93733a2c8ed4ce0169c"><input type="hidden" name="padForm" value="try">
   <style>:where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
 .pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
 .pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
@@ -122,7 +122,10 @@
    picture is posted as a PNG data URL in the hidden field after every stroke and every typed
    letter, and the field says it changed; Clear empties both. A canvas is drawn in the pixels
    of the screen, so a signature is as sharp on a phone as on paper, and posted at the size
-   width= and height= give. A signature that came back with the post is drawn again. */
+   width= and height= give. A signature that came back with the post is drawn again. A
+   required signature is held by the typed name's field while there is no picture, and let
+   go once there is one - drawn or typed: kept on the field, which a drawn signature leaves
+   empty, it refused every drawn signature. */
 PadInputs.register('signature', function (frame, cfg, kit) {
   var pad = frame.querySelector('.pi-signature-pad');
   var canvas = frame.querySelector('.pi-signature-canvas');
@@ -131,6 +134,11 @@ PadInputs.register('signature', function (frame, cfg, kit) {
   var clear = frame.querySelector('.pi-signature-clear');
   var hidden = frame.querySelector('input[type=hidden]');
   if (!canvas || !hidden || !canvas.getContext) return;
+
+  var needed = !!(typed && typed.required);
+  if (needed) typed.setAttribute('aria-required', 'true');
+  function hold() { if (needed) typed.required = !hidden.value; }
+  hold();
 
   var width = canvas.width, height = canvas.height;
   var ratio = Math.max(1, Math.min(3, window.devicePixelRatio || 1));
@@ -162,6 +170,7 @@ PadInputs.register('signature', function (frame, cfg, kit) {
       out.getContext('2d').drawImage(canvas, 0, 0, width, height);
       hidden.value = out.toDataURL('image/png');
     }
+    hold();
     kit.changed(hidden);
   }
 

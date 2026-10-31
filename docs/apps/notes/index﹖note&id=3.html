@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#d97706">
-    <meta name="csrf-token" content="4a0c513c0d1d12780b2160ba91129ff9537ea4190c006d6621579fbe64964043">
+    <meta name="csrf-token" content="febe875844c66f8fdf8e7d316858bc6eb79f5d7d3c52a07071c053b97a925df4">
     <title>
       Weekend · Notes
     </title>
@@ -23,7 +23,7 @@
       </nav>
     </header>
     <main>
-      <div data-pad-live="note" data-pad-csrf="4a0c513c0d1d12780b2160ba91129ff9537ea4190c006d6621579fbe64964043">
+      <div data-pad-live="note" data-pad-csrf="febe875844c66f8fdf8e7d316858bc6eb79f5d7d3c52a07071c053b97a925df4">
         <article class="sheet color-mint">
           <div class="crumbs">
             <a href="index%EF%B9%96index.html">← All notes</a>
@@ -59,7 +59,7 @@
                 Delete…
               </summary>
               <form method="post">
-                <input type="hidden" name="padCsrfToken" value="4a0c513c0d1d12780b2160ba91129ff9537ea4190c006d6621579fbe64964043"><input type="hidden" name="padForm" value="delete"><span>Delete this note and its files?</span><button class="button danger">Delete</button>
+                <input type="hidden" name="padCsrfToken" value="febe875844c66f8fdf8e7d316858bc6eb79f5d7d3c52a07071c053b97a925df4"><input type="hidden" name="padForm" value="delete"><span>Delete this note and its files?</span><button class="button danger">Delete</button>
               </form>
             </details>
           </div>
@@ -69,6 +69,19 @@
       (function () {
       if (window.padLiveReady) return;
       window.padLiveReady = true;
+      var nonce = document.currentScript ? document.currentScript.nonce : '';
+      function scripts(region, policy) {
+      var sent = /'nonce-([^']+)'/.exec(policy || '');
+      region.querySelectorAll('script').forEach(function (old) {
+      if (sent && old.nonce !== sent[1]) return;
+      var script = document.createElement('script');
+      for (var i = 0; i < old.attributes.length; i++)
+        if (old.attributes[i].name !== 'nonce') script.setAttribute(old.attributes[i].name, old.attributes[i].value);
+      if (nonce) script.nonce = nonce;
+      script.text = old.text;
+      old.parentNode.replaceChild(script, old);
+      });
+      }
       function send(region, fields) {
       var body = new URLSearchParams();
       fields.forEach(function (field) { body.append(field[0], field[1]); });
@@ -80,10 +93,10 @@
       .then(function (response) {
         return response.text().then(function (text) {
           if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
-          return text;
+          return [text, response.headers.get('Content-Security-Policy')];
         });
       })
-      .then(function (html) { region.innerHTML = html; region.removeAttribute('data-pad-live-error'); })
+      .then(function (answer) { region.innerHTML = answer[0]; scripts(region, answer[1]); region.removeAttribute('data-pad-live-error'); })
       .catch(function (error) { region.setAttribute('data-pad-live-error', error.message); })
       .then(function () { region.removeAttribute('aria-busy'); });
       }

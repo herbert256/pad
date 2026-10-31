@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#d97706">
-    <meta name="csrf-token" content="89737b2c49bd7d17693c27cfa7e0901c52f15e7fa9d93f924138736205077434">
+    <meta name="csrf-token" content="eb7524fefd5d186d42b4dad3cd55caf408630f25fab2cec6d3ea5428cc9b3533">
     <title>
       All notes · Notes
     </title>
@@ -34,7 +34,7 @@
             </h1><span class="count">4 of 4</span>
           </div>
           <div id="results" data-tag="">
-            <div data-pad-live="notes" data-pad-csrf="89737b2c49bd7d17693c27cfa7e0901c52f15e7fa9d93f924138736205077434">
+            <div data-pad-live="notes" data-pad-csrf="eb7524fefd5d186d42b4dad3cd55caf408630f25fab2cec6d3ea5428cc9b3533">
               <div class="grid">
                 <article class="note color-sun pinned">
                   <button type="button" class="pin" pad-click="pin" pad-value="1" aria-pressed="true" title="Unpin">★</button> <a class="open" href="index%EF%B9%96note&amp;id=1.html">
@@ -90,6 +90,19 @@
             (function () {
             if (window.padLiveReady) return;
             window.padLiveReady = true;
+            var nonce = document.currentScript ? document.currentScript.nonce : '';
+            function scripts(region, policy) {
+            var sent = /'nonce-([^']+)'/.exec(policy || '');
+            region.querySelectorAll('script').forEach(function (old) {
+            if (sent && old.nonce !== sent[1]) return;
+            var script = document.createElement('script');
+            for (var i = 0; i < old.attributes.length; i++)
+            if (old.attributes[i].name !== 'nonce') script.setAttribute(old.attributes[i].name, old.attributes[i].value);
+            if (nonce) script.nonce = nonce;
+            script.text = old.text;
+            old.parentNode.replaceChild(script, old);
+            });
+            }
             function send(region, fields) {
             var body = new URLSearchParams();
             fields.forEach(function (field) { body.append(field[0], field[1]); });
@@ -101,10 +114,10 @@
             .then(function (response) {
             return response.text().then(function (text) {
             if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
-            return text;
+            return [text, response.headers.get('Content-Security-Policy')];
             });
             })
-            .then(function (html) { region.innerHTML = html; region.removeAttribute('data-pad-live-error'); })
+            .then(function (answer) { region.innerHTML = answer[0]; scripts(region, answer[1]); region.removeAttribute('data-pad-live-error'); })
             .catch(function (error) { region.setAttribute('data-pad-live-error', error.message); })
             .then(function () { region.removeAttribute('aria-busy'); });
             }

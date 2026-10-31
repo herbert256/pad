@@ -2,7 +2,7 @@
 <p class="inputs-lead">A one-time code, the digits a text message or an app gives: a native text field that posts the code as it is typed - inputmode=&quot;numeric&quot;, autocomplete=&quot;one-time-code&quot; so a phone offers the code it received - and where the script runs a box per character, the next box taking the focus as one is typed, Backspace going back, a pasted code filling them all. The code the form posts is then the hidden field the boxes fill. length= the number of characters, 6 unless given (4 to 10); letters takes letters and digits, in upper case, where the code is digits alone unless given.</p>
 
 
-<form method="post" class="inputs-try"><input type="hidden" name="padCsrfToken" value="b74fe1af891474e976a7510cb46bc8f58211a347ea96e19748075024df1b3d4b"><input type="hidden" name="padForm" value="try">
+<form method="post" class="inputs-try"><input type="hidden" name="padCsrfToken" value="148147e470f0b7de4b2d3fcd124e1eae80e31873f3e4c4cb8afc867c9a322bf1"><input type="hidden" name="padForm" value="try">
   <style>:where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
 .pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
 .pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
@@ -124,7 +124,9 @@
    by the phone (autocomplete="one-time-code", on the first box) fills the boxes from where it
    lands - the boxes have no maxlength, so a code a phone puts in the first box whole is
    spread over them rather than cut to its first character. A character the code cannot hold
-   is not taken. */
+   is not taken. The checks the field carried - required, pattern=, minlength= - stay the
+   code's: a hidden field is one the browser does not check, so the first box holds the code
+   to them, with the browser's own message. */
 PadInputs.register('otp', function (frame, cfg, kit) {
   var whole = frame.querySelector('.pi-otp-whole');
   if (!whole) return;
@@ -165,6 +167,19 @@ PadInputs.register('otp', function (frame, cfg, kit) {
   whole.removeAttribute('aria-invalid');
   whole.removeAttribute('aria-describedby');
   whole.setAttribute('data-pad-shows', id);
+
+  // The field's checks on a field of their own, outside the form, that the code is put in:
+  // its answer - and the browser's message - is the first box's. A length is checked by the
+  // browser only on what was typed, so minlength= is a pattern here.
+  var probe = document.createElement('input');
+  probe.type = 'text';
+  probe.required = whole.required;
+  var least = parseInt(whole.getAttribute('minlength'), 10);
+  var shape = whole.getAttribute('pattern');
+  if (least > 0 || shape !== null)
+    probe.pattern = (least > 0 ? '(?=[\\s\\S]{' + least + ',})' : '') + '(?:' + (shape !== null ? shape : '[\\s\\S]*') + ')';
+  if (whole.required) boxes[0].setAttribute('aria-required', 'true');
+
   whole.type = 'hidden';
   whole.parentNode.insertBefore(group, whole);
 
@@ -172,8 +187,14 @@ PadInputs.register('otp', function (frame, cfg, kit) {
     return Array.from(String(text)).filter(function (c) { return allowed.test(c); }).map(function (c) { return c.toUpperCase(); });
   }
 
+  function hold() {
+    probe.value = whole.value;
+    boxes[0].setCustomValidity(probe.checkValidity() ? '' : probe.validationMessage);
+  }
+
   function post() {
     whole.value = boxes.map(function (box) { return box.value; }).join('');
+    hold();
     kit.changed(whole);
   }
 
@@ -187,6 +208,7 @@ PadInputs.register('otp', function (frame, cfg, kit) {
   }
 
   clean(whole.value).slice(0, length).forEach(function (c, i) { boxes[i].value = c; });
+  hold();
 
   boxes.forEach(function (box, i) {
     box.addEventListener('focus', function () { box.select(); });

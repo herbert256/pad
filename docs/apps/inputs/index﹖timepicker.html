@@ -127,7 +127,7 @@
           A time of day typed or chosen from the times of a list, every quarter or half hour: a native &lt;input type="time"&gt;, which posts 09:30 and can be typed into, with the times to choose from every every= minutes - 30 unless given - from min= to max=, 00:00 to 23:59 unless given: a &lt;datalist&gt; the browser offers, and where the script runs a button that opens them as a list the arrow keys walk. step= stays the time field's own: what the field takes, not what the list offers.
         </p>
         <form method="post" class="inputs-try">
-          <input type="hidden" name="padCsrfToken" value="925e6c1feb68183a224ed4455a563078fb61bb13b4f0f50d37eded7d3a5a725d"><input type="hidden" name="padForm" value="try">
+          <input type="hidden" name="padCsrfToken" value="5c46f4a5ecb0952a8be524558b26abe5bea578a8890455775261c41daa60ed2d"><input type="hidden" name="padForm" value="try">
           <script>
           /* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
           script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
@@ -270,13 +270,21 @@
           options[active].scrollIntoView({ block: 'nearest' });
           }
 
+          // A list that runs past midnight - 22:00 to 06:00 - is in the order of its times from its
+          // first: 01:00 comes after 23:30 there.
+          var wraps = slots.some(function (slot, i) { return i > 0 && slot < slots[i - 1]; });
+          function since(time) {
+          var minutes = +time.slice(0, 2) * 60 + +time.slice(3, 5);
+          return wraps ? (minutes - (+slots[0].slice(0, 2) * 60 + +slots[0].slice(3, 5)) + 1440) % 1440 : minutes;
+          }
+
           function show() {
           var value = (field.value || '').slice(0, 5);
           var at = 0;
           options.forEach(function (one, i) {
           var time = one.getAttribute('data-time');
           one.setAttribute('aria-selected', time === value ? 'true' : 'false');
-          if (value && time <= value) at = i;
+          if (value && since(time) <= since(value)) at = i;
           });
           list.hidden = false;
           opener.setAttribute('aria-expanded', 'true');

@@ -87,6 +87,46 @@
             <td>
               <center>
                 <hr>
+                App: regression/errors - Page: syntax/an_option_nothing_reads_on_a_bare_game_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/an_option_nothing_reads_on_a_bare_game_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">nim </font><font color="red">heaps=<font color="black">'</font>3<font color="black">,</font>4<font color="black">,</font>5<font color="black">'</font><font color="black">,</font> foo=1</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxab2b60173916096f66e982ef7ac1b99a"></div>
+                      <script>
+                      padAjaxab2b60173916096f66e982ef7ac1b99a = new XMLHttpRequest();
+                      padAjaxab2b60173916096f66e982ef7ac1b99a.onreadystatechange=function() {
+                      if (padAjaxab2b60173916096f66e982ef7ac1b99a.readyState === 4) {
+                      if (padAjaxab2b60173916096f66e982ef7ac1b99a.status === 200) {
+                      document.getElementById("padAjaxab2b60173916096f66e982ef7ac1b99a").innerHTML=padAjaxab2b60173916096f66e982ef7ac1b99a.responseText;
+                      } else {
+                      document.getElementById("padAjaxab2b60173916096f66e982ef7ac1b99a").innerHTML=padAjaxab2b60173916096f66e982ef7ac1b99a.statusText;
+                      }
+                      }
+                      }
+                      padAjaxab2b60173916096f66e982ef7ac1b99a.open("GET","http://localhost/pad/regression/errors/?syntax/an_option_nothing_reads_on_a_bare_game_is_reported&padInclude",true);
+                      padAjaxab2b60173916096f66e982ef7ac1b99a.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/framework - Page: tags/a_game_hands_its_options_to_its_script_as_json<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -122,6 +162,48 @@
                       }
                       padAjax173ba1c9faea1d161f57c3f2b5f592ff.open("GET","http://localhost/pad/regression/framework/?tags/a_game_hands_its_options_to_its_script_as_json&padInclude",true);
                       padAjax173ba1c9faea1d161f57c3f2b5f592ff.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_toy_title_with_bytes_that_are_no_utf8_keeps_its_configuration<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_toy_title_with_bytes_that_are_no_utf8_keeps_its_configuration.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_toy_title_with_bytes_that_are_no_utf8_keeps_its_configuration.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A title as a request value or a database field can bring it: two bytes that are no UTF-8.<br><br>  </span><span style="color: #0000BB">$name </span><span style="color: #007700">= </span><span style="color: #DD0000">"\xFF\xFEab"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">life </font><font color="red">title=<font color="red">$</font>name<font color="black">,</font> pattern=<font color="black">'</font>glider<font color="black">'</font></font>/}</b><br><b>{<font color="blue">nim </font><font color="red">title=<font color="red">$</font>name<font color="black">,</font> heaps=<font color="black">'</font>1<font color="black">,</font> 2<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjaxf7074d23fcd60c82868bd3f80e894ec2"></div>
+                      <script>
+                      padAjaxf7074d23fcd60c82868bd3f80e894ec2 = new XMLHttpRequest();
+                      padAjaxf7074d23fcd60c82868bd3f80e894ec2.onreadystatechange=function() {
+                      if (padAjaxf7074d23fcd60c82868bd3f80e894ec2.readyState === 4) {
+                      if (padAjaxf7074d23fcd60c82868bd3f80e894ec2.status === 200) {
+                      document.getElementById("padAjaxf7074d23fcd60c82868bd3f80e894ec2").innerHTML=padAjaxf7074d23fcd60c82868bd3f80e894ec2.responseText;
+                      } else {
+                      document.getElementById("padAjaxf7074d23fcd60c82868bd3f80e894ec2").innerHTML=padAjaxf7074d23fcd60c82868bd3f80e894ec2.statusText;
+                      }
+                      }
+                      }
+                      padAjaxf7074d23fcd60c82868bd3f80e894ec2.open("GET","http://localhost/pad/regression/framework/?tags/a_toy_title_with_bytes_that_are_no_utf8_keeps_its_configuration&padInclude",true);
+                      padAjaxf7074d23fcd60c82868bd3f80e894ec2.send();
                       </script>
                     </td>
                   </tr>

@@ -123,7 +123,7 @@
           A one-time code, the digits a text message or an app gives: a native text field that posts the code as it is typed - inputmode="numeric", autocomplete="one-time-code" so a phone offers the code it received - and where the script runs a box per character, the next box taking the focus as one is typed, Backspace going back, a pasted code filling them all. The code the form posts is then the hidden field the boxes fill. length= the number of characters, 6 unless given (4 to 10); letters takes letters and digits, in upper case, where the code is digits alone unless given.
         </p>
         <form method="post" class="inputs-try">
-          <input type="hidden" name="padCsrfToken" value="6ad2b161e23c7fabec511e8908ce78f414b8fdfffa9ee85619a8774493b125b0"><input type="hidden" name="padForm" value="try">
+          <input type="hidden" name="padCsrfToken" value="8e8078956a7990425a1bf4baf46a78778c3786ea1fe460148f6d75196ffb7421"><input type="hidden" name="padForm" value="try">
           <script>
           /* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
           script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
@@ -229,7 +229,9 @@
           by the phone (autocomplete="one-time-code", on the first box) fills the boxes from where it
           lands - the boxes have no maxlength, so a code a phone puts in the first box whole is
           spread over them rather than cut to its first character. A character the code cannot hold
-          is not taken. */
+          is not taken. The checks the field carried - required, pattern=, minlength= - stay the
+          code's: a hidden field is one the browser does not check, so the first box holds the code
+          to them, with the browser's own message. */
           PadInputs.register('otp', function (frame, cfg, kit) {
           var whole = frame.querySelector('.pi-otp-whole');
           if (!whole) return;
@@ -270,6 +272,19 @@
           whole.removeAttribute('aria-invalid');
           whole.removeAttribute('aria-describedby');
           whole.setAttribute('data-pad-shows', id);
+
+          // The field's checks on a field of their own, outside the form, that the code is put in:
+          // its answer - and the browser's message - is the first box's. A length is checked by the
+          // browser only on what was typed, so minlength= is a pattern here.
+          var probe = document.createElement('input');
+          probe.type = 'text';
+          probe.required = whole.required;
+          var least = parseInt(whole.getAttribute('minlength'), 10);
+          var shape = whole.getAttribute('pattern');
+          if (least > 0 || shape !== null)
+          probe.pattern = (least > 0 ? '(?=[\\s\\S]{' + least + ',})' : '') + '(?:' + (shape !== null ? shape : '[\\s\\S]*') + ')';
+          if (whole.required) boxes[0].setAttribute('aria-required', 'true');
+
           whole.type = 'hidden';
           whole.parentNode.insertBefore(group, whole);
 
@@ -277,8 +292,14 @@
           return Array.from(String(text)).filter(function (c) { return allowed.test(c); }).map(function (c) { return c.toUpperCase(); });
           }
 
+          function hold() {
+          probe.value = whole.value;
+          boxes[0].setCustomValidity(probe.checkValidity() ? '' : probe.validationMessage);
+          }
+
           function post() {
           whole.value = boxes.map(function (box) { return box.value; }).join('');
+          hold();
           kit.changed(whole);
           }
 
@@ -292,6 +313,7 @@
           }
 
           clean(whole.value).slice(0, length).forEach(function (c, i) { boxes[i].value = c; });
+          hold();
 
           boxes.forEach(function (box, i) {
           box.addEventListener('focus', function () { box.select(); });

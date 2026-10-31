@@ -287,6 +287,46 @@
                   </tr>
                 </table><br>
                 <hr>
+                App: regression/errors - Page: syntax/form_rules_max_needs_a_number<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/form_rules_max_needs_a_number.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">form </font><font color="red"><font color="black">'</font>f<font color="black">'</font></font>}</b><b>{<font color="blue">slider </font><font color="red"><font color="black">'</font>v<font color="black">'</font><font color="black">,</font> rules=<font color="black">'</font>max<font color="black">:</font>abc<font color="black">'</font></font>/}</b><b>{/<font color="blue">form</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax3f6d71b1e1e7017cafe0a07ff380fd4f"></div>
+                      <script>
+                      padAjax3f6d71b1e1e7017cafe0a07ff380fd4f = new XMLHttpRequest();
+                      padAjax3f6d71b1e1e7017cafe0a07ff380fd4f.onreadystatechange=function() {
+                      if (padAjax3f6d71b1e1e7017cafe0a07ff380fd4f.readyState === 4) {
+                      if (padAjax3f6d71b1e1e7017cafe0a07ff380fd4f.status === 200) {
+                      document.getElementById("padAjax3f6d71b1e1e7017cafe0a07ff380fd4f").innerHTML=padAjax3f6d71b1e1e7017cafe0a07ff380fd4f.responseText;
+                      } else {
+                      document.getElementById("padAjax3f6d71b1e1e7017cafe0a07ff380fd4f").innerHTML=padAjax3f6d71b1e1e7017cafe0a07ff380fd4f.statusText;
+                      }
+                      }
+                      }
+                      padAjax3f6d71b1e1e7017cafe0a07ff380fd4f.open("GET","http://localhost/pad/regression/errors/?syntax/form_rules_max_needs_a_number&padInclude",true);
+                      padAjax3f6d71b1e1e7017cafe0a07ff380fd4f.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/framework - Page: tags/a_bare_input_kind_writes_the_field_of_the_input_type<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -322,6 +362,48 @@
                       }
                       padAjax2305b4841e3717a62abd25c6a60a17ed.open("GET","http://localhost/pad/regression/framework/?tags/a_bare_input_kind_writes_the_field_of_the_input_type&padInclude",true);
                       padAjax2305b4841e3717a62abd25c6a60a17ed.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_rich_field_option_with_bytes_that_are_no_utf8_keeps_its_configuration<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tags/a_rich_field_option_with_bytes_that_are_no_utf8_keeps_its_configuration.php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_rich_field_option_with_bytes_that_are_no_utf8_keeps_its_configuration.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// A choice as a database field brings it, a unit as a request value can: two bytes that<br>  // are no UTF-8.<br><br>  </span><span style="color: #0000BB">$name </span><span style="color: #007700">= </span><span style="color: #DD0000">"\xFF\xFEab"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">combobox </font><font color="red"><font color="black">'</font>city<font color="black">'</font><font color="black">,</font> options=<font color="red">$</font>name</font>/}</b><br><b>{<font color="blue">slider </font><font color="red"><font color="black">'</font>weight<font color="black">'</font><font color="black">,</font> unit=<font color="red">$</font>name</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax78cf7a2b15cf9a7fc00b04a68a8f255d"></div>
+                      <script>
+                      padAjax78cf7a2b15cf9a7fc00b04a68a8f255d = new XMLHttpRequest();
+                      padAjax78cf7a2b15cf9a7fc00b04a68a8f255d.onreadystatechange=function() {
+                      if (padAjax78cf7a2b15cf9a7fc00b04a68a8f255d.readyState === 4) {
+                      if (padAjax78cf7a2b15cf9a7fc00b04a68a8f255d.status === 200) {
+                      document.getElementById("padAjax78cf7a2b15cf9a7fc00b04a68a8f255d").innerHTML=padAjax78cf7a2b15cf9a7fc00b04a68a8f255d.responseText;
+                      } else {
+                      document.getElementById("padAjax78cf7a2b15cf9a7fc00b04a68a8f255d").innerHTML=padAjax78cf7a2b15cf9a7fc00b04a68a8f255d.statusText;
+                      }
+                      }
+                      }
+                      padAjax78cf7a2b15cf9a7fc00b04a68a8f255d.open("GET","http://localhost/pad/regression/framework/?tags/a_rich_field_option_with_bytes_that_are_no_utf8_keeps_its_configuration&padInclude",true);
+                      padAjax78cf7a2b15cf9a7fc00b04a68a8f255d.send();
                       </script>
                     </td>
                   </tr>
@@ -364,6 +446,46 @@
                       }
                       padAjaxac19f9120e96f7e5fcc54cb4b5af0090.open("GET","http://localhost/pad/regression/framework/?tags/a_rich_field_refills_from_the_post_of_its_own_form&padInclude",true);
                       padAjaxac19f9120e96f7e5fcc54cb4b5af0090.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
+                App: regression/framework - Page: tags/a_slider_with_a_min_past_its_default_max_takes_a_max_beyond_it<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tags/a_slider_with_a_min_past_its_default_max_takes_a_max_beyond_it.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">slider </font><font color="red">"v"<font color="black">,</font> min=200</font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax2cb2d003f21f6bd14a9efaf0dc39dee7"></div>
+                      <script>
+                      padAjax2cb2d003f21f6bd14a9efaf0dc39dee7 = new XMLHttpRequest();
+                      padAjax2cb2d003f21f6bd14a9efaf0dc39dee7.onreadystatechange=function() {
+                      if (padAjax2cb2d003f21f6bd14a9efaf0dc39dee7.readyState === 4) {
+                      if (padAjax2cb2d003f21f6bd14a9efaf0dc39dee7.status === 200) {
+                      document.getElementById("padAjax2cb2d003f21f6bd14a9efaf0dc39dee7").innerHTML=padAjax2cb2d003f21f6bd14a9efaf0dc39dee7.responseText;
+                      } else {
+                      document.getElementById("padAjax2cb2d003f21f6bd14a9efaf0dc39dee7").innerHTML=padAjax2cb2d003f21f6bd14a9efaf0dc39dee7.statusText;
+                      }
+                      }
+                      }
+                      padAjax2cb2d003f21f6bd14a9efaf0dc39dee7.open("GET","http://localhost/pad/regression/framework/?tags/a_slider_with_a_min_past_its_default_max_takes_a_max_beyond_it&padInclude",true);
+                      padAjax2cb2d003f21f6bd14a9efaf0dc39dee7.send();
                       </script>
                     </td>
                   </tr>

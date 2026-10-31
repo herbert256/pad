@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="90a4174a85247fd695818dd861a28d183a76d8460eb5f8a089efa2909bf60126">
+  <meta name="csrf-token" content="d349c833730feedc0e69adb990050de73d7678f5ea46dd343a15ab4e51e6fe76">
   <title>One set of rules - PAD + Alpine</title>
   <link rel="stylesheet" href="alpine.css">
   <!-- The application's own helpers first - pad.get, pad.post, the request log - then Alpine,
@@ -292,7 +292,7 @@ addRule('min', {
 })();
 (function () {
 addRule('numeric', {
-  check: function (value) { return /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/.test(value); }
+  check: function (value) { return /^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?[ \t\n\r\v\f]*$/.test(value); }
 });
 })();
 (function () {
@@ -327,10 +327,30 @@ function braces(body) {
   }
   return false;
 }
+function dots(body) {
+  var inClass = false;
+  for (var i = 0; i < body.length; i++) {
+    var c = body.charAt(i);
+    if (c === '\\') {
+      i++;
+    } else if (inClass) {
+      if (c === ']') inClass = false;
+    } else if (c === '[') {
+      inClass = true;
+      if (body.charAt(i + 1) === '^') i++;
+      if (body.charAt(i + 1) === ']') i++;
+    } else if (c === '.') return true;
+  }
+  return false;
+}
+function apart(read, value) {
+  if (!read.dotAll && /[\r\u2028\u2029]/.test(value) && dots(read.source)) return true;
+  return read.unicode && /[\u0085\u180e\ufeff]/.test(value) && /\\[sS]/.test(read.source.replace(/\\\\/g, ''));
+}
 addRule('regex', {
   check: function (value, arg) {
     var read = pattern(arg);
-    return read && (read.unicode || !/[^\x00-\x7f]/.test(value)) ? read.test(value) : true;
+    return read && (read.unicode || !/[^\x00-\x7f]/.test(value)) && !apart(read, value) ? read.test(value) : true;
   }
 });
 })();

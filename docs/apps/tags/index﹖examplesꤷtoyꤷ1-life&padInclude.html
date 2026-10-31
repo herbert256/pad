@@ -5,7 +5,7 @@
 .pad-toy .pt-title{font-weight:650;font-size:16px}
 .pad-toy .pt-status{color:var(--pad-toy-muted);min-height:1.4em}
 .pad-toy .pt-stage{position:relative;max-width:100%;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start}
-.pad-toy .pt-canvas{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--pad-toy-line);background:var(--pad-toy-canvas);touch-action:none;cursor:crosshair}
+.pad-toy .pt-canvas{display:block;max-width:100%;height:auto;border-radius:6px;border:0;box-shadow:0 0 0 1px var(--pad-toy-line);background:var(--pad-toy-canvas);touch-action:none;cursor:crosshair}
 .pad-toy .pt-canvas.is-pixels{image-rendering:pixelated}
 .pad-toy .pt-info{color:var(--pad-toy-muted);font-size:13px;font-variant-numeric:tabular-nums;min-height:1.3em;margin-top:6px}
 .pad-toy .pt-info:empty{min-height:0;margin:0}
@@ -368,15 +368,24 @@
     init(kit, cfg);
   }
 
+  // The toys of the page, or of a part of it - and of the open shadow roots in it: a toy in a
+  // web component's {shadow}, which the document's own querySelectorAll does not see into.
+  // A shadow root found is watched for toys that come and go, as the page is.
   function scan(where) {
-    var list = (where || document).querySelectorAll('.pad-toy[data-pad-toy]');
+    where = where || document;
+    var list = where.querySelectorAll('.pad-toy[data-pad-toy]');
     for (var i = 0; i < list.length; i++) start(list[i]);
+    var all = where.querySelectorAll('*');
+    for (var j = 0; j < all.length; j++)
+      if (all[j].shadowRoot) { watch(all[j].shadowRoot); scan(all[j].shadowRoot); }
   }
 
-  // A toy that leaves the page - a fragment swapped out - is let go: its loop stops.
+  // A toy that leaves the page - a fragment swapped out - is let go: its loop stops. One in a
+  // shadow root is on the page while its host is: isConnected, where the document's contains
+  // is false for every node of a shadow tree.
   function prune() {
     kits = kits.filter(function (kit) {
-      if (document.documentElement.contains(kit.root)) return true;
+      if (kit.root.isConnected) return true;
       kit.pause();
       if (seer) seer.unobserve(kit.root);
       return false;
@@ -411,20 +420,27 @@
 
   document.addEventListener('DOMContentLoaded', function () { scan(); });
 
-  if (window.MutationObserver) {
-    new MutationObserver(function (records) {
-      var added = false, removed = false;
-      for (var i = 0; i < records.length; i++) {
-        if (records[i].type === 'attributes') { retheme(); continue; }
-        if (records[i].removedNodes.length) removed = true;
-        for (var j = 0; j < records[i].addedNodes.length; j++) {
-          var n = records[i].addedNodes[j];
-          if (n.nodeType === 1 && (n.matches('.pad-toy') || n.querySelector('.pad-toy'))) added = true;
-        }
+  var watcher = window.MutationObserver ? new MutationObserver(function (records) {
+    var added = false, removed = false;
+    for (var i = 0; i < records.length; i++) {
+      if (records[i].type === 'attributes') { retheme(); continue; }
+      if (records[i].removedNodes.length) removed = true;
+      for (var j = 0; j < records[i].addedNodes.length; j++) {
+        var n = records[i].addedNodes[j];
+        if (n.nodeType === 1 && (n.matches('.pad-toy') || n.querySelector('.pad-toy') || n.shadowRoot)) added = true;
       }
-      if (added) scan();
-      if (removed && kits.length) prune();
-    }).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-theme'] });
+    }
+    if (added) scan();
+    if (removed && kits.length) prune();
+  }) : null;
+
+  if (watcher) watcher.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-theme'] });
+
+  var watched = [];
+  function watch(root) {
+    if (!watcher || watched.indexOf(root) >= 0) return;
+    watched.push(root);
+    watcher.observe(root, { childList: true, subtree: true });
   }
 })();
 </script><script>PadToys.register('life', function (k, cfg) {

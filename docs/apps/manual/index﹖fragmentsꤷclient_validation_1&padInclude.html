@@ -1,4 +1,4 @@
-<form method="post" novalidate data-pad-rules="{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;age&quot;:{&quot;label&quot;:&quot;Age&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;min&quot;,&quot;18&quot;,&quot;:label must be at least :n&quot;,&quot;18&quot;]]}}" data-pad-error="Please correct the errors below."><input type="hidden" name="padCsrfToken" value="42de2747603b191d3923cb906785a268064ee5009b35af8041f7da2296534e81"><input type="hidden" name="padForm" value="signup">
+<form method="post" novalidate data-pad-rules="{&quot;name&quot;:{&quot;label&quot;:&quot;Name&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;max&quot;,&quot;40&quot;,&quot;:label must be at most :n characters&quot;,&quot;40&quot;]]},&quot;email&quot;:{&quot;label&quot;:&quot;Email&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;email&quot;,&quot;&quot;,&quot;:label must be a valid e-mail address&quot;,&quot;&quot;]]},&quot;age&quot;:{&quot;label&quot;:&quot;Age&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;min&quot;,&quot;18&quot;,&quot;:label must be at least :n&quot;,&quot;18&quot;]]}}" data-pad-error="Please correct the errors below."><input type="hidden" name="padCsrfToken" value="f930876d8ad6b0b487e160fef5c3cbaba5534af56b4ab7787312fdcf820a4966"><input type="hidden" name="padForm" value="signup">
   <label for="name">Name</label><input type="text" name="name" id="name" value="">
   <label for="email">E-mail</label><input type="email" name="email" id="email" value="">
   <label for="age">Age</label><input type="text" name="age" id="age" value="">
@@ -207,7 +207,7 @@ addRule('min', {
 })();
 (function () {
 addRule('numeric', {
-  check: function (value) { return /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/.test(value); }
+  check: function (value) { return /^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?[ \t\n\r\v\f]*$/.test(value); }
 });
 })();
 (function () {
@@ -242,10 +242,30 @@ function braces(body) {
   }
   return false;
 }
+function dots(body) {
+  var inClass = false;
+  for (var i = 0; i < body.length; i++) {
+    var c = body.charAt(i);
+    if (c === '\\') {
+      i++;
+    } else if (inClass) {
+      if (c === ']') inClass = false;
+    } else if (c === '[') {
+      inClass = true;
+      if (body.charAt(i + 1) === '^') i++;
+      if (body.charAt(i + 1) === ']') i++;
+    } else if (c === '.') return true;
+  }
+  return false;
+}
+function apart(read, value) {
+  if (!read.dotAll && /[\r\u2028\u2029]/.test(value) && dots(read.source)) return true;
+  return read.unicode && /[\u0085\u180e\ufeff]/.test(value) && /\\[sS]/.test(read.source.replace(/\\\\/g, ''));
+}
 addRule('regex', {
   check: function (value, arg) {
     var read = pattern(arg);
-    return read && (read.unicode || !/[^\x00-\x7f]/.test(value)) ? read.test(value) : true;
+    return read && (read.unicode || !/[^\x00-\x7f]/.test(value)) && !apart(read, value) ? read.test(value) : true;
   }
 });
 })();

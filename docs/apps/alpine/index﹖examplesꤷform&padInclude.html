@@ -240,7 +240,7 @@ addRule('min', {
 })();
 (function () {
 addRule('numeric', {
-  check: function (value) { return /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/.test(value); }
+  check: function (value) { return /^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?[ \t\n\r\v\f]*$/.test(value); }
 });
 })();
 (function () {
@@ -275,10 +275,30 @@ function braces(body) {
   }
   return false;
 }
+function dots(body) {
+  var inClass = false;
+  for (var i = 0; i < body.length; i++) {
+    var c = body.charAt(i);
+    if (c === '\\') {
+      i++;
+    } else if (inClass) {
+      if (c === ']') inClass = false;
+    } else if (c === '[') {
+      inClass = true;
+      if (body.charAt(i + 1) === '^') i++;
+      if (body.charAt(i + 1) === ']') i++;
+    } else if (c === '.') return true;
+  }
+  return false;
+}
+function apart(read, value) {
+  if (!read.dotAll && /[\r\u2028\u2029]/.test(value) && dots(read.source)) return true;
+  return read.unicode && /[\u0085\u180e\ufeff]/.test(value) && /\\[sS]/.test(read.source.replace(/\\\\/g, ''));
+}
 addRule('regex', {
   check: function (value, arg) {
     var read = pattern(arg);
-    return read && (read.unicode || !/[^\x00-\x7f]/.test(value)) ? read.test(value) : true;
+    return read && (read.unicode || !/[^\x00-\x7f]/.test(value)) && !apart(read, value) ? read.test(value) : true;
   }
 });
 })();

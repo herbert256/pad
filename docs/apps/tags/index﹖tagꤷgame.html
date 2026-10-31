@@ -489,9 +489,16 @@
                     init(kit, cfg);
                     }
 
+                    // The games of the page, or of a part of it - and of the open shadow roots in it: a game in
+                    // a web component's {shadow}, which the document's own querySelectorAll does not see into.
+                    // A shadow root found is watched for games that come, as the page is.
                     function scan(where) {
-                    var list = (where || document).querySelectorAll('.pad-game[data-pad-game]');
+                    where = where || document;
+                    var list = where.querySelectorAll('.pad-game[data-pad-game]');
                     for (var i = 0; i < list.length; i++) start(list[i]);
+                    var all = where.querySelectorAll('*');
+                    for (var j = 0; j < all.length; j++)
+                    if (all[j].shadowRoot) { watch(all[j].shadowRoot); scan(all[j].shadowRoot); }
                     }
 
                     window.PadGames = {
@@ -503,14 +510,22 @@
 
                     document.addEventListener('DOMContentLoaded', function () { scan(); });
 
-                    if (window.MutationObserver)
-                    new MutationObserver(function (records) {
+                    var watcher = window.MutationObserver ? new MutationObserver(function (records) {
                     for (var i = 0; i < records.length; i++)
                     for (var j = 0; j < records[i].addedNodes.length; j++) {
                     var n = records[i].addedNodes[j];
-                    if (n.nodeType === 1 && (n.matches('.pad-game') || n.querySelector('.pad-game'))) { scan(); return; }
+                    if (n.nodeType === 1 && (n.matches('.pad-game') || n.querySelector('.pad-game') || n.shadowRoot)) { scan(); return; }
                     }
-                    }).observe(document.documentElement, { childList: true, subtree: true });
+                    }) : null;
+
+                    if (watcher) watcher.observe(document.documentElement, { childList: true, subtree: true });
+
+                    var watched = [];
+                    function watch(root) {
+                    if (!watcher || watched.indexOf(root) >= 0) return;
+                    watched.push(root);
+                    watcher.observe(root, { childList: true, subtree: true });
+                    }
                     })();
                     </script>
                     <script>

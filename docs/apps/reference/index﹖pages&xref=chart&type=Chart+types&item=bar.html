@@ -457,6 +457,46 @@
                   </tr>
                 </table><br>
                 <hr>
+                App: regression/errors - Page: syntax/an_option_nothing_reads_on_a_prefixed_chart_is_reported<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2"></font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">syntax/an_option_nothing_reads_on_a_prefixed_chart_is_reported.pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top"></td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>sales<font color="black">'</font></font>}</b>[{"month":"Jan","online":1}]<b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue"><font color="purple">chart</font><font color="black"><b>:</b></font>bar </font><font color="red">data=<font color="black">'</font>sales<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>month<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>online<font color="black">'</font><font color="black">,</font> colour=<font color="black">'</font>red<font color="black">'</font></font>/}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax2c64a474d75f52618d4fc44bc4c4491b"></div>
+                      <script>
+                      padAjax2c64a474d75f52618d4fc44bc4c4491b = new XMLHttpRequest();
+                      padAjax2c64a474d75f52618d4fc44bc4c4491b.onreadystatechange=function() {
+                      if (padAjax2c64a474d75f52618d4fc44bc4c4491b.readyState === 4) {
+                      if (padAjax2c64a474d75f52618d4fc44bc4c4491b.status === 200) {
+                      document.getElementById("padAjax2c64a474d75f52618d4fc44bc4c4491b").innerHTML=padAjax2c64a474d75f52618d4fc44bc4c4491b.responseText;
+                      } else {
+                      document.getElementById("padAjax2c64a474d75f52618d4fc44bc4c4491b").innerHTML=padAjax2c64a474d75f52618d4fc44bc4c4491b.statusText;
+                      }
+                      }
+                      }
+                      padAjax2c64a474d75f52618d4fc44bc4c4491b.open("GET","http://localhost/pad/regression/errors/?syntax/an_option_nothing_reads_on_a_prefixed_chart_is_reported&padInclude",true);
+                      padAjax2c64a474d75f52618d4fc44bc4c4491b.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table><br>
+                <hr>
                 App: regression/framework - Page: escaping/a_chart_label_is_escaped_and_stays_text<br>
                 <table border="1" cellpadding="10" cellspacing="0">
                   <tr>
@@ -658,46 +698,6 @@
                       }
                       padAjaxabb746a54ba48837461c252303194d01.open("GET","http://localhost/pad/regression/framework/?tags/chart_as_a_pair_reads_its_content_as_the_data&padInclude",true);
                       padAjaxabb746a54ba48837461c252303194d01.send();
-                      </script>
-                    </td>
-                  </tr>
-                </table><br>
-                <hr>
-                App: regression/framework - Page: tags/chart_dates_on_a_dense_axis_are_thinned_not_cut<br>
-                <table border="1" cellpadding="10" cellspacing="0">
-                  <tr>
-                    <th bgcolor="#DDDDDD">
-                      PHP<br>
-                      <font size="-2"></font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      HTML<br>
-                      <font size="-2">tags/chart_dates_on_a_dense_axis_are_thinned_not_cut.pad</font>
-                    </th>
-                    <th bgcolor="#DDDDDD">
-                      Result
-                    </th>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:top"></td>
-                    <td style="vertical-align:top">
-                      <pre><code style="color: #000000"><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>line<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>day<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>visits<font color="black">'</font></font>}</b><br>day,visits<br>2026-09-01,8<br>2026-09-02,11<br>2026-09-03,14<br>2026-09-04,17<br>2026-09-05,20<br>2026-09-06,6<br>2026-09-07,9<br>2026-09-08,12<br>2026-09-09,15<br>2026-09-10,18<br>2026-09-11,21<br>2026-09-12,7<br>2026-09-13,10<br>2026-09-14,13<br>2026-09-15,16<br>2026-09-16,19<br>2026-09-17,5<br>2026-09-18,8<br>2026-09-19,11<br>2026-09-20,14<br>2026-09-21,17<br>2026-09-22,20<br>2026-09-23,6<br>2026-09-24,9<br>2026-09-25,12<br>2026-09-26,15<br>2026-09-27,18<br>2026-09-28,21<br>2026-09-29,7<br>2026-09-30,10<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b><br><b>{<font color="blue">chart </font><font color="red"><font color="black">'</font>bar<font color="black">'</font><font color="black">,</font> label=<font color="black">'</font>day<font color="black">'</font><font color="black">,</font> value=<font color="black">'</font>visits<font color="black">,</font> other<font color="black">'</font></font>}</b><br>day,visits,other<br>2026-09-01,8,2<br>2026-09-02,11,3<br>2026-09-03,14,4<br>2026-09-04,17,5<br>2026-09-05,20,1<br>2026-09-06,6,2<br>2026-09-07,9,3<br>2026-09-08,12,4<br>2026-09-09,15,5<br>2026-09-10,18,1<br>2026-09-11,21,2<br>2026-09-12,7,3<br>2026-09-13,10,4<br>2026-09-14,13,5<br>2026-09-15,16,1<br>2026-09-16,19,2<br>2026-09-17,5,3<br>2026-09-18,8,4<br>2026-09-19,11,5<br>2026-09-20,14,1<br>2026-09-21,17,2<br>2026-09-22,20,3<br>2026-09-23,6,4<br>2026-09-24,9,5<br>2026-09-25,12,1<br>2026-09-26,15,2<br>2026-09-27,18,3<br>2026-09-28,21,4<br>2026-09-29,7,5<br>2026-09-30,10,1<br><b>{/<font color="blue">chart</font><font color="red"></font>}</b></code></pre>
-                    </td>
-                    <td style="vertical-align:top">
-                      <div id="padAjax2e4ac23de045167c0405b8dbfe204ae3"></div>
-                      <script>
-                      padAjax2e4ac23de045167c0405b8dbfe204ae3 = new XMLHttpRequest();
-                      padAjax2e4ac23de045167c0405b8dbfe204ae3.onreadystatechange=function() {
-                      if (padAjax2e4ac23de045167c0405b8dbfe204ae3.readyState === 4) {
-                      if (padAjax2e4ac23de045167c0405b8dbfe204ae3.status === 200) {
-                      document.getElementById("padAjax2e4ac23de045167c0405b8dbfe204ae3").innerHTML=padAjax2e4ac23de045167c0405b8dbfe204ae3.responseText;
-                      } else {
-                      document.getElementById("padAjax2e4ac23de045167c0405b8dbfe204ae3").innerHTML=padAjax2e4ac23de045167c0405b8dbfe204ae3.statusText;
-                      }
-                      }
-                      }
-                      padAjax2e4ac23de045167c0405b8dbfe204ae3.open("GET","http://localhost/pad/regression/framework/?tags/chart_dates_on_a_dense_axis_are_thinned_not_cut&padInclude",true);
-                      padAjax2e4ac23de045167c0405b8dbfe204ae3.send();
                       </script>
                     </td>
                   </tr>

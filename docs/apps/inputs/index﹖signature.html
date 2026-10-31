@@ -124,7 +124,7 @@
           A signature drawn with the mouse, a pen or a finger: a canvas, and the picture drawn posted as a PNG data URL - data:image/png;base64,... - in a hidden field. The page's PHP decodes it: base64_decode of what follows the comma is the PNG. Who cannot draw types the name in the field beside it, and the name is drawn on the canvas in a hand of writing; Clear wipes it. width= and height= the canvas, 400 by 150 unless given. A signature needs the script: without it the page says so. After a post that came back the picture is drawn again from the posted field - one that is no PNG data URL is not refilled.
         </p>
         <form method="post" class="inputs-try">
-          <input type="hidden" name="padCsrfToken" value="7e5b0fdf9cb000c3e55ddd5e0fb9283060aa6a54578d05fe4b2719a5f993929d"><input type="hidden" name="padForm" value="try">
+          <input type="hidden" name="padCsrfToken" value="14c67e5893c61f89d0323027d40e9952facc443c42895aa2c2bed7d3638e1994"><input type="hidden" name="padForm" value="try">
           <script>
           /* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
           script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
@@ -227,7 +227,10 @@
           picture is posted as a PNG data URL in the hidden field after every stroke and every typed
           letter, and the field says it changed; Clear empties both. A canvas is drawn in the pixels
           of the screen, so a signature is as sharp on a phone as on paper, and posted at the size
-          width= and height= give. A signature that came back with the post is drawn again. */
+          width= and height= give. A signature that came back with the post is drawn again. A
+          required signature is held by the typed name's field while there is no picture, and let
+          go once there is one - drawn or typed: kept on the field, which a drawn signature leaves
+          empty, it refused every drawn signature. */
           PadInputs.register('signature', function (frame, cfg, kit) {
           var pad = frame.querySelector('.pi-signature-pad');
           var canvas = frame.querySelector('.pi-signature-canvas');
@@ -236,6 +239,11 @@
           var clear = frame.querySelector('.pi-signature-clear');
           var hidden = frame.querySelector('input[type=hidden]');
           if (!canvas || !hidden || !canvas.getContext) return;
+
+          var needed = !!(typed && typed.required);
+          if (needed) typed.setAttribute('aria-required', 'true');
+          function hold() { if (needed) typed.required = !hidden.value; }
+          hold();
 
           var width = canvas.width, height = canvas.height;
           var ratio = Math.max(1, Math.min(3, window.devicePixelRatio || 1));
@@ -267,6 +275,7 @@
           out.getContext('2d').drawImage(canvas, 0, 0, width, height);
           hidden.value = out.toDataURL('image/png');
           }
+          hold();
           kit.changed(hidden);
           }
 
