@@ -1,0 +1,12 @@
+{diagram:gitgraph}
+  commit
+  commit id: "Readme" tag: "v0.1"
+  branch develop
+  commit id: "Parser"
+  branch feature order: 1
+  commit id: "Lexer"
+  checkout develop
+  merge feature id: "Merge feature"
+  checkout main
+  merge develop
+{/diagram:gitgraph | php:md5(@)}
