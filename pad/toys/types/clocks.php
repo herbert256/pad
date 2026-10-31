@@ -17,9 +17,13 @@
     elseif ( $GLOBALS ['padCheckSyntax'] )
       padError ( "the " . padToyWhat () . " has no clock '" . padMakeSafe ( $padClockOne, 20 ) . "' to show - analog, binary, words" );
 
+  // A zone is a name of the time zone database, the backward-compatible ones among them -
+  // GMT, Etc/GMT+5, US/Eastern, Asia/Calcutta - which the browser's Intl.DateTimeFormat the
+  // script hands it to knows as well.
+
   $padClockZone = trim ( padParmText ( padTagParm ( 'zone', '' ) ) );
 
-  if ( $padClockZone !== '' and ! in_array ( $padClockZone, timezone_identifiers_list (), TRUE ) ) {
+  if ( $padClockZone !== '' and ! in_array ( $padClockZone, timezone_identifiers_list ( DateTimeZone::ALL_WITH_BC ), TRUE ) ) {
     if ( $GLOBALS ['padCheckSyntax'] )
       padError ( "the " . padToyWhat () . " has no time zone '" . padMakeSafe ( $padClockZone, 40 ) . "' - one like Europe/Amsterdam or UTC" );
     $padClockZone = '';
