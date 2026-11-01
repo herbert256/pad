@@ -1590,7 +1590,7 @@ check, and writes nothing.
 ### barcode
 A barcode as inline SVG, encoded on the server by the codes subsystem (`pad/subs/codes/`): a
 symbology is a file of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`, `code128`,
-`code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `qr`, `datamatrix` and `aztec` - and `type=` names
+`code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `qr`, `datamatrix`, `aztec` and `pdf417` - and `type=` names
 it. The barcode type writes a symbology by its name, `{barcode:upce '0425261'/}`, and so does
 the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequence has it.
 
@@ -1604,6 +1604,7 @@ the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequenc
 {datamatrix 'PAD-2026-0042', size=120/}
 {gs1128 '(01)09501101530003(17)261231(10)AB-123'/}   <!-- GS1-128, FNC1 where GS1 wants it -->
 {aztec $ticket, size=150/}                         <!-- Aztec Code, a bullseye in the middle -->
+{pdf417 $boardingPass, columns=6/}                 <!-- PDF417, rows of codewords -->
 ```
 
 | Option | Description |
@@ -1618,7 +1619,8 @@ the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequenc
 | `check` | Bare, `code39`: the check symbol of modulo 43; `itf`: the check digit of weights 3 and 1. `msi`: `mod10` (default), `mod1010` or `none` |
 | `size` | `qr`, `datamatrix` and `aztec`: the width and height in pixels, default 160 - in place of `height`, `scale` and `plain` |
 | `ecc` | `aztec`: the error correction in percent of the codewords, 3 more always added - 23 unless given, 5 to 90 |
-| `level` | `qr`: the error correction, as `{qr}` takes it |
+| `level` | `qr`: the error correction, as `{qr}` takes it; `pdf417`: 0 to 8, by default the standard's recommendation for the size of the data |
+| `columns` | `pdf417`: the data columns, 1 to 30 - by default about three times as wide as high |
 
 **Behavior:** an EAN or UPC number is given with or without its check digit - left off, it
 is added; given, it is checked. EAN and UPC draw their guard bars longer and set the digits
@@ -1642,6 +1644,9 @@ GS1 General Specifications define them, at most 48 characters.
 `aztec` is Aztec Code (ISO/IEC 24778) in the smallest compact (15 to 27 modules) or full symbol
 (to 151) that leaves `ecc=` percent of its codewords and 3 more for the error correction; a text
 beyond ASCII is marked as UTF-8 by its ECI.
+`pdf417` is PDF417 (ISO/IEC 15438): rows of codewords in numeric, text and byte compaction
+between start and stop patterns and row indicators, `scale=` the module width, a row three
+modules high; a text beyond ASCII is marked as UTF-8 by its ECI.
 
 ---
 

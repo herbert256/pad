@@ -1,9 +1,13 @@
-{meta title='Tickets', about='Aztec, the square code of train tickets, its bullseye in the middle: it needs no quiet zone and grows by layers around it.'/}
+{meta title='Tickets', about='Aztec, the square code of train tickets, its bullseye in the middle, and PDF417, the stacked code of a boarding pass - its rows read in any order, each telling the scanner where it stands.'/}
 <div style="display:flex; flex-wrap:wrap; gap:18px; align-items:flex-start">
   <div style="display:flex; gap:16px; align-items:center; max-width:460px; padding:16px; background:#fff; color:#111; border:2px solid #111; border-radius:6px; font:14px/1.4 system-ui">
     {aztec 'PAD-RAIL|2026-11-01|UT|ASDZ|2|ADULT|0042', size=130, title='Ticket PAD-RAIL 0042'/}
     <div><b>Utrecht Centraal &rarr; Amsterdam Zuid</b><br>1 November 2026, 2nd class<br>1 adult, ticket 0042</div>
   </div>
-  <figure style="margin:0; text-align:center">{aztec 'Code 2D!', size=90/}<figcaption>the standard's own example</figcaption></figure>
+  <div style="display:grid; gap:10px; max-width:460px; padding:16px; background:#fff; color:#111; border:2px solid #111; border-radius:6px; font:14px/1.4 system-ui">
+    <div><b>Boarding pass</b> DOE/JOHN<br>AMS &rarr; LHR, KL 641, seat 12A</div>
+    {pdf417 'M1DOE/JOHN            EABC123 AMSLHRKL 0641 307Y012A0042 100', title='Boarding pass of John Doe, KL 641'/}
+  </div>
+  <figure style="margin:0; text-align:center">{aztec 'Code 2D!', size=90/}<figcaption>Aztec's own example</figcaption></figure>
   <figure style="margin:0; text-align:center">{aztec php:str_repeat('Aztec ', 60), size=150/}<figcaption>360 letters, a full symbol</figcaption></figure>
 </div>

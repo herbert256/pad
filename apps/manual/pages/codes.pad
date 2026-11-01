@@ -35,7 +35,10 @@ code of libraries and blood banks, <code>msi</code> that of shelf labels.
 the square code of parts and medicine packs. Both take any text and choose the smallest symbol that
 holds it, and both take <code>size=</code> in pixels in place of the height and scale of the bars.
 <code>aztec</code>, the code of train tickets and boarding passes with a bullseye in its middle, does
-the same, with <code>ecc=</code> for the share of its codewords that corrects errors.</p>
+the same, with <code>ecc=</code> for the share of its codewords that corrects errors.
+<code>pdf417</code>, the code of boarding passes and driving licences, stacks rows of codewords
+instead, each row telling the scanner where it stands; <code>columns=</code> sets how wide it is
+and <code>level=</code> its error correction.</p>
 
 {example 'fragments/codes_4'/}
 

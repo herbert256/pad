@@ -1620,9 +1620,10 @@ days its yearly decree moves around them; it knows the years since 2013.
 {datamatrix 'PAD-2026-0042', size=120/}         # Data Matrix ECC 200, the smallest of its 24 square sizes
 {gs1128 '(01)09501101530003(17)261231(10)AB-123'/}   # GS1-128: GS1 element strings, FNC1 where GS1 wants it
 {aztec $ticket, size=150, ecc=33/}              # Aztec Code, compact or full; ecc= percent of error correction (23)
+{pdf417 $boardingPass, columns=6, level=5/}     # PDF417, stacked rows; scale= module width, level= 0-8
 ```
 The symbologies are the files of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`,
-`code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `qr`, `datamatrix` and `aztec` - one
+`code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `qr`, `datamatrix`, `aztec` and `pdf417` - one
 file a symbology, which encodes the text and draws it; a symbology is added by adding its file.
 Each is written three ways, the same code: `{barcode '...', type='upce'/}`, the barcode type
 `{barcode:upce '...'/}`, and bare, `{upce '...'/}`, when no tag, store, field or sequence has
@@ -1649,6 +1650,15 @@ and full symbols (to 151) that leaves room for the error correction - `ecc=` in 
 codewords, 3 more always added, 23 by default as the standard recommends, 5 to 90. The text is
 written in the fewest bits its five modes and binary shifts allow, a text beyond ASCII marked as
 UTF-8 by its ECI (`pad/subs/codes/_lib/aztec.php`).
+
+`pdf417` is PDF417 (ISO/IEC 15438), the stacked code of boarding passes, driving licences and
+shipping documents: rows of codewords between start and stop patterns, a row indicator at both
+ends, the text in numeric (13 digits or more), text and byte compaction, a text beyond ASCII
+marked as UTF-8 by its ECI (`pad/subs/codes/_lib/pdf417.php`). `level=` is the error correction,
+0 to 8 - by default the standard's recommendation for the size of the data - `columns=` the data
+columns, 1 to 30 - by default those that make it about three times as wide as high - and
+`scale=` the width of a module in pixels, a row three modules high. A text of more than 928
+codewords, or of more than 90 rows in the columns asked, is an error under the strict check.
 
 ### Icons
 ```
