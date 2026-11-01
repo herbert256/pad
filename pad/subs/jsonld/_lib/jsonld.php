@@ -326,7 +326,10 @@
   }
 
   // One object of a kind from the values of its fields: its @type, its @id, and every field
-  // with a value written where its path says. FALSE when a required field has none.
+  // with a value written where its path says. FALSE when a required field has none, or a
+  // field is written without the one it needs - judged on what was written, so a price
+  // beside a currency that is none (EURO, left out by the lenient walk) is left out with its
+  // object as a price without a currency is, where it was written alone.
 
   function padJsonLdObject ( $kind, $spec, $values, $id, $report ) {
 
@@ -341,12 +344,27 @@
     $ok = padJsonLdFill ( $object, $spec ['fields'], $spec ['objects'], $values, "the JSON-LD $kind", TRUE, $report );
 
     foreach ( $spec ['needs'] as $field => $need )
-      if ( isset ( $values [$field] ) and ! isset ( $values [$need] ) ) {
-        $report ( "the JSON-LD $kind has a $field and no $need - give it as $need= or as a field $need of the row" );
+      if ( padJsonLdWritten ( $object, $spec ['fields'] [$field] ['path'] ) and ! padJsonLdWritten ( $object, $spec ['fields'] [$need] ['path'] ) ) {
+        if ( ! isset ( $values [$need] ) )
+          $report ( "the JSON-LD $kind has a $field and no $need - give it as $need= or as a field $need of the row" );
         $ok = FALSE;
       }
 
     return $ok ? $object : FALSE;
+
+  }
+
+  // Whether the object holds a value on a field's path - offers.price.
+
+  function padJsonLdWritten ( $object, $path ) {
+
+    foreach ( explode ( '.', $path ) as $step )
+      if ( is_array ( $object ) and array_key_exists ( $step, $object ) )
+        $object = $object [$step];
+      else
+        return FALSE;
+
+    return TRUE;
 
   }
 
