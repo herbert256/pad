@@ -142,10 +142,27 @@
       var n     = set[0].length;
       var steps = set[1];
       var line  = (i < 8) ? 'pc-l' + (i + 1) : 'pc-edge';
-      var d     = 'M' + C.padChartXY(x(low)) + ',' + C.padChartXY(y(0));
+      var pen   = C.padChartXY(y(0));
+      var d     = 'M' + C.padChartXY(x(low)) + ',' + pen;
+
+      // A step drawn where the one before it is drawn is folded into it, as ecdf.php does.
+
+      var points = [];
 
       steps.forEach(function (step) {
-        d += 'H' + C.padChartXY(x(step[0])) + 'V' + C.padChartXY(y(step[1] / n));
+        var px = C.padChartXY(x(step[0]));
+        var py = C.padChartXY(y(step[1] / n));
+        if (py === pen)
+          return;
+        if (points.length && points[points.length - 1][0] === px)
+          points[points.length - 1][1] = py;
+        else
+          points.push([px, py]);
+        pen = py;
+      });
+
+      points.forEach(function (p) {
+        d += 'H' + p[0] + 'V' + p[1];
       });
 
       svg += '<path class="' + line + '" d="' + d + 'H' + C.padChartXY(x(high)) + '"><title>' + C.padChartAttr(desc[set[2]]) + '</title></path>';

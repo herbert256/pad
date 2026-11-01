@@ -18,8 +18,9 @@
   // counted: the <desc> says per group how many values it draws, their median and range and
   // how many rows had no number. Each step of a group of at most 100 different values carries
   // its tooltip - at or below the value, so many of the group, the share - on a larger
-  // invisible target; a larger group has the line's tooltip alone, so the SVG grows with the
-  // groups and not with the rows.
+  // invisible target; a larger group has the line's tooltip alone, and the line folds a step
+  // drawn where the one before it is drawn into that one, so the SVG grows with the groups
+  // and the size of the plot, not with the rows.
 
   function padChartEcdf ( $rows, $width, $height ) {
 
@@ -153,10 +154,35 @@
 
       $n    = count ( $values );
       $line = ( $i < 8 ) ? 'pc-l' . ( $i + 1 ) : 'pc-edge';
-      $d    = 'M' . padChartXY ( $x ( $low ) ) . ',' . padChartXY ( $y ( 0 ) );
+      $pen  = padChartXY ( $y ( 0 ) );
+      $d    = 'M' . padChartXY ( $x ( $low ) ) . ",$pen";
 
-      foreach ( $steps as list ( $v, $at ) )
-        $d .= 'H' . padChartXY ( $x ( $v ) ) . 'V' . padChartXY ( $y ( $at / $n ) );
+      // A step drawn where the one before it is drawn is folded into it: one at the same
+      // place along goes up from there, and one at the same height is a line along that the
+      // next step's covers - the line drawn the same, its path a step per tenth of a pixel of
+      // the plot at the most, where it had one per different value, 100,000 rows a 1 MB SVG.
+
+      $points = [];
+
+      foreach ( $steps as list ( $v, $at ) ) {
+
+        $px = padChartXY ( $x ( $v ) );
+        $py = padChartXY ( $y ( $at / $n ) );
+
+        if ( $py === $pen )
+          continue;
+
+        if ( $points and $points [ count ( $points ) - 1 ] [0] === $px )
+          $points [ count ( $points ) - 1 ] [1] = $py;
+        else
+          $points [] = [ $px, $py ];
+
+        $pen = $py;
+
+      }
+
+      foreach ( $points as list ( $px, $py ) )
+        $d .= "H{$px}V{$py}";
 
       $svg .= "<path class=\"$line\" d=\"{$d}H" . padChartXY ( $x ( $high ) ) . '"><title>' . padChartAttr ( $desc [$about] ) . '</title></path>';
 
