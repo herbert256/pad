@@ -36,6 +36,7 @@ PAD;
     'pairs'    => 'memory: how many pairs (8).',
     'tries'    => 'hangman: wrong letters allowed (6); bullscows: guesses allowed (10).',
     'digits'   => 'bullscows: how long the secret number is (4).',
+    'draw'     => 'klondike: the cards the stock turns up at a time (1, up to 3).',
     'disks'    => 'hanoi: how many discs (4).',
     'heaps'    => 'nim: the heaps, <code>\'3, 4, 5\'</code>; <code>misere</code> - who takes the last match loses.',
     'rounds'   => 'scramble: words a game (10).',
