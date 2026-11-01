@@ -2407,10 +2407,13 @@ half. Written as a single tag the printable has one item without content.
 **Every kind of a grid** - labels, badges, cards, tickets, placecards - takes `paper`,
 `landscape`, `across`, `down`, `width`, `height` (mm), `margin` (the top and the left margin, one
 number for both; the grid centred without it), `pitch` (from an item to the next, across and
-down) and `skip` (the first cells of a used sheet left empty). **Every kind** takes `copies`
-(every item that many times), `padding`, `size` (points) and `align` for the text of its items,
-`scale` (the preview on the screen smaller, 0.1 to 3), `pdf` (the links of `{pdf preview}` in its
-bar: the page asked with `&padPdf` answers the sheets as a PDF, named by `file=`).
+down) and `skip` (the first cells of a used sheet left empty); they and indexcards take
+`padding`, `size` (points) and `align` for the text of their items, where the certificate, the
+envelope, the letter and the invoice take the `size` of their table above. **Every kind** takes
+`copies` (every item that many times, 5000 items at most), `scale` (the preview on the screen
+smaller, 0.1 to 3), `pdf` (the links of `{pdf preview}` in its bar: the page asked with `&padPdf`
+answers the sheets as a PDF, named by `file=` - no links inside a `{page}`, nor inside a `{pdf}`,
+whose document holds the sheets).
 
 **Behavior:** on the screen the sheets lie on a grey desk at their size in millimetres, the edges
 of the labels dashed, a bar above them with what they are, a Print button and the PDF links.
