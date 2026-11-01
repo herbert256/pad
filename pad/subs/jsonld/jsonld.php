@@ -54,6 +54,13 @@
 
   if ( $padJsonLdRows !== NULL ) {
 
+    // Plain values come as a list. A {data} block of one record is made rows of one field
+    // too, keyed by the record's names: those stay rows, never a value each - a password of
+    // the record would have been written as a name.
+
+    $padJsonLdNames = ( is_array ( $padJsonLdRows ) and ! array_filter ( array_keys ( $padJsonLdRows ), 'is_string' ) )
+                    ? [ $padPrm [$pad] ['data'] ?? '', padDataName ( '' ) ] : [];
+
     $padJsonLdRows = padJsonLdRows ( $padJsonLdRows );
 
     if ( $padJsonLdRows and padJsonLdHandles () ) {
@@ -63,7 +70,7 @@
       $padHandDone [$pad] = TRUE;
     }
 
-    $padJsonLdRows = padJsonLdPlain ( padJsonLdSpec ( $padJsonLdKind ), $padJsonLdRows, [ $padPrm [$pad] ['data'] ?? '', padDataName ( '' ) ] );
+    $padJsonLdRows = padJsonLdPlain ( padJsonLdSpec ( $padJsonLdKind ), $padJsonLdRows, $padJsonLdNames );
 
   }
 
