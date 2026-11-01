@@ -3094,7 +3094,8 @@ files of its `types/` the filters there are, written in the order they apply:
 | `lqip` | A placeholder: a tiny blurred PNG behind the picture | |
 
 The filters that change the picture work on each thumbnail after it was resized and are part of
-its name - the same picture and options, the same file, its bytes the same on every run. A pixel
+its name, with the density of that thumbnail - a blur of 6 CSS pixels is another picture at 2x
+than at 1x - the same picture and options, the same file, its bytes the same on every run. A pixel
 filter (pixelate and the dithers) is made at 1x alone and drawn `image-rendering: pixelated`; a
 filter of flat colours is a PNG unless `format=` says otherwise. halftone's dots, ascii's text and
 the placeholders are kept in `_thumbs/` as well, beside the thumbnails, made once. BlurHash is the

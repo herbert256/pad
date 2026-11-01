@@ -303,12 +303,17 @@
   // it never reads half a picture. NULL when it cannot be written - said once. $filters are
   // the image filters of filter=, applied after the picture was resized, $scale the density
   // of this picture - 1, or that of the 2x one - which a filter measured in CSS pixels reads.
+  //
+  // A filtered thumbnail's name holds that density too: a blur of 6 CSS pixels is 12 pixels
+  // on the 2x picture of a box of 100 by 50 and 6 on the 1x picture of a box of 200 by 100 -
+  // the same size of the same part of the source, another picture. Without it both had one
+  // name, and whichever was made first was shown for both.
 
   function padImgThumb ( $path, $type, $turn, $crop, $w, $h, $format, $quality, $base, $filters = [], $scale = 1 ) {
 
     global $padApp;
 
-    list ( $file, $url, $hash ) = padImgName ( $base, $w, $h, [ 'jpeg' => 'jpg', 'png' => 'png', 'webp' => 'webp' ] [$format] );
+    list ( $file, $url, $hash ) = padImgName ( $filters ? [ $base, $scale ] : $base, $w, $h, [ 'jpeg' => 'jpg', 'png' => 'png', 'webp' => 'webp' ] [$format] );
 
     if ( is_file ( $file ) )
       return $url;
