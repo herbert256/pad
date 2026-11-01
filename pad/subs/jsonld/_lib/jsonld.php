@@ -142,9 +142,12 @@
 
   // A value as plain characters: out of PAD's stand-ins, and - from an option - out of the
   // HTML escaping a field's sanitize step gave it. A list the same, element by element; an
-  // object as the array it holds; a date object and a number as they are.
+  // object as the array it holds; a date object and a number as they are. An object inside
+  // a value ($deep FALSE) stays the object it is - no value, which padJsonLdValue leaves out:
+  // read on, a model pointing back at itself - a post whose comments name the post - was
+  // walked until the stack was gone.
 
-  function padJsonLdText ( $value, $option = FALSE ) {
+  function padJsonLdText ( $value, $option = FALSE, $deep = TRUE ) {
 
     if ( is_string ( $value ) )
       return $option ? padParmText ( $value ) : padUnprotect ( $value );
@@ -155,11 +158,11 @@
     if ( $value instanceof Stringable )
       return padJsonLdText ( (string) $value, $option );
 
-    if ( is_object ( $value ) )
+    if ( is_object ( $value ) and $deep )
       $value = padToArray ( $value );
 
     if ( is_array ( $value ) )
-      return array_map ( fn ( $one ) => padJsonLdText ( $one, $option ), $value );
+      return array_map ( fn ( $one ) => padJsonLdText ( $one, $option, FALSE ), $value );
 
     return $value;
 
@@ -187,21 +190,25 @@
   // The rows of a data= value: a list of rows as it is, its keys left behind; a row of
   // fields - an array with a name for a key and a value that is no row, what db() answers
   // for a RECORD - a list of that one row; an object as its array. A list of plain values is
-  // a row each, the value of the kind's first field (padJsonLdRow). Nothing else holds rows.
+  // a row each, the value of the kind's first field (padJsonLdRow) - a date object and one
+  // that writes itself as text are values too. Nothing else holds rows. Only the rows are
+  // made arrays: the values of a row are read when the kind maps them (padJsonLdRow).
 
   function padJsonLdRows ( $data ) {
 
-    if ( is_object ( $data ) )
+    $object = fn ( $one ) => is_object ( $one ) and ! $one instanceof DateTimeInterface and ! $one instanceof Stringable;
+
+    if ( $object ( $data ) )
       $data = padToArray ( $data );
 
     if ( ! is_array ( $data ) or ! $data )
       return [];
 
     foreach ( $data as $key => $row )
-      if ( is_string ( $key ) and ! is_array ( $row ) and ! is_object ( $row ) )
+      if ( is_string ( $key ) and ! is_array ( $row ) and ! $object ( $row ) )
         return [ $data ];
 
-    return array_values ( array_map ( fn ( $row ) => is_object ( $row ) ? padToArray ( $row ) : $row, $data ) );
+    return array_values ( array_map ( fn ( $row ) => $object ( $row ) ? padToArray ( $row ) : $row, $data ) );
 
   }
 

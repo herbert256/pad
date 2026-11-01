@@ -36,7 +36,7 @@
       return [];
     }
 
-    $rows = padJsonLdEmpty ( $data ) ? NULL : padJsonLdRows ( padJsonLdText ( $data ) );
+    $rows = padJsonLdEmpty ( $data ) ? NULL : padJsonLdRows ( $data );
 
     return padJsonLdMake ( $kind, $rows, [], padJsonLdText ( $id ), fn ( $message ) => padError ( "padJsonLd: $message" ) ) ?: [];
 
