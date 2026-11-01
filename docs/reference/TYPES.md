@@ -712,7 +712,7 @@ named 'zigzag'".
 
 A text written in a notation and drawn on the server - a formula in AsciiMath, a chemical
 equation, a tune in ABC, a guitar chord, piano keys, braille, morse, semaphore, signal flags, a
-chess, go or draughts position, a guitar tab, a Karnaugh map, a bridge deal, a juggling pattern - of the kind the tag names: the notations subsystem in
+chess, go or draughts position, a guitar tab, a Karnaugh map, a bridge deal, a juggling pattern, the moves of a cube - of the kind the tag names: the notations subsystem in
 `PAD/subs/notations/` draws it, as the `{notation}` tag draws the kind its first parameter names.
 The text is the first parameter, or the content between the tags taken as it stands.
 

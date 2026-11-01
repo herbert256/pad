@@ -4,7 +4,7 @@
 
   $tagKinds   = padKinds ( 'notations' );
 
-  $tagAbout   = 'A text written in a notation, drawn on the server - ' . count ( $tagKinds ) . ' of them, from formulas in AsciiMath and chemical equations to a tune in ABC, guitar chords and tabs, braille, morse, signal flags, chess, go and draughts positions, Karnaugh maps, bridge deals and juggling patterns.';
+  $tagAbout   = 'A text written in a notation, drawn on the server - ' . count ( $tagKinds ) . ' of them, from formulas in AsciiMath and chemical equations to a tune in ABC, guitar chords and tabs, braille, morse, signal flags, chess, go and draughts positions, Karnaugh maps, bridge deals, juggling patterns and cube moves.';
   $tagGroup   = 'graphics';
   $tagForm    = 'both';
 
@@ -25,6 +25,7 @@
 {karnaugh 'm(1, 3, 5) + d(7)', form='pos'/}  {karnaugh}F = A'B + AC{/karnaugh}
 {bridge 'N:AKQ2.J9.T87.654 - - -', dealer='N', vulnerable='ns', points/}
 {siteswap '531'/}  {siteswap '(4,2x)(2x,4)'/}
+{cube "R U R' U'", view='cube', case, layers=3/}
 PAD;
 
   $tagParms   = [
@@ -36,8 +37,11 @@ PAD;
   $tagOptions = [
     'display'    => 'math, chem: <code>inline</code> (the default) or <code>block</code> - the formula on a line of its own, centred.',
     'alttext'    => 'math, chem: the text a screen reader without MathML says - the formula as written unless given.',
-    'title'      => 'abc, chord, piano, semaphore, signals, chess, go, draughts, tablature, karnaugh, bridge, siteswap: the accessible name.',
-    'size'       => 'The width in pixels - chord (120), semaphore a figure (64), signals a flag (40), chess, go and draughts the board (360) - or the height of the piano (120).',
+    'title'      => 'abc, chord, piano, semaphore, signals, chess, go, draughts, tablature, karnaugh, bridge, siteswap, cube: the accessible name.',
+    'size'       => 'The width in pixels - chord (120), semaphore a figure (64), signals a flag (40), chess, go and draughts the board (360), cube (240) - or the height of the piano (120).',
+    'view'       => 'cube: <code>net</code> (the default), the six faces unfolded, or <code>cube</code>, the up, front and right faces seen from above.',
+    'case'       => 'Bare option. cube: the cube the moves solve - the moves undone from solved - as an algorithm\'s case is drawn.',
+    'layers'     => 'cube: the layers of the cube, 2 to 7 - 3 unless given.',
     'width'      => 'abc: the lines spread over that many pixels; without it each line takes its natural width.',
     'instrument' => 'chord: <code>guitar</code> (the default) or <code>ukulele</code>.',
     'frets'      => 'chord: a shape of your own for the chord named - <code>x32010</code>, <code>8 10 10 9 8 8</code> past the ninth fret.',

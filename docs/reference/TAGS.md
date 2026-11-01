@@ -2193,7 +2193,7 @@ A missing address, an unknown default or fallback is an error under the strict c
 ### notation
 A text written in a notation, drawn on the server: a formula in AsciiMath, a chemical equation,
 a tune in ABC, a guitar chord, notes on a piano, braille, morse, semaphore, signal flags, a chess,
-go or draughts position, a guitar tab, a Karnaugh map, a bridge deal, a juggling pattern. Every notation is a file of `pad/subs/notations/types/`, its functions
+go or draughts position, a guitar tab, a Karnaugh map, a bridge deal, a juggling pattern, the moves of a cube. Every notation is a file of `pad/subs/notations/types/`, its functions
 in `pad/subs/notations/_lib/`, its style in `www/assets/notations/` - written once per page
 with the CSP nonce - and the files of `types/` are the notations there are; the subsystem is
 `pad/subs/notations/`. Nothing needs a script: MathML, HTML or inline SVG, the same bytes for the
@@ -2215,6 +2215,7 @@ same text.
 {karnaugh 'm(6, 8, 9, 10, 11, 12, 13, 14) + d(15)'/}    # minterms, maxterms, a truth table or an expression
 {bridge 'N:.63.AKQ987.A9732 A8654.KQ5.T.QJT6 J973.J98742.3.K4 KQT2.AT.J6542.85', dealer='N', points/}
 {siteswap '531'/}  {siteswap '(4,2x)(2x,4)'/}             # juggling patterns as a ladder diagram
+{cube "R U R' U' R' F R2 U' R' U' R U R' F'", case, view='cube'/}   # WCA cube notation
 ```
 
 A notation is written three ways, the same drawing each time: the tag, `{notation 'math', 'a/b'/}`,
@@ -2240,6 +2241,7 @@ nothing and its `@else@` shows.
 | `go` | A game record in SGF played out on 9, 13 or 19 lines, captures taken off | `numbers`, `move`, `plain`, `size`, `title` |
 | `draughts` | A position in the FEN of PDN, international 10 by 10 or 8 by 8 | `board` (`10`, `8`), `numbers`, `flip`, `highlight`, `size`, `title` |
 | `bridge` | A deal of contract bridge in the Deal tag of PBN 2.1 - the first seat and a colon, the four hands clockwise, suits apart by dots, `-` a hand not shown - as a bridge column's diagram: North on top, each suit from the ace down, the compass with the dealer ringed and the vulnerable sides red; every hand said card by card; a card twice, a rank that is none, hands of other sizes checked | `dealer` (`n`, `e`, `s`, `w`), `vulnerable` (`none`, `ns`, `ew`, `all` - PBN's `love`, `-`, `both` too), `points`, `title` |
+| `cube` | Moves of a twisty cube in the WCA notation (regulations 12a) - U D L R F B, `'`, `2`, Rw or r, 3Rw, 2R, M E S, x y z, `( )` with a repeat count - made on a solved cube (white up, green front) and drawn as a net of its six faces or three faces seen from above; `case` draws the cube the moves solve; every face said row by row | `view` (`net`, `cube`), `case`, `layers` (2 to 7), `size`, `title` |
 | `siteswap` | A juggling pattern in siteswap notation - vanilla `531`, `b97531` (a = 10), multiplex `[33]33`, synchronous `(4,2x)(2x,4)` with `*` - as a ladder diagram of the right and the left hand, every throw from the beat it leaves to the beat it lands, coloured by orbit; checked to be jugglable (no two balls landing at once), the balls its average, ground or excited state said | `title` |
 | `karnaugh` | A Boolean function of 2 to 4 variables as its Karnaugh map: the cells in Gray-code order with their 1s, 0s and don't cares, the groups of a minimal cover looped round (wrapping over the edges), the minimal expression under it in MathML. The function is `m(1,3) + d(0)`, `M(0,2)`, a truth table's column `0110 1001` or an expression - `F = A'B + AC`, `'` `~` `!` `not`, `+` `or`, `^` `xor`, juxtaposition `*` `and` - every prime implicant found by trying every cube, the cover the fewest groups then the fewest literals | `vars`, `form` (`sop`, `pos`), `numbers`, `title` |
 | `tablature` | A tab for a guitar, a bass, a ukulele - a line a string, the highest on top, frets on the lines, `\|` bars - drawn as printed with the signs of the OLGA guide to tab notation: `h` `p` arcs, `b` `r` arrows with the bend's size, `/` `\` slides, `~` `v` vibrato, `t` tap, `x` muted, `<12>` harmonic, `(8)` ghost; text over and under the strings kept in its columns; every note said with its string, fret and pitch | `tuning` (a name - `standard`, `dropd`, `dadgad`, `openg`, `opend`, `seven`, `bass`, `bass5`, `ukulele`, `mandolin`, `banjo` - or the notes from the lowest string), `title` |
@@ -2261,7 +2263,7 @@ the stones, the flags, the strings - or MathML, which a screen reader reads itse
 the code's colours). A name that is no notation, an option a notation does not read or a value
 outside its choices, and a text it cannot read - a FEN with seven ranks, an element the periodic
 table does not have, a character morse has no sign for, a move on a taken point, a sign a
-tab has not, a minterm past the cells of a map, a card dealt twice, a siteswap no juggler can throw - are errors under the strict check, as are a formula longer than 10 000 bytes and ABC slurs nested more than
+tab has not, a minterm past the cells of a map, a card dealt twice, a siteswap no juggler can throw, a cube move that is none - are errors under the strict check, as are a formula longer than 10 000 bytes and ABC slurs nested more than
 8 deep; without it the formula is drawn up to its limit and the slur left out. A byte that is no
 UTF-8 is a character no notation has a sign for.
 
@@ -4802,7 +4804,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `rating` | Output | Stars or hearts for a score as inline SVG, parts clipped, said in words |
 | `icon` | Output | One of 79 built-in line icons as inline SVG in `currentColor` |
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
-| `notation` | Output | A text in a notation drawn on the server - the files of `pad/subs/notations/types/`: AsciiMath, chemistry, ABC music, chords, piano, braille, morse, semaphore, signal flags, chess, go, draughts, tablature, Karnaugh maps, bridge deals, siteswaps |
+| `notation` | Output | A text in a notation drawn on the server - the files of `pad/subs/notations/types/`: AsciiMath, chemistry, ABC music, chords, piano, braille, morse, semaphore, signal flags, chess, go, draughts, tablature, Karnaugh maps, bridge deals, siteswaps, cube moves |
 | `chess` | Output | A chess position from FEN as inline SVG - the chess notation, as a built-in tag |
 | `game` | Output | A little game played in the browser - 18 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
 | `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
