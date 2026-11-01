@@ -2,7 +2,7 @@
 
   // The themes the switcher offers are the files of pad/subs/themes/types/ (padKinds).
 
-  $tagAbout   = 'A switcher of the themes: the visitor\'s choice kept in the session, every page in that theme from then on - a form, no JavaScript needed.';
+  $tagAbout   = 'A switcher of the themes: the visitor\'s choice kept in a cookie of the application, its pages in that theme from then on - a form, no JavaScript needed.';
   $tagGroup   = 'layout';
   $tagForm    = 'single';
 

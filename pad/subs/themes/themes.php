@@ -1,13 +1,14 @@
 <?php
 
   // The body of {themes/} - a switcher of the themes of subs/themes/types/: a form that posts the
-  // choice back to the page, which keeps it in the session (padThemeSwitch, _lib/theme.php) -
-  // every page of the site is in that theme from then on, this one already, as it goes out
-  // (padThemeAdd). Default takes the choice away: the application's $padTheme, or the frame's
-  // own colours. A <select> and a button, no script: the page changes when the visitor says
-  // so, not while an arrow key walks the list (WCAG 3.2.2), and it works without JavaScript.
-  // label= is the select's label ('Theme'), button= the button's text ('Apply'). The form
-  // writes no token of its own, so showing it starts no session - padThemeSwitch says why;
+  // choice back to the page, which keeps it in a cookie of the application (padThemeSwitch,
+  // _lib/theme.php) - its pages built on the frame, or all of them when it sets $padTheme, are
+  // in that theme from then on, this one already, as it goes out (padThemeAdd). Default takes
+  // the choice away: the application's $padTheme, or the frame's own colours. A <select> and a
+  // button, no script: the page changes when the visitor says so, not while an arrow key walks
+  // the list (WCAG 3.2.2), and it works without JavaScript. label= is the select's label
+  // ('Theme'), button= the button's text ('Apply'). The form writes no token of its own, so
+  // showing it or choosing starts no session - padThemeSwitch says why;
   // with $padCsrf on it carries the session's token as every form then does. It stays on one
   // line; in the frame's bar of a narrow window its label is there for a screen reader alone,
   // where label, list and button stood above each other and ran out of the bar.

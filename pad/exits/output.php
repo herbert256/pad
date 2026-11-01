@@ -50,10 +50,11 @@
     padReloadAdd ();
   }
 
-  // The theme - $padTheme, or a visitor's choice kept in the session - goes into the <head>
-  // the same way, so a cached page is served in the theme of whoever asks (subs/themes/).
+  // The theme - $padTheme, or a visitor's choice kept in the padTheme cookie - goes into the
+  // <head> the same way, so a cached page is served in the theme of whoever asks
+  // (subs/themes/). A page with neither costs nothing, and no session is started for it.
 
-  if ( $padTheme !== FALSE and ( $padTheme !== '' or padSessionExists () ) ) {
+  if ( $padTheme !== FALSE and ( ( is_string ( $padTheme ) and $padTheme !== '' ) or isset ( $_COOKIE ['padTheme'] ) ) ) {
     include_once PAD . 'subs/themes/_lib/theme.php';
     padThemeAdd ();
   }

@@ -4000,8 +4000,8 @@ nonce, on `:root:root:root` - outweighing the frame's light and dark rules, and 
 `<head>` got from `$padTheme` or a visitor's choice, which stand before it. Under a theme the
 frame's light/dark switch is hidden. As a pair the theme colours its content alone, a box with
 the theme's background and text, its style once per page. `$padTheme = 'paper'` puts every page
-of an application in a theme, `{themes/}` lets the visitor choose (kept in the session, winning
-over the setting), `$padTheme = FALSE` turns both off. Every theme's text reaches WCAG AA on its
+of an application in a theme, `{themes/}` lets the visitor choose (kept in a cookie of the
+application, winning over the setting), `$padTheme = FALSE` turns both off. Every theme's text reaches WCAG AA on its
 backgrounds, contrast's AAA. A name that is no theme, no name and content on the single form are
 strict errors.
 
@@ -4009,7 +4009,7 @@ strict errors.
 
 ### themes
 A switcher of the themes: a list of them, Default first, and a button - the choice posted back to
-the page and kept in the session, every page in that theme from then on.
+the page and kept in a cookie of the application, its pages in that theme from then on.
 
 ```html
 {themes/}
@@ -4027,8 +4027,12 @@ the page and kept in the session, every page in that theme from then on.
 visitor presses the button, not while an arrow key walks the list (WCAG 3.2.2), and it works
 without JavaScript. The post of the form is taken where the switcher renders, before the page
 goes out, so the answer to it is in the new theme already; Default takes the choice away. The
-form writes no token of its own, so showing it starts no session; with `$padCsrf` on it carries
-the session's token as every form then does. Content is a strict error.
+choice is the `padTheme` cookie (SameSite=Lax, a year) on the application's directory, read and
+checked on every request: it colours the application's pages built on the frame
+(`_common/pad.css`), or every page of an application that sets `$padTheme`, and no page of
+another application; a post from another site (`Sec-Fetch-Site: cross-site`) changes nothing.
+The form writes no token of its own, so showing it or choosing starts no session; with
+`$padCsrf` on it carries the session's token as every form then does. Content is a strict error.
 
 ---
 
@@ -4674,7 +4678,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `section` | Output | A block of a landing page - the files of `pad/subs/sections/types/`: hero, features, pricing, faq, cta, footer ... - pure CSS, coloured by the theme; `{section:item}` an item of a list section |
 | `effect` | Output | Motion and decoration, CSS first - the files of `pad/subs/effects/types/`: typewriter, highlighter, countup, reveal, marquee, spinner, confetti ... - still under reduced motion |
 | `theme` | Output | The page in a theme of `pad/subs/themes/types/` - the frame's colours swapped; as a pair, its content alone |
-| `themes` | Output | A switcher of the themes, the visitor's choice kept in the session - a form, no script |
+| `themes` | Output | A switcher of the themes, the visitor's choice kept in a cookie of the application - a form, no script |
 | `palette` | Output | The colours of a palette of `pad/subs/palettes/types/` as swatches with their hex values; palette= colours a chart |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |

@@ -4,7 +4,7 @@
   //
   //   $padTheme = 'paper';        _config/config.php - every page of the application
   //   {theme 'terminal'/}         the <style> of a theme, in this page
-  //   {themes/}                   a switcher: the visitor's choice, kept in the session
+  //   {themes/}                   a switcher: the visitor's choice, kept in a cookie
   //
   // A theme is a file of subs/themes/types/ - its name, its scheme (light or dark) and its
   // colours, by the roles of the frame's palette - and the files there are the themes there
@@ -21,9 +21,10 @@
   // a theme colours them too. The frame's files are not touched: the theme is a <style> on
   // top of them.
   //
-  // Which theme a page gets - padThemeChosen: the visitor's choice from a {themes/}
-  // switcher, kept in the session under padTheme, else $padTheme; FALSE in $padTheme turns
-  // both off. exits/output.php puts its <style> into the page's <head> on the way out
+  // Which theme a page gets - padThemeAdd: the visitor's choice from a {themes/} switcher,
+  // kept in the padTheme cookie of the application it was made in, on a page built on the
+  // frame or in an application that chose a theme itself, else $padTheme; FALSE in $padTheme
+  // turns both off. exits/output.php puts its <style> into the page's <head> on the way out
   // (padThemeAdd) - after the page cache has stored the page, as the toolbar goes in, so a
   // cached page is served in the theme of whoever asks for it, and the ETag is made again
   // from what goes out. {theme 'x'/} writes a theme where it stands; it comes after the
@@ -156,22 +157,29 @@
 
   }
 
-  // The theme this request's pages get: the visitor's choice kept in the session - read only
-  // when there is a session, none is started for it - else the $padTheme setting; '' for
-  // none, and always '' with $padTheme FALSE. A setting that names no theme is reported under
-  // the strict check.
+  // The visitor's choice is a cookie of its own, padTheme, on the directory of the application
+  // it was made in: read and checked against the themes on every request - a name that is
+  // no theme is no choice - and never kept in the session. It was: the hook started a session
+  // at the end of every page of every application for a visitor who had the host's session
+  // cookie - a stale one got a new session on every request - and a choice made in one
+  // application coloured every other one on the host.
 
-  function padThemeChosen () {
+  const padThemeCookie = 'padTheme';
+
+  function padThemeVisitor () {
+
+    $chosen = $_COOKIE [padThemeCookie] ?? '';
+
+    return ( is_string ( $chosen ) and padThemeType ( $chosen ) ) ? $chosen : '';
+
+  }
+
+  // The $padTheme setting as a theme, '' for none. A setting that names no theme is reported
+  // under the strict check.
+
+  function padThemeSetting () {
 
     global $padTheme, $padCheckSyntax;
-
-    if ( $padTheme === FALSE )
-      return '';
-
-    $chosen = padSession ( 'padTheme', '' );
-
-    if ( is_string ( $chosen ) and padThemeType ( $chosen ) )
-      return $chosen;
 
     if ( ! is_string ( $padTheme ) or $padTheme === '' )
       return '';
@@ -186,6 +194,33 @@
 
   }
 
+  // The theme the visitor has: the choice, else the $padTheme setting; '' for none, and
+  // always '' with $padTheme FALSE.
+
+  function padThemeChosen () {
+
+    global $padTheme;
+
+    if ( $padTheme === FALSE )
+      return '';
+
+    $chosen = padThemeVisitor ();
+
+    return ( $chosen !== '' ) ? $chosen : padThemeSetting ();
+
+  }
+
+  // Whether a page is built on the frame's palette - it links the frame's stylesheet,
+  // www/_common/pad.css - so a theme, which sets that palette, colours it as it should. A
+  // page with a design of its own - demo's, kanban's - went unreadable under a theme a
+  // visitor chose elsewhere: the theme's text colour on its own white panels.
+
+  function padThemeFramed ( $html ) {
+
+    return (bool) preg_match ( '#<link\b[^>]*/_common/pad\.css#i', (string) $html );
+
+  }
+
   // exits/output.php: the theme's <style> into the page on its way out - before </head>, or
   // at the start of a page without one - for an HTML page of the web answered 200; never an
   // include request, a {live} region's or a response fragment's answer, which are parts of a
@@ -193,17 +228,26 @@
 
   function padThemeAdd () {
 
-    global $padOutput, $padStop, $padContentType, $padOutputType, $padInclude, $padEtag,
+    global $padOutput, $padStop, $padContentType, $padOutputType, $padInclude, $padEtag, $padTheme,
            $padCacheStop, $padCacheServerGzip, $padFragmentSent, $padFragmentOnly, $padFragmentTarget;
 
-    if ( $padOutputType != 'web' or $padInclude or $padStop != 200
+    if ( $padTheme === FALSE or $padOutputType != 'web' or $padInclude or $padStop != 200
          or ! str_starts_with ( (string) $padContentType, 'text/html' ) or padLive () !== '' )
       return;
 
     if ( $padFragmentSent or ( (string) $padFragmentOnly !== '' and ! $padFragmentTarget ) )
       return;
 
-    $theme = padThemeChosen ();
+    // The visitor's choice colours a page built on the frame, or any page of an application
+    // that chose a theme of its own; another page gets the application's theme, if any.
+
+    $theme = padThemeVisitor ();
+
+    if ( $theme !== '' and padThemeSetting () === '' and ! padThemeFramed ( $padOutput ) )
+      $theme = '';
+
+    if ( $theme === '' )
+      $theme = padThemeSetting ();
 
     if ( $theme === '' )
       return;
@@ -221,25 +265,56 @@
 
   }
 
-  // A post of a {themes/} switcher: the theme chosen kept in the session under padTheme -
-  // Default ('') takes it out again; a name that is no theme changes nothing. The switcher
-  // writes no token of its own: a choice of colours is no change a forged post could do harm
-  // with, and a token would start a session - and send its cookie - for every visitor of
-  // every page that shows the switcher, where now the session starts when a visitor chooses.
-  // With $padCsrf on the form carries the session's token as every form does, and a post
-  // without it never gets here (lib/csrf.php).
+  // A post of a {themes/} switcher: the theme chosen kept in the padTheme cookie - Default
+  // ('') takes it away; a name that is no theme changes nothing - for this request too. The
+  // switcher writes no token of its own, so showing it starts no session, and keeping the
+  // choice starts none either. A post another site sends - its Sec-Fetch-Site says
+  // cross-site - changes nothing: it started a session, which replaced the visitor's own and
+  // logged them out of every application on the host, and planted its theme. With $padCsrf
+  // on the form carries the session's token as every form does, and a post without it never
+  // gets here (lib/csrf.php).
 
   function padThemeSwitch () {
 
     if ( ! padFormCameBack ( 'padThemes' ) or padSecondTime ( 'themeSwitch' ) )
       return;
 
+    if ( strtolower ( (string) ( $_SERVER ['HTTP_SEC_FETCH_SITE'] ?? '' ) ) === 'cross-site' )
+      return;
+
     $theme = $_POST ['padTheme'] ?? NULL;
 
+    if ( $theme === '' or ( is_string ( $theme ) and padThemeType ( $theme ) ) )
+      padThemeKeep ( $theme );
+
+  }
+
+  // The choice into its cookie, for a year, and into $_COOKIE for this request - '' takes it
+  // away. On the application's directory - /pad/shop/ - as inits/cookies.php keeps the
+  // identity cookies, so a choice colours the application it was made in and no other; where
+  // the address does not begin with that directory, or it holds what a cookie's path cannot,
+  // the browser's own choice stands. A script may read it: SameSite=Lax, not HttpOnly.
+
+  function padThemeKeep ( $theme ) {
+
     if ( $theme === '' )
-      padSessionForget ( 'padTheme' );
-    elseif ( is_string ( $theme ) and padThemeType ( $theme ) )
-      padSessionPut ( 'padTheme', $theme );
+      unset ( $_COOKIE [padThemeCookie] );
+    else
+      $_COOKIE [padThemeCookie] = $theme;
+
+    if ( headers_sent () )
+      return;
+
+    $flags = [ 'expires'  => ( $theme === '' ) ? 1 : time () + 60 * 60 * 24 * 366,
+               'samesite' => 'Lax',
+               'secure'   => padCookieSecure () ];
+
+    $dir = rtrim ( str_replace ( '\\', '/', dirname ( (string) ( $_SERVER ['SCRIPT_NAME'] ?? '' ) ) ), '/' ) . '/';
+
+    if ( str_starts_with ( (string) ( $_SERVER ['REQUEST_URI'] ?? '' ), $dir ) and strpbrk ( $dir, ",; \t\r\n\013\014" ) === FALSE )
+      $flags ['path'] = $dir;
+
+    setcookie ( padThemeCookie, $theme, $flags );
 
   }
 

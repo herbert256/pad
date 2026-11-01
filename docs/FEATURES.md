@@ -1451,7 +1451,7 @@ effect type, `pad/tags/effect.php` the tag.
 $padTheme = 'paper';               # _config/config.php: every page of the application in paper
 {theme 'terminal'/}                # this page in terminal - its <style>, where the tag stands
 {theme 'ocean'}...{/theme}         # a pair: its content alone, in a box of the theme
-{themes/}                          # a switcher - the visitor's choice, kept in the session
+{themes/}                          # a switcher - the visitor's choice, kept in a cookie
 {themes label='Colours', button='Use'/}
 ```
 A theme swaps the colours of the frame the PAD applications share (`www/_common/pad.css`) for a
@@ -1477,14 +1477,18 @@ application lists every pair of every theme. The light and dark themes are the f
 colours, with the four that fall short of AA in its set - the dim grey on the page (4.47), the
 side's headings (3.07 light, 4.09 dark), a link on the accent's tint (4.48) - darkened or
 lightened to it. Which theme a page gets: the visitor's choice from `{themes/}` - posted back to
-the page, kept in the session under `padTheme`, every PAD application on the host in it from then
-on, Default taking it away - else `$padTheme`; `$padTheme = FALSE` turns both off. That theme's
+the page and kept in a cookie of its own, `padTheme` (SameSite=Lax, a year), on the directory of
+the application it was made in, checked against the themes on every read, never in the session,
+Default taking it away; a post from another site (`Sec-Fetch-Site: cross-site`) changes nothing -
+on the pages of that application that are built on the frame (they link `_common/pad.css`), or
+on all of them when the application sets a `$padTheme`; else `$padTheme`. A page with a design
+of its own is never coloured by a visitor's choice, and `$padTheme = FALSE` turns both off. That theme's
 `<style>` goes into the page's `<head>` on the way out (`exits/output.php`), after the page
 cache, so a cached page is served in the theme of whoever asks, and the ETag is made from what
 goes out; never into an include request, a `{live}` region's or a fragment's answer, or a page
 that is no HTML. `{theme 'x'/}` comes after the `<head>`'s, so it wins. The switcher is a
 `<select>` and a button - no script: the page changes when the visitor says so (WCAG 3.2.2) - and
-writes no token of its own, so showing it starts no session; with `$padCsrf` on it carries the
+writes no token of its own, so showing it or choosing starts no session; with `$padCsrf` on it carries the
 session's token as every form then does. Code: `pad/subs/themes/` - `_lib/theme.php`
 (`padThemeCss`, `padThemeChosen`, `padThemeAdd`, `padThemeContrasts`), `theme.php` and
 `themes.php` the bodies of `{theme}` and `{themes}`.
