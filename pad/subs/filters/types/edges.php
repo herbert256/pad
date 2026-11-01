@@ -16,6 +16,12 @@
   // picture is no edge either. Written as a PNG unless format= says otherwise: thin lines of
   // flat colour, where JPEG rings.
   //
+  // The 2x picture reads its neighbours a CSS pixel away, $scale pixels: the 3 by 3 of every
+  // second pixel at a density of 2, and at a density between two whole numbers the gradients
+  // of both strides, weighed by how near it is to each - so a screen of any density shows the
+  // lines as strong and as wide as the 1x picture draws them (version 2: the neighbours next
+  // to each other saw half the change at 2x, the lines half as wide and about half as strong).
+  //
   // Transparency: the colour of a transparent pixel is no colour, so where the 3 by 3 reads one
   // it reads the brightness of the pixel in the middle instead - no line where a picture's
   // colour meets nothing - and the opacity has its own edges, the same way: the outline of a
@@ -28,6 +34,7 @@
     'form'     => 'image',
     'loops'    => TRUE,
     'lossless' => TRUE,
+    'version'  => 2,
     'options'  => [ 'colors' => [ 'colors', [ '#000000', '#ffffff' ], [ 'the ground first, then the lines', '#000, #fff', '#fbfaf7, #1d1d1b' ] ],
                     'amount' => [ 'number', 100, 10, 400 ] ],
 
@@ -38,6 +45,9 @@
       $ground = padFilterRgb ( $o ['colors'] [0] );
       $line   = padFilterRgb ( $o ['colors'] [1] );
       $gain   = $o ['amount'] / 100 / 4;
+      $stride = max ( 1, (int) floor ( $scale ) );
+      $part   = min ( 1, max ( 0, $scale - $stride ) );
+      $last   = $part ? 1 : 0;
       $ramp   = [];
       $values = [];
       $opaque = TRUE;
@@ -62,46 +72,68 @@
 
       for ( $y = 0; $y < $h; $y++ ) {
 
-        $a = $values [ max ( 0, $y - 1 ) ];
-        $b = $values [$y];
-        $c = $values [ min ( $h - 1, $y + 1 ) ];
+        $b    = $values [$y];
+        $sums = [];
 
-        for ( $x = 0; $x < $w; $x++ ) {
+        for ( $k = 0; $k <= $last; $k++ ) {
 
-          $left  = ( $x > 0 ) ? $x - 1 : 0;
-          $right = ( $x < $w - 1 ) ? $x + 1 : $x;
+          $step  = $stride + $k;
+          $weigh = $k ? $part : 1 - $part;
+          $a     = $values [ max ( 0, $y - $step ) ];
+          $c     = $values [ min ( $h - 1, $y + $step ) ];
 
-          // Sobel, written out - a call a pixel was a third of the time. On a picture that
-          // shows fully everywhere the opacity is the same 255 x 256 in every number, which
-          // the weights, summing to 0, take out again: the sums of the numbers are those of
-          // the luminances.
+          for ( $x = 0; $x < $w; $x++ ) {
 
-          if ( $opaque ) {
-            $gx = ( $a [$right] + 2 * $b [$right] + $c [$right] ) - ( $a [$left] + 2 * $b [$left] + $c [$left] );
-            $gy = ( $c [$left] + 2 * $c [$x] + $c [$right] ) - ( $a [$left] + 2 * $a [$x] + $a [$right] );
-            $m  = sqrt ( $gx * $gx + $gy * $gy );
-          } else {
-            $mid = $b [$x] & 255;
-            $p1  = $a [$left];  $p2 = $a [$x]; $p3 = $a [$right];
-            $p4  = $b [$left];                 $p6 = $b [$right];
-            $p7  = $c [$left];  $p8 = $c [$x]; $p9 = $c [$right];
-            $l1  = ( $p1 >> 8 ) ? $p1 & 255 : $mid;
-            $l2  = ( $p2 >> 8 ) ? $p2 & 255 : $mid;
-            $l3  = ( $p3 >> 8 ) ? $p3 & 255 : $mid;
-            $l4  = ( $p4 >> 8 ) ? $p4 & 255 : $mid;
-            $l6  = ( $p6 >> 8 ) ? $p6 & 255 : $mid;
-            $l7  = ( $p7 >> 8 ) ? $p7 & 255 : $mid;
-            $l8  = ( $p8 >> 8 ) ? $p8 & 255 : $mid;
-            $l9  = ( $p9 >> 8 ) ? $p9 & 255 : $mid;
-            $gx  = ( $l3 + 2 * $l6 + $l9 ) - ( $l1 + 2 * $l4 + $l7 );
-            $gy  = ( $l7 + 2 * $l8 + $l9 ) - ( $l1 + 2 * $l2 + $l3 );
-            $ax  = ( ( $p3 >> 8 ) + 2 * ( $p6 >> 8 ) + ( $p9 >> 8 ) ) - ( ( $p1 >> 8 ) + 2 * ( $p4 >> 8 ) + ( $p7 >> 8 ) );
-            $ay  = ( ( $p7 >> 8 ) + 2 * ( $p8 >> 8 ) + ( $p9 >> 8 ) ) - ( ( $p1 >> 8 ) + 2 * ( $p2 >> 8 ) + ( $p3 >> 8 ) );
-            $m   = sqrt ( max ( $gx * $gx + $gy * $gy, $ax * $ax + $ay * $ay ) );
+            $left  = ( $x > $step ) ? $x - $step : 0;
+            $right = ( $x + $step < $w ) ? $x + $step : $w - 1;
+
+            // Sobel, written out - a call a pixel was a third of the time. On a picture that
+            // shows fully everywhere the opacity is the same 255 x 256 in every number, which
+            // the weights, summing to 0, take out again: the sums of the numbers are those of
+            // the luminances.
+
+            if ( $opaque ) {
+              $gx = ( $a [$right] + 2 * $b [$right] + $c [$right] ) - ( $a [$left] + 2 * $b [$left] + $c [$left] );
+              $gy = ( $c [$left] + 2 * $c [$x] + $c [$right] ) - ( $a [$left] + 2 * $a [$x] + $a [$right] );
+              $ax = $ay = 0;
+            } else {
+              $mid = $b [$x] & 255;
+              $p1  = $a [$left];  $p2 = $a [$x]; $p3 = $a [$right];
+              $p4  = $b [$left];                 $p6 = $b [$right];
+              $p7  = $c [$left];  $p8 = $c [$x]; $p9 = $c [$right];
+              $l1  = ( $p1 >> 8 ) ? $p1 & 255 : $mid;
+              $l2  = ( $p2 >> 8 ) ? $p2 & 255 : $mid;
+              $l3  = ( $p3 >> 8 ) ? $p3 & 255 : $mid;
+              $l4  = ( $p4 >> 8 ) ? $p4 & 255 : $mid;
+              $l6  = ( $p6 >> 8 ) ? $p6 & 255 : $mid;
+              $l7  = ( $p7 >> 8 ) ? $p7 & 255 : $mid;
+              $l8  = ( $p8 >> 8 ) ? $p8 & 255 : $mid;
+              $l9  = ( $p9 >> 8 ) ? $p9 & 255 : $mid;
+              $gx  = ( $l3 + 2 * $l6 + $l9 ) - ( $l1 + 2 * $l4 + $l7 );
+              $gy  = ( $l7 + 2 * $l8 + $l9 ) - ( $l1 + 2 * $l2 + $l3 );
+              $ax  = ( ( $p3 >> 8 ) + 2 * ( $p6 >> 8 ) + ( $p9 >> 8 ) ) - ( ( $p1 >> 8 ) + 2 * ( $p4 >> 8 ) + ( $p7 >> 8 ) );
+              $ay  = ( ( $p7 >> 8 ) + 2 * ( $p8 >> 8 ) + ( $p9 >> 8 ) ) - ( ( $p1 >> 8 ) + 2 * ( $p2 >> 8 ) + ( $p3 >> 8 ) );
+            }
+
+            // Between two strides: the gradients of the row weighed and summed, drawn below.
+
+            if ( $last ) {
+              $sum        = $sums [$x] ?? [ 0, 0, 0, 0 ];
+              $sums [$x]  = [ $sum [0] + $weigh * $gx, $sum [1] + $weigh * $gy, $sum [2] + $weigh * $ax, $sum [3] + $weigh * $ay ];
+              continue;
+            }
+
+            $m = sqrt ( max ( $gx * $gx + $gy * $gy, $ax * $ax + $ay * $ay ) );
+
+            imagesetpixel ( $image, $x, $y, ( imagecolorat ( $image, $x, $y ) & 0x7F000000 ) | $ramp [ min ( 255, (int) round ( $m * $gain ) ) ] );
+
           }
 
-          imagesetpixel ( $image, $x, $y, ( imagecolorat ( $image, $x, $y ) & 0x7F000000 ) | $ramp [ min ( 255, (int) round ( $m * $gain ) ) ] );
+        }
 
+        foreach ( $sums as $x => list ( $gx, $gy, $ax, $ay ) ) {
+          $m = sqrt ( max ( $gx * $gx + $gy * $gy, $ax * $ax + $ay * $ay ) );
+          imagesetpixel ( $image, $x, $y, ( imagecolorat ( $image, $x, $y ) & 0x7F000000 ) | $ramp [ min ( 255, (int) round ( $m * $gain ) ) ] );
         }
 
       }
