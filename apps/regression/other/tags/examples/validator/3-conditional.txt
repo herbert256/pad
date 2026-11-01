@@ -11,7 +11,7 @@
   if (window.padValidate) return;
   var rules = {};
   var empties = {"accepted":true,"required":true,"required_if":true,"required_unless":true,"required_with":true,"required_without":true};
-  var lookers = {"after":true,"before":true,"required_if":true,"required_unless":true,"required_with":true,"required_without":true,"same":true};
+  var lookers = {"after":true,"after_or_equal":true,"before":true,"before_or_equal":true,"different":true,"gt":true,"gte":true,"lt":true,"lte":true,"required_if":true,"required_unless":true,"required_with":true,"required_without":true,"same":true};
   function addRule(name, spec) {
     rules[name] = spec;
   }

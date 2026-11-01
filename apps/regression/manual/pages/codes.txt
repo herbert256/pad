@@ -1,6 +1,6 @@
 <p><b>{barcode}</b> and <b>{qr}</b> write a code a scanner reads. It is encoded on the server and
 drawn as inline SVG - no image library, no font, no remote service - so a page with a code prints,
-caches and goes in an e-mail like any other. There are 13
+caches and goes in an e-mail like any other. There are 18
 symbologies, every one a file of <code>pad/subs/codes/types/</code>. Twelve or thirteen digits are an
 EAN-13, with the check digit added when it is left off; any other text is Code 128.</p>
 
@@ -135,10 +135,17 @@ has that name. All three draw the same UPC-E.</p>
 <h2>Products, parcels and labels</h2>
 
 <p>The product codes - <code>ean13</code>, <code>ean8</code>, <code>upca</code> and
-<code>upce</code> - check the digit a number ends in, or add it. Code 128 and Code 93 take printable
+<code>upce</code> - check the digit a number ends in, or add it; <code>databar</code>, GS1 DataBar, writes a
+GTIN in the small symbol of loose fruit and vegetables. Code 128 and Code 93 take printable
 ASCII, Code 39 capital letters, digits and a few signs, with <code>check</code> for its check
 symbol. <code>itf</code> and <code>itf14</code> are the digits of cartons, <code>codabar</code> the
-code of libraries and blood banks, <code>msi</code> that of shelf labels.</p>
+code of libraries and blood banks, <code>msi</code> that of shelf labels.
+<code>gs1128</code> writes the GS1 element strings of a logistics label -
+<code>(01)09501101530003(17)261231(10)AB-123</code> - with every value checked as GS1 defines it;
+<code>datamatrix</code> with <code>gs1</code> writes them as GS1 DataMatrix, the code of medicine packs.
+<code>bookland</code> is the barcode of a book, its ISBN as an EAN-13 with the ISBN above the bars,
+and <code>addon=</code> puts two or five more digits beside an EAN or UPC - a magazine's issue, a
+book's price.</p>
 
 
 
@@ -205,7 +212,12 @@ code of libraries and blood banks, <code>msi</code> that of shelf labels.</p>
 
 <p><code>qr</code> is the code of <b>{qr}</b>, which a phone camera reads; <code>datamatrix</code>
 the square code of parts and medicine packs. Both take any text and choose the smallest symbol that
-holds it, and both take <code>size=</code> in pixels in place of the height and scale of the bars.</p>
+holds it, and both take <code>size=</code> in pixels in place of the height and scale of the bars.
+<code>aztec</code>, the code of train tickets and boarding passes with a bullseye in its middle, does
+the same, with <code>ecc=</code> for the share of its codewords that corrects errors.
+<code>pdf417</code>, the code of boarding passes and driving licences, stacks rows of codewords
+instead, each row telling the scanner where it stands; <code>columns=</code> sets how wide it is
+and <code>level=</code> its error correction.</p>
 
 
 
