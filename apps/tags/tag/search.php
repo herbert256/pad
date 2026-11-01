@@ -16,7 +16,7 @@ PAD;
   $tagOptions = [
     'q'       => 'The query: words (any of them), <code>"a phrase"</code> (required, in order), <code>prefix*</code>, <code>-word</code> and <code>-"a phrase"</code> (left out).',
     'fields'  => 'The fields searched with their boosts, <code>\'title^2, body\'</code> - a collection\'s default; other rows every field that holds text in any row.',
-    'lang'    => 'The language of the stop words and the stemmer: <code>en</code>, <code>nl</code>, <code>de</code>, <code>fr</code>, <code>es</code>, <code>it</code> - the locale\'s, else English.',
+    'lang'    => 'The language of the stop words and the stemmer: <code>en</code>, <code>nl</code>, <code>de</code>, <code>fr</code>, <code>es</code>, <code>it</code>, <code>pt</code> - the locale\'s, else English.',
     'words'   => 'The length of the excerpt in words, default 30.',
     'excerpt' => 'The field the excerpt is cut from, default the last of <code>fields</code>.',
     'link'    => 'The single tag\'s list: a field with the link of a hit - http(s), a page or an anchor.' ];

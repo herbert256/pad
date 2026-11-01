@@ -1,0 +1,9 @@
+{data 'paginas'}
+[ { "t": "As cidades brasileiras" }, { "t": "Uma cidade portuguesa" }, { "t": "Informações e comunicação" }, { "t": "Viajar com os amigos" } ]
+{/data}
+{!stems}|
+{search 'paginas', q='cidade', lang='pt'}{$t}; {/search}|
+{search 'paginas', q='informação', lang='pt'}{$t}; {/search}|
+{search 'paginas', q='informacoes', lang='pt'}{$t}; {/search}|
+{search 'paginas', q='viagem amigo', lang='pt'}{$t}; {/search}|
+{search 'paginas', q='com os', lang='pt'}{$t}; @else@none{/search}

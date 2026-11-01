@@ -1,0 +1,9 @@
+{meta title='In Portuguese', about='lang=\'pt\' - Snowball\'s Portuguese stop words and stemmer, one for Portugal and Brazil: a word is found in another form, the singular by the plural.'/}
+{data 'paginas'}
+[ { "t": "As cidades brasileiras" }, { "t": "Uma cidade portuguesa" },
+  { "t": "Informações e comunicação" }, { "t": "Viajar com os amigos" } ]
+{/data}
+<ul>
+  <li>cidade: {search 'paginas', q='cidade', lang='pt'}{$t}; {/search}</li>
+  <li>informação: {search 'paginas', q='informação', lang='pt'}{$t}; {/search}</li>
+</ul>

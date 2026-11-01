@@ -8,8 +8,8 @@
   // it changed in the last second), a hash of the fields searched of any other source's
   // rows, and the code that makes an index (padSearchStamp).
   //
-  // A language is a file of subs/search/types/ - en, nl, de, fr, es, it - with its stop words
-  // and its Snowball stemmer; a language is added by adding its file. A text is split into words
+  // A language is a file of subs/search/types/ - en, nl, de, fr, es, it, pt - with its stop
+  // words and its Snowball stemmer; a language is added by adding its file. A text is split into words
   // by Unicode letters and digits (an apostrophe inside a word stays: l'homme, don't), each
   // word in lower case; a stop word counts for the positions only, every other word is
   // stemmed and then written without its accents - café, cafe and cafés are one term - and a
