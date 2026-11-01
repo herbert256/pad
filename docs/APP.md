@@ -867,7 +867,7 @@ the rules are the files of `pad/subs/rules/types/` - `required`, `email`, `url`,
 `integer`, `min:n`, `max:n`, `between:a,b`, `in:a,b,c`, `regex:/.../`, `same:field`,
 `accepted`, `date`, `time`, `digits:n`, `alpha`, `alphanum`, `starts_with:x`, `ends_with:x`,
 `lowercase`, `uppercase`, `color`, `uuid`, `ip`, `slug`, `json`, `iban`, `not_in:a,b`,
-`distinct` (no value of a list twice), and the
+`distinct` (no value of a list twice), `multiple_of:n` (`multiple_of:0.25`), and the
 rules that look at another field - `required_if:field,value`, `required_unless:field,value`,
 `required_with:field`, `required_without:field`, `before:field` and `after:field` (or a date,
 `after:2026-01-01`), `different:field` (the mirror of `same:`). An empty field is checked for `required`, `accepted` and the

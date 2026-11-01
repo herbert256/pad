@@ -1,6 +1,7 @@
-<form method="get" novalidate data-pad-rules="{&quot;password&quot;:{&quot;label&quot;:&quot;Password&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;min&quot;,&quot;8&quot;,&quot;:label must be at least :n characters&quot;,&quot;8&quot;],[&quot;different&quot;,&quot;current_password&quot;,&quot;:label must be different from :n&quot;,&quot;Current password&quot;]],&quot;watch&quot;:[&quot;current_password&quot;]}}">
+<form method="get" novalidate data-pad-rules="{&quot;password&quot;:{&quot;label&quot;:&quot;Password&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;min&quot;,&quot;8&quot;,&quot;:label must be at least :n characters&quot;,&quot;8&quot;],[&quot;different&quot;,&quot;current_password&quot;,&quot;:label must be different from :n&quot;,&quot;Current password&quot;]],&quot;watch&quot;:[&quot;current_password&quot;]},&quot;bottles&quot;:{&quot;label&quot;:&quot;Bottles&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;multiple_of&quot;,&quot;6&quot;,&quot;:label must be a multiple of :n&quot;,&quot;6&quot;],[&quot;max&quot;,&quot;120&quot;,&quot;:label must be at most :n&quot;,&quot;120&quot;]]}}">
   <label for="m-current">Current password</label> <input name="current_password" id="m-current" type="password">
   <label for="m-password">New password</label> <input name="password" id="m-password" type="password">
+  <label for="m-bottles">Bottles</label> <input name="bottles" id="m-bottles" inputmode="numeric"> <small>by the crate of six</small>
   <button>Check</button>
 </form>
 <script>
@@ -283,6 +284,30 @@ addRule('max', {
 (function () {
 addRule('min', {
   check: function (value, arg, values, number) { return size(value, number) >= toNumber(arg); }
+});
+})();
+(function () {
+function decimal(text) {
+  var at = /^[ \t\n\r\v\f]*[+-]?(?:([0-9]+)(?:\.([0-9]*))?|\.([0-9]+))(?:[eE]([+-]?)([0-9]+))?[ \t\n\r\v\f]*$/.exec(String(text));
+  if (!at) return null;
+  var fraction = (at[2] || '') + (at[3] || '');
+  var power = (at[5] || '').replace(/^0+/, '');
+  power = power.length > 9 ? 1000000000 : +power;
+  var digits = ((at[1] || '') + fraction).replace(/^0+/, '');
+  var whole = digits.replace(/0+$/, '');
+  return [whole, fraction.length - (at[4] === '-' ? -power : power) - (digits.length - whole.length)];
+}
+addRule('multiple_of', {
+  check: function (value, arg) {
+    var number = decimal(value), by = decimal(trim(String(arg)));
+    if (!number || !by || by[0] === '' || by[0].length > 14) return false;
+    if (number[0] === '') return true;
+    if (number[1] > by[1]) return false;
+    var divisor = parseInt(by[0], 10), rest = 0;
+    for (var i = 0; i < number[0].length; i++) rest = (rest * 10 + +number[0].charAt(i)) % divisor;
+    for (var zeros = Math.min(by[1] - number[1], 50); zeros > 0 && rest; zeros--) rest = rest * 10 % divisor;
+    return rest === 0;
+  }
 });
 })();
 (function () {

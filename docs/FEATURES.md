@@ -724,6 +724,14 @@ judges one text - `min:2`, `email` - on a field that posts a list (`tags[]`, a `
 a list is judged by `required`, the `required_*` rules, `in:` and `not_in:` alone, and any other
 refuses every post of it.
 
+`multiple_of:n` holds a number to whole steps - `multiple_of:6` crates of six, `multiple_of:0.25`
+quarters of an hour, `multiple_of:0.01` whole cents - reckoned in the decimal digits as written,
+on the server and in the browser alike, never in floating point (0.3 is a multiple of 0.1, a
+number of thirty digits is judged to its last); the value is a number as `numeric` reads one,
+the sign not counting, 0 a multiple of every n, and like `numeric` it makes the field a number
+for `min`, `max` and `between`. Its argument is a positive number written plainly, of at most
+14 digits: `multiple_of:0` is an error. "Bottles must be a multiple of 6".
+
 Some rules speak about a list, a field named `guests[]`: `distinct` refuses a value it holds
 twice - as written, each trimmed, an item left blank no value (three fields of `guests[]`, two
 of them empty, pass) - "Guests must not hold the same value twice"; a field of one value holds
