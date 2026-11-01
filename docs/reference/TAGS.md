@@ -2469,6 +2469,7 @@ from a page's own script.
 
 | Sound | What it is |
 |-------|------------|
+| `applause` | A short round of applause from a small, made-up crowd - claps at five paces, thinning out |
 | `bell` | A struck bell, inharmonic partials dying away for two seconds |
 | `chime` | Two soft bells a fifth apart - something went well |
 | `clap` | A hand clap as a drum machine makes it: three bursts of noise, then the room |
