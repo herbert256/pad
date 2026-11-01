@@ -66,6 +66,7 @@ applications show them working.
   - [Icons](#icons)
   - [Patterns](#patterns)
   - [Image filters](#image-filters)
+  - [Notations](#notations)
   - [Showcase tags](#showcase-tags)
   - [Live Regions (interactivity without app JavaScript)](#live-regions-interactivity-without-app-javascript)
 - [Development](#development)
@@ -1187,6 +1188,39 @@ option out of its bounds and a filter that cannot follow the one before are erro
 check. Code: `pad/subs/filters/` - `_lib/filter.php` the chain and its options, `_lib/dither.php`,
 `_lib/blurhash.php`, `types/` the filters - and `pad/tags/_lib/img.php`, which applies them. The
 `patterns` application shows every filter on the same picture.
+
+### Notations
+```
+{math}x = (-b +- sqrt(b^2 - 4ac))/(2a){/math}        # AsciiMath as MathML - every browser draws it, no script
+{math 'sum_(i=1)^n i = (n(n+1))/2', display='block'/}  # alttext= what a reader without MathML says
+{chem 'CH4 + 2O2 -> CO2 + 2H2O'/}                     # counts, charges, states, <=>, ->[Delta], every element checked
+{abc}...{/abc}                                        # a tune in ABC - T: M: L: K: lines, then the music - as a staff
+{notation:chord 'Am', instrument='ukulele'/}          # a chord box from a name or frets='x32010'
+{piano 'C4 E4 G4'/}  {piano 'Dm7'/}                   # keys marked on a keyboard; from=, to=
+{braille 'Hello'/}  {braille 'Lift', cells/}          # Unified English Braille grade 1, or its raised dots
+{morse 'SOS'/}  {semaphore 'PAD'/}  {signals 'PAD 26'/}   # ITU morse and its signal; flag semaphore; ICS flags
+{chess $fen, flip, highlight='e2, e4', arrow='e2-e4'/}    # FEN - the {chess} tag, now a notation
+{go '(;SZ[9]AB[cc];B[ee];W[ec])', numbers/}           # SGF played out, captures taken off; move=, plain
+{draughts 'W:W31-50:B1-20'/}  {draughts 'B:W21-32:B1-12', board=8/}   # the FEN of PDN, 10 by 10 or 8 by 8
+{notation 'braille', 'Hello'/}                        # the tag: its second parameter the kind's text
+```
+A text written in a notation, drawn on the server the way `{diagram}` lays out a flowchart:
+MathML for the formulas, HTML and inline SVG for the rest - no script, the same bytes for the
+same text, every drawing a named image with a description in words (the pieces, the stones,
+the notes, the flags), its colours `--pad-<kind>-*` with `light-dark()` defaults. The text is
+the kind's first parameter, or the content between the tags taken as written before the level
+walks it, so the braces of AsciiMath and the brackets of SGF need no `{ignore}`. The notations
+are the files of `pad/subs/notations/types/` - math (AsciiMath, not TeX, as TeX's braces are
+PAD's), chem, abc, chord, piano, braille, morse, semaphore, signals, chess, go and draughts - and
+a notation is added by adding its file. Each is written three ways: `{notation 'math', 'a/b'/}`,
+the notation type `{notation:math 'a/b'/}` and bare, `{math 'a/b'/}`, after every other kind of
+tag; `chord` bare is the charts' chord diagram, so a guitar chord is `{notation:chord}`. `{chess}`
+was a built-in tag and draws as it did, reached bare. A text a notation cannot read - a FEN with
+seven ranks, an element the periodic table lacks, a character morse has no sign for, a move on
+a taken point - is an error under the strict check. Code: `pad/subs/notations/` -
+`notation.php` the body every form runs, `_lib/` the drawing of each kind, `assets/` the styles,
+`types/` the kinds; `pad/types/notation.php` the notation type, `pad/tags/notation.php` the tag.
+The `notations` application shows every kind with its examples.
 
 ### Showcase tags
 ```

@@ -93,6 +93,8 @@
                       "{sound:chime/}\n{sound 'chime'/}\n{sound:pop on='click', target='#save'/}" ],
       'printable' => [ 'A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.', 'subsystems',
                       "{printable:labels data='rows', sheet='a4-3x8'}...{/printable:labels}\n{printable 'labels', data='rows'}...{/printable}" ],
+      'notation' => [ 'A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.', 'subsystems',
+                      "{notation:braille 'Hello'/}\n{notation 'braille', 'Hello'/}\n{braille 'Hello'/}\n{math}a/b{/math}" ],
 
     ];
 

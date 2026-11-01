@@ -1,0 +1,16 @@
+{notationExamples}
+<section class="nt-example" id="{$slug}" aria-labelledby="{$slug}-title">
+  <h2 id="{$slug}-title">{$title}</h2>
+  {if $about}<p class="nt-about">{$about}</p>{/if}
+  <div class="nt-pair">
+    <div class="nt-cell nt-code pad-play-box">
+      <div class="nt-head">Template</div>
+      {!play}<pre class="nt-source"><code>{!source}</code></pre>
+    </div>
+    <div class="nt-cell nt-out">
+      <div class="nt-head">Result</div>
+      <div class="nt-result">{echo $template | code/}</div>
+    </div>
+  </div>
+</section>
+{/notationExamples}

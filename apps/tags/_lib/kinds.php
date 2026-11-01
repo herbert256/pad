@@ -30,6 +30,7 @@
       'pattern'  => [ 'Patterns',          'A pattern of {pattern} each, seeded SVG art',        'single', ' seed=7/}',                                   'pattern' ],
       'sound'    => [ 'Sounds',            'A sound of {sound} each, synthesised in the browser', 'single', '/}',                                          'sound'   ],
       'printable' => [ 'Printables',       'A kind of {printable} each, pages made for paper',   'pair',   "}\n  ...\n{/printable:%s}",                   'printable' ],
+      'notation' => [ 'Notations',         'A notation of {notation} each, drawn on the server',  'both',   " 'text'/}",                                   'notation' ],
     ];
 
   }
@@ -222,6 +223,7 @@
 
       case 'widget':
       case 'diagram':
+      case 'notation':
         $dir = ( $kind == 'copy' ) ? 'copy' : $type;
         foreach ( tagsKindAppPages ( 'tags', "examples/$dir" ) as $page => $source )
           if ( $dir == 'copy' or str_starts_with ( basename ( $page ), "$kind-" )
@@ -364,7 +366,8 @@
       'pattern'  => [ "{pattern:$kind .../}", "{pattern '$kind', .../}" ],
       'sequence' => [ "{sequence:$kind}...{/sequence:$kind}", "sequence:$kind(8) in an expression, the eighth term" ],
       'sound'    => [ "{sound:$kind/}", "{sound '$kind'/}" ],
-      'printable' => [ "{printable:$kind}...{/printable:$kind}", "{printable '$kind'}...{/printable}" ] ] [$type];
+      'printable' => [ "{printable:$kind}...{/printable:$kind}", "{printable '$kind'}...{/printable}" ],
+      'notation' => [ "{notation:$kind 'text'/}", "{notation '$kind', 'text'/}" ] ] [$type];
 
     if ( tagsKindBare ( $type, $kind ) )
       $ways [] = "{{$kind} ...}, bare, when no tag, field or store has the name";

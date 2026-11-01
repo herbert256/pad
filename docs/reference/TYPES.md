@@ -701,6 +701,31 @@ added by adding its file. Never bare: `{labels}` is no printable - labels, cards
 names of fields and pages. `{printable:zigzag}...{/printable:zigzag}` is "there is no printable
 named 'zigzag'".
 
+## Notation Types
+
+### notation
+
+A text written in a notation and drawn on the server - a formula in AsciiMath, a chemical
+equation, a tune in ABC, a guitar chord, piano keys, braille, morse, semaphore, signal flags, a
+chess, go or draughts position - of the kind the tag names: the notations subsystem in
+`PAD/subs/notations/` draws it, as the `{notation}` tag draws the kind its first parameter names.
+The text is the first parameter, or the content between the tags taken as it stands.
+
+```
+{notation:math}x = (-b +- sqrt(b^2 - 4ac))/(2a){/notation:math}
+{notation:chord 'Am', instrument='ukulele'/}
+{braille 'Hello'/}
+{chess $fen/}
+```
+
+**Resolution:** a PHP file `PAD/subs/notations/types/<name>.php`, its functions in
+`PAD/subs/notations/_lib/<name>.php` and its style in `PAD/subs/notations/assets/<name>.css`: the files
+of `types/` are the notations, and a notation is added by adding its files. Bare, a notation
+comes after every other kind of tag and the subsystems before it in `padSubsystems`, so a store, a
+field, an array of the name or a kind of another subsystem wins: bare `{chord}` is the chord
+diagram of the charts, the guitar chord `{notation:chord}`. `{chess}`, a built-in tag before, is
+reached bare and draws as it did. `{notation:zebra/}` is "there is no notation named 'zebra'".
+
 ---
 
 ## Sequence Types
@@ -843,6 +868,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `pattern` | PAD/subs/patterns/types/ | Seeded SVG patterns |
 | `sound` | PAD/subs/sounds/types/ | Sounds |
 | `printable` | PAD/subs/printables/types/ | Printables |
+| `notation` | PAD/subs/notations/types/ | Notations |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -883,6 +909,7 @@ types/
 ├── local.php       → Local file
 ├── macro.php       → Macro of the template ({macro})
 ├── make.php        → Sequence make
+├── notation.php    → Notation
 ├── pad.php         → PAD tag
 ├── parm.php        → Tag parameter
 ├── pattern.php     → Pattern

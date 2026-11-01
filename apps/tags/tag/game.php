@@ -43,6 +43,6 @@ PAD;
     'solve'    => 'Bare option, sudoku: the puzzle drawn with its solution. <code>solution</code> does it for a crossword.',
     'order'    => 'Bare option, quiz: the questions in the order written.' ];
 
-  $tagSee     = [ 'chess', 'chart', 'data' ];
+  $tagSee     = [ 'notation:chess', 'chart', 'data' ];
 
 ?>

@@ -28,6 +28,7 @@
     'pattern' => [ 'patterns', FALSE, 'pattern'        ],
     'sound'   => [ 'sounds',   FALSE, 'sound'          ],
     'printable' => [ 'printables', FALSE, 'printable'  ],
+    'notation' => [ 'notations', TRUE, 'notation'      ],
   ];
 
   // The kinds of the subsystem in pad/subs/<directory>/: the names of the files of its types/,

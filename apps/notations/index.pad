@@ -1,0 +1,14 @@
+{meta title='Notations'/}
+<p class="nt-lead">Text written in a notation and drawn on the server - a formula, a chemical equation,
+a tune, a chord, a word in braille, morse or flags, a chess, go or draughts position. Each is a
+tag of its own, a file of <code>pad/subs/notations/types/</code> in the engine, written
+<code>{open/}notation 'kind', 'text'/{close/}</code>, as <code>{open/}notation:kind 'text'/{close/}</code>
+or, when nothing else has the name, bare: <code>{open/}math 'a/b'/{close/}</code>. The text is its
+first parameter or the content between its tags. What comes out is MathML, HTML or inline SVG -
+no script, the same for the same text, and readable by a screen reader.</p>
+
+<ul class="nt-cards">
+  {notations}
+  <li><a class="nt-card" href="?{$kind}"><b>{$name}</b><span>{$line}</span><code>{$tag}</code></a></li>
+  {/notations}
+</ul>

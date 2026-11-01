@@ -2113,33 +2113,69 @@ A missing address, an unknown default or fallback is an error under the strict c
 
 ---
 
-### chess
-A chess position from FEN as inline SVG - the board, the pieces drawn as shapes of PAD's own
-(no font, no image), the coordinates, marked squares and arrows (`tags/_lib/chess.php`).
+### notation
+A text written in a notation, drawn on the server: a formula in AsciiMath, a chemical equation,
+a tune in ABC, a guitar chord, notes on a piano, braille, morse, semaphore, signal flags, a chess,
+go or draughts position. Every notation is a file of `pad/subs/notations/types/`, its functions
+in `pad/subs/notations/_lib/`, its style in `pad/subs/notations/assets/` - written once per page
+with the CSP nonce - and the files of `types/` are the notations there are; the subsystem is
+`pad/subs/notations/`. Nothing needs a script: MathML, HTML or inline SVG, the same bytes for the
+same text.
 
 ```html
+{notation 'braille', 'Hello'/}                     # the tag: the kind, then its text
+{notation:math}x = (-b +- sqrt(b^2-4ac))/(2a){/notation:math}   # the notation: type, text between the tags
+{math 'sum_(i=1)^n i = (n(n+1))/2', display='block'/}           # bare
+{chem 'CH4 + 2O2 -> CO2 + 2H2O'/}
+{abc}X:1 ... K:G ... {/abc}
+{notation:chord 'Am', instrument='ukulele'/}       # bare {chord} is the charts' chord diagram
+{piano 'C4 E4 G4'/}  {piano 'Dm7'/}
+{morse 'SOS'/}  {semaphore 'PAD'/}  {signals 'PAD'/}
 {chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'/}
-{chess $fen, flip, highlight='d1, d8', arrow='g5-d8'/}
-{chess '8/8/8/4k3/8/8/4K3/8', size=240, title='Opposition'/}
+{go '(;SZ[9]AB[cc][gc]AW[cg];B[ee];W[ec])', numbers/}
+{draughts 'W:W31-50:B1-20'/}
 ```
 
-**Parameters:**
+A notation is written three ways, the same drawing each time: the tag, `{notation 'math', 'a/b'/}`,
+whose second parameter is the kind's own text; the notation: type, `{notation:math 'a/b'/}`; and
+bare, `{math 'a/b'/}`, after every other kind of tag. Without the text as a parameter the content
+between the tags is the text, taken as written before the level walks it, so the braces of
+AsciiMath - `{(x, if x >= 0),(-x, if x < 0):}` - and the brackets of SGF need no `{ignore}`. A
+field gives the text as a parameter, `{chess $fen/}`; a notation with nothing to draw answers
+nothing and its `@else@` shows.
 
-| Option | Description |
-|--------|-------------|
-| first parameter | The position in FEN - the placement alone will do; side to move, castling, en passant and the two counters are checked when written |
-| `flip` | Black at the bottom |
-| `highlight` | Squares to mark, `'e2, e4'` |
-| `arrow` | Arrows, `'e2-e4, g1-f3'` - from the middle of one square to the middle of the other, over the pieces |
-| `size` | Width and height in pixels, default 360 - shrinks to fit a narrower container |
-| `title` | The accessible name, default `Chess position, White to move` |
+| Notation | Draws | Its options |
+|----------|-------|-------------|
+| `math` | AsciiMath as MathML Core: fractions, scripts, roots, sums, matrices, text, the symbols | `display` (`inline`, `block`), `alttext` |
+| `chem` | Chemical formulas and equations as MathML: counts, charges, coefficients, states, hydrates, isotopes, arrows; every element checked | `display`, `alttext` |
+| `abc` | A tune in ABC notation as a staff: clef, key and time signatures, notes, stems, beams, ledger lines, rests, bars, repeats, chord names | `width`, `title` |
+| `chord` | The box of a guitar or ukulele chord from its name or its frets (`x32010`) | `instrument` (`guitar`, `ukulele`), `frets`, `size`, `title` |
+| `piano` | A keyboard with the keys of notes (`C4 E4 G4`) or a chord (`Dm7`) marked | `from`, `to`, `size`, `title` |
+| `braille` | Unified English Braille, grade 1, as braille characters, the text the accessible name | `cells` (bare, or the cells to a line) |
+| `morse` | The international Morse code of ITU-R M.1677-1 and its signal drawn to its timing | `plain` |
+| `semaphore` | Flag semaphore, a figure per letter | `size`, `title` |
+| `signals` | The flags and numeral pennants of the International Code of Signals | `size`, `title` |
+| `chess` | A position in FEN - once a tag of its own, written as before | `flip`, `highlight`, `arrow`, `size`, `title` |
+| `go` | A game record in SGF played out on 9, 13 or 19 lines, captures taken off | `numbers`, `move`, `plain`, `size`, `title` |
+| `draughts` | A position in the FEN of PDN, international 10 by 10 or 8 by 8 | `board` (`10`, `8`), `numbers`, `flip`, `highlight`, `size`, `title` |
 
-**Behavior:** `role="img"` with `<title>` and a `<desc>` that lists every piece by side and
-kind (`White: king g1; rooks a1, f1; pawns ...`), the side to move, castling, en passant, the
-marks and the arrows. The colours are `--pad-chess-light`, `-dark`, `-white`, `-black`,
-`-ink`, `-mark`, `-arrow` and `-text` on `.pad-chess`, `light-dark()` defaults, written once
-per page; the ids come from the board itself. A FEN with a wrong rank count, an unknown
-piece letter or a wrong field, and a square or arrow that is not on the board, are errors
+**chess:** the first parameter is the position in FEN - the placement alone will do; side to
+move, castling, en passant and the two counters are checked when written. `flip` puts Black at
+the bottom, `highlight='e2, e4'` marks squares, `arrow='e2-e4, g1-f3'` draws arrows from the
+middle of one square to the middle of the other, over the pieces; `size` is the width and height
+in pixels, 360 by default, shrinking to fit a narrower container; `title` the accessible name,
+`Chess position, White to move` by default. The board is `role="img"` with a `<title>` and a
+`<desc>` listing every piece by side and kind (`White: king g1; rooks a1, f1; pawns ...`), the
+side to move, castling, en passant, the marks and the arrows. The colours are
+`--pad-chess-light`, `-dark`, `-white`, `-black`, `-ink`, `-mark`, `-arrow` and `-text` on
+`.pad-chess`, `light-dark()` defaults, written once per page; the ids come from the board itself.
+
+**Behavior:** every drawing is `role="img"` with a name and a description in words - the notes,
+the stones, the flags, the strings - or MathML, which a screen reader reads itself; the colours are
+`--pad-<kind>-*` custom properties on `.pad-<kind>` with `light-dark()` defaults (the flags keep
+the code's colours). A name that is no notation, an option a notation does not read or a value
+outside its choices, and a text it cannot read - a FEN with seven ranks, an element the periodic
+table does not have, a character morse has no sign for, a move on a taken point - are errors
 under the strict check.
 
 ---
@@ -4281,7 +4317,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `rating` | Output | Stars or hearts for a score as inline SVG, parts clipped, said in words |
 | `icon` | Output | One of 79 built-in line icons as inline SVG in `currentColor` |
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
-| `chess` | Output | A chess position from FEN as inline SVG - pieces, coordinates, marked squares, arrows |
+| `notation` | Output | A text in a notation drawn on the server - the files of `pad/subs/notations/types/`: AsciiMath, chemistry, ABC music, chords, piano, braille, morse, semaphore, signal flags, chess, go, draughts |
 | `game` | Output | A little game played in the browser - 18 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
 | `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
 | `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
