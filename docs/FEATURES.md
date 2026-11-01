@@ -1321,6 +1321,7 @@ budget, a loan, grades, dates, an editable sheet and a page of every function.
 {openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}              # bare, when nothing else has the name
 {embed 'https://soundcloud.com/forss/flickermood', title='Flickermood'/}     # also spotify, peertube, dailymotion, internetarchive, codepen
 {embed 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', title='Abbey Road'/}   # applemusic, applepodcasts: in Apple's sandbox
+{figma 'https://www.figma.com/design/<key>/Shop', title='The checkout', theme='system'/}   # a design, prototype, FigJam board or slides
 {audio 'sounds/bell.mp3', title='The bell'/}                                # a file: <audio preload="none">; videofile, pdffile
 ```
 A frame of another site is a click-to-load facade: a poster drawn for its kind (or `poster=`,

@@ -3338,6 +3338,7 @@ presses the button; a file of the application is an element that loads nothing b
 {openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}
 {embed 'https://codepen.io/team/codepen/pen/PNaGbb', title='A pen', tab='html,result'/}
 {embed 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', title='Abbey Road'/}
+{figma 'https://www.figma.com/design/nrPSsILSYjesyc5UHjYYa4/Embed-Kit-2.0-examples', title='Embed Kit 2.0 examples', theme='system'/}
 {audio 'sounds/bell.mp3', title='The bell'/}
 {embed 'docs/leaflet.pdf', title='The leaflet'/}
 ```
@@ -3346,13 +3347,14 @@ presses the button; a file of the application is an element that loads nothing b
 
 | Option | Description |
 |--------|-------------|
-| first parameter | An address a provider knows - a file of `pad/subs/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), `applemusic` (music.apple.com/`<country>`/album, playlist, song, artist, music-video or station, `?i=` a song of an album) and `applepodcasts` (podcasts.apple.com/`<country>`/podcast/.../id`<id>`, `?i=` an episode), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
+| first parameter | An address a provider knows - a file of `pad/subs/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), `applemusic` (music.apple.com/`<country>`/album, playlist, song, artist, music-video or station, `?i=` a song of an album) and `applepodcasts` (podcasts.apple.com/`<country>`/podcast/.../id`<id>`, `?i=` an episode), `figma` (figma.com/design, /proto, /board, /slides, /deck and the old /file, with its `node-id`), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
 | `title` | Required - the button's text, the frame's title, the element's name |
 | `poster` | A picture of `www/<application>/` (versioned as `{asset}`) in place of the drawn poster |
 | `thumbnail` | Bare: the provider's own picture as the poster where it has one at a known address (YouTube) - asked of the provider before the click |
 | `ratio` | The proportion - `16:9`, SoundCloud and Spotify `2:1`, a PDF `4:5`, a YouTube short `9:16` (kept to a phone's width), Apple Music and Apple Podcasts `4:3` - a song or an episode `5:2` |
 | `at` | youtube, vimeo, peertube, dailymotion: the moment to start at - `90`, `1m30s`, `1:30` |
 | `lat`, `lon`, `zoom` | openstreetmap: the place and the zoom, 1 to 19 (13) |
+| `theme` | figma: the viewer's theme - `light` (Figma's default), `dark` or `system`, the visitor's |
 | `tab` | codepen: the panes - `result` (default), `html`, `css`, `js`, or two of them |
 
 **Behavior:** a frame of another site is a facade first: a poster drawn for its kind (video,

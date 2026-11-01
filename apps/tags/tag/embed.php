@@ -30,6 +30,7 @@ PAD;
     'lat'       => 'OpenStreetMap: the latitude of the place, beside <code>lon</code> - or the place as the first parameter, <code>\'52.37,4.89\'</code>.',
     'lon'       => 'OpenStreetMap: the longitude of the place.',
     'zoom'      => 'OpenStreetMap: 1 (the world) to 19 (a street), default 13.',
+    'theme'     => 'Figma: the viewer\'s theme - <code>light</code> (Figma\'s default), <code>dark</code> or <code>system</code>, the visitor\'s.',
     'tab'       => 'CodePen: the panes shown - <code>result</code> (default), <code>html</code>, <code>css</code>, <code>js</code>, or two of them.' ];
 
   $tagSee     = [ 'video', 'map', 'img' ];
