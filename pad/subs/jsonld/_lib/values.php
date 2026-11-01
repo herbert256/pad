@@ -114,6 +114,8 @@
       case 'number':
         if ( ! preg_match ( '/^-?[0-9]+(\.[0-9]+)?$/D', $text ) )
           return $no ( 'number', 'write 4.5, with a dot' );
+        if ( ! is_finite ( $text + 0 ) )
+          return $no ( 'number', 'it is too large to be written' );
         if ( $with and ( $text + 0 < $with [0] or $text + 0 > $with [1] ) ) {
           $report ( "the $name of $what is not between {$with [0]} and {$with [1]}: '" . padMakeSafe ( $text, 40 ) . "'" );
           return NULL;
@@ -121,7 +123,9 @@
         return $text + 0;
 
       case 'count':
-        return preg_match ( '/^[0-9]+$/D', $text ) ? $text + 0 : $no ( 'whole number', 'write 1523, 0 or more' );
+        if ( ! preg_match ( '/^[0-9]+$/D', $text ) )
+          return $no ( 'whole number', 'write 1523, 0 or more' );
+        return is_finite ( $text + 0 ) ? $text + 0 : $no ( 'whole number', 'it is too large to be written' );
 
       case 'duration':
         $duration = padJsonLdDuration ( $text );
@@ -144,6 +148,8 @@
       case 'salary':
         if ( ! preg_match ( '/^([0-9]+(?:\.[0-9]+)?)(?:\s*-\s*([0-9]+(?:\.[0-9]+)?))?$/D', $text, $m ) )
           return $no ( 'amount', 'write 4200 or 40000-55000, with a dot' );
+        if ( ! is_finite ( $m [1] + 0 ) or ! is_finite ( ( $m [2] ?? 0 ) + 0 ) )
+          return $no ( 'amount', 'it is too large to be written' );
         if ( ! isset ( $m [2] ) )
           return [ '@type' => 'QuantitativeValue', 'value' => $m [1] + 0 ];
         if ( $m [1] + 0 > $m [2] + 0 )
@@ -242,6 +248,12 @@
       }, $text );
 
     if ( ! $found or trim ( preg_replace ( '/[\s,]+|\band\b/i', '', $rest ) ) !== '' )
+      return FALSE;
+
+    // More seconds than a whole number holds - 99999999999999999999 days - are no duration
+    // either: the cast to one ended the page.
+
+    if ( ! is_finite ( $seconds ) or $seconds >= PHP_INT_MAX )
       return FALSE;
 
     $seconds = (int) round ( $seconds );
