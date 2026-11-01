@@ -52,7 +52,7 @@ PAD;
     'hover'     => 'Bare option, underline and encircle: drawn while the pointer is on it or the focus is in it.',
     'angle'     => 'gradient: the direction in degrees (90); tilt: how far it leans (8).',
     'animate'   => 'Bare option, gradient: the colours flow along the letters.',
-    'height'    => 'wave: how far a letter rises, in em (0.25).',
+    'height'    => 'wave: how far a letter rises, in em (0.25); skeleton: the picture of a block or a card, in pixels (160).',
     'from'      => 'countup: the number it starts at (0); <code>to</code> the one it ends at.',
     'prefix'    => 'countup: a text before the number, <code>suffix</code> one after it.',
     'scroll'    => 'Bare option, countup, highlighter, underline, strike and encircle: counted or drawn as it scrolls into view.',
@@ -67,7 +67,6 @@ PAD;
     'size'      => 'spinner: pixels (24); skeleton: the avatar\'s (48); scrollprogress: the bar\'s height (3).',
     'shape'     => 'skeleton: text, block, avatar, card or media - the shape of what is still on its way.',
     'lines'     => 'skeleton: the lines of text (3, media 2).',
-    'height'    => 'skeleton: the picture of a block or a card, in pixels (160).',
     'hold'      => 'rotator: seconds each phrase stands (2.5).',
     'pieces'    => 'confetti: how many (120); <code>spread</code> the angle they fly out in; <code>seed</code> which pieces.' ];
 
