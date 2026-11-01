@@ -862,6 +862,8 @@
 
     global $padFormStack;
 
+    [ $at, $place ] = padSectionFormPlace ( $name );
+
     $open = "<form method=\"post\" class=\"$class\">";
 
     if ( padCsrfFormPosts ( $open ) )
@@ -869,11 +871,14 @@
 
     $open .= '<input type="hidden" name="' . padFormName . '" value="' . padFormEscape ( $name ) . '">';
 
+    if ( $at > 1 )
+      $open .= '<input type="hidden" name="' . padFormAt . '" value="' . padFormEscape ( $place ) . '">';
+
     if ( isset ( $GLOBALS ['padCsrfIssued'] ) and str_contains ( $open, padCsrfField () ) )
       $GLOBALS ['padFormTokened'] [] = $open;
 
     $padFormStack [] = [ 'name' => $name, 'method' => 'post', 'open' => $open, 'client' => FALSE,
-                         'at' => 1, 'place' => padFormPage () . ':1' ];
+                         'at' => $at, 'place' => $place ];
 
     $html = $fields ();
 
@@ -884,11 +889,14 @@
   }
 
   // A field of such a form: its label, the control - refilled when the form came back - and
-  // the message padValidate left for it, tied to it for a screen reader.
+  // the message padValidate left for it, tied to it for a screen reader. Its id is the
+  // section's and the field's name - pad-section-newsletter-046be8dd-email - so two sections
+  // of a kind on a page have fields of their own: both wrote newsletter-email, and the second
+  // label named the first field.
 
   function padSectionInput ( $form, $name, $label, $type, $attrs = '' ) {
 
-    $id    = "$form-$name";
+    $id    = padSectionId () . "-$name";
     $error = padFormError ( $name, $label );
     $value = padFormValue ( $name );
     $aria  = ( $error !== '' ) ? " aria-invalid=\"true\" aria-describedby=\"$id-error\"" : '';
@@ -905,14 +913,25 @@
 
   // Whether a section's form came back right: padPosted holds - its name came back and the
   // rules on fields of the template found nothing - and padValidate, which the page's PHP ran
-  // on the post, left no message for any of its fields. Then the section says thanks in its
-  // place; else the form shows again, refilled and with the messages.
+  // on the post, left no message for any of its fields - and it is this section's form that
+  // was sent (padSectionFormPlace). Then the section says thanks in its place; else the form
+  // shows again, refilled and with the messages when it was the one sent.
 
   function padSectionCameBack ( $form, $fields ) {
 
-    global $padFormErrors;
+    global $padFormErrors, $padFormStack;
 
     if ( ! padPosted ( $form ) )
+      return FALSE;
+
+    [ $at, $place ] = padSectionFormPlace ( $form );
+
+    $padFormStack [] = [ 'name' => $form, 'method' => 'post', 'open' => '', 'client' => FALSE, 'at' => $at, 'place' => $place ];
+    $sent            = ( padFormSource () !== NULL );
+
+    array_pop ( $padFormStack );
+
+    if ( ! $sent )
       return FALSE;
 
     foreach ( $fields as $field )
@@ -920,6 +939,25 @@
         return FALSE;
 
     return TRUE;
+
+  }
+
+  // Which form of its name on the page a section's form is - [ count, place ] - counted with
+  // the {form}s of the name as padFormOpen counts them (lib/form.php), once per section: two
+  // newsletter sections are one form, by its name, and the second carries its place, so only
+  // the one that was sent says thanks, refills and shows the messages - both did after one
+  // post.
+
+  function padSectionFormPlace ( $name ) {
+
+    global $padSectionNow, $padFormSeen;
+
+    if ( ! isset ( $padSectionNow ['place'] ) ) {
+      $at = $padFormSeen [$name] = ( $padFormSeen [$name] ?? 0 ) + 1;
+      $padSectionNow ['place'] = [ $at, padFormPage () . ":$at" ];
+    }
+
+    return $padSectionNow ['place'];
 
   }
 

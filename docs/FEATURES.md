@@ -1392,7 +1392,9 @@ option the section has no field for, a slot of a part it has not, an item outsid
 section and a list section given neither `data=` nor items are reported under the strict check. The newsletter and the contact form post back
 as `{form 'newsletter'}` does - the session's token and the form's name - so the page's PHP asks
 `padPosted ( 'newsletter' )` and checks the post with `padValidate`; the fields refill and show
-the messages, and once the post came back right the section says `thanks=` in the form's place.
+the messages, and once the post came back right the section says `thanks=` in the form's place -
+the one that was sent, of two of a name on a page, as of two `{form}`s; a field's id is the
+section's and its name.
 Every section is a size container - its layout follows the room it has (`@container`), not the
 window; the colours are `--pad-section-bg`, `-panel`, `-text`, `-soft`, `-dim`, `-line`,
 `-accent`, `-accent-text`, `-accent-soft` on `.pad-section`, their defaults the frame's palette

@@ -3872,7 +3872,10 @@ does: the session's CSRF token when they post here, the hidden `padForm` field w
 The page's PHP asks `padPosted ( 'newsletter' )` and checks the post with
 `padValidate ( [ 'email' => 'required|email' ] )`; the fields refill and show the message, tied to
 the field for a screen reader, and once the post came back right - posted, and no message for any
-of its fields - the section shows `thanks=` in the form's place (`role="status"`).
+of its fields - the section shows `thanks=` in the form's place (`role="status"`). A field's id
+is the section's and its name, so two sections of a kind have fields of their own; two forms of
+one name on a page are told apart as two `{form 'newsletter'}` are - the second carries its
+place - so only the one that was sent says thanks, refills and shows the messages.
 
 **Look.** Every section is a size container: its layout follows the room it has, not the window
 (`@container`). The colours are custom properties on `.pad-section` - `--pad-section-bg`,
