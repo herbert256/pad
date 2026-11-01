@@ -7,25 +7,28 @@
   //
   // The kinds draw as they always do - their marks carry the classes of the categorical slots,
   // pc-c1 to pc-c8 and pc-l1 to pc-l8, and of the heatmap's ramp, pc-h0 to pc-h6 - and the svg
-  // gets the palette's colours for those as custom properties on its own style attribute,
+  // gets a class of the palette and the number of slots it uses, pc-pal-viridis-3, whose rule
+  // in the chart's own <style> gives it the palette's colours for those as custom properties,
   // which beat the defaults (subs/palettes/_lib/palette.php, padPaletteChart): a categorical
   // palette its colours in its order, a sequential or diverging one spread over the slots the
   // chart uses - so three series of viridis are its purple, teal and green, not three
   // purples - and its whole length on the ramp. The slots a chart uses are read from what it
   // drew, the highest slot class in the SVG. A scale's dark end may be the ramp's first step,
   // where the default ramp has its lightest, so the value a heatmap writes on a cell takes the
-  // ink of its step, black or white (--pad-chart-heat-ink-0 to -6): rules for that go into the
-  // chart's own <style>, for an svg whose style attribute carries the ink alone. A
-  // chart drawn in the browser gets the same: the server hands it the eight possible
-  // attributes, one for each number of slots, and client/palette.js puts on the one the
-  // drawing needs, and the rules - the same SVG, character for character. Without palette=
+  // ink of its step, black or white (--pad-chart-heat-ink-0 to -6), by rules of the same
+  // class. The colours stood in a style attribute of the svg, which the style-src nonce the
+  // engine supports drops - a nonce covers no attribute - and a chart in a palette was drawn
+  // in the default colours under it. A chart drawn in the browser gets the same: the server
+  // hands it the class and the rules for each number of slots, and client/palette.js puts on
+  // the ones the drawing needs - the same SVG, character for character. Without palette=
   // nothing of this runs and a chart is drawn as before.
   //
   //   padChartPaletteName   the palette the chart is given - '' for none, a name that is no
   //                         palette named under the strict check
-  //   padChartPaletteApply  the svg of a chart with the palette's properties on it
+  //   padChartPaletteApply  the svg of a chart with the palette's class and rules
+  //   padChartPaletteRule   the class and the rules of a palette for so many slots
   //   padChartPaletteSlots  the number of categorical slots an SVG uses, 1 at least
-  //   padChartPaletteStyles the style attribute for 1 to 8 slots, for the browser
+  //   padChartPaletteStyles the class and the rules for 1 to 8 slots, for the browser
 
   function padChartPaletteName () {
 
@@ -55,25 +58,29 @@
     if ( $name === '' or ! is_string ( $svg ) or $svg === '' )
       return $svg;
 
-    $style = padPaletteChart ( $name, padChartPaletteSlots ( $svg ) );
-    $rules = str_contains ( $style, '--pad-chart-heat-ink-' ) ? padChartPaletteRules () : '';
+    [ $class, $rules ] = padChartPaletteRule ( $name, padChartPaletteSlots ( $svg ) );
 
-    return preg_replace_callback ( '/(<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" class="pad-chart [^"]*")([^>]*>[\s\S]*?)(<\/style>)/',
-                                   fn ( $m ) => $m [1] . ' style="' . $style . '"' . $m [2] . $rules . $m [3], $svg );
+    return preg_replace_callback ( '/(<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" class="pad-chart [^"]*)("[^>]*>[\s\S]*?)(<\/style>)/',
+                                   fn ( $m ) => $m [1] . " $class" . $m [2] . $rules . $m [3], $svg );
 
   }
 
-  // The ink of a value on a step of the ramp - the heatmap writes one on every cell, light
-  // ones (pc-in) on the dark end of the default ramp, its text colour on the rest.
+  // The class of a palette for so many slots - pc-pal-viridis-3 - and its rules: the palette's
+  // custom properties on the svg of that class and, for a scale, the ink of a value on each
+  // step of the ramp - light ones (pc-in) on the dark end of the default ramp, its text colour
+  // on the rest.
 
-  function padChartPaletteRules () {
+  function padChartPaletteRule ( $name, $n ) {
 
-    $rules = '';
+    $class = "pc-pal-$name-$n";
+    $style = padPaletteChart ( $name, $n );
+    $rules = ".pad-chart.$class{" . $style . '}';
 
-    for ( $step = 0; $step <= 6; $step++ )
-      $rules .= ".pad-chart[style*=heat-ink] .pc-gap.pc-h$step+text{fill:var(--pad-chart-heat-ink-$step);stroke:none}";
+    if ( str_contains ( $style, '--pad-chart-heat-ink-' ) )
+      for ( $step = 0; $step <= 6; $step++ )
+        $rules .= ".pad-chart.$class .pc-gap.pc-h$step+text{fill:var(--pad-chart-heat-ink-$step);stroke:none}";
 
-    return $rules;
+    return [ $class, $rules ];
 
   }
 
@@ -90,7 +97,7 @@
     $styles = [];
 
     for ( $n = 1; $n <= 8; $n++ )
-      $styles [] = padPaletteChart ( $name, $n );
+      $styles [] = padChartPaletteRule ( $name, $n );
 
     return $styles;
 

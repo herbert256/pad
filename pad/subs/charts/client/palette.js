@@ -1,9 +1,10 @@
 // palette= in the browser: subs/charts/_lib/palette.php written again in JavaScript. The server
-// hands a chart given palette= the style attribute of each number of categorical slots it may
-// use (padChartPaletteStyles); the chart is drawn as ever, then the one for the slots it drew -
-// the highest pc-c or pc-l class in the SVG - goes on its svg, as padChartPaletteApply puts it
-// there on the server. Written once per page, after core.js, by the first client chart with a
-// palette: it wraps PadChart.render, which hands a chart without a palette back as it drew it.
+// hands a chart given palette= the class and the rules of each number of categorical slots it
+// may use (padChartPaletteStyles); the chart is drawn as ever, then the class for the slots it
+// drew - the highest pc-c or pc-l class in the SVG - goes on its svg and the rules into its
+// <style>, as padChartPaletteApply puts them there on the server. Written once per page, after
+// core.js, by the first client chart with a palette: it wraps PadChart.render, which hands a
+// chart without a palette back as it drew it.
 
 (function (C) {
 
@@ -20,17 +21,9 @@
 
   C.padChartPaletteApply = function (svg, styles) {
     if (typeof svg !== 'string' || svg === '') return svg;
-    var style = styles[C.padChartPaletteSlots(svg) - 1];
-    var rules = style.indexOf('--pad-chart-heat-ink-') >= 0 ? C.padChartPaletteRules() : '';
-    return svg.replace(/(<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" class="pad-chart [^"]*")([^>]*>[\s\S]*?)(<\/style>)/g,
-                       function (whole, open, middle, close) { return open + ' style="' + style + '"' + middle + rules + close; });
-  };
-
-  C.padChartPaletteRules = function () {
-    var rules = '';
-    for (var step = 0; step <= 6; step++)
-      rules += '.pad-chart[style*=heat-ink] .pc-gap.pc-h' + step + '+text{fill:var(--pad-chart-heat-ink-' + step + ');stroke:none}';
-    return rules;
+    var rule = styles[C.padChartPaletteSlots(svg) - 1];
+    return svg.replace(/(<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" class="pad-chart [^"]*)("[^>]*>[\s\S]*?)(<\/style>)/g,
+                       function (whole, open, middle, close) { return open + ' ' + rule[0] + middle + rule[1] + close; });
   };
 
   var render = C.render;

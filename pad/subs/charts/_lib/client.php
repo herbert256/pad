@@ -82,8 +82,8 @@
       'zone'   => padDateZone ()->getName ()
     ];
 
-    // A chart given palette= gets the style attribute of each number of slots it may use
-    // (_lib/palette.php) and client/palette.js, which puts the one it uses on the svg.
+    // A chart given palette= gets the class and the rules of each number of slots it may use
+    // (_lib/palette.php) and client/palette.js, which puts the ones it uses on the svg.
 
     if ( $palette !== '' )
       $spec ['palette'] = padChartPaletteStyles ( $palette );

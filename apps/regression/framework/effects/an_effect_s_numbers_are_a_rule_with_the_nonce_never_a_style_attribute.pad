@@ -1,0 +1,3 @@
+{countup to=1250, suffix='+' | php:preg_replace('#<style[^>]*>(?![.]pad-effect[.]pe-v|[.]pad-effect-wave [.]pe-wave>)[^<]*</style>#', '', @)/}
+{wave 'Hi' | php:preg_replace('#<style[^>]*>(?![.]pad-effect[.]pe-v|[.]pad-effect-wave [.]pe-wave>)[^<]*</style>#', '', @)/}
+{if 1}{typewriter 'abc'/}{gradient 'x', colors='#f97316, #db2777'/}{spinner/}{reveal}<p>r</p>{/reveal}{/if | php:substr_count(@, 'style=')}

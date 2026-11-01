@@ -33,9 +33,10 @@
   //     pause button that works without script and stops while the pointer or the focus is
   //     on it, and the spinner is a status that turns while it is shown.
   //   - The numbers of one effect - its duration, its delay, the length of its text - are
-  //     custom properties in a style attribute of its element (style="--pad-effect-duration:
-  //     2s"), as the poll writes the width of a bar: written by the server from checked
-  //     values, never from text as given.
+  //     custom properties in a rule of a class of their own (.pad-effect.pe-v1a2b3c4d
+  //     {--pad-effect-duration:2s}), written once per page with the nonce beside the style of
+  //     the kind - never a style attribute, which the CSP nonce drops: written by the server
+  //     from checked values, never from text as given.
   //
   // padEffectTag      runs the file of a kind, its content - the rendered content of the pair,
   //                   or NULL for the single tag - at hand in $padEffectNow
@@ -47,7 +48,7 @@
   // padEffectPlain    the characters of a rendered text, without its markup
   // padEffectLetters  a text cut into its letters - grapheme clusters - each escaped
   // padEffectBlock    whether a content holds blocks, and wants a div around it
-  // padEffectVars     the custom properties of one effect as a style attribute
+  // padEffectVars     the custom properties of one effect as a class and its rule
   // padEffectOpen     the opening tag of an effect's element
   // padEffectStyle    the base style and the style of a kind, once per page each
 
@@ -185,10 +186,10 @@
 
   }
 
-  // A colour a style attribute may hold: #rgb to #rrggbbaa, a colour's name, a colour
-  // function of numbers - rgb(), hsl(), oklch() ... - or a custom property, var(--brand).
-  // Nothing that can close the attribute or the declaration: no quote, no semicolon, no
-  // brace, no url().
+  // A colour a rule may hold: #rgb to #rrggbbaa, a colour's name, a colour function of
+  // numbers - rgb(), hsl(), oklch() ... - or a custom property, var(--brand). Nothing that
+  // can close the declaration, the rule or the style: no quote, no semicolon, no brace, no
+  // <, no url().
 
   function padEffectColorValid ( $color ) {
 
@@ -335,10 +336,15 @@
 
   }
 
-  // The custom properties of one effect, a style attribute - its values the server's own,
-  // numbers and checked colours.
+  // The custom properties of one effect - its values the server's own, numbers and checked
+  // colours - as a class named by them, pe-v and eight hex digits, whose rule goes into the
+  // effect's style once per page (padEffectDone): a style attribute is dropped under the CSP
+  // nonce the engine supports (style-src 'nonce-...' covers no attribute), and a count-up
+  // showed 0, a typewriter typed nothing and every effect lost its timing. '' for none.
 
   function padEffectVars ( $vars ) {
+
+    global $padEffectRules;
 
     $css = '';
 
@@ -346,17 +352,27 @@
       if ( $value !== NULL and $value !== '' )
         $css .= "--pad-effect-$name:$value;";
 
-    return ( $css === '' ) ? '' : ' style="' . htmlspecialchars ( rtrim ( $css, ';' ), ENT_QUOTES, 'UTF-8' ) . '"';
+    if ( $css === '' )
+      return '';
+
+    $class = 'pe-v' . substr ( md5 ( $css ), 0, 8 );
+
+    if ( padWidgetOnce ( "style:effect-$class" ) )
+      $padEffectRules [] = ".pad-effect.$class{" . rtrim ( $css, ';' ) . '}';
+
+    return $class;
 
   }
 
-  // The opening tag of an effect: its element, its classes, its custom properties and the
-  // attributes it adds - each written by the kind, already escaped.
+  // The opening tag of an effect: its element, its classes - the class of its custom
+  // properties among them - and the attributes it adds, each written by the kind, already
+  // escaped.
 
   function padEffectOpen ( $kind, $element, $vars = [], $attrs = '', $classes = '' ) {
 
-    return "<$element class=\"pad-effect pad-effect-$kind" . ( $classes !== '' ? " $classes" : '' ) . '"'
-         . $attrs . padEffectVars ( $vars ) . '>';
+    $classes = trim ( "$classes " . padEffectVars ( $vars ) );
+
+    return "<$element class=\"pad-effect pad-effect-$kind" . ( $classes !== '' ? " $classes" : '' ) . '"' . $attrs . '>';
 
   }
 
@@ -411,7 +427,17 @@
 
   function padEffectDone ( $kind, $html ) {
 
+    global $padEffectRules;
+
     $css = padEffectStyle ( $kind );
+
+    // The rules of the custom properties of the effect - its own and its letters' - each
+    // written once per page, after the kind's style, with the nonce.
+
+    if ( $padEffectRules ?? [] )
+      $css .= padProtect ( '<style' . padStyleNonce () . '>' . implode ( '', $padEffectRules ) . '</style>' );
+
+    $padEffectRules = [];
 
     if ( $css === '' )
       return $html;

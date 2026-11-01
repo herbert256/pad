@@ -19,12 +19,22 @@
   if ( $padFxText === '' )
     return padEffectNeedsText ( "{wave}Hello there{/wave} or {wave 'Hello there'/}" );
 
+  // A letter's place in the wave is its place among the spans of the copy, a gap counting too:
+  // the rule of the n-th child gives it --pad-effect-i, written once per page for each place
+  // a wave on it reaches (padEffectDone) - in a style attribute the CSP nonce dropped it.
+
   $padFxLetters = '';
 
-  foreach ( padEffectLetters ( $padFxText ) as $padFxAt => $padFxLetter )
+  foreach ( padEffectLetters ( $padFxText ) as $padFxAt => $padFxLetter ) {
+
     $padFxLetters .= ( $padFxLetter === ' ' )
       ? padProtect ( '<span class="pe-gap"> </span>' )
-      : padProtect ( "<span style=\"--pad-effect-i:$padFxAt\">" ) . padEffectEscape ( $padFxLetter ) . padProtect ( '</span>' );
+      : padProtect ( '<span>' ) . padEffectEscape ( $padFxLetter ) . padProtect ( '</span>' );
+
+    if ( $padFxLetter !== ' ' and padWidgetOnce ( "style:effect-wave-$padFxAt" ) )
+      $GLOBALS ['padEffectRules'] [] = '.pad-effect-wave .pe-wave>:nth-child(' . ( $padFxAt + 1 ) . "){--pad-effect-i:$padFxAt}";
+
+  }
 
   return padEffectDone ( 'wave',
     padProtect ( padEffectOpen ( 'wave', 'span', [

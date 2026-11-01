@@ -1434,7 +1434,8 @@ uncovers it, a count-up reads its last number, a spinner is a `role="status"` wi
 What repeats runs `repeat=` times - three unless given, `forever` the author's choice; the marquee
 stops while the pointer or the focus is on it and has a Pause button that works without script.
 The numbers of one effect - its duration, its delay, the length of its text - are custom
-properties in a style attribute of its element, written by the server from checked values; the
+properties in a rule of a class of their own, written by the server from checked values once per
+page with the nonce - never a style attribute, which a CSP nonce drops; the
 colours are `--pad-effect-accent`, `-accent2`, `-accent3`, `-text`, `-mark` and `-track` on
 `.pad-effect`, light and dark, falling back to the frame's `--accent`, `--text` and `--line`, so a
 theme colours them. The kinds are the files of `pad/subs/effects/types/` - typewriter, glitch,
@@ -1520,15 +1521,18 @@ its middle; a categorical palette gives its colours in order and starts again pa
 Without `steps` a categorical palette gives its own colours, the others nine; 1 to 256.
 `padPalette ( $name, $steps )` answers the same list to a page's PHP. `{palette}` writes a row of
 swatches - a list for a screen reader, each hex value in black or white, whichever contrasts
-more - its style once per page with the nonce; `title=` names the row.
+more - its style once per page with the nonce, a swatch's colours a class of its value
+(`pp-c-440154`) with its rule; `title=` names the row.
 `palette=` on `{chart}` colours a chart of any kind: the kinds draw as ever - their marks carry
 the classes of the categorical slots (`pc-c1`...`pc-c8`) and of the heatmap's ramp
-(`pc-h0`...`pc-h6`) - and the svg gets the palette's colours for those as custom properties on
-its style attribute: a categorical palette its colours in order, a sequential or diverging one
-spread over the slots the chart uses - the middles of so many equal parts, so three series of
-viridis are purple, teal and green, never three purples, and neither pale end is a slot - and its
-whole length on the ramp. A chart drawn in the browser (`client`) gets the same: the server hands
-it the style for each number of slots and `pad/subs/charts/client/palette.js` puts on the one its
+(`pc-h0`...`pc-h6`) - and the svg gets a class of the palette and its slots, `pc-pal-viridis-3`,
+whose rule in the chart's own `<style>` gives it the palette's colours for those as custom
+properties: a categorical palette its colours in order, a sequential or diverging one spread
+over the slots the chart uses - the middles of so many equal parts, so three series of viridis
+are purple, teal and green, never three purples, and neither pale end is a slot - and its whole
+length on the ramp. No colour stands in a style attribute, which a CSP nonce drops. A chart drawn
+in the browser (`client`) gets the same: the server hands it the class and the rules for each
+number of slots and `pad/subs/charts/client/palette.js` puts on the ones its
 drawing needs - the same SVG, character for character, which the `charts` line of `./ci.sh` holds
 by drawing every example of the charts application once more in a palette, the palettes in turn.
 Without `palette=` a chart is drawn as before, byte for byte. Code: `pad/subs/palettes/`

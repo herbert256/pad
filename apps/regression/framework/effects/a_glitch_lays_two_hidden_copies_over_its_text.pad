@@ -1,1 +1,1 @@
-{glitch repeat='forever', duration=4}SIGNAL <i>LOST</i>{/glitch | php:preg_replace('/<svg class="pad-effect-css".*/s', '', @)}
+{glitch repeat='forever', duration=4}SIGNAL <i>LOST</i>{/glitch | php:preg_replace('#<style[^>]*>(?![.]pad-effect[.]pe-v|[.]pad-effect-wave [.]pe-wave>)[^<]*</style>#', '', @) | php:str_replace('<svg class="pad-effect-css" width="0" height="0" aria-hidden="true" focusable="false"></svg>', '', @)}

@@ -4062,10 +4062,12 @@ the palettes there are, and the subsystem is `pad/subs/palettes/`.
 | `title` | The row's name for a screen reader (the palette's name and the count) |
 
 **Behavior:** the row is a list for a screen reader, `role="list"`, a swatch an item; its style
-is written once per page with the nonce. `padPalette ( 'viridis', 7 )` answers the same colours
+is written once per page with the nonce, a swatch's colour a class of its value with its rule
+(`pp-c-440154`) - no style attribute, which a CSP nonce drops. `padPalette ( 'viridis', 7 )` answers the same colours
 to a page's PHP. `palette='name'` on `{chart}` colours a chart of any kind - a categorical
 palette its series in order, a scale spread over the series the chart has and over the
-heatmap's ramp - as custom properties on the svg's style attribute, server and `client` alike. A
+heatmap's ramp - as custom properties of a class of the palette on the svg (`pc-pal-viridis-3`),
+its rule in the chart's own `<style>`, server and `client` alike. A
 name that is no palette, steps out of bounds and content are strict errors.
 
 ---
