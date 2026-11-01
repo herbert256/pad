@@ -1739,13 +1739,15 @@ grain (the browser's feTurbulence), mesh (a soft gradient), herringbone (parquet
 brick (a wall in any bond, mottled by the seed),
 scales (fish scales or the waves of seigaiha),
 houndstooth (the woven broken check),
-and tartan (a sett the seed makes up).
+tartan (a sett the seed makes up),
+and guilloche (engraved waves interlacing).
 Every pattern takes `seed=`,
 `colors=` (a list, the background first), `size=` (the motif in pixels), `width=` and `height=`
 (480 by 240; the SVG covers its box), `opacity=`, `title=` and `as='url'`, and its own besides: stripes `angle=`,
 topography `levels=`, herringbone `ratio=` and `angle=`,
 brick `ratio=`, `offset=` and `joint=`,
-scales `rings=`. The same options give the same bytes on every request and every
+scales `rings=`,
+guilloche `lines=`. The same options give the same bytes on every request and every
 machine - the random numbers are PAD's own seeded sequence (`padFake`'s, put back afterwards) and
 every number is written to a fixed precision - so stored answers hold a pattern; without `seed=`
 the seed is 1. A pattern is decoration (`aria-hidden`) unless `title=` names it, and draws no

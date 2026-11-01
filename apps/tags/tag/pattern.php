@@ -33,7 +33,8 @@ PAD;
     'ratio'   => 'herringbone: a block\'s length to its width, a whole number (3); brick: a brick\'s length to its height (3).',
     'offset'  => 'brick: how far a course is shifted along the one below, in bricks - 0.5 the running bond, 0 stacked, a third or a quarter raking; taken in twelfths.',
     'joint'   => 'brick: the width of the mortar between the bricks in pixels (2), at most nearly half a brick\'s height.',
-    'rings'   => 'scales: the circles in a scale (3) - 1 a plain fish scale, more the waves of seigaiha.' ];
+    'rings'   => 'scales: the circles in a scale (3) - 1 a plain fish scale, more the waves of seigaiha.',
+    'lines'   => 'guilloche: the lines of a band (12), copies of one wave a step apart along it, every second upside down.' ];
 
   $tagSee     = [ 'placeholder', 'identicon', 'chart' ];
 

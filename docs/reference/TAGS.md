@@ -3298,6 +3298,7 @@ and pages. `padPattern ( 'dots', [ 'size' => 24 ] )` draws the same in a page's 
 | `scales` | Overlapping scales row over row, circles in each - fish scales, or with more rings seigaiha | `rings` (3) |
 | `houndstooth` | The broken check, woven of four threads of each colour in a two-over-two twill | |
 | `tartan` | A plaid whose mirrored sett of stripes the seed makes up, crossing colours mixed and a twill over it | |
+| `guilloche` | Bands of engraved waves, copies of one wave interlacing - the lines of a certificate | `lines` (12) |
 
 **Every pattern:** `seed=` - a number or a word, 1 when left out - makes the picture: the same
 seed the same bytes on every request and every machine (PAD's own sequence, the one of
@@ -3311,7 +3312,8 @@ double quotes - or a style sheet: the quotes, parentheses and white space and th
 URL or HTML would read escaped. A pattern is decoration, `aria-hidden`, unless
 `title=` names it: then it is `role="img"` with a `<title>`. Its ids are its own on the page. A
 pattern is drawn on every request, so the kinds that draw a shape per place - triangles,
-hexagons, truchet, chevron and waves 50,000 at most, voronoi 10,000 cells - and topography (its
+hexagons, truchet, chevron and waves 50,000 at most, voronoi 10,000 cells,
+guilloche 2,000 lines - and topography (its
 grid times its levels, 1,500,000 at most) have a budget for the size, the picture and the levels
 together: past it the pattern is not drawn. An unknown pattern, a colour that is none, a number
 outside its bounds, an `as` other than `svg` or `url`, an option the kind does not take, content
