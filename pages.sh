@@ -465,8 +465,14 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
 
 PHP
 
+# The old copy is moved aside before the new one takes its name, then removed: deleted in
+# place, a .DS_Store that Finder wrote into docs/apps meanwhile left the directory not empty,
+# and the new copy was moved into it as docs/apps/pages.XXXXXX, the old one gone around it.
+
 chmod 755 "$work"
-rm -rf "$docs"
-mv "$work" "$docs"
+old="$docs.old.$$"
+[ -e "$docs" ] && mv "$docs" "$old"
+mv "$work" "$docs" || { [ -e "$old" ] && mv "$old" "$docs"; exit 1; }
+rm -rf "$old"
 
 echo "docs/apps rebuilt from $host"
