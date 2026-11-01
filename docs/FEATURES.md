@@ -1257,6 +1257,7 @@ and its WAV.
 {printable 'envelope', paper='c5', sender='PAD, Utrecht', scale=0.5, pdf}...{/printable}
 {printable:graphpaper grid='dots', major=2, copies=10}Name ________{/printable:graphpaper}   # squares, dots or lines, drawn exactly
 {printable:calendar year=2027, holidays='nl', weeks, data='photos'}<h2>{$caption}</h2>{/printable:calendar}   # a month a sheet
+{printable:foldcard data='guests'}<header>...</header><aside>...</aside>Dear {$name}<footer>...</footer>{/printable:foldcard}
 ```
 Pages made for paper. A kind is a file of `pad/subs/printables/types/` - labels (sheet grids named
 by their paper and their grid: a4-3x8, a4-3x7, a4-2x7, a4-2x8, a4-2x4, a4-4x10, a4-5x13,
@@ -1302,6 +1303,14 @@ holidays red with their names and its observances grey, `color=`, `paper=` and `
 month, the weekdays and the names of the holidays in the language of the page's locale, as
 `{calendar}` writes them; the content between the tags stands over every month, a row of the data
 a month, the rows taken in turn.
+
+A folded card (`foldcard`) - a greeting card, an invitation - is printed on one side of a sheet and
+folded twice, a quarter fold: the top half folded back, then the sheet in two from left to right,
+A4 making a card of A6. Its `<header>` is the front and its `<footer>` the back, on the lower half
+of the sheet; its `<aside>` the inside left and the rest of the item the inside right, upside down
+on the upper half so that folded they read the right way up. `paper=` a4, a3 or letter,
+`landscape` for a card on its side, `padding=` (8 mm) keeps the text off the folds; the folds and
+the names of the panels are on the screen alone, `folds` prints the folds as light lines.
 
 ### Widgets
 ```

@@ -43,7 +43,8 @@ PAD;
     'year'      => 'calendar: its twelve months, this year the default.',
     'month'     => 'calendar: the month it starts with, <code>2026-09</code>; <code>months</code> how many, 1 to 60.',
     'sunday'    => 'calendar: bare option, the weeks from Sunday instead of Monday; <code>weeks</code> their ISO 8601 numbers before them.',
-    'holidays'  => 'calendar: the public holidays of a country of the holidays subsystem marked, <code>nl</code>, <code>de-by</code>.' ];
+    'holidays'  => 'calendar: the public holidays of a country of the holidays subsystem marked, <code>nl</code>, <code>de-by</code>.',
+    'folds'     => 'foldcard: bare option, the folds printed as light lines, where the screen alone shows them.' ];
 
   $tagSee     = [ 'pdf', 'barcode', 'qr', 'fake' ];
 

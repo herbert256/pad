@@ -2479,6 +2479,7 @@ half. Written as a single tag the printable has one item without content.
 | `placecards` | Place cards folded into a tent, the upper half turned | `sheet` (a4-2x2, a4-1x3, letter-2x2) |
 | `graphpaper` | Graph paper, a grid over the sheet in whole squares, centred, drawn exactly; the content a line over it | `grid` (squares, dots, lines), `spacing` (5 mm; 8 for lines), `major` (every that many lines heavier), `color`, `margin`, `paper`, `landscape` |
 | `calendar` | A wall calendar, a month to a sheet, a box for every day, holidays marked; the content over every month, the rows in turn | `year` (this year), `month` ('2027-03'), `months` (12; 1 with month), `sunday`, `weeks`, `holidays` ('nl', 'de-by'), `color`, `paper` (a4, a3, a5, letter), `landscape` |
+| `foldcard` | A card folded twice, a quarter fold: `<header>` the front, `<footer>` the back, `<aside>` the inside left, the rest the inside right, the inside upside down | `paper` (a4, a3, letter), `landscape`, `folds` (the folds printed) |
 
 **Every kind of a grid** - labels, badges, cards, tickets, placecards - takes `paper`,
 `landscape`, `across`, `down`, `width`, `height` (mm), `margin` (the top and the left margin, one
