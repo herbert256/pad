@@ -23,7 +23,7 @@
   </section>
 
   {typeMembers}
-  {first@typeMembers}<section class="block" aria-labelledby="members"><h2 id="members">What it reaches by name</h2><p>{$typeMemberCount} of them{if $typeName in ('pad', 'chart', 'game', 'toy', 'diagram', 'widget', 'barcode', 'embed', 'input', 'icon', 'fake', 'sequence', 'flag', 'make', 'keep', 'remove')}, each with its page in the tags application{/if}.</p><div class="tagcloud">{/first@typeMembers}
+  {first@typeMembers}<section class="block" aria-labelledby="members"><h2 id="members">What it reaches by name</h2><p>{$typeMemberCount} of them{if $typeName in ('pad', 'chart', 'game', 'toy', 'diagram', 'widget', 'barcode', 'embed', 'input', 'icon', 'fake', 'pattern', 'sound', 'printable', 'notation', 'section', 'effect', 'sequence', 'flag', 'make', 'keep', 'remove')}, each with its page in the tags application{/if}.</p><div class="tagcloud">{/first@typeMembers}
     {if $link}<a href="{$link}">{$key}</a>{else}<span>{$key}</span>{/if}
   {last@typeMembers}</div></section>{/last@typeMembers}
   {/typeMembers}

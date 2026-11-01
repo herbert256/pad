@@ -5,9 +5,9 @@
   // {chart:pie/}, and - when the subsystem allows it - bare, {pie/}, after every other kind of
   // tag (padTypeCommon, lib/type.php), so a tag, a store, a field or a sequence of the name
   // wins. The kinds of a subsystem are the names of the files of pad/subs/<directory>/types/,
-  // their extensions left off: a kind is added by adding its file. The maps and the validation
-  // rules are subsystems of pad/subs/ too, their kinds read the same way (padKinds), but no
-  // tag type: a view is the parameter of {map}, a rule a word of padValidate.
+  // their extensions left off: a kind is added by adding its file. The subsystems of
+  // padSubsystemKinds below are of pad/subs/ too, their kinds read the same way (padKinds), but
+  // no tag type: a view is the parameter of {map}, a rule a word of padValidate.
   //
   // The list says, per type: its directory under pad/subs/, whether its kinds are reached bare -
   // the icons and the fakes are not: their names, home or email, are the names of fields and
@@ -31,6 +31,26 @@
     'notation' => [ 'notations', TRUE, 'notation'      ],
     'section' => [ 'sections', FALSE, 'section'        ],
     'effect'  => [ 'effects',  TRUE,  'effect'         ],
+  ];
+
+  // The subsystems of pad/subs/ whose kinds are no tag type - a view of {map}, a rule of
+  // padValidate, a provider of padOAuthStart, a format of {data}, a function of {spreadsheet} ...
+  // - by the name the use of a kind is recorded under (padInfoXref, which files every kind of a
+  // subsystem whatever the page's text says) and their directory.
+
+  const padSubsystemKinds = [
+    'map'      => 'maps',
+    'rule'     => 'rules',
+    'oauth'    => 'oauth',
+    'channel'  => 'channels',
+    'ai'       => 'ai',
+    'filter'   => 'filters',
+    'holidays' => 'holidays',
+    'search'   => 'search',
+    'format'   => 'formats',
+    'formula'  => 'formulas',
+    'theme'    => 'themes',
+    'palette'  => 'palettes',
   ];
 
   // The kinds of the subsystem in pad/subs/<directory>/: the names of the files of its types/,
