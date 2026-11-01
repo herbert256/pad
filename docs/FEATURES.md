@@ -1645,7 +1645,9 @@ FNC1, with a FNC1 behind every value of no predefined length that is not the las
 AIs in parentheses under the bars. The values are checked as the GS1 General Specifications
 define them (`pad/subs/codes/_lib/gs1.php`): the digits, the length, GS1's characters, the check
 digit of a GTIN, SSCC or GLN and the dates; an AI GS1 has not defined, a value that breaks its
-format and more than 48 characters are errors under the strict check.
+format and more than 48 characters are errors under the strict check. `gs1` on `datamatrix` makes
+it GS1 DataMatrix, the code of medicine packs - `{datamatrix '(01)09501101530003(17)261231(10)AB-123(21)PAD0042', gs1/}` -
+the same element strings checked the same way, FNC1 first and as the separator.
 
 `aztec` is Aztec Code (ISO/IEC 24778), the square code of train tickets and boarding passes
 with a bullseye in its middle: any text, in the smallest of its compact (15 to 27 modules a side)

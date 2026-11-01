@@ -1624,6 +1624,7 @@ the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequenc
 | `level` | `qr`: the error correction, as `{qr}` takes it; `pdf417`: 0 to 8, by default the standard's recommendation for the size of the data |
 | `columns` | `pdf417`: the data columns, 1 to 30 - by default about three times as wide as high |
 | `addon` | `ean13`, `upca`, `upce` and `bookland`: the 2 or 5 digits of an add-on, a small symbol right of the bars |
+| `gs1` | Bare, `datamatrix`: GS1 DataMatrix - the text GS1 element strings as `gs1128` takes them, FNC1 first and as the separator |
 
 **Behavior:** an EAN or UPC number is given with or without its check digit - left off, it
 is added; given, it is checked. EAN and UPC draw their guard bars longer and set the digits
@@ -1643,7 +1644,7 @@ error under the strict check, and writes nothing.
 `gs1128` takes GS1 element strings, each AI in parentheses (or square brackets) before its
 value, and writes them in Code 128 after FNC1, a FNC1 behind every value of no predefined
 length but the last; the AIs, lengths, characters, check digits and dates are checked as the
-GS1 General Specifications define them, at most 48 characters.
+GS1 General Specifications define them, at most 48 characters. With `gs1`, `datamatrix` takes the same element strings as GS1 DataMatrix.
 `aztec` is Aztec Code (ISO/IEC 24778) in the smallest compact (15 to 27 modules) or full symbol
 (to 151) that leaves `ecc=` percent of its codewords and 3 more for the error correction; a text
 beyond ASCII is marked as UTF-8 by its ECI.

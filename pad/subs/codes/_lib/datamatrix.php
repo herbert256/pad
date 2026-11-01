@@ -10,6 +10,7 @@
   //
   // padDataMatrix          the SVG, or '' when the text does not fit in a 144 by 144 symbol
   // padDataMatrixMatrix    the symbol: rows of TRUE (dark) and FALSE (light), no quiet zone
+  // padDataMatrixGs1       the codewords of GS1 DataMatrix, FNC1 first ({datamatrix '(01)...', gs1/})
   //
   // The text is encoded in the ASCII encodation: two digits to a codeword, a character of
   // ASCII to one, a byte above it - of the text's UTF-8 - to two, after the upper shift, and
@@ -34,9 +35,9 @@
   // The SVG: the symbol in a light square with a quiet zone of two modules around it - the
   // standard asks one - drawn as padCodeMatrix draws a QR code.
 
-  function padDataMatrix ( $text, $size = 160, $title = '', $dark = '#000', $light = '#fff' ) {
+  function padDataMatrix ( $text, $size = 160, $title = '', $dark = '#000', $light = '#fff', $data = NULL ) {
 
-    $matrix = padDataMatrixMatrix ( (string) $text );
+    $matrix = padDataMatrixMatrix ( (string) $text, $data );
 
     if ( ! $matrix )
       return '';
@@ -71,13 +72,35 @@
 
   }
 
+  // The codewords of GS1 DataMatrix: FNC1 (232) first, then the characters of the element
+  // strings in the ASCII encodation, FNC1 as the separator behind a value of no predefined
+  // length (padCodeGs1Tokens of subs/codes/_lib/gs1.php) - two digits to a codeword only
+  // when no separator stands between them.
+
+  function padDataMatrixGs1 ( $tokens ) {
+
+    $codewords = [ 232 ];
+    $count     = count ( $tokens );
+
+    for ( $i = 0; $i < $count; $i++ )
+      if ( $tokens [$i] === PAD_GS1_FNC1 )
+        $codewords [] = 232;
+      elseif ( $i + 1 < $count and $tokens [$i + 1] !== PAD_GS1_FNC1 and ctype_digit ( $tokens [$i] ) and ctype_digit ( $tokens [$i + 1] ) )
+        $codewords [] = 130 + (int) ( $tokens [$i] . $tokens [++$i] );
+      else
+        $codewords [] = ord ( $tokens [$i] ) + 1;
+
+    return $codewords;
+
+  }
+
   // The symbol: the smallest square that holds the codewords, padded, the error correction
   // added and interleaved, placed in the data regions and framed by the finder of each.
-  // NULL when not even the largest holds the text.
+  // NULL when not even the largest holds the text. $data are codewords made elsewhere - GS1's.
 
-  function padDataMatrixMatrix ( $text ) {
+  function padDataMatrixMatrix ( $text, $data = NULL ) {
 
-    $data = padDataMatrixAscii ( $text );
+    $data = $data ?? padDataMatrixAscii ( $text );
 
     foreach ( PAD_DATAMATRIX_SIZES as $symbol )
       if ( count ( $data ) <= $symbol [3] )

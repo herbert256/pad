@@ -1,7 +1,8 @@
-{meta title='Squares that grow with the text', about='Data Matrix takes the smallest of its square sizes that holds the text, from 10 by 10 modules up; QR does the same with its versions.'/}
+{meta title='Squares that grow with the text', about='Data Matrix takes the smallest of its square sizes that holds the text, from 10 by 10 modules up; QR does the same with its versions; with gs1 it holds the GS1 element strings of a medicine pack.'/}
 <div style="display:flex; flex-wrap:wrap; gap:24px; align-items:flex-end">
   {texts}
   <figure style="margin:0; text-align:center">{datamatrix $text, size=$size/}<figcaption>{$label}</figcaption></figure>
   {/texts}
   <figure style="margin:0; text-align:center">{qr 'https://example.com/order/42', size=150/}<figcaption>the same order as QR</figcaption></figure>
+  <figure style="margin:0; text-align:center">{datamatrix '(01)09501101530003(17)261231(10)AB-123(21)PAD0042', gs1, size=110/}<figcaption>GS1, a medicine pack</figcaption></figure>
 </div>
