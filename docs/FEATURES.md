@@ -1265,6 +1265,7 @@ share (`padDiagramGraph`), the files beside it the other kinds, `types/` the kin
 {map 'world', data='sales', key='country', value='amount'/}   # choropleth as inline SVG, no script, no tiles
 {map 'eu', data='visitors', scale='quantile'/}                 # the 27 member states, the rest of Europe around them
 {map 'benelux'}{"NL": 1200, "BE": 800, "LU": 90}{/map}         # a pair: the content is the rows
+{map 'us-states', data='people', key='state'/}                 # the states of a country: US-CA, CA or California
 ```
 The views are the files of `pad/subs/maps/types/` - each answers its box of longitude and latitude
 and, for a region that is a list of countries, those countries and the name its title takes:
@@ -1275,6 +1276,17 @@ list draws the countries around it quieter, without values (`--pad-map-context`)
 a country the view does not show is named in the title, and kept off the scale. A view is
 added by adding its file - no new outlines needed, every view is a crop of the same Natural
 Earth outlines (`pad/subs/maps/_lib/world.json`).
+
+A view of the states or provinces of one country draws regions instead of countries, from an
+outlines file of its own beside world.json - Natural Earth's 1:10m admin-1 states and
+provinces (public domain), simplified with their shared borders kept, already in the
+projection that suits the country - named by the view's `outlines`: us-states (the fifty
+states, the District of Columbia and Puerto Rico in Albers USA, Alaska, Hawaii and Puerto Rico
+moved in below). A region is keyed by its ISO 3166-2 code with or without the country -
+`US-CA` or `CA` - or its name; a country is no region there, and a region the view has no
+outline for (Guam) is named as one it does not show. The default title reads `<Value> by
+state` (the view's `unit`), and the land around the regions, where the file has it, is drawn
+quieter, without values.
 
 ### Spreadsheets
 ```
@@ -1883,7 +1895,7 @@ The `notations` application shows every kind with its examples.
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
 {map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # flowchart (or type='sequence') laid out as SVG on the server
-{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ...
+{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states ...
 {timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
 {datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
 {toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered

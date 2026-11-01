@@ -21,8 +21,15 @@
   // there; with a list, the others are drawn as the quiet land around it, --pad-map-context,
   // and a value of theirs is named in the title as one the view does not show.
   //
-  // padMapCountries   the countries, read once per request, and an index of every code and
-  //                   name in lower case
+  // A view of the regions of one country - its states or provinces - names an outlines file of
+  // its own beside world.json instead of a box: 'outlines' => 'us-states' is
+  // subs/maps/_lib/us-states.json, the regions under their ISO 3166-2 codes, already in the
+  // projection that suits the country and in units of their own, with the box they fill and
+  // the land around them; a row is keyed by the region's code, with or without the country
+  // (US-CA or CA), or its name, and 'unit' says what a region is called in the title.
+  //
+  // padMapCountries   the countries - or a view's regions and the land around them - read
+  //                   once per request, and an index of every code and name in lower case
   // padMapViews       the names of the views, padMapView the one view a name has
   // padMap            the SVG
   //
@@ -35,13 +42,22 @@
 
   include_once PAD . 'subs/charts/_lib/chart.php';
 
-  function padMapCountries () {
+  // The outlines a view draws: [ every outline by code, the index of the codes and names, the
+  // codes of the regions a view of regions is about (NULL for the countries), the box of a
+  // view of regions in the units of its file (NULL for the countries, whose views give
+  // theirs in degrees) ]. The land around a country's regions is in the outlines, under a
+  // code starting with ~, and in no index: a row is never its value.
 
-    static $countries = NULL, $index = NULL;
+  function padMapCountries ( $view = 'world' ) {
 
-    if ( $countries === NULL ) {
+    static $sets = [];
 
-      $countries = json_decode ( file_get_contents ( PAD . 'subs/maps/_lib/world.json' ), TRUE ) ['countries'];
+    $file = padMapView ( $view ) ['outlines'] ?? 'world';
+
+    if ( ! isset ( $sets [$file] ) ) {
+
+      $json      = json_decode ( file_get_contents ( PAD . "subs/maps/_lib/$file.json" ), TRUE );
+      $countries = $json ['countries'] ?? $json ['regions'];
       $index     = [];
 
       // The codes and the own names first, the aliases after them: an alias never takes a
@@ -56,21 +72,25 @@
         foreach ( $others as $key )
           $index [ mb_strtolower ( $key ) ] ??= $code;
 
+      $sets [$file] = [ $countries + ( $json ['context'] ?? [] ), $index,
+                        isset ( $json ['regions'] ) ? array_keys ( $countries ) : NULL, $json ['_box'] ?? NULL ];
+
     }
 
-    return [ $countries, $index ];
+    return $sets [$file];
 
   }
 
   // The country a key names - ISO alpha-2, alpha-3 or an English name, in any case - as its
-  // alpha-2 code, else ''.
+  // alpha-2 code, else ''; on a view of regions the region it names - its ISO 3166-2 code
+  // with or without the country, or a name of it - as its full ISO 3166-2 code.
 
   // A key is looked up as the characters it holds: a field inside a data= literal came with
   // the stand-ins of a value - "Korea, Republic of" with another comma - and was on no map.
 
-  function padMapCode ( $key ) {
+  function padMapCode ( $key, $view = 'world' ) {
 
-    list ( , $index ) = padMapCountries ();
+    list ( , $index ) = padMapCountries ( $view );
 
     return $index [ mb_strtolower ( trim ( padUnprotect ( (string) $key ) ) ) ] ?? '';
 
@@ -87,7 +107,9 @@
 
   // A view as its file answers it: 'box', [ west, south, east, north ] in degrees, and
   // perhaps 'countries', the alpha-2 codes of the countries it is about, and 'name', what
-  // its title says - else the name of the file. Read once per request.
+  // its title says - else the name of the file; or for the regions of a country 'outlines',
+  // the file of _lib/ that has them, its name and 'unit', what one region is - state,
+  // province. Read once per request.
 
   function padMapView ( $view ) {
 
@@ -97,6 +119,7 @@
       $one             = padKind ( 'maps', $view ) ? include PAD . "subs/maps/types/$view.php" : [];
       $one ['box']   ??= [ -180, -58, 180, 84 ];
       $one ['name']  ??= ucfirst ( $view );
+      $one ['unit']  ??= 'country';
       $views [$view]   = $one;
     }
 
@@ -119,9 +142,13 @@
 
   }
 
-  // The box a view takes in the projection: its edges walked, since a meridian bends.
+  // The box a view takes in the projection: its edges walked, since a meridian bends. A view
+  // of regions has its box in its outlines file, in the units of its own projection.
 
   function padMapBox ( $view ) {
+
+    if ( $box = padMapCountries ( $view ) [3] )
+      return $box;
 
     list ( $west, $south, $east, $north ) = padMapView ( $view ) ['box'];
 
@@ -143,14 +170,17 @@
   // follows from the view unless $height is given; $scale is linear - the steps evenly
   // over the values - or quantile - evenly over their ranks. A country none of whose parts
   // lies in the view is not written at all (padMapShown); one that is not of the view's
-  // countries, when it lists them, is the land around them, drawn without a value.
+  // countries, when it lists them, is the land around them, drawn without a value. A view of
+  // regions is about every region of its file, and the land around them is the rest of it.
 
   function padMap ( $view, $values, $title, $width, $height, $scale = 'linear' ) {
 
-    list ( $countries ) = padMapCountries ();
+    list ( $countries, , $regions ) = padMapCountries ( $view );
     list ( $x0, $y0, $x1, $y1 ) = padMapBox ( $view );
 
-    $focus  = isset ( padMapView ( $view ) ['countries'] ) ? array_flip ( padMapView ( $view ) ['countries'] ) : NULL;
+    $focus  = ( $regions !== NULL ) ? array_flip ( $regions )
+            : ( isset ( padMapView ( $view ) ['countries'] ) ? array_flip ( padMapView ( $view ) ['countries'] ) : NULL );
+    $around = ( $focus !== NULL and count ( $countries ) > count ( $focus ) );
     $boxW   = $x1 - $x0;
     $boxH   = $y1 - $y0;
     $simple = ( $boxW / $width > 3 );
@@ -190,7 +220,7 @@
 
     list ( $id, $svg ) = padChartOpen ( 'map', [ $view, $inside ], $desc, $title, $width, $height );
 
-    $svg .= padMapStyle ( $focus !== NULL );
+    $svg .= padMapStyle ( $around );
 
     $all  = array_column ( $inside, 0 );
     $min  = $all ? min ( $all ) : 0;

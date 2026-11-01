@@ -12,7 +12,9 @@
   //   {/map}
   //
   // key= names the field with the country - its ISO alpha-2 or alpha-3 code or its English
-  // name, in any case - else the first field that is no number; value= the number, else the
+  // name, in any case - or on a view of a country's regions (us-states, de-states ...) the
+  // region: its ISO 3166-2 code with or without the country, US-CA or CA, or its name -
+  // else the first field that is no number; value= the number, else the
   // first numeric field. Rows of one country add up; a key no country has is named in the
   // title, not drawn. scale= is linear (the default: seven steps from the lowest value to
   // the highest) or quantile (seven steps by rank). width= is the width (720), height=
@@ -61,7 +63,7 @@
                      or ( $padMapKey === '' and count ( padChartRow ( $padMapRow ) ) == 1 ) ) );
     $padMapRow   = padChartRow ( $padMapRow );
     $padMapName  = $padMapAlone ? $padMapName : padChartText ( $padMapRow, $padMapKey );
-    $padMapCode  = padMapCode ( $padMapName );
+    $padMapCode  = padMapCode ( $padMapName, $padMapView );
     $padMapNum   = $padMapRow [$padMapValue] ?? NULL;
 
     if ( ! padChartFinite ( $padMapNum ) )
@@ -74,7 +76,7 @@
 
   }
 
-  $padMapTitle = (string) padTagParm ( 'title', ( $padMapValue !== '' ? ucfirst ( $padMapValue ) . ' by country' : padMapView ( $padMapView ) ['name'] ) );
+  $padMapTitle = (string) padTagParm ( 'title', ( $padMapValue !== '' ? ucfirst ( $padMapValue ) . ' by ' . padMapView ( $padMapView ) ['unit'] : padMapView ( $padMapView ) ['name'] ) );
 
   if ( $padMapMissed )
     $padMapTitle .= ' (not on the map: ' . implode ( ', ', array_slice ( array_unique ( $padMapMissed ), 0, 10 ) ) . ')';

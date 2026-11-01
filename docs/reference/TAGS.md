@@ -3706,7 +3706,8 @@ direction or edges value are errors under the strict check.
 ---
 
 ### map
-A choropleth map as inline SVG - every country coloured by a value of its row, drawn on the
+A choropleth map as inline SVG - every country, or every state or province of a country,
+coloured by a value of its row, drawn on the
 server by the map subsystem in `pad/subs/maps/` from Natural Earth's outlines (`subs/maps/_lib/map.php`,
 `subs/maps/_lib/world.json`) - no JavaScript, no tiles, no remote service.
 
@@ -3724,13 +3725,13 @@ server by the map subsystem in `pad/subs/maps/` from Natural Earth's outlines (`
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The view, a file of `pad/subs/maps/types/`: `world` (default), the continents `europe`, `africa`, `asia`, `north-america`, `south-america`, `oceania`, and the regions `middle-east`, `mediterranean`, `eu`, `nordic`, `benelux`, `baltic`, `british-isles`, `iberia`, `dach`, `balkans`, `central-america`, `caribbean`, `east-asia`, `southeast-asia`, `south-asia`, `central-asia` |
+| first parameter | The view, a file of `pad/subs/maps/types/`: `world` (default), the continents `europe`, `africa`, `asia`, `north-america`, `south-america`, `oceania`, and the regions `middle-east`, `mediterranean`, `eu`, `nordic`, `benelux`, `baltic`, `british-isles`, `iberia`, `dach`, `balkans`, `central-america`, `caribbean`, `east-asia`, `southeast-asia`, `south-asia`, `central-asia`; and the regions of a country: `us-states` |
 | `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
-| `key` | The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - else the first field that is no number |
+| `key` | The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - on a view of a country's regions the region: its ISO 3166-2 code with or without the country (`US-CA`, `CA`) or its name - else the first field that is no number |
 | `value` | The number - else the first numeric field |
 | `scale` | `linear` (default: seven steps from the lowest value to the highest) or `quantile` (seven steps by rank) - of the values the view draws |
 | `width`, `height` | Default 720 wide; the height follows from the view unless given |
-| `title` | The accessible name, default `<Value> by country` |
+| `title` | The accessible name, default `<Value> by country` - `by state`, `by province` on a view of a country's regions |
 
 **Behavior:** rows of one country add up; a key no country has is named in the title
 (`not on the map: ...`), not drawn. The colours are the heatmap's seven steps
@@ -3753,6 +3754,18 @@ of countries, the others are the land around them, drawn without a value in
 `--pad-map-context`, and a value of theirs is named in the title (`not in this view:
 Germany`), as one of a country outside the box is - and is left out of the scale, the legend
 and the description, which are the values the map draws.
+
+**Views of a country's regions:** a view of the states or provinces of one country answers
+`outlines` instead of a box - a file of `pad/subs/maps/_lib/` holding the regions under their
+ISO 3166-2 codes, already in the projection that suits the country, with the box they fill and
+the land around them - its `name` and its `unit`, what one region is called in the default
+title. `us-states`: the fifty states, the District of Columbia and Puerto Rico, from Natural
+Earth's 1:10m admin-1 states and provinces with the large lakes cut out (public domain), in
+Albers USA - the lower 48 in the USGS Albers equal-area conic, Alaska, Hawaii and Puerto Rico
+in conics of their own moved in below. A row is keyed by the region's ISO 3166-2 code with or
+without the country (`US-CA`, `CA`) or its name; a country is no region there (`not on the
+map: Canada`), and a region of the country the view has no outline for - Guam, the other
+outlying areas - is named as one it does not show.
 
 ---
 
