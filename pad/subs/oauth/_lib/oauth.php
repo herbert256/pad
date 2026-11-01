@@ -46,7 +46,8 @@
   //
   // The id_token of OpenID Connect is checked for its issuer, its audience (and azp when it
   // names several), its expiry and the nonce kept. Its signature is not checked: the token
-  // comes straight from the token endpoint over TLS, in this server's own request, and
+  // comes straight from the token endpoint over TLS - every endpoint, base and issuer must be
+  // https (padOAuthSecure; http on localhost alone) - in this server's own request, and
   // OpenID Connect Core 1.0, section 3.1.3.7, item 6, lets TLS server validation stand for
   // the signature then. A provider whose tokens reach the application by another road -
   // the implicit flow, a token handed in by a browser - is not what this is for.
@@ -126,9 +127,28 @@
       if ( $provider ['authorize'] === '' or $provider ['token'] === '' )
         return padOAuthFail ( 'the OpenID configuration of ' . padMakeSafe ( $doc ['issuer'], 80 ) . ' names no authorization or token endpoint' );
 
-    }
+      foreach ( [ 'authorize', 'token', 'userinfo' ] as $end )
+        if ( $provider [$end] !== '' and ! padOAuthSecure ( $provider [$end] ) )
+          return padOAuthFail ( 'the OpenID configuration of ' . padMakeSafe ( $doc ['issuer'], 80 ) . ' names an endpoint that is no https address: '
+                                . padMakeSafe ( $provider [$end], 80 ) );
+
+    } else
+
+      foreach ( [ 'authorize', 'token', 'userinfo' ] as $end )
+        if ( $provider [$end] !== '' and ! padOAuthSecure ( $provider [$end] ) )
+          return padOAuthAuthor ( "$function: " . $provider ['name'] . ' is reached over https - not ' . padMakeSafe ( $provider [$end], 80 )
+                                  . ' - give the option base, or the variable of its address, an https address (http on localhost alone)' );
 
     return $provider;
+
+  }
+
+  // An address the client secret and the tokens may go to: https - the id_token's signature
+  // is not checked because it comes over TLS - or http on this machine, for development.
+
+  function padOAuthSecure ( $url ) {
+
+    return (bool) preg_match ( '~^(https://[^\s/?#@]+|http://(localhost|127\.0\.0\.1|\[::1\])(:\d{1,5})?)([/?#]\S*)?$~iD', (string) $url );
 
   }
 
@@ -555,8 +575,9 @@
 
   function padOAuthDiscover ( $issuer ) {
 
-    if ( ! preg_match ( '~^https?://[^\s/?#]+[^\s?#]*$~iD', $issuer ) )
-      return padOAuthAuthor ( "the issuer is the address of an OpenID provider, like https://id.example.com/realms/main - not '" . padMakeSafe ( $issuer, 60 ) . "'" );
+    if ( ! preg_match ( '~^https?://[^\s/?#]+[^\s?#]*$~iD', $issuer ) or ! padOAuthSecure ( $issuer ) )
+      return padOAuthAuthor ( "the issuer is the https address of an OpenID provider, like https://id.example.com/realms/main (http on localhost alone) - not '"
+                              . padMakeSafe ( $issuer, 60 ) . "'" );
 
     $key  = 'pad-oauth-discovery:' . $issuer;
     $fake = padCurlFaking ();

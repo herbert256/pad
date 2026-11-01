@@ -408,7 +408,9 @@ names another. A state works once, for ten minutes, five logins at once, and onl
 token endpoint and issuer it was started at - a way back handled with another `base=`, `issuer=`
 or `tenant=` is refused before the code goes anywhere; OpenID Connect's
 id_token is checked for its issuer, audience, expiry and nonce - its signature is not: it comes
-straight from the token endpoint over TLS, which OpenID Connect Core 3.1.3.7 lets stand for it.
+straight from the token endpoint over TLS, which OpenID Connect Core 3.1.3.7 lets stand for it,
+so an issuer, a `base=` and every endpoint a discovery document names must be https (http on
+localhost alone).
 `padOAuthUrl` gives the address without going there; `padOAuthToken ()` the token answer, for
 calls to the provider's API. `{oauth 'github'/}` is the button - its link `oauth/<provider>`
 unless `href=`, the provider's icon when `pad/subs/icons/` has one. Apple posts its answer back
