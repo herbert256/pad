@@ -16,8 +16,8 @@
     var band   = C.padTagParm('bandwidth');
     var groups = new Map();
 
-    if (band !== '' && (!C.padChartFinite(band) || C.float(band) <= 0)) {
-      C.padError('the bandwidth of a ' + kind + ' chart is a number above 0');
+    if (band !== '' && (!C.padChartFinite(band) || C.float(band) < 1e-300)) {
+      C.padError('the bandwidth of a ' + kind + ' chart is a number above 0, 1e-300 at the least');
       band = '';
     }
 
@@ -53,10 +53,10 @@
       var iqr  = (q3 - q1) / 1.34;
       var h    = (band !== '') ? C.num(band) : 0.9 * (iqr > 0 ? Math.min(sd, iqr) : sd) * Math.pow(n, -0.2);
 
-      if (!(h > 0) || !isFinite(h))
-        h = (sd > 0 && isFinite(sd)) ? sd : ((values[n - 1] - values[0]) / 10 || Math.max(Math.abs(mean) * 0.1, 1e-9));
+      if (!(h >= 1e-300) || !isFinite(h))
+        h = (sd >= 1e-300 && isFinite(sd)) ? sd : ((values[n - 1] - values[0]) / 10 || Math.max(Math.abs(mean) * 0.1, 1e-9));
 
-      if (!(h > 0) || !isFinite(h))
+      if (!(h >= 1e-300) || !isFinite(h))
         h = 1;
 
       sets.set(name, [values, h, q1, med, q3]);

@@ -28,9 +28,13 @@
     $band   = padTagParm ( 'bandwidth' );
     $groups = [];
 
-    if ( $band !== '' and ( ! padChartFinite ( $band ) or $band <= 0 ) ) {
+    // A bandwidth below 1e-300, the bound of the values themselves (padChartFinite), is none:
+    // 1e-310 passed, the kernel's 1 / ( n h sqrt ( 2 pi ) ) overflowed and the curve's path
+    // was written with nan - and a bandwidth the rule makes that small falls back as one of 0.
+
+    if ( $band !== '' and ( ! padChartFinite ( $band ) or $band < 1e-300 ) ) {
       if ( $padCheckSyntax )
-        padError ( 'the bandwidth of a ' . $kind . ' chart is a number above 0' );
+        padError ( 'the bandwidth of a ' . $kind . ' chart is a number above 0, 1e-300 at the least' );
       $band = '';
     }
 
@@ -67,10 +71,10 @@
       // deviation is INF, and the bandwidth was that - the axis ran from -INF and the chart
       // ended on a cast.
 
-      if ( ! ( $h > 0 ) or ! is_finite ( $h ) )
-        $h = ( $sd > 0 and is_finite ( $sd ) ) ? $sd : ( ( end ( $values ) - $values [0] ) / 10 ?: max ( abs ( $mean ) * 0.1, 1e-9 ) );
+      if ( ! ( $h >= 1e-300 ) or ! is_finite ( $h ) )
+        $h = ( $sd >= 1e-300 and is_finite ( $sd ) ) ? $sd : ( ( end ( $values ) - $values [0] ) / 10 ?: max ( abs ( $mean ) * 0.1, 1e-9 ) );
 
-      if ( ! ( $h > 0 ) or ! is_finite ( $h ) )
+      if ( ! ( $h >= 1e-300 ) or ! is_finite ( $h ) )
         $h = 1;
 
       $sets [$name] = [ $values, $h, $q1, $med, $q3 ];

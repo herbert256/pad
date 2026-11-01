@@ -25,8 +25,8 @@
     if (C.count(rows) && !C.padChartFieldSomewhere(rows, field))
       C.padError("the ridgeline chart's value='" + C.padMakeSafe(field, 30) + "' is no field of its rows");
 
-    if (band !== '' && (!C.padChartFinite(band) || C.float(band) <= 0)) {
-      C.padError('the bandwidth of a ridgeline chart is a number above 0');
+    if (band !== '' && (!C.padChartFinite(band) || C.float(band) < 1e-300)) {
+      C.padError('the bandwidth of a ridgeline chart is a number above 0, 1e-300 at the least');
       band = '';
     }
 
@@ -66,10 +66,10 @@
     var iqr   = (C.padChartQuantile(all, 0.75) - C.padChartQuantile(all, 0.25)) / 1.34;
     var h     = (band !== '') ? C.num(band) : 0.9 * (iqr > 0 ? Math.min(sd, iqr) : sd) * Math.pow(count, -0.2);
 
-    if (!(h > 0) || !isFinite(h))
-      h = (sd > 0 && isFinite(sd)) ? sd : ((all[count - 1] - all[0]) / 10 || Math.max(Math.abs(mean) * 0.1, 1e-9));
+    if (!(h >= 1e-300) || !isFinite(h))
+      h = (sd >= 1e-300 && isFinite(sd)) ? sd : ((all[count - 1] - all[0]) / 10 || Math.max(Math.abs(mean) * 0.1, 1e-9));
 
-    if (!(h > 0) || !isFinite(h))
+    if (!(h >= 1e-300) || !isFinite(h))
       h = 1;
 
     var sets = new Map();
