@@ -1027,7 +1027,7 @@ naming the variable to set.
 
 | Function | Answers |
 |----------|---------|
-| `padOAuthStart ( $provider, $options = [] )` | Sends the visitor to the provider's authorize page - state, PKCE S256 and (OpenID Connect) a nonce kept in the session; options `client_id`, `client_secret`, `scopes`, `redirect`, `params` and the provider's own (`base`, `tenant`, `issuer`, `env`) |
+| `padOAuthStart ( $provider, $options = [] )` | Sends the visitor to the provider's authorize page - state, PKCE S256 and (OpenID Connect) a nonce kept in the session; options `client_id`, `client_secret`, `scopes`, `redirect`, `params` and the provider's own (`base`, `tenant`, `team`, `issuer`, `env`) |
 | `padOAuthUrl ( $provider, $options = [] )` | That address, the login kept, without going there |
 | `padOAuthUser ( $provider, $options = [] )` | On the way back: the state checked, the code exchanged, the id_token checked, the user fetched - `[ provider, id, sub, name, email, email_verified, avatar, username ]` for `padLogin`, or FALSE; link an existing account by `email` only when `email_verified` is TRUE |
 | `padOAuthError ()`, `padOAuthToken ()` | Why the last call answered FALSE; the token endpoint's answer of the last login |

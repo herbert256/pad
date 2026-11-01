@@ -40,7 +40,7 @@ and <code>username</code>. A provider is added by adding its file.</p>
 <ul>
   <li>The settings are <code>.env</code> values: <code>GITHUB_CLIENT_ID</code> and
       <code>GITHUB_CLIENT_SECRET</code>, and so on per provider; <code>GITLAB_URL</code> and
-      <code>FORGEJO_URL</code> for a forge of one's own, <code>MICROSOFT_TENANT</code>,
+      <code>FORGEJO_URL</code> for a forge of one's own, <code>MICROSOFT_TENANT</code>, <code>SLACK_TEAM</code>,
       <code>OIDC_ISSUER</code>. A missing one is an error under the strict check that names it.</li>
   <li>GitHub keeps an address private by answering null; it is then taken from
       <code>/user/emails</code> - the primary one, verified.</li>
@@ -50,7 +50,7 @@ and <code>username</code>. A provider is added by adding its file.</p>
       primary one when it is confirmed, else another confirmed one.</li>
   <li>The <code>email</code> is a way to reach the person, not who they are: a provider may hold
       an address its user typed and never proved. <code>email_verified</code> is TRUE only when
-      the provider vouches for it - Google's, Apple's, LinkedIn's and an OpenID provider's
+      the provider vouches for it - Google's, Apple's, LinkedIn's, Slack's and an OpenID provider's
       <code>email_verified</code>, Discord's <code>verified</code>, GitLab's
       <code>confirmed_at</code>, GitHub's and Forgejo's verified addresses, Bitbucket's confirmed
       ones, Microsoft's optional
@@ -66,6 +66,9 @@ and <code>username</code>. A provider is added by adding its file.</p>
       generic <code>oidc</code> cannot.</li>
   <li><code>oidc</code> is any OpenID Connect provider - Keycloak, Authentik, Auth0 - its endpoints
       read from the issuer's <code>/.well-known/openid-configuration</code>.</li>
+  <li>A Slack user's id is unique within its workspace alone, so Slack's <code>sub</code> is both,
+      <code>T0R7GR/U0R7JM</code>. <code>team=</code> (or <code>SLACK_TEAM</code>) keeps the login to
+      one workspace: Slack is asked for it, and a token of any other is refused.</li>
   <li>The id_token of OpenID Connect is checked for its issuer, audience, expiry and the nonce.
       Its signature is not: it comes straight from the token endpoint over TLS, which OpenID
       Connect Core 3.1.3.7 lets stand for the signature - so every address of a provider, its

@@ -412,7 +412,10 @@
 
       $info = padOAuthFetch ( 'GET', $provider ['userinfo'], NULL, $headers );
 
-      if ( ! is_array ( $info ['json'] ) or $info ['status'] < 200 or $info ['status'] > 299 )
+      // An error in the body counts as one with a status of 200 too - Slack's methods answer
+      // { "ok": false, "error": "invalid_auth" } that way.
+
+      if ( ! is_array ( $info ['json'] ) or isset ( $info ['json'] ['error'] ) or $info ['status'] < 200 or $info ['status'] > 299 )
         return padOAuthFail ( "$name did not give the user (" . padOAuthProblem ( $info ) . ')' );
 
       // OpenID Connect Core 5.3.2: the userinfo's sub must be the id_token's.
