@@ -3682,7 +3682,7 @@ the columns and `rows` below 1 are strict errors.
 ### spreadsheet
 A grid of cells whose formulas are computed on the server, as an accessible table
 (`subs/formulas/spreadsheet.php`) - the formula language is spreadsheet syntax with a parser of
-its own, its functions the files of `pad/subs/formulas/types/` (SUM, IF, VLOOKUP, PMT ... 106 of
+its own, its functions the files of `pad/subs/formulas/types/` (SUM, IF, VLOOKUP, PMT ... 112 of
 them), answering what Excel answers. See [Spreadsheets](../FEATURES.md#spreadsheets).
 
 ```html

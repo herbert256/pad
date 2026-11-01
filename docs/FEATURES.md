@@ -1111,7 +1111,8 @@ holds 32767 characters at most, as a cell of Excel does - a longer one is `#VALU
 functions are the files of `pad/subs/formulas/types/` - a function is added by adding its file,
 names are read in any case - and answer what Excel answers: SUM, AVERAGE, MIN, MAX, COUNT,
 COUNTA, COUNTBLANK, COUNTIF(S), SUMIF(S), AVERAGEIF(S), MINIFS, MAXIFS, PRODUCT, SUMPRODUCT
-(ranges of one shape multiplied place by place, what is no number 0), MEDIAN, STDEV, VAR, RANK,
+(ranges of one shape multiplied place by place, what is no number 0), MEDIAN, STDEV, VAR (a
+sample's, also STDEV.S and VAR.S), STDEV.P and VAR.P (a population's, also STDEVP and VARP), RANK,
 LARGE, SMALL, PERCENTILE.INC, PERCENTILE.EXC, QUARTILE.INC and QUARTILE.EXC (interpolated
 between the numbers around the place, the older PERCENTILE and QUARTILE the .INC forms); IF,
 IFS, AND, OR, NOT, XOR, IFERROR, IFNA; ISBLANK (a reference to an empty cell,

@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 106 functions a formula can call, each a file of
+<p class="sheets-lead">The 112 functions a formula can call, each a file of
 <code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -292,10 +292,46 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=STDEV(2, 4, 4, 4, 5, 5, 7, 9)</code> <samp>2.138089935</samp></li><li><code>=STDEV(5)</code> <samp>#DIV/0!</samp></li></ul></td>
     </tr>
   
+    <tr id="stdev.p">
+      <th scope="row">STDEV.P</th>
+      <td>STDEV.P(number, ...) is the standard deviation of a whole population - divided by the count, where STDEV.S divides by the count less one; of one number 0, of none #DIV/0!. The numbers are taken as SUM takes them: typed into the call a number, TRUE (1), FALSE (0) and a text that reads as a number count, another text is #VALUE!; of a range only its numbers.</td>
+      <td><ul class="sheets-examples"><li><code>=STDEV.P(2, 4, 4, 4, 5, 5, 7, 9)</code> <samp>2</samp></li><li><code>=STDEV.P(B2:B7)</code> <samp>6.497862897</samp></li><li><code>=STDEV.P(5)</code> <samp>0</samp></li></ul></td>
+    </tr>
+  
+    <tr id="stdev.s">
+      <th scope="row">STDEV.S</th>
+      <td>STDEV.S(number, ...) is STDEV under the name Excel gave it in 2010: the standard deviation of a sample - divided by the count less one; of fewer than two numbers #DIV/0!.</td>
+      <td><ul class="sheets-examples"><li><code>=STDEV.S(2, 4, 4, 4, 5, 5, 7, 9)</code> <samp>2.138089935</samp></li><li><code>=STDEV.S(B2:B7)</code> <samp>7.118052168</samp></li></ul></td>
+    </tr>
+  
+    <tr id="stdevp">
+      <th scope="row">STDEVP</th>
+      <td>STDEVP(number, ...) is STDEV.P under the name it had before Excel 2010, which Excel, LibreOffice and Google Sheets still read: the standard deviation of a whole population.</td>
+      <td><ul class="sheets-examples"><li><code>=STDEVP(2, 4, 4, 4, 5, 5, 7, 9)</code> <samp>2</samp></li></ul></td>
+    </tr>
+  
     <tr id="var">
       <th scope="row">VAR</th>
       <td>VAR(number, ...) is the variance of a sample - divided by the count less one; of fewer than two numbers #DIV/0!.</td>
       <td><ul class="sheets-examples"><li><code>=VAR(2, 4, 4, 4, 5, 5, 7, 9)</code> <samp>4.571428571</samp></li><li><code>=VAR(1, 2, 3, 4)</code> <samp>1.666666667</samp></li></ul></td>
+    </tr>
+  
+    <tr id="var.p">
+      <th scope="row">VAR.P</th>
+      <td>VAR.P(number, ...) is the variance of a whole population - divided by the count, where VAR.S divides by the count less one; of one number 0, of none #DIV/0!. The numbers are taken as SUM takes them: typed into the call a number, TRUE (1), FALSE (0) and a text that reads as a number count, another text is #VALUE!; of a range only its numbers.</td>
+      <td><ul class="sheets-examples"><li><code>=VAR.P(2, 4, 4, 4, 5, 5, 7, 9)</code> <samp>4</samp></li><li><code>=VAR.P(B2:B7)</code> <samp>42.22222222</samp></li><li><code>=VAR.P(A2:A7)</code> <samp>#DIV/0!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="var.s">
+      <th scope="row">VAR.S</th>
+      <td>VAR.S(number, ...) is VAR under the name Excel gave it in 2010: the variance of a sample - divided by the count less one; of fewer than two numbers #DIV/0!.</td>
+      <td><ul class="sheets-examples"><li><code>=VAR.S(2, 4, 4, 4, 5, 5, 7, 9)</code> <samp>4.571428571</samp></li><li><code>=VAR.S(B2:B7)</code> <samp>50.66666667</samp></li></ul></td>
+    </tr>
+  
+    <tr id="varp">
+      <th scope="row">VARP</th>
+      <td>VARP(number, ...) is VAR.P under the name it had before Excel 2010, which Excel, LibreOffice and Google Sheets still read: the variance of a whole population.</td>
+      <td><ul class="sheets-examples"><li><code>=VARP(2, 4, 4, 4, 5, 5, 7, 9)</code> <samp>4</samp></li></ul></td>
     </tr>
   
   </tbody>
