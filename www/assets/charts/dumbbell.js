@@ -74,7 +74,7 @@
         var two = (q[1] === null || q[2] === null);
         if (one || two)
           return one === two ? 0 : (one ? 1 : -1);
-        var cp = p[2] - p[1], cq = q[2] - q[1];
+        var cp = C.padChartDifference(p[1], p[2]), cq = C.padChartDifference(q[1], q[2]);
         return cq < cp ? -1 : (cq > cp ? 1 : 0);
       });
 
@@ -82,7 +82,7 @@
 
     var desc = bells.map(function (bell) {
       return bell[0] + ': ' + fromName + ' ' + show(bell[1]) + ', ' + toName + ' ' + show(bell[2])
-           + ((bell[1] !== null && bell[2] !== null) ? ', change ' + C.padChartChange(bell[2] - bell[1]) : '');
+           + ((bell[1] !== null && bell[2] !== null) ? ', change ' + C.padChartChange(C.padChartDifference(bell[1], bell[2])) : '');
     });
 
     var title = C.str(C.padTagParm('title', fromName + ' to ' + toName + (label !== '' ? ' by ' + label : '')));
@@ -164,6 +164,14 @@
   C.padChartChange = function (change) {
 
     return (change > 0 ? '+' : '') + C.padChartNumber(change);
+
+  };
+
+  C.padChartDifference = function (a, b) {
+
+    var change = b - a;
+
+    return Math.abs(change) <= Math.max(Math.abs(a), Math.abs(b)) * 1e-12 ? 0 : change;
 
   };
 

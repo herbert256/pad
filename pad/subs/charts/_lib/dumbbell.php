@@ -99,7 +99,7 @@
         $two = ( $q [1] === NULL or $q [2] === NULL );
         if ( $one or $two )
           return $one <=> $two;
-        return ( $q [2] - $q [1] ) <=> ( $p [2] - $p [1] );
+        return padChartDifference ( $q [1], $q [2] ) <=> padChartDifference ( $p [1], $p [2] );
       } );
 
     $show = fn ( $v ) => ( $v === NULL ) ? 'not given' : padChartNumber ( $v );
@@ -107,7 +107,7 @@
 
     foreach ( $bells as list ( $name, $a, $b ) )
       $desc [] = "$name: $fromName " . $show ( $a ) . ", $toName " . $show ( $b )
-               . ( ( $a !== NULL and $b !== NULL ) ? ', change ' . padChartChange ( $b - $a ) : '' );
+               . ( ( $a !== NULL and $b !== NULL ) ? ', change ' . padChartChange ( padChartDifference ( $a, $b ) ) : '' );
 
     $title = (string) padTagParm ( 'title', "$fromName to $toName" . ( $label !== '' ? " by $label" : '' ) );
 
@@ -198,6 +198,19 @@
   function padChartChange ( $change ) {
 
     return ( ( $change > 0 ) ? '+' : '' ) . padChartNumber ( $change );
+
+  }
+
+  // The change from $a to $b: a difference no larger than a trillionth of the two - float
+  // noise, 115 beside 1.15 * 100, 0.3 beside 0.1 + 0.2, whose dots stand on one spot at any
+  // size - is none, as padChartTicks takes such values for one: it was written "change
+  // +0.000000000000014", and ranked put it above an exact 0.
+
+  function padChartDifference ( $a, $b ) {
+
+    $change = $b - $a;
+
+    return ( abs ( $change ) <= max ( abs ( $a ), abs ( $b ) ) * 1e-12 ) ? 0 : $change;
 
   }
 
