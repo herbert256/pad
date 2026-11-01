@@ -28,7 +28,7 @@
       'With JavaScript'        => [ 'htmx', 'alpine', 'vite', 'islands', 'web_components' ],
       'Forms and security'     => [ 'forms', 'client_validation', 'inputs', 'csrf_protection', 'flash_messages',
                                     'directory_guards', 'security_headers', 'file_uploads' ],
-      'Outside services'       => [ 'social_login', 'notifications' ],
+      'Outside services'       => [ 'social_login', 'notifications', 'language_models' ],
       'Development tools'      => [ 'debug', 'template_errors', 'toolbar', 'output_checks', 'coverage', 'replay',
                                     'live_reload', 'samples', 'typescript_types', 'app_tests', 'pad_command',
                                     'static_export', 'playground', 'editor_support', 'pad_in_the_browser',

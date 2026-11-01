@@ -1118,6 +1118,33 @@ template are errors. From PHP: `padMail ( $to, $template, $subject, $vars, $opti
 
 ---
 
+### ai
+The answer of a language model, printed as text (`pad/subs/ai/`).
+
+```html
+{ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai}
+{ai 'Name three rivers of France.', system='Answer briefly.'/}
+```
+
+**Parameters:** single, the prompt.
+
+**Options:** `provider` - a file of `pad/subs/ai/types/`: anthropic, gemini, mistral, ollama,
+openai (`PAD_AI_PROVIDER`, else anthropic); `model` - the provider's default unless given;
+`system` - the system prompt; `tokens` - the most the answer may take; `ttl` - the seconds an
+answer is kept, 3600 unless given, 0 keeps nothing.
+
+**Behavior:** as a pair the content renders first - the end walk - and what it rendered is the
+prompt, its fields read as the text they hold. The answer is escaped and its braces inert: a
+value, never template code. Answers are kept (`padCachePut`) under a hash of the provider,
+model, system prompt, prompt and tokens - a failed answer never, and nothing while the fetches
+are faked. The key is the provider's `padEnv` value - `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`,
+`MISTRAL_API_KEY`, `GEMINI_API_KEY`; Ollama needs none (`OLLAMA_HOST`). A missing key, an unknown
+provider, a wrong option or an error of the API is an error under the strict check; without it
+the tag answers nothing and the error is logged. From PHP: `padAi ( $prompt, $options )`,
+`padAiError ()`.
+
+---
+
 ## Output Tags
 
 ### echo

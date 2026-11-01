@@ -771,6 +771,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [HTTP fakes for tests](docs/FEATURES.md#http-fakes-for-tests) | `padCurlFake ()`, `padCurlRecorded ()` |
 | [Log in with GitHub, Google ... (OAuth)](docs/FEATURES.md#log-in-with-github-google--oauth) | `padOAuthStart ( 'github' )`, `padOAuthUser ()` → `padLogin`, `{oauth 'github'/}` - a provider per file of `pad/subs/oauth/types/` |
 | [Notifications on every channel](docs/FEATURES.md#notifications-on-every-channel) | `padNotify ( $user, 'shipped', $data, [ 'mail', 'slack' ] )`, `_notifications/`, `{notifications/}`, `padWebPushKeys ()` - a channel per file of `pad/subs/channels/types/` |
+| [A language model answering in the page](docs/FEATURES.md#a-language-model-answering-in-the-page) | `{ai provider='anthropic', ttl=86400}...{/ai}`, `padAi ( $prompt, $options )` - a provider per file of `pad/subs/ai/types/` |
 | [Live regions](docs/FEATURES.md#live-regions-interactivity-without-app-javascript) | `{live 'cart'}`, `pad-click`, `padLiveEvent ()` |
 | [Lookups between data sets](docs/FEATURES.md#lookups-between-data-sets) | `\| lookup('customers', 'id', 'name')` |
 | [Grouping with subtotals](docs/FEATURES.md#grouping-with-subtotals-group-option) | `{orders group='customer', sum='total'}` |

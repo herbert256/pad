@@ -27,6 +27,7 @@ applications show them working.
   - [HTTP fakes for tests](#http-fakes-for-tests)
   - [Log in with GitHub, Google ... (OAuth)](#log-in-with-github-google--oauth)
   - [Notifications on every channel](#notifications-on-every-channel)
+  - [A language model answering in the page](#a-language-model-answering-in-the-page)
 - [Template features](#template-features)
   - [Lookups Between Data Sets](#lookups-between-data-sets)
   - [Grouping with subtotals (group option)](#grouping-with-subtotals-group-option)
@@ -360,6 +361,26 @@ teams, telegram, ntfy, matrix and sms (a generic HTTP gateway). The recipient is
 and sent by `pad work` - a failing channel is retried alone. A channel that does not deliver is
 no error: FALSE, logged, and `padNotifyResults ()` says why - and which push subscriptions are
 gone. A channel is added by adding its file: its settings and a `send` function.
+
+### A language model answering in the page
+```
+{ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai}
+{ai 'Name three rivers of France.', model='claude-haiku-5-5', system='Answer briefly.'/}
+```
+```php
+$summary = padAi ( "Summarise: $body", [ 'provider' => 'openai', 'tokens' => 300 ] );
+```
+The content renders first and is the prompt; the answer is printed as text - a value, never
+template code. The providers are the files of `pad/subs/ai/types/` - anthropic
+(`claude-opus-5-5` by default), openai, mistral, gemini and ollama (a local server, no key) - each
+its endpoint, headers, request and how the text and an error are taken out of the answer. The
+key is `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `MISTRAL_API_KEY` or `GEMINI_API_KEY`
+(`OLLAMA_HOST` for Ollama), the provider `provider=` or `PAD_AI_PROVIDER`. Options `model=`,
+`system=`, `tokens=` (the most the answer takes - the handling option `max` is something else)
+and `ttl=` (seconds an answer is kept, 3600 by default, keyed on the provider, model, system
+prompt and prompt; 0 keeps nothing). A missing key or an error of the API is an error under the
+strict check; without it the tag answers nothing, the error is logged (`padLog`) and
+`padAiError ()` says it. Tests answer the providers with `padCurlFake`, and keep nothing.
 
 ## Template features
 

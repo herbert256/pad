@@ -32,7 +32,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Migrations and fake data](#migrations-and-fake-data) | `padMigrate`, `padSeed`, `padFake*`, `padFactory`, ... | - |
 | [Queues, schedule and HTTP fakes](#queues-schedule-and-http-fakes) | `padQueue`, `padQueueWork`, `padCronMatch`, `padCurlFake`, ... | - |
 | [Maintenance and assets](#maintenance-and-assets) | `padMaintenanceDown`, `padAsset`, ... | - |
-| [OAuth, notifications and language models](#oauth-notifications-and-language-models) | `padOAuthStart`, `padOAuthUser`, `padNotify`, `padWebPushKeys`, ... | social_login, notifications |
+| [OAuth, notifications and language models](#oauth-notifications-and-language-models) | `padOAuthStart`, `padOAuthUser`, `padNotify`, `padWebPushKeys`, `padAi`, ... | social_login, notifications, language_models |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1028,6 +1028,8 @@ naming the variable to set.
 | `padNotifications ( $to = NULL, $all = FALSE )`, `padNotificationRead ( $id \| 'all', $to = NULL )` | The database channel's notifications of a recipient - the user logged in by default - newest first; one or all marked read |
 | `padWebPushKeys ()` | A new VAPID key pair, base64url - `[ public, private ]` for `VAPID_PUBLIC_KEY` and `VAPID_PRIVATE_KEY` |
 | `padNotifyChannels ()` | The channels - the files of `pad/subs/channels/types/` |
+| `padAi ( $prompt, $options = [] )` | The answer of a language model as text, '' when there is none; options `provider`, `model`, `system`, `tokens`, `ttl` (3600), `key`, `url` |
+| `padAiError ()`, `padAiProviders ()` | Why the last `padAi` answered ''; the providers - the files of `pad/subs/ai/types/` |
 
 ## Engine functions
 
