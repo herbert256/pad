@@ -254,6 +254,48 @@
                 padAjaxdd96823c9c56f68d931c9f32c6514b7e.open("GET","http://localhost/pad/sequence/?types/repunit&padInclude",true);
                 padAjaxdd96823c9c56f68d931c9f32c6514b7e.send();
                 </script>
+                <hr>
+                App: tags Page: tag/sequence/repunit<br>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      PHP<br>
+                      <font size="-2">tag/[tagType]/[tagKind].php</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      HTML<br>
+                      <font size="-2">tag/[tagType]/[tagKind].pad</font>
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      Result
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The page of a kind - a chart type, a game, a toy, an icon, a sequence type ... - by the<br>  // two names of its address, ?tag/chart/pie: the frame of every tag page around it<br>  // (tag/_inits.pad, tag/_exits.pad) and what tag/_exits.php reads of the kind. A name that is<br>  // no kind is a page not found.<br><br>  </span><span style="color: #007700">if ( ! </span><span style="color: #0000BB">is_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$tagType </span><span style="color: #007700">) or ! </span><span style="color: #0000BB">is_string </span><span style="color: #007700">( </span><span style="color: #0000BB">$tagKind </span><span style="color: #007700">) or ! isset ( </span><span style="color: #0000BB">tagsCatalog </span><span style="color: #007700">() [</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$tagType</span><span style="color: #DD0000">:</span><span style="color: #0000BB">$tagKind</span><span style="color: #DD0000">"</span><span style="color: #007700">] ) )<br>    </span><span style="color: #0000BB">padAbort </span><span style="color: #007700">( </span><span style="color: #0000BB">404 </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <pre><code style="color: #000000"><b>{<font color="green"><font color="red">!</font>tagKindHtml</font>}</b><br>&lt;/section&gt;<br><br>&lt;section class="block" aria-labelledby="examples"&gt;&lt;h2 id="examples"&gt;Example&lt;/h2&gt;<br>  <b>{<font color="blue">tagKindExample</font><font color="red"></font>}</b><br>  &lt;div class="example" id="example-1"&gt;<br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/h3&gt;<br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>about</font>}</b>&lt;p class="example-about"&gt;<b>{<font color="green"><font color="red">$</font>about</font>}</b>&lt;/p&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;div class="example-grid<b>{<font color="blue">if </font><font color="red">not <font color="red">$</font>run</font>}</b> is-static<b>{/<font color="blue">if</font><font color="red"></font>}</b>"&gt;<br>      &lt;div class="cell"&gt;<br>        &lt;div class="cell-head"&gt;&lt;span&gt;Template&lt;/span&gt;&lt;span class="cell-file"&gt;<b>{<font color="green"><font color="red">$</font>file</font>}</b>&lt;/span&gt;&lt;/div&gt;<br>        &lt;pre class="code"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>padHtml</font>}</b>&lt;/code&gt;<br>        <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>php</font>}</b><br>        &lt;div class="cell-head"&gt;&lt;span&gt;PHP&lt;/span&gt;&lt;span class="cell-file"&gt;<b>{<font color="green"><font color="red">$</font>php</font>}</b>&lt;/span&gt;&lt;/div&gt;<br>        &lt;pre class="code"&gt;&lt;code&gt;<b>{<font color="green"><font color="red">!</font>phpHtml</font>}</b>&lt;/code&gt;<br>        <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>      &lt;/div&gt;<br>      <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>run</font>}</b><br>      &lt;div class="cell"&gt;<br>        &lt;div class="cell-head"&gt;&lt;span&gt;Result&lt;/span&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>open</font>}</b>&lt;a class="cell-file" href="<b>{<font color="green"><font color="red">$</font>open</font>}</b>"&gt;open alone&lt;/a&gt;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/div&gt;<br>        &lt;div class="result"&gt;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>app</font>}</b><b>{<font color="blue">page </font><font color="red"><font color="red">$</font>page<font color="black">,</font> app=<font color="red">$</font>app<font color="black">,</font> ajax=0</font>/}</b><b>{<font color="blue">elseif </font><font color="red"><font color="red">$</font>page</font>}</b><b>{<font color="blue">page </font><font color="red"><font color="red">$</font>page</font>/}</b><b>{<font color="blue">else</font><font color="red"></font>}</b><b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>source <font color="black">|</font> code</font>/}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/div&gt;<br>      &lt;/div&gt;<br>      <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    &lt;/div&gt;<br>  &lt;/div&gt;<br>  <b>{/<font color="blue">tagKindExample</font><font color="red"></font>}</b></code></pre>
+                    </td>
+                    <td style="vertical-align:top">
+                      <div id="padAjax1f079e8a01e369b65276a489c032a3bc"></div>
+                      <script>
+                      padAjax1f079e8a01e369b65276a489c032a3bc = new XMLHttpRequest();
+                      padAjax1f079e8a01e369b65276a489c032a3bc.onreadystatechange=function() {
+                      if (padAjax1f079e8a01e369b65276a489c032a3bc.readyState === 4) {
+                      if (padAjax1f079e8a01e369b65276a489c032a3bc.status === 200) {
+                      document.getElementById("padAjax1f079e8a01e369b65276a489c032a3bc").innerHTML=padAjax1f079e8a01e369b65276a489c032a3bc.responseText;
+                      } else {
+                      document.getElementById("padAjax1f079e8a01e369b65276a489c032a3bc").innerHTML=padAjax1f079e8a01e369b65276a489c032a3bc.statusText;
+                      }
+                      }
+                      }
+                      padAjax1f079e8a01e369b65276a489c032a3bc.open("GET","http://localhost/pad/tags/?tag/sequence/repunit&padInclude",true);
+                      padAjax1f079e8a01e369b65276a489c032a3bc.send();
+                      </script>
+                    </td>
+                  </tr>
+                </table>
               </center>
             </td>
           </tr>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {input:dropzone} · PAD tags
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="tags.css">
+    <style>
+    :where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
+    .pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
+    .pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
+    .pad-input [hidden]{display:none!important}
+    .pad-input input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),.pad-input textarea{font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.4em .55em;max-width:100%}
+    .pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input button:focus-visible,.pad-input [tabindex]:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+    .pad-input [aria-invalid=true]{border-color:var(--pad-input-bad)!important}
+    .pad-input .pi-button{font:inherit;font-size:.92em;line-height:1.2;padding:.4em .7em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);color:var(--pad-input-ink);cursor:pointer}
+    .pad-input .pi-button:hover:not(:disabled){border-color:var(--pad-input-accent)}
+    .pad-input .pi-button:disabled{opacity:.45;cursor:default}
+    .pad-input .pi-row{display:flex;align-items:center;gap:.5em;flex-wrap:wrap}
+    .pad-input .pi-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    .pad-input .pi-muted{color:var(--pad-input-muted);font-size:.9em}
+    .pad-input .pi-popup{position:absolute;z-index:20;margin-top:4px;background:var(--pad-input-field);color:var(--pad-input-ink);border:1px solid var(--pad-input-line);border-radius:8px;box-shadow:0 6px 24px rgb(0 0 0 / .18);padding:.5em}
+    .pad-input .pi-anchor{position:relative;display:inline-block;max-width:100%}
+    .pad-input .pi-noscript{color:var(--pad-input-muted);margin:.3em 0}
+    </style>
+    <style>
+    .pad-input-dropzone .pi-drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4em;max-width:32em;min-height:6.5em;padding:1em;border:2px dashed var(--pad-input-line);border-radius:10px;background:var(--pad-input-shade);text-align:center;cursor:pointer;font-weight:normal}
+    .pad-input-dropzone .pi-drop:hover,.pad-input-dropzone .pi-drop.is-over{border-color:var(--pad-input-accent);background:var(--pad-input-field)}
+    .pad-input-dropzone .pi-drop:focus-within{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+    .pad-input-dropzone.is-droppable .pi-drop input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+    .pad-input-dropzone:not(.is-droppable) .pi-drop-hint{display:none}
+    .pad-input-dropzone .pi-drop-hint{color:var(--pad-input-muted)}
+    .pad-input-dropzone .pi-drop-hint strong{color:var(--pad-input-ink)}
+    .pad-input-dropzone .pi-drop-files{list-style:none;margin:.4em 0 0;padding:0;max-width:32em}
+    .pad-input-dropzone .pi-drop-file{display:flex;justify-content:space-between;gap:1em;padding:.25em .1em;border-bottom:1px solid var(--pad-input-line)}
+    .pad-input-dropzone .pi-drop-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .pad-input-dropzone .pi-drop-said{margin:.3em 0 0;color:var(--pad-input-bad);font-size:.9em}
+    .pad-input-dropzone .pi-drop-said:empty{display:none}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>tags</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 634 tags" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#kind-input">Rich form fields</a><span>/</span><span aria-current="page">input:dropzone</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>input:dropzone<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              A file dropped on a frame or chosen, its name and size listed.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#kind-input">Rich form fields</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:dropzone</span> <span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'...'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">dropzone</span> <span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'...'</span><span class="hl-brc">/}</span></code></pre>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              One of the 14 rich form fields of <a href="index%EF%B9%96tag%EA%A4%B7input.html"><code>{pad:input}</code></a>, written <code>{input:dropzone 'name'/}</code>, <code>{dropzone ...}</code>, bare, when no tag, field or store has the name.
+            </p>
+            <p>
+              A file dropped on a frame or chosen, its name and size listed: a native &lt;input type="file"&gt; in a frame a file can be dropped on - the whole frame its label, so a click opens the browser's file chooser as well. The form that holds it posts multipart by itself (<code>{form}</code> sees the file field), and the page's PHP takes the file with padUpload ( 'name', $types, $max ), whose refusal - a file too large, of a type the page does not take - the field shows as its message. accept= is the file field's own and says which files the chooser offers; a file dropped that it does not take is refused in the page, and so is one larger than limit= - '2M', '500K' - the size padUpload is handed too. multiple takes more than one, and then needs a name of a list - files[] - or PHP keeps the last file alone. A file field cannot be refilled, and its rules are padUpload's.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Example
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                A field of a form
+              </h3>
+              <p class="example-about">
+                As the inputs application's form writes it - its rules= left out, which the page's own template must hold.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file"></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'try'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input:dropzone</span> <span class="hl-str">'resume'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Your CV'</span>, <span class="hl-opt">accept</span>=<span class="hl-str">'.pdf'</span><span class="hl-brc">/}</span>
+  <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span>
+                  </div>
+                  <div class="result">
+                    <form method="post" enctype="multipart/form-data">
+                      <input type="hidden" name="padCsrfToken" value="cf417c78c3eca2c6b3c46ce4aed52621432ce98df0869754d1c53190ce185287"><input type="hidden" name="padForm" value="try">
+                      <script>
+                      /* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
+                      script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
+                      - and is started on every field of its kind: the ones on the page, and the ones a fragment,
+                      a live region or a script brings later. frame is the field's .pad-input element, cfg its
+                      data-config, kit the helpers below. The server wrote a native control that a form posts
+                      as it is; a kind's script makes more of it and keeps the posted control's value true -
+                      and says so with the input and change events a typed value sends, which the browser's
+                      checker of the rules (pad/rules/assets/validate.js) listens to. */
+
+                      (function () {
+                      'use strict';
+
+                      if (window.PadInputs) return;
+
+                      var kinds = {};
+                      var made = 0;
+
+                      function el(tag, cls, text) {
+                      var e = document.createElement(tag);
+                      if (cls) e.className = cls;
+                      if (text !== undefined && text !== null) e.textContent = text;
+                      return e;
+                      }
+
+                      var kit = {
+                      el: el,
+
+                      // A new id of the page, for an element a script adds: a listbox, an option, a box.
+                      id: function (base) {
+                      made++;
+                      return (base || 'pad-input') + '-js' + made;
+                      },
+
+                      // The value changed as if typed: the form, the rules' checker and any listener hear it.
+                      changed: function (control) {
+                      control.dispatchEvent(new Event('input', { bubbles: true }));
+                      control.dispatchEvent(new Event('change', { bubbles: true }));
+                      },
+
+                      // What the server wrote hidden for a script to show - a button, a popup's opener.
+                      show: function (root, selector) {
+                      var list = root.querySelectorAll(selector);
+                      for (var i = 0; i < list.length; i++) list[i].hidden = false;
+                      },
+
+                      // A click outside the element - or the focus leaving it - closes what it opened.
+                      outside: function (root, close) {
+                      document.addEventListener('pointerdown', function (event) {
+                      if (!root.contains(event.target)) close();
+                      });
+                      root.addEventListener('focusout', function (event) {
+                      if (event.relatedTarget && !root.contains(event.relatedTarget)) close();
+                      });
+                      },
+
+                      // The text of a field's label, for a name a script gives a control it adds.
+                      label: function (frame) {
+                      return frame.getAttribute('data-pad-label') || '';
+                      }
+                      };
+
+                      function start(frame) {
+                      if (frame.padInputReady) return;
+                      var init = kinds[frame.getAttribute('data-pad-input')];
+                      if (!init) return;
+                      var cfg = {};
+                      try { cfg = JSON.parse(frame.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+                      frame.padInputReady = true;
+                      frame.classList.add('is-ready');
+                      init(frame, cfg, kit);
+                      }
+
+                      function scan(where) {
+                      var list = (where || document).querySelectorAll('.pad-input[data-pad-input]');
+                      for (var i = 0; i < list.length; i++) start(list[i]);
+                      }
+
+                      window.PadInputs = {
+                      register: function (name, init) { kinds[name] = init; scan(); },
+                      scan: scan,
+                      kit: kit
+                      };
+
+                      document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+                      if (window.MutationObserver)
+                      new MutationObserver(function (records) {
+                      for (var i = 0; i < records.length; i++)
+                      for (var j = 0; j < records[i].addedNodes.length; j++) {
+                      var n = records[i].addedNodes[j];
+                      if (n.nodeType === 1 && (n.matches('.pad-input') || n.querySelector('.pad-input'))) { scan(); return; }
+                      }
+                      }).observe(document.documentElement, { childList: true, subtree: true });
+                      })();
+                      </script>
+                      <script>
+                      /* dropzone - a file dropped on the frame becomes the file field's file, as one chosen does:
+                      the files the field takes - by its accept= and the size limit= - are put in the field
+                      (a DataTransfer of them), one alone unless it takes multiple, and every file refused is
+                      said with why. The files chosen are listed with their sizes. The frame is marked while a
+                      file is dragged over it. */
+                      PadInputs.register('dropzone', function (frame, cfg, kit) {
+                      var field = frame.querySelector('input[type=file]');
+                      var zone = frame.querySelector('.pi-drop');
+                      var list = frame.querySelector('.pi-drop-files');
+                      var said = frame.querySelector('.pi-drop-said');
+                      if (!field || !zone) return;
+
+                      function size(bytes) {
+                      if (bytes >= 1048576) return (bytes / 1048576).toFixed(1).replace(/\.0$/, '') + ' MB';
+                      if (bytes >= 1024) return Math.round(bytes / 1024) + ' KB';
+                      return bytes + ' bytes';
+                      }
+
+                      // Whether the field's accept= takes the file: a type (image/png), a group (image/*) or an
+                      // extension (.pdf), as the file chooser reads it.
+                      function accepted(file) {
+                      var accept = (field.getAttribute('accept') || '').split(',').map(function (one) { return one.trim().toLowerCase(); }).filter(Boolean);
+                      if (!accept.length) return true;
+                      var name = file.name.toLowerCase(), type = (file.type || '').toLowerCase();
+                      return accept.some(function (one) {
+                      if (one.charAt(0) === '.') return name.slice(-one.length) === one;
+                      if (one.slice(-2) === '/*') return type.indexOf(one.slice(0, -1)) === 0;
+                      return type === one;
+                      });
+                      }
+
+                      function show() {
+                      list.textContent = '';
+                      Array.prototype.forEach.call(field.files || [], function (file) {
+                      var li = kit.el('li', 'pi-drop-file');
+                      li.appendChild(kit.el('span', 'pi-drop-name', file.name));
+                      li.appendChild(kit.el('span', 'pi-muted', size(file.size)));
+                      list.appendChild(li);
+                      });
+                      list.hidden = !(field.files && field.files.length);
+                      }
+
+                      function take(files) {
+                      var kept = [], refused = [];
+                      Array.prototype.forEach.call(files, function (file) {
+                      if (!accepted(file)) refused.push(file.name + ' is not a file this field takes');
+                      else if (cfg.limit && file.size > cfg.limit) refused.push(file.name + ' is larger than ' + cfg.size);
+                      else kept.push(file);
+                      });
+                      if (!field.multiple && kept.length > 1) {
+                      refused.push('one file only - ' + kept[0].name + ' is kept');
+                      kept = kept.slice(0, 1);
+                      }
+                      if (kept.length) {
+                      try {
+                      var transfer = new DataTransfer();
+                      kept.forEach(function (file) { transfer.items.add(file); });
+                      field.files = transfer.files;
+                      } catch (e) {
+                      refused.push('this browser cannot take a dropped file - click to choose it');
+                      }
+                      kit.changed(field);
+                      }
+                      if (said) said.textContent = refused.join('; ');
+                      show();
+                      }
+
+                      ['dragenter', 'dragover'].forEach(function (type) {
+                      zone.addEventListener(type, function (event) {
+                      if (!event.dataTransfer || Array.prototype.indexOf.call(event.dataTransfer.types || [], 'Files') < 0) return;
+                      event.preventDefault();
+                      event.dataTransfer.dropEffect = 'copy';
+                      zone.classList.add('is-over');
+                      });
+                      });
+                      ['dragleave', 'dragend'].forEach(function (type) {
+                      zone.addEventListener(type, function (event) {
+                      if (!zone.contains(event.relatedTarget)) zone.classList.remove('is-over');
+                      });
+                      });
+                      zone.addEventListener('drop', function (event) {
+                      event.preventDefault();
+                      zone.classList.remove('is-over');
+                      if (event.dataTransfer && event.dataTransfer.files.length) take(event.dataTransfer.files);
+                      });
+
+                      field.addEventListener('change', function () {
+                      var refused = [];
+                      if (cfg.limit)
+                      Array.prototype.forEach.call(field.files || [], function (file) { if (file.size > cfg.limit) refused.push(file.name + ' is larger than ' + cfg.size); });
+                      if (refused.length) field.value = '';
+                      if (said) said.textContent = refused.join('; ');
+                      show();
+                      });
+
+                      frame.classList.add('is-droppable');
+                      show();
+                      });
+                      </script>
+                      <div class="pad-input pad-input-dropzone" data-pad-input="dropzone" data-pad-label="Your CV" data-config="{&quot;limit&quot;:0,&quot;size&quot;:&quot;&quot;}">
+                        <span class="pi-label" id="resume-label">Your CV</span><label class="pi-drop" for="resume"><input type="file" name="resume" id="resume" accept=".pdf" aria-labelledby="resume-label resume-hint"><span class="pi-drop-hint" id="resume-hint"><strong>Drop a file here</strong> or click to choose</span></label>
+                        <ul class="pi-drop-files" hidden=""></ul>
+                        <p class="pi-drop-said" role="status" aria-live="polite"></p>
+                      </div><button>Send</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{pad:input}</a> <span class="about">A form field with its label that refills from what its form sent and shows the error validation found for it.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7datepicker.html">← {input:datepicker}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7mdeditor.html">{input:mdeditor} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            634 tags of PAD - the built-in tags, the kinds of the subsystems and the sequence types - each with its syntax and live examples, every result on this site rendered by the tag it documents.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

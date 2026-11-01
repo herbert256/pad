@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {input:otp} · PAD tags
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="tags.css">
+    <style>
+    :where(.pad-input){--pad-input-ink:#1a1a19;--pad-input-muted:#6b6a65;--pad-input-line:#c9c8c2;--pad-input-field:#ffffff;--pad-input-shade:#f0efea;--pad-input-accent:#2a78d6;--pad-input-on:#ffffff;--pad-input-good:#1a8a5a;--pad-input-fair:#c98a12;--pad-input-bad:#d43c3b;--pad-input-star:#e8a317;--pad-input-knob:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-input){--pad-input-ink:light-dark(#1a1a19,#f4f3ee);--pad-input-muted:light-dark(#6b6a65,#a8a79f);--pad-input-line:light-dark(#c9c8c2,#4a4a46);--pad-input-field:light-dark(#ffffff,#242422);--pad-input-shade:light-dark(#f0efea,#2c2c29);--pad-input-accent:light-dark(#2a78d6,#5598e7);--pad-input-on:light-dark(#ffffff,#0d1b2a);--pad-input-good:light-dark(#1a8a5a,#3fbf86);--pad-input-fair:light-dark(#c98a12,#e0a83a);--pad-input-bad:light-dark(#d43c3b,#ef6b6a);--pad-input-star:light-dark(#e8a317,#f2b84b);--pad-input-knob:light-dark(#ffffff,#e8e7e2);}}:where(.pad-input){display:block;margin:.4em 0 .8em;color:var(--pad-input-ink);font:inherit;max-width:100%}
+    .pad-input *,.pad-input *::before,.pad-input *::after{box-sizing:border-box}
+    .pad-input>label,.pad-input>legend,.pad-input .pi-label{display:block;margin:0 0 .3em;font-weight:600}
+    .pad-input [hidden]{display:none!important}
+    .pad-input input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]),.pad-input textarea{font:inherit;color:var(--pad-input-ink);background:var(--pad-input-field);border:1px solid var(--pad-input-line);border-radius:6px;padding:.4em .55em;max-width:100%}
+    .pad-input input:focus-visible,.pad-input textarea:focus-visible,.pad-input button:focus-visible,.pad-input [tabindex]:focus-visible{outline:2px solid var(--pad-input-accent);outline-offset:2px}
+    .pad-input [aria-invalid=true]{border-color:var(--pad-input-bad)!important}
+    .pad-input .pi-button{font:inherit;font-size:.92em;line-height:1.2;padding:.4em .7em;border:1px solid var(--pad-input-line);border-radius:6px;background:var(--pad-input-field);color:var(--pad-input-ink);cursor:pointer}
+    .pad-input .pi-button:hover:not(:disabled){border-color:var(--pad-input-accent)}
+    .pad-input .pi-button:disabled{opacity:.45;cursor:default}
+    .pad-input .pi-row{display:flex;align-items:center;gap:.5em;flex-wrap:wrap}
+    .pad-input .pi-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    .pad-input .pi-muted{color:var(--pad-input-muted);font-size:.9em}
+    .pad-input .pi-popup{position:absolute;z-index:20;margin-top:4px;background:var(--pad-input-field);color:var(--pad-input-ink);border:1px solid var(--pad-input-line);border-radius:8px;box-shadow:0 6px 24px rgb(0 0 0 / .18);padding:.5em}
+    .pad-input .pi-anchor{position:relative;display:inline-block;max-width:100%}
+    .pad-input .pi-noscript{color:var(--pad-input-muted);margin:.3em 0}
+    </style>
+    <style>
+    .pad-input-otp .pi-otp-whole{width:calc(var(--pi-otp,6) * 1.2em + 2em);letter-spacing:.3em;font-variant-numeric:tabular-nums}
+    .pad-input-otp .pi-otp-boxes{display:inline-flex;gap:.4em}
+    .pad-input-otp .pi-otp-box{width:2.3em;height:2.6em;text-align:center;font-size:1.15em;font-weight:600;font-variant-numeric:tabular-nums;padding:0!important}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>tags</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 634 tags" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#kind-input">Rich form fields</a><span>/</span><span aria-current="page">input:otp</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>input:otp<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              A one-time code, the digits a text message or an app gives.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#kind-input">Rich form fields</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#single">Single tags</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:otp</span> <span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'...'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">otp</span> <span class="hl-str">'name'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'...'</span><span class="hl-brc">/}</span></code></pre>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              One of the 14 rich form fields of <a href="index%EF%B9%96tag%EA%A4%B7input.html"><code>{pad:input}</code></a>, written <code>{input:otp 'name'/}</code>, <code>{otp ...}</code>, bare, when no tag, field or store has the name.
+            </p>
+            <p>
+              A one-time code, the digits a text message or an app gives: a native text field that posts the code as it is typed - inputmode="numeric", autocomplete="one-time-code" so a phone offers the code it received - and where the script runs a box per character, the next box taking the focus as one is typed, Backspace going back, a pasted code filling them all. The code the form posts is then the hidden field the boxes fill. length= the number of characters, 6 unless given (4 to 10); letters takes letters and digits, in upper case, where the code is digits alone unless given.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Example
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                A field of a form
+              </h3>
+              <p class="example-about">
+                As the inputs application's form writes it - its rules= left out, which the page's own template must hold.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file"></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">form</span> <span class="hl-str">'try'</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">input:otp</span> <span class="hl-str">'code'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'Code'</span><span class="hl-brc">/}</span>
+  <span class="hl-htm">&lt;button</span><span class="hl-htm">&gt;</span>Send<span class="hl-htm">&lt;/button</span><span class="hl-htm">&gt;</span>
+<span class="hl-brc">{</span><span class="hl-tag">/form</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span>
+                  </div>
+                  <div class="result">
+                    <form method="post">
+                      <input type="hidden" name="padCsrfToken" value="99081eaf19ff14c3600c807b2e57919c7afb733e540a052bb1b2243450605605"><input type="hidden" name="padForm" value="try">
+                      <script>
+                      /* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
+                      script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
+                      - and is started on every field of its kind: the ones on the page, and the ones a fragment,
+                      a live region or a script brings later. frame is the field's .pad-input element, cfg its
+                      data-config, kit the helpers below. The server wrote a native control that a form posts
+                      as it is; a kind's script makes more of it and keeps the posted control's value true -
+                      and says so with the input and change events a typed value sends, which the browser's
+                      checker of the rules (pad/rules/assets/validate.js) listens to. */
+
+                      (function () {
+                      'use strict';
+
+                      if (window.PadInputs) return;
+
+                      var kinds = {};
+                      var made = 0;
+
+                      function el(tag, cls, text) {
+                      var e = document.createElement(tag);
+                      if (cls) e.className = cls;
+                      if (text !== undefined && text !== null) e.textContent = text;
+                      return e;
+                      }
+
+                      var kit = {
+                      el: el,
+
+                      // A new id of the page, for an element a script adds: a listbox, an option, a box.
+                      id: function (base) {
+                      made++;
+                      return (base || 'pad-input') + '-js' + made;
+                      },
+
+                      // The value changed as if typed: the form, the rules' checker and any listener hear it.
+                      changed: function (control) {
+                      control.dispatchEvent(new Event('input', { bubbles: true }));
+                      control.dispatchEvent(new Event('change', { bubbles: true }));
+                      },
+
+                      // What the server wrote hidden for a script to show - a button, a popup's opener.
+                      show: function (root, selector) {
+                      var list = root.querySelectorAll(selector);
+                      for (var i = 0; i < list.length; i++) list[i].hidden = false;
+                      },
+
+                      // A click outside the element - or the focus leaving it - closes what it opened.
+                      outside: function (root, close) {
+                      document.addEventListener('pointerdown', function (event) {
+                      if (!root.contains(event.target)) close();
+                      });
+                      root.addEventListener('focusout', function (event) {
+                      if (event.relatedTarget && !root.contains(event.relatedTarget)) close();
+                      });
+                      },
+
+                      // The text of a field's label, for a name a script gives a control it adds.
+                      label: function (frame) {
+                      return frame.getAttribute('data-pad-label') || '';
+                      }
+                      };
+
+                      function start(frame) {
+                      if (frame.padInputReady) return;
+                      var init = kinds[frame.getAttribute('data-pad-input')];
+                      if (!init) return;
+                      var cfg = {};
+                      try { cfg = JSON.parse(frame.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+                      frame.padInputReady = true;
+                      frame.classList.add('is-ready');
+                      init(frame, cfg, kit);
+                      }
+
+                      function scan(where) {
+                      var list = (where || document).querySelectorAll('.pad-input[data-pad-input]');
+                      for (var i = 0; i < list.length; i++) start(list[i]);
+                      }
+
+                      window.PadInputs = {
+                      register: function (name, init) { kinds[name] = init; scan(); },
+                      scan: scan,
+                      kit: kit
+                      };
+
+                      document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+                      if (window.MutationObserver)
+                      new MutationObserver(function (records) {
+                      for (var i = 0; i < records.length; i++)
+                      for (var j = 0; j < records[i].addedNodes.length; j++) {
+                      var n = records[i].addedNodes[j];
+                      if (n.nodeType === 1 && (n.matches('.pad-input') || n.querySelector('.pad-input'))) { scan(); return; }
+                      }
+                      }).observe(document.documentElement, { childList: true, subtree: true });
+                      })();
+                      </script>
+                      <script>
+                      /* otp - a box per character over the one-time code. The text field the server wrote becomes
+                      the hidden field the form posts; the boxes - a group named by the field's label - take one
+                      character each, and the first box takes the field's id, so the label and the messages are
+                      its. A character typed moves the focus on, Backspace back - emptying the box before it when
+                      it is empty itself - the arrow keys, Home and End move along, and a code pasted or offered
+                      by the phone (autocomplete="one-time-code", on the first box) fills the boxes from where it
+                      lands - the boxes have no maxlength, so a code a phone puts in the first box whole is
+                      spread over them rather than cut to its first character. A character the code cannot hold
+                      is not taken. The checks the field carried - required, pattern=, minlength= - stay the
+                      code's: a hidden field is one the browser does not check, so the first box holds the code
+                      to them, with the browser's own message. */
+                      PadInputs.register('otp', function (frame, cfg, kit) {
+                      var whole = frame.querySelector('.pi-otp-whole');
+                      if (!whole) return;
+                      var length = cfg.length || 6;
+                      var allowed = cfg.letters ? /[A-Za-z0-9]/ : /[0-9]/;
+                      var id = whole.id;
+                      var label = frame.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(id) : id) + '"]');
+                      var invalid = whole.getAttribute('aria-invalid');
+                      var described = whole.getAttribute('aria-describedby');
+
+                      var group = kit.el('div', 'pi-otp-boxes');
+                      group.setAttribute('role', 'group');
+                      if (label) {
+                      if (!label.id) label.id = kit.id(id + '-label');
+                      group.setAttribute('aria-labelledby', label.id);
+                      } else group.setAttribute('aria-label', kit.label(frame));
+
+                      var boxes = [];
+                      for (var i = 0; i < length; i++) {
+                      var box = document.createElement('input');
+                      box.type = 'text';
+                      box.className = 'pi-otp-box';
+                      box.setAttribute('inputmode', cfg.letters ? 'text' : 'numeric');
+                      box.setAttribute('autocomplete', i === 0 ? 'one-time-code' : 'off');
+                      box.setAttribute('aria-label', 'Character ' + (i + 1) + ' of ' + length);
+                      box.spellcheck = false;
+                      if (cfg.letters) box.setAttribute('autocapitalize', 'characters');
+                      if (whole.disabled) box.disabled = true;
+                      boxes.push(box);
+                      group.appendChild(box);
+                      }
+
+                      // The first box is the field the label and the messages point at.
+                      whole.removeAttribute('id');
+                      boxes[0].id = id;
+                      if (invalid) boxes.forEach(function (box) { box.setAttribute('aria-invalid', invalid); });
+                      if (described) boxes[0].setAttribute('aria-describedby', described);
+                      whole.removeAttribute('aria-invalid');
+                      whole.removeAttribute('aria-describedby');
+                      whole.setAttribute('data-pad-shows', id);
+
+                      // The field's checks on a field of their own, outside the form, that the code is put in:
+                      // its answer - and the browser's message - is the first box's. A length is checked by the
+                      // browser only on what was typed, so minlength= is a pattern here.
+                      var probe = document.createElement('input');
+                      probe.type = 'text';
+                      probe.required = whole.required;
+                      var least = parseInt(whole.getAttribute('minlength'), 10);
+                      var shape = whole.getAttribute('pattern');
+                      if (least > 0 || shape !== null)
+                      probe.pattern = (least > 0 ? '(?=[\\s\\S]{' + least + ',})' : '') + '(?:' + (shape !== null ? shape : '[\\s\\S]*') + ')';
+                      if (whole.required) boxes[0].setAttribute('aria-required', 'true');
+
+                      whole.type = 'hidden';
+                      whole.parentNode.insertBefore(group, whole);
+
+                      function clean(text) {
+                      return Array.from(String(text)).filter(function (c) { return allowed.test(c); }).map(function (c) { return c.toUpperCase(); });
+                      }
+
+                      function hold() {
+                      probe.value = whole.value;
+                      boxes[0].setCustomValidity(probe.checkValidity() ? '' : probe.validationMessage);
+                      }
+
+                      function post() {
+                      whole.value = boxes.map(function (box) { return box.value; }).join('');
+                      hold();
+                      kit.changed(whole);
+                      }
+
+                      function fill(from, text) {
+                      var chars = clean(text);
+                      for (var i = 0; i < chars.length && from + i < length; i++) boxes[from + i].value = chars[i];
+                      var next = Math.min(length - 1, from + chars.length);
+                      boxes[next].focus();
+                      boxes[next].select();
+                      post();
+                      }
+
+                      clean(whole.value).slice(0, length).forEach(function (c, i) { boxes[i].value = c; });
+                      hold();
+
+                      boxes.forEach(function (box, i) {
+                      box.addEventListener('focus', function () { box.select(); });
+
+                      box.addEventListener('input', function () {
+                      var chars = clean(box.value);
+                      box.value = '';
+                      if (chars.length > 1) { fill(i, chars.join('')); return; }
+                      if (chars.length === 1) {
+                      box.value = chars[0];
+                      if (i < length - 1) boxes[i + 1].focus();
+                      }
+                      post();
+                      });
+
+                      box.addEventListener('keydown', function (event) {
+                      var to = null;
+                      if (event.key === 'Backspace' && box.value === '' && i > 0) {
+                      boxes[i - 1].value = '';
+                      to = i - 1;
+                      post();
+                      } else if (event.key === 'ArrowLeft') to = i - 1;
+                      else if (event.key === 'ArrowRight') to = i + 1;
+                      else if (event.key === 'Home') to = 0;
+                      else if (event.key === 'End') to = length - 1;
+                      else if (event.key.length === 1 && !event.ctrlKey && !event.metaKey && !event.altKey && !allowed.test(event.key)) { event.preventDefault(); return; }
+                      if (to === null) return;
+                      event.preventDefault();
+                      to = Math.max(0, Math.min(length - 1, to));
+                      boxes[to].focus();
+                      });
+
+                      box.addEventListener('paste', function (event) {
+                      var text = (event.clipboardData || window.clipboardData).getData('text');
+                      if (!text) return;
+                      event.preventDefault();
+                      fill(i, text);
+                      });
+                      });
+                      });
+                      </script>
+                      <div class="pad-input pad-input-otp" data-pad-input="otp" data-pad-label="Code" data-config="{&quot;length&quot;:6,&quot;letters&quot;:false}">
+                        <label for="code">Code</label><input type="text" class="pi-otp-whole" name="code" id="code" value="" maxlength="6" inputmode="numeric" autocomplete="one-time-code" spellcheck="false">
+                      </div><button>Send</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7input.html">{pad:input}</a> <span class="about">A form field with its label that refills from what its form sent and shows the error validation found for it.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7newpassword.html">← {input:newpassword}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7input%EA%A4%B7signature.html">{input:signature} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            634 tags of PAD - the built-in tags, the kinds of the subsystems and the sequence types - each with its syntax and live examples, every result on this site rendered by the tag it documents.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

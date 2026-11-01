@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {toy:ripples} · PAD tags
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="tags.css">
+    <style>
+    :where(.pad-toy){--pad-toy-ink:#1a1a19;--pad-toy-muted:#6b6a65;--pad-toy-line:#c9c8c2;--pad-toy-surface:#fcfcfb;--pad-toy-canvas:#ffffff;--pad-toy-grid:#ecebe6;--pad-toy-accent:#2a78d6;--pad-toy-accent2:#eb6834;--pad-toy-accent3:#8a4fd3;--pad-toy-good:#1a8a5a;--pad-toy-bad:#d43c3b;--pad-toy-mark:#d99a00;--pad-toy-night:#0b1020;--pad-toy-glow:#fbf7ea;}@supports (color:light-dark(#000,#fff)){:where(.pad-toy){--pad-toy-ink:light-dark(#1a1a19,#f4f3ee);--pad-toy-muted:light-dark(#6b6a65,#a8a79f);--pad-toy-line:light-dark(#c9c8c2,#4a4a46);--pad-toy-surface:light-dark(#fcfcfb,#1a1a19);--pad-toy-canvas:light-dark(#ffffff,#10100f);--pad-toy-grid:light-dark(#ecebe6,#2a2a27);--pad-toy-accent:light-dark(#2a78d6,#5598e7);--pad-toy-accent2:light-dark(#eb6834,#e8875f);--pad-toy-accent3:light-dark(#8a4fd3,#a98ae8);--pad-toy-good:light-dark(#1a8a5a,#3fbf86);--pad-toy-bad:light-dark(#d43c3b,#ef6b6a);--pad-toy-mark:light-dark(#d99a00,#f2c94c);--pad-toy-night:light-dark(#0b1020,#05070d);--pad-toy-glow:light-dark(#fbf7ea,#fbf7ea);}}:where(.pad-toy){display:block;width:fit-content;max-width:100%;margin:1em 0;padding:14px 16px;border:1px solid var(--pad-toy-line);border-radius:10px;background:var(--pad-toy-surface);color:var(--pad-toy-ink);font:15px/1.4 system-ui,sans-serif;box-sizing:border-box}
+    .pad-toy *,.pad-toy *::before,.pad-toy *::after{box-sizing:border-box}
+    .pad-toy .pt-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px;margin:0 0 10px}
+    .pad-toy .pt-title{font-weight:650;font-size:16px}
+    .pad-toy .pt-status{color:var(--pad-toy-muted);min-height:1.4em}
+    .pad-toy .pt-stage{position:relative;max-width:100%;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start}
+    .pad-toy .pt-canvas{display:block;max-width:100%;height:auto;border-radius:6px;border:0;box-shadow:0 0 0 1px var(--pad-toy-line);background:var(--pad-toy-canvas);touch-action:none;cursor:crosshair}
+    .pad-toy .pt-canvas.is-pixels{image-rendering:pixelated}
+    .pad-toy .pt-info{color:var(--pad-toy-muted);font-size:13px;font-variant-numeric:tabular-nums;min-height:1.3em;margin-top:6px}
+    .pad-toy .pt-info:empty{min-height:0;margin:0}
+    .pad-toy .pt-bar{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+    .pad-toy .pt-bar:empty{display:none}
+    .pad-toy .pt-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+    .pad-toy .pt-button{font:inherit;font-size:14px;padding:6px 12px;border-radius:6px;border:1px solid var(--pad-toy-line);background:var(--pad-toy-canvas);color:var(--pad-toy-ink);cursor:pointer}
+    .pad-toy .pt-button:hover:not(:disabled){border-color:var(--pad-toy-accent)}
+    .pad-toy .pt-button:disabled{opacity:.45;cursor:default}
+    .pad-toy .pt-button.is-on,.pad-toy .pt-button[aria-pressed="true"].is-toggle{background:var(--pad-toy-accent);border-color:var(--pad-toy-accent);color:#fff}
+    .pad-toy .pt-play{min-width:5.2em}
+    .pad-toy .pt-slider,.pad-toy .pt-select,.pad-toy .pt-check{display:inline-flex;align-items:center;gap:6px;font-size:14px}
+    .pad-toy .pt-label{color:var(--pad-toy-muted)}
+    .pad-toy .pt-slider input{width:110px;accent-color:var(--pad-toy-accent)}
+    .pad-toy .pt-value{min-width:2.6em;font-variant-numeric:tabular-nums}
+    .pad-toy .pt-select select{font:inherit;font-size:14px;padding:4px 6px;border-radius:6px;border:1px solid var(--pad-toy-line);background:var(--pad-toy-canvas);color:var(--pad-toy-ink)}
+    .pad-toy .pt-check input{accent-color:var(--pad-toy-accent)}
+    .pad-toy button:focus-visible,.pad-toy canvas:focus-visible,.pad-toy input:focus-visible,.pad-toy select:focus-visible,.pad-toy [tabindex]:focus-visible{outline:2px solid var(--pad-toy-accent);outline-offset:2px}
+    .pad-toy .pt-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    .pad-toy .pt-noscript{color:var(--pad-toy-bad);margin:0}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>tags</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 634 tags" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#kind-toy">Toys</a><span>/</span><span aria-current="page">toy:ripples</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>toy:ripples<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              A ripple tank: waves spread over water, bounce off walls and run through each other, crest on crest and trough on trough.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#kind-toy">Toys</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toy:ripples</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">ripples</span><span class="hl-brc">/}</span></code></pre>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              One of the 19 toys of <a href="index%EF%B9%96tag%EA%A4%B7toy.html"><code>{pad:toy}</code></a>, written <code>{toy:ripples/}</code>, <code>{toy 'ripples'/}</code>, <code>{ripples ...}</code>, bare, when no tag, field or store has the name.
+            </p>
+            <p>
+              A ripple tank: waves spread over water, bounce off walls and run through each other, crest on crest and trough on trough, into the stripes of interference. Click or drag to touch the water; with walls ticked the pointer builds walls instead. setup= what the tank starts with - two (two sources beating in step, unless given), slits (a straight wave through two slits in a wall) or pond (raindrops); frequency= how fast the sources beat (4, 1 to 10).
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Example
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                The ripples toy
+              </h3>
+              <p class="example-about">
+                As the toys application shows it.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file"></span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">toy:ripples</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span>
+                  </div>
+                  <div class="result">
+                    <section class="pad-toy pad-toy-ripples" id="pad-toy-ripples-82782386" data-pad-toy="ripples" data-config="{&quot;setup&quot;:&quot;two&quot;,&quot;frequency&quot;:4,&quot;name&quot;:&quot;Ripple tank&quot;}" aria-label="Ripple tank">
+                      <header class="pt-head">
+                        <strong class="pt-title">Ripple tank</strong><span class="pt-status" role="status" aria-live="polite"></span>
+                      </header>
+                      <div class="pt-stage"></div>
+                      <div class="pt-info"></div>
+                      <div class="pt-bar"></div><noscript>
+                      <p class="pt-noscript">
+                        This toy runs in the browser and needs JavaScript.
+                      </p></noscript>
+                    </section>
+                    <script>
+                    /* The runtime of the PAD toys (pad/toys/_lib/toy.php writes it once per page). A toy's script
+                    registers itself - PadToys.register('life', function (k, cfg) { ... }) - and is started on
+                    every stage of its kind: the ones on the page, and the ones a fragment, a live region or a
+                    script brings later. k is the toy's kit: its stage, status line, counter line and bar, a
+                    random number seeded by seed= (the same on every load) or by the browser, a canvas whose
+                    palette is resolved for the page's light or dark scheme, the pointer over it in the
+                    canvas's own units, labelled controls, and the animation loop.
+
+                    The loop is the kit's, not the toy's, so every toy behaves alike: it runs a frame function
+                    on each animation frame while the toy plays, holds while the page is hidden or the toy is
+                    scrolled out of view - and goes on where it was when it comes back - and does not start by
+                    itself when the visitor asks for reduced motion, or when the tag says paused. The root
+                    carries the state as data-state: playing, paused or held. */
+
+                    (function () {
+                    'use strict';
+
+                    if (window.PadToys) return;
+
+                    var kinds = {}, kits = [];
+
+                    // The colours of the palette, custom properties --pad-toy-<role> (toys/_lib/toy.php).
+                    var ROLES = ['ink', 'muted', 'line', 'surface', 'canvas', 'grid', 'accent', 'accent2', 'accent3', 'good', 'bad', 'mark', 'night', 'glow'];
+                    var media = function (q) { return window.matchMedia ? window.matchMedia(q) : { matches: false }; };
+                    var reduced = media('(prefers-reduced-motion: reduce)');
+
+                    // mulberry32: a small, fast generator whose numbers follow from the seed alone.
+
+                    function random(seed) {
+                    var a = seed >>> 0;
+                    return function () {
+                    a = (a + 0x6D2B79F5) >>> 0;
+                    var t = a;
+                    t = Math.imul(t ^ (t >>> 15), t | 1);
+                    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+                    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+                    };
+                    }
+
+                    function el(tag, cls, text) {
+                    var e = document.createElement(tag);
+                    if (cls) e.className = cls;
+                    if (text !== undefined && text !== null) e.textContent = text;
+                    return e;
+                    }
+
+                    var uid = 0;
+
+                    function Kit(root, cfg) {
+                    this.root = root;
+                    this.cfg = cfg;
+                    this.stage = root.querySelector('.pt-stage');
+                    this.bar = root.querySelector('.pt-bar');
+                    this.infoEl = root.querySelector('.pt-info');
+                    this.statusEl = root.querySelector('.pt-status');
+                    this.seed = (typeof cfg.seed === 'number') ? cfg.seed : Math.floor(Math.random() * 2147483647);
+                    this.rand = random(this.seed);
+                    this.playing = false;
+                    this.held = false;
+                    this.frameFn = null;
+                    this.drawFn = null;
+                    this.themeFns = [];
+                    this.raf = 0;
+                    this.last = 0;
+                    this.seen = true;
+                    this.colours = {};
+                    this.playBtn = null;
+                    this.probe = el('span', 'pt-hide');
+                    this.probe.setAttribute('aria-hidden', 'true');
+                    root.appendChild(this.probe);
+                    this.keymap = {};
+                    this.listen();
+                    this.setState('paused');
+                    }
+
+                    Kit.prototype = {
+                    el: el,
+
+                    // Random numbers from the toy's own generator: what the seed makes the same.
+                    int: function (n) { return Math.floor(this.rand() * n); },
+                    range: function (a, b) { return a + this.rand() * (b - a); },
+                    pick: function (list) { return list[this.int(list.length)]; },
+                    chance: function (p) { return this.rand() < p; },
+                    gauss: function () {
+                    var u = 1 - this.rand(), v = this.rand();
+                    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+                    },
+                    shuffle: function (list) {
+                    for (var i = list.length - 1; i > 0; i--) {
+                    var j = this.int(i + 1), t = list[i];
+                    list[i] = list[j];
+                    list[j] = t;
+                    }
+                    return list;
+                    },
+
+                    // The status line is a live region: it says what changed - started, paused, sorted - and
+                    // is not written every frame. Counters that change all the time go to the info line.
+                    status: function (text) { if (this.statusEl.textContent !== text) this.statusEl.textContent = text; },
+                    info: function (text) { if (this.infoEl.textContent !== text) this.infoEl.textContent = text; },
+
+                    // A colour of the palette - 'accent', '--pad-toy-accent' or any CSS colour - as the
+                    // canvas can paint it: the custom properties are light-dark(...) text, so a probe element
+                    // resolves them to the colour of the page's scheme, kept until the scheme changes.
+                    color: function (name) {
+                    if (!this.colours[name]) {
+                    this.probe.style.color = ROLES.indexOf(name) >= 0 ? 'var(--pad-toy-' + name + ')' : (name.indexOf('--') === 0 ? 'var(' + name + ')' : name);
+                    this.colours[name] = getComputedStyle(this.probe).color;
+                    }
+                    return this.colours[name];
+                    },
+                    rgb: function (name) {
+                    var m = this.color(name).match(/[\d.]+/g) || [0, 0, 0];
+                    return [+m[0], +m[1], +m[2]];
+                    },
+                    alpha: function (name, a) {
+                    var c = this.rgb(name);
+                    return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')';
+                    },
+                    // Whether the toy draws on a dark canvas - the page's dark scheme.
+                    dark: function () {
+                    var c = this.rgb('canvas');
+                    return (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) < 128;
+                    },
+                    // Called again after the scheme changed, with the colours resolved anew.
+                    theme: function (fn) { this.themeFns.push(fn); },
+                    retheme: function () {
+                    this.colours = {};
+                    this.themeFns.forEach(function (fn) { fn(); });
+                    if (!this.playing || this.held) this.redraw();
+                    },
+
+                    // A canvas on the stage, w by h in its own units. It scales down with a narrow page and
+                    // keeps its proportions; the pointer is handed over in those units. A canvas drawn as
+                    // pixels - an image, a grid of cells - is one unit a pixel; any other is drawn sharp on
+                    // a screen of more pixels per unit. role=img and the label say what it shows.
+                    canvas: function (w, h, label, pixels) {
+                    var c = el('canvas', 'pt-canvas'), ratio = pixels ? 1 : Math.min(2, window.devicePixelRatio || 1);
+                    c.width = Math.round(w * ratio);
+                    c.height = Math.round(h * ratio);
+                    c.style.width = w + 'px';
+                    c.setAttribute('role', 'img');
+                    c.setAttribute('aria-label', label);
+                    c.tabIndex = 0;
+                    if (pixels) c.classList.add('is-pixels');
+                    c.unitW = w;
+                    c.unitH = h;
+                    this.stage.appendChild(c);
+                    var ctx = c.getContext('2d');
+                    if (ratio !== 1) ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+                    c.ratio = ratio;
+                    return ctx;
+                    },
+                    describe: function (canvas, label) { canvas.setAttribute('aria-label', label); },
+
+                    // The pointer over a canvas - mouse, pen or finger - in the canvas's units: down(p, e),
+                    // move(p, e, pressed) and up(p, e), p = { x, y, button, shift }.
+                    pointer: function (canvas, on) {
+                    var pressed = false;
+                    function at(e) {
+                    var r = canvas.getBoundingClientRect();
+                    return { x: (e.clientX - r.left) * canvas.unitW / r.width, y: (e.clientY - r.top) * canvas.unitH / r.height,
+                    button: e.button, shift: e.shiftKey, alt: e.altKey, type: e.pointerType };
+                    }
+                    canvas.addEventListener('pointerdown', function (e) {
+                    pressed = true;
+                    try { canvas.setPointerCapture(e.pointerId); } catch (x) {}
+                    if (on.down && on.down(at(e), e) !== false) e.preventDefault();
+                    });
+                    canvas.addEventListener('pointermove', function (e) { if (on.move) on.move(at(e), e, pressed); });
+                    function end(e) {
+                    if (!pressed) return;
+                    pressed = false;
+                    if (on.up) on.up(at(e), e);
+                    }
+                    canvas.addEventListener('pointerup', end);
+                    canvas.addEventListener('pointercancel', end);
+                    canvas.addEventListener('pointerleave', function (e) { if (on.leave) on.leave(at(e), e); });
+                    canvas.addEventListener('contextmenu', function (e) { if (on.context !== false) e.preventDefault(); });
+                    },
+
+                    // Keys the toy reads while it has the focus - added to the ones it has; Space plays and
+                    // pauses every toy (listen, in the constructor).
+                    keys: function (map) { for (var key in map) this.keymap[key] = map[key]; },
+                    listen: function () {
+                    var kit = this;
+                    this.root.addEventListener('keydown', function (e) {
+                    if (e.altKey || e.ctrlKey || e.metaKey) return;
+                    var t = e.target, tag = t && t.tagName;
+                    if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA' || (tag === 'BUTTON' && (e.key === ' ' || e.key === 'Enter'))) return;
+                    var fn = kit.keymap[e.key];
+                    if (!fn && e.key === ' ' && kit.frameFn) fn = function () { kit.toggle(); };
+                    if (fn && fn(e) !== false) e.preventDefault();
+                    });
+                    },
+
+                    // The controls, in the bar: a row of them, then buttons, sliders, a list and a box, each
+                    // with the label a screen reader says.
+                    row: function () {
+                    var r = el('div', 'pt-row');
+                    this.bar.appendChild(r);
+                    this.rowEl = r;
+                    return r;
+                    },
+                    place: function (node) { (this.rowEl || this.row()).appendChild(node); return node; },
+                    button: function (label, fn, title) {
+                    var b = el('button', 'pt-button', label);
+                    b.type = 'button';
+                    if (title) { b.title = title; b.setAttribute('aria-label', title); }
+                    b.addEventListener('click', fn);
+                    return this.place(b);
+                    },
+                    slider: function (label, min, max, step, value, fn, show) {
+                    var id = 'pt-' + (++uid), wrap = el('label', 'pt-slider'), name = el('span', 'pt-label', label),
+                    input = el('input'), out = el('output', 'pt-value');
+                    input.type = 'range';
+                    input.min = min;
+                    input.max = max;
+                    input.step = step;
+                    input.value = value;
+                    input.id = id;
+                    out.htmlFor = id;
+                    show = show || function (v) { return v; };
+                    out.textContent = show(+input.value);
+                    input.addEventListener('input', function () { out.textContent = show(+input.value); fn(+input.value); });
+                    wrap.appendChild(name);
+                    wrap.appendChild(input);
+                    wrap.appendChild(out);
+                    this.place(wrap);
+                    input.set = function (v) { input.value = v; out.textContent = show(+input.value); };
+                    return input;
+                    },
+                    select: function (label, options, value, fn) {
+                    var wrap = el('label', 'pt-select'), name = el('span', 'pt-label', label), s = el('select');
+                    options.forEach(function (o) {
+                    var opt = el('option', '', Array.isArray(o) ? o[1] : o);
+                    opt.value = Array.isArray(o) ? o[0] : o;
+                    s.appendChild(opt);
+                    });
+                    s.value = value;
+                    s.addEventListener('change', function () { fn(s.value); });
+                    wrap.appendChild(name);
+                    wrap.appendChild(s);
+                    return this.place(wrap);
+                    },
+                    check: function (label, value, fn) {
+                    var wrap = el('label', 'pt-check'), box = el('input');
+                    box.type = 'checkbox';
+                    box.checked = !!value;
+                    box.addEventListener('change', function () { fn(box.checked); });
+                    wrap.appendChild(box);
+                    wrap.appendChild(el('span', 'pt-label', label));
+                    this.place(wrap);
+                    return box;
+                    },
+
+                    // The animation loop: fn(dt, now) on every frame while the toy plays and is in view - dt
+                    // the seconds since the frame before, at most a tenth, so a toy coming back from a pause
+                    // does not jump. draw() repaints a toy that is not playing, after the scheme changed.
+                    loop: function (fn, draw) { this.frameFn = fn; this.drawFn = draw || null; },
+                    redraw: function () { if (this.drawFn) this.drawFn(); },
+                    setState: function (s) { this.root.setAttribute('data-state', s); },
+                    tick: function (now) {
+                    this.raf = 0;
+                    if (!this.playing || this.held) return;
+                    var dt = this.last ? Math.min(0.1, (now - this.last) / 1000) : 1 / 60;
+                    this.last = now;
+                    if (this.frameFn) this.frameFn(dt, now);
+                    this.schedule();
+                    },
+                    schedule: function () {
+                    var kit = this;
+                    if (!this.raf && this.playing && !this.held) this.raf = requestAnimationFrame(function (now) { kit.tick(now); });
+                    },
+                    // Held while the page is hidden or the toy out of view, without changing what the
+                    // visitor chose: it goes on where it was once it is seen again.
+                    hold: function () {
+                    var held = document.hidden || !this.seen;
+                    if (held === this.held) return;
+                    this.held = held;
+                    if (held && this.raf) { cancelAnimationFrame(this.raf); this.raf = 0; }
+                    this.last = 0;
+                    this.setState(this.playing ? (held ? 'held' : 'playing') : 'paused');
+                    if (!held) this.schedule();
+                    },
+                    play: function () {
+                    if (this.playing) return;
+                    this.playing = true;
+                    this.last = 0;
+                    this.setState(this.held ? 'held' : 'playing');
+                    if (this.playBtn) { this.playBtn.textContent = 'Pause'; this.playBtn.setAttribute('aria-pressed', 'true'); }
+                    if (this.onPlay) this.onPlay();
+                    this.schedule();
+                    },
+                    pause: function () {
+                    if (!this.playing) return;
+                    this.playing = false;
+                    if (this.raf) { cancelAnimationFrame(this.raf); this.raf = 0; }
+                    this.setState('paused');
+                    if (this.playBtn) { this.playBtn.textContent = 'Play'; this.playBtn.setAttribute('aria-pressed', 'false'); }
+                    if (this.onPause) this.onPause();
+                    },
+                    toggle: function () { if (this.playing) this.pause(); else this.play(); },
+                    // The Play / Pause button every toy has; the toy starts playing unless reduced motion is
+                    // asked for or the tag says paused, and the status says why it waits.
+                    playButton: function () {
+                    var kit = this;
+                    this.playBtn = this.button('Play', function () { kit.toggle(); });
+                    this.playBtn.classList.add('pt-play');
+                    this.playBtn.setAttribute('aria-pressed', 'false');
+                    return this.playBtn;
+                    },
+                    begin: function (playingText) {
+                    if (reduced.matches) this.status('Paused, as reduced motion is asked for - press Play to start');
+                    else if (this.cfg.paused) this.status('Press Play to start');
+                    else {
+                    this.play();
+                    if (playingText) this.status(playingText);
+                    }
+                    if (this.playing) return;
+                    if (this.stillFn) this.stillFn();
+                    else this.redraw();
+                    },
+                    // What a toy that waits shows: the figure it would draw, finished - a still picture in
+                    // place of an empty canvas.
+                    still: function (fn) { this.stillFn = fn; }
+                    };
+
+                    function start(root) {
+                    if (root.padToyKit) return;
+                    var init = kinds[root.getAttribute('data-pad-toy')];
+                    if (!init) return;
+                    var cfg = {};
+                    try { cfg = JSON.parse(root.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+                    var kit = new Kit(root, cfg);
+                    root.padToyKit = kit;
+                    root.classList.add('is-ready');
+                    kits.push(kit);
+                    if (seer) seer.observe(root);
+                    init(kit, cfg);
+                    }
+
+                    // The toys of the page, or of a part of it - and of the open shadow roots in it: a toy in a
+                    // web component's {shadow}, which the document's own querySelectorAll does not see into.
+                    // A shadow root found is watched for toys that come and go, as the page is.
+                    function scan(where) {
+                    where = where || document;
+                    var list = where.querySelectorAll('.pad-toy[data-pad-toy]');
+                    for (var i = 0; i < list.length; i++) start(list[i]);
+                    var all = where.querySelectorAll('*');
+                    for (var j = 0; j < all.length; j++)
+                    if (all[j].shadowRoot) { watch(all[j].shadowRoot); scan(all[j].shadowRoot); }
+                    }
+
+                    // A toy that leaves the page - a fragment swapped out - is let go: its loop stops. One in a
+                    // shadow root is on the page while its host is: isConnected, where the document's contains
+                    // is false for every node of a shadow tree.
+                    function prune() {
+                    kits = kits.filter(function (kit) {
+                    if (kit.root.isConnected) return true;
+                    kit.pause();
+                    if (seer) seer.unobserve(kit.root);
+                    return false;
+                    });
+                    }
+
+                    var seer = window.IntersectionObserver ? new IntersectionObserver(function (entries) {
+                    entries.forEach(function (en) {
+                    var kit = en.target.padToyKit;
+                    if (kit) { kit.seen = en.isIntersecting; kit.hold(); }
+                    });
+                    }) : null;
+
+                    document.addEventListener('visibilitychange', function () { kits.forEach(function (kit) { kit.hold(); }); });
+
+                    if (reduced.addEventListener)
+                    reduced.addEventListener('change', function () { if (reduced.matches) kits.forEach(function (kit) { kit.pause(); }); });
+
+                    // The scheme changes with the system, or with the frame's own switch (data-theme on <html>,
+                    // the padtheme event): every toy resolves its palette anew.
+                    function retheme() { kits.forEach(function (kit) { kit.retheme(); }); }
+                    var darkQuery = media('(prefers-color-scheme: dark)');
+                    if (darkQuery.addEventListener) darkQuery.addEventListener('change', retheme);
+                    document.addEventListener('padtheme', function () { setTimeout(retheme, 0); });
+
+                    window.PadToys = {
+                    register: function (name, init) { kinds[name] = init; scan(); },
+                    scan: scan,
+                    random: random,
+                    el: el
+                    };
+
+                    document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+                    var watcher = window.MutationObserver ? new MutationObserver(function (records) {
+                    var added = false, removed = false;
+                    for (var i = 0; i < records.length; i++) {
+                    if (records[i].type === 'attributes') { retheme(); continue; }
+                    if (records[i].removedNodes.length) removed = true;
+                    for (var j = 0; j < records[i].addedNodes.length; j++) {
+                    var n = records[i].addedNodes[j];
+                    if (n.nodeType === 1 && (n.matches('.pad-toy') || n.querySelector('.pad-toy') || n.shadowRoot)) added = true;
+                    }
+                    }
+                    if (added) scan();
+                    if (removed && kits.length) prune();
+                    }) : null;
+
+                    if (watcher) watcher.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-theme'] });
+
+                    var watched = [];
+                    function watch(root) {
+                    if (!watcher || watched.indexOf(root) >= 0) return;
+                    watched.push(root);
+                    watcher.observe(root, { childList: true, subtree: true });
+                    }
+                    })();
+                    </script>
+                    <script>
+                    PadToys.register('ripples', function (k, cfg) {
+                    var GW = 200, GH = 140, SCALE = 3, SPONGE = 18, C2 = 0.24;
+                    var setup = cfg.setup, freq = cfg.frequency, walls = false, steps = 0, rain = 0, said = 0;
+                    var u = new Float32Array(GW * GH), p = new Float32Array(GW * GH), wall = new Uint8Array(GW * GH), damp = new Float32Array(GW * GH), sources = [];
+                    var ctx = k.canvas(GW, GH, 'A ripple tank', true), canvas = ctx.canvas;
+                    canvas.style.width = GW * SCALE + 'px';
+                    var image = ctx.createImageData(GW, GH), pixels = new Uint32Array(image.data.buffer), lut = new Uint32Array(256), wallColour = 0;
+
+                    // The edges soak the waves up - a band where the water is damped more toward the rim - so
+                    // the tank looks as if it went on.
+                    for (var y = 0; y < GH; y++) for (var x = 0; x < GW; x++) {
+                    var e = Math.min(x, y, GW - 1 - x, GH - 1 - y);
+                    damp[y * GW + x] = e < SPONGE ? 0.999 - 0.2 * Math.pow((SPONGE - e) / SPONGE, 2) : 0.999;
+                    }
+
+                    function pack(c) { return (255 << 24 | Math.round(c[2]) << 16 | Math.round(c[1]) << 8 | Math.round(c[0])) >>> 0; }
+                    // Crests in the accent, troughs in the second accent, still water the canvas.
+                    function colours() {
+                    var bg = k.rgb('canvas'), hi = k.rgb('accent'), lo = k.rgb('accent2');
+                    for (var i = 0; i < 256; i++) {
+                    var v = (i - 127.5) / 127.5, a = Math.abs(v), c = v > 0 ? hi : lo;
+                    lut[i] = pack([bg[0] + (c[0] - bg[0]) * a, bg[1] + (c[1] - bg[1]) * a, bg[2] + (c[2] - bg[2]) * a]);
+                    }
+                    wallColour = pack(k.rgb('ink'));
+                    }
+
+                    function arrange(name) {
+                    u.fill(0); p.fill(0); wall.fill(0); sources = []; steps = 0;
+                    var x, y;
+                    if (name === 'two') {
+                    sources.push({ x: 70, y: GH / 2 - 16 }, { x: 70, y: GH / 2 + 16 });
+                    } else if (name === 'slits') {
+                    for (y = 0; y < GH; y++) if (Math.abs(y - (GH / 2 - 14)) > 3 && Math.abs(y - (GH / 2 + 14)) > 3) { wall[y * GW + 70] = 1; wall[y * GW + 71] = 1; }
+                    for (y = SPONGE; y < GH - SPONGE; y += 2) sources.push({ x: 24, y: y });
+                    }
+                    }
+
+                    function drop(cx, cy, amp, r) {
+                    for (var dy = -r; dy <= r; dy++) for (var dx = -r; dx <= r; dx++) {
+                    var x = Math.round(cx) + dx, y = Math.round(cy) + dy;
+                    if (x < 1 || y < 1 || x >= GW - 1 || y >= GH - 1) continue;
+                    var d2 = (dx * dx + dy * dy) / (r * r);
+                    if (d2 <= 1) u[y * GW + x] += amp * Math.exp(-d2 * 3);
+                    }
+                    }
+
+                    // One step of the wave equation: each point pulled toward its neighbours - the eight of
+                    // them, the corners weighed less, so a ring spreads round rather than square - with what it
+                    // had a step before for its speed; walls stay still.
+                    function step() {
+                    var t = steps * 2 * Math.PI * freq * 0.01;
+                    sources.forEach(function (s) { u[Math.round(s.y) * GW + Math.round(s.x)] = Math.sin(t) * (setup === 'slits' ? 0.5 : 1.2); });
+                    for (var y = 1; y < GH - 1; y++) {
+                    var row = y * GW;
+                    for (var x = 1; x < GW - 1; x++) {
+                    var i = row + x;
+                    if (wall[i]) { p[i] = 0; continue; }
+                    var lap = (4 * (u[i - 1] + u[i + 1] + u[i - GW] + u[i + GW]) + u[i - GW - 1] + u[i - GW + 1] + u[i + GW - 1] + u[i + GW + 1] - 20 * u[i]) / 6;
+                    p[i] = (2 * u[i] - p[i] + C2 * lap) * damp[i];
+                    }
+                    }
+                    var swap = u; u = p; p = swap;
+                    steps++;
+                    }
+
+                    function draw() {
+                    for (var i = 0; i < u.length; i++) {
+                    if (wall[i]) { pixels[i] = wallColour; continue; }
+                    var v = Math.tanh(u[i] * 2.2);
+                    pixels[i] = lut[Math.round((v + 1) * 127.5)];
+                    }
+                    ctx.putImageData(image, 0, 0);
+                    var now = Date.now();
+                    if (now - said > 1000) {
+                    said = now;
+                    var n = 0;
+                    for (var j = 0; j < wall.length; j++) n += wall[j];
+                    k.info({ two: 'Two sources in step', slits: 'A straight wave through two slits', pond: 'Raindrops on a pond' }[setup] + ' · frequency ' + freq + (n ? ' · ' + n + ' wall cells' : ''));
+                    k.describe(canvas, 'A ripple tank: ' + { two: 'two sources beating in step, their waves crossing in stripes of interference', slits: 'a straight wave passing two slits in a wall and spreading out beyond', pond: 'raindrops falling, rings spreading and crossing' }[setup]);
+                    }
+                    }
+
+                    k.loop(function (dt) {
+                    if (setup === 'pond') { rain -= dt; if (rain <= 0) { drop(k.range(20, GW - 20), k.range(20, GH - 20), k.range(1.2, 2.4), 3); rain = k.range(0.4, 1.4); } }
+                    for (var s = 0; s < 3; s++) step();
+                    draw();
+                    }, draw);
+
+                    // The pointer touches the water - or, with walls ticked or the Shift key down, builds a
+                    // wall where it goes; the right button rubs walls out.
+                    var last = null;
+                    function along(pt, fn) {
+                    var from = last || pt, n = Math.max(1, Math.ceil(Math.hypot(pt.x - from.x, pt.y - from.y)));
+                    for (var s = 0; s <= n; s++) fn(from.x + (pt.x - from.x) * s / n, from.y + (pt.y - from.y) * s / n);
+                    last = pt;
+                    }
+                    function build(x, y, on) {
+                    for (var dy = -1; dy <= 1; dy++) for (var dx = -1; dx <= 1; dx++) {
+                    var X = Math.round(x) + dx, Y = Math.round(y) + dy;
+                    if (X > 0 && Y > 0 && X < GW - 1 && Y < GH - 1) { wall[Y * GW + X] = on ? 1 : 0; if (on) { u[Y * GW + X] = 0; p[Y * GW + X] = 0; } }
+                    }
+                    }
+                    var mode = null;
+                    k.pointer(canvas, {
+                    down: function (pt, e) {
+                    last = null;
+                    mode = e.button === 2 ? 'erase' : (walls || pt.shift) ? 'wall' : 'water';
+                    if (mode === 'water') drop(pt.x, pt.y, 2.5, 4);
+                    else along(pt, function (x, y) { build(x, y, mode === 'wall'); });
+                    if (!k.playing) draw();
+                    },
+                    move: function (pt, e, pressed) {
+                    if (!pressed || !mode) return;
+                    if (mode === 'water') along(pt, function (x, y) { drop(x, y, 0.25, 3); });
+                    else along(pt, function (x, y) { build(x, y, mode === 'wall'); });
+                    if (!k.playing) draw();
+                    },
+                    up: function () { last = null; mode = null; }
+                    });
+
+                    k.keys({ c: function () { u.fill(0); p.fill(0); draw(); }, w: function () { wallBox.checked = walls = !walls; } });
+                    k.onPlay = function () { k.status('Rippling - click or drag to touch the water'); };
+                    k.onPause = function () { k.status('Still'); };
+
+                    k.row();
+                    k.playButton();
+                    k.button('Calm', function () { u.fill(0); p.fill(0); draw(); k.status('The water is calm'); }, 'Still the water (C)');
+                    k.button('Clear walls', function () { wall.fill(0); draw(); k.status('No walls'); }, 'Take the walls away');
+                    k.select('Setup', [['two', 'Two sources'], ['slits', 'Two slits'], ['pond', 'Pond']], setup, function (v) { setup = v; arrange(v); draw(); k.status({ two: 'Two sources', slits: 'Two slits', pond: 'A pond in the rain' }[v]); });
+                    k.row();
+                    var wallBox = k.check('Build walls', walls, function (v) { walls = v; k.status(v ? 'The pointer builds walls - right button rubs them out' : 'The pointer touches the water'); });
+                    k.slider('Frequency', 1, 10, 1, freq, function (v) { freq = v; });
+                    k.theme(function () { colours(); draw(); });
+
+                    colours();
+                    arrange(setup);
+                    k.begin();
+                    });
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7toy.html">{pad:toy}</a> <span class="about">A small live simulation or visual toy in the browser - 19 of them, from the Game of Life and a flock of birds to the Mandelbrot set and falling sand.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96tag%EA%A4%B7toy%EA%A4%B7pendulum.html">← {toy:pendulum}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7toy%EA%A4%B7sand.html">{toy:sand} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            634 tags of PAD - the built-in tags, the kinds of the subsystems and the sequence types - each with its syntax and live examples, every result on this site rendered by the tag it documents.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

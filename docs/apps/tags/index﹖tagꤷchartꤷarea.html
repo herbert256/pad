@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {chart:area} · PAD tags
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="tags.css">
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>tags</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 634 tags" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#kind-chart">Chart types</a><span>/</span><span aria-current="page">chart:area</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>chart:area<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              Filled areas over the label axis, a line on each and a legend for several value fields.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#kind-chart">Chart types</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:area</span> <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">area</span> <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field'</span><span class="hl-brc">/}</span></code></pre>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              One of the 45 chart types of <a href="index%EF%B9%96tag%EA%A4%B7chart.html"><code>{pad:chart}</code></a>, written <code>{chart:area .../}</code>, <code>{chart 'area', .../}</code>, <code>{area ...}</code>, bare, when no tag, field or store has the name.
+            </p>
+            <p>
+              Filled areas over the label axis, a line on each and a legend for several value fields; stacked lays them on top of each other (the top edge the running total), percent stacks every column to 100% - no negative values when stacked; a column per label carries all values in its tooltip. Options: label, value, stacked, percent; width= and height=, 600 x 300 unless given.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Example
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                From the charts application
+              </h3>
+              <p class="example-about">
+                Its example area/devices there, with the data it draws.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">charts/area/devices.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'area'</span>,
+       <span class="hl-opt">label</span>=<span class="hl-str">'year'</span>,
+       <span class="hl-opt">value</span>=<span class="hl-str">'desktop, mobile, tablet'</span>,
+       percent,
+       <span class="hl-opt">title</span>=<span class="hl-str">'Share of web visits by device'</span>,
+       <span class="hl-opt">width</span>=<span class="hl-num">640</span>,
+       <span class="hl-opt">height</span>=<span class="hl-num">320</span><span class="hl-brc">}</span>
+  year,desktop,mobile,tablet
+  <span class="hl-num">2012</span>,<span class="hl-num">1820</span>,<span class="hl-num">210</span>,<span class="hl-num">95</span>
+  <span class="hl-num">2013</span>,<span class="hl-num">1790</span>,<span class="hl-num">390</span>,<span class="hl-num">160</span>
+  <span class="hl-num">2014</span>,<span class="hl-num">1750</span>,<span class="hl-num">610</span>,<span class="hl-num">230</span>
+  <span class="hl-num">2015</span>,<span class="hl-num">1700</span>,<span class="hl-num">890</span>,<span class="hl-num">260</span>
+  <span class="hl-num">2016</span>,<span class="hl-num">1640</span>,<span class="hl-num">1210</span>,<span class="hl-num">250</span>
+  <span class="hl-num">2017</span>,<span class="hl-num">1580</span>,<span class="hl-num">1540</span>,<span class="hl-num">235</span>
+  <span class="hl-num">2018</span>,<span class="hl-num">1510</span>,<span class="hl-num">1860</span>,<span class="hl-num">215</span>
+  <span class="hl-num">2019</span>,<span class="hl-num">1450</span>,<span class="hl-num">2150</span>,<span class="hl-num">190</span>
+  <span class="hl-num">2020</span>,<span class="hl-num">1520</span>,<span class="hl-num">2380</span>,<span class="hl-num">180</span>
+  <span class="hl-num">2021</span>,<span class="hl-num">1430</span>,<span class="hl-num">2620</span>,<span class="hl-num">165</span>
+  <span class="hl-num">2022</span>,<span class="hl-num">1380</span>,<span class="hl-num">2810</span>,<span class="hl-num">150</span>
+  <span class="hl-num">2023</span>,<span class="hl-num">1340</span>,<span class="hl-num">2990</span>,<span class="hl-num">140</span>
+  <span class="hl-num">2024</span>,<span class="hl-num">1300</span>,<span class="hl-num">3150</span>,<span class="hl-num">130</span>
+<span class="hl-brc">{</span><span class="hl-tag">/chart</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="../charts/index%EF%B9%96area%EA%A4%B7devices.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-area" role="img" aria-labelledby="pad-chart-fa07f247-title pad-chart-fa07f247-desc" width="640" height="320" viewbox="0 0 640 320">
+                    <title id="pad-chart-fa07f247-title">
+                      Share of web visits by device
+                    </title>
+                    <desc id="pad-chart-fa07f247-desc">
+                      2012: Desktop 1,820 (85.6%), Mobile 210 (9.9%), Tablet 95 (4.5%); 2013: Desktop 1,790 (76.5%), Mobile 390 (16.7%), Tablet 160 (6.8%); 2014: Desktop 1,750 (67.6%), Mobile 610 (23.6%), Tablet 230 (8.9%); 2015: Desktop 1,700 (59.6%), Mobile 890 (31.2%), Tablet 260 (9.1%); 2016: Desktop 1,640 (52.9%), Mobile 1,210 (39%), Tablet 250 (8.1%); 2017: Desktop 1,580 (47.1%), Mobile 1,540 (45.9%), Tablet 235 (7%); 2018: Desktop 1,510 (42.1%), Mobile 1,860 (51.9%), Tablet 215 (6%); 2019: Desktop 1,450 (38.3%), Mobile 2,150 (56.7%), Tablet 190 (5%); 2020: Desktop 1,520 (37.3%), Mobile 2,380 (58.3%), Tablet 180 (4.4%); 2021: Desktop 1,430 (33.9%), Mobile 2,620 (62.2%), Tablet 165 (3.9%); 2022: Desktop 1,380 (31.8%), Mobile 2,810 (64.7%), Tablet 150 (3.5%); 2023: Desktop 1,340 (30%), Mobile 2,990 (66.9%), Tablet 140 (3.1%); 2024: Desktop 1,300 (28.4%), Mobile 3,150 (68.8%), Tablet 130 (2.8%)
+                    </desc>
+                    <g class="pc-key">
+                      <rect class="pc-c1" x="36" y="6" width="10" height="10" rx="2"></rect>
+                      <text x="50" y="15">
+                        Desktop
+                      </text>
+                      <rect class="pc-c2" x="107.5" y="6" width="10" height="10" rx="2"></rect>
+                      <text x="121.5" y="15">
+                        Mobile
+                      </text>
+                      <rect class="pc-c3" x="172.5" y="6" width="10" height="10" rx="2"></rect>
+                      <text x="186.5" y="15">
+                        Tablet
+                      </text>
+                    </g>
+                    <line class="pc-grid" x1="36" x2="623" y1="296" y2="296"></line>
+                    <text x="30" y="300" text-anchor="end">
+                      0%
+                    </text>
+                    <line class="pc-grid" x1="36" x2="623" y1="228.5" y2="228.5"></line>
+                    <text x="30" y="232.5" text-anchor="end">
+                      25%
+                    </text>
+                    <line class="pc-grid" x1="36" x2="623" y1="161" y2="161"></line>
+                    <text x="30" y="165" text-anchor="end">
+                      50%
+                    </text>
+                    <line class="pc-grid" x1="36" x2="623" y1="93.5" y2="93.5"></line>
+                    <text x="30" y="97.5" text-anchor="end">
+                      75%
+                    </text>
+                    <line class="pc-grid" x1="36" x2="623" y1="26" y2="26"></line>
+                    <text x="30" y="30" text-anchor="end">
+                      100%
+                    </text>
+                    <text x="36" y="312" text-anchor="middle">
+                      2012
+                    </text>
+                    <text x="84.9" y="312" text-anchor="middle">
+                      2013
+                    </text>
+                    <text x="133.8" y="312" text-anchor="middle">
+                      2014
+                    </text>
+                    <text x="182.8" y="312" text-anchor="middle">
+                      2015
+                    </text>
+                    <text x="231.7" y="312" text-anchor="middle">
+                      2016
+                    </text>
+                    <text x="280.6" y="312" text-anchor="middle">
+                      2017
+                    </text>
+                    <text x="329.5" y="312" text-anchor="middle">
+                      2018
+                    </text>
+                    <text x="378.4" y="312" text-anchor="middle">
+                      2019
+                    </text>
+                    <text x="427.3" y="312" text-anchor="middle">
+                      2020
+                    </text>
+                    <text x="476.3" y="312" text-anchor="middle">
+                      2021
+                    </text>
+                    <text x="525.2" y="312" text-anchor="middle">
+                      2022
+                    </text>
+                    <text x="574.1" y="312" text-anchor="middle">
+                      2023
+                    </text>
+                    <text x="623" y="312" text-anchor="middle">
+                      2024
+                    </text>
+                    <path class="pc-c1 pc-seg" fill-opacity="0.85" d="M36,64.8L84.9,89.5L133.8,113.6L182.8,134.9L231.7,153.2L280.6,168.8L329.5,182.3L378.4,192.7L427.3,195.4L476.3,204.4L525.2,210.1L574.1,215.1L623,219.4L623,296L574.1,296L525.2,296L476.3,296L427.3,296L378.4,296L329.5,296L280.6,296L231.7,296L182.8,296L133.8,296L84.9,296L36,296Z">
+                      <title>
+                        Desktop: 20,210 in all
+                      </title>
+                    </path>
+                    <path class="pc-c2 pc-seg" fill-opacity="0.85" d="M36,38.1L84.9,44.5L133.8,50L182.8,50.6L231.7,47.8L280.6,44.9L329.5,42.2L378.4,39.5L427.3,37.9L476.3,36.6L525.2,35.3L574.1,34.5L623,33.7L623,219.4L574.1,215.1L525.2,210.1L476.3,204.4L427.3,195.4L378.4,192.7L329.5,182.3L280.6,168.8L231.7,153.2L182.8,134.9L133.8,113.6L84.9,89.5L36,64.8Z">
+                      <title>
+                        Mobile: 22,810 in all
+                      </title>
+                    </path>
+                    <path class="pc-c3 pc-seg" fill-opacity="0.85" d="M36,26L84.9,26L133.8,26L182.8,26L231.7,26L280.6,26L329.5,26L378.4,26L427.3,26L476.3,26L525.2,26L574.1,26L623,26L623,33.7L574.1,34.5L525.2,35.3L476.3,36.6L427.3,37.9L378.4,39.5L329.5,42.2L280.6,44.9L231.7,47.8L182.8,50.6L133.8,50L84.9,44.5L36,38.1Z">
+                      <title>
+                        Tablet: 2,400 in all
+                      </title>
+                    </path>
+                    <line class="pc-axis" x1="36" x2="623" y1="296" y2="296"></line>
+                    <rect class="pc-hit" x="36" y="26" width="24.5" height="270">
+                      <title>
+                        2012: Desktop 1,820 (85.6%), Mobile 210 (9.9%), Tablet 95 (4.5%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="60.5" y="26" width="48.9" height="270">
+                      <title>
+                        2013: Desktop 1,790 (76.5%), Mobile 390 (16.7%), Tablet 160 (6.8%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="109.4" y="26" width="48.9" height="270">
+                      <title>
+                        2014: Desktop 1,750 (67.6%), Mobile 610 (23.6%), Tablet 230 (8.9%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="158.3" y="26" width="48.9" height="270">
+                      <title>
+                        2015: Desktop 1,700 (59.6%), Mobile 890 (31.2%), Tablet 260 (9.1%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="207.2" y="26" width="48.9" height="270">
+                      <title>
+                        2016: Desktop 1,640 (52.9%), Mobile 1,210 (39%), Tablet 250 (8.1%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="256.1" y="26" width="48.9" height="270">
+                      <title>
+                        2017: Desktop 1,580 (47.1%), Mobile 1,540 (45.9%), Tablet 235 (7%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="305" y="26" width="48.9" height="270">
+                      <title>
+                        2018: Desktop 1,510 (42.1%), Mobile 1,860 (51.9%), Tablet 215 (6%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="354" y="26" width="48.9" height="270">
+                      <title>
+                        2019: Desktop 1,450 (38.3%), Mobile 2,150 (56.7%), Tablet 190 (5%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="402.9" y="26" width="48.9" height="270">
+                      <title>
+                        2020: Desktop 1,520 (37.3%), Mobile 2,380 (58.3%), Tablet 180 (4.4%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="451.8" y="26" width="48.9" height="270">
+                      <title>
+                        2021: Desktop 1,430 (33.9%), Mobile 2,620 (62.2%), Tablet 165 (3.9%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="500.7" y="26" width="48.9" height="270">
+                      <title>
+                        2022: Desktop 1,380 (31.8%), Mobile 2,810 (64.7%), Tablet 150 (3.5%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="549.6" y="26" width="48.9" height="270">
+                      <title>
+                        2023: Desktop 1,340 (30%), Mobile 2,990 (66.9%), Tablet 140 (3.1%)
+                      </title>
+                    </rect>
+                    <rect class="pc-hit" x="598.5" y="26" width="24.5" height="270">
+                      <title>
+                        2024: Desktop 1,300 (28.4%), Mobile 3,150 (68.8%), Tablet 130 (2.8%)
+                      </title>
+                    </rect></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{pad:chart}</a> <span class="about">Draws a chart as inline SVG on the server - 45 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96tag%EA%A4%B7chart%EA%A4%B7arc.html">← {chart:arc}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7chart%EA%A4%B7bar.html">{chart:bar} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            634 tags of PAD - the built-in tags, the kinds of the subsystems and the sequence types - each with its syntax and live examples, every result on this site rendered by the tag it documents.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

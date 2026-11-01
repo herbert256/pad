@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {chart:chord} · PAD tags
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="tags.css">
+    <style>
+    :where(.pad-chart){--pad-chart-series:#2a78d6;--pad-chart-text:#52514e;--pad-chart-grid:#e4e3df;--pad-chart-surface:#fcfcfb;--pad-chart-2:#eb6834;--pad-chart-3:#1baf7a;--pad-chart-4:#eda100;--pad-chart-5:#e87ba4;--pad-chart-6:#008300;--pad-chart-7:#4a3aa7;--pad-chart-8:#e34948;--pad-chart-other:#898781;--pad-chart-heat-0:#cde2fb;--pad-chart-heat-1:#9ec5f4;--pad-chart-heat-2:#6da7ec;--pad-chart-heat-3:#3987e5;--pad-chart-heat-4:#256abf;--pad-chart-heat-5:#184f95;--pad-chart-heat-6:#0d366b;}@supports (color:light-dark(#000,#fff)){:where(.pad-chart){--pad-chart-series:light-dark(#2a78d6,#3987e5);--pad-chart-text:light-dark(#52514e,#c3c2b7);--pad-chart-grid:light-dark(#e4e3df,#3a3a37);--pad-chart-surface:light-dark(#fcfcfb,#1a1a19);--pad-chart-2:light-dark(#eb6834,#d95926);--pad-chart-3:light-dark(#1baf7a,#199e70);--pad-chart-4:light-dark(#eda100,#c98500);--pad-chart-5:light-dark(#e87ba4,#d55181);--pad-chart-6:light-dark(#008300,#008300);--pad-chart-7:light-dark(#4a3aa7,#9085e9);--pad-chart-8:light-dark(#e34948,#e66767);--pad-chart-other:light-dark(#898781,#898781);--pad-chart-heat-0:light-dark(#cde2fb,#0d366b);--pad-chart-heat-1:light-dark(#9ec5f4,#104281);--pad-chart-heat-2:light-dark(#6da7ec,#184f95);--pad-chart-heat-3:light-dark(#3987e5,#1c5cab);--pad-chart-heat-4:light-dark(#256abf,#2a78d6);--pad-chart-heat-5:light-dark(#184f95,#5598e7);--pad-chart-heat-6:light-dark(#0d366b,#9ec5f4);}}.pad-chart text{fill:var(--pad-chart-text);font:11px system-ui,sans-serif}.pad-chart .pc-grid{stroke:var(--pad-chart-grid);stroke-width:1}.pad-chart .pc-axis{stroke:var(--pad-chart-text);stroke-width:1}.pad-chart .pc-bar{fill:var(--pad-chart-series)}.pad-chart .pc-bar:hover{opacity:.8}.pad-chart .pc-line{fill:none;stroke:var(--pad-chart-series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-area{fill:var(--pad-chart-series);opacity:.1}.pad-chart .pc-dot{fill:var(--pad-chart-series);stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-hit{fill:transparent}:where(.pad-chart){--pad-chart-1:var(--pad-chart-series)}.pad-chart .pc-c1{fill:var(--pad-chart-1)}.pad-chart .pc-l1{fill:none;stroke:var(--pad-chart-1);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c2{fill:var(--pad-chart-2)}.pad-chart .pc-l2{fill:none;stroke:var(--pad-chart-2);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c3{fill:var(--pad-chart-3)}.pad-chart .pc-l3{fill:none;stroke:var(--pad-chart-3);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c4{fill:var(--pad-chart-4)}.pad-chart .pc-l4{fill:none;stroke:var(--pad-chart-4);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c5{fill:var(--pad-chart-5)}.pad-chart .pc-l5{fill:none;stroke:var(--pad-chart-5);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c6{fill:var(--pad-chart-6)}.pad-chart .pc-l6{fill:none;stroke:var(--pad-chart-6);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c7{fill:var(--pad-chart-7)}.pad-chart .pc-l7{fill:none;stroke:var(--pad-chart-7);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-c8{fill:var(--pad-chart-8)}.pad-chart .pc-l8{fill:none;stroke:var(--pad-chart-8);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}.pad-chart .pc-h0{fill:var(--pad-chart-heat-0)}.pad-chart .pc-h1{fill:var(--pad-chart-heat-1)}.pad-chart .pc-h2{fill:var(--pad-chart-heat-2)}.pad-chart .pc-h3{fill:var(--pad-chart-heat-3)}.pad-chart .pc-h4{fill:var(--pad-chart-heat-4)}.pad-chart .pc-h5{fill:var(--pad-chart-heat-5)}.pad-chart .pc-h6{fill:var(--pad-chart-heat-6)}.pad-chart .pc-co{fill:var(--pad-chart-other)}.pad-chart .pc-mark:hover{opacity:.8}.pad-chart .pc-gap{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-seg{stroke:var(--pad-chart-surface);stroke-width:1}.pad-chart .pc-ring{stroke:var(--pad-chart-surface);stroke-width:2}.pad-chart .pc-frame{fill:none;stroke:var(--pad-chart-surface);stroke-width:4}.pad-chart .pc-bubble{fill-opacity:.75}.pad-chart .pc-dp1{opacity:.75}.pad-chart .pc-dp2{opacity:.55}.pad-chart .pc-dp3{opacity:.4}.pad-chart .pc-link{fill:var(--pad-chart-series);opacity:.3}.pad-chart .pc-link:hover{opacity:.55}.pad-chart .pc-edge{stroke:var(--pad-chart-text);stroke-opacity:.35;fill:none}.pad-chart .pc-arrow{fill:var(--pad-chart-text);fill-opacity:.5}.pad-chart .pc-trend{fill:none;stroke:var(--pad-chart-text);stroke-width:1.5;stroke-dasharray:4 3}.pad-chart .pc-in{fill:#fff;stroke:rgba(0,0,0,.55);stroke-width:2px;paint-order:stroke;stroke-linejoin:round}.pad-chart .pc-big{font-size:16px;font-weight:600}
+    </style>
+  </head>
+  <body class="frame app-tags">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>tags</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every built-in tag, with examples</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="tags">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96forms.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> Forms</a> <a href="index%EF%B9%96options.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> Options</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 634 tags" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Tags</a><span>/</span><a href="index%EF%B9%96groups.html#kind-chart">Chart types</a><span>/</span><span aria-current="page">chart:chord</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              <span class="brace">{</span>chart:chord<span class="brace">}</span>
+            </h1>
+            <p class="tag-about">
+              Flows between the members of one group.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#kind-chart">Chart types</a> <a class="chip chip-form" href="index%EF%B9%96forms.html#both">Either form</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:chord</span> <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">chord</span> <span class="hl-opt">data</span>=<span class="hl-str">'rows'</span>, <span class="hl-opt">label</span>=<span class="hl-str">'field'</span>, <span class="hl-opt">value</span>=<span class="hl-str">'field'</span><span class="hl-brc">/}</span></code></pre>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              One of the 45 chart types of <a href="index%EF%B9%96tag%EA%A4%B7chart.html"><code>{pad:chart}</code></a>, written <code>{chart:chord .../}</code>, <code>{chart 'chord', .../}</code>, <code>{chord ...}</code>, bare, when no tag, field or store has the name.
+            </p>
+            <p>
+              Flows between the members of one group: a node an arc around the circle as long as all that flows out of and into it, a ribbon per flow through the middle as wide as the flow, in the colour of its source; without value a row counts one. Options: source, target, value; width= and height=, 600 x 400 unless given.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Example
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                From the charts application
+              </h3>
+              <p class="example-about">
+                Its example relations/migration there, with the data it draws.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">charts/relations/migration.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">'chord'</span>,
+       <span class="hl-opt">source</span>=<span class="hl-str">'from'</span>,
+       <span class="hl-opt">target</span>=<span class="hl-str">'to'</span>,
+       <span class="hl-opt">value</span>=<span class="hl-str">'people'</span>,
+       <span class="hl-opt">title</span>=<span class="hl-str">'Moves between regions in a year, in thousands'</span>,
+       <span class="hl-opt">width</span>=<span class="hl-num">560</span>,
+       <span class="hl-opt">height</span>=<span class="hl-num">480</span><span class="hl-brc">}</span>
+  from,to,people
+  North,South,<span class="hl-num">42</span>
+  North,East,<span class="hl-num">18</span>
+  North,West,<span class="hl-num">25</span>
+  North,Capital,<span class="hl-num">64</span>
+  South,North,<span class="hl-num">30</span>
+  South,East,<span class="hl-num">12</span>
+  South,Capital,<span class="hl-num">48</span>
+  East,North,<span class="hl-num">15</span>
+  East,West,<span class="hl-num">9</span>
+  East,Capital,<span class="hl-num">37</span>
+  West,North,<span class="hl-num">21</span>
+  West,South,<span class="hl-num">14</span>
+  West,Capital,<span class="hl-num">29</span>
+  Capital,North,<span class="hl-num">38</span>
+  Capital,South,<span class="hl-num">52</span>
+  Capital,East,<span class="hl-num">22</span>
+  Capital,West,<span class="hl-num">31</span>
+<span class="hl-brc">{</span><span class="hl-tag">/chart</span><span class="hl-brc">}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="../charts/index%EF%B9%96relations%EA%A4%B7migration.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-chord" role="img" aria-labelledby="pad-chart-741aa837-title pad-chart-741aa837-desc" width="560" height="480" viewbox="0 0 560 480">
+                    <title id="pad-chart-741aa837-title">
+                      Moves between regions in a year, in thousands
+                    </title>
+                    <desc id="pad-chart-741aa837-desc">
+                      North → South: 42; North → East: 18; North → West: 25; North → Capital: 64; South → North: 30; South → East: 12; South → Capital: 48; East → North: 15; East → West: 9; East → Capital: 37; West → North: 21; West → South: 14; West → Capital: 29; Capital → North: 38; Capital → South: 52; Capital → East: 22; Capital → West: 31
+                    </desc>
+                    <path class="pc-mark pc-seg pc-c1" fill-opacity="0.6" d="M462.3,148.5A204,204 0 0 1 479.4,196.9Q280,240 480.4,277.9A204,204 0 0 1 464.7,326.7Q280,240 462.3,148.5Z">
+                      <title>
+                        North → South: 42
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c1" fill-opacity="0.6" d="M440.8,114.5A204,204 0 0 1 453.4,132.5Q280,240 315.3,440.9A204,204 0 0 1 293.5,443.6Q280,240 440.8,114.5Z">
+                      <title>
+                        North → East: 18
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c1" fill-opacity="0.6" d="M400.5,75.4A204,204 0 0 1 423.7,95.2Q280,240 157.2,402.9A204,204 0 0 1 134.2,382.7Q280,240 400.5,75.4Z">
+                      <title>
+                        North → West: 25
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c1" fill-opacity="0.6" d="M284.1,36A204,204 0 0 1 360.2,52.4Q280,240 199.8,52.4A204,204 0 0 1 275.9,36Q280,240 284.1,36Z">
+                      <title>
+                        North → Capital: 64
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c2" fill-opacity="0.6" d="M484,241.4A204,204 0 0 1 480.4,277.9Q280,240 479.4,196.9A204,204 0 0 1 483.9,233.3Q280,240 484,241.4Z">
+                      <title>
+                        South → North: 30
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c2" fill-opacity="0.6" d="M368.4,423.9A204,204 0 0 1 354.9,429.8Q280,240 347.3,432.6A204,204 0 0 1 333.2,436.9Q280,240 368.4,423.9Z">
+                      <title>
+                        South → East: 12
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c2" fill-opacity="0.6" d="M464.7,326.7A204,204 0 0 1 432.4,375.6Q280,240 117.7,116.4A204,204 0 0 1 159.5,75.4Q280,240 464.7,326.7Z">
+                      <title>
+                        South → Capital: 48
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c3" fill-opacity="0.6" d="M333.2,436.9A204,204 0 0 1 315.3,440.9Q280,240 453.4,132.5A204,204 0 0 1 462.3,148.5Q280,240 333.2,436.9Z">
+                      <title>
+                        East → North: 15
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c3" fill-opacity="0.6" d="M222.1,435.6A204,204 0 0 1 211.6,432.2Q280,240 204,429.3A204,204 0 0 1 193.9,424.9Q280,240 222.1,435.6Z">
+                      <title>
+                        East → West: 9
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c3" fill-opacity="0.6" d="M293.5,443.6A204,204 0 0 1 248.3,441.5Q280,240 77.4,216.2A204,204 0 0 1 87.6,172.2Q280,240 293.5,443.6Z">
+                      <title>
+                        East → Capital: 37
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c4" fill-opacity="0.6" d="M178.6,417A204,204 0 0 1 157.2,402.9Q280,240 423.7,95.2A204,204 0 0 1 440.8,114.5Q280,240 178.6,417Z">
+                      <title>
+                        West → North: 21
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c4" fill-opacity="0.6" d="M193.9,424.9A204,204 0 0 1 178.6,417Q280,240 383.5,415.8A204,204 0 0 1 368.4,423.9Q280,240 193.9,424.9Z">
+                      <title>
+                        West → South: 14
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c4" fill-opacity="0.6" d="M134.2,382.7A204,204 0 0 1 111.7,355.3Q280,240 79.6,278.3A204,204 0 0 1 76,243.1Q280,240 134.2,382.7Z">
+                      <title>
+                        West → Capital: 29
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c5" fill-opacity="0.6" d="M159.5,75.4A204,204 0 0 1 199.8,52.4Q280,240 360.2,52.4A204,204 0 0 1 400.5,75.4Q280,240 159.5,75.4Z">
+                      <title>
+                        Capital → North: 38
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c5" fill-opacity="0.6" d="M87.6,172.2A204,204 0 0 1 117.7,116.4Q280,240 432.4,375.6A204,204 0 0 1 383.5,415.8Q280,240 87.6,172.2Z">
+                      <title>
+                        Capital → South: 52
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c5" fill-opacity="0.6" d="M76,243.1A204,204 0 0 1 77.4,216.2Q280,240 248.3,441.5A204,204 0 0 1 222.1,435.6Q280,240 76,243.1Z">
+                      <title>
+                        Capital → East: 22
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-seg pc-c5" fill-opacity="0.6" d="M90.2,314.7A204,204 0 0 1 79.6,278.3Q280,240 111.7,355.3A204,204 0 0 1 93.3,322.2Q280,240 90.2,314.7Z">
+                      <title>
+                        Capital → West: 31
+                      </title>
+                    </path>
+                    <path class="pc-mark pc-c1" d="M284.4,22A218,218 0 0 1 497.9,232.8L485.9,233.2A206,206 0 0 0 284.1,34Z">
+                      <title>
+                        North: 149 out, 104 in
+                      </title>
+                    </path>
+                    <text x="437.4" y="84.6">
+                      North
+                    </text>
+                    <path class="pc-mark pc-c2" d="M498,241.5A218,218 0 0 1 360,442.8L355.6,431.6A206,206 0 0 0 486,241.4Z">
+                      <title>
+                        South: 90 out, 108 in
+                      </title>
+                    </path>
+                    <text x="464.8" y="370.7">
+                      South
+                    </text>
+                    <path class="pc-mark pc-c3" d="M351.9,445.8A218,218 0 0 1 206.9,445.4L210.9,434.1A206,206 0 0 0 347.9,434.5Z">
+                      <title>
+                        East: 61 out, 52 in
+                      </title>
+                    </path>
+                    <text x="279.3" y="474" text-anchor="middle">
+                      East
+                    </text>
+                    <path class="pc-mark pc-c4" d="M198.7,442.3A218,218 0 0 1 80.5,327.9L91.5,323A206,206 0 0 0 203.2,431.2Z">
+                      <title>
+                        West: 64 out, 65 in
+                      </title>
+                    </path>
+                    <text x="124.2" y="405" text-anchor="end">
+                      West
+                    </text>
+                    <path class="pc-mark pc-c5" d="M77.1,319.8A218,218 0 0 1 275.6,22L275.9,34A206,206 0 0 0 88.3,315.4Z">
+                      <title>
+                        Capital: 143 out, 178 in
+                      </title>
+                    </path>
+                    <text x="93.6" y="119.8" text-anchor="end">
+                      Capital
+                    </text></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="see">
+            <h2 id="see">
+              See also
+            </h2>
+            <ul class="list">
+              <li>
+                <a class="name" href="index%EF%B9%96tag%EA%A4%B7chart.html">{pad:chart}</a> <span class="about">Draws a chart as inline SVG on the server - 45 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
+              </li>
+            </ul>
+          </section>
+          <nav class="prevnext" aria-label="Other tags">
+            <a href="index%EF%B9%96tag%EA%A4%B7chart%EA%A4%B7candlestick.html">← {chart:candlestick}</a> <a href="index%EF%B9%96names.html">All tags A-Z</a> <a href="index%EF%B9%96tag%EA%A4%B7chart%EA%A4%B7column.html">{chart:column} →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            634 tags of PAD - the built-in tags, the kinds of the subsystems and the sequence types - each with its syntax and live examples, every result on this site rendered by the tag it documents.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
