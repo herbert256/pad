@@ -1499,7 +1499,8 @@ padWorkdays ( '2026-04-01', '2026-04-30', 'nl' );   // 20 - weekdays that are no
 padAddWorkdays ( '2026-04-24', 1, 'nl' );           // '2026-04-28' - the Monday is King's Day; 0 is the date itself
 ```
 The countries are the files of `pad/subs/holidays/types/`, named by their ISO 3166-1 alpha-2
-code - at, be, ca, ch, de, dk, es, fr, gb, ie, it, lu, nl, no, nz, pl, se, us - and a country is
+code - at, be, ca, ch, de, dk, es, fi, fr, gb, ie, it, lu, nl, no, nz, pl, se, us -
+and a country is
 added by adding its file. Each holds its national public holidays as rules, not dates: a fixed
 date, days from Easter Sunday (the Gregorian computus), the nth or last weekday of a month, the
 weekday on or after a date, the years a holiday is held, the years it moved, a move off a
@@ -1508,7 +1509,7 @@ Kingdom, Friday or Monday in the United States, where an observed day can fall i
 before. A row's `type` is `public` (a day off) or `observance` (a national day that is none -
 Good Friday in the Netherlands, Liberation Day there in the years that do not divide by five);
 `region` names the region of a regional holiday; `name` is English, `local` the country's own
-language (`lang=` picks one of a country of more: be, lu, ch, ca). Regions: Germany's sixteen
+language (`lang=` picks one of a country of more: be, lu, ch, ca, fi). Regions: Germany's sixteen
 states (`de-by`), the United Kingdom's nations (`gb-sct`, `gb-nir`; England and Wales without),
 France's Alsace-Moselle and overseas departments (`fr-57`, `fr-974`); the header of every file
 says what it leaves out. A workday is a Monday to Friday that is no public holiday. The
@@ -1523,6 +1524,9 @@ New Zealand (`nz`) adds the anniversary day of a province by the ISO 3166-2 code
 of its name (`nz-auk`, `nz-can` - Christchurch Show Day, `nz-cit`), and observes Waitangi Day
 and Anzac Day on a weekend on the following Monday, Christmas and New Year on the next free
 weekday.
+Finland (`fi`, names in Finnish and Swedish, `lang='sv'`) holds Midsummer Day and All Saints'
+Day on their Saturdays, Midsummer Eve and Christmas Eve as observances, Åland (`fi-01`) its
+Autonomy Day as one; it knows the years since 1992.
 
 ### Syntax highlighting
 ```
