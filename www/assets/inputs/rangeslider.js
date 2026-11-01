@@ -75,7 +75,18 @@ PadInputs.register('rangeslider', function (frame, cfg, kit) {
     event.preventDefault();
   });
 
-  if (from.form) from.form.addEventListener('reset', function () { setTimeout(sync, 0); });
+  // Two ends that come crossed - refilled from a post made without the script - are put in
+  // order: the first step of the upper end jumped it onto the lower.
+  function order() {
+    if (parseFloat(from.value) > parseFloat(to.value)) {
+      var lower = to.value;
+      to.value = from.value;
+      from.value = lower;
+    }
+    sync();
+  }
 
-  sync();
+  if (from.form) from.form.addEventListener('reset', function () { setTimeout(order, 0); });
+
+  order();
 });
