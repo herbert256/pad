@@ -1043,6 +1043,9 @@
   }
 
   // The meter of an M: field: [ kind, top, bottom, beats, value ] - kind num, C, C| or none.
+  // A number of it has at most three digits: the beats of 9999999999999999999+9999999999999999999
+  // added up past what an integer holds, and the page ended with PHP's warning that the float
+  // was no int.
 
   function padAbcMeter ( $value, &$problems ) {
 
@@ -1054,7 +1057,7 @@
     if ( $value === 'C' or $value === 'C|' )
       return [ 'kind' => $value, 'top' => $value == 'C' ? '4' : '2', 'bottom' => $value == 'C' ? '4' : '2', 'beats' => $value == 'C' ? 4 : 2, 'value' => 1 ];
 
-    if ( preg_match ( '/^\(?\s*(\d+(?:\s*\+\s*\d+)*)\s*\)?\s*\/\s*(\d+)$/', $value, $m ) and (int) $m [2] > 0 ) {
+    if ( preg_match ( '/^\(?\s*(\d{1,3}(?:\s*\+\s*\d{1,3})*)\s*\)?\s*\/\s*(\d{1,3})$/', $value, $m ) and (int) $m [2] > 0 ) {
       $top   = preg_replace ( '/\s+/', '', $m [1] );
       $beats = array_sum ( array_map ( 'intval', explode ( '+', $top ) ) );
       return [ 'kind' => 'num', 'top' => $top, 'bottom' => $m [2], 'beats' => $beats, 'value' => $beats / (int) $m [2] ];
