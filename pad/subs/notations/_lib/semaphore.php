@@ -97,7 +97,12 @@
     if ( $side ( $b ) == 'L' or $side ( $a ) == 'R' )
       return [ $b, $a ];
 
-    // Down and up, or down and down: the left arm the first.
+    // Down and up - D, and the digit 4: the arm at the reader's left goes on round from A, B
+    // and C to straight up, and the other hangs down, as the chart of the code has it, seen
+    // facing the signaller. Up went to the arm at the reader's right.
+
+    if ( $a == 4 or $b == 4 )
+      return [ 4, ( $a == 4 ) ? $b : $a ];
 
     return [ $a, $b ];
 
