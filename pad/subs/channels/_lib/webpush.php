@@ -106,6 +106,30 @@
 
   }
 
+  // Whether a subscription's endpoint is on a push service: the endpoint is the browser's to
+  // give, so the recipient's row holds it, and this server posts to it - to the services of
+  // the browsers alone, Chrome's and the browsers built on it (FCM), Firefox's, Edge's (WNS)
+  // and Safari's, or a host $more names (WEBPUSH_SERVICES, comma separated; *.example.org for
+  // its subdomains). A plain host, https, no port, no login.
+
+  const padWebPushServices = [ 'fcm.googleapis.com', 'updates.push.services.mozilla.com', '*.push.services.mozilla.com',
+                               '*.notify.windows.com', 'web.push.apple.com', '*.push.apple.com' ];
+
+  function padWebPushService ( $endpoint, $more = '' ) {
+
+    if ( ! preg_match ( '~^https://([a-z0-9.-]+)(:443)?/[^\s\\\\]*$~iD', (string) $endpoint, $match ) )
+      return FALSE;
+
+    $host = strtolower ( rtrim ( $match [1], '.' ) );
+
+    foreach ( array_merge ( padWebPushServices, preg_split ( '/[\s,]+/', strtolower ( (string) $more ), -1, PREG_SPLIT_NO_EMPTY ) ) as $service )
+      if ( $host === $service or ( str_starts_with ( $service, '*.' ) and str_ends_with ( $host, substr ( $service, 1 ) ) ) )
+        return TRUE;
+
+    return FALSE;
+
+  }
+
   // RFC 8292: a JWT for the push service's origin, twelve hours long, signed with the VAPID
   // private key; the public key beside it.
 

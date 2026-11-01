@@ -425,11 +425,15 @@ The channels are the files of `pad/subs/channels/types/`: mail (`padMail`), data
 with a signed link that marks it read; `padNotifications`, `padNotificationRead`), webpush (RFC
 8291 encryption and VAPID with openssl - `padWebPushKeys ()` makes the key pair), slack, discord,
 teams, telegram, ntfy, matrix and sms (a generic HTTP gateway). The recipient is a row - `email`,
-`phone`, and a field per channel holding the person's own address there (`slack`, `telegram`,
-`webpush` ...) - or an e-mail address. Each setting comes from the options (`[ 'slack' => [ 'url'
-=> ... ] ]`), the row, or `padEnv`: `SLACK_WEBHOOK_URL`, `DISCORD_WEBHOOK_URL`,
-`TEAMS_WEBHOOK_URL`, `TELEGRAM_BOT_TOKEN`, `NTFY_TOPIC`, `MATRIX_TOKEN`, `SMS_URL`,
-`VAPID_PUBLIC_KEY` ...; one missing everywhere is a strict error naming the variable. With
+`phone`, and a field per channel naming the person there: `telegram` (a chat id), `ntfy` (a
+topic), `matrix` (a room id), `webpush` (the browser's subscriptions) - or an e-mail address.
+Each setting comes from the options (`[ 'slack' => [ 'url' => ... ] ]`), the row, or `padEnv`:
+`SLACK_WEBHOOK_URL`, `DISCORD_WEBHOOK_URL`, `TEAMS_WEBHOOK_URL`, `TELEGRAM_BOT_TOKEN`,
+`NTFY_TOPIC`, `MATRIX_TOKEN`, `SMS_URL`, `VAPID_PUBLIC_KEY` ...; one missing everywhere is a
+strict error naming the variable. An address a request goes to - a webhook, a homeserver, a
+gateway - is the options' or `padEnv`'s alone, never the row's, and absolute http(s); the row's
+fields are checked, and a push endpoint must be on a browser's push service (FCM, Mozilla's,
+WNS, Apple's - `WEBPUSH_SERVICES` names more): a value that is none is not sent to. With
 `[ 'queue' => TRUE ]` (or a queue's name) every channel is a job of its own, `@notify`, rendered
 and sent by `pad work` - a failing channel is retried alone. A channel that does not deliver is
 no error: FALSE, logged, and `padNotifyResults ()` says why - and which push subscriptions are

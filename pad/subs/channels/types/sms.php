@@ -7,7 +7,7 @@
   // of this file with its own name.
 
   return [
-    'settings' => [ 'url'   => [ 'env' => 'SMS_URL' ],
+    'settings' => [ 'url'   => [ 'env' => 'SMS_URL', 'address' => TRUE ],
                     'token' => [ 'env' => 'SMS_TOKEN', 'default' => '' ],
                     'from'  => [ 'env' => 'SMS_FROM',  'default' => '' ],
                     'phone' => [ 'to'  => 'phone' ] ],

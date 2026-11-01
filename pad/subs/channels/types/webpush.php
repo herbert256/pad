@@ -9,12 +9,15 @@
   // sender at. The payload is JSON - title, body (the @webpush@ section, or the plain text),
   // tag (the notification's name) and url - for the page's service worker to show. A
   // subscription its service answers 404 or 410 for is gone: padNotifyResults lists it under
-  // gone, for the application to forget.
+  // gone, for the application to forget. A subscription's endpoint must be on the push service
+  // of a browser - FCM, Mozilla's, WNS, Apple's - or a host WEBPUSH_SERVICES (the option
+  // services) names: the endpoint is the recipient's data, and this server posts to it.
 
   return [
     'settings' => [ 'public'       => [ 'env' => 'VAPID_PUBLIC_KEY' ],
                     'private'      => [ 'env' => 'VAPID_PRIVATE_KEY' ],
                     'subject'      => [ 'env' => 'VAPID_SUBJECT' ],
+                    'services'     => [ 'env' => 'WEBPUSH_SERVICES', 'default' => '' ],
                     'subscription' => [ 'to'  => 'webpush' ] ],
     'send'     => function ( $message, $settings, $recipient, $options ) {
 
@@ -36,6 +39,12 @@
 
         if ( $subscription === NULL ) {
           $fail [] = 'a subscription is no PushSubscription - endpoint, keys.p256dh and keys.auth';
+          continue;
+        }
+
+        if ( ! padWebPushService ( $subscription ['endpoint'], $settings ['services'] ) ) {
+          $fail [] = 'a subscription\'s endpoint is on no push service of a browser - '
+                     . padMakeSafe ( (string) parse_url ( $subscription ['endpoint'], PHP_URL_HOST ), 60 ) . ' (WEBPUSH_SERVICES names more)';
           continue;
         }
 

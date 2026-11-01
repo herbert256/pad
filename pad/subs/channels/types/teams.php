@@ -2,11 +2,11 @@
 
   // teams - a message to a Microsoft Teams channel through a workflow's webhook ("Post to a
   // channel when a webhook request is received"): its address in TEAMS_WEBHOOK_URL, or the
-  // recipient's own in a field teams. The message is an Adaptive Card - the title in bold
-  // above the @teams@ section, or the plain text.
+  // option url - never a field of the recipient, as for slack. The message is an Adaptive
+  // Card - the title in bold above the @teams@ section, or the plain text.
 
   return [
-    'settings' => [ 'url' => [ 'env' => 'TEAMS_WEBHOOK_URL', 'to' => 'teams' ] ],
+    'settings' => [ 'url' => [ 'env' => 'TEAMS_WEBHOOK_URL', 'address' => TRUE ] ],
     'send'     => fn ( $message, $settings ) => padNotifyAnswer ( padNotifyHttp ( 'POST', $settings ['url'], [
                     'type'        => 'message',
                     'attachments' => [ [

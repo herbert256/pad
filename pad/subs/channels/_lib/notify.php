@@ -5,10 +5,19 @@
   // array:
   //
   //   settings  what it needs - name => [ 'env' => the padEnv name, 'to' => the recipient's
-  //             field (alternatives split by |), 'default' => the value when neither has one ];
-  //             a setting without a default is required. Looked for in the options first
+  //             field (alternatives split by |), 'default' => the value when neither has one,
+  //             'address' => TRUE for an address a request goes to, 'pattern' => the regular
+  //             expression a value must match and 'is' => what that is, in a message ]; a
+  //             setting without a default is required. Looked for in the options first
   //             ([ 'slack' => [ 'url' => ... ] ]), then in the recipient, then in the
-  //             environment
+  //             environment. An address - a webhook, a homeserver, a gateway - is never read
+  //             from the recipient, whatever its spec says: the row is data, a profile field a
+  //             visitor fills or a column that happens to share the channel's name, and this
+  //             server would post to wherever it points. The row names the person within the
+  //             channel alone - an e-mail address, a phone, a chat, a topic, a room - checked
+  //             against its pattern, a value that is none the data's reason not to send. An
+  //             address must be absolute http or https: padCurl reads a value without a scheme
+  //             as a page of the application or a _data/ file
   //   send      function ( $message, $settings, $recipient, $options ) - TRUE when it went, the
   //             reason as text when it did not, or [ 'ok' => ..., 'error' => ..., 'gone' => ... ]
   //
@@ -228,27 +237,37 @@
   }
 
   // A channel's settings - from the options, the recipient or the environment - or NULL when
-  // one the environment should give is missing (the author's), or the reason as text when the
-  // recipient lacks one (the data's: a person without a phone number gets no text message).
+  // one the environment should give is missing or wrong (the author's), or the reason as text
+  // when the recipient lacks one or holds what is none (the data's: a person without a phone
+  // number gets no text message).
 
   function padNotifySettings ( $channel, $kind, $recipient, $options ) {
 
     $settings = [];
     $env      = [];
     $field    = [];
+    $wrong    = [];
+    $bad      = [];
 
     foreach ( (array) ( $kind ['settings'] ?? [] ) as $setting => $spec ) {
 
       $value = $options [$channel] [$setting] ?? NULL;
+      $from  = ( $value === NULL ) ? '' : "the option [ '$channel' => [ '$setting' => ... ] ]";
+      $row   = '';
 
-      foreach ( explode ( '|', (string) ( $spec ['to'] ?? '' ) ) as $from )
-        if ( $value === NULL and $from !== '' and isset ( $recipient [$from] ) and $recipient [$from] !== '' and $recipient [$from] !== [] )
-          $value = $recipient [$from];
+      if ( $value === NULL and empty ( $spec ['address'] ) )
+        foreach ( explode ( '|', (string) ( $spec ['to'] ?? '' ) ) as $to )
+          if ( $value === NULL and $to !== '' and isset ( $recipient [$to] ) and $recipient [$to] !== '' and $recipient [$to] !== [] ) {
+            $value = $recipient [$to];
+            $row   = $to;
+          }
 
       if ( $value === NULL and ( $spec ['env'] ?? '' ) !== '' ) {
         $read = padEnv ( $spec ['env'], NULL );
-        if ( $read !== NULL and $read !== '' and $read !== FALSE )
+        if ( $read !== NULL and $read !== '' and $read !== FALSE ) {
           $value = $read;
+          $from  = $spec ['env'];
+        }
       }
 
       if ( $value === NULL and array_key_exists ( 'default', $spec ) )
@@ -261,22 +280,57 @@
           $field [] = str_replace ( '|', ' or ', (string) ( $spec ['to'] ?? $setting ) );
       }
 
+      elseif ( $row !== '' and ! padNotifyValid ( $spec, $value ) )
+        $wrong [] = "the recipient's $row is no " . ( $spec ['is'] ?? $setting ) . ': ' . padNotifyShow ( $value );
+
+      elseif ( $from !== '' and ! padNotifyValid ( $spec, $value ) )
+        $bad [] = "the $setting of the $channel channel ($from) is no "
+                  . ( empty ( $spec ['address'] ) ? ( $spec ['is'] ?? $setting ) . ': ' . padNotifyShow ( $value ) : 'absolute http or https address' );
+
       $settings [$setting] = $value;
 
     }
 
     if ( $env ) {
-      $tos = array_filter ( array_map ( fn ( $setting ) => $kind ['settings'] [$setting] ['to'] ?? '', array_keys ( $env ) ) );
+      $tos = array_filter ( array_map ( fn ( $setting ) => empty ( $kind ['settings'] [$setting] ['address'] ) ? ( $kind ['settings'] [$setting] ['to'] ?? '' ) : '',
+                                        array_keys ( $env ) ) );
       padNotifyAuthor ( "padNotify: the $channel channel needs " . implode ( ' and ', $env ) . " - set it in the application's .env"
                         . ( $tos ? ', give the recipient a field ' . implode ( ', ', $tos ) : '' )
                         . ", or the option [ '$channel' => [ '" . array_key_first ( $env ) . "' => ... ] ]" );
       return NULL;
     }
 
-    if ( $field )
-      return [ '@missing' => 'the recipient has no ' . implode ( ' and no ', $field ) ];
+    if ( $bad ) {
+      padNotifyAuthor ( 'padNotify: ' . implode ( '; ', $bad ) );
+      return NULL;
+    }
+
+    if ( $field or $wrong )
+      return [ '@missing' => implode ( '; ', array_merge ( $field ? [ 'the recipient has no ' . implode ( ' and no ', $field ) ] : [], $wrong ) ) ];
 
     return $settings;
+
+  }
+
+  // Whether a setting's value is what its spec says: an address absolute http or https, with
+  // a plain host - else a value matching the pattern. A setting with neither takes any value.
+  // An address is never shown in a message: a webhook's is its credential.
+
+  function padNotifyValid ( $spec, $value ) {
+
+    if ( ! empty ( $spec ['address'] ) )
+      return is_string ( $value ) and (bool) preg_match ( '~^https?://[^\s/?#\\\\]+(/[^\s\\\\]*)?$~iD', $value );
+
+    if ( isset ( $spec ['pattern'] ) )
+      return is_scalar ( $value ) and (bool) preg_match ( $spec ['pattern'], (string) $value );
+
+    return TRUE;
+
+  }
+
+  function padNotifyShow ( $value ) {
+
+    return "'" . padMakeSafe ( is_scalar ( $value ) ? (string) $value : get_debug_type ( $value ), 40 ) . "'";
 
   }
 
@@ -394,6 +448,12 @@
   // as [ status, json, data, error ].
 
   function padNotifyHttp ( $method, $url, $body, $headers = [] ) {
+
+    // Only an absolute address goes to padCurl, which reads a name without a scheme as a page
+    // of this application or a _data/ file.
+
+    if ( ! is_string ( $url ) or ! preg_match ( '~^https?://~i', $url ) )
+      return [ 'status' => 999, 'json' => NULL, 'data' => '', 'error' => 'no address' ];
 
     $input = [ 'url' => $url, 'headers' => $headers, 'options' => [ 'USERAGENT' => 'PAD' ] ];
 

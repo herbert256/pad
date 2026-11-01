@@ -33,10 +33,13 @@
   // padNotifyQueued        a queued notification, sent by the worker (lib/queue.php, @notify)
   //
   // The recipient ($to) is an array - a user row: id, email, phone, and a field per channel
-  // that is the person's own address there (slack, discord, teams, telegram, ntfy, matrix,
-  // webpush) - or an e-mail address alone. A channel's settings come from that row, then from
-  // the options ([ 'slack' => [ 'url' => ... ] ]), then from padEnv - SLACK_WEBHOOK_URL in the
-  // application's .env. A setting that is missing everywhere is an error under the strict
+  // naming the person there (telegram - a chat id, ntfy - a topic, matrix - a room id,
+  // webpush - the browser's subscriptions) - or an e-mail address alone. A channel's settings
+  // come from the options ([ 'slack' => [ 'url' => ... ] ]), then from that row, then from
+  // padEnv - SLACK_WEBHOOK_URL in the application's .env. An address a request goes to - the
+  // webhook of Slack, Discord or Teams, a homeserver, a gateway - is never the row's, only the
+  // options' or padEnv's, and the row's fields are checked: a chat, topic or room that is
+  // none, a push endpoint on no browser's push service, is not sent to. A setting that is missing everywhere is an error under the strict
   // check naming the variable to set; a channel that fails to deliver is no author's error:
   // padNotify answers FALSE, padNotifyResults says why, and the failure is logged (padLog).
   // The code is in subs/channels/, read the first time one of these runs.

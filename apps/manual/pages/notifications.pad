@@ -28,13 +28,16 @@ pair the notifications are its rows:</p>
 
 <ul>
   <li>The recipient is a user row - <code>email</code>, <code>phone</code>, and a field per channel
-      with the person's own address there: <code>slack</code>, <code>telegram</code>,
-      <code>ntfy</code>, <code>matrix</code>, <code>webpush</code> - or an e-mail address alone.</li>
+      naming the person there: <code>telegram</code> (a chat id), <code>ntfy</code> (a topic),
+      <code>matrix</code> (a room id), <code>webpush</code> - or an e-mail address alone.</li>
   <li>Every setting is looked for in the options (<code>[ 'slack' => [ 'url' => ... ] ]</code>), then
       in that row, then in <code>.env</code>: <code>SLACK_WEBHOOK_URL</code>,
       <code>DISCORD_WEBHOOK_URL</code>, <code>TEAMS_WEBHOOK_URL</code>, <code>TELEGRAM_BOT_TOKEN</code>,
       <code>NTFY_TOPIC</code>, <code>MATRIX_TOKEN</code>, <code>SMS_URL</code> ... One missing
       everywhere is an error under the strict check naming the variable.</li>
+  <li>An address the server posts to - a webhook, a homeserver, a gateway - comes from the options
+      or <code>.env</code> alone, never from the row, which a visitor may fill: the row only names
+      the person within the channel, and what it says is checked first.</li>
   <li>webpush reaches the browsers the person allowed, the site closed: their
       <code>PushSubscription</code> in the row, the message encrypted for each as RFC 8291 has it
       and signed with the application's VAPID keys - <code>padWebPushKeys ()</code> makes the pair
