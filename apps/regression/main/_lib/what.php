@@ -179,6 +179,8 @@
       'flush/auth'                => 'A logged-in visitor below a {flush}: still logged in, the session opened before the headers went',
       'flush/auth_inner'          => 'The flushed page flush/auth asks with a session - on its own a guest',
       'flush/auth_login'          => 'The login flush/auth comes back with',
+      'flush/sound'               => 'The WAV link of a {sound} on a page that flushes early answers the WAV - asked with padSound the page flushes nothing',
+      'flush/sound_inner'         => 'The flushed page flush/sound asks for its WAV - on its own the page, with its download link',
       'misc/nocurl_reads_web_urls_only' => 'Without ext-curl padNoCurl fetches http and https only - a file:// URL is the 999 failure',
       'remote/stamp'              => 'A JSON document new on every fetch - the source the curl ttl cases fetch twice',
       'remote/curl_ttl'           => 'The ttl option of {curl}: two fetches of a changing document within the ttl answer alike',

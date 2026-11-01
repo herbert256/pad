@@ -46,12 +46,13 @@
   }
 
   // Whether the request answers a document instead of the page - a {pdf}: asked for it
-  // with &padPdf, or a {pdf} without preview in the page. It flushes nothing: the head of
-  // the page a flush sent went out in front of the PDF's bytes, the answer text/html.
+  // with &padPdf, or a {pdf} without preview in the page - or the WAV of a {sound}, asked
+  // with &padSound. It flushes nothing: the head of the page a flush sent went out in front
+  // of the PDF's bytes, the answer text/html, and the sound's answer was an error in the page.
 
   function padFlushDocument () {
 
-    if ( isset ( $_GET ['padPdf'] ) )
+    if ( isset ( $_GET ['padPdf'] ) or isset ( $_GET ['padSound'] ) )
       return TRUE;
 
     preg_match_all ( '/\{(?:pad:)?pdf(?=[\s}])[^}]*\}/', (string) ( $GLOBALS ['padBase'] [0] ?? '' ), $found );

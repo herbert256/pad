@@ -433,7 +433,7 @@
     global $padContentType, $padGzip, $padLen, $padCache, $padWebEtag304;
 
     if ( headers_sent () )
-      return padError ( 'padSoundSend: the headers have gone out already - a sound is the whole answer of a page' );
+      return padError ( "the sound '$kind' cannot be sent - the headers have gone out already, and a sound is the whole answer of a page" );
 
     $wav = padSoundWavBytes ( padSoundRecipe ( $kind ) );
 
