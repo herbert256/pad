@@ -646,6 +646,22 @@ browser - and the files there are the rules there are: besides `required`, `emai
 (its check digits). A rule is added by adding its files; an argument a rule cannot use -
 `digits:four`, `between:9,1` - is an error, as a pattern PCRE cannot read is.
 
+Some rules look at another field of the post:
+```
+{input 'delivery'/}
+{input 'address', rules='required_if:delivery,ship,courier'/}   # required when delivery is one of them
+{input 'note', rules='required_unless:delivery,collect'/}       # required unless it is
+{input 'code', rules='required_with:phone,fax'/}                # required when one of them is filled
+{input 'phone', rules='required_without:email'/}                # required when one of them is empty
+```
+The other field is found where PHP files the post (`user[kind]`, `kinds[]` - which `kinds`
+finds too), its text trimmed; one the post leaves out is empty. `required_if`/`required_unless`
+compare as written, case and all, and a list meets the value when one of its items does;
+filled is what `required` passes (`0` is filled, blanks are not, a list with an item is). The
+four judge an empty field, and require a list as `required` does. The messages:
+"Address is required when Delivery is ship", "... unless Delivery is collect", "... when
+Phone or Fax is filled in", "... when Email is empty".
+
 `client` on the form checks the same rules in the browser too, with the same messages, before
 the form leaves (the runtime `www/assets/rules/validate.js` with every rule's script, written
 once a page). For a form a component draws,

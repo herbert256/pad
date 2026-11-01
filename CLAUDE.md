@@ -506,8 +506,10 @@ The fields refill from the post when their form came back and show the message
 `if ( padPosted ( 'contact' ) ) $errors = padValidate ( [ 'email' => 'required|email' ] );`
 Rules - a file each of `pad/subs/rules/types/`: required, email, url, numeric, integer, min:n, max:n,
 between:a,b, digits[:n], in:a,b, regex:/x/, same:field, accepted, date, time, alpha, alphanum,
-starts_with:x, ends_with:x, lowercase, uppercase, color, uuid, ip[:v4|v6], slug, json, iban. A
-list passes `required` and `in:` (every item) only, and only on a field named for one
+starts_with:x, ends_with:x, lowercase, uppercase, color, uuid, ip[:v4|v6], slug, json, iban -
+and the rules that look at another field of the post: required_if:field,value[,value],
+required_unless:field,value, required_with:field[,field], required_without:field[,field]. A
+list passes `required`, the required_* rules and `in:` (every item) only, and only on a field named for one
 (`tags[]`, in the rules too); on a field of one value it is refused - "must be a
 single value".
 

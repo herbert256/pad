@@ -110,6 +110,94 @@
 
   }
 
+  // The value of another field of the post, as the rules that look at one read it - the
+  // required_if family: its text trimmed, or the trimmed texts of a list
+  // (a field named kinds[]). It is found where PHP files it, as padFormFind finds it -
+  // user[kind] in $_POST ['user'] ['kind'] - and kinds finds the list kinds[] as kinds[]
+  // finds kinds. A field the post leaves out is '', as an empty one is; so is anything else
+  // the browser's checker could not see as one field's value (www/assets/rules/validate.js,
+  // sibling): an array with keys of its own - user, when the post has user[kind] - or an
+  // item of a list that is no text. The browser reads the same.
+
+  function padRuleSibling ( $data, $name ) {
+
+    $name = trim ( (string) $name );
+
+    [ $found, $value ] = padFormFind ( $data, $name );
+
+    if ( ! $found and ! str_ends_with ( $name, '[]' ) )
+      $value = padFormFind ( $data, "{$name}[]" ) [1];
+
+    if ( $value instanceof Traversable )
+      $value = iterator_to_array ( $value );
+
+    $text = fn ( $one ) => is_string ( $one ) or is_int ( $one ) or is_float ( $one );
+
+    if ( is_array ( $value ) )
+      return array_is_list ( $value ) ? array_map ( fn ( $one ) => trim ( (string) $one ), array_values ( array_filter ( $value, $text ) ) ) : '';
+
+    return $text ( $value ) ? trim ( (string) $value ) : '';
+
+  }
+
+  // Filled as required judges it: a text that is not empty once trimmed, a list with an item.
+
+  function padRuleFilled ( $value ) {
+
+    return is_array ( $value ) ? count ( $value ) > 0 : trim ( (string) $value ) !== '';
+
+  }
+
+  // Whether one of the fields an argument names - required_with:phone,fax - is filled
+  // ( TRUE ) or empty ( FALSE ), as padRuleFilled judges it.
+
+  function padRuleAny ( $data, $arg, $filled ) {
+
+    foreach ( padRuleTexts ( $arg ) as $name )
+      if ( padRuleFilled ( padRuleSibling ( $data, $name ) ) === $filled )
+        return TRUE;
+
+    return FALSE;
+
+  }
+
+  // The argument of required_if and required_unless: the other field's name, then the values
+  // that meet the condition - [ name, values ], each trimmed, the empty values left out, so
+  // an empty field - or one the post leaves out - is none of them.
+
+  function padRuleFieldValues ( $arg ) {
+
+    $parts = explode ( ',', (string) $arg );
+
+    return [ trim ( array_shift ( $parts ) ), padRuleTexts ( implode ( ',', $parts ) ) ];
+
+  }
+
+  // Whether the other field of required_if or required_unless holds one of the values, as
+  // written - in:'s comparison, case and all - its text, or an item of its list.
+
+  function padRuleSiblingIs ( $data, $arg ) {
+
+    [ $name, $values ] = padRuleFieldValues ( $arg );
+
+    foreach ( (array) padRuleSibling ( $data, $name ) as $one )
+      if ( in_array ( $one, $values, TRUE ) )
+        return TRUE;
+
+    return FALSE;
+
+  }
+
+  // The condition as the message shows it: Delivery is ship or courier.
+
+  function padRuleShownIs ( $arg ) {
+
+    [ $name, $values ] = padRuleFieldValues ( $arg );
+
+    return padValidateName ( $name ) . ' is ' . implode ( ' or ', $values );
+
+  }
+
   // Whether a field is a number field: one of its rules makes it one - numeric, integer.
 
   function padValidateNumber ( $list ) {
@@ -199,10 +287,12 @@
   }
 
   // The rules of a field are a string split on | or an array of them; a rule takes its
-  // argument after a colon. A field that is empty is checked for 'required' and 'accepted'
-  // only - any other rule speaks about a value that is there. The first rule a field fails
-  // gives its message, which $messages can replace per field ('email') or per field and
-  // rule ('email.required'); :label is the field's name made readable, :n the rule's argument.
+  // argument after a colon. A field that is empty is checked by the rules that say so -
+  // required, accepted, required_if, required_unless, required_with and required_without,
+  // 'empty' in their files - and any other rule speaks about a value that is there. The
+  // first rule a field fails gives its message, which $messages can replace per field
+  // ('email') or per field and rule ('email.required'); :label is the field's name made
+  // readable, :n the rule's argument.
   //
   // The errors it answers are those of its own fields. The fields show those together with
   // what an earlier check left for other fields - the rules of the template, checked before

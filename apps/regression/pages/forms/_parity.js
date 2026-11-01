@@ -3,7 +3,8 @@
 // same message. The page is rendered on the command line, the checker run in a bare context
 // with what it needs of a browser. The checker is the one a page gets: the runtime,
 // www/assets/rules/validate.js, with the script of every rule of pad/subs/rules/types/ - written
-// by {validator}, so a rule added to the directory is judged here as it is in the page.
+// by {validator}, so a rule added to the directory is judged here as it is in the page. The
+// cases hold the shared table of forms/_rules.php too - the rules that look at other fields.
 
 'use strict';
 

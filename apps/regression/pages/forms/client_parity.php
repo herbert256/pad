@@ -213,7 +213,14 @@
     [ 'line',     'regex:/^[.]+$/',           [ 'line' => "a\rb" ] ],
     [ 'amount',   'numeric',                  [ 'amount' => "1\f" ] ],
     [ 'amount',   'numeric',                  [ 'amount' => "\f 1" ] ],
+    [ 'again',    'same:password[]',          [ 'again' => 'p1', 'password[]' => [ 'p1' ] ] ],
   ];
+
+  // The rules that look at other fields, and not_in: the shared table of forms/_rules.php,
+  // whose rows the framework cases of rules/ answer padValidate's verdict on.
+
+  foreach ( include __DIR__ . '/_rules.php' as $padRows )
+    array_push ( $padCases, ...$padRows );
 
   $parity = [];
 

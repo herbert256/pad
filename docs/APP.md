@@ -866,8 +866,10 @@ message `padValidate` found for them:
 the rules are the files of `pad/subs/rules/types/` - `required`, `email`, `url`, `numeric`,
 `integer`, `min:n`, `max:n`, `between:a,b`, `in:a,b,c`, `regex:/.../`, `same:field`,
 `accepted`, `date`, `time`, `digits:n`, `alpha`, `alphanum`, `starts_with:x`, `ends_with:x`,
-`lowercase`, `uppercase`, `color`, `uuid`, `ip`, `slug`, `json`, `iban`. An empty field is
-checked for `required` and `accepted` only. The field shows the message in the words of its own
+`lowercase`, `uppercase`, `color`, `uuid`, `ip`, `slug`, `json`, `iban`, and the
+rules that look at another field - `required_if:field,value`, `required_unless:field,value`,
+`required_with:field` and `required_without:field`. An empty field is checked for `required`, `accepted` and the
+`required_*` rules only. The field shows the message in the words of its own
 label, with `aria-invalid` and `aria-describedby`.
 
 The rules can stand on the fields in the template instead, and the PHP then only acts:

@@ -111,6 +111,47 @@
     return (compressed && blocks <= 8) || blocks === 8;
   }
 
+  // The items of a comma list as padRuleTexts takes them: trimmed, the empty ones left out.
+  function texts(arg) {
+    return items(arg).filter(function (one) { return one !== ''; });
+  }
+
+  function text(value) {
+    return typeof value === 'string' || typeof value === 'number';
+  }
+
+  // Another field of the post as the rules that look at one read it, as padRuleSibling: its
+  // text trimmed, or the trimmed texts of a list - kinds finds kinds[] and kinds[] finds
+  // kinds - and '' for a field the form does not send, as for an empty one, or for anything
+  // that is no one field's value.
+  function sibling(values, name) {
+    name = trim(String(name));
+    var value = values[name];
+    if (value === undefined) value = /\[\]$/.test(name) ? values[name.slice(0, -2)] : values[name + '[]'];
+    if (Array.isArray(value)) return value.filter(text).map(function (one) { return trim(String(one)); });
+    return text(value) ? trim(String(value)) : '';
+  }
+
+  // Filled as required judges it: a text that is not empty, a list with an item.
+  function filled(value) {
+    return Array.isArray(value) ? value.length > 0 : trim(String(value)) !== '';
+  }
+
+  // Whether the field required_if or required_unless names first holds one of the values
+  // after it, as written - its text, or an item of its list (padRuleSiblingIs).
+  function siblingIs(values, arg) {
+    var parts = String(arg).split(',');
+    var wanted = texts(parts.slice(1).join(','));
+    var other = sibling(values, parts[0]);
+    return (Array.isArray(other) ? other : [other]).some(function (one) { return wanted.indexOf(one) >= 0; });
+  }
+
+  // Whether one of the fields required_with or required_without names is filled (true) or
+  // empty (false) - padRuleAny.
+  function anyFilled(values, arg, wanted) {
+    return texts(arg).some(function (name) { return filled(sibling(values, name)) === wanted; });
+  }
+
   /*rules*/
 
   function rule(name, arg, value, values, number) {
@@ -162,11 +203,16 @@
     return one.replace(/\r\n|\r|\n/g, '\r\n');
   }
 
+  // A name of a list - kinds[] - is every value it has, as PHP files it, its field with rules
+  // or not: the other field of same:kinds[] read as its last value was a text the server
+  // never sees, and the confirmation passed here what the server refused.
   function valuesOf(form, rules) {
     var data = new FormData(form);
     var values = {};
     data.forEach(function (one, name) {
-      if (typeof one === 'string') values[name] = sent(one);
+      if (typeof one !== 'string') return;
+      if (/\[\]$/.test(name)) (values[name] = Array.isArray(values[name]) ? values[name] : []).push(sent(one));
+      else values[name] = sent(one);
     });
     Object.keys(rules).forEach(function (name) {
       var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; }).map(sent);
