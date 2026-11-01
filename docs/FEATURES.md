@@ -931,7 +931,7 @@ ROUNDUP, ROUNDDOWN, ABS, INT, MOD (the divisor's sign), POWER, SQRT, EXP, LN, LO
 SUBSTITUTE, FIND, SEARCH, TEXT (the common format codes), VALUE; VLOOKUP, HLOOKUP, XLOOKUP,
 INDEX, MATCH, CHOOSE; DATE, TODAY, NOW, YEAR, MONTH, DAY, WEEKDAY, EOMONTH, EDATE, DAYS (the
 serials of the 1900 system, 1899-12-30 based, with its 29 February 1900); PMT, FV, PV, NPER,
-RATE, NPV, IRR (Excel's signs, RATE and IRR by Newton from 10%, `#NUM!` when 20 steps do not
+RATE, NPV, IRR (Excel's signs, RATE and IRR by Newton from 10%, `#NUM!` when 150 steps do not
 settle). The cells are computed in the order they need one another; a circle of references
 answers `#REF!` in each of its cells, the title naming the circle (`A1 → B1 → A1`).
 

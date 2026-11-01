@@ -3,7 +3,7 @@
   // The finance functions on the sample sheet (_lib/formulas.php), the examples of Excel's
   // own documentation: money paid out is negative, type 1 pays at the start of a period, a
   // rate of 0 is the plain sum; RATE and IRR are found by Newton's method from 10% (or the
-  // guess given) and are #NUM! when 20 steps do not settle them - or there is nothing to
+  // guess given) and are #NUM! when 150 steps do not settle them - or there is nothing to
   // find. Rounded to 8 and 10 decimals, where the last of 15 digits depends on the order of
   // the arithmetic.
 

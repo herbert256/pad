@@ -14,7 +14,7 @@
   //   padFormulaAnnuity    what a loan or a saving comes to: the equation PV, FV, PMT, NPER
   //                        and RATE each solve for another of its terms
   //   padFormulaNewton     a root by Newton's method from a guess, as RATE and IRR find
-  //                        theirs: 20 steps at most, #NUM! when they do not settle
+  //                        theirs: 150 steps at most, #NUM! when they do not settle
   //   padFormulaStatistics the numbers of a list of arguments with their count, mean and
   //                        sum of squares
 
@@ -160,15 +160,22 @@
 
   }
 
+  // Newton's method from a guess, to a step below 0.0000001, as Excel settles RATE and IRR.
+  // Excel's help says 20 steps, yet it answers the rate of a thirty-year mortgage paid
+  // monthly from no guess: its own iteration settles sooner than Newton on the annuity
+  // equation, which from 10% moves about 1/nper of the way each step - 22 steps for 180
+  // months, 38 for 360, 49 for 480 - and each of those was #NUM! here. 150 steps, as
+  // LibreOffice takes for RATE, settle a loan of 100 years paid monthly. $function answers the
+  // value at a rate, or [ value, slope ] where it works the slope out itself; else the slope
+  // is taken from two values beside the rate.
+
   function padFormulaNewton ( $function, $guess ) {
 
     $rate = $guess;
 
-    for ( $step = 0; $step < 20; $step++ ) {
+    for ( $step = 0; $step < 150; $step++ ) {
 
-      $value = $function ( $rate );
-      $delta = 1e-6 * max ( 1, abs ( $rate ) );
-      $slope = ( $function ( $rate + $delta ) - $function ( $rate - $delta ) ) / ( 2 * $delta );
+      [ $value, $slope ] = padFormulaNewtonStep ( $function, $rate );
 
       if ( ! is_finite ( $value ) or ! is_finite ( $slope ) or $slope == 0 )
         return padFormulaError ( '#NUM!' );
@@ -183,12 +190,11 @@
         // Settled as far as Excel asks; a few steps more give the last digits.
 
         for ( $more = 0; $more < 4 and abs ( $next - $rate ) > 1e-15; $more++ ) {
-          $rate  = $next;
-          $value = $function ( $rate );
-          $slope = ( $function ( $rate + $delta ) - $function ( $rate - $delta ) ) / ( 2 * $delta );
-          if ( $slope == 0 or ! is_finite ( $value ) )
+          $rate = $next;
+          [ $value, $slope ] = padFormulaNewtonStep ( $function, $rate );
+          if ( $slope == 0 or ! is_finite ( $value ) or ! is_finite ( $slope ) )
             break;
-          $next  = $rate - $value / $slope;
+          $next = $rate - $value / $slope;
         }
 
         return is_finite ( $next ) ? $next : padFormulaError ( '#NUM!' );
@@ -200,6 +206,21 @@
     }
 
     return padFormulaError ( '#NUM!' );
+
+  }
+
+  // The value of a Newton's function at a rate and its slope there.
+
+  function padFormulaNewtonStep ( $function, $rate ) {
+
+    $value = $function ( $rate );
+
+    if ( is_array ( $value ) )
+      return $value;
+
+    $delta = 1e-6 * max ( 1, abs ( $rate ) );
+
+    return [ $value, ( $function ( $rate + $delta ) - $function ( $rate - $delta ) ) / ( 2 * $delta ) ];
 
   }
 
