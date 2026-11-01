@@ -1,6 +1,6 @@
 /* The PAD home (apps/pad): the side's menu of the PAD applications - the pull-down of the
-   brand as a list, the line about each application under its name - and the big PAD on top
-   of the home page. A static file: PAD never parses it. */
+   brand as a list, the line about each application under its name - the big PAD on top of
+   the home page and its first two sections side by side. A static file: PAD never parses it. */
 
 .home-apps a { padding: 6px 10px; }
 .home-apps a span { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
@@ -8,4 +8,12 @@
 .home-apps a small { color: var(--frame-side-dim); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .home-apps a[aria-current="page"] small { color: inherit; opacity: .8; }
 
-.home-pad { margin: 0 0 24px; font-size: clamp(72px, 11vw, 144px); line-height: 1; font-weight: 800; letter-spacing: .06em; }
+.home-pad { margin: 0 0 20px; font-size: clamp(56px, 7.5vw, 96px); line-height: 1; font-weight: 800; letter-spacing: .06em; }
+
+/* the first two sections - Concept and the Hello World example - side by side, one under the
+   other when the page is too narrow for both */
+
+.home-row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 32px; }
+.home-row > section { flex: 1 1 300px; min-width: 0; }
+.home-row > section + section { flex: 0 0 auto; }
+.home-row blockquote { margin-right: 0; }
