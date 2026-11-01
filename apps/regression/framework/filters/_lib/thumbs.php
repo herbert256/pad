@@ -12,6 +12,8 @@
   //                and the range of the red of the pixels that show; and the data-color -
   //                for assets/alpha.png: transparent around an ellipse of #e63c28 and a
   //                square of #285adc at half opacity, #814b86 where they overlap
+  // filtersSourceKept  whether the img tag still holds a decoded source picture (the memo
+  //                of padImgDraw) - a picture of 12 megapixels is some 50 MB of GD's memory
 
   function filtersThumbs ( $html ) {
 
@@ -65,6 +67,17 @@
       $facts [] = 'placeholder ' . filtersAlphaFacts ( @imagecreatefromstring ( base64_decode ( $png [1] ) ) );
 
     return implode ( ' | ', $facts );
+
+  }
+
+  function filtersSourceKept () {
+
+    if ( ! function_exists ( 'padImgDraw' ) )
+      return 'no img tag';
+
+    $memo = ( new ReflectionFunction ( 'padImgDraw' ) ) -> getStaticVariables () ['memo'] ?? NULL;
+
+    return is_object ( $memo [1] ?? NULL ) ? 'a source kept' : 'no source kept';
 
   }
 

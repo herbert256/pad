@@ -42,8 +42,23 @@
   // the <img> while it loads. What a filter makes besides a thumbnail - the dots, the text,
   // the placeholder - is kept in _thumbs/ too, under a name of its own from the same hash. A
   // picture without filter= is written as it always was, to the byte.
+  //
+  // The source, decoded once for the thumbnails, the dots and the placeholders of the picture,
+  // is let go when the picture is done (padImgDraw ( NULL )): a page of two pictures of 12
+  // megapixels needs the memory of one, some 50 MB of GD's, as before the filters - the
+  // decoded picture was kept for the rest of the request, a queue worker's life.
 
   function padImg ( $file, $opts ) {
+
+    $html = padImgMake ( $file, $opts );
+
+    padImgDraw ( NULL );
+
+    return $html;
+
+  }
+
+  function padImgMake ( $file, $opts ) {
 
     global $padCheckSyntax;
 
@@ -393,14 +408,23 @@
   }
 
   // The part $crop of the upright source, resized to $w by $h - a GD picture, NULL when the
-  // source cannot be read. The source is decoded once a request for the thumbnails, the dots
-  // and the placeholders of one picture alike - the last one read kept.
+  // source cannot be read. The source is decoded once for the thumbnails, the dots and the
+  // placeholders of one picture alike, and kept until padImgDraw ( NULL ) lets it go - or
+  // another source is asked for, the one before let go before the next is decoded: never two
+  // at a time.
 
-  function padImgDraw ( $path, $type, $turn, $crop, $w, $h, $white ) {
+  function padImgDraw ( $path, $type = '', $turn = 1, $crop = [], $w = 0, $h = 0, $white = TRUE ) {
 
     static $memo = [ '', NULL ];
 
+    if ( $path === NULL ) {
+      $memo = [ '', NULL ];
+      return NULL;
+    }
+
     if ( $memo [0] !== "$path|$turn" ) {
+
+      $memo = [ '', NULL ];
 
       $from = [ 'jpeg' => 'imagecreatefromjpeg', 'png' => 'imagecreatefrompng',
                 'gif'  => 'imagecreatefromgif',  'webp' => 'imagecreatefromwebp' ] [$type];
