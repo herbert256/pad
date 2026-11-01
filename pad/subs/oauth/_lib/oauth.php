@@ -13,7 +13,8 @@
   //   instance   the address of the provider's instance when it is not its default one - a
   //              GitLab of one's own - '' for the default: it goes into the user's id, as a
   //              sub is unique within its instance alone; a discovery provider's is its issuer
-  //   issuer     the id_token's iss; {tid} in it stands for the token's own tid claim
+  //   issuer     the id_token's iss, or a list of the values it may have (Google's two);
+  //              {tid} in it stands for the token's own tid claim
   //   claims     claims the id_token must carry with these values
   //   oidc       an OpenID Connect provider: a nonce, and the id_token checked
   //   scopes     the scopes asked for unless the options name others
@@ -547,11 +548,12 @@
       return 'cannot be read';
 
     $clientId = $provider ['settings'] ['client_id'];
-    $issuer   = str_replace ( '{tid}', is_string ( $claims ['tid'] ?? NULL ) ? $claims ['tid'] : "\0", $provider ['issuer'] );
+    $tid      = is_string ( $claims ['tid'] ?? NULL ) ? $claims ['tid'] : "\0";
+    $issuers  = array_map ( fn ( $one ) => str_replace ( '{tid}', $tid, (string) $one ), (array) $provider ['issuer'] );
     $audience = $claims ['aud'] ?? NULL;
     $audience = is_array ( $audience ) ? $audience : [ $audience ];
 
-    if ( $provider ['issuer'] !== '' and ( $claims ['iss'] ?? NULL ) !== $issuer )
+    if ( $provider ['issuer'] !== '' and $provider ['issuer'] !== [] and ! in_array ( $claims ['iss'] ?? NULL, $issuers, TRUE ) )
       return 'comes from another issuer: ' . padMakeSafe ( is_string ( $claims ['iss'] ?? NULL ) ? $claims ['iss'] : '?', 80 );
 
     if ( ! in_array ( $clientId, $audience, TRUE ) )
