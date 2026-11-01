@@ -3293,6 +3293,7 @@ and pages. `padPattern ( 'dots', [ 'size' => 24 ] )` draws the same in a page's 
 | `blobs` | Soft organic shapes | |
 | `grain` | Film grain - the browser's feTurbulence, seeded | |
 | `mesh` | A soft mesh gradient of glowing inks | |
+| `herringbone` | Parquet blocks in a herringbone, those lying in one ink and those standing in the next | `ratio` (3, a whole number), `angle` (45) |
 
 **Every pattern:** `seed=` - a number or a word, 1 when left out - makes the picture: the same
 seed the same bytes on every request and every machine (PAD's own sequence, the one of
