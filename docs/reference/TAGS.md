@@ -655,6 +655,7 @@ of fields and pages. `padJsonLd ( 'article', $post )` answers the same object as
 | `person` | Person | **name**, url, image, job, description, profiles |
 | `product` | Product | **name**, description, image, url, sku, brand, price, currency, availability |
 | `recipe` | Recipe | **name**, **image**, description, author, published, prep, cook, total (durations), yield, category, cuisine, keywords, calories (needs yield), ingredients, steps, rating, ratings |
+| `video` | VideoObject | **name**, **thumbnail**, **uploaded**, description, duration, file (contentUrl), player (embedUrl), expires, author, views |
 | `website` | WebSite | name, url (the application's address), description, search |
 
 **Options:** `data=` the row or rows - a store, the page's array, a field holding a list or a
@@ -4705,7 +4706,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `redirect` | Navigation | HTTP redirect |
 | `restart` | Navigation | Restart processing |
 | `pager` | Navigation | Page links for a tag with the page option |
-| `jsonld` | Navigation | The structured data of a page - a Schema.org object of `pad/subs/jsonld/types/` as JSON-LD: article, breadcrumb, event, faq, organization, person, product, recipe, website - its fields mapped by name |
+| `jsonld` | Navigation | The structured data of a page - a Schema.org object of `pad/subs/jsonld/types/` as JSON-LD: article, breadcrumb, event, faq, organization, person, product, recipe, video, website - its fields mapped by name |
 | `csrf` | Web | Hidden CSRF token field of the session |
 | `extends` | Layout | Frame the page with a layout |
 | `block` | Layout | A named region of a layout or wrapper, and its override |

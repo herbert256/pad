@@ -148,13 +148,14 @@ template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip
 {jsonld:product data='product', availability='InStock'/}  # an Offer of price, currency, availability
 {jsonld:website name='Shop', search='?search&q='/}        # a SearchAction ending in {search_term_string}
 {jsonld:recipe data='recipe'/}                            # times, ingredients and steps of a dish
+{jsonld:video data='clip'/}                               # thumbnails, upload date, length, views
 ```
 ```php
 $url  = padUrl ( '', [], TRUE );                          // the page's own address, for url=
 $data = padJsonLd ( 'event', $concert );                  // the same object as a plain array
 ```
 One `<script type="application/ld+json">` holding a Schema.org object - what search engines read
-for a rich result - from ordinary PAD data, explicitly mapped. Nine kinds, each a file of
+for a rich result - from ordinary PAD data, explicitly mapped. Ten kinds, each a file of
 `pad/subs/jsonld/types/` whose header lists its fields, a PAD name and the Schema.org property it
 fills: `article` (headline required, description, image, url, author, published, modified,
 publisher, logo), `breadcrumb` (rows of name and url - the rows `{breadcrumb data=}` takes,
@@ -176,6 +177,10 @@ a 4x3 and a 1x1), description, author, published, prep, cook and total as durati
 category, cuisine, keywords, calories as its NutritionInformation - which needs the yield, the
 energy being that of a serving - ingredients and steps, each a step a HowToStep of its text or of
 the text, name, url and image of a row, and rating with ratings as an AggregateRating.
+`video`: name, thumbnail (one address or more) and uploaded required - with its offset, or Google
+takes its own time zone - description, duration, file (contentUrl, the video file itself), player
+(embedUrl), expires, author and views as an InteractionCounter of the WatchAction - not
+`content=`, the option of every tag.
 
 The fields come from the row or rows `data=` names - a `{data}` store, the page's array, a
 field holding a list or a `_data` file (a store holds rows, so a single row in a `{data}` block

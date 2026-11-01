@@ -436,7 +436,7 @@
       foreach ( $path as $step ) {
         $done .= ( $done === '' ? '' : '.' ) . $step;
         if ( ! isset ( $at [$step] ) )
-          $at [$step] = isset ( $objects [$done] ) ? [ '@type' => $objects [$done] ] : [];
+          $at [$step] = isset ( $objects [$done] ) ? ( is_array ( $objects [$done] ) ? $objects [$done] : [ '@type' => $objects [$done] ] ) : [];
         $at = &$at [$step];
       }
 

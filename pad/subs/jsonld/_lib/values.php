@@ -18,6 +18,10 @@
   //   steps         the steps of a recipe, each a HowToStep: a list of texts, a text with a
   //                 line between them, or rows of text (required), name, url and image -
   //                 nothing else of a row
+  //
+  // Beside them a kind's file may say, in 'objects', the whole object a path starts with
+  // where its @type alone is not enough - a video's views are an InteractionCounter whose
+  // interactionType is the WatchAction.
 
   function padJsonLdMore ( $value, $how, $name, $what, $report ) {
 
