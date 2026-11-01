@@ -1,0 +1,15 @@
+{form 'party', error}
+{input 'current', type='password'/}
+{input 'password', type='password', rules='required|different:current'/}
+{input 'bottles', rules='multiple_of:6|max:120'/}
+{input 'min_price'/}
+{input 'max_price', rules='numeric|gt:min_price'/}
+{input 'arrive', type='date'/}
+{input 'leave', type='date', rules='after_or_equal:arrive'/}
+{input 'toppings[]', type='checkbox', value='cheese', rules='required|min_items:2|max_items:3'/}
+{input 'toppings[]', type='checkbox', value='olives'/}
+{input 'toppings[]', type='checkbox', value='basil'/}
+{input 'toppings[]', type='checkbox', value='onion'/}
+{textarea 'note', rules='max_words:5'/}
+{/form}
+{$partyState}

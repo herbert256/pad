@@ -1,4 +1,4 @@
-<form method="get" novalidate data-pad-rules="{&quot;guests[]&quot;:{&quot;label&quot;:&quot;Guests&quot;,&quot;number&quot;:false,&quot;list&quot;:true,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;distinct&quot;,&quot;&quot;,&quot;:label must not hold the same value twice&quot;,&quot;&quot;]]},&quot;toppings[]&quot;:{&quot;label&quot;:&quot;Toppings&quot;,&quot;number&quot;:false,&quot;list&quot;:true,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;min_items&quot;,&quot;2&quot;,&quot;:label must hold at least :n values&quot;,&quot;2&quot;],[&quot;max_items&quot;,&quot;3&quot;,&quot;:label must hold at most :n values&quot;,&quot;3&quot;],[&quot;in&quot;,&quot;cheese,olives,basil,onion&quot;,&quot;:label must be one of :n&quot;,&quot;cheese, olives, basil, onion&quot;]]}}">
+<form method="get" novalidate data-pad-rules="{&quot;guests[]&quot;:{&quot;label&quot;:&quot;Guests&quot;,&quot;number&quot;:false,&quot;list&quot;:true,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;distinct&quot;,&quot;&quot;,&quot;:label must not hold the same value twice&quot;,&quot;&quot;]]},&quot;toppings[]&quot;:{&quot;label&quot;:&quot;Toppings&quot;,&quot;number&quot;:false,&quot;list&quot;:true,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;min_items&quot;,&quot;2&quot;,&quot;:label must hold at least :n values&quot;,&quot;2&quot;],[&quot;max_items&quot;,&quot;3&quot;,&quot;:label must hold at most :n values&quot;,&quot;3&quot;],[&quot;in&quot;,&quot;cheese,olives,basil,onion&quot;,&quot;:label must be one of :n&quot;,&quot;cheese, olives, basil, onion&quot;]]},&quot;note&quot;:{&quot;label&quot;:&quot;Note&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;max_words&quot;,&quot;12&quot;,&quot;:label must be at most :n words&quot;,&quot;12&quot;]]}}">
   <fieldset>
     <legend>Guests</legend>
     <label>First <input name="guests[]" type="email"></label>
@@ -12,6 +12,7 @@
     <input type="checkbox" name="toppings[]" value="basil" id="l-basil"> <label for="l-basil">Basil</label>
     <input type="checkbox" name="toppings[]" value="onion" id="l-onion"> <label for="l-onion">Onion</label>
   </fieldset>
+  <label for="l-note">A note for the host</label> <textarea name="note" id="l-note" rows="2"></textarea>
   <button>Check</button>
 </form>
 <script>
@@ -137,6 +138,9 @@
   }
   function counted(list) {
     return list.filter(function (one) { return typeof one !== 'string' || trim(one) !== ''; }).length;
+  }
+  function words(value) {
+    return String(value).split(/[\t-\r \u0085\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000]+/).filter(function (one) { return one !== ''; }).length;
   }
   (function () {
 addRule('accepted', {
@@ -343,6 +347,11 @@ addRule('max_items', {
 });
 })();
 (function () {
+addRule('max_words', {
+  check: function (value, arg) { return words(value) <= parseInt(trim(String(arg)), 10); }
+});
+})();
+(function () {
 addRule('min', {
   check: function (value, arg, values, number) { return size(value, number) >= toNumber(arg); }
 });
@@ -351,6 +360,11 @@ addRule('min', {
 addRule('min_items', {
   check: function (value, arg) { return 1 >= parseInt(trim(String(arg)), 10); },
   list: function (list, arg) { return counted(list) >= parseInt(trim(String(arg)), 10); }
+});
+})();
+(function () {
+addRule('min_words', {
+  check: function (value, arg) { return words(value) >= parseInt(trim(String(arg)), 10); }
 });
 })();
 (function () {

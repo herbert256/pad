@@ -1,0 +1,54 @@
+200
+<form method="post"><input type="hidden" name="padCsrfToken"><input type="hidden" name="padForm" value="party"><div class="error" role="alert">Please correct the errors below.</div>
+<input type="password" name="current" id="current">
+<input type="password" name="password" id="password" aria-invalid="true" aria-describedby="password-error"><span class="error" id="password-error">Password must be different from Current</span>
+<input type="text" name="bottles" id="bottles" value="20" aria-invalid="true" aria-describedby="bottles-error"><span class="error" id="bottles-error">Bottles must be a multiple of 6</span>
+<input type="text" name="min_price" id="min_price" value="25">
+<input type="text" name="max_price" id="max_price" value="25" aria-invalid="true" aria-describedby="max_price-error"><span class="error" id="max_price-error">Max price must be greater than Min price</span>
+<input type="date" name="arrive" id="arrive" value="2026-07-10">
+<input type="date" name="leave" id="leave" value="2026-07-09" aria-invalid="true" aria-describedby="leave-error"><span class="error" id="leave-error">Leave must be a date on or after Arrive</span>
+<input type="checkbox" name="toppings[]" id="toppings" value="cheese" checked aria-invalid="true" aria-describedby="toppings-error"><span class="error" id="toppings-error">Toppings must hold at least 2 values</span>
+<input type="checkbox" name="toppings[]" id="toppings-olives" value="olives" aria-invalid="true" aria-describedby="toppings-error">
+<input type="checkbox" name="toppings[]" id="toppings-basil" value="basil" aria-invalid="true" aria-describedby="toppings-error">
+<input type="checkbox" name="toppings[]" id="toppings-onion" value="onion" aria-invalid="true" aria-describedby="toppings-error">
+<textarea name="note" id="note" aria-invalid="true" aria-describedby="note-error">
+one two three four five six</textarea><span class="error" id="note-error">Note must be at most 5 words</span>
+</form>
+not stored
+
+200
+<form method="post"><input type="hidden" name="padCsrfToken"><input type="hidden" name="padForm" value="party">
+<input type="password" name="current" id="current">
+<input type="password" name="password" id="password">
+<input type="text" name="bottles" id="bottles" value="0.3e2">
+<input type="text" name="min_price" id="min_price" value="25">
+<input type="text" name="max_price" id="max_price" value="25.5">
+<input type="date" name="arrive" id="arrive" value="2026-07-10">
+<input type="date" name="leave" id="leave" value="2026-07-10">
+<input type="checkbox" name="toppings[]" id="toppings" value="cheese" checked>
+<input type="checkbox" name="toppings[]" id="toppings-olives" value="olives" checked>
+<input type="checkbox" name="toppings[]" id="toppings-basil" value="basil">
+<input type="checkbox" name="toppings[]" id="toppings-onion" value="onion">
+<textarea name="note" id="note">
+one two</textarea>
+</form>
+stored cheese, olives
+
+200
+<form method="post"><input type="hidden" name="padCsrfToken"><input type="hidden" name="padForm" value="party"><div class="error" role="alert">Please correct the errors below.</div>
+<input type="password" name="current" id="current">
+<input type="password" name="password" id="password">
+<input type="text" name="bottles" id="bottles" value="">
+<input type="text" name="min_price" id="min_price" value="">
+<input type="text" name="max_price" id="max_price" value="1">
+<input type="date" name="arrive" id="arrive" value="">
+<input type="date" name="leave" id="leave" value="2026-07-10">
+<input type="checkbox" name="toppings[]" id="toppings" value="cheese" checked aria-invalid="true" aria-describedby="toppings-error"><span class="error" id="toppings-error">Toppings must hold at most 3 values</span>
+<input type="checkbox" name="toppings[]" id="toppings-olives" value="olives" checked aria-invalid="true" aria-describedby="toppings-error">
+<input type="checkbox" name="toppings[]" id="toppings-basil" value="basil" checked aria-invalid="true" aria-describedby="toppings-error">
+<input type="checkbox" name="toppings[]" id="toppings-onion" value="onion" checked aria-invalid="true" aria-describedby="toppings-error">
+<textarea name="note" id="note" aria-invalid="true" aria-describedby="note-error">
+one
+two three four five six</textarea><span class="error" id="note-error">Note must be at most 5 words</span>
+</form>
+not stored

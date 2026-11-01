@@ -1639,4 +1639,19 @@
 
   }
 
+  // min_words and max_words - the words of a text: the runs of characters between white
+  // space, which is Unicode's White_Space property written out - tab to carriage return, the
+  // space, U+0085, the no-break space and the other spaces of Unicode - as the browser's
+  // checker writes it out (validate.js, words), where \s holds another set on either side.
+  // NULL for a text that is no UTF-8.
+
+  function padRuleWords ( $value ) {
+
+    $words = preg_split ( '/[\x{9}-\x{D}\x{20}\x{85}\x{A0}\x{1680}\x{2000}-\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}]+/u',
+                          (string) $value, -1, PREG_SPLIT_NO_EMPTY );
+
+    return ( $words === FALSE ) ? NULL : count ( $words );
+
+  }
+
 ?>

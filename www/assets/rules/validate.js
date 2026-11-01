@@ -290,6 +290,12 @@
     return list.filter(function (one) { return typeof one !== 'string' || trim(one) !== ''; }).length;
   }
 
+  // min_words and max_words (padRuleWords): the runs of characters between Unicode's
+  // White_Space, written out as the server writes it - \s holds another set here.
+  function words(value) {
+    return String(value).split(/[\t-\r \u0085\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000]+/).filter(function (one) { return one !== ''; }).length;
+  }
+
   /*rules*/
 
   function rule(name, arg, value, values, number) {

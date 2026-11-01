@@ -732,6 +732,12 @@ the sign not counting, 0 a multiple of every n, and like `numeric` it makes the 
 for `min`, `max` and `between`. Its argument is a positive number written plainly, of at most
 14 digits: `multiple_of:0` is an error. "Bottles must be a multiple of 6".
 
+`min_words:n` and `max_words:n` count the words of a text - a review of twenty words or more, an
+abstract of 250 at most - a word being a run of characters between white space, which is
+Unicode's White_Space written out on both sides (line breaks, tabs, the no-break space, the
+ideographic space; not a hyphen, a byte order mark or a zero width space), so `e-mail` is one
+word and a text without spaces - Japanese - one: "Summary must be at most 250 words".
+
 Some rules speak about a list, a field named `guests[]`: `distinct` refuses a value it holds
 twice - as written, each trimmed, an item left blank no value (three fields of `guests[]`, two
 of them empty, pass) - "Guests must not hold the same value twice"; a field of one value holds

@@ -507,7 +507,7 @@ The fields refill from the post when their form came back and show the message
 Rules - a file each of `pad/subs/rules/types/`: required, email, url, numeric, integer, min:n, max:n,
 between:a,b, digits[:n], in:a,b, regex:/x/, same:field, accepted, date, time, alpha, alphanum,
 starts_with:x, ends_with:x, lowercase, uppercase, color, uuid, ip[:v4|v6], slug, json, iban,
-not_in:a,b, distinct (no value of a list twice), min_items:n, max_items:n (of a list), multiple_of:n (0.25, 0.01 - in decimal digits) - and the rules that look at another field of the post: required_if:field,value[,value],
+not_in:a,b, distinct (no value of a list twice), min_items:n, max_items:n (of a list), min_words:n, max_words:n, multiple_of:n (0.25, 0.01 - in decimal digits) - and the rules that look at another field of the post: required_if:field,value[,value],
 required_unless:field,value, required_with:field[,field], required_without:field[,field],
 before:field|date and after:field|date (ISO `2026-11-01`, `2026-11-01T14:30`, `:15`, `:15.25`). A
 different:field (the mirror of same:),

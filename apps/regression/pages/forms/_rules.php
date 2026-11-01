@@ -418,6 +418,39 @@
       [ 'toppings[]', 'required|min_items:2|max_items:3', [ 'toppings[]' => [ 'a' ] ] ],
       [ 'toppings[]', 'required|min_items:2|max_items:3', [ 'toppings[]' => [ 'a', 'b', 'c', 'd' ] ] ],
       [ 'topping',  'max_items:1',                       [ 'topping' => 'cheese' ] ]
+    ],
+
+    'min_words' => [
+      [ 'review',   'min_words:3',                       [ 'review' => 'good value here' ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => 'good value' ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => "good\n\nvalue\there" ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => "good\r\nvalue\r\nhere" ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => "good\u{00A0}value\u{3000}here" ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => "good\u{2028}value\u{0085}here" ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => "good\u{FEFF}value\u{180E}here" ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => "good\u{200B}value here" ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => "good\fvalue\vhere" ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => 'e-mail - fine' ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => 'e-mail-fine' ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => '日本語 の 文' ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => '日本語の文章です' ] ],
+      [ 'review',   'min_words:3',                       [ 'review' => '' ] ],
+      [ 'review',   'required|min_words:3',              [ 'review' => '   ' ] ],
+      [ 'review',   'min_words:1',                       [ 'review' => 'one' ] ],
+      [ 'reviews[]', 'min_words:1',                      [ 'reviews[]' => [ 'one' ] ] ]
+    ],
+
+    'max_words' => [
+      [ 'summary',  'max_words:3',                       [ 'summary' => 'short and sweet' ] ],
+      [ 'summary',  'max_words:3',                       [ 'summary' => 'not so short and sweet' ] ],
+      [ 'summary',  'max_words:3',                       [ 'summary' => "  one   two\n\nthree  " ] ],
+      [ 'summary',  'max_words:3',                       [ 'summary' => "one\u{00A0}two\u{00A0}three\u{00A0}four" ] ],
+      [ 'summary',  'max_words:3',                       [ 'summary' => "one\u{FEFF}two\u{FEFF}three\u{FEFF}four" ] ],
+      [ 'summary',  'max_words:1',                       [ 'summary' => 'one' ] ],
+      [ 'summary',  'max_words:1',                       [ 'summary' => 'one two' ] ],
+      [ 'summary',  'max_words: 2 ',                     [ 'summary' => 'one two' ] ],
+      [ 'summary',  'min_words:2|max_words:3',           [ 'summary' => 'one' ] ],
+      [ 'summary',  'min_words:2|max_words:3',           [ 'summary' => 'one two three four' ] ]
     ]
 
   ];

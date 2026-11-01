@@ -121,6 +121,8 @@
       'request/sent'              => 'The fixture of upload_send bare: the stored text, shown',
       'request/form_rules_post'   => 'Rules on the fields of the template, checked before the page-s PHP: a post that breaks them comes back refilled with its messages and is not padPosted, an unrendered field is checked too, the page-s own padValidate adds to them',
       'request/form_rules'        => 'The form rules fixture bare: an empty form, not processed',
+      'request/form_rules_that_compare_and_count_post' => 'different, multiple_of, gt, after_or_equal, min_items and max_items on a checkbox list, max_words, posted for real: broken and refilled with each message, kept and stored, a list too long and too many words',
+      'request/form_rules_that_compare_and_count' => 'The fixture of the rules that compare and count bare: an empty form, not processed',
       'request/a_field_a_post_leaves_out_is_checked_from_the_query_string' => 'A field the post leaves out is read from the query string, so the rules check it there - website=javascript:..., plan=enterprise and role=admin in the address refused, good values passed',
       'forms/a_form_htmx_posts_to_its_own_directory_keeps_its_rules/index' => 'A form with rules that htmx posts to its directory name - the address of this index - renders, its rules checked there',
       'forms/a_textarea_keeps_the_blank_line_its_value_starts_with' => 'A text area writes a line break after its opening tag, which the HTML parser drops - a value starting with a blank line keeps it',
