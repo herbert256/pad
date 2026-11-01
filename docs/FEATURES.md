@@ -1314,7 +1314,10 @@ tag; `chord` bare is the charts' chord diagram, so a guitar chord is `{notation:
 stays a built-in tag that draws the chess notation (`pad/tags/chess.php`), so it comes before a
 field, a store or a file named chess, as before. A text a notation cannot read - a FEN with
 seven ranks, an element the periodic table lacks, a character morse has no sign for, a move on
-a taken point - is an error under the strict check. Code: `pad/subs/notations/` -
+a taken point - is an error under the strict check, and so is what would cost time or memory
+past reason: a formula longer than 10 000 bytes, slurs nested more than 8 deep. A byte that is
+no UTF-8 is a character no notation has a sign for; a text with nothing in it draws nothing, its
+options unread, and the `@else@` shows. Code: `pad/subs/notations/` -
 `notation.php` the body every form runs, `_lib/` the drawing of each kind, `assets/` the styles,
 `types/` the kinds; `pad/types/notation.php` the notation type, `pad/tags/notation.php` the tag.
 The `notations` application shows every kind with its examples.

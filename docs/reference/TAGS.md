@@ -2179,7 +2179,9 @@ the stones, the flags, the strings - or MathML, which a screen reader reads itse
 the code's colours). A name that is no notation, an option a notation does not read or a value
 outside its choices, and a text it cannot read - a FEN with seven ranks, an element the periodic
 table does not have, a character morse has no sign for, a move on a taken point - are errors
-under the strict check.
+under the strict check, as are a formula longer than 10 000 bytes and ABC slurs nested more than
+8 deep; without it the formula is drawn up to its limit and the slur left out. A byte that is no
+UTF-8 is a character no notation has a sign for.
 
 ---
 
