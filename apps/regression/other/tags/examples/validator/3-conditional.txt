@@ -718,11 +718,16 @@ addRule('uuid', {
     }
   }, true);
   document.addEventListener('focusout', function (event) {
-    var form = ruled(event.target);
-    if (form && (event.target.value !== '' || document.getElementById(idOf(event.target.name, event.target) + '-error')))
-      checkOne(form, event.target.name);
-    if (form) marks(form)[event.target.name] = true;
+    var target = fieldOf(event.target), form = ruled(target);
+    if (form && (target.value !== '' || document.getElementById(idOf(target.name, target) + '-error')))
+      checkOne(form, target.name);
+    if (form) marks(form)[target.name] = true;
   });
+  function fieldOf(target) {
+    if (!target || target.name || !target.id || !target.form || !target.form.querySelector) return target;
+    var id = window.CSS && CSS.escape ? CSS.escape(target.id) : target.id;
+    return target.form.querySelector('[data-pad-shows="' + id + '"]') || target;
+  }
   ['input', 'change'].forEach(function (type) {
     document.addEventListener(type, function (event) {
       var form = ruled(event.target);

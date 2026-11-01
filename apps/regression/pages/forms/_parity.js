@@ -83,9 +83,11 @@ for (const one of cases) {
 // it listens to. The same steps a visitor takes in headless Chrome hold alike there:
 // _chrome.mjs, run by hand, drives them and the cases above through a real page.
 
-// The world of one form: fields is [ name, value ] each; server the messages the server wrote
-// beside them, by name; action the address the form posts to; count says how often the
-// checker read the rules, made the values (FormData) and walked the form's controls.
+// The world of one form: fields is [ name, value, more ] each - a value null is not posted,
+// more the key a step names it by, its id and its attributes when they are not the name's;
+// server the messages the server wrote beside them, by name; action the address the form
+// posts to; count says how often the checker read the rules, made the values (FormData) and
+// walked the form's controls.
 const rendered = {};
 
 function world(template, fields, server, action) {
@@ -94,20 +96,24 @@ function world(template, fields, server, action) {
   const listeners = {};
   const byId = {};
   const count = { rules: 0, values: 0, walks: 0 };
+  const elements = [];
   const page = {
     addEventListener(type, each) { (listeners[type] = listeners[type] || []).push(each); },
-    getElementById(id) { return byId[id] || null; },
+    getElementById(id) { return byId[id] || elements.find(one => one.id === id) || null; },
     createElement() { return { id: '', textContent: '', remove() { delete byId[this.id]; } }; }
   };
   const rules = found[1].replace(/&quot;/g, '"').replace(/&amp;/g, '&');
-  const elements = [];
   const form = { action, get elements() { count.walks++; return elements; }, hasAttribute(name) { return name === 'data-pad-rules'; },
-                 querySelector() { return null; }, contains(span) { return byId[span.id] === span; },
+                 contains(span) { return byId[span.id] === span; },
+                 querySelector(selector) {
+                   const shows = selector.match(/^\[data-pad-shows="(.*)"\]$/);
+                   return (shows && elements.find(one => one.getAttribute('data-pad-shows') === shows[1])) || null;
+                 },
                  getAttribute(name) { if (name !== 'data-pad-rules') return null; count.rules++; return rules; } };
   const controls = {};
-  fields.forEach(([name, value]) => {
-    const attrs = {};
-    elements.push(controls[name] = { name, value, id: name, type: 'text', form, focus() {}, closest() { return null; },
+  fields.forEach(([name, value, more = {}]) => {
+    const attrs = Object.assign({}, more.attrs);
+    elements.push(controls[more.key || name] = { name, value, id: more.id || name, type: 'text', form, focus() {}, closest() { return null; },
       getAttribute(one) { return one in attrs ? attrs[one] : null; }, setAttribute(one, to) { attrs[one] = String(to); },
       removeAttribute(one) { delete attrs[one]; }, insertAdjacentElement(where, span) { byId[span.id] = span; } });
   });
@@ -117,7 +123,7 @@ function world(template, fields, server, action) {
     controls[name].setAttribute('aria-describedby', name + '-error');
   });
   class PageData {
-    constructor() { count.values++; this.entries = elements.map(one => [one.name, one.value]); }
+    constructor() { count.values++; this.entries = elements.filter(one => one.name && one.value !== null).map(one => [one.name, one.value]); }
     getAll(name) { return this.entries.filter(one => one[0] === name).map(one => one[1]); }
     forEach(each) { this.entries.forEach(one => each(one[1], one[0])); }
   }
@@ -242,6 +248,21 @@ const checkoutForm = "{form 'checkout', client}{input 'address', rules='required
       watching.push(`the query string of the address posted to, ${sent.length ? 'with' : 'without'} delivery and newsletter in the post: ${name} shows ${JSON.stringify(out.shown(name))}, not ${JSON.stringify(want[name])}`);
   });
 });
+
+// A multiselect is left when the focus leaves its filter box, which has no name of its own:
+// the select, hidden, names it in data-pad-shows. Left empty, it is checked again when the
+// field its rules look at changes, as a text field left empty is.
+const picks = world("{form 'pick', client}{input 'plan'/}{multiselect 'extras', label='Extras', options='a, b, c', rules='required_if:plan,pro'/}{/form}",
+                    [['plan', ''], ['extras[]', null, { key: 'select', id: 'extras-select', attrs: { 'data-pad-shows': 'extras' } }], ['', '', { key: 'filter', id: 'extras' }]]);
+
+if (!picks) watching.push('{form ..., client} wrote no data-pad-rules');
+else {
+  picks.fire('focusout', 'filter');
+  picks.fire('input', 'plan', 'pro');
+  const invalid = picks.controls.filter.getAttribute('aria-invalid') === 'true';
+  if (picks.shown('extras') !== 'Extras is required when Plan is pro' || !invalid)
+    watching.push(`watcher: a multiselect left empty shows ${JSON.stringify(picks.shown('extras'))}${invalid ? ' (aria-invalid on its filter box)' : ''} when plan became pro`);
+}
 
 // The values a page's script hands padValidate.field again after changing them are read
 // anew: the filing of the values is kept only while one check of many fields runs.

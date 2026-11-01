@@ -584,11 +584,21 @@
   // A field left empty is not checked - a required one would speak before it was filled in
   // - but it is left, and a change of a field its rules look at checks it from then on.
   document.addEventListener('focusout', function (event) {
-    var form = ruled(event.target);
-    if (form && (event.target.value !== '' || document.getElementById(idOf(event.target.name, event.target) + '-error')))
-      checkOne(form, event.target.name);
-    if (form) marks(form)[event.target.name] = true;
+    var target = fieldOf(event.target), form = ruled(target);
+    if (form && (target.value !== '' || document.getElementById(idOf(target.name, target) + '-error')))
+      checkOne(form, target.name);
+    if (form) marks(form)[target.name] = true;
   });
+
+  // A control without a name that a field shows itself in - the filter box of a multiselect,
+  // which its select names in data-pad-shows - is that field when the focus leaves it: the
+  // focus is never in the hidden select, so a multiselect left empty was never left, and a
+  // change of a field its rules look at - required_if:plan,pro - did not check it.
+  function fieldOf(target) {
+    if (!target || target.name || !target.id || !target.form || !target.form.querySelector) return target;
+    var id = window.CSS && CSS.escape ? CSS.escape(target.id) : target.id;
+    return target.form.querySelector('[data-pad-shows="' + id + '"]') || target;
+  }
 
   ['input', 'change'].forEach(function (type) {
     document.addEventListener(type, function (event) {
