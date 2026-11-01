@@ -1,9 +1,10 @@
 // The PAD playground's client side: no framework, nothing PAD needs to parse - a static file.
 // The panes live in the URL hash (#s= base64 of a JSON object), so the address bar is always
 // a link to the example on screen; a link opened later fills the panes back in. The button
-// beside the data's label switches the data between the JSON pane and the PHP pane - the
-// form's mode says which one render.php takes. The sample renders on load, and the form
-// again on Ctrl+Enter (Cmd+Enter on a Mac); an example from a link waits for Render.
+// beside the data's label switches the data between the text pane - JSON, YAML, XML, CSV,
+// recognised on sight - and the PHP pane; the form's mode says which one render.php takes.
+// The sample renders on load, and the form again on Ctrl+Enter (Cmd+Enter on a Mac); an
+// example from a link waits for Render.
 
 (function () {
 
@@ -38,7 +39,7 @@
     document.querySelectorAll('[data-mode]').forEach(function (element) {
       element.hidden = element.getAttribute('data-mode') !== which;
     });
-    toggle.textContent = which === 'php' ? 'Switch to JSON' : 'Switch to PHP';
+    toggle.textContent = which === 'php' ? 'Switch to data' : 'Switch to PHP';
   }
 
   var shared = location.hash.indexOf('#s=') === 0 ? decode(location.hash.slice(3)) : null;
@@ -49,11 +50,11 @@
     if (typeof shared.php === 'string') php.value = shared.php;
   }
 
-  show(shared && shared.mode === 'php' ? 'php' : 'json');
+  show(shared && shared.mode === 'php' ? 'php' : 'data');
   toggle.hidden = false;
 
   toggle.addEventListener('click', function () {
-    show(mode.value === 'php' ? 'json' : 'php');
+    show(mode.value === 'php' ? 'data' : 'php');
     remember();
     (mode.value === 'php' ? php : data).focus();
   });

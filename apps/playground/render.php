@@ -1,10 +1,12 @@
 <?php
 
-  // Renders the template the playground posts, with the data posted beside it: a JSON object,
-  // each top-level key a variable of the template, as a page's .php would set it - or, with
-  // mode=php, PHP code that is such a .php. The template runs in a nested pass of this
-  // request (padCode) under the application's limits - no PHP functions, no request values -
-  // plus three of its own: five seconds, 64 KB of template and 256 KB of output.
+  // Renders the template the playground posts, with the data posted beside it: a text in any
+  // format PAD reads data in - JSON, YAML, XML, CSV ... - its type recognised as {data}
+  // recognises it, each top-level key a variable of the template, as a page's .php would set
+  // it - or, with mode=php, PHP code that is such a .php. The template runs in a nested pass
+  // of this request (padCode) under the application's limits - no PHP functions, no request
+  // values - plus three of its own: five seconds, 64 KB of template and of data, and 256 KB
+  // of output.
   // ?render&view=source answers the rendered HTML as text.
   //
   // A template error ends the request with PAD's own error report, which the playground
@@ -14,25 +16,25 @@
   set_time_limit ( 5 );
 
   $playSource = (string) ( $_POST ['source'] ?? '' );
-  $playJson   = trim ( (string) ( $_POST ['data'] ?? '' ) );
+  $playText   = (string) ( $_POST ['data'] ?? '' );
   $playPhp    = (string) ( $_POST ['php'] ?? '' );
-  $playMode   = ( ( $_POST ['mode'] ?? '' ) == 'php' ) ? 'php' : 'json';
+  $playMode   = ( ( $_POST ['mode'] ?? '' ) == 'php' ) ? 'php' : 'data';
   $playView   = ( ( $_GET ['view'] ?? '' ) == 'source' );
   $playEcho   = '';
 
   if ( strlen ( $playSource ) > 65536 )
     padError ( 'the template is longer than the playground takes: 64 KB' );
 
+  if ( strlen ( $playText ) > 65536 or strlen ( $playPhp ) > 65536 )
+    padError ( 'the data is longer than the playground takes: 64 KB' );
+
   // PHP code runs as a page's .php does, as written and with all of PHP's reach - the
   // application's guards keep it to this machine - but in a function of its own: the
-  // variables it sets are collected afterwards and handed on like the keys of a JSON object,
+  // variables it sets are collected afterwards and handed on like the keys of a record,
   // and what it echoes stands before the template, as a page's echo does. Code without an
   // opening tag is PHP from its first line.
 
   if ( $playMode == 'php' ) {
-
-    if ( strlen ( $playPhp ) > 65536 )
-      padError ( 'the PHP code is longer than the playground takes: 64 KB' );
 
     $playRun = static function ( $playCode ) {
       eval ( $playCode );
@@ -56,10 +58,25 @@
 
   } else {
 
-    $playData = ( $playJson === '' ) ? [] : json_decode ( $playJson, TRUE );
+    // The data text is read as padData reads a text: its indent and a byte order mark taken
+    // off (padDataText), its type sniffed (padContentType) and the reader of that type, a
+    // file of pad/data/, run - in a function of its own, so that the reader's own variables
+    // stay there. A record - a JSON object, a YAML mapping, an XML document - gives its keys
+    // as variables; a list - CSV, a JSON or YAML array, a range - has no names of its own
+    // and becomes the variable rows, as {data 'rows'} would store it.
 
-    if ( ! is_array ( $playData ) or array_is_list ( $playData ) and $playData )
-      padError ( 'the data is not a JSON object: ' . ( json_last_error () ? json_last_error_msg () : 'give it as { "name": value }' ) );
+    $playRead = static function ( $data ) {
+      $name = 'rows';
+      $type = padContentType ( $data );
+      $read = include PAD . "data/$type.php";
+      return is_array ( $read ) ? $read : [];
+    };
+
+    $playText = padDataText ( $playText );
+    $playData = ( $playText === '' ) ? [] : $playRead ( $playText );
+
+    if ( $playData and ! array_filter ( array_keys ( $playData ), 'is_string' ) )
+      $playData = [ 'rows' => $playData ];
 
   }
 
@@ -69,7 +86,7 @@
 
   $playSource = $playEcho . $playSource;
 
-  unset ( $playJson, $playPhp, $playMode, $playEcho, $playRun, $playLevel, $playError, $playData, $playKey, $playValue );
+  unset ( $playText, $playPhp, $playMode, $playEcho, $playRun, $playRead, $playLevel, $playError, $playData, $playKey, $playValue );
 
   $playOutput = (string) padCode ( $playSource );
 

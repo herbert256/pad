@@ -703,8 +703,9 @@ Execute code in isolation:
 playground (`apps/playground`, `http://localhost/pad/playground/`): it answers local
 requests only, renders with `$padPhpFunctions = []` and `$padRequestVars = []`, limits run
 time and source and output size, and shows the result in a sandboxed frame. Its data is a
-JSON object or, switched with the button beside it, PHP code as a page's `.php` - which runs
-as written, unlimited. The URL hash carries the template and its data, so a link shares an
+text in any data format - JSON, YAML, XML, CSV, its type recognised as `{data}` recognises it
+- or, switched with the button beside it, PHP code as a page's `.php`, which runs as written,
+unlimited. The URL hash carries the template and its data, so a link shares an
 example; one opened from a link waits for Render.
 
 ### Event System
