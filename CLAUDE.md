@@ -1218,6 +1218,7 @@ the `claude` line of `./ci.sh`.
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
 | `test` | Minimal | A scratch application for trying things out, `_common` switched off |
 | `webcomponents` | Standard | Web components: PAD custom tags write custom elements with their shadow root (`{shadow}`, declarative shadow DOM) - cards with slots, tabs upgraded by a module, a rating that posts, a form-associated stepper, a Lit element fed with PAD's JSON |
+| `sections` | Standard | A landing page built from the sections and effects with the theme switcher in the bar, and a page per section, effect, theme (its contrast ratios) and palette (charts in it), every example its template beside its result - read from `pad/subs/{sections,effects,themes,palettes}/types/` |
 
 Every other `regression/<name>` application is the test of one feature - a page cache backend, an error action, an output type, maintenance, CORS ... - listed in [apps/README.md](apps/README.md), with the rest.
 

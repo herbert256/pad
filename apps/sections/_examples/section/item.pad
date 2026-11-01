@@ -1,0 +1,7 @@
+{data 'colours'}
+[ "Red", "Green", "Blue" ]
+{/data}
+{section:steps title='Items from a loop', align='left'}
+  {colours}{section:item $colours}Step {current@colours/} of {count@colours/}.{/section:item}{/colours}
+  {section:item 'And one more'/}
+{/section:steps}

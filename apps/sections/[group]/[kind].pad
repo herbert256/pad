@@ -1,0 +1,23 @@
+<p class="sx-lead">{$text}</p>
+
+{exampleList/}
+
+{if $group eq 'theme'}
+  <h2>Contrast</h2>
+  <p>Every text of the theme on each of its backgrounds, as WCAG 2 measures it -
+     {if $kind eq 'contrast'}7 to 1 or more, AAA{else}4.5 to 1 or more, AA{/if}.</p>
+  <table class="sx-contrast">
+    <tr><th>Text</th><th>On</th><th>Ratio</th></tr>
+    {contrasts}<tr><td>{$fore}</td><td>{$back}</td><td>{$ratio} : 1</td></tr>{/contrasts}
+  </table>
+  <form method="post" class="sx-use">
+    <input type="hidden" name="padForm" value="padThemes">
+    <input type="hidden" name="padTheme" value="{$kind}">
+    <button type="submit">Put every page in {$name}</button>
+  </form>
+{/if}
+
+{if $group eq 'palette'}
+  <h2>In PHP</h2>
+  <p><code>padPalette ( '{$kind}' )</code> answers <code>{$colors}</code>.</p>
+{/if}

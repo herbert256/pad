@@ -24,6 +24,7 @@ This directory contains PAD applications and examples.
 | [patterns](patterns/README.md) | Standard | Every pattern of the patterns subsystem - a card per pattern, a page per pattern beside its template with a seed to change by link, read from `pad/subs/patterns/types/` - and every image filter of `{img}` on one picture |
 | [printables](printables/README.md) | Standard | Every kind of the printables subsystem on a page of its own - its template beside what it prints, sheets at their size, a link to the PDF, read from `pad/subs/printables/types/` |
 | [sounds](sounds/README.md) | Standard | A soundboard of the sounds subsystem - a card per sound with its button, its recipe and its WAV file, and the ways a page plays one, read from `pad/subs/sounds/types/` |
+| [sections](sections/README.md) | Standard | A landing page built from the sections and effects, the theme switcher in its bar, and a page per section, effect, theme and palette with every example's template beside its result, read from `pad/subs/{sections,effects,themes,palettes}/types/` |
 | [examples](examples/README.md) | Standard | Search the harvested examples and view one with its sources beside the rendered result |
 | [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |
 | [inputs](inputs/README.md) | Standard | Every rich form field of the inputs subsystem to try - a card per kind, a page per kind in a form that posts back with what the page received, one form with them all checked in the browser too, read from `pad/subs/inputs/types/` |

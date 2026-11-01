@@ -1,0 +1,13 @@
+<p class="sx-lead">{$line}</p>
+
+<ul class="sx-index">
+  {kinds}<li><a href="#{$kind}">{$name}</a></li>{/kinds}
+</ul>
+
+{kinds}
+<section class="sx-kind" id="{$kind}">
+  <h2><a href="{$link}">{$name}</a></h2>
+  <p>{$text}</p>
+  {exampleList/}
+</section>
+{/kinds}

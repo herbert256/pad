@@ -1,0 +1,71 @@
+{section:hero button='See every section', link='?sections', second='Try a theme', secondLink='?themes', note='Every block of this page is a tag - its template is on the page of its kind.'}
+  {slot 'eyebrow'}{shimmer}Sections · effects · themes · palettes{/shimmer}{/slot}
+  {slot 'title'}Dress a page in {gradient animate, repeat='forever', duration=8}minutes{/gradient}{/slot}
+  Landing-page blocks in pure CSS, motion that stands still for whoever asks for less, the colours
+  of every page swapped by a theme, and colour scales a chart takes with one word.
+  {slot 'image'}{chart 'donut', data='spread', label='part', value='kinds', palette='okabe-ito', title='The kinds in the box'/}{/slot}
+{/section:hero}
+
+{section:stats title='In the box', align='center'}
+  {section:item $sectionCount, label='Sections'}{typewriter speed=20}hero to footer{/typewriter}{/section:item}
+  {section:item $effectCount, label='Effects'}CSS first, one script{/section:item}
+  {section:item $themeCount, label='Themes'}every one WCAG AA{/section:item}
+  {section:item $paletteCount, label='Palettes'}for every chart{/section:item}
+{/section:stats}
+
+{reveal}
+{section:features title='Four subsystems, one look', eyebrow='What is here', columns=2}
+  They share the frame's palette, so a theme colours them all at once.
+  {section:item 'Sections', icon='layout', link='?sections'}A hero, the features, the prices, the questions, a footer - {highlighter}no script at all{/highlighter}, laid out by container queries.{/section:item}
+  {section:item 'Effects', icon='sparkle', link='?effects'}A typewriter, a marker, a count-up, a reveal on scroll, loaders and confetti - still and whole under reduced motion.{/section:item}
+  {section:item 'Themes', icon='droplet', link='?themes'}Paper, terminal, newspaper, ocean, a high-contrast one - for a page, an application or the visitor's own choice.{/section:item}
+  {section:item 'Palettes', icon='bar-chart', link='?palettes'}Viridis and its family, Okabe-Ito and Tol for every kind of colour vision, ColorBrewer's scales.{/section:item}
+{/section:features}
+{/reveal}
+
+{section:steps title='A landing page in three tags', eyebrow='How it works'}
+  {section:item 'Pick the blocks'}<code>{open/}section:hero{close/}</code>, <code>{open/}section:pricing{close/}</code>, <code>{open/}section:faq{close/}</code> - in the order the page tells its story.{/section:item}
+  {section:item 'Fill them'}Options for the words, <code>{open/}slot{close/}</code> pairs for markup, <code>data=</code> or <code>{open/}section:item{close/}</code> for the lists.{/section:item}
+  {section:item 'Choose the colours'}<code>$padTheme = 'paper'</code> - or let the visitor pick one in the bar above.{/section:item}
+{/section:steps}
+
+{section:testimonials title='What builders say', tone='soft'}
+  {section:item 'Ada Lovelace', role='Analyst'}I wrote the page; the sections wrote the landing page.{/section:item}
+  {section:item 'Grace Hopper', role='Rear admiral'}The confetti waits for me to ask. So does every other animation.{/section:item}
+  {section:item 'Alan Turing', role='Mathematician'}Viridis on a heatmap, with one word. The rest is the data.{/section:item}
+{/section:testimonials}
+
+{section:faq title='Questions', single, open=1}
+  {section:item 'Do the sections need JavaScript?'}No. They are HTML and CSS - the questions here are <code>&lt;details&gt;</code>, the forms post back to the page.{/section:item}
+  {section:item 'What happens under reduced motion?'}Every effect shows its content still and whole: typed out, counted, revealed. Confetti does not burst.{/section:item}
+  {section:item 'Where does my theme choice go?'}Into the session: every page of every PAD application on this server is in that theme until you choose Default.{/section:item}
+  {section:item 'Can a chart use a palette?'}Any kind of chart: <code>palette='viridis'</code> - drawn on the server or in the browser, the same.{/section:item}
+{/section:faq}
+
+{section:cta 'Ready to dress a page?', link='?section/hero', button='Start with the hero'}
+  Every block on this page links to its template.
+  {slot 'actions'}{confetti seed=3}<button type="button" class="sx-celebrate">Celebrate first</button>{/confetti}{/slot}
+{/section:cta}
+
+{section:newsletter 'Hear what is new', button='Subscribe', note='One mail a month. Nothing is sent from this demo.'}
+  New sections, effects and themes, as they come.
+{/section:newsletter}
+
+{section:footer brand='PAD', note='© 2026 PAD - the PHP Application Driver.'}
+  The template drives: data, logic and output from one page.
+  {section:item 'Sections'}
+    All sections | ?sections
+    Hero | ?section/hero
+    Pricing | ?section/pricing
+  {/section:item}
+  {section:item 'Effects'}
+    All effects | ?effects
+    Typewriter | ?effect/typewriter
+    Confetti | ?effect/confetti
+  {/section:item}
+  {section:item 'Colours'}
+    Themes | ?themes
+    Palettes | ?palettes
+    Contrast | ?theme/contrast
+  {/section:item}
+{/section:footer}
