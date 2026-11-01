@@ -82,18 +82,22 @@ PadToys.register('percolation', function (k, cfg) {
     if (!front.length) {
       flowing = false;
       k.pause();
-      if (!quiet) k.status(through() ? 'The water got through in ' + flowSteps + ' steps' : 'The water stopped ' + (deepest + 1) + ' rows down, after ' + flowSteps + ' steps');
+      if (!quiet) k.status(through() ? 'The water got through in ' + plural(flowSteps, 'step') : 'The water stopped ' + plural(deepest + 1, 'row') + ' down, after ' + plural(flowSteps, 'step'));
     }
   }
-  function flood(quiet) { pour(); while (front.length) seep(quiet); }
+  function flood(quiet) { pour(); if (!front.length && !quiet) nowhere(); while (front.length) seep(quiet); }
   function through() { for (var x = N - L; x < N; x++) if (wet[x]) return true; return false; }
+  // No open site in the top row: there is no water to pour, so a toy playing pauses and
+  // says so - where it would play on with nothing to seep.
+  function nowhere() { k.pause(); k.status('No site of the top row is open - the water goes nowhere'); }
+  function plural(n, one) { return n + ' ' + one + (n === 1 ? '' : 's'); }
 
   // The grid at the chance p: a site is open while its own number is below p, so a larger p
   // opens more of the same sites. A site you opened or closed keeps it.
   function apply(restart) {
     for (var i = 0; i < N; i++) open[i] = rnd[i] < p ? 1 : 0;
     clusters();
-    if (restart && k.playing && !k.held && mode === 'flow') pour();
+    if (restart && k.playing && !k.held && mode === 'flow') { pour(); if (!flowing) nowhere(); }
     else flood();
   }
   function fresh() { for (var i = 0; i < N; i++) rnd[i] = k.rand(); apply(true); }
@@ -333,14 +337,14 @@ PadToys.register('percolation', function (k, cfg) {
     ArrowUp: moveCursor(0, -1), ArrowDown: moveCursor(0, 1), ArrowLeft: moveCursor(-1, 0), ArrowRight: moveCursor(1, 0), Enter: toggleCursor,
     PageUp: function () { setP(p + 0.01); }, PageDown: function () { setP(p - 0.01); },
     r: newGrid, m: function () { setMode(mode === 'flow' ? 'experiment' : 'flow'); },
-    s: function () { k.pause(); if (mode === 'flow') { if (!flowing) pour(); seep(); } else { rest = 0; if (openOne()) gotThrough(); else wetNow(); } draw(); }
+    s: function () { k.pause(); if (mode === 'flow') { if (!flowing) pour(); if (flowing) seep(); else nowhere(); } else { rest = 0; if (openOne()) gotThrough(); else wetNow(); } draw(); }
   });
   canvas.addEventListener('blur', function () { if (keyboard) draw(); });
 
   // Play pours the water again, or lets it seep on from where a pause held it; it pauses by
   // itself when the water goes no further.
   k.onPlay = function () {
-    if (mode === 'flow') { if (!flowing) pour(); k.status('The water seeps down from the top row'); }
+    if (mode === 'flow') { if (!flowing) pour(); if (flowing) k.status('The water seeps down from the top row'); else nowhere(); }
     else k.status('Opening sites until the water gets through');
   };
   k.onPause = function () { if (mode !== 'flow' || flowing) k.status('Paused'); };
@@ -363,5 +367,5 @@ PadToys.register('percolation', function (k, cfg) {
   if (mode === 'experiment') trial();
   draw();
   drawChart();
-  k.begin(mode === 'flow' ? 'The water seeps down from the top row' : 'Opening sites until the water gets through');
+  k.begin();
 });
