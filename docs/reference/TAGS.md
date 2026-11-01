@@ -2470,11 +2470,13 @@ from a page's own script.
 | Sound | What it is |
 |-------|------------|
 | `applause` | A short round of applause from a small, made-up crowd - claps at five paces, thinning out |
+| `beep` | The plain beep of a device, a steady A5 for a sixth of a second |
 | `bell` | A struck bell, inharmonic partials dying away for two seconds |
 | `chime` | Two soft bells a fifth apart - something went well |
 | `clap` | A hand clap as a drum machine makes it: three bursts of noise, then the room |
 | `click` | The short dry click of a switch or a key |
 | `coin` | The two square notes of a coin in an old video game |
+| `countdown` | Ready, set, go: three short beeps half a second apart, then a long one an octave up |
 | `error` | Two low buzzing notes falling a tritone |
 | `hihat` | A closed hi-hat, a short highpassed hiss |
 | `jump` | A thin square pulse swept up - a platform game's hop |
