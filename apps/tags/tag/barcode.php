@@ -29,7 +29,8 @@ PAD;
     'color'      => 'The colour of the bars, default <code>#000</code>.',
     'background' => 'The colour behind them, default <code>#fff</code>.',
     'check'      => 'Bare option, <code>code39</code>: the check symbol of modulo 43; <code>itf</code>: the check digit of weights 3 and 1. For <code>msi</code> it names the check digits: <code>mod10</code> (default), <code>mod1010</code> or <code>none</code>.',
-    'size'       => '<code>qr</code> and <code>datamatrix</code>: the width and height in pixels, default 160 - they take no height, scale or plain.',
+    'size'       => '<code>qr</code>, <code>datamatrix</code> and <code>aztec</code>: the width and height in pixels, default 160 - they take no height, scale or plain.',
+    'ecc'        => '<code>aztec</code>: the error correction in percent of the codewords, 3 more always added - 23 (the standard\'s recommendation) unless given, 5 to 90.',
     'level'      => '<code>qr</code>: the error correction, <code>L</code>, <code>M</code> (default), <code>Q</code> or <code>H</code>.' ];
 
   $tagSee     = [ 'qr' ];

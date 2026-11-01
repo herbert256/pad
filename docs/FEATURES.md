@@ -1619,9 +1619,10 @@ days its yearly decree moves around them; it knows the years since 2013.
 {code39 'PAD-2026', check/}                     # check: code39's modulo 43, itf's digit; msi check='mod1010'|'none'
 {datamatrix 'PAD-2026-0042', size=120/}         # Data Matrix ECC 200, the smallest of its 24 square sizes
 {gs1128 '(01)09501101530003(17)261231(10)AB-123'/}   # GS1-128: GS1 element strings, FNC1 where GS1 wants it
+{aztec $ticket, size=150, ecc=33/}              # Aztec Code, compact or full; ecc= percent of error correction (23)
 ```
 The symbologies are the files of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`,
-`code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `qr` and `datamatrix` - one
+`code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `qr`, `datamatrix` and `aztec` - one
 file a symbology, which encodes the text and draws it; a symbology is added by adding its file.
 Each is written three ways, the same code: `{barcode '...', type='upce'/}`, the barcode type
 `{barcode:upce '...'/}`, and bare, `{upce '...'/}`, when no tag, store, field or sequence has
@@ -1641,6 +1642,13 @@ AIs in parentheses under the bars. The values are checked as the GS1 General Spe
 define them (`pad/subs/codes/_lib/gs1.php`): the digits, the length, GS1's characters, the check
 digit of a GTIN, SSCC or GLN and the dates; an AI GS1 has not defined, a value that breaks its
 format and more than 48 characters are errors under the strict check.
+
+`aztec` is Aztec Code (ISO/IEC 24778), the square code of train tickets and boarding passes
+with a bullseye in its middle: any text, in the smallest of its compact (15 to 27 modules a side)
+and full symbols (to 151) that leaves room for the error correction - `ecc=` in percent of the
+codewords, 3 more always added, 23 by default as the standard recommends, 5 to 90. The text is
+written in the fewest bits its five modes and binary shifts allow, a text beyond ASCII marked as
+UTF-8 by its ECI (`pad/subs/codes/_lib/aztec.php`).
 
 ### Icons
 ```

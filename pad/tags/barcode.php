@@ -9,7 +9,7 @@
   // height= is the height of the bars in pixels (default 60), scale= the width of one
   // module (default 2), title= the accessible name, else the text; plain leaves the
   // digits under the bars out; color= and background= change the black on white. A
-  // two-dimensional symbology - qr, datamatrix - takes size= instead of height=, scale= and
+  // two-dimensional symbology - qr, datamatrix, aztec - takes size= instead of height=, scale= and
   // plain.
 
   $padCodeKind = strtolower ( trim ( (string) padTagParm ( 'type', preg_match ( '/^\d{12,13}$/', trim ( padParmText ( $padParm ) ) ) ? 'ean13' : 'code128' ) ) );
