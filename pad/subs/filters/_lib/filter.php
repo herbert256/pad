@@ -16,6 +16,8 @@
   //            'options'  => [ 'levels' => [ 'number', 4, 2, 32 ] ],
   //            'pixels'   => TRUE,                 its look is the picture's pixels
   //            'lossless' => TRUE,                 PNG unless format= says otherwise
+  //            'loops'    => TRUE,                 it reads every pixel in PHP
+  //            'count'    => [ 'dots', 50000, function ( $o, $w, $h ) { ... }, 'a larger cell=' ],
   //            'apply'    => function ( $image, $o, $scale ) { ... return $image; } ];
   //
   // image - a GD picture in, a GD picture out: grayscale, sepia, duotone, posterize, pixelate,
@@ -34,7 +36,18 @@
   //   'hold' answers the img's style and attributes from the filtered 1x picture, kept in
   //   _thumbs/ as a .json.
   //
+  // The budget, in the spirit of the 64 megapixels {img} resizes at most: what GD does in C
+  // costs little, a loop of PHP over the pixels a microsecond a pixel and more - a dither of a
+  // camera's 12 megapixels took 15 seconds and 209 MB, past max_execution_time and a stock
+  // memory_limit at the 64, so the file was never written and every view began it again. A
+  // filter that loops ('loops': sepia, duotone, posterize, vignette, the dithers, dominant)
+  // works on 2 megapixels at most - a 1x picture larger is an error under the strict check
+  // and the filter left out without it, a 2x picture is made only at the density those 2
+  // megapixels reach - and a filter that writes a count of things ('count': halftone's dots,
+  // printed in the page on every view) as many as it says at most, the same way.
+  //
   // padFilterChain    the filters of filter=, each with its options read from the tag
+  // padFilterBudget   the chain without the filters past their budget at a size, said why
   // padFilterKind     a filter's answer, its file read once a request
   // padFilterOption   one option of a filter, checked - its default after saying why
   // padFilterKey      what a list of filters adds to the hash of a file it makes
@@ -131,6 +144,45 @@
     }
 
     return $chain;
+
+  }
+
+  const padFilterPixels = 2000000;
+
+  // The chain without the filters past their budget at the 1x size $w by $h - reported under
+  // the strict check, left out without it.
+
+  function padFilterBudget ( $chain, $w, $h ) {
+
+    global $padCheckSyntax;
+
+    $kept = [];
+
+    foreach ( $chain as $one ) {
+
+      list ( $name, $spec, $options ) = $one;
+
+      $over = '';
+
+      if ( ( $spec ['loops'] ?? FALSE ) and $w * $h > padFilterPixels )
+        $over = "works pixel by pixel, and the picture is $w x $h pixels - " . padFilterNum ( $w * $h / 1e6 )
+              . ' megapixels, ' . ( padFilterPixels / 1e6 ) . ' at most: a smaller width= or height=';
+
+      elseif ( isset ( $spec ['count'] ) ) {
+        list ( $what, $most, $count, $fix ) = $spec ['count'];
+        $n = $count ( $options, $w, $h );
+        if ( $n > $most )
+          $over = 'would draw ' . number_format ( $n ) . " $what on a picture of $w x $h pixels - " . number_format ( $most ) . " at most: $fix";
+      }
+
+      if ( $over === '' )
+        $kept [] = $one;
+      elseif ( $padCheckSyntax )
+        padError ( "the img tag's filter $name $over" );
+
+    }
+
+    return $kept;
 
   }
 

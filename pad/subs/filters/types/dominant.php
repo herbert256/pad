@@ -14,6 +14,7 @@
   return [
 
     'form'  => 'placeholder',
+    'loops' => TRUE,
 
     'hold'  => function ( $image, $o ) {
 

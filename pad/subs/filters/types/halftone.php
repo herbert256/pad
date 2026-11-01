@@ -18,6 +18,13 @@
     'ext'     => 'svg',
     'options' => [ 'cell' => [ 'number', 8, 3, 100 ], 'colors' => [ 'colors', [ '#1a1a19', '#fcfcfb' ] ] ],
 
+    // The dots are in the page on every view: 50,000 at most, some 2 MB of SVG - a camera's
+    // picture at its size with cell=3 was a million and a half, 60 MB.
+
+    'count'   => [ 'dots', 50000, fn ( $o, $w, $h ) => (int) ceil ( ( $w + $o ['cell'] ) / $o ['cell'] )
+                                                    * (int) ceil ( ( $h + $o ['cell'] * sqrt ( 3 ) / 2 ) / ( $o ['cell'] * sqrt ( 3 ) / 2 ) ),
+                   'a larger cell= or a smaller width= or height=' ],
+
     'make'    => function ( $image, $o ) {
 
       $w     = imagesx ( $image );

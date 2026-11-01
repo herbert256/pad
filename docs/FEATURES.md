@@ -1268,9 +1268,11 @@ in place of the `<img>` and named by the alt text. blurhash (`components=`, `'4,
 lqip are placeholders: a BlurHash - the reference algorithm, encode and decode - in `data-blurhash`
 and decoded to a small PNG, the dominant colour, a tiny blurred PNG, behind the `<img>` while it
 loads. What a filter makes is made once with GD and kept in `_thumbs/` - dots, text and
-placeholders too - the same picture and options the same bytes on every run. An unknown filter, an
-option out of its bounds and a filter that cannot follow the one before are errors under the strict
-check. Code: `pad/subs/filters/` - `_lib/filter.php` the chain and its options, `_lib/dither.php`,
+placeholders too - the same picture and options the same bytes on every run. A filter that reads
+every pixel in PHP (sepia, duotone, posterize, vignette, the dithers, dominant) works on 2 megapixels
+at most, its 2x picture made only as far as those reach, and halftone draws 50,000 dots at most. An
+unknown filter, an option out of its bounds, a filter that cannot follow the one before and a filter
+past its budget are errors under the strict check, left out without it. Code: `pad/subs/filters/` - `_lib/filter.php` the chain and its options, `_lib/dither.php`,
 `_lib/blurhash.php`, `types/` the filters - and `pad/tags/_lib/img.php`, which applies them. The
 `patterns` application shows every filter on the same picture.
 

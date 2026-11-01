@@ -54,17 +54,33 @@
 
     list ( $path, $name, $type, $sw, $sh, $turn ) = $source;
 
+    $fit = strtolower ( (string) ( $opts ['fit'] ?? 'cover' ) );
+
+    if ( ! in_array ( $fit, [ 'cover', 'contain' ], TRUE ) ) {
+      if ( $padCheckSyntax )
+        padError ( "the img tag has no fit '" . padMakeSafe ( $fit, 10 ) . "' - cover or contain" );
+      $fit = 'cover';
+    }
+
+    $width  = max ( 0, (int) ( $opts ['width']  ?? 0 ) );
+    $height = max ( 0, (int) ( $opts ['height'] ?? 0 ) );
+
+    list ( $crop, $w1, $h1, $max ) = padImgSizes ( $sw, $sh, $width, $height, $fit );
+
+    // The filters, without those past their budget at this size (padFilterBudget).
+
     $chain = [];
 
     if ( trim ( (string) ( $opts ['filter'] ?? '' ) ) !== '' ) {
       include_once PAD . 'subs/filters/_lib/filter.php';
-      $chain = padFilterChain ( $opts ['filter'] );
+      $chain = padFilterBudget ( padFilterChain ( $opts ['filter'] ), $w1, $h1 );
     }
 
     $images = array_values ( array_filter ( $chain, fn ( $one ) => $one [1] ['form'] == 'image' ) );
     $markup = array_values ( array_filter ( $chain, fn ( $one ) => $one [1] ['form'] == 'markup' ) ) [0] ?? NULL;
     $holds  = array_values ( array_filter ( $chain, fn ( $one ) => $one [1] ['form'] == 'placeholder' ) );
     $pixels = (bool) array_filter ( $images, fn ( $one ) => $one [1] ['pixels'] ?? FALSE );
+    $loops  = (bool) array_filter ( $images, fn ( $one ) => $one [1] ['loops'] ?? FALSE );
 
     // A filter of flat colours is a PNG unless format= says otherwise: JPEG smeared the edges
     // of a dither or a posterized area.
@@ -90,19 +106,6 @@
       $quality = 80;
     }
 
-    $fit = strtolower ( (string) ( $opts ['fit'] ?? 'cover' ) );
-
-    if ( ! in_array ( $fit, [ 'cover', 'contain' ], TRUE ) ) {
-      if ( $padCheckSyntax )
-        padError ( "the img tag has no fit '" . padMakeSafe ( $fit, 10 ) . "' - cover or contain" );
-      $fit = 'cover';
-    }
-
-    $width  = max ( 0, (int) ( $opts ['width']  ?? 0 ) );
-    $height = max ( 0, (int) ( $opts ['height'] ?? 0 ) );
-
-    list ( $crop, $w1, $h1, $max ) = padImgSizes ( $sw, $sh, $width, $height, $fit );
-
     // The filters that change the picture are part of every thumbnail's name - only when
     // there are any, so a picture without them keeps the name it had.
 
@@ -122,10 +125,15 @@
 
     // The 2x picture, as far as the source reaches: a density of 1.2 or more is worth a
     // second file, less is the same picture again. A picture of pixel filters has none: its
-    // 1x pixels are drawn sharp, doubled (image-rendering: pixelated).
+    // 1x pixels are drawn sharp, doubled (image-rendering: pixelated). A filter that loops
+    // over the pixels in PHP has its budget for the 2x picture too: the density reaches as
+    // far as it does.
 
     $density = min ( 2, $max );
     $set     = '';
+
+    if ( $loops )
+      $density = min ( $density, sqrt ( padFilterPixels / ( $w1 * $h1 ) ) );
 
     if ( $density >= 1.2 and ! $pixels ) {
       $two = padImgThumb ( $path, $type, $turn, $crop, (int) round ( $w1 * $density ), (int) round ( $h1 * $density ), $format, $quality, $base, $images, $density );

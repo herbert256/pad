@@ -3101,10 +3101,13 @@ filter of flat colours is a PNG unless `format=` says otherwise. halftone's dots
 the placeholders are kept in `_thumbs/` as well, beside the thumbnails, made once. BlurHash is the
 reference algorithm, its hash made of the 1x picture at most 64 pixels on its longer side. A
 picture with transparent parts keeps them through blur, its colours weighed by their opacity;
-dominant counts a pixel by its opacity, and lqip and blurhash lay the picture on white. An
-unknown filter, an option out of its bounds, a filter after halftone or ascii, a placeholder
-beside them, two pictures behind one `<img>` and an option no filter of the list reads are errors
-under the strict check.
+dominant counts a pixel by its opacity, and lqip and blurhash lay the picture on white. A filter
+that reads every pixel in PHP - sepia, duotone, posterize, vignette, the dithers and dominant -
+works on 2 megapixels at most: a larger 1x picture leaves it out, and its 2x picture is made
+only to the density those reach (`1.52x`); halftone draws 50,000 dots at most. An unknown
+filter, an option out of its bounds, a filter after halftone or ascii, a placeholder beside them,
+two pictures behind one `<img>`, an option no filter of the list reads and a filter past its
+budget are errors under the strict check.
 
 **Behavior:** writes `<img class="pad-img">` with its `width` and `height` (no layout shift),
 `loading="lazy"`, `decoding="async"` and a `srcset` whose second picture is twice the size -

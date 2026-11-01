@@ -8,6 +8,7 @@
   return [
 
     'form'    => 'image',
+    'loops'   => TRUE,
     'options' => [ 'colors' => [ 'colors', [ '#16213e', '#f5c26b' ] ] ],
 
     'apply'   => function ( $image, $o, $scale ) {

@@ -8,6 +8,7 @@
   return [
 
     'form'     => 'image',
+    'loops'    => TRUE,
     'lossless' => TRUE,
     'options'  => [ 'levels' => [ 'number', 4, 2, 32 ] ],
 

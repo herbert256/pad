@@ -11,6 +11,7 @@
   return [
 
     'form'    => 'image',
+    'loops'   => TRUE,
     'options' => [ 'amount' => [ 'number', 100, 0, 100 ] ],
 
     'apply'   => function ( $image, $o, $scale ) {
