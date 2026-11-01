@@ -1499,7 +1499,7 @@ padWorkdays ( '2026-04-01', '2026-04-30', 'nl' );   // 20 - weekdays that are no
 padAddWorkdays ( '2026-04-24', 1, 'nl' );           // '2026-04-28' - the Monday is King's Day; 0 is the date itself
 ```
 The countries are the files of `pad/subs/holidays/types/`, named by their ISO 3166-1 alpha-2
-code - at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us, za -
+code - at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, hu, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us, za -
 and a country is
 added by adding its file. Each holds its national public holidays as rules, not dates: a fixed
 date, days from Easter Sunday (the Gregorian computus), the nth or last weekday of a month, the
@@ -1553,6 +1553,8 @@ holiday yet (`'sundayNext'`, since 12 April 1973), holds a day between two holid
 Citizens' Holiday (`between`), and has the Happy Monday moves, the emperors' birthdays and the
 equinox days of the almanac's formula; it agrees with every date of the Cabinet Office's list
 from 1955 to 2027 and knows the years 1955 to 2099.
+Hungary (`hu`) has the rest days of its Labour Code, Good Friday since 2017, without the working
+days its yearly decree moves around them; it knows the years since 2013.
 
 ### Syntax highlighting
 ```
