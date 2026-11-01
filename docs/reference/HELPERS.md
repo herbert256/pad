@@ -39,6 +39,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Data formats](#data-formats) | `padFormatRead`, `padFormatWrite`, `padFormatKinds`, ... | data_formats |
 | [Sounds](#sounds) | `padSoundWav`, `padSoundSend`, `padSoundKinds` | - |
 | [Printables](#printables) | `padPrintableKinds`, `padPrintableKind` | - |
+| [Spreadsheet formulas](#spreadsheet-formulas) | `padFormula`, `padSheet` | - |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1099,6 +1100,31 @@ function, which then answers an empty value of its kind.
 | Function | Answers |
 |----------|---------|
 | `padPrintableKinds ()`, `padPrintableKind ( $name )` | The kinds there are - labels, badges, cards ...; whether a name is one |
+
+## Spreadsheet formulas
+
+`pad/lib/formulas.php` - the entries of the formulas subsystem, whose engine and functions stand
+in `pad/subs/formulas/` and are loaded on the first call; `{spreadsheet}` is the tag. A formula
+is spreadsheet syntax, never PHP and never a PAD expression - see
+[Spreadsheets](../FEATURES.md#spreadsheets).
+
+```php
+padFormula ( '=SUM(1,2)' );                              // 3
+padFormula ( '=ROUND(PMT(5%/12,360,-200000),2)' );       // 1073.64
+padFormula ( '=B1*2', [ 'B1' => 21 ] );                  // 42
+padSheet ( [ 'A1' => 10, 'A2' => '=A1*3' ] );            // [ 'A1' => 10, 'A2' => 30 ]
+padSheet ( [ [ 2, 3, '=A1*B1' ] ] );                     // [ [ 2, 3, 6 ] ]
+```
+
+| Function | Answers |
+|----------|---------|
+| `padFormula ( $formula, $cells = [], $seed = 0 )` | The value of one formula - its `=` optional - beside cells named (`[ 'A1' => 10 ]`) or given as rows of values; RAND seeded by `$seed` |
+| `padSheet ( $cells, $seed = 0 )` | Every cell computed, in the shape given: named cells by name, rows of values as rows |
+
+A whole number comes back as an int, an error as its code - `'#DIV/0!'`, `'#N/A'`, `'#REF!'`
+for a circle of references, `'#ERROR!'` for a formula that cannot be read, `'#NAME?'` for a
+function that is not there - and an empty result as 0. Cells that are neither named nor rows of
+values, and a formula that is no text, are reported with `padError`.
 
 ## Engine functions
 

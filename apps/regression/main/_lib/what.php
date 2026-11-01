@@ -242,6 +242,10 @@
       'tableFun/fun_8'            => 'One of the ten ways of showing the same table, embedded by manual/table_fun',
       'tableFun/fun_9'            => 'One of the ten ways of showing the same table, embedded by manual/table_fun',
       'tableFun/fun_0'            => 'The {content} definition the other nine print their cells through - it renders nothing itself',
+      'spreadsheet/form'          => 'The fixture of spreadsheet/a_posted_cell_is_computed_again, fetched bare: an editable {spreadsheet} in a {form}',
+      'spreadsheet/live'          => 'The fixture of spreadsheet/a_live_change_comes_back_computed_with_the_other_cells, fetched bare: an editable {spreadsheet} in a {live} region',
+      'spreadsheet/a_posted_cell_is_computed_again' => 'An editable {spreadsheet} in a {form} posts its cells back and is computed again - a typed formula too; a cell not to edit and an overlong text are left, a broken formula shows #ERROR!',
+      'spreadsheet/a_live_change_comes_back_computed_with_the_other_cells' => 'A change in an editable {spreadsheet} of a {live} region posts the cell and the others as its value; the region comes back computed',
 
     ];
 

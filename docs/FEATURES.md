@@ -54,6 +54,7 @@ applications show them working.
   - [Games](#games)
   - [Diagrams](#diagrams)
   - [Maps](#maps)
+  - [Spreadsheets](#spreadsheets)
   - [Embeds](#embeds)
   - [Toys](#toys)
   - [Sounds](#sounds)
@@ -888,6 +889,57 @@ list draws the countries around it quieter, without values (`--pad-map-context`)
 a country the view does not show is named in the title, and kept off the scale. A view is
 added by adding its file - no new outlines needed, every view is a crop of the same Natural
 Earth outlines (`pad/subs/maps/_lib/world.json`).
+
+### Spreadsheets
+```
+{spreadsheet 'shop', formats='B:€ #,##0.00, D:€ #,##0.00', totals='D'}
+  Item,Price,Qty,Total
+  Apples,1.20,3,=B2*C2
+  Pears,0.80,5,=B3*C3
+{/spreadsheet}
+{spreadsheet data='orders', formulas='total=B2*C2', formats='total:0.00'/}   # a column filled down the rows
+{live 'calc'}{spreadsheet 'calc', editable='B1:B3'}...{/spreadsheet}{/live}  # edited, computed again on the server
+```
+A grid of cells as an accessible `<table>` - the column letters and row numbers around it
+(`headers=FALSE` leaves them out), numbers right-aligned, errors marked and explained in their
+title, each formula in its cell's `title` and `data-formula`. The cells are the pair's content -
+a line a row, a comma between cells (a tab when a line holds one; a formula runs to the comma
+outside its brackets and texts, `=SUM(B2,C2)` needs no quotes) - or the rows of `data=`: records
+under a first row of their field names, whose values are never formulas, a list of rows of
+values, or cells by name. `formulas=` puts formulas in - `total=B2*C2` fills a column down the
+rows, its relative references moving as a spreadsheet's fill moves them, `D2:D9=...` a range,
+`F1=...` a cell - `totals=` adds a row of SUMs, `formats=` gives a column, a cell or a range a
+format code (`B:0.00, D:€ #,##0.00, E:0%, B5:B8:yyyy-mm-dd`). A cell typed as `12%`,
+`2024-01-15` or `$4.50` keeps that look, and a formula takes its first cell's.
+
+The formulas are spreadsheet syntax, read by a parser of their own (`pad/subs/formulas/_lib/
+formula.php` - not padEval): `=A1+B2*2`, ranges `A1:B3`, whole columns `A:A` and rows `2:5`,
+`$A$1`, texts `"x"` with `""` for a quote, `&`, `= <> < > <= >=`, `%` after a value, `^` - read
+from the left, `=2^3^2` is 64, and a minus binds tighter, `=-2^2` is 4 - TRUE and FALSE, and the
+error values `#DIV/0! #N/A #NAME? #NULL! #NUM! #REF! #VALUE!`, which travel as Excel's do. The
+functions are the files of `pad/subs/formulas/types/` - a function is added by adding its file,
+names are read in any case - and answer what Excel answers: SUM, AVERAGE, MIN, MAX, COUNT,
+COUNTA, COUNTBLANK, COUNTIF(S), SUMIF(S), AVERAGEIF, PRODUCT, MEDIAN, STDEV, VAR, RANK, LARGE,
+SMALL; IF, IFS, AND, OR, NOT, XOR, IFERROR, IFNA; ROUND (half away from zero, on 15 digits),
+ROUNDUP, ROUNDDOWN, ABS, INT, MOD (the divisor's sign), POWER, SQRT, EXP, LN, LOG, PI, RAND
+(seeded, `seed=`); CONCAT, TEXTJOIN, LEFT, RIGHT, MID, LEN, UPPER, LOWER, PROPER, TRIM,
+SUBSTITUTE, FIND, SEARCH, TEXT (the common format codes), VALUE; VLOOKUP, HLOOKUP, XLOOKUP,
+INDEX, MATCH, CHOOSE; DATE, TODAY, NOW, YEAR, MONTH, DAY, WEEKDAY, EOMONTH, EDATE, DAYS (the
+serials of the 1900 system, 1899-12-30 based, with its 29 February 1900); PMT, FV, PV, NPER,
+RATE, NPV, IRR (Excel's signs, RATE and IRR by Newton from 10%, `#NUM!` when 20 steps do not
+settle). The cells are computed in the order they need one another; a circle of references
+answers `#REF!` in each of its cells, the title naming the circle (`A1 → B1 → A1`).
+
+`editable` makes cells `<input>`s - alone every number, date and logical value, or the cells and
+ranges named - and an edit posts back and is computed on the server, no script of the page's
+own: in a `{form}` the cells post with it, in a `{live}` region a change posts the region with
+the other cells' texts as its value and it comes back computed, anywhere else the sheet is a
+form of its own with a Recalculate button. A post types only into the cells named.
+Under the strict check a template formula that cannot be read - or calls a function that is not
+there, or with the wrong number of arguments - is an error naming the cell and the position.
+`padFormula ( '=SUM(1,2)' )` and `padSheet ( $cells )` compute formulas for a page's PHP
+([HELPERS.md](reference/HELPERS.md#spreadsheet-formulas)); the `sheets` application has a
+budget, a loan, grades, dates, an editable sheet and a page of every function.
 
 ### Embeds
 ```

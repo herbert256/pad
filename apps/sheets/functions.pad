@@ -1,0 +1,25 @@
+<p class="sheets-lead">The {$count} functions a formula can call, each a file of
+<code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
+this page lists what each file says of itself. Their names are written in any case. The examples
+read the sample sheet below as if they stood in its cell G1, and each shows what that cell
+shows.</p>
+
+{spreadsheet 'sample', data='sample', caption='The sample sheet', formats='C:0.00'/}
+
+<nav class="sheets-groups" aria-label="Groups">{groups}<a href="#{$id}">{$group}</a>{/groups}</nav>
+
+{groups}
+<h2 id="{$id}">{$group}</h2>
+<table class="sheets-functions">
+  <thead><tr><th scope="col">Function</th><th scope="col">What it does</th><th scope="col">Examples</th></tr></thead>
+  <tbody>
+  {functions}
+    <tr id="{$kind}">
+      <th scope="row">{$name}</th>
+      <td>{$about}</td>
+      <td><ul class="sheets-examples">{examples}<li><code>{$formula}</code> <samp>{$shown}</samp></li>{/examples}</ul></td>
+    </tr>
+  {/functions}
+  </tbody>
+</table>
+{/groups}

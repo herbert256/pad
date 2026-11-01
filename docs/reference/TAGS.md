@@ -3587,6 +3587,55 @@ the columns and `rows` below 1 are strict errors.
 
 ---
 
+### spreadsheet
+A grid of cells whose formulas are computed on the server, as an accessible table
+(`subs/formulas/spreadsheet.php`) - the formula language is spreadsheet syntax with a parser of
+its own, its functions the files of `pad/subs/formulas/types/` (SUM, IF, VLOOKUP, PMT ... 78 of
+them), answering what Excel answers. See [Spreadsheets](../FEATURES.md#spreadsheets).
+
+```html
+{spreadsheet 'shop', formats='B:0.00, D:€ #,##0.00', totals='D'}
+  Item,Price,Qty,Total
+  Apples,1.20,3,=B2*C2
+  Pears,0.80,5,=B3*C3
+{/spreadsheet}
+{spreadsheet data='orders', formulas='total=B2*C2, F1=SUM(D:D)'/}
+{live 'calc'}{spreadsheet 'calc', editable='B1:B3'}...{/spreadsheet}{/live}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The sheet's name - its edits post as `padSheet[<name>][B2]`; unnamed `sheet1`, `sheet2` ... |
+| `data` | The cells: records under a first row of their field names (their values never formulas), a list of rows of values, or cells by name (`[ 'A1' => 10, 'B1' => '=A1*2' ]`); as a pair the content is the cells, a line a row, a comma between cells (a tab when a line holds one) - read as written, its tags not run |
+| `formulas` | Formulas put in: `total=B2*C2` fills a column (named in row 1, else a new one) down every row below the first, the references moving as a fill moves them; `D2:D9=B2*C2` fills a range; `F1=SUM(D:D)` one cell |
+| `totals` | A row below the last with the SUM of the columns named (letters or names of row 1), Total in the first column |
+| `formats` | A format code per column, cell or range - `B:0.00, total:€ #,##0.00, B5:B8:0.0%` - the later deciding; see TEXT |
+| `headers` | The column letters and row numbers; `headers=FALSE` leaves them out |
+| `caption` | The table's `<caption>` |
+| `editable` | Cells as fields: alone every cell holding a number, a date or TRUE/FALSE; `editable='B2:C9, F1'` the cells named, formulas too (their value in an `<output>` under them) |
+| `seed` | The seed of RAND, 0 unless given - the same numbers on every request |
+
+**Behavior:** a cell typed `=...` is a formula, `42` and `1,250.5` numbers, `12%` a number shown
+as a percentage, `2024-01-15` a date (the serial of the 1900 system), `$4.50` an amount, TRUE and
+FALSE logical values, `'...` a text; a column without a format shows a cell as it was typed, a
+formula as its first cell (DATE, EOMONTH a date), else General. Numbers stand right, errors are
+marked (`class="err"`) and explained in their title; a formula's cell carries it in `title` and
+`data-formula`, its number in `data-value`. A circle of references answers `#REF!` in every cell
+of it, the title naming the circle (`A1 → B1 → A1`). `editable` cells are `<input>`s labelled by
+the cell and the texts heading its row and column: in a `{form}` they post with it, in a `{live}`
+region a change posts the region with the other cells' texts (`pad-change`, `pad-value`) and it
+comes back computed, elsewhere the sheet is a form of its own with a Recalculate button; a post
+types into the cells named only, a formula too, 1000 characters at most. Colours are
+`--pad-sheet-*` custom properties with `light-dark()` defaults, the style written once per page.
+Under the strict check a formula of the template that cannot be read - or calls no function of
+`types/`, or with the wrong number of arguments - is an error naming its cell and its position;
+so are no cells, a name that is no name, and an option naming no cell, range or column.
+Without the check, and for a posted formula, the cell shows `#ERROR!`, `#NAME?` or `#N/A`.
+
+---
+
 ### toc
 A table of contents of the page from its own rendered headings (`tags/_lib/toc.php`), nested and linked,
 written where `{toc}` stands once the whole page has rendered - the headings below it included.
@@ -4349,6 +4398,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `map` | Output | A choropleth map of the world or a region as inline SVG, a colour step per value |
 | `timeline` | Output | Events on a time axis as inline SVG - cards above and below, spans as bars, or a vertical list |
 | `datatable` | Output | Rows as an accessible HTML table - aligned numbers, totals, sorting and paging links |
+| `spreadsheet` | Output | A grid of cells with Excel's formulas computed on the server - formats, totals, editable cells |
 | `toc` | Output | A table of contents from the page's own rendered headings, ids added |
 | `countdown` | Output | The time left until a moment in words, in a time element, optionally ticking |
 | `timeago` | Output | How long ago a moment was, in a time element with the exact moment |

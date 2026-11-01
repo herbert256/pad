@@ -806,6 +806,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Widgets](docs/FEATURES.md#widgets) | `{tabs}`, `{modal 'x'}`, `{toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{tooltip}`, `{wizard}`, `{lightbox}`, `{drawer}`, `{breadcrumb/}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
 | [Diagrams](docs/FEATURES.md#diagrams) | `{diagram}...{/diagram}`, `{diagram:state}`, `{mindmap}`, `{gitgraph}` - flowchart, sequence, state, class, er, mindmap, tree, journey, gitgraph: a kind per file of `pad/subs/diagrams/types/` |
 | [Maps](docs/FEATURES.md#maps) | `{map 'eu', data=, key=, value=/}` - a view per file of `pad/subs/maps/types/` |
+| [Spreadsheets](docs/FEATURES.md#spreadsheets) | `{spreadsheet 'x'}Item,Price\nTea,=B1*2{/spreadsheet}`, `data=`, `formulas='total=B2*C2'`, `formats=`, `totals=`, `editable` in a `{form}`/`{live}`; `padFormula ()`, `padSheet ()` - Excel's formulas, a function per file of `pad/subs/formulas/types/` |
 | [Embeds](docs/FEATURES.md#embeds) | `{embed 'url'/}`, `{youtube 'id'/}`, `{openstreetmap 'lat,lon'/}` - click to load, a provider per file of `pad/subs/embeds/types/`; `padEmbedSources ()` |
 | [Month calendar](docs/FEATURES.md#month-calendar) | `{calendar}` |
 | [Public holidays](docs/FEATURES.md#public-holidays) | `{holidays 'nl', year=2026}`, `{calendar holidays='de-by'/}`, `padHolidays`, `padIsHoliday`, `padWorkdays`, `padAddWorkdays` - a country per file of `pad/subs/holidays/types/` |
@@ -1207,6 +1208,7 @@ the `claude` line of `./ci.sh`.
 | `regression/errors` | Test | The Errors suite: the tests that fail on purpose, answered lean under the boot action - no dumps |
 | `regression/common` | Test | The pages of the suite that use `_common` - `{example}`, `{demo}`, `{table}` - fetched and compared the same way |
 | `sequence` | Standard | Mathematical sequence subsystem demos - with a gallery of every type beside its OEIS entry, a sequence played as notes, and a guess-the-next-term game |
+| `sheets` | Standard | Spreadsheets made with `{spreadsheet}` - a budget, a loan calculator in a form, grades with VLOOKUP and XLOOKUP, invoice dates, an editable sheet in a live region - each run beside its template, and a page of every function of `pad/subs/formulas/types/` with its examples on a sample sheet |
 | `structure` | Example | Demonstrates nested `_xxx` directories and inheritance |
 | `test` | Minimal | A scratch application for trying things out, `_common` switched off |
 | `webcomponents` | Standard | Web components: PAD custom tags write custom elements with their shadow root (`{shadow}`, declarative shadow DOM) - cards with slots, tabs upgraded by a module, a rating that posts, a form-associated stepper, a Lit element fed with PAD's JSON |

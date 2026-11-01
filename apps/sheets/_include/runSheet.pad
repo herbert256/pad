@@ -1,0 +1,12 @@
+<p class="sheets-lead">{$lead}</p>
+
+<div class="sheets-run">
+  {echo $template | code/}
+</div>
+
+<h2>The template</h2>
+<div class="pad-play-box">{!play}<pre class="sheets-source"><code>{!source}</code></pre></div>
+{if $phpSource}
+<h2>Its PHP</h2>
+<pre class="sheets-source"><code>{!phpSource}</code></pre>
+{/if}

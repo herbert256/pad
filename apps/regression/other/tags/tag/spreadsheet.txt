@@ -1,0 +1,27 @@
+<p><code>{spreadsheet}</code> computes a grid of cells on the server and writes it as a table,
+the column letters and row numbers around it. A cell starting with <code>=</code> is a formula
+in spreadsheet syntax - <code>=B2*C2</code>, <code>=SUM(D2:D9)</code>,
+<code>=VLOOKUP(E2,$I$2:$J$6,2)</code> - read by a parser of its own and computed with the
+functions of <code>pad/subs/formulas/types/</code>, which answer what Excel answers; the cells
+are worked through in the order the formulas need them, and a circle of references answers
+<code>#REF!</code> in each of its cells. The cells come from the content - a line a row, a
+comma between cells - or from <code>data=</code>.</p>
+
+<h3>Formulas, totals and formats</h3>
+
+<p><code>formulas=</code> puts formulas in: a name fills a column down the rows, the formula
+being the one of row 2 and its references moving with each row, as a spreadsheet's fill moves
+them; a range is filled from its first cell; a cell takes one formula. <code>totals=</code>
+adds a row of sums. <code>formats=</code> gives a column, a cell or a range a format code -
+<code>0.00</code>, <code>#,##0</code>, <code>0%</code>, <code>yyyy-mm-dd</code>; a cell typed as
+<code>12%</code> or <code>2024-01-15</code> keeps that look without one, and a formula takes the
+look of its first cell. Numbers stand right, errors are marked and explained in their title,
+and every formula is in its cell's <code>title</code> and <code>data-formula</code>.</p>
+
+<h3>Cells to edit</h3>
+
+<p><code>editable</code> makes cells fields. In a <a href="?tag/form"><code>{form}</code></a>
+they post with it; in a <a href="?tag/live"><code>{live}</code></a> region a change posts the
+region and it comes back computed, without a script of the page's own; anywhere else the sheet
+is a form of its own with a Recalculate button. Under the strict check a formula of the
+template that cannot be read is an error naming its cell and the place in it.</p>

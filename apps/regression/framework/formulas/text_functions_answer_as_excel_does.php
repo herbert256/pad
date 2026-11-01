@@ -1,0 +1,71 @@
+<?php
+
+  // The text functions on the sample sheet (_lib/formulas.php): a number joins a text as it
+  // reads with its 15 digits; LEFT, MID and LEN count characters, not bytes; PROPER starts a
+  // word after every character that is no letter (It'S, as Excel writes it); FIND keeps the
+  // case and SEARCH not, with wildcards; TEXT and VALUE read and write numbers, dates and
+  // times.
+
+  $cases = formulasRun ( [
+    '=CONCAT("a",1,TRUE)',
+    '=CONCAT(A2," x ",B2)',
+    '=CONCAT(A2:A3)',
+    '=CONCAT(1/0,"a")',
+    '="a"&1.5&TRUE',
+    '=1/3&""',
+    '=TEXTJOIN(", ",TRUE,A2:A4)',
+    '=TEXTJOIN("-",FALSE,"a","","b")',
+    '=TEXTJOIN("-",TRUE,"a","","b")',
+    '=TEXTJOIN(",",TRUE,A6:A9)',
+    '=LEFT("Spreadsheet",6)',
+    '=LEFT("Spreadsheet")',
+    '=LEFT("abc",10)',
+    '=LEFT("abc",-1)',
+    '=RIGHT("Spreadsheet",5)',
+    '=RIGHT(2024,2)',
+    '=RIGHT("abc",0)&"|"',
+    '=MID("Spreadsheet",3,4)',
+    '=MID("abc",5,2)&"|"',
+    '=MID("abc",0,2)',
+    '=LEN("Spreadsheet")',
+    '=LEN(1/4)',
+    '=LEN("")',
+    '=LEN("€uro")',
+    '=UPPER("pad sheet")',
+    '=LOWER("PAD Sheet")',
+    '=PROPER("hello wORLD")',
+    '=PROPER("it\'s 2-way")',
+    '=TRIM(" a "&" "&" b ")',
+    '=SUBSTITUTE("a-b-c","-","+")',
+    '=SUBSTITUTE("a-b-c","-","+",2)',
+    '=SUBSTITUTE("a-b-c","-","+",3)',
+    '=SUBSTITUTE("aAa","a","x")',
+    '=SUBSTITUTE("abc","","x")',
+    '=FIND("b","abcb")',
+    '=FIND("b","abcb",3)',
+    '=FIND("B","abc")',
+    '=FIND("","abc")',
+    '=FIND("a","abc",5)',
+    '=SEARCH("B","abc")',
+    '=SEARCH("c?","abcd")',
+    '=SEARCH("x","abc")',
+    '=SEARCH("~*","a*b")',
+    '=SEARCH("b*d","abcd")',
+    '=TEXT(1234.5,"#,##0.00")',
+    '=TEXT(0.256,"0.0%")',
+    '=TEXT(D2,"dddd d mmmm yyyy")',
+    '=TEXT(0.75,"h:mm AM/PM")',
+    '=TEXT("12.5","0.00")',
+    '=TEXT("abc","0.00")',
+    '=VALUE("1,250.50")',
+    '=VALUE("12%")',
+    '=VALUE("2024-01-15")',
+    '=VALUE("$4.50")',
+    '=VALUE("(40)")',
+    '=VALUE("1.5E3")',
+    '=VALUE("13:45")',
+    '=VALUE("abc")',
+    '=VALUE(TRUE)'
+  ] );
+
+?>

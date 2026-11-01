@@ -1,0 +1,25 @@
+{spreadsheet 'budget', caption='A month of a household',
+  formulas='D2:D10=C2/$C$12, C15:C19=SUMIF($A$2:$A$10,A15,$C$2:$C$10), D15:D19=C15/$C$12',
+  formats='C:€ #,##0.00, D:0.0%'}
+  Category,Item,Amount,Share
+  Home,Rent,950
+  Home,Energy,140
+  Food,Groceries,420
+  Food,Eating out,95
+  Transport,Train pass,110
+  Transport,Bike repair,35
+  Leisure,Books,40
+  Leisure,Cinema,30
+  Savings,Savings account,250
+
+  Total,,=SUM(C2:C10),=SUM(D2:D10)
+
+  By category,,Amount,Share
+  Home
+  Food
+  Transport
+  Leisure
+  Savings
+
+  Largest item,=INDEX(B2:B10,MATCH(MAX(C2:C10),C2:C10,0)),=MAX(C2:C10)
+{/spreadsheet}

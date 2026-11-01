@@ -1,0 +1,84 @@
+<p class="sheets-lead">A shopping list in a live region: change a quantity, a price or the VAT and the sheet is computed again on the server and swapped in - no JavaScript of the page&#039;s own.</p>
+
+<div class="sheets-run">
+  <div data-pad-live="shop">
+  <style>:where(.pad-sheet){--pad-sheet-text:#1f1f1d;--pad-sheet-muted:#6b6a66;--pad-sheet-line:#dcdbd6;--pad-sheet-head:#f2f1ed;--pad-sheet-formula:#f7f9fd;--pad-sheet-input:#fffdf2;--pad-sheet-error:#b42318;--pad-sheet-accent:#2a78d6;}@supports (color:light-dark(#000,#fff)){:where(.pad-sheet){--pad-sheet-text:light-dark(#1f1f1d,#ecebe6);--pad-sheet-muted:light-dark(#6b6a66,#9d9c93);--pad-sheet-line:light-dark(#dcdbd6,#3a3a37);--pad-sheet-head:light-dark(#f2f1ed,#262624);--pad-sheet-formula:light-dark(#f7f9fd,#1d2330);--pad-sheet-input:light-dark(#fffdf2,#2a2818);--pad-sheet-error:light-dark(#b42318,#f97066);--pad-sheet-accent:light-dark(#2a78d6,#5598e7);}}.pad-sheet{max-width:100%;overflow-x:auto;color:var(--pad-sheet-text)}.pad-sheet table{border-collapse:collapse;font-variant-numeric:tabular-nums;line-height:1.35;font-size:14px}.pad-sheet caption{caption-side:top;text-align:left;font-weight:600;padding:0 0 8px}.pad-sheet th,.pad-sheet td{border:1px solid var(--pad-sheet-line);padding:4px 8px;text-align:left;white-space:nowrap}.pad-sheet td{min-width:4em}.pad-sheet thead th,.pad-sheet tbody th,.pad-sheet .pad-sheet-corner{background:var(--pad-sheet-head);color:var(--pad-sheet-muted);font-weight:500;font-size:12px;text-align:center;min-width:2em}.pad-sheet .num{text-align:right}.pad-sheet .bool,.pad-sheet .err{text-align:center}.pad-sheet .fx{background:var(--pad-sheet-formula)}.pad-sheet .err{color:var(--pad-sheet-error);font-weight:600}.pad-sheet td.in{padding:0;background:var(--pad-sheet-input)}.pad-sheet input{box-sizing:border-box;width:100%;min-width:6em;border:0;margin:0;padding:4px 8px;font:inherit;color:inherit;background:transparent}.pad-sheet .num input{text-align:right}.pad-sheet input:focus{outline:2px solid var(--pad-sheet-accent);outline-offset:-2px}.pad-sheet output{display:block;padding:0 8px 4px;font-size:12px;color:var(--pad-sheet-muted);text-align:right}.pad-sheet-recalc{margin-top:8px}</style><div class="pad-sheet" data-sheet="shop"><table class="pad-sheet-table"><caption>Change a quantity or a price</caption><thead><tr><td class="pad-sheet-corner"></td><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th></tr></thead><tbody><tr><th scope="row">1</th><td>Item</td><td>Qty</td><td>Price</td><td>Total</td></tr><tr><th scope="row">2</th><td>Bread</td><td class="num in"><input name="padSheet[shop][B2]" value="2" aria-label="B2, Bread, Qty" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td class="num in"><input name="padSheet[shop][C2]" value="2.45" aria-label="C2, Bread, Price" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td class="num fx" title="=B2*C2" data-formula="=B2*C2" data-value="4.9">€ 4.90</td></tr><tr><th scope="row">3</th><td>Cheese</td><td class="num in"><input name="padSheet[shop][B3]" value="1" aria-label="B3, Cheese, Qty" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td class="num in"><input name="padSheet[shop][C3]" value="8.90" aria-label="C3, Cheese, Price" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td class="num fx" title="=B3*C3" data-formula="=B3*C3" data-value="8.9">€ 8.90</td></tr><tr><th scope="row">4</th><td>Coffee</td><td class="num in"><input name="padSheet[shop][B4]" value="2" aria-label="B4, Coffee, Qty" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td class="num in"><input name="padSheet[shop][C4]" value="6.75" aria-label="C4, Coffee, Price" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td class="num fx" title="=B4*C4" data-formula="=B4*C4" data-value="13.5">€ 13.50</td></tr><tr><th scope="row">5</th><td>Apples</td><td class="num in"><input name="padSheet[shop][B5]" value="6" aria-label="B5, Apples, Qty" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td class="num in"><input name="padSheet[shop][C5]" value="0.45" aria-label="C5, Apples, Price" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td class="num fx" title="=B5*C5" data-formula="=B5*C5" data-value="2.7">€ 2.70</td></tr><tr><th scope="row">6</th><td>Flowers</td><td class="num in"><input name="padSheet[shop][B6]" value="1" aria-label="B6, Flowers, Qty" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td class="num in"><input name="padSheet[shop][C6]" value="12.50" aria-label="C6, Flowers, Price" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td class="num fx" title="=B6*C6" data-formula="=B6*C6" data-value="12.5">€ 12.50</td></tr><tr><th scope="row">7</th><td>Subtotal</td><td></td><td></td><td class="num fx" title="=SUM(D2:D6)" data-formula="=SUM(D2:D6)" data-value="42.5">€ 42.50</td></tr><tr><th scope="row">8</th><td>Discount over € 50</td><td></td><td class="num in"><input name="padSheet[shop][C8]" value="10%" aria-label="C8, Discount over € 50, Price" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td class="num fx" title="=IF(D7&gt;50,-D7*C8,0)" data-formula="=IF(D7&gt;50,-D7*C8,0)" data-value="0">€ 0.00</td></tr><tr><th scope="row">9</th><td>VAT</td><td class="num in"><input name="padSheet[shop][B9]" value="21%" aria-label="B9, VAT, Qty" inputmode="decimal" autocomplete="off" pad-change="sheet-shop" pad-value="B2=2&amp;C2=2.45&amp;B3=1&amp;C3=8.90&amp;B4=2&amp;C4=6.75&amp;B5=6&amp;C5=0.45&amp;B6=1&amp;C6=12.50&amp;C8=10%25&amp;B9=21%25"></td><td></td><td class="num fx" title="=(D7+D8)*B9" data-formula="=(D7+D8)*B9" data-value="8.925">€ 8.93</td></tr><tr><th scope="row">10</th><td>Total</td><td></td><td></td><td class="num fx" title="=D7+D8+D9" data-formula="=D7+D8+D9" data-value="51.425">€ 51.43</td></tr></tbody></table></div>
+</div><script>(function () {
+  if (window.padLiveReady) return;
+  window.padLiveReady = true;
+  var nonce = document.currentScript ? document.currentScript.nonce : '';
+  function scripts(region, policy) {
+    var sent = /'nonce-([^']+)'/.exec(policy || '');
+    region.querySelectorAll('script').forEach(function (old) {
+      if (sent && old.nonce !== sent[1]) return;
+      var script = document.createElement('script');
+      for (var i = 0; i < old.attributes.length; i++)
+        if (old.attributes[i].name !== 'nonce') script.setAttribute(old.attributes[i].name, old.attributes[i].value);
+      if (nonce) script.nonce = nonce;
+      script.text = old.text;
+      old.parentNode.replaceChild(script, old);
+    });
+  }
+  function send(region, fields) {
+    var body = new URLSearchParams();
+    fields.forEach(function (field) { body.append(field[0], field[1]); });
+    body.set('padLive', region.getAttribute('data-pad-live'));
+    var token = region.getAttribute('data-pad-csrf');
+    if (token && !body.has('padCsrfToken')) body.set('padCsrfToken', token);
+    region.setAttribute('aria-busy', 'true');
+    fetch(location.href, { method: 'POST', body: body, credentials: 'same-origin' })
+      .then(function (response) {
+        return response.text().then(function (text) {
+          if (!response.ok) throw new Error(response.status + ' ' + response.statusText);
+          return [text, response.headers.get('Content-Security-Policy')];
+        });
+      })
+      .then(function (answer) { region.innerHTML = answer[0]; scripts(region, answer[1]); region.removeAttribute('data-pad-live-error'); })
+      .catch(function (error) { region.setAttribute('data-pad-live-error', error.message); })
+      .then(function () { region.removeAttribute('aria-busy'); });
+  }
+  function event(element, attribute, value) {
+    return [['padEvent', element.getAttribute(attribute)], ['padValue', element.hasAttribute('pad-value') ? element.getAttribute('pad-value') : value]];
+  }
+  document.addEventListener('click', function (e) {
+    var element = e.target.closest('[pad-click]');
+    var region = element && element.closest('[data-pad-live]');
+    if (!region) return;
+    e.preventDefault();
+    send(region, event(element, 'pad-click', ''));
+  });
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    var region = form.hasAttribute('pad-submit') && form.closest('[data-pad-live]');
+    if (!region) return;
+    e.preventDefault();
+    var fields = [];
+    new FormData(form).forEach(function (value, key) { if (typeof value === 'string') fields.push([key, value]); });
+    send(region, fields.concat(event(form, 'pad-submit', '')));
+  });
+  document.addEventListener('change', function (e) {
+    var element = e.target.closest('[pad-change]');
+    var region = element && element.closest('[data-pad-live]');
+    if (!region) return;
+    var value = element.type === 'checkbox' ? (element.checked ? element.value : '') : element.value;
+    send(region, (element.name ? [[element.name, value]] : []).concat(event(element, 'pad-change', value)));
+  });
+})();</script>
+</div>
+
+<h2>The template</h2>
+<div class="pad-play-box"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiJ7bGl2ZSAnc2hvcCd9XG4gIHtzcHJlYWRzaGVldCAnc2hvcCcsIGVkaXRhYmxlPSdCMjpDNiwgQzgsIEI5JywgY2FwdGlvbj0nQ2hhbmdlIGEgcXVhbnRpdHkgb3IgYSBwcmljZScsXG4gICAgZm9ybWF0cz0nQzI6QzY64oKsICMsIyMwLjAwLCBEOuKCrCAjLCMjMC4wMCd9XG4gICAgSXRlbSxRdHksUHJpY2UsVG90YWxcbiAgICBCcmVhZCwyLDIuNDUsPUIyKkMyXG4gICAgQ2hlZXNlLDEsOC45MCw9QjMqQzNcbiAgICBDb2ZmZWUsMiw2Ljc1LD1CNCpDNFxuICAgIEFwcGxlcyw2LDAuNDUsPUI1KkM1XG4gICAgRmxvd2VycywxLDEyLjUwLD1CNipDNlxuICAgIFN1YnRvdGFsLCwsPVNVTShEMjpENilcbiAgICBEaXNjb3VudCBvdmVyIOKCrCA1MCwsMTAlLD1JRihENz41MCwtRDcqQzgsMClcbiAgICBWQVQsMjElLCw9KEQ3K0Q4KSpCOVxuICAgIFRvdGFsLCwsPUQ3K0Q4K0Q5XG4gIHsvc3ByZWFkc2hlZXR9XG57L2xpdmV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7bGl2ZSAnc2hvcCd9XG4gIHtzcHJlYWRzaGVldCAnc2hvcCcsIGVkaXRhYmxlPSdCMjpDNiwgQzgsIEI5JywgY2FwdGlvbj0nQ2hhbmdlIGEgcXVhbnRpdHkgb3IgYSBwcmljZScsXG4gICAgZm9ybWF0cz0nQzI6QzY64oKsICMsIyMwLjAwLCBEOuKCrCAjLCMjMC4wMCd9XG4gICAgSXRlbSxRdHksUHJpY2UsVG90YWxcbiAgICBCcmVhZCwyLDIuNDUsPUIyKkMyXG4gICAgQ2hlZXNlLDEsOC45MCw9QjMqQzNcbiAgICBDb2ZmZWUsMiw2Ljc1LD1CNCpDNFxuICAgIEFwcGxlcyw2LDAuNDUsPUI1KkM1XG4gICAgRmxvd2VycywxLDEyLjUwLD1CNipDNlxuICAgIFN1YnRvdGFsLCwsPVNVTShEMjpENilcbiAgICBEaXNjb3VudCBvdmVyIOKCrCA1MCwsMTAlLD1JRihENz41MCwtRDcqQzgsMClcbiAgICBWQVQsMjElLCw9KEQ3K0Q4KSpCOVxuICAgIFRvdGFsLCwsPUQ3K0Q4K0Q5XG4gIHsvc3ByZWFkc2hlZXR9XG57L2xpdmV9XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre class="sheets-source"><code><span class="hl-brc">{</span><span class="hl-tag">live</span> <span class="hl-str">&#039;shop&#039;</span><span class="hl-brc">}</span>
+  <span class="hl-brc">{</span><span class="hl-tag">spreadsheet</span> <span class="hl-str">&#039;shop&#039;</span>, <span class="hl-opt">editable</span>=<span class="hl-str">&#039;B2:C6, C8, B9&#039;</span>, <span class="hl-opt">caption</span>=<span class="hl-str">&#039;Change a quantity or a price&#039;</span>,
+    <span class="hl-opt">formats</span>=<span class="hl-str">&#039;C2:C6:€ #,##0.00, D:€ #,##0.00&#039;</span><span class="hl-brc">}</span>
+    Item,Qty,Price,Total
+    Bread,<span class="hl-num">2</span>,<span class="hl-num">2.45</span>,=B2*C2
+    Cheese,<span class="hl-num">1</span>,<span class="hl-num">8.90</span>,=B3*C3
+    Coffee,<span class="hl-num">2</span>,<span class="hl-num">6.75</span>,=B4*C4
+    Apples,<span class="hl-num">6</span>,<span class="hl-num">0.45</span>,=B5*C5
+    Flowers,<span class="hl-num">1</span>,<span class="hl-num">12.50</span>,=B6*C6
+    Subtotal,,,=SUM(D2:D6)
+    Discount over € <span class="hl-num">50</span>,,<span class="hl-num">10</span>%,=IF(D7<span class="hl-htm">&gt;</span><span class="hl-num">50</span>,-D7*C8,<span class="hl-num">0</span>)
+    VAT,<span class="hl-num">21</span>%,,=(D7+D8)*B9
+    Total,,,=D7+D8+D9
+  <span class="hl-brc">{</span><span class="hl-tag">/spreadsheet</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">/live</span><span class="hl-brc">}</span></code></pre></div>

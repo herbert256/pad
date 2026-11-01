@@ -1,0 +1,17 @@
+{spreadsheet 'grades',
+  formulas='E2:E7=AVERAGE(B2:D2), F2:F7=VLOOKUP(E2,$I$2:$J$6,2), G2:G7=RANK(E2,$E$2:$E$7)',
+  formats='E2:E7:0.0, E9:0.0'}
+  Student,Test 1,Test 2,Test 3,Average,Grade,Rank,,Lowest,Grade
+  Anna,92,88,95,,,,,0,F
+  Bram,61,70,58,,,,,55,D
+  Chen,78,82,74,,,,,65,C
+  Dirk,45,52,60,,,,,75,B
+  Eva,85,91,79,,,,,85,A
+  Fleur,70,64,69
+
+  Class average,,,,=AVERAGE(E2:E7)
+  Passed,,,,=COUNTIF(E2:E7,">=55")
+  Best,,,,=INDEX(A2:A7,MATCH(MAX(E2:E7),E2:E7,0))
+  Grade of Dirk,,,,=XLOOKUP("Dirk",A2:A7,F2:F7,"no such student")
+  Grade of Gwen,,,,=XLOOKUP("Gwen",A2:A7,F2:F7,"no such student")
+{/spreadsheet}

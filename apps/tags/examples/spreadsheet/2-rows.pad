@@ -1,0 +1,8 @@
+{meta title='Rows and a computed column', about='The rows of data= under their field names; formulas= fills a new column down the rows, as a spreadsheet fills one.'/}
+{data 'scores'}
+  name,test1,test2
+  Anna,92,88
+  Bram,61,70
+  Chen,78,82
+{/data}
+{spreadsheet 'scores', data='scores', formulas='mean=AVERAGE(B2:C2), grade=IF(D2>=75,"pass","retry")', formats='mean:0.0'/}
