@@ -2726,7 +2726,7 @@ out.
 ### widget
 An interactive part of the page that works without JavaScript and gets better with it - tabs,
 an accordion, a carousel, a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a
-toast, a copy box, a poll, a breadcrumb, a split pane. Every widget is a file of
+toast, a copy box, a poll, a breadcrumb, a split pane, a context menu. Every widget is a file of
 `pad/subs/widgets/types/` - its tag code - with its functions in `pad/subs/widgets/_lib/`, its style and
 script in `www/assets/widgets/`, and the files of `types/` are the widgets there are
 (`padWidgetTypes()`); the subsystem is `pad/subs/widgets/`.
@@ -2751,6 +2751,7 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | `accordion` | Every `{tab}` a `<details>`, opened and closed by the browser | `single`, `open` |
 | `breadcrumb` | Where the page stands - links from home to the page, from its path, its lines or data | `home`, `label`, `data` |
 | `carousel` | Slides that scroll and snap sideways, previous/next and dot links | `label` |
+| `contextmenu` | The actions on a part of the page - a right click, the context menu key or Shift+F10 opens them at the pointer or the focus, a button of three dots too | the name, `area` |
 | `copy` | A text with a copy-to-clipboard button | the text, `label` |
 | `drawer` | A panel that slides in from a side of the window, with the button that opens it | the name, `title`, `button`, `side` |
 | `dropdown` | A button and the menu it opens - the popover attribute, anchored under it | the button's text, `align` |
@@ -3245,6 +3246,54 @@ panes stand one above the other. The colours are `--pad-splitpane-accent`, `-tex
 splitpane without two `{tab}`s, a share that is no whole percentage, a `size` outside `min`
 and `max` and a `height` that is no length are errors under the strict check; the lenient walk
 puts what came after the second tab into the second pane.
+
+---
+
+### contextmenu
+A menu of the actions on a part of the page - a right click on the part opens it at the pointer,
+the context menu key or Shift+F10 at the focused element, and a small button of three dots
+beside it opens the same menu for whoever looks for one: the WAI-ARIA menu pattern
+(`subs/widgets/_lib/contextmenu.php`).
+
+```html
+<li>report.pdf
+  {contextmenu 'Actions for report.pdf'}
+    <a href="?open&file=report.pdf">Open</a>
+    <a href="?rename&file=report.pdf">Rename</a>
+    <hr>
+    <button type="submit" form="delete-report">Delete</button>
+  {/contextmenu}
+</li>
+
+<tr><td>1041</td><td>{contextmenu 'Actions for order 1041', area='tr'}...{/contextmenu}</td></tr>
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The name of the menu and of its button for a screen reader - `Actions for report.pdf` |
+| `area` | The part the right click opens the menu on: the nearest element around the menu the selector names - a tag name, a class or the two, `tr`, `.card`, `li.file`; the element the menu stands in when not given |
+
+**Behavior:** the content is rendered first and becomes the menu: links, buttons - also in a
+form of their own - a rule (`<hr>`) and a line of text (`<p>`). The button and the menu stand as
+`{dropdown}`'s do: the menu is a popover the button opens through `popovertarget`, so without
+a script the button opens it, a click outside it and Escape close it, and CSS anchor
+positioning puts it under the button - the actions are never reached by a right click alone,
+which no keyboard and no touch screen makes. A small script, once per page with the CSP nonce,
+adds the context menu: a right click in the part opens the menu at the pointer, kept inside the
+window, and the context menu key or Shift+F10 at the focused element; the menu is a `menu` of
+`menuitem`s then, the focus on the first, the arrow keys, Home and End move between them, a
+letter to the next item starting with it, Enter or a click runs one and closes the menu, Escape
+and Tab close it and the focus goes back where it was. A disabled item - `<button disabled>`,
+`<a aria-disabled="true">` - is drawn faint and skipped. A right click with Shift, or in a
+field, a text area or an editable part, keeps the browser's own menu; of menus whose parts lie
+in each other the innermost opens. The menu's wrapper takes no room (`display: contents`), so
+the button stands in the line - a block, a list item or a table cell holds it, as a `<div>`
+ends a paragraph. Printed, no button shows. The colours are `--pad-contextmenu-accent`,
+`-text`, `-muted`, `-line`, `-surface` and `-hover` on `.pad-contextmenu`, taken from the page's
+palette where it has one, with `light-dark()` defaults. A context menu without its name, one
+with an empty menu and an `area` that is no tag name or class are errors under the strict check.
 
 ---
 
@@ -5067,6 +5116,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `drawer` | Widget | A panel sliding in from a side - a modal `<dialog>` opened as `{modal}`'s, a `:target` overlay without scripting |
 | `breadcrumb` | Widget | The trail from home to the page - from the page's path, the lines of a pair or `data=` rows; no JavaScript |
 | `splitpane` | Widget | Two panes and a bar between them, dragged or moved by the arrow keys - the window splitter pattern; the resize grip without scripting |
+| `contextmenu` | Widget | The actions on a part of the page - a right click, Shift+F10 or the context menu key; its button of three dots opens the same popover without scripting |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/subs/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |

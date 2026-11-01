@@ -18,6 +18,7 @@
 {modal 'name', title='heading', button='text'} ... {/modal}
 {drawer 'name', title='heading', button='text', side='left'} ... {/drawer}
 {dropdown 'text', align='end'} <a href="..."> ... </a> ... {/dropdown}
+{contextmenu 'name', area='tr'} <a href="..."> ... </a> ... {/contextmenu}
 {tooltip 'tip'} ... {/tooltip}
 {toast 'title', tone='success', place='top', timeout=5} ... {/toast}
 {copy 'text', label='Copy'/}
@@ -29,7 +30,7 @@ PAD;
     'name' => 'The widget, a file of <code>pad/subs/widgets/types/</code>: '
             . implode ( ', ', array_map ( fn ( $widget ) => "<code>$widget</code>", padWidgetTypes () ) )
             . '. The widget: type names it as well - <code>{widget:modal \'terms\'}</code> - and so does the bare name, <code>{modal \'terms\'}</code>, after every other kind of tag: a store, a field or an array of the name wins.',
-    'first'  => 'The widget\'s own first parameter, the second of <code>{widget}</code>: the name of a modal, a drawer or a poll, the text of a copy box, the title of a toast, the button of a dropdown, the tip of a tooltip.' ];
+    'first'  => 'The widget\'s own first parameter, the second of <code>{widget}</code>: the name of a modal, a drawer, a poll or a context menu, the text of a copy box, the title of a toast, the button of a dropdown, the tip of a tooltip.' ];
 
   $tagOptions = [
     'active'  => 'tabs, wizard: the tab or step shown first, by its number from 1 or its label.',
@@ -54,7 +55,8 @@ PAD;
     'max'     => 'splitpane: the largest share of the first pane, in percent (<code>90</code>).',
     'stacked' => 'Bare option, splitpane: the panes one above the other, the bar between them across.',
     'collapse' => 'Bare option, splitpane: Enter on the bar or a double click folds the first pane away and back.',
-    'height'  => 'splitpane: the height of the panes, a CSS length - <code>300px</code>, <code>24rem</code>, <code>60vh</code>; stacked <code>20rem</code> when not given.' ];
+    'height'  => 'splitpane: the height of the panes, a CSS length - <code>300px</code>, <code>24rem</code>, <code>60vh</code>; stacked <code>20rem</code> when not given.',
+    'area'    => 'contextmenu: the part a right click opens the menu on - the nearest element around it of a tag name or a class, <code>tr</code>, <code>.card</code>; the element it stands in when not given.' ];
 
   $tagSee     = [ 'tab', 'copy', 'live', 'form' ];
 
