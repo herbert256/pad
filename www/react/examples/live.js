@@ -94,12 +94,12 @@ function Sparkline({ values }) {
            role="img" aria-label={'Last round trip ' + values[values.length - 1] + ' ms'}>
         <defs>
           <linearGradient id="spark-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="var(--react)" stopOpacity=".35" />
-            <stop offset="1" stopColor="var(--react)" stopOpacity="0" />
+            <stop offset="0" stopColor="var(--accent)" stopOpacity=".35" />
+            <stop offset="1" stopColor="var(--accent)" stopOpacity="0" />
           </linearGradient>
         </defs>
         <path d={line + ` L ${width} ${height} L 0 ${height} Z`} fill="url(#spark-fill)" />
-        <path d={line} fill="none" stroke="var(--react)" strokeWidth="2" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+        <path d={line} fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
       </svg>
       <div className="muted small" style={{ display: 'flex', justifyContent: 'space-between' }}>
         <span>{values.length} answers</span>

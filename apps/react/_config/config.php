@@ -14,9 +14,8 @@
   // Tidy HTML output
   $padTidy = FALSE;
 
-  // _inits.pad writes the whole HTML page itself, so _common's page frame stays off - with
-  // it on, the page was a second document inside _common's body, in quirks mode, and every
-  // title was _common's page name.
+  // _common's parts stay off - its tags, and its title from the page's name. The frame of
+  // the PAD applications is reached all the same, {common:padFrame} in _inits.pad.
   $padCommon = FALSE;
 
   // CSRF protection: a post without the session's token is answered 403 before the page

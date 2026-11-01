@@ -15,6 +15,12 @@ its template, PHP and component underneath (coloured on the server by the `{sour
 - `?patterns` - every example, grouped
 - `?guide` - building an island of your own, and the runtime's calls
 
+The pages stand in the frame the PAD applications share (`{common:padFrame}`, as in the
+sections application): the brand and the menu - these three pages and the examples under the
+heading of their group - in the side, and in the bar the page's title, the theme switcher and
+the light/dark switch. The colours of the pages and the components are the frame's, so every
+theme colours them too.
+
 ## The examples
 
 **Server to React** - the data is in the HTML before the first paint.
@@ -42,22 +48,22 @@ its template, PHP and component underneath (coloured on the server by the `{sour
 
 ```
 apps/react/
-├── _config/config.php     # $padCommon off (the app writes its own page), $padCsrf on
+├── _config/config.php     # $padCommon off, $padCsrf on
 ├── .env                   # the support database of the topic example
-├── _inits.pad, _inits.php # the page: React, the runtime, the menu, the theme switch
-├── _data/                 # examples.json (the catalogue), products, team, sales, nav
+├── _inits.pad, _inits.php # the shared frame: React, the runtime, the menu
+├── _data/                 # examples.json (the catalogue - and the menu), products, team, sales
 ├── _lib/react.php         # reactData, reactGroups, reactExample, reactCart, reactText
 ├── _tags/json.php         # {json 'products'/} - a _data file for an attribute
 ├── _providers/            # the {reactData/} providers of the topic example
 ├── _guide/                # the sample files the guide shows
-├── index, patterns, guide # the three pages of the menu
+├── index, patterns, guide # the three pages on top of the menu
 └── examples/
     ├── _inits.php/.pad    # the example's header, from _data/examples.json
     ├── _exits.pad         # its sources and the links to the next one
     └── props.pad ...      # one page per example - its .php when it needs one
 
 www/react/
-├── react.css              # the look: tokens, light and dark
+├── react.css              # what stands in the pages, in the frame's colours
 ├── pad-react.js           # the runtime - plain JavaScript
 ├── ui.js                  # shared pieces: RequestLog, Stars, Avatar, CountUp, useToast
 ├── index.js               # the home page's island
@@ -83,7 +89,7 @@ unpkg.com; Babel turns the JSX into JavaScript in the browser, so there is no bu
 
 It also puts the version of `www/react/` (its newest file's time, `$reactVersion` in
 `_inits.php`) on the address of every component, so a browser never runs the old copy of a
-component that changed, and keeps the light/dark choice of the top bar.
+component that changed. Light, dark and the themes are the frame's.
 
 ## Going to production
 

@@ -1,6 +1,5 @@
-{meta title='Guide - PAD + htmx'/}
+{meta title='How PAD answers htmx'/}
 <header class="example-head">
-  <h1>How PAD answers htmx</h1>
   <p class="lede">
     htmx asks for HTML and swaps it in. A PAD page is HTML with names on its parts - so the
     same template answers the browser's first visit and every question htmx asks after it.
@@ -37,7 +36,9 @@
 <h2>3. Posts carry the token</h2>
 <p>With <code>$padCsrf</code> on, a post without the session's token is refused before the page
    runs. A {open/}form{close/} carries it as a field; for an <code>hx-post</code> on anything else, put
-   the header on the body once - the ^ sigil writes the array as JSON for the attribute:</p>
+   the header once on an element around the page - the body, or here the one the frame's page
+   stands in - and htmx sends it with every request below; the ^ sigil writes the array as JSON
+   for the attribute:</p>
 {highlight 'pad'}
 <body hx-headers="{^headers}">          <!-- $headers = [ 'X-CSRF-Token' => padCsrfToken () ] -->
 {/highlight}

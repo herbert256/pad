@@ -1,13 +1,24 @@
 <?php
 
-  // Every page: the title the wrapper writes unless the page sets its own, the section of
-  // the menu that is lit and the version of the files in www/alpine/ for their addresses.
+  // Every page: the title the frame's bar shows unless the page sets its own, and the menu
+  // of the frame every PAD application shares (_common/_tags/padFrame.pad) - the home page,
+  // the guide and the examples under the heading of their group, as _data/examples.json has
+  // them.
 
-  $title      = 'PAD + Alpine';
-  $navSection = str_starts_with ( $padPage, 'examples/' ) ? 'index' : explode ( '/', $padPage ) [0];
+  $title = 'PAD + Alpine';
 
-  $alpineWww     = dirname ( APPS ) . "/www/$padApp/";
-  $alpineVersion = max ( array_map ( 'filemtime', array_merge ( glob ( "$alpineWww*.css" ) ?: [], glob ( "$alpineWww*.js" ) ?: [],
-                                                                glob ( "{$alpineWww}examples/*.js" ) ?: [] ) ) ?: [ 0 ] );
+  $frameMenu = [ [ 'link' => '?index', 'label' => 'Examples', 'icon' => 'home' ],
+                 [ 'link' => '?guide', 'label' => 'Guide',    'icon' => 'book-open' ] ];
+
+  foreach ( alpineGroups () as $alpineGroup ) {
+
+    $frameMenu [] = [ 'head' => $alpineGroup ['title'] ];
+
+    foreach ( $alpineGroup ['examples'] as $alpineOne )
+      $frameMenu [] = [ 'link' => '?' . $alpineOne ['page'], 'label' => $alpineOne ['title'], 'icon' => '' ];
+
+  }
+
+  unset ( $alpineGroup, $alpineOne );
 
 ?>

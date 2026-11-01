@@ -12,39 +12,13 @@
 //   PadReact.useData, PadReact.useDebounced  hooks around the same
 //
 // Every request is told to the page as a 'pad:request' event - the request log of the
-// examples listens for it. The theme switch of the top bar lives here too, and the version
-// on the components' addresses. Loaded before Babel, after React.
+// examples listens for it. The version on the components' addresses is put on here too.
+// Light, dark and the themes are the frame's (www/_common/pad.js and the switcher in its
+// bar). Loaded before Babel, after React.
 
 (function () {
 
   'use strict';
-
-  // ------------------------------------------------------------------ the theme
-
-  var themeKey = 'pad-react-theme';
-
-  function storedTheme () {
-    try { return localStorage.getItem(themeKey); } catch (e) { return null; }
-  }
-
-  function applyTheme (theme) {
-    if (theme === 'light' || theme === 'dark')
-      document.documentElement.setAttribute('data-theme', theme);
-    else
-      document.documentElement.removeAttribute('data-theme');
-  }
-
-  applyTheme(storedTheme());
-
-  document.addEventListener('click', function (event) {
-    var button = event.target.closest && event.target.closest('[data-theme-toggle]');
-    if (!button) return;
-    var dark = document.documentElement.getAttribute('data-theme') === 'dark' ||
-               (!document.documentElement.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
-    var next = dark ? 'light' : 'dark';
-    applyTheme(next);
-    try { localStorage.setItem(themeKey, next); } catch (e) { /* private window */ }
-  });
 
   // ------------------------------------------------------------------ fresh components
 

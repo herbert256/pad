@@ -1,6 +1,6 @@
 <?php
 
-  $title  = 'Patterns - PAD + React';
+  $title  = 'Patterns';
   $groups = reactGroups ();
 
 ?>

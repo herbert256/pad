@@ -9,6 +9,12 @@ Alpine brings parts of a PAD page to life where they stand; PAD hands it its sta
 Six examples, each a page with the live component on top, the requests it made to PAD under
 it and the template, PHP and script below that (`{source}`).
 
+The pages stand in the frame the PAD applications share (`{common:padFrame}`, as in the
+sections application): the brand and the menu - the home page, the guide and the examples
+under the heading of their group - in the side, and in the bar the page's title, the theme
+switcher and the light/dark switch. The colours of the pages are the frame's, so every theme
+colours them too.
+
 | Page | Shows |
 |------|-------|
 | `examples/state` | `x-data="{^profile}"` - the state is the JSON of a PHP array, no brace of Alpine's in the template |
@@ -31,15 +37,15 @@ tag either, for a short object: `x-data="{ open: false }"`.
 ```
 apps/alpine/
 ├── _config/config.php     # $padCommon off, $padTidy off, $padCsrf on
-├── _data/                 # examples.json (the catalogue), products, todos, nav
+├── _data/                 # examples.json (the catalogue - and the menu), products, todos
 ├── _lib/alpine.php        # alpineData, alpineGroups, alpineExample, alpineText
-├── _inits.pad, _inits.php # the page: the csrf-token meta, alpine-app.js, then Alpine deferred
+├── _inits.pad, _inits.php # the shared frame: the csrf-token meta, alpine-app.js, then Alpine deferred, the menu
 ├── index, guide           # the examples, and Alpine on a PAD page
 └── examples/              # one page per example, with _inits/_exits round them
 
 www/alpine/
-├── alpine.css             # the look, light and dark
-├── alpine-app.js          # pad.get, pad.post (with the CSRF header), the request log, the theme
+├── alpine.css             # what stands in the pages, in the frame's colours
+├── alpine-app.js          # pad.get, pad.post (with the CSRF header), the request log
 └── examples/*.js          # the Alpine.data components of each example, by the page's name
 ```
 

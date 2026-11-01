@@ -1,14 +1,26 @@
 <?php
 
-  // Every page: the title the wrapper writes unless the page sets its own, the section of
-  // the menu that is lit, the version of the files in www/htmx/ for their addresses, and the
-  // header every htmx request sends - the session's CSRF token, which a post needs.
+  // Every page: the title the frame's bar shows unless the page sets its own, the menu of
+  // the frame every PAD application shares (_common/_tags/padFrame.pad) - the home page, the
+  // guide and the examples under the heading of their group, as _data/examples.json has
+  // them - the header every htmx request sends - the session's CSRF token, which a post
+  // needs - and the count of the cart badge in the bar.
 
-  $title      = 'PAD + htmx';
-  $navSection = str_starts_with ( $padPage, 'examples/' ) ? 'index' : explode ( '/', $padPage ) [0];
+  $title = 'PAD + htmx';
 
-  $htmxWww     = dirname ( APPS ) . "/www/$padApp/";
-  $htmxVersion = max ( array_map ( 'filemtime', array_merge ( glob ( "$htmxWww*.css" ) ?: [], glob ( "$htmxWww*.js" ) ?: [] ) ) ?: [ 0 ] );
+  $frameMenu = [ [ 'link' => '?index', 'label' => 'Examples', 'icon' => 'home' ],
+                 [ 'link' => '?guide', 'label' => 'Guide',    'icon' => 'book-open' ] ];
+
+  foreach ( htmxGroups () as $htmxGroup ) {
+
+    $frameMenu [] = [ 'head' => $htmxGroup ['title'] ];
+
+    foreach ( $htmxGroup ['examples'] as $htmxOne )
+      $frameMenu [] = [ 'link' => '?' . $htmxOne ['page'], 'label' => $htmxOne ['title'], 'icon' => '' ];
+
+  }
+
+  unset ( $htmxGroup, $htmxOne );
 
   $htmxHeaders = [ 'X-CSRF-Token' => padCsrfToken () ];
 

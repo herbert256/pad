@@ -1,18 +1,31 @@
 <?php
 
-  // Every page: the title the wrapper writes unless the page sets its own, the section of
-  // the menu that is lit - the first part of the page's name, the examples belonging to the
-  // patterns - and the version of the files in www/react/.
+  // Every page: the title the frame's bar shows unless the page sets its own, the menu of
+  // the frame every PAD application shares (_common/_tags/padFrame.pad) - the home page, the
+  // patterns and the guide, then the examples under the heading of their group, as
+  // _data/examples.json has them - and the version of the files in www/react/.
 
-  $title      = 'PAD + React';
-  $navSection = explode ( '/', $padPage ) [0];
+  $title = 'PAD + React';
 
-  if ( $navSection == 'examples' )
-    $navSection = 'patterns';
+  $frameMenu = [ [ 'link' => '?index',    'label' => 'Home',     'icon' => 'home' ],
+                 [ 'link' => '?patterns', 'label' => 'Patterns', 'icon' => 'grid' ],
+                 [ 'link' => '?guide',    'label' => 'Guide',    'icon' => 'book-open' ] ];
+
+  foreach ( reactGroups () as $reactGroup ) {
+
+    $frameMenu [] = [ 'head' => $reactGroup ['title'] ];
+
+    foreach ( $reactGroup ['examples'] as $reactOne )
+      $frameMenu [] = [ 'link' => '?' . $reactOne ['page'], 'label' => $reactOne ['title'], 'icon' => '' ];
+
+  }
+
+  unset ( $reactGroup, $reactOne );
 
   // The version of www/react/ - when its newest file was saved - for the addresses of the
-  // stylesheet and the scripts: a browser keeps such a file a while without asking again,
-  // and would run the old copy of a component that changed (pad-react.js).
+  // components Babel fetches: a browser keeps such a file a while without asking again, and
+  // would run the old copy of a component that changed (pad-react.js). The stylesheet and
+  // the runtime carry the version {asset} gives them.
   //
   // The files are the ones the globs *.css, *.js and examples/*.js matched, found in the
   // listings of the two directories PAD keeps between requests (padDirList) - a file added

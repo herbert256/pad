@@ -5,34 +5,13 @@
 //                                X-CSRF-Token header (from <meta name="csrf-token">)
 //   the request log              every request of pad.get and pad.post, listed under the
 //                                example - the components never touch it
-//   the theme                    light or dark, remembered in localStorage
 //
 // An error answer is thrown with its status and parsed body, so a component can show it.
+// Light, dark and the themes are the frame's (www/_common/pad.js and the switcher in its bar).
 
 (function () {
 
   'use strict';
-
-  var themeKey = 'pad-alpine-theme';
-
-  function stored() {
-    try { return localStorage.getItem(themeKey); } catch (e) { return null; }
-  }
-
-  function apply(theme) {
-    if (theme === 'light' || theme === 'dark') document.documentElement.setAttribute('data-theme', theme);
-  }
-
-  apply(stored());
-
-  document.addEventListener('click', function (event) {
-    if (!event.target.closest('[data-theme-toggle]')) return;
-    var now = document.documentElement.getAttribute('data-theme') ||
-              (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    var next = now === 'dark' ? 'light' : 'dark';
-    apply(next);
-    try { localStorage.setItem(themeKey, next); } catch (e) { /* private window */ }
-  });
 
   // ---------------------------------------------------------------- requests back to PAD
 
