@@ -546,9 +546,12 @@
 
     $value = trim ( (string) $value );
 
-    if ( preg_match ( '/^([0-9]{4})-([0-9]{2})-([0-9]{2})(T([0-9]{2}):([0-9]{2})(:([0-9]{2})(\.[0-9]+)?)?(Z|[+-][0-9]{2}:?[0-9]{2})?)?$/D', $value, $m ) )
+    // The offset of a time is one of the earth's, at most 14 hours from UTC: +99:99 is none.
+
+    if ( preg_match ( '/^([0-9]{4})-([0-9]{2})-([0-9]{2})(T([0-9]{2}):([0-9]{2})(:([0-9]{2})(\.[0-9]+)?)?(Z|[+-]([0-9]{2}):?([0-9]{2}))?)?$/D', $value, $m ) )
       return ( checkdate ( (int) $m [2], (int) $m [3], (int) $m [1] )
-               and ( ! isset ( $m [5] ) or ( $m [5] < 24 and $m [6] < 60 and ( $m [8] ?? '' ) < 60 ) ) ) ? $value : FALSE;
+               and ( ! isset ( $m [5] ) or ( $m [5] < 24 and $m [6] < 60 and ( $m [8] ?? '' ) < 60 ) )
+               and ( ( $m [11] ?? '' ) === '' or ( $m [12] < 60 and $m [11] * 60 + $m [12] <= 14 * 60 ) ) ) ? $value : FALSE;
 
     $parts = date_parse ( $value );
 
