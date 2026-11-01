@@ -11,7 +11,9 @@
    Enter the one option a filter leaves; Escape closes the list, then empties the filter;
    Backspace in the empty filter takes the last chip out, and every chip has a button that
    takes it out. Typing filters the list - in any case, accents or not. What changes is said
-   to a screen reader, politely. Nothing moves: no transition, the list scrolled at once. */
+   to a screen reader, politely. Nothing moves: no transition, the list scrolled at once. A
+   field disabled - by its attribute or by a <fieldset disabled> round it - opens nothing and
+   changes nothing, as the native select. */
 PadInputs.register('multiselect', function (frame, cfg, kit) {
   var select = frame.querySelector('select[multiple]');
   var said = frame.querySelector('.pi-ms-said');
@@ -88,6 +90,13 @@ PadInputs.register('multiselect', function (frame, cfg, kit) {
 
   var shown = [], current = -1, timer = null;
 
+  // A field disabled - by its attribute, or by a <fieldset disabled> round it, which leaves
+  // select.disabled false - opens nothing and changes nothing, as the native select: asked
+  // each time, as a script may enable the fieldset again.
+  function locked() {
+    return select.matches(':disabled');
+  }
+
   function say(text) {
     clearTimeout(timer);
     timer = setTimeout(function () { if (said) said.textContent = text; }, 150);
@@ -105,7 +114,7 @@ PadInputs.register('multiselect', function (frame, cfg, kit) {
       li.appendChild(kit.el('span', 'pi-chip-text', option.text));
       var x = kit.el('button', 'pi-chip-x', '×');
       x.type = 'button';
-      x.disabled = select.disabled || option.disabled;
+      x.disabled = locked() || option.disabled;
       x.setAttribute('aria-label', 'Remove ' + option.text);
       x.addEventListener('click', function () { choose(i, false); filter.focus(); });
       li.appendChild(x);
@@ -118,7 +127,7 @@ PadInputs.register('multiselect', function (frame, cfg, kit) {
 
   function choose(i, on) {
     var option = options[i];
-    if (!option || option.disabled || select.disabled || option.selected === on) return;
+    if (!option || option.disabled || locked() || option.selected === on) return;
     option.selected = on;
     render();
     say(option.text + (on ? ' chosen' : ' removed'));
@@ -146,6 +155,7 @@ PadInputs.register('multiselect', function (frame, cfg, kit) {
   }
 
   function open() {
+    if (locked()) return;
     fill();
     if (!shown.length) { close(); say('No choices hold what is typed'); return; }
     list.hidden = false;
