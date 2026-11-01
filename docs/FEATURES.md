@@ -872,11 +872,13 @@ checker:
     Oslo{/combobox}                                        # options=, data=, or a line each
   {multiselect 'tags', label='Tags', options='pad, php, maps', rules='required|in:pad,php,maps'/}   # posts the list tags[]
   {segmented 'size', label='Size', options='S, M, L'/}    # a radio group drawn as one bar
+  {durationpicker 'length', label='Length', parts='hm'/} # posts seconds: 5400 for 1 h 30 min
   {signature 'signed', label='Signature'/}                 # posts a PNG data URL
   {dropzone 'cv', label='Your CV', accept='.pdf', limit='2M'/}   # padUpload takes it
 {/form}
 ```
 The kinds are the files of `pad/subs/inputs/types/` - colorpicker, combobox, datepicker, dropzone,
+durationpicker (a box per part - days, hours, minutes, seconds - over a number of seconds),
 mdeditor (Markdown with a live preview), multiselect (chips and a filtered list over a select of
 many), newpassword (strength meter, show/hide; `known` for a
 login), otp (a box per character), segmented (a radio group drawn as one bar, without script),

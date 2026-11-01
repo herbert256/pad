@@ -1,0 +1,13 @@
+{meta title='Duration picker'/}
+{about/}
+
+{form 'try', class='inputs-try', error}
+  {durationpicker 'length', label='Length of the talk', parts='hm', value=5400, rules='required|integer|between:600,28800'/}
+  {input:durationpicker 'lap', label='Lap time', parts='ms', max=3599/}
+  {durationpicker 'project', label='Time spent', parts='dhm'/}
+  <button class="inputs-send">Send</button>
+{/form}
+
+{received/}
+
+{template/}
