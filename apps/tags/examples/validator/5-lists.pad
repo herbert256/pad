@@ -1,0 +1,11 @@
+{meta title='Rules for a list', about='A field named guests[] posts a list: distinct refuses a value it holds twice, the fields left blank left out.'/}
+<form method="get" novalidate data-pad-rules="{^partyRules}">
+  <fieldset>
+    <legend>Guests</legend>
+    <label>First <input name="guests[]" type="email"></label>
+    <label>Second <input name="guests[]" type="email"></label>
+    <label>Third <input name="guests[]" type="email"></label>
+  </fieldset>
+  <button>Check</button>
+</form>
+{validator/}

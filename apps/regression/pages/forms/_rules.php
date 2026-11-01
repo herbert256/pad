@@ -218,6 +218,27 @@
       [ 'new_password', 'different:current_password|min:3', [ 'current_password' => 'pw', 'new_password' => 'px' ] ],
       [ 'passwords[]', 'different:current',              [ 'current' => 'a', 'passwords[]' => [ 'b' ] ] ],
       [ 'password', 'different:current',                 [ 'current' => 'a', 'password' => [ 'b' ] ] ]
+    ],
+
+    'distinct' => [
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ 'ada@example.com', 'bob@example.com' ] ] ],
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ 'ada@example.com', 'ada@example.com' ] ] ],
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ 'ada@example.com', ' ada@example.com ' ] ] ],
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ 'ada@example.com', 'Ada@example.com' ] ] ],
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ 'ada@example.com', '', '' ] ] ],
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ '', ' ', "\t" ] ] ],
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ '1', '01', '1.0' ] ] ],
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ '0', '0' ] ] ],
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ 'a', 'b', 'c', 'b' ] ] ],
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ 'José', 'José' ] ] ],
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ "Jos\u{E9}", "Jose\u{301}" ] ] ],
+      [ 'guests[]', 'distinct',                          [ 'guests[]' => [ ] ] ],
+      [ 'guests[]', 'distinct',                          [ ] ],
+      [ 'guests[]', 'required|distinct',                 [ 'guests[]' => [ ] ] ],
+      [ 'guests[]', 'distinct|in:a,b',                   [ 'guests[]' => [ 'a', 'c' ] ] ],
+      [ 'guests[]', 'distinct|in:a,b',                   [ 'guests[]' => [ 'a', 'a' ] ] ],
+      [ 'guest',    'distinct',                          [ 'guest' => 'ada' ] ],
+      [ 'guest',    'distinct',                          [ 'guest' => [ 'ada', 'ada' ] ] ]
     ]
 
   ];

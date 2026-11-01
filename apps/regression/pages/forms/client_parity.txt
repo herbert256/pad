@@ -9539,6 +9539,483 @@
                     ]
                 }
             }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "ada@example.com",
+                    "bob@example.com"
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "ada@example.com",
+                    "ada@example.com"
+                ]
+            },
+            "server": "Guests must not hold the same value twice",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "ada@example.com",
+                    " ada@example.com "
+                ]
+            },
+            "server": "Guests must not hold the same value twice",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "ada@example.com",
+                    "Ada@example.com"
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "ada@example.com",
+                    "",
+                    ""
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "",
+                    " ",
+                    "\t"
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "1",
+                    "01",
+                    "1.0"
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "0",
+                    "0"
+                ]
+            },
+            "server": "Guests must not hold the same value twice",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "a",
+                    "b",
+                    "c",
+                    "b"
+                ]
+            },
+            "server": "Guests must not hold the same value twice",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "José",
+                    "José"
+                ]
+            },
+            "server": "Guests must not hold the same value twice",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "José",
+                    "José"
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": []
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {},
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": []
+            },
+            "server": "Guests is required",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "a",
+                    "c"
+                ]
+            },
+            "server": "Guests must be one of a, b",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ],
+                        [
+                            "in",
+                            "a,b",
+                            ":label must be one of :n",
+                            "a, b"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "a",
+                    "a"
+                ]
+            },
+            "server": "Guests must not hold the same value twice",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ],
+                        [
+                            "in",
+                            "a,b",
+                            ":label must be one of :n",
+                            "a, b"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guest",
+            "data": {
+                "guest": "ada"
+            },
+            "server": "",
+            "client": {
+                "guest": {
+                    "label": "Guest",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guest",
+            "data": {
+                "guest": [
+                    "ada",
+                    "ada"
+                ]
+            },
+            "server": "Guest must be a single value",
+            "client": {
+                "guest": {
+                    "label": "Guest",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "distinct",
+                            "",
+                            ":label must not hold the same value twice",
+                            ""
+                        ]
+                    ]
+                }
+            }
         }
     ]
 }

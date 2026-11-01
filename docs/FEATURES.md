@@ -724,6 +724,11 @@ judges one text - `min:2`, `email` - on a field that posts a list (`tags[]`, a `
 a list is judged by `required`, the `required_*` rules, `in:` and `not_in:` alone, and any other
 refuses every post of it.
 
+Some rules speak about a list, a field named `guests[]`: `distinct` refuses a value it holds
+twice - as written, each trimmed, an item left blank no value (three fields of `guests[]`, two
+of them empty, pass) - "Guests must not hold the same value twice"; a field of one value holds
+its value once.
+
 Some rules look at another field of the post:
 ```
 {input 'delivery'/}
