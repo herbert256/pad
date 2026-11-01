@@ -511,6 +511,13 @@
       $html .= " <a class=\"pad-sound-download\" href=\"$url\" type=\"audio/wav\" download=\"$kind.wav\">" . padWidgetAttr ( $text ) . '</a>';
     }
 
+    // A {cache} section round a link to the WAV is not kept, as one round a {pdf} is not
+    // (padFragmentKeepNot): on a hit the tag did not run, and the page asked with &padSound
+    // answered its HTML - and the link holds this request's own values.
+
+    if ( str_contains ( $html, "href=\"$url\"" ) )
+      padFragmentKeepNot ();
+
     return padSoundStyle () . padProtect ( "<span class=\"pad-sound pad-sound-$kind\">$html</span>" ) . padSoundScript ();
 
   }

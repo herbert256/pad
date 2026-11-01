@@ -265,7 +265,9 @@
     // the request asked for answers a document, as {pdf} has it, and its links asked the
     // page around it, which answered its HTML. Nor inside a {pdf}, whose document the sheets
     // are a part of already: asked for its own, the printable's sheets came first, under its
-    // name, and the {pdf}'s content brought them again.
+    // name, and the {pdf}'s content brought them again. A {cache} section round the links is
+    // not kept, as one round a {pdf} is not: on a hit the printable did not run, and the
+    // page asked with &padPdf answered its HTML.
 
     if ( padPrintableFlag ( 'pdf' ) ) {
 
@@ -274,6 +276,7 @@
       if ( ! ( $padGuardNested ?? FALSE ) and ! padPrintableInPdf () ) {
         include_once PAD . 'tags/_lib/pdf.php';
         $links = padPdfLinks ( $file );
+        padFragmentKeepNot ();
       }
 
     }
