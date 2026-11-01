@@ -84,6 +84,8 @@
       'format/infobjects'         => 'The fixture of format/a_float_past_the_range_inside_an_object_is_null_in_a_json_answer, fetched bare: {^field} over objects holding INF and NAN, null at any depth',
       'format/a_csv_answer_of_a_record_or_of_objects_is_a_table' => 'A CSV answer of a record holding a list is one row, and of json_decode objects a row per object',
       'format/records'            => 'The fixture of format/a_csv_answer_of_a_record_or_of_objects_is_a_table, fetched bare: its page',
+      'format/formats'            => 'A page answers in every format of pad/subs/formats that writes - toml, yaml, ini, ndjson, md, tsv, ics, vcf, rss, atom, jsonfeed, geojson, gpx, xlsx - with the format\'s content type and file name; text/calendar, application/rss+xml and application/toml in the Accept header ask for theirs, a browser\'s and text/plain for the page, a read-only format is 406',
+      'format/events'             => 'The fixture of format/formats, fetched bare: its page, the events it exposes with $padFormatOptions',
       'sse/ticks'                 => 'padSse with a producer that sends its own events - the retry first, a named event with an id and JSON, text over two lines, a plain message',
       'sse/every'                 => 'padSse calling the producer on an interval - an array sent as the named event, NULL sending nothing, FALSE ending the stream',
       'sse/headers'               => 'A stream as the browser gets it: text/event-stream, no-cache, no proxy buffering, and the last id back as a header or query value with its line break taken out',

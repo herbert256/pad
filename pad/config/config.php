@@ -142,9 +142,11 @@
   // 'web' the page to the browser; 'file' written to disk, after which the request restarts
   // at $padFileNextPage; 'download' sent as an attachment; 'console' plain text for the
   // command line - the cli SAPI gets it by itself; 'json' and 'csv' the page's $padExpose
-  // variables as data instead of the template.
+  // variables as data instead of the template; 'format' those in the format $padOutputFormat
+  // names (ics, xlsx, toml ... - a format of pad/subs/formats/ that writes).
 
-  $padOutputType = 'web';
+  $padOutputType   = 'web';
+  $padOutputFormat = '';
 
   // The page variables a page answers as data - for ?page&padFormat=json or csv, for an
   // Accept header that prefers application/json or text/csv, and under the json and csv
@@ -154,6 +156,14 @@
   // engine name never does.
 
   $padExpose = [];
+
+  // The options of the writer a data answer in a format of pad/subs/formats/ is made by
+  // (lib/expose.php) - for ?page&padFormat=rss [ 'title' => 'Blog', 'link' => 'https://...' ],
+  // for ics [ 'name' => 'Talks' ], for xlsx [ 'sheet' => 'Orders' ]. Set in the page's .php
+  // beside $padExpose; a feed's title is the page's name and its link the page's address
+  // without them.
+
+  $padFormatOptions = [];
 
   // The page cache (cache/inits.php, cache/exits.php): TRUE keeps the whole answer of a
   // plain GET for an anonymous visitor and answers the next one from it - 304 or the stored

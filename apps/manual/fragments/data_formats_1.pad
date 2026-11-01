@@ -1,0 +1,19 @@
+{data 'trip', format='toml'}
+  title = "Weekend in Ghent"
+  start = 2026-11-06
+
+  [[stops]]
+  name = "Gravensteen"
+  hours = 2
+
+  [[stops]]
+  name = "Graslei"
+  hours = 1.5
+{/data}
+
+{trip}
+  <h3>{$title} - {$start}</h3>
+  <ul>
+    {stops}<li>{$name}: {$hours} h</li>{/stops}
+  </ul>
+{/trip}

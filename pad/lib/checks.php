@@ -267,6 +267,13 @@
     else
       $type = '';
 
+    // A text that opens with a brace and holds no one document - a JSON value a line, NDJSON -
+    // is a format of the formats subsystem that knows it (lib/format.php padFormatSniff):
+    // read as one JSON document it was an error.
+
+    if ( $type == 'json' and ( $content [0] == '{' or $content [0] == '&' ) and ( $padSniff = padFormatSniff ( $content, 'json' ) ) )
+      return $padSniff;
+
     if ( $type )
       return $type;
 
@@ -351,6 +358,14 @@
 
     if ( ! str_contains ( $content, "\n" ) and preg_match ( '#(^|[/\\\\])\.\.([/\\\\]|$)#', $content ) )
       return 'file';
+
+    // What would be read as CSV may be a format of the formats subsystem that knows it on
+    // sight - BEGIN:VCALENDAR, BEGIN:VCARD, a Markdown pipe table, a header of tabs: as CSV
+    // each was one column named after its first line. Asked last, so no text read as
+    // anything else before reads otherwise now.
+
+    if ( $padSniff = padFormatSniff ( $content, 'csv' ) )
+      return $padSniff;
 
     return 'csv';
 

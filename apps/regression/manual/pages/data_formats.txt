@@ -1,0 +1,230 @@
+<p>Besides JSON, XML, YAML and CSV, <b>{data}</b> reads the formats of
+<code>pad/subs/formats/</code>: TOML, INI, TSV, NDJSON, Markdown pipe tables, iCalendar,
+vCard, GeoJSON, GPX and Excel spreadsheets. Name the format with <code>format=</code> - or
+<code>type=</code>, the same option:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/data_formats_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiJ7ZGF0YSAndHJpcCcsIGZvcm1hdD0ndG9tbCd9XG4gIHRpdGxlID0gXCJXZWVrZW5kIGluIEdoZW50XCJcbiAgc3RhcnQgPSAyMDI2LTExLTA2XG5cbiAgW1tzdG9wc11dXG4gIG5hbWUgPSBcIkdyYXZlbnN0ZWVuXCJcbiAgaG91cnMgPSAyXG5cbiAgW1tzdG9wc11dXG4gIG5hbWUgPSBcIkdyYXNsZWlcIlxuICBob3VycyA9IDEuNVxuey9kYXRhfVxuXG57dHJpcH1cbiAgPGgzPnskdGl0bGV9IC0geyRzdGFydH08L2gzPlxuICA8dWw+XG4gICAge3N0b3BzfTxsaT57JG5hbWV9OiB7JGhvdXJzfSBoPC9saT57L3N0b3BzfVxuICA8L3VsPlxuey90cmlwfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGF0YSAndHJpcCcsIGZvcm1hdD0ndG9tbCd9XG4gIHRpdGxlID0gXCJXZWVrZW5kIGluIEdoZW50XCJcbiAgc3RhcnQgPSAyMDI2LTExLTA2XG5cbiAgW1tzdG9wc11dXG4gIG5hbWUgPSBcIkdyYXZlbnN0ZWVuXCJcbiAgaG91cnMgPSAyXG5cbiAgW1tzdG9wc11dXG4gIG5hbWUgPSBcIkdyYXNsZWlcIlxuICBob3VycyA9IDEuNVxuey9kYXRhfVxuXG57dHJpcH1cbiAgPGgzPnskdGl0bGV9IC0geyRzdGFydH08L2gzPlxuICA8dWw+XG4gICAge3N0b3BzfTxsaT57JG5hbWV9OiB7JGhvdXJzfSBoPC9saT57L3N0b3BzfVxuICA8L3VsPlxuey90cmlwfVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>trip<font color="black">'</font><font color="black">,</font> format=<font color="black">'</font>toml<font color="black">'</font></font>}</b><br>  title = "Weekend in Ghent"<br>  start = 2026-11-06<br><br>  [[stops]]<br>  name = "Gravensteen"<br>  hours = 2<br><br>  [[stops]]<br>  name = "Graslei"<br>  hours = 1.5<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">trip</font><font color="red"></font>}</b><br>  &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b> - <b>{<font color="green"><font color="red">$</font>start</font>}</b>&lt;/h3&gt;<br>  &lt;ul&gt;<br>    <b>{<font color="blue">stops</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>: <b>{<font color="green"><font color="red">$</font>hours</font>}</b> h&lt;/li&gt;<b>{/<font color="blue">stops</font><font color="red"></font>}</b><br>  &lt;/ul&gt;<br><b>{/<font color="blue">trip</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+
+  <h3>Weekend in Ghent - 2026-11-06</h3>
+  <ul>
+    <li>Gravensteen: 2 h</li><li>Graslei: 1.5 h</li>
+  </ul>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>An array of tables is a list of rows inside the row, so <code>{stops}</code>
+iterates it; a date is the text it is, <code>2026-11-06</code>.</p>
+
+<h2>Known on sight</h2>
+
+<p>Some formats need no name: a text that opens with <code>BEGIN:VCALENDAR</code> is a
+calendar, <code>BEGIN:VCARD</code> a vCard, lines of JSON objects NDJSON, a Markdown pipe
+table a table and a header of tabs TSV. Each event is a row - <code>summary</code>,
+<code>start</code>, <code>end</code>, <code>allday</code>, <code>location</code> and the rest:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/data_formats_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiJ7ZGF0YSAnYWdlbmRhJ31cbiAgQkVHSU46VkNBTEVOREFSXG4gIFZFUlNJT046Mi4wXG4gIEJFR0lOOlZFVkVOVFxuICBVSUQ6dGFsa0BleGFtcGxlLmNvbVxuICBEVFNUQVJUOjIwMjYxMTA2VDA5MDAwMFpcbiAgRFRFTkQ6MjAyNjExMDZUMTAwMDAwWlxuICBTVU1NQVJZOk9wZW5pbmcgdGFsa1xuICBMT0NBVElPTjpIYWxsIEFcbiAgRU5EOlZFVkVOVFxuICBCRUdJTjpWRVZFTlRcbiAgVUlEOmRpbm5lckBleGFtcGxlLmNvbVxuICBEVFNUQVJUO1ZBTFVFPURBVEU6MjAyNjExMDdcbiAgU1VNTUFSWTpDb25mZXJlbmNlIGRpbm5lclxcLCBhbGwgd2VsY29tZVxuICBFTkQ6VkVWRU5UXG4gIEVORDpWQ0FMRU5EQVJcbnsvZGF0YX1cblxuPHVsPlxuICB7YWdlbmRhfVxuICAgIDxsaT57JHN1bW1hcnl9IC0geyRzdGFydH17aWYgJGFsbGRheX0gKGFsbCBkYXkpey9pZn17aWYgJGxvY2F0aW9ufSAtIHskbG9jYXRpb259ey9pZn08L2xpPlxuICB7L2FnZW5kYX1cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGF0YSAnYWdlbmRhJ31cbiAgQkVHSU46VkNBTEVOREFSXG4gIFZFUlNJT046Mi4wXG4gIEJFR0lOOlZFVkVOVFxuICBVSUQ6dGFsa0BleGFtcGxlLmNvbVxuICBEVFNUQVJUOjIwMjYxMTA2VDA5MDAwMFpcbiAgRFRFTkQ6MjAyNjExMDZUMTAwMDAwWlxuICBTVU1NQVJZOk9wZW5pbmcgdGFsa1xuICBMT0NBVElPTjpIYWxsIEFcbiAgRU5EOlZFVkVOVFxuICBCRUdJTjpWRVZFTlRcbiAgVUlEOmRpbm5lckBleGFtcGxlLmNvbVxuICBEVFNUQVJUO1ZBTFVFPURBVEU6MjAyNjExMDdcbiAgU1VNTUFSWTpDb25mZXJlbmNlIGRpbm5lclxcLCBhbGwgd2VsY29tZVxuICBFTkQ6VkVWRU5UXG4gIEVORDpWQ0FMRU5EQVJcbnsvZGF0YX1cblxuPHVsPlxuICB7YWdlbmRhfVxuICAgIDxsaT57JHN1bW1hcnl9IC0geyRzdGFydH17aWYgJGFsbGRheX0gKGFsbCBkYXkpey9pZn17aWYgJGxvY2F0aW9ufSAtIHskbG9jYXRpb259ey9pZn08L2xpPlxuICB7L2FnZW5kYX1cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>agenda<font color="black">'</font></font>}</b><br>  BEGIN:VCALENDAR<br>  VERSION:2.0<br>  BEGIN:VEVENT<br>  UID:talk@example.com<br>  DTSTART:20261106T090000Z<br>  DTEND:20261106T100000Z<br>  SUMMARY:Opening talk<br>  LOCATION:Hall A<br>  END:VEVENT<br>  BEGIN:VEVENT<br>  UID:dinner@example.com<br>  DTSTART;VALUE=DATE:20261107<br>  SUMMARY:Conference dinner\, all welcome<br>  END:VEVENT<br>  END:VCALENDAR<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;ul&gt;<br>  <b>{<font color="blue">agenda</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>summary</font>}</b> - <b>{<font color="green"><font color="red">$</font>start</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>allday</font>}</b> (all day)<b>{/<font color="blue">if</font><font color="red"></font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>location</font>}</b> - <b>{<font color="green"><font color="red">$</font>location</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">agenda</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+<ul>
+  
+    <li>Opening talk - 2026-11-06T09:00:00Z - Hall A</li>
+  
+    <li>Conference dinner, all welcome - 2026-11-07 (all day)</li>
+  
+</ul>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Files and PHP</h2>
+
+<p>A file in <code>_data/</code> is read by its extension - <code>_data/trip.toml</code> is
+<code>{trip}</code> and <code>{local:trip.toml}</code>,
+<code>_data/sales.xlsx</code> the first sheet of the workbook
+(<code>{local:sales.xlsx sheet='Notes'}</code> another). In a page's PHP,
+<code>padFormatRead</code> reads a text and <code>padFormatWrite</code> writes rows:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/data_formats_3.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/data_formats_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $readme </span><span style="color: #007700">= </span><span style="color: #DD0000">"# Scores\n\nThe table is the data.\n\n| player | points |\n| ------ | -----: |\n| Ann    |     21 |\n| Bob    |     17 |\n"</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$scores </span><span style="color: #007700">= </span><span style="color: #0000BB">padFormatRead </span><span style="color: #007700">( </span><span style="color: #DD0000">'markdown'</span><span style="color: #007700">, </span><span style="color: #0000BB">$readme </span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$tsv    </span><span style="color: #007700">= </span><span style="color: #0000BB">padFormatWrite </span><span style="color: #007700">( </span><span style="color: #DD0000">'tsv'</span><span style="color: #007700">, </span><span style="color: #0000BB">$scores </span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiI8cD57c2NvcmVzfXskcGxheWVyfSBoYXMgeyRwb2ludHN9LiB7L3Njb3Jlc308L3A+XG48cHJlPnskdHN2fTwvcHJlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRyZWFkbWUgPSBcIiMgU2NvcmVzXFxuXFxuVGhlIHRhYmxlIGlzIHRoZSBkYXRhLlxcblxcbnwgcGxheWVyIHwgcG9pbnRzIHxcXG58IC0tLS0tLSB8IC0tLS0tOiB8XFxufCBBbm4gICAgfCAgICAgMjEgfFxcbnwgQm9iICAgIHwgICAgIDE3IHxcXG5cIjtcblxuICAkc2NvcmVzID0gcGFkRm9ybWF0UmVhZCAoICdtYXJrZG93bicsICRyZWFkbWUgKTtcbiAgJHRzdiAgICA9IHBhZEZvcm1hdFdyaXRlICggJ3RzdicsICRzY29yZXMgKTtcblxuPz5cbiJ9" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD57c2NvcmVzfXskcGxheWVyfSBoYXMgeyRwb2ludHN9LiB7L3Njb3Jlc308L3A+XG48cHJlPnskdHN2fTwvcHJlPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gICRyZWFkbWUgPSBcIiMgU2NvcmVzXFxuXFxuVGhlIHRhYmxlIGlzIHRoZSBkYXRhLlxcblxcbnwgcGxheWVyIHwgcG9pbnRzIHxcXG58IC0tLS0tLSB8IC0tLS0tOiB8XFxufCBBbm4gICAgfCAgICAgMjEgfFxcbnwgQm9iICAgIHwgICAgIDE3IHxcXG5cIjtcblxuICAkc2NvcmVzID0gcGFkRm9ybWF0UmVhZCAoICdtYXJrZG93bicsICRyZWFkbWUgKTtcbiAgJHRzdiAgICA9IHBhZEZvcm1hdFdyaXRlICggJ3RzdicsICRzY29yZXMgKTtcblxuPz5cbiJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;<b>{<font color="blue">scores</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>player</font>}</b> has <b>{<font color="green"><font color="red">$</font>points</font>}</b>. <b>{/<font color="blue">scores</font><font color="red"></font>}</b>&lt;/p&gt;<br><b>{<font color="green"><font color="red">$</font>tsv</font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>Ann has 21. Bob has 17. </p>
+<pre>player	points
+Ann	21
+Bob	17
+</pre>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>The formats are the files of <code>pad/subs/formats/types/</code> - toml, ini, tsv,
+      ndjson, markdown, ics, vcf, geojson, gpx, xlsx and json, csv, yaml, xml; rss, atom and
+      jsonfeed write only. An extension names its format too: md, jsonl, yml.</li>
+  <li>A text a format cannot read is an error naming the format and the line -
+      <code>TOML error on line 3: the key 'name' is defined twice</code>; with the strict check
+      off it gives no rows.</li>
+  <li>TOML, INI, GeoJSON and GPX are never guessed - they read as CSV, JSON or XML before -
+      so name them, or keep them in a file with their extension.</li>
+  <li>Writing data out - a calendar, a feed, a spreadsheet - is <a href="/pad/manual/?pages/feeds_and_exports">Feeds and exports</a>.</li>
+</ul>

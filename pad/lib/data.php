@@ -88,18 +88,37 @@
       // value, and as part of the include path ../../x with a value's name included and ran
       // any .php file on the disk.
 
+      // A type is a reader of data/ - the four formats the engine always read and the sources
+      // that are no format: a list, a range, an address, a file - or a format of the formats
+      // subsystem, by its name or a file extension of it (lib/format.php): toml, ics, md for
+      // markdown. padContentType answers such a format too, for a text it knows on sight.
+
+      $padDataFormat = '';
+
       if ( ! is_string ( $type ) or ! preg_match ( '/^[a-z]+$/D', $type ) or ! padFileExists ( PAD . "data/$type.php" ) ) {
 
-        global $padCheckSyntax;
+        $padDataFormat = padFormatFind ( $type, 'read' );
 
-        if ( $padCheckSyntax )
-          padError ( "there is no data type named '" . padMakeSafe ( $type, 40 ) . "'" );
+        if ( $padDataFormat === '' ) {
 
-        $type = padContentType ( $data );
+          global $padCheckSyntax;
+
+          if ( $padCheckSyntax )
+            padError ( "there is no data type named '" . padMakeSafe ( $type, 40 ) . "'" );
+
+          $type = padContentType ( $data );
+
+          if ( ! padFileExists ( PAD . "data/$type.php" ) )
+            $padDataFormat = padFormatFind ( $type, 'read' );
+
+        }
 
       }
 
-      $data = include PAD . "data/$type.php";
+      if ( $padDataFormat !== '' )
+        $data = padFormatRead ( $padDataFormat, $data );
+      else
+        $data = include PAD . "data/$type.php";
 
       // A reader that could not parse its input answers FALSE through padError. Under the
       // error actions that carry on - 'log', 'ignore' - padData used to walk that FALSE

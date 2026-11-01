@@ -1,14 +1,17 @@
 <?php
 
   // The bodies of a data answer (lib/expose.php): read by build/expose.php once it decided
-  // the page answers JSON or CSV, and by exits/exits.php when the output type is one of the
-  // two.
+  // the page answers data, and by exits/exits.php when the output type is json, csv or
+  // format.
   //
   // padExposeData     the exposed variables, name => value, each name checked
   // padExposeJson     the JSON body: one object keyed by the exposed names
   // padExposeList     the list a CSV answer is made of: the first exposed array
   // padExposeCsv      the CSV body: a header row of the columns, then a line per row
-  // padExposeCell     a cell a spreadsheet would run as a formula, made text
+  // padExposeFormat   the body in any other format of the formats subsystem
+  //
+  // The JSON and the CSV are written by the json and csv formats (subs/formats/_lib/data.php),
+  // where their writers moved from here unchanged.
 
   // A name that is no variable a page may own - an engine name like padSqlPassword among
   // them - is refused whatever the strict switch says: the list is the one thing standing
@@ -46,15 +49,9 @@
     if ( ! count ( (array) $padExpose ) and $padCheckSyntax )
       padError ( "a json answer is the variables \$padExpose names, and it names none" );
 
-    // A byte that is no UTF-8 - a latin1 database or file - becomes U+FFFD, as the HTML page
-    // shows it: partial output made the whole value null, with no error, which a client
-    // cannot tell from a real null.
+    // One object, {} when it names nothing - the json format writes it (padFormatJsonWrite).
 
-    $json = json_encode ( (object) padJsonFinite ( padExposeData () ), JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR
-                                                   | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
-                                                   | JSON_INVALID_UTF8_SUBSTITUTE );
-
-    return ( $json === FALSE ) ? '{}' : $json;
+    return padFormatWrite ( 'json', padExposeData (), [ 'object' => TRUE ] );
 
   }
 
@@ -90,9 +87,9 @@
 
   }
 
-  // The columns are every key the rows use, in the order they first appear, so a row that
-  // lacks one gets an empty cell rather than shifting the line. A cell that holds an array
-  // is written as its JSON. RFC 4180 quoting, with no escape character of PHP's own.
+  // The CSV answer: the first list, written by the csv format (padFormatCsvWrite) - a header
+  // row of every key the rows use, RFC 4180 quoting, a cell a spreadsheet would run as a
+  // formula made text.
 
   function padExposeCsv () {
 
@@ -103,52 +100,47 @@
       return '';
     }
 
-    $columns = [];
-
-    foreach ( $rows as $row )
-      foreach ( array_keys ( $row ) as $column )
-        if ( ! in_array ( $column, $columns, TRUE ) )
-          $columns [] = $column;
-
-    $csv = fopen ( 'php://temp', 'r+' );
-
-    fputcsv ( $csv, array_map ( 'padExposeCell', $columns ), ',', '"', '' );
-
-    foreach ( $rows as $row ) {
-
-      $line = [];
-
-      foreach ( $columns as $column ) {
-        $cell    = $row [$column] ?? '';
-        $line [] = padExposeCell ( is_array ( $cell ) || is_object ( $cell ) ? json_encode ( $cell ) : ( is_bool ( $cell ) ? (int) $cell : $cell ) );
-      }
-
-      fputcsv ( $csv, $line, ',', '"', '' );
-
-    }
-
-    rewind ( $csv );
-
-    $body = stream_get_contents ( $csv );
-
-    fclose ( $csv );
-
-    return $body;
+    return padFormatWrite ( 'csv', $rows );
 
   }
 
-  // A spreadsheet runs a cell that starts with =, +, - or @ - or with a tab or a carriage
-  // return in front of one - as a formula: a visitor's =HYPERLINK(...) or +cmd|... in the
-  // data became a link or a command in the spreadsheet of whoever opened the export. Such a
-  // text cell gets a ' in front, which a spreadsheet shows as the text it is; a number of
-  // either sign is no formula and stays as it is.
+  // The answer in any other format of the formats subsystem that writes: a table format - a
+  // calendar, a spreadsheet, a feed - the first list, as CSV has it; any other the exposed
+  // variables by name, as JSON has them. The page's $padFormatOptions go to the writer - a
+  // feed's title= and link=, a calendar's name= - over the defaults a page has for them:
+  // its name as the title, its own address as the link and, with the format asked for, as
+  // a feed's self.
 
-  function padExposeCell ( $cell ) {
+  function padExposeFormat ( $kind ) {
 
-    if ( is_string ( $cell ) and preg_match ( '/^[=+\-@\t\r]/', $cell ) and ! is_numeric ( $cell ) )
-      return "'$cell";
+    global $padFormatOptions, $padGoExt, $padPage, $padPageAsked;
 
-    return $cell;
+    $def = padFormatDef ( $kind );
+
+    if ( ( $def ['shape'] ?? '' ) == 'rows' ) {
+      $data = padExposeList ();
+      if ( $data === NULL ) {
+        padError ( "a $kind answer is the first list \$padExpose names, and none of it is a list" );
+        return '';
+      }
+    } else
+      $data = padExposeData ();
+
+    $page    = (string) ( $padPageAsked ?? $padPage );
+    $options = (array) ( $padFormatOptions ?? [] ) + [ 'title' => basename ( $page ),
+                                                       'link'  => $padGoExt . $page,
+                                                       'self'  => $padGoExt . $page . '&padFormat=' . $kind ];
+
+    // The visitor chose the format, so a row it has no place for - an order in a calendar,
+    // without a date - is left out without a word (padFormatSkip).
+
+    $GLOBALS ['padFormatQuiet'] = TRUE;
+
+    try {
+      return padFormatWrite ( $kind, $data, $options );
+    } finally {
+      $GLOBALS ['padFormatQuiet'] = FALSE;
+    }
 
   }
 

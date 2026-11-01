@@ -18,6 +18,7 @@
                                     'sequences' ],
       'Data'                   => [ 'data_handling', 'grouping', 'pager', 'lookup', 'database', 'padSelect', 'sqlite',
                                     'search',
+                                    'data_formats', 'feeds_and_exports',
                                     'collections', 'remote_data', 'parallel_fetching', 'data_answers' ],
       'PHP helpers'            => [ 'arrays', 'strings', 'values', 'numbers', 'requests_and_sessions',
                                     'holidays',

@@ -74,6 +74,11 @@
 
     $padStoreList = is_string ( $padStoreSource ) ? padDataText ( $padStoreSource ) : $padStoreSource;
 
+    // The format of the content: type=, or format= - the word the formats subsystem goes by,
+    // {data 'plan', format='toml'} (lib/format.php) - else known on sight.
+
+    $padStoreType = padTagParm ( 'type' ) ?: padTagParm ( 'format' );
+
     if ( ! padIsDefaultData ( $padData [$pad] ) )
       $padStoreData = $padData [$pad];
     elseif ( $padStoreValue and is_string ( $padStoreList ) and padContentType ( $padStoreList ) == 'list' ) {
@@ -101,7 +106,7 @@
       padError ( "the data value reads as a range of more than $padSeqDefaultTries values - write a range that long in the template" );
       $padStoreData = [];
 
-    } elseif ( $padProtectValues and padDataFetches ( $padStoreSource, padTagParm ( 'type' ) )
+    } elseif ( $padProtectValues and padDataFetches ( $padStoreSource, $padStoreType )
              and padDataValueAddress ( $padStoreSource ) ) {
 
       // An address a visitor chose is not fetched, as data= has it (options/data.php):
@@ -113,7 +118,7 @@
 
     } else {
 
-      $padStoreData = padData ($padStoreSource, padTagParm('type'), $padName [$pad]);
+      $padStoreData = padData ($padStoreSource, $padStoreType, $padName [$pad]);
 
       // Walked content holds its values with their syntax characters as stand-ins (lib/
       // encoding.php), which keep a spliced comma from splitting a CSV cell and a quote from

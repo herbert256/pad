@@ -223,6 +223,10 @@ Store data to the data store for iteration.
 
 **Parameters:**
 - First parameter: Data store name
+- `format=` (or `type=`): the format of the content - json, xml, yaml, csv or a format of
+  `pad/subs/formats/` that reads: toml, ini, tsv, ndjson, markdown, ics, vcf, geojson, gpx;
+  left out, the format is recognised on sight (an iCalendar, a vCard, NDJSON, a Markdown pipe
+  table and TSV among them) - see [Data formats](../FEATURES.md#data-formats)
 
 **Behavior:** Stores the data under the name and prints nothing; `{store_name}...{/store_name}`
 iterates it

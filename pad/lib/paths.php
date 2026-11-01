@@ -149,6 +149,7 @@
       if ( padFileExists ( "$file.php"  )                 ) return "$file.php";
       if ( padFileExists ( "$file.curl" )                 ) return "$file.curl";
       if ( padFileExists ( "$file.sql"  )                 ) return "$file.sql";
+      if ( $format = padDataFileFormat ( $file )          ) return $format;
 
     }
 
@@ -168,6 +169,41 @@
     if ( padFileExists ( "$file.php"  )                 ) return "$file.php";
     if ( padFileExists ( "$file.curl" )                 ) return "$file.curl";
     if ( padFileExists ( "$file.sql"  )                 ) return "$file.sql";
+    if ( $format = padDataFileFormat ( $file )          ) return $format;
+
+    return '';
+
+  }
+
+  // A data file of a format of the formats subsystem (lib/format.php) - _data/plan.toml for
+  // {plan}, events.ics, people.vcf, sales.xlsx - after the extensions above, which keep their
+  // order: the extensions a format reads, in the order of the formats' files. Found in the
+  // listing of the directory, kept for the request: the evaluator asks about every bare word,
+  // and a stat per extension and directory was a dozen more for each.
+
+  function padDataFileFormat ( $file ) {
+
+    static $lists = [];
+
+    $where = dirname ( $file );
+    $base  = basename ( $file );
+
+    if ( ! isset ( $lists [$where] ) ) {
+      $lists [$where] = [];
+      if ( padFileExists ( $where ) and is_dir ( $where ) )
+        foreach ( padDirList ( $where ) ?: [] as $one )
+          if ( $one [0] != '.' and ( $dot = strrpos ( $one, '.' ) ) )
+            $lists [$where] [ substr ( $one, 0, $dot ) ] [] = substr ( $one, $dot + 1 );
+    }
+
+    if ( ! isset ( $lists [$where] [$base] ) )
+      return '';
+
+    foreach ( padFormatKinds () as $kind )
+      if ( isset ( padFormatDef ( $kind ) ['read'] ) )
+        foreach ( (array) ( padFormatDef ( $kind ) ['extension'] ?? [] ) as $ext )
+          if ( in_array ( $ext, $lists [$where] [$base], TRUE ) )
+            return "$where/$base.$ext";
 
     return '';
 

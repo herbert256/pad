@@ -105,13 +105,15 @@
   // handed the empty rendering of the templates a data answer skips, and the JSON or CSV
   // went out past it.
 
-  if ( $padOutputType == 'json' or $padOutputType == 'csv' )
+  if ( $padOutputType == 'json' or $padOutputType == 'csv' or $padOutputType == 'format' )
     include_once PAD . 'build/_lib/expose.php';
 
   if ( $padOutputType == 'json' )
     $padOutput = padExposeJson ();
   elseif ( $padOutputType == 'csv' )
     $padOutput = padExposeCsv ();
+  elseif ( $padOutputType == 'format' )
+    $padOutput = padExposeFormat ( $padOutputFormat );
 
   // The application's _events/output.php sees the page as it will go out and may change
   // it - before the ETag and the page cache, so both describe what is actually sent.

@@ -23,7 +23,7 @@
 
     global $padOutputType;
 
-    return padPdfStore () ['asked'] and padLive () === '' and ! in_array ( $padOutputType, [ 'json', 'csv' ], TRUE );
+    return padPdfStore () ['asked'] and padLive () === '' and ! in_array ( $padOutputType, [ 'json', 'csv', 'format' ], TRUE );
 
   }
 

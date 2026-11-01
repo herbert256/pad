@@ -49,7 +49,7 @@
 
     padEmptyBuffers ( $padIgnored );
 
-    if ( in_array ( $padOutputType, [ 'web', 'json', 'csv' ], TRUE ) )
+    if ( in_array ( $padOutputType, [ 'web', 'json', 'csv', 'format' ], TRUE ) )
       padWebHeaders ( $stop );
 
     if ( isset ( $padInfoStarted ) and ! padSecondTime ( 'exitInfo' ) )

@@ -23,6 +23,13 @@
   //
   // The bodies of a data answer - the exposed variables, the JSON, the CSV - are
   // build/_lib/expose.php, read when a request is answered with data.
+  //
+  // Every other format of the formats subsystem that writes answers the same way -
+  // ?events&padFormat=ics, Accept: text/calendar, padFormat=xlsx, padFormat=rss - through the
+  // output type 'format', whose format is $padOutputFormat: a table format (ics, xlsx, the
+  // feeds ...) the first exposed list as CSV has it, any other (toml, yaml) the exposed
+  // variables by name as JSON has them, with the format's media type, a file name where it
+  // has one, and the page's $padFormatOptions for its writer - a feed's title and link.
 
   function padClientFormat () {
 
@@ -36,10 +43,16 @@
   // Only a type the header names counts for data: application/json and text/csv must be
   // there by name, with a quality above the one html gets - by name, through text/*, or
   // through */*. Without either, the answer is '' and the page renders as before.
+  //
+  // So must the media type of a format of the formats subsystem (lib/format.php) that
+  // writes - text/calendar for ics, application/toml - which is asked about only when the
+  // header names a type it does not know here with a quality above html's and above the
+  // JSON or CSV it asks for: a browser's header, which prefers html, loads no format.
 
   function padAcceptFormat ( $header ) {
 
     $named = [ 'html' => -1.0, 'json' => -1.0, 'csv' => -1.0 ];
+    $other = [];
     $text  = -1.0;
     $any   = -1.0;
 
@@ -61,16 +74,57 @@
       if     ( isset ( $types [$name] ) ) $named [ $types [$name] ] = max ( $named [ $types [$name] ], $q );
       elseif ( $name == 'text/*'        ) $text = max ( $text, $q );
       elseif ( $name == '*/*'           ) $any  = max ( $any,  $q );
+      elseif ( $name !== ''             ) $other [$name] = max ( $other [$name] ?? -1.0, $q );
 
     }
 
     $html = ( $named ['html'] >= 0 ) ? $named ['html'] : ( ( $text >= 0 ) ? $text : max ( $any, 0.0 ) );
     $best = ( $named ['csv'] > $named ['json'] ) ? 'csv' : 'json';
+    $bar  = max ( $html, $named [$best], 0.0 );
+
+    $other = array_filter ( $other, fn ( $q ) => $q > $bar );
+
+    if ( $other ) {
+      arsort ( $other );
+      foreach ( $other as $type => $q )
+        if ( ( $kind = padFormatAccepted ( $type ) ) !== '' )
+          return $kind;
+    }
 
     if ( $named [$best] > 0 and $named [$best] > $html )
       return $best;
 
     return '';
+
+  }
+
+  // The format that writes, and is asked for by the media type - or ''.
+
+  function padFormatAccepted ( $type ) {
+
+    foreach ( padFormatKinds () as $kind ) {
+      $def = padFormatDef ( $kind );
+      if ( isset ( $def ['write'] ) and in_array ( $type, $def ['accept'] ?? [ $def ['mime'] ?? '' ], TRUE ) )
+        return $kind;
+    }
+
+    return '';
+
+  }
+
+  // The format a page answers in for the format the request asks for: json and csv as
+  // before, any other a format of the formats subsystem that writes, by its name or a file
+  // extension of it - or '' for none.
+
+  function padExposeKind ( $format ) {
+
+    if ( $format === 'json' or $format === 'csv' )
+      return $format;
+
+    if ( $format === '' or $format === 'html' or ! is_string ( $format ) )
+      return '';
+
+    return padFormatFind ( $format, 'write' );
 
   }
 

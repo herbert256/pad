@@ -1,0 +1,42 @@
+{meta title='Feeds and exports'/}
+
+<p>A page that exposes its data with <code>$padExpose</code> answers it as JSON and CSV
+({manual 'data_answers'/}) - and in every other format of <code>pad/subs/formats/</code> that
+writes: a calendar, a feed, a spreadsheet, a map. <code>$padFormatOptions</code> gives the
+writer what the rows do not say, here the name of the calendar:</p>
+
+{example 'fragments/feeds_and_exports_1'/}
+
+<p>Asked with <code>&amp;padFormat=ics</code> - or by a calendar application sending
+<code>Accept: text/calendar</code> - the page answers an iCalendar file, with
+<code>&amp;padFormat=md</code> a Markdown table. The template does not run for either:</p>
+
+{example 'fragments/feeds_and_exports_2'/}
+
+<ul>
+  <li>The formats that write: ics, vcf, xlsx, rss, atom, jsonfeed, geojson, gpx, markdown, tsv,
+      ndjson, toml, yaml, ini, besides json and csv. A table format answers the first list the
+      page exposes, toml, yaml and ini every exposed variable by name.</li>
+  <li>Each answers with its own content type, and a file with the page's name and the format's
+      extension - <code>talks.ics</code> inline, <code>talks.xlsx</code> as an attachment.</li>
+  <li>The answer is the same bytes for the same rows: an event's UID is made of the row, its
+      DTSTAMP is its start, a spreadsheet's parts carry a fixed date - never the clock.</li>
+  <li>A row a format has no place for - an order without a date in a calendar - is left out
+      of the answer.</li>
+</ul>
+
+<h2>A feed of a collection</h2>
+
+<p><code>padFormatWrite</code> writes rows in a format in a page's PHP. The rows of a
+{manual 'collections'/} work as they are for the feeds - title, date, slug and body - the
+slug behind the feed's link is an entry's address:</p>
+
+{example 'fragments/feeds_and_exports_3'/}
+
+<ul>
+  <li>rss, atom and jsonfeed take <code>title</code>, <code>link</code>, <code>self</code>,
+      <code>description</code> and <code>author</code>; the feed's updated is its newest
+      entry's date.</li>
+  <li>ics takes <code>name</code> and <code>stamp</code>, xlsx <code>sheet</code>, gpx
+      <code>name</code> and <code>as='track'</code>.</li>
+</ul>

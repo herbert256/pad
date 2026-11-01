@@ -1,0 +1,232 @@
+== toml: 200 application/toml; charset=UTF-8 | inline; filename="events.toml"
+[[events]]
+title = "Opening talk"
+start = 2026-11-06T09:00:00Z
+end = 2026-11-06T10:00:00Z
+location = "Hall A, Ghent"
+lat = 51.0543
+lon = 3.7174
+link = "https://example.com/talks/opening"
+summary = "Data in & out"
+
+[[events]]
+title = "Dinner"
+start = 2026-11-07
+location = "Graslei"
+lat = 51.0545
+lon = 3.7206
+link = "https://example.com/dinner"
+summary = "All welcome"
+== yaml: 200 application/yaml; charset=UTF-8 | inline; filename="events.yaml"
+---
+events:
+- title: Opening talk
+  start: "2026-11-06T09:00:00Z"
+  end: "2026-11-06T10:00:00Z"
+  location: Hall A, Ghent
+  lat: 51.0543
+  lon: 3.7174
+  link: https://example.com/talks/opening
+  summary: Data in & out
+- title: Dinner
+  start: "2026-11-07"
+  location: Graslei
+  lat: 51.0545
+  lon: 3.7206
+  link: https://example.com/dinner
+  summary: All welcome
+...
+== ini: 200 text/plain; charset=UTF-8 | inline; filename="events.ini"
+[events]
+0[title] = Opening talk
+0[start] = 2026-11-06T09:00:00Z
+0[end] = 2026-11-06T10:00:00Z
+0[location] = Hall A, Ghent
+0[lat] = 51.0543
+0[lon] = 3.7174
+0[link] = https://example.com/talks/opening
+0[summary] = Data in & out
+1[title] = Dinner
+1[start] = 2026-11-07
+1[location] = Graslei
+1[lat] = 51.0545
+1[lon] = 3.7206
+1[link] = https://example.com/dinner
+1[summary] = All welcome
+== ndjson: 200 application/x-ndjson; charset=UTF-8 | inline; filename="events.ndjson"
+{"title":"Opening talk","start":"2026-11-06T09:00:00Z","end":"2026-11-06T10:00:00Z","location":"Hall A, Ghent","lat":51.0543,"lon":3.7174,"link":"https://example.com/talks/opening","summary":"Data in & out"}
+{"title":"Dinner","start":"2026-11-07","location":"Graslei","lat":51.0545,"lon":3.7206,"link":"https://example.com/dinner","summary":"All welcome"}
+== md: 200 text/markdown; charset=UTF-8 | inline; filename="events.md"
+| title        | start                | end                  | location      |     lat |    lon | link                              | summary       |
+| ------------ | -------------------- | -------------------- | ------------- | ------: | -----: | --------------------------------- | ------------- |
+| Opening talk | 2026-11-06T09:00:00Z | 2026-11-06T10:00:00Z | Hall A, Ghent | 51.0543 | 3.7174 | https://example.com/talks/opening | Data in & out |
+| Dinner       | 2026-11-07           |                      | Graslei       | 51.0545 | 3.7206 | https://example.com/dinner        | All welcome   |
+== tsv: 200 text/tab-separated-values; charset=UTF-8 | inline; filename="events.tsv"
+title	start	end	location	lat	lon	link	summary
+Opening talk	2026-11-06T09:00:00Z	2026-11-06T10:00:00Z	Hall A, Ghent	51.0543	3.7174	https://example.com/talks/opening	Data in & out
+Dinner	2026-11-07		Graslei	51.0545	3.7206	https://example.com/dinner	All welcome
+== ics: 200 text/calendar; charset=UTF-8 | inline; filename="events.ics"
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//PAD//PAD formats//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Formats week
+BEGIN:VEVENT
+UID:2d2576ee-99e1-3334-a9e9-e6a7f112b052
+DTSTAMP:20261106T090000Z
+DTSTART:20261106T090000Z
+DTEND:20261106T100000Z
+SUMMARY:Opening talk
+LOCATION:Hall A\, Ghent
+DESCRIPTION:Data in & out
+URL:https://example.com/talks/opening
+END:VEVENT
+BEGIN:VEVENT
+UID:07671ef3-de90-3920-8de5-ba00e7f69c95
+DTSTAMP:20261107T000000Z
+DTSTART;VALUE=DATE:20261107
+SUMMARY:Dinner
+LOCATION:Graslei
+DESCRIPTION:All welcome
+URL:https://example.com/dinner
+END:VEVENT
+END:VCALENDAR
+== vcf: 200 text/vcard; charset=UTF-8 | inline; filename="events.vcf"
+
+== rss: 200 application/rss+xml; charset=UTF-8 | -
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Formats week</title>
+    <link>http://localhost/pad/regression/pages/?format/events</link>
+    <description>Formats week</description>
+    <atom:link href="http://localhost/pad/regression/pages/?format/events&amp;padFormat=rss" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Sat, 07 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Opening talk</title>
+      <link>https://example.com/talks/opening</link>
+      <description>Data in &amp; out</description>
+      <pubDate>Fri, 06 Nov 2026 09:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://example.com/talks/opening</guid>
+    </item>
+    <item>
+      <title>Dinner</title>
+      <link>https://example.com/dinner</link>
+      <description>All welcome</description>
+      <pubDate>Sat, 07 Nov 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://example.com/dinner</guid>
+    </item>
+  </channel>
+</rss>
+== atom: 200 application/atom+xml; charset=UTF-8 | -
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Formats week</title>
+  <link href="http://localhost/pad/regression/pages/?format/events"/>
+  <link rel="self" href="http://localhost/pad/regression/pages/?format/events&amp;padFormat=atom"/>
+  <updated>2026-11-07T00:00:00Z</updated>
+  <author>
+    <name>Formats week</name>
+  </author>
+  <id>http://localhost/pad/regression/pages/?format/events</id>
+  <entry>
+    <title>Opening talk</title>
+    <link href="https://example.com/talks/opening"/>
+    <id>https://example.com/talks/opening</id>
+    <updated>2026-11-06T09:00:00Z</updated>
+    <summary>Data in &amp; out</summary>
+  </entry>
+  <entry>
+    <title>Dinner</title>
+    <link href="https://example.com/dinner"/>
+    <id>https://example.com/dinner</id>
+    <updated>2026-11-07T00:00:00Z</updated>
+    <summary>All welcome</summary>
+  </entry>
+</feed>
+== jsonfeed: 200 application/feed+json; charset=UTF-8 | -
+{
+    "version": "https://jsonfeed.org/version/1.1",
+    "title": "Formats week",
+    "home_page_url": "http://localhost/pad/regression/pages/?format/events",
+    "feed_url": "http://localhost/pad/regression/pages/?format/events&padFormat=jsonfeed",
+    "items": [
+        {
+            "id": "https://example.com/talks/opening",
+            "url": "https://example.com/talks/opening",
+            "title": "Opening talk",
+            "content_text": "Data in & out",
+            "summary": "Data in & out",
+            "date_published": "2026-11-06T09:00:00Z"
+        },
+        {
+            "id": "https://example.com/dinner",
+            "url": "https://example.com/dinner",
+            "title": "Dinner",
+            "content_text": "All welcome",
+            "summary": "All welcome",
+            "date_published": "2026-11-07T00:00:00Z"
+        }
+    ]
+}
+== geojson: 200 application/geo+json; charset=UTF-8 | inline; filename="events.geojson"
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7174,
+                    51.0543
+                ]
+            },
+            "properties": {
+                "title": "Opening talk",
+                "start": "2026-11-06T09:00:00Z",
+                "end": "2026-11-06T10:00:00Z",
+                "location": "Hall A, Ghent",
+                "link": "https://example.com/talks/opening",
+                "summary": "Data in & out"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7206,
+                    51.0545
+                ]
+            },
+            "properties": {
+                "title": "Dinner",
+                "start": "2026-11-07",
+                "location": "Graslei",
+                "link": "https://example.com/dinner",
+                "summary": "All welcome"
+            }
+        }
+    ]
+}
+== gpx: 200 application/gpx+xml; charset=UTF-8 | attachment; filename="events.gpx"
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="PAD" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Formats week</name>
+  </metadata>
+  <wpt lat="51.0543" lon="3.7174">
+    <name>Opening talk</name>
+    <desc>Data in &amp; out</desc>
+  </wpt>
+  <wpt lat="51.0545" lon="3.7206">
+    <name>Dinner</name>
+    <desc>All welcome</desc>
+  </wpt>
+</gpx>
+== xlsx: 200 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet | attachment; filename="events.xlsx"
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><dimension ref="A1:H3"/><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><sheetFormatPr defaultRowHeight="15"/><cols><col min="1" max="1" width="14" customWidth="1"/><col min="2" max="2" width="21" customWidth="1"/><col min="3" max="3" width="21" customWidth="1"/><col min="4" max="4" width="15" customWidth="1"/><col min="5" max="5" width="9" customWidth="1"/><col min="6" max="6" width="8" customWidth="1"/><col min="7" max="7" width="35" customWidth="1"/><col min="8" max="8" width="15" customWidth="1"/></cols><sheetData><row r="1"><c r="A1" t="inlineStr" s="1"><is><t>title</t></is></c><c r="B1" t="inlineStr" s="1"><is><t>start</t></is></c><c r="C1" t="inlineStr" s="1"><is><t>end</t></is></c><c r="D1" t="inlineStr" s="1"><is><t>location</t></is></c><c r="E1" t="inlineStr" s="1"><is><t>lat</t></is></c><c r="F1" t="inlineStr" s="1"><is><t>lon</t></is></c><c r="G1" t="inlineStr" s="1"><is><t>link</t></is></c><c r="H1" t="inlineStr" s="1"><is><t>summary</t></is></c></row><row r="2"><c r="A2" t="inlineStr"><is><t>Opening talk</t></is></c><c r="B2" s="3"><v>46332.375</v></c><c r="C2" s="3"><v>46332.416666666664</v></c><c r="D2" t="inlineStr"><is><t>Hall A, Ghent</t></is></c><c r="E2"><v>51.0543</v></c><c r="F2"><v>3.7174</v></c><c r="G2" t="inlineStr"><is><t>https://example.com/talks/opening</t></is></c><c r="H2" t="inlineStr"><is><t>Data in &amp; out</t></is></c></row><row r="3"><c r="A3" t="inlineStr"><is><t>Dinner</t></is></c><c r="B3" s="2"><v>46333</v></c><c r="D3" t="inlineStr"><is><t>Graslei</t></is></c><c r="E3"><v>51.0545</v></c><c r="F3"><v>3.7206</v></c><c r="G3" t="inlineStr"><is><t>https://example.com/dinner</t></is></c><c r="H3" t="inlineStr"><is><t>All welcome</t></is></c></row></sheetData></worksheet>
+[{"title":"Opening talk","start":"2026-11-06T09:00:00","end":"2026-11-06T10:00:00","location":"Hall A, Ghent","lat":51.0543,"lon":3.7174,"link":"https:\/\/example.com\/talks\/opening","summary":"Data in & out"},{"title":"Dinner","start":"2026-11-07","end":"","location":"Graslei","lat":51.0545,"lon":3.7206,"link":"https:\/\/example.com\/dinner","summary":"All welcome"}]
+== accept: 200 text/calendar / 200 application/rss+xml / 200 application/toml / 200 text/html / 200 text/html / 406 text/plain / 406 text/plain

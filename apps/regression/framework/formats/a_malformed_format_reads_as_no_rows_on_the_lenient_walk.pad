@@ -1,0 +1,9 @@
+{data 'plan', format='toml'}
+  title =
+{/data}
+{data 'cal'}
+  BEGIN:VCALENDAR
+  BEGIN:VEVENT
+  DTSTART:20261101
+{/data}
+[{plan}row@else@no rows{/plan}][{cal}row@else@no rows{/cal}][{echo $lenientIcs/}]

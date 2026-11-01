@@ -7,10 +7,15 @@
   // turns the response into data.
   //
   // The json and csv output types answer data for every page, in the one of the two the
-  // request asks for, if it does. Otherwise a request asking for json or csv gets it when
-  // the page exposes something; asked outright with ?padFormat=, a
-  // page that exposes nothing, or a format that does not exist, answers 406, while a request
-  // that only said so in its Accept header gets the HTML page as always.
+  // request asks for, if it does - and so does the format type, in its $padOutputFormat or
+  // the format the request asks for. Otherwise a request asking for data gets it when the
+  // page exposes something; asked outright with ?padFormat=, a page that exposes nothing,
+  // or a format that does not exist or does not write, answers 406, while a request that
+  // only said so in its Accept header gets the HTML page as always.
+  //
+  // JSON and CSV keep their own output types; any other format of the formats subsystem
+  // (lib/format.php) that writes - ics, xlsx, toml, rss ... - answers through the output type
+  // 'format', its format in $padOutputFormat (padExposeKind, lib/expose.php).
   //
   // A data answer switches the output type for the rest of the request and empties the
   // source about to be rendered - _lib snippets, wrappers and page alike - so no template
@@ -21,41 +26,57 @@
 
   $padExposeCheck  = FALSE;
   $padExposeFormat = '';
+  $padExposeKind   = padExposeKind ( $padClientFormat );
+  $padExposeClient = ( $padExposeKind !== '' );
 
-  $padExposeClient = ( $padClientFormat == 'json' or $padClientFormat == 'csv' );
+  if ( $padOutputType == 'format' and padFormatFind ( $padOutputFormat, 'write' ) === '' ) {
+    padError ( "the output type format writes \$padOutputFormat, and '" . padMakeSafe ( (string) $padOutputFormat, 20 ) . "' is no format that writes" );
+    $padOutputType = 'web';
+    include PAD . 'config/output/web.php';
+  }
 
-  if ( $padOutputType == 'json' or $padOutputType == 'csv' )
+  if ( $padOutputType == 'json' or $padOutputType == 'csv' or $padOutputType == 'format' )
 
-    $padExposeFormat = $padExposeClient ? $padClientFormat : $padOutputType;
+    $padExposeFormat = $padExposeClient ? $padExposeKind : ( $padOutputType == 'format' ? padFormatFind ( $padOutputFormat, 'write' ) : $padOutputType );
 
   elseif ( $padExposeClient ) {
 
     if ( count ( (array) $padExpose ) )
-      $padExposeFormat = $padClientFormat;
+      $padExposeFormat = $padExposeKind;
     elseif ( $padClientFormatAsked )
-      padExposeRefuse ( "page '$padPage' answers no $padClientFormat - its .php names nothing in \$padExpose" );
+      padExposeRefuse ( "page '$padPage' answers no $padExposeKind - its .php names nothing in \$padExpose" );
 
   } elseif ( $padClientFormatAsked and $padClientFormat !== 'html' and $padClientFormat !== '' )
 
-    padExposeRefuse ( "there is no format named '" . padMakeSafe ( $padClientFormat, 20 ) . "' - html, json or csv" );
+    padExposeRefuse ( ( padFormatFind ( $padClientFormat, 'read' ) !== ''
+                        ? "the format '" . padMakeSafe ( $padClientFormat, 20 ) . "' is read only, no page answers in it"
+                        : "there is no format named '" . padMakeSafe ( $padClientFormat, 20 ) . "'" )
+                      . ' - html or ' . implode ( ', ', array_filter ( padFormatKinds (), fn ( $kind ) => padExposeKind ( $kind ) !== '' ) ) );
 
   if ( ! $padExposeFormat )
     return;
 
   include_once PAD . 'build/_lib/expose.php';
 
-  // CSV is a table: a request for it where the page has no list is the visitor's to hear
-  // about, where the csv type set in the configuration is the author's (exits/output/csv.php).
+  // A table - CSV, a calendar, a spreadsheet, a feed - is made of a list: a request for one
+  // where the page has no list is the visitor's to hear about, where the type set in the
+  // configuration is the author's (exits/output/csv.php).
 
-  if ( $padExposeFormat == 'csv' and $padExposeClient and padExposeList () === NULL )
-    padExposeRefuse ( "page '$padPage' answers no csv - nothing it names in \$padExpose is a list" );
+  if ( ( padFormatDef ( $padExposeFormat ) ['shape'] ?? '' ) == 'rows' and $padExposeClient and padExposeList () === NULL )
+    padExposeRefuse ( "page '$padPage' answers no $padExposeFormat - nothing it names in \$padExpose is a list" );
 
   // The type's settings are loaded unless the configuration pass already applied them -
-  // that pass, which the application's config may have refined, stands.
+  // that pass, which the application's config may have refined, stands. The format type's
+  // are loaded always: its content type is the format's, which the request may have chosen.
 
-  $padOutputType = $padExposeFormat;
+  if ( $padExposeFormat == 'json' or $padExposeFormat == 'csv' )
+    $padOutputType = $padExposeFormat;
+  else {
+    $padOutputType   = 'format';
+    $padOutputFormat = $padExposeFormat;
+  }
 
-  if ( $padOutputType != ( $padConfigSet ['outputType'] ?? $padConfigDefault ['outputType'] ) )
+  if ( $padOutputType != ( $padConfigSet ['outputType'] ?? $padConfigDefault ['outputType'] ) or $padOutputType == 'format' )
     include PAD . "config/output/$padOutputType.php";
 
   $padBuildLib  = '';

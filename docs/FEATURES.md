@@ -15,6 +15,7 @@ applications show them working.
   - [Vite builds](#vite-builds)
   - [Sitemap from the file tree](#sitemap-from-the-file-tree)
   - [JSON and CSV from the same page](#json-and-csv-from-the-same-page)
+  - [Data formats](#data-formats)
   - [Maintenance mode](#maintenance-mode)
   - [Custom error pages](#custom-error-pages)
   - [Health check](#health-check)
@@ -151,6 +152,66 @@ $padExpose = [ 'orders', 'total' ];    // never an engine name (pad*, pq*, _*)
   as HTML. An exposing page sends `Vary: Accept`.
 - `$padOutputType = 'json'` (or `'csv'`) in `_config/config.php` makes every page of an
   application answer data; `{output 'json'/}` does it from a template.
+
+### Data formats
+
+The formats subsystem in `pad/subs/formats/`: a format is a file of `types/` (`padFormatKinds ()`),
+with a reader, a writer or both - added by adding its file, its code in `_lib/`, loaded on use.
+
+| Format | Reads | Writes | |
+|--------|-------|--------|-|
+| `json`, `csv`, `yaml` | yes | yes | the engine's own readers (`pad/data/`); the JSON and CSV page answers are these writers |
+| `xml` | yes | - | rows have no one XML of their own: `?page&padFormat=xml` stays 406 |
+| `toml` | yes | yes | TOML 1.0: tables, arrays of tables, inline tables, dotted keys, every string, number and date |
+| `ini` | yes | yes | `[sections]`, `; comments`, quoted values, `key[]` lists, `key[name]` records |
+| `tsv`, `ndjson`, `markdown` | yes | yes | tab separated (`\t \n \\` escapes), a JSON value a line, a GFM pipe table (the first of a text; written lined up) |
+| `ics` | yes | yes | iCalendar: the VEVENTs as rows - uid, summary, start, end, allday, timezone, location, description, url, status, categories, rrule |
+| `vcf` | yes | yes | vCard 4.0 (3.0 read too): name, the parts of N, org, title, email(s), phone(s), url, address, birthday, note, uid |
+| `geojson` | yes | yes | a feature a row: its properties, id, geometry, lat/lon of a Point - Points written from lat and lon |
+| `gpx` | yes | yes | waypoints, route and track points as rows: type, track, segment, point, name, lat, lon, ele, time, desc |
+| `xlsx` | yes | yes | one sheet: a bold frozen header, numbers, booleans and dates as such, text never a formula; read: the first sheet (`sheet=`) |
+| `rss`, `atom`, `jsonfeed` | - | yes | feeds of rows with title, link, date, summary, body, id - a Markdown collection's rows as they are |
+
+```
+{data 'plan', format='toml'}            # the content in a format - type= says the same
+  title = "Weekend"
+  [[stops]]
+  name = "Gravensteen"
+{/data}
+{data 'agenda'}BEGIN:VCALENDAR ...{/data}   # known on sight: iCalendar, vCard, NDJSON, a pipe table, TSV
+{sales}...{/sales}                      # _data/sales.xlsx - a _data file by its extension
+{local:plan.toml}...{/local:plan.toml}  # {local:sales.xlsx sheet='Notes'}
+```
+
+```php
+$rows = padFormatRead  ( 'ics', $text );                     // a format or an extension: md, jsonl, yml
+$text = padFormatWrite ( 'atom', padCollection ( 'blog' ), [ 'title' => 'Blog', 'link' => 'https://example.com/blog/' ] );
+
+$padExpose        = [ 'events' ];                            // ?events&padFormat=ics, Accept: text/calendar
+$padFormatOptions = [ 'title' => 'Talks', 'name' => 'Talks' ];  // the writer's options for the answers
+```
+
+- A page answers its `$padExpose` in every format that writes, as it answers JSON and CSV:
+  `&padFormat=<format>` (or an extension, `md`) or an `Accept` header naming the format's media
+  type above `text/html`. A table format - `ics`, `xlsx`, the feeds, `geojson`, `gpx`, `vcf`,
+  `md`, `tsv`, `ndjson` - answers the first exposed list, `toml`, `yaml` and `ini` the
+  variables by name. The answer has the format's content type and, for a file, the page's name
+  with the format's extension - `inline` (`events.ics`), an `attachment` for `xlsx` and `gpx`,
+  none for a feed. A row the format has no place for - an order without a date in a calendar -
+  is left out of such an answer; asked of the helper it is an error under the strict check.
+  `$padOutputType = 'format'` with `$padOutputFormat = 'ics'` makes every page answer that.
+- Deterministic: the same rows give the same bytes - an event's UID is made of the row, its
+  DTSTAMP is the row's `stamp`, `stamp=` or its start, a feed's updated the newest entry, a
+  zip's parts dated 1980-01-01 - never the clock.
+- A text a format cannot read is an error under the strict check naming the format and the
+  line - `TOML error on line 3: the key 'name' is defined twice` - and no rows on the lenient
+  walk. The formats known on sight are known only where the text would have read as CSV, or
+  as a JSON document that is none: TOML, INI, GeoJSON and GPX are named, or read by extension.
+- A data file runs as PAD before it is read, as a JSON file does - a `{` in a TOML comment is a
+  tag; an `xlsx` is bytes, read as the file holds them.
+- Option names: `title`, `link`, `self`, `description`, `author`, `language`, `id`, `updated`
+  (feeds), `name`, `stamp`, `prodid` (ics), `name`, `as`, `creator` (gpx), `sheet` (xlsx),
+  `name` (toml, for a list handed over whole).
 
 ### Maintenance mode
 
@@ -1126,6 +1187,11 @@ $padOutputType = 'web';
 
 // The page variables a page answers as JSON or CSV - set in the page's .php
 $padExpose = [];
+
+// The format of the output type 'format' - ics, xlsx, toml ... (Data formats) - and the
+// options of the writer of a page's data answer: a feed's title and link, a calendar's name
+$padOutputFormat  = '';
+$padFormatOptions = [];
 
 // Links in the clean form - /myapp/products/42 - for a server that routes paths
 $padCleanUrls = false;

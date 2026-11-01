@@ -36,6 +36,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Patterns](#patterns) | `padPattern`, `padPatternKinds` | - |
 | [Public holidays](#public-holidays) | `padHolidays`, `padIsHoliday`, `padWorkdays`, `padAddWorkdays` | holidays |
 | [Site search](#site-search) | `padSearch` | search |
+| [Data formats](#data-formats) | `padFormatRead`, `padFormatWrite`, `padFormatKinds`, ... | data_formats |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1066,6 +1067,18 @@ function, which then answers an empty value of its kind.
 | Function | Answers |
 |----------|---------|
 | `padSearch ( $source, $query, $options = [] )` | The rows found, the best first, each with its own fields and `score` (BM25F) and `excerpt` (HTML, the matches in `<mark>`) added. `$source` is the name of a Markdown collection (`_content/<name>/`), of a data store, a page's array or a `_data` file - or the rows themselves, a `db()` result. The options: `fields` (`'title^2, body'`), `lang` (`en`, `nl`, `de`, `fr`, `es`), `words` (the excerpt's length, 30), `excerpt` (its field) and `name` - what an index of rows is kept under in `DATA/cache/search/<app>/`, `'rows'` by default; it is made again whenever the rows change. The query as `{search}` reads it: words, `"a phrase"`, `prefix*`, `-word` |
+
+## Data formats
+
+`pad/lib/format.php` - the formats subsystem, `pad/subs/formats/` (a format per file of
+`types/`, its code in `_lib/`); see [Data formats](../FEATURES.md#data-formats).
+
+| Function | Answers |
+|----------|---------|
+| `padFormatRead ( $format, $text, $options = [] )` | The rows of a text - `$format` a format (`toml`, `ics`, `xlsx` ...) or an extension of one (`md`, `jsonl`, `yml`); a malformed text is an error naming the format and the line under the strict check, no rows without it; `[ 'sheet' => 'Notes' ]` for an xlsx |
+| `padFormatWrite ( $format, $rows, $options = [] )` | The text of rows - or of any value, for `toml`, `yaml`, `ini`, `json`; options: `title`, `link`, `self`, `description`, `author` of a feed, `name`, `stamp` of a calendar, `sheet` of a spreadsheet, `as` of GPX; deterministic, the same rows the same bytes |
+| `padFormatKinds ()`, `padFormatFind ( $name, $can = '' )` | The formats - the files of `pad/subs/formats/types/`; the format a name or extension stands for that can `read` or `write` - `''` for none |
+| `padFormatDef ( $format )` | What its file says: `name`, `mime`, `extension`, `shape` (`rows` or `data`), `read`, `write` ... |
 
 ## Engine functions
 
