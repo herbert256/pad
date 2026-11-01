@@ -612,22 +612,32 @@
   }, true);
 
   // A field left empty is not checked - a required one would speak before it was filled in
-  // - but it is left, and a change of a field its rules look at checks it from then on.
+  // - but it is left, and a change of a field its rules look at checks it from then on. The
+  // focus going on to another control of the same field - from the hours to the minutes of
+  // a duration, along the boxes of a one-time code - does not leave it: the duration was
+  // judged before its minutes were typed.
   document.addEventListener('focusout', function (event) {
     var target = fieldOf(event.target), form = ruled(target);
-    if (form && (target.value !== '' || document.getElementById(idOf(target.name, target) + '-error')))
+    if (!form || (event.relatedTarget && fieldOf(event.relatedTarget) === target)) return;
+    if (target.value !== '' || document.getElementById(idOf(target.name, target) + '-error'))
       checkOne(form, target.name);
-    if (form) marks(form)[target.name] = true;
+    marks(form)[target.name] = true;
   });
 
   // A control without a name that a field shows itself in - the filter box of a multiselect,
   // which its select names in data-pad-shows - is that field when the focus leaves it: the
   // focus is never in the hidden select, so a multiselect left empty was never left, and a
-  // change of a field its rules look at - required_if:plan,pro - did not check it.
+  // change of a field its rules look at - required_if:plan,pro - did not check it. So is a
+  // control without a name or id in the frame of a rich field that shows itself in one -
+  // the minutes box of a duration, whose hours box has the id: leaving it was no field's.
   function fieldOf(target) {
-    if (!target || target.name || !target.id || !target.form || !target.form.querySelector) return target;
-    var id = window.CSS && CSS.escape ? CSS.escape(target.id) : target.id;
-    return target.form.querySelector('[data-pad-shows="' + id + '"]') || target;
+    if (!target || target.name || !target.form || !target.form.querySelector) return target;
+    var id = target.id && (window.CSS && CSS.escape ? CSS.escape(target.id) : target.id);
+    var shown = id && target.form.querySelector('[data-pad-shows="' + id + '"]');
+    if (shown) return shown;
+    var frame = !target.id && target.closest ? target.closest('[data-pad-input]') : null;
+    var shows = frame ? frame.querySelectorAll('[data-pad-shows]') : [];
+    return shows.length === 1 ? shows[0] : target;
   }
 
   ['input', 'change'].forEach(function (type) {

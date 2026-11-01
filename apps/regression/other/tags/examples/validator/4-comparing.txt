@@ -840,14 +840,19 @@ addRule('uuid', {
   }, true);
   document.addEventListener('focusout', function (event) {
     var target = fieldOf(event.target), form = ruled(target);
-    if (form && (target.value !== '' || document.getElementById(idOf(target.name, target) + '-error')))
+    if (!form || (event.relatedTarget && fieldOf(event.relatedTarget) === target)) return;
+    if (target.value !== '' || document.getElementById(idOf(target.name, target) + '-error'))
       checkOne(form, target.name);
-    if (form) marks(form)[target.name] = true;
+    marks(form)[target.name] = true;
   });
   function fieldOf(target) {
-    if (!target || target.name || !target.id || !target.form || !target.form.querySelector) return target;
-    var id = window.CSS && CSS.escape ? CSS.escape(target.id) : target.id;
-    return target.form.querySelector('[data-pad-shows="' + id + '"]') || target;
+    if (!target || target.name || !target.form || !target.form.querySelector) return target;
+    var id = target.id && (window.CSS && CSS.escape ? CSS.escape(target.id) : target.id);
+    var shown = id && target.form.querySelector('[data-pad-shows="' + id + '"]');
+    if (shown) return shown;
+    var frame = !target.id && target.closest ? target.closest('[data-pad-input]') : null;
+    var shows = frame ? frame.querySelectorAll('[data-pad-shows]') : [];
+    return shows.length === 1 ? shows[0] : target;
   }
   ['input', 'change'].forEach(function (type) {
     document.addEventListener(type, function (event) {
