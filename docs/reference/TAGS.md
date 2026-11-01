@@ -4096,7 +4096,7 @@ themes there are, and the subsystem is `pad/subs/themes/`.
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The theme: light, dark, paper, terminal, newspaper, contrast, contrast-dark, sepia, ocean, forest, mono, solarized-light, solarized-dark |
+| first parameter | The theme: light, dark, paper, terminal, newspaper, contrast, contrast-dark, sepia, ocean, forest, mono, solarized-light, solarized-dark, night |
 
 **Behavior:** single, the tag writes the theme's `<style>` where it stands, with the request's
 nonce, on `:root:root:root` - outweighing the frame's light and dark rules - and a page that
