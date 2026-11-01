@@ -3301,6 +3301,7 @@ and pages. `padPattern ( 'dots', [ 'size' => 24 ] )` draws the same in a page's 
 | `guilloche` | Bands of engraved waves, copies of one wave interlacing - the lines of a certificate | `lines` (12) |
 | `flowfield` | Evenly spaced streamlines of a current the seed makes up | |
 | `maze` | A perfect maze dug by the recursive backtracker, entered top left and left bottom right | |
+| `terrazzo` | Chips of stone in the seed's inks, large ones first, none touching | |
 
 **Every pattern:** `seed=` - a number or a word, 1 when left out - makes the picture: the same
 seed the same bytes on every request and every machine (PAD's own sequence, the one of
@@ -3317,7 +3318,8 @@ pattern is drawn on every request, so the kinds that draw a shape per place - tr
 hexagons, truchet, chevron and waves 50,000 at most, voronoi 10,000 cells,
 guilloche 2,000 lines,
 flowfield 20,000 squares of its size,
-maze 40,000 squares - and topography (its
+maze 40,000 squares,
+terrazzo 5,000 squares of its size - and topography (its
 grid times its levels, 1,500,000 at most) have a budget for the size, the picture and the levels
 together: past it the pattern is not drawn. An unknown pattern, a colour that is none, a number
 outside its bounds, an `as` other than `svg` or `url`, an option the kind does not take, content
