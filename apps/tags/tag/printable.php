@@ -39,7 +39,11 @@ PAD;
     'card'      => 'indexcards: 5x3, 6x4, a6 or a7.',
     'grid'      => 'graphpaper: squares, dots or lines.',
     'spacing'   => 'graphpaper: the step of the grid in mm, 5 (8 for lines).',
-    'major'     => 'graphpaper: every that many lines a heavier one, or a bigger dot - millimetre paper is <code>spacing=1, major=10</code>.' ];
+    'major'     => 'graphpaper: every that many lines a heavier one, or a bigger dot - millimetre paper is <code>spacing=1, major=10</code>.',
+    'year'      => 'calendar: its twelve months, this year the default.',
+    'month'     => 'calendar: the month it starts with, <code>2026-09</code>; <code>months</code> how many, 1 to 60.',
+    'sunday'    => 'calendar: bare option, the weeks from Sunday instead of Monday; <code>weeks</code> their ISO 8601 numbers before them.',
+    'holidays'  => 'calendar: the public holidays of a country of the holidays subsystem marked, <code>nl</code>, <code>de-by</code>.' ];
 
   $tagSee     = [ 'pdf', 'barcode', 'qr', 'fake' ];
 

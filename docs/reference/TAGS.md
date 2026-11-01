@@ -2478,6 +2478,7 @@ half. Written as a single tag the printable has one item without content.
 | `indexcards` | Index cards, ruled, as many to the sheet as fit, crop marks | `card` (5x3, 6x4, a6, a7), `paper`, `plain` |
 | `placecards` | Place cards folded into a tent, the upper half turned | `sheet` (a4-2x2, a4-1x3, letter-2x2) |
 | `graphpaper` | Graph paper, a grid over the sheet in whole squares, centred, drawn exactly; the content a line over it | `grid` (squares, dots, lines), `spacing` (5 mm; 8 for lines), `major` (every that many lines heavier), `color`, `margin`, `paper`, `landscape` |
+| `calendar` | A wall calendar, a month to a sheet, a box for every day, holidays marked; the content over every month, the rows in turn | `year` (this year), `month` ('2027-03'), `months` (12; 1 with month), `sunday`, `weeks`, `holidays` ('nl', 'de-by'), `color`, `paper` (a4, a3, a5, letter), `landscape` |
 
 **Every kind of a grid** - labels, badges, cards, tickets, placecards - takes `paper`,
 `landscape`, `across`, `down`, `width`, `height` (mm), `margin` (the top and the left margin, one

@@ -1256,6 +1256,7 @@ and its WAV.
 {/printable:letter}
 {printable 'envelope', paper='c5', sender='PAD, Utrecht', scale=0.5, pdf}...{/printable}
 {printable:graphpaper grid='dots', major=2, copies=10}Name ________{/printable:graphpaper}   # squares, dots or lines, drawn exactly
+{printable:calendar year=2027, holidays='nl', weeks, data='photos'}<h2>{$caption}</h2>{/printable:calendar}   # a month a sheet
 ```
 Pages made for paper. A kind is a file of `pad/subs/printables/types/` - labels (sheet grids named
 by their paper and their grid: a4-3x8, a4-3x7, a4-2x7, a4-2x8, a4-2x4, a4-4x10, a4-5x13,
@@ -1292,6 +1293,15 @@ to fill in. Its lines, and any line of dots, are drawn exactly: one SVG over the
 millimetres, where a line drawn as the border of a box is printed on the nearest of 96 pixels an
 inch and a pixel thick at the least - squares of 5 mm 4.76 and 5.03 mm wide, the heavy lines as
 thin as the others - so that printed at its actual size 5 mm is 5 mm, on paper as in the PDF.
+
+A wall calendar (`calendar`) is a month to a sheet: the month over a grid of its weeks, a box to
+write in for every day - `year=` its twelve months, `month='2026-09'` from that month on and
+`months=` how many (1 with `month=`), `sunday` the weeks from Sunday, `weeks` the ISO 8601 week
+numbers before them, `holidays=` a country of the holidays subsystem (`'nl'`, `'de-by'`) its public
+holidays red with their names and its observances grey, `color=`, `paper=` and `landscape` - the
+month, the weekdays and the names of the holidays in the language of the page's locale, as
+`{calendar}` writes them; the content between the tags stands over every month, a row of the data
+a month, the rows taken in turn.
 
 ### Widgets
 ```

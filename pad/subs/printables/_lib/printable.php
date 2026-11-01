@@ -136,6 +136,13 @@
     $copies = padPrintableInt ( 'copies', 1, 1, 1000 );
     $all    = [];
 
+    // A kind that makes a number of items of its own - the months of a calendar - takes the
+    // items in turn: one item is on every one of them, a row of the data each on its own, rows
+    // past the number left out.
+
+    if ( isset ( $plan ['count'] ) and $items )
+      $items = array_map ( fn ( $i ) => $items [ $i % count ( $items ) ], range ( 0, max ( 1, $plan ['count'] ) - 1 ) );
+
     // Counted before they are made, and no more made than the most: 10000 rows of 1000
     // copies were ten million items, 256 MB, before the count that refuses them.
 
@@ -191,6 +198,8 @@
   //           $parts is NULL, and the kind draws what a sheet shows there - an edge
   //   sheet   fn ( $sheet ) - what every sheet draws, the crop marks and the fold marks
   //   font    sans or serif
+  //   count   the number of items the kind makes, the items taken in turn - a calendar's
+  //           months
   //   exact   every line drawn exactly (padPrintableExact) - graph paper
   //
   // What an item and a sheet draw is a list of:
