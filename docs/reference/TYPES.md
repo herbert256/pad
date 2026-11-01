@@ -66,9 +66,10 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 26. **barcode** - Barcode symbology, a file of `PAD/subs/codes/types/`
 27. **embed** - Embed provider, a file of `PAD/subs/embeds/types/`
 28. **input** - Rich form field, a file of `PAD/subs/inputs/types/`
-29. **function** - PAD function (fallback)
+29. **effect** - Effect, a file of `PAD/subs/effects/types/`
+30. **function** - PAD function (fallback)
 
-Items 21 to 28 are the subsystems of `padSubsystems` (`PAD/lib/subsystem.php`), tried in that
+Items 21 to 29 are the subsystems of `padSubsystems` (`PAD/lib/subsystem.php`), tried in that
 order. The icons (`PAD/subs/icons/types/`) and the fake kinds (`PAD/subs/fakes/types/`) are never reached
 bare - their names, home or email, are those of fields and pages - only as `{icon:star/}` and
 `{fake:email/}`.
@@ -728,6 +729,28 @@ reached bare and draws as it did. `{notation:zebra/}` is "there is no notation n
 
 ---
 
+## Effect Types
+
+### effect
+
+Motion or decoration on a text or a block - a typewriter, a marker stroke, a count-up, a
+reveal on scroll, a loader, confetti ... - of the kind the tag names: the effects subsystem in
+`PAD/subs/effects/` writes it, as the `{effect}` tag writes the effect its first parameter names.
+
+```
+{effect:typewriter}Hello, world{/effect:typewriter}
+{effect:countup to=1250, suffix='+'/}
+{highlighter}the terms{/highlighter}
+```
+
+**Resolution:** a PHP file `PAD/subs/effects/types/<name>.php`, its style
+`PAD/subs/effects/assets/<name>.css` (confetti's script `confetti.js` beside it), the effect written
+by `PAD/subs/effects/effect.php`: the files of `types/` are the effects, and an effect is added by
+adding its files. Bare, an effect comes after every other kind of tag and after the subsystems
+before it in `padSubsystems`, so a store, a field or an array of the name wins.
+
+---
+
 ## Sequence Types
 
 These types integrate with the PAD sequence subsystem.
@@ -869,6 +892,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `sound` | PAD/subs/sounds/types/ | Sounds |
 | `printable` | PAD/subs/printables/types/ | Printables |
 | `notation` | PAD/subs/notations/types/ | Notations |
+| `effect` | PAD/subs/effects/types/ | Effects |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -895,6 +919,7 @@ types/
 ├── data.php        → Data store
 ├── define.php      → Tag defined in the template ({define})
 ├── diagram.php     → Diagram kind
+├── effect.php      → Effect
 ├── embed.php       → Embed provider
 ├── fake.php        → Fake value kind
 ├── field.php       → Field value

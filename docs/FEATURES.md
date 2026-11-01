@@ -70,6 +70,7 @@ applications show them working.
   - [Notations](#notations)
   - [Showcase tags](#showcase-tags)
   - [Live Regions (interactivity without app JavaScript)](#live-regions-interactivity-without-app-javascript)
+  - [Effects](#effects)
 - [Development](#development)
   - [Configuration settings](#configuration-settings)
   - [Designer preview with sample data](#designer-preview-with-sample-data)
@@ -1319,6 +1320,47 @@ Every one is rendered on the server; the `showcase` application has examples of 
 to the page's own URL; the page's PHP reads `padLiveEvent()` / `padLiveValue()` and keeps state
 in the session (`$padSessionVars`) or the event's value; only that region's content comes back
 and is swapped in. The first region brings a small inline script.
+
+### Effects
+```
+{typewriter}Pages that write themselves.{/typewriter}           # typed out behind a caret, once
+{effect:highlighter}the terms{/effect:highlighter}             # a marker stroke behind the words - a <mark>
+{effect 'countup', to=1250, suffix='+'/}                       # counted by the CSS (@property), read as 1250+
+{glitch}SIGNAL LOST{/glitch}  {shimmer}New{/shimmer}  {wave}Hi!{/wave}
+{gradient colors='#f97316, #db2777', animate}Launch week{/gradient}
+{marquee duration=25, label='Built with'}...{/marquee}         # a band that scrolls, a Pause button without script
+{reveal motion='left'}<div>...</div>{/reveal}                  # comes into view as it is scrolled to - view()
+{tilt glare}<div class="card">...</div>{/tilt}                 # leans in 3D on hover and focus
+{spotlight at='top left'}...{/spotlight}                       # a soft light that sweeps across and rests
+{spinner style='dots', label='Saving'/}                        # ring, dots, bars, pulse, orbit - a status
+{confetti}<button type="button">Celebrate</button>{/confetti}  # the one with a script; single: bursts in view
+```
+Motion and decoration on a text or a block, CSS first: confetti is the only effect with a script,
+`pad/subs/effects/assets/confetti.js`; the rest is CSS, a stylesheet per kind written once per page
+with the CSP nonce, after the base every effect shares. Every animation stands inside
+`@media (prefers-reduced-motion: no-preference)`, so a visitor who asks for less motion gets the
+content still and whole - typed out, counted, revealed, marked - and confetti does not burst.
+A screen reader reads the text once, as it ends: the letters of a wave and the slices of a glitch
+are a copy marked `aria-hidden`, the typewriter's text is whole in the page while the CSS
+uncovers it, a count-up reads its last number, a spinner is a `role="status"` with its label.
+What repeats runs `repeat=` times - three unless given, `forever` the author's choice; the marquee
+stops while the pointer or the focus is on it and has a Pause button that works without script.
+The numbers of one effect - its duration, its delay, the length of its text - are custom
+properties in a style attribute of its element, written by the server from checked values; the
+colours are `--pad-effect-accent`, `-accent2`, `-accent3`, `-text`, `-mark` and `-track` on
+`.pad-effect`, light and dark, falling back to the frame's `--accent`, `--text` and `--line`, so a
+theme colours them. The kinds are the files of `pad/subs/effects/types/` - typewriter, glitch,
+shimmer, gradient, wave, highlighter, countup, marquee, reveal, tilt, spotlight, spinner, confetti -
+and an effect is added by adding its file. Each is written three ways, the same effect:
+`{effect 'typewriter'}...{/effect}`, the effect type `{effect:typewriter}...{/effect:typewriter}`
+and bare, `{typewriter}...{/typewriter}`, when no tag, store, field or sequence has the name. A pair
+works on its content, rendered first; a single tag on its first parameter, `{typewriter 'Hi'/}`.
+`highlighter` is so named because `{highlight}` colours code. The reveal, the highlighter's and the
+count-up's `scroll` are scroll-driven animations (`animation-timeline: view()`): where a browser
+has none, the block stands there and the stroke or the count runs in time, as without scroll. Code: the effects
+subsystem in `pad/subs/effects/` - `effect.php` the body every form runs, `_lib/effect.php` the
+options and the markup, `types/` the kinds, `assets/` their looks; `pad/types/effect.php` the
+effect type, `pad/tags/effect.php` the tag.
 
 ## Development
 

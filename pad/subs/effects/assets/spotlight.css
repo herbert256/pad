@@ -1,0 +1,9 @@
+@property --pad-effect-sx{syntax:'\3c percentage\3e ';inherits:false;initial-value:50%}
+.pad-effect-spotlight{--pad-effect-x:50%;--pad-effect-y:0%;--pad-effect-glow:color-mix(in srgb,var(--pad-effect-light,var(--pad-effect-accent)) 26%,transparent);position:relative;isolation:isolate;border-radius:var(--pad-effect-radius,12px)}
+.pad-effect-spotlight::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;--pad-effect-sx:var(--pad-effect-x);background:radial-gradient(ellipse 60% 85% at var(--pad-effect-sx) var(--pad-effect-y),var(--pad-effect-glow),transparent 100%)}
+@media (prefers-reduced-motion:no-preference){
+.pad-effect-spotlight::before{animation:pad-effect-sweep var(--pad-effect-duration) cubic-bezier(.4,0,.2,1) var(--pad-effect-delay) var(--pad-effect-repeat) both}
+.pad-effect-spotlight:hover::before,.pad-effect-spotlight:focus-within::before{animation:pad-effect-sweep2 var(--pad-effect-duration) cubic-bezier(.4,0,.2,1) 0s 1 both}
+}
+@keyframes pad-effect-sweep{0%{--pad-effect-sx:-25%}55%{--pad-effect-sx:115%}100%{--pad-effect-sx:var(--pad-effect-x)}}
+@keyframes pad-effect-sweep2{0%{--pad-effect-sx:-25%}55%{--pad-effect-sx:115%}100%{--pad-effect-sx:var(--pad-effect-x)}}

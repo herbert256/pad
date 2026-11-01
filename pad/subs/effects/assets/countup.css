@@ -1,0 +1,9 @@
+@property --pad-effect-n{syntax:'\3c integer\3e ';inherits:false;initial-value:0}
+.pad-effect-countup{font-variant-numeric:tabular-nums;white-space:nowrap}
+.pad-effect-countup .pe-count{--pad-effect-n:var(--pad-effect-to);counter-reset:pad-effect-n var(--pad-effect-n);display:inline-block;min-width:calc(var(--pad-effect-digits) * 1ch);text-align:right}
+.pad-effect-countup .pe-count::after{content:counter(pad-effect-n)}
+@media (prefers-reduced-motion:no-preference){
+.pad-effect-countup .pe-count{animation:pad-effect-count var(--pad-effect-duration) cubic-bezier(.2,.7,.2,1) var(--pad-effect-delay) both}
+@supports (animation-timeline:view()){.pad-effect-countup.pe-scroll .pe-count{animation:pad-effect-count linear both;animation-timeline:view();animation-range:entry 0% entry 100%}}
+}
+@keyframes pad-effect-count{from{--pad-effect-n:var(--pad-effect-from)}to{--pad-effect-n:var(--pad-effect-to)}}

@@ -1,0 +1,10 @@
+.pad-effect-reveal{--pad-effect-distance:32px;--pad-effect-x:0px;--pad-effect-y:0px;--pad-effect-scale:1}
+.pad-effect-reveal.pe-up{--pad-effect-y:var(--pad-effect-distance)}
+.pad-effect-reveal.pe-down{--pad-effect-y:calc(var(--pad-effect-distance) * -1)}
+.pad-effect-reveal.pe-left{--pad-effect-x:var(--pad-effect-distance)}
+.pad-effect-reveal.pe-right{--pad-effect-x:calc(var(--pad-effect-distance) * -1)}
+.pad-effect-reveal.pe-zoom{--pad-effect-scale:.92}
+@media (prefers-reduced-motion:no-preference){
+@supports (animation-timeline:view()){.pad-effect-reveal{animation:pad-effect-reveal linear both;animation-timeline:view();animation-range:entry 0% entry 100%}}
+}
+@keyframes pad-effect-reveal{from{opacity:0;translate:var(--pad-effect-x) var(--pad-effect-y);scale:var(--pad-effect-scale)}to{opacity:1;translate:none;scale:none}}

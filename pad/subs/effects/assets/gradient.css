@@ -1,0 +1,6 @@
+.pad-effect-gradient{--pad-effect-angle:90deg;--pad-effect-colors:var(--pad-effect-accent),var(--pad-effect-accent2);background-image:linear-gradient(var(--pad-effect-angle),var(--pad-effect-colors));background-repeat:no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.pad-effect-gradient.pe-flow{--pad-effect-colors:var(--pad-effect-accent),var(--pad-effect-accent2),var(--pad-effect-accent);background-repeat:repeat-x;background-size:200% 100%;background-position:0 0}
+@media (prefers-reduced-motion:no-preference){
+.pad-effect-gradient.pe-flow{animation:pad-effect-flow var(--pad-effect-duration) linear var(--pad-effect-delay) var(--pad-effect-repeat) both}
+}
+@keyframes pad-effect-flow{from{background-position:0 0}to{background-position:-200% 0}}

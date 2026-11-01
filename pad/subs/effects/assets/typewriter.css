@@ -1,0 +1,11 @@
+.pad-effect-typewriter{position:relative;display:inline-block;white-space:nowrap;vertical-align:bottom}
+.pad-effect-typewriter.pe-mono{font-family:var(--mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace)}
+.pad-effect-typewriter .pe-text{display:inline-block}
+.pad-effect-typewriter .pe-caret{position:absolute;top:.12em;bottom:.08em;left:100%;width:max(2px,.07em);margin-left:.05em;border-radius:1px;background:var(--pad-effect-accent);opacity:0;pointer-events:none}
+@media (prefers-reduced-motion:no-preference){
+.pad-effect-typewriter .pe-text{animation:pad-effect-type var(--pad-effect-duration) steps(var(--pad-effect-chars),end) var(--pad-effect-delay) both}
+.pad-effect-typewriter .pe-caret{opacity:1;animation:pad-effect-type-caret var(--pad-effect-duration) steps(var(--pad-effect-chars),end) var(--pad-effect-delay) both,pad-effect-blink .8s step-end var(--pad-effect-delay) var(--pad-effect-blinks)}
+}
+@keyframes pad-effect-type{from{clip-path:inset(-.3em 100% -.3em -.2em)}to{clip-path:inset(-.3em -.2em -.3em -.2em)}}
+@keyframes pad-effect-type-caret{from{left:0}to{left:100%}}
+@keyframes pad-effect-blink{50%{opacity:0}}

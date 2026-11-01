@@ -3794,6 +3794,61 @@ a `data` name that names nothing and no value at all are strict errors.
 
 ---
 
+### effect
+Motion and decoration on a text or a block, CSS first: every effect is a file of
+`pad/subs/effects/types/`, its look `pad/subs/effects/assets/<kind>.css`, written once per page with
+the CSP nonce after the base every effect shares (`effect.css`); confetti alone has a script,
+`assets/confetti.js`, written the same way. The files of `types/` are the effects there are; the
+subsystem is `pad/subs/effects/`.
+
+```html
+{effect 'typewriter'}Hello, world{/effect}
+{effect:highlighter}the one thing to remember{/effect:highlighter}
+{typewriter speed=20, mono}npm install pad{/typewriter}
+{countup to=1250, prefix='€', suffix='+'/}
+{gradient colors='#f97316, #db2777', angle=120, animate}Launch week{/gradient}
+{marquee duration=25, label='Built with'}<b>PHP</b> <b>SQLite</b> <b>htmx</b>{/marquee}
+{reveal motion='left'}<div class="card">...</div>{/reveal}
+{spinner style='dots', label='Saving'/}
+{confetti}<button type="button">Celebrate</button>{/confetti}
+```
+
+An effect is written three ways, the same effect each time: the tag, `{effect 'typewriter'}...
+{/effect}`, whose second parameter is the effect's own first; the effect: type,
+`{effect:typewriter}...{/effect:typewriter}`; and bare, `{typewriter}...{/typewriter}`, when no tag,
+store, field or sequence has the name. A pair works on its content, rendered first - the effect
+wraps what rendered; a single tag works on its first parameter, escaped, or on nothing.
+
+Every animation stands inside `@media (prefers-reduced-motion: no-preference)`: under reduced
+motion the content is still and whole, never hidden. A screen reader reads the text once - the
+moving copies of the wave and the glitch are `aria-hidden`, the count-up reads its last number.
+What repeats runs `repeat=` times (3, or `forever`); `duration=` is the seconds of one run and
+`delay=` the seconds before the first, where a kind animates in time. Every option is checked
+under the strict check: an unknown kind, a value out of its bounds or none of its words, a colour
+that is no CSS colour, a kind that wraps a block written single, a text kind without its text.
+
+| Effect | Form | Does | Its options |
+|--------|------|------|-------------|
+| `typewriter` | both | Types a line out letter by letter behind a caret, once | `speed` (14 letters a second), `delay`, `caret` (bar, none), `mono` |
+| `glitch` | both | Tears the text into slices in two colours for a moment; the pointer replays it | `duration` (2.5), `delay`, `repeat` (3) |
+| `shimmer` | both | A band of light sweeps across the letters and rests | `duration` (2.5), `delay`, `repeat` (3) |
+| `gradient` | both | Letters painted with a gradient; `animate` lets it flow | `colors` (2 to 6), `angle` (90), `animate`, `duration` (4), `delay`, `repeat` (3) |
+| `wave` | both | The letters rise and fall, a wave through the word | `height` (0.25 em), `duration` (1.6), `delay`, `repeat` (3) |
+| `highlighter` | both | A marker stroke drawn behind the words, a `<mark>` | `color`, `duration` (0.8), `delay`, `scroll` |
+| `countup` | both | A whole number counted up by the CSS, read as its last value | `to` (or the parameter or the content), `from` (0), `prefix`, `suffix`, `duration` (2), `delay`, `scroll` |
+| `marquee` | both | A band whose content scrolls by without end; a Pause button | `duration` (20), `direction` (left, right), `gap` (48 px), `label` |
+| `reveal` | pair | A block that comes into view as it is scrolled to | `motion` (up, down, left, right, fade, zoom), `distance` (32 px) |
+| `tilt` | pair | A card that leans in 3D on hover and focus | `angle` (8), `toward` (top-right, top-left, bottom-right, bottom-left), `glare` |
+| `spotlight` | pair | A soft light sweeps across the block and rests | `at` (top, center, a side, a corner, '30% 20%'), `color`, `duration` (2.5), `delay`, `repeat` (1) |
+| `spinner` | both | A loader, `role="status"`; the pair's content is its shown label | `style` (ring, dots, bars, pulse, orbit), `label` (Loading), `size` (24 px), `color` |
+| `confetti` | both | A burst of confetti: single when in view, a pair on a click in it | `pieces` (120), `spread` (70 degrees), `colors` (2 to 8), `seed` (7) |
+
+The colours are custom properties on `.pad-effect` - `--pad-effect-accent`, `-accent2`,
+`-accent3`, `-text`, `-mark` (the highlighter's ink) and `-track` (the spinner's ring) - with
+light and dark defaults that fall back to the frame's `--accent`, `--text` and `--line`.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -4405,6 +4460,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `emoji` | Output | An emoji by its shortcode, labelled for screen readers; also an `emoji` pipe |
 | `country` | Output | A country's flag emoji and English name from an ISO 3166 code |
 | `jsonview` | Output | A JSON value or PHP array as a foldable, coloured tree of details elements |
+| `effect` | Output | Motion and decoration, CSS first - the files of `pad/subs/effects/types/`: typewriter, highlighter, countup, reveal, marquee, spinner, confetti ... - still under reduced motion |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
@@ -4485,6 +4541,7 @@ Resolve naming conflicts with explicit prefixes:
 | `sequence:` | Sequence type | `{sequence:fibonacci}` |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
+| `effect:` | Effect kind | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect 'typewriter'}` or bare `{typewriter}` - a kind is a file of `pad/subs/effects/types/` |
 
 ---
 
