@@ -350,10 +350,19 @@
 
       // A state after a species, (aq).
 
-      if ( $ch === '(' and preg_match ( '/^\(([a-z]+)\)/', implode ( '', array_slice ( $c, $i, 16 ) ), $m )
-           and ( $unit !== NULL or $out !== '' ) ) {
+      if ( $ch === '(' and ( $m = padChemStateAt ( $c, $i ) ) and ( $unit !== NULL or $out !== '' ) ) {
         $out .= padChemUnit ( $unit ) . padChemState ( $m [1], $problems );
         $unit = NULL;
+        $i   += strlen ( $m [0] );
+        continue;
+      }
+
+      // A ligand written in small letters, (en), (py), (phen): a group of its own, drawn as
+      // the word it is - a count after it is the group's, [Co(en)3]^3+.
+
+      if ( $ch === '(' and preg_match ( '/^\(([a-z]+)\)/', implode ( '', array_slice ( $c, $i, 16 ) ), $m ) ) {
+        $out .= padChemUnit ( $unit );
+        $unit = [ 'base' => '<mrow>' . padChemFence ( '(' ) . '<mrow>' . padChemMi ( $m [1] ) . '</mrow>' . padChemFence ( ')' ) . '</mrow>', 'group' => TRUE ];
         $i   += strlen ( $m [0] );
         continue;
       }
@@ -538,11 +547,17 @@
 
   }
 
-  // Whether a state, (aq), starts at $i.
+  // The state that starts at $i - the match of (aq) and the word in it - or NULL. A word in
+  // small letters in brackets is a state when it is one, (s), (l), (g) or (aq), or when it
+  // ends the species, where a state stands - (sq) there is named as no state; elsewhere it is
+  // a ligand, (en) in [Co(en)3]^3+, which was named "no state '(en)'".
 
   function padChemStateAt ( $c, $i ) {
 
-    return (bool) preg_match ( '/^\([a-z]+\)/', implode ( '', array_slice ( $c, $i, 16 ) ) );
+    if ( ! preg_match ( '/^\(([a-z]+)\)/', implode ( '', array_slice ( $c, $i, 16 ) ), $m ) )
+      return NULL;
+
+    return ( in_array ( $m [1], PAD_CHEM_STATES, TRUE ) or $i + strlen ( $m [0] ) >= count ( $c ) ) ? $m : NULL;
 
   }
 
