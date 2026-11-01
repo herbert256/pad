@@ -56,7 +56,10 @@
         foreach ( $parts [1] as $part )
           $values [] = strtr ( trim ( $part, '"' ), [ '^n' => "\n", '^N' => "\n", '^^' => '^', "^'" => '"' ] );
 
-        $params [ strtoupper ( $p [1] ) ] = $values;
+        // A parameter written twice - EMAIL;TYPE=pref;TYPE=INTERNET:, as 3.0 cards have it -
+        // is the union of its values, where the last one alone was kept.
+
+        $params [ strtoupper ( $p [1] ) ] = array_merge ( $params [ strtoupper ( $p [1] ) ] ?? [], $values );
 
         $pos += strlen ( $p [0] );
 
