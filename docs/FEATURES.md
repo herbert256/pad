@@ -1295,7 +1295,7 @@ past its budget are errors under the strict check, left out without it. Code: `p
 {piano 'C4 E4 G4'/}  {piano 'Dm7'/}                   # keys marked on a keyboard; from=, to=
 {braille 'Hello'/}  {braille 'Lift', cells/}          # Unified English Braille grade 1, or its raised dots
 {morse 'SOS'/}  {semaphore 'PAD'/}  {signals 'PAD 26'/}   # ITU morse and its signal; flag semaphore; ICS flags
-{chess $fen, flip, highlight='e2, e4', arrow='e2-e4'/}    # FEN - the {chess} tag, now a notation
+{chess $fen, flip, highlight='e2, e4', arrow='e2-e4'/}    # FEN - the chess notation, the built-in tag {chess} too
 {go '(;SZ[9]AB[cc];B[ee];W[ec])', numbers/}           # SGF played out, captures taken off; move=, plain
 {draughts 'W:W31-50:B1-20'/}  {draughts 'B:W21-32:B1-12', board=8/}   # the FEN of PDN, 10 by 10 or 8 by 8
 {notation 'braille', 'Hello'/}                        # the tag: its second parameter the kind's text
@@ -1311,7 +1311,8 @@ PAD's), chem, abc, chord, piano, braille, morse, semaphore, signals, chess, go a
 a notation is added by adding its file. Each is written three ways: `{notation 'math', 'a/b'/}`,
 the notation type `{notation:math 'a/b'/}` and bare, `{math 'a/b'/}`, after every other kind of
 tag; `chord` bare is the charts' chord diagram, so a guitar chord is `{notation:chord}`. `{chess}`
-was a built-in tag and draws as it did, reached bare. A text a notation cannot read - a FEN with
+stays a built-in tag that draws the chess notation (`pad/tags/chess.php`), so it comes before a
+field, a store or a file named chess, as before. A text a notation cannot read - a FEN with
 seven ranks, an element the periodic table lacks, a character morse has no sign for, a move on
 a taken point - is an error under the strict check. Code: `pad/subs/notations/` -
 `notation.php` the body every form runs, `_lib/` the drawing of each kind, `assets/` the styles,

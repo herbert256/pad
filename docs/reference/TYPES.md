@@ -727,8 +727,8 @@ The text is the first parameter, or the content between the tags taken as it sta
 of `types/` are the notations, and a notation is added by adding its files. Bare, a notation
 comes after every other kind of tag and the subsystems before it in `padSubsystems`, so a store, a
 field, an array of the name or a kind of another subsystem wins: bare `{chord}` is the chord
-diagram of the charts, the guitar chord `{notation:chord}`. `{chess}`, a built-in tag before, is
-reached bare and draws as it did. `{notation:zebra/}` is "there is no notation named 'zebra'".
+diagram of the charts, the guitar chord `{notation:chord}`. `{chess}` is the built-in tag that
+draws the chess notation, before any field or store of the name, as it did. `{notation:zebra/}` is "there is no notation named 'zebra'".
 
 ---
 

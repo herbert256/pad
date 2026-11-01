@@ -226,6 +226,8 @@
       case 'widget':
       case 'diagram':
       case 'notation':
+        if ( $type == 'notation' and is_file ( PAD . "tags/$kind.php" ) and $first = tagsExamples ( $kind ) [0] ?? NULL )
+          return $example ( 'From the tags application', "Its example on the page of {pad:$kind}, the built-in tag that draws it.", '', $first ['page'] );
         $dir = ( $kind == 'copy' ) ? 'copy' : $type;
         foreach ( tagsKindAppPages ( 'tags', "examples/$dir" ) as $page => $source )
           if ( $dir == 'copy' or str_starts_with ( basename ( $page ), "$kind-" )
@@ -380,6 +382,8 @@
 
     if ( tagsKindBare ( $type, $kind ) )
       $ways [] = "{{$kind} ...}, bare, when no tag, field or store has the name";
+    elseif ( $type == 'notation' and is_file ( PAD . "tags/$kind.php" ) )
+      $ways [] = "{{$kind} ...}, the built-in tag {pad:$kind}, which comes before a field or store of the name";
 
     $html = '<p>One of the ' . $count . ' ' . strtolower ( $types [$type] [0] ) . ' of <a href="?tag/' . $of . '">' . $code ( '{pad:' . $of . '}' ) . '</a>, written '
           . implode ( ', ', array_map ( fn ( $way ) => preg_match ( '/^(\{.*?\}|\S+\))(.*)$/', $way, $m ) ? $code ( $m [1] ) . htmlspecialchars ( $m [2] ) : htmlspecialchars ( $way ), $ways ) )

@@ -41,9 +41,10 @@
 
   }
 
-  // The tag the notation is written as, for what a message says: {notation 'x'}, {notation:x}
-  // or {x}. Read from the level, not from the body's variables: a notation drawn by a template
-  // that a pipe runs - {echo $t | code/} - has those in the scope of that run.
+  // The tag the notation is written as, for what a message says: {notation 'x'}, {notation:x},
+  // {x}, or the built-in tag that draws a notation of its name, {chess}. Read from the level,
+  // not from the body's variables: a notation drawn by a template that a pipe runs - {echo $t
+  // | code/} - has those in the scope of that run.
 
   function padNotationWhat () {
 
@@ -51,6 +52,9 @@
 
     if ( ( $padType [$pad] ?? '' ) == 'notation' )
       return '{' . ( ( $padPrefix [$pad] ?? '' ) !== '' ? 'notation:' : '' ) . ( $padTag [$pad] ?? '' ) . '}';
+
+    if ( ( $padTag [$pad] ?? '' ) !== 'notation' )
+      return '{' . ( $padTag [$pad] ?? '' ) . '}';
 
     $kind = $padOpt [$pad] [1] ?? '';
 

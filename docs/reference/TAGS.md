@@ -2158,7 +2158,7 @@ nothing and its `@else@` shows.
 | `morse` | The international Morse code of ITU-R M.1677-1 and its signal drawn to its timing | `plain` |
 | `semaphore` | Flag semaphore, a figure per letter | `size`, `title` |
 | `signals` | The flags and numeral pennants of the International Code of Signals | `size`, `title` |
-| `chess` | A position in FEN - once a tag of its own, written as before | `flip`, `highlight`, `arrow`, `size`, `title` |
+| `chess` | A position in FEN - the built-in tag `{chess}` as well, which comes before a field or store of its name | `flip`, `highlight`, `arrow`, `size`, `title` |
 | `go` | A game record in SGF played out on 9, 13 or 19 lines, captures taken off | `numbers`, `move`, `plain`, `size`, `title` |
 | `draughts` | A position in the FEN of PDN, international 10 by 10 or 8 by 8 | `board` (`10`, `8`), `numbers`, `flip`, `highlight`, `size`, `title` |
 
@@ -2180,6 +2180,20 @@ the code's colours). A name that is no notation, an option a notation does not r
 outside its choices, and a text it cannot read - a FEN with seven ranks, an element the periodic
 table does not have, a character morse has no sign for, a move on a taken point - are errors
 under the strict check.
+
+---
+
+### chess
+A chess position from FEN as inline SVG - the chess notation of `{notation}` above, kept a
+built-in tag (`tags/chess.php`): `{chess}` comes before a field, a data store, a snippet or a
+`_data` file named chess, where the bare name of a notation comes after them all, and
+`{pad:chess}` names it. The FEN is the first parameter or the content between the tags; the
+options and the drawing are those of the chess notation.
+
+```html
+{chess $fen, flip, highlight='d1, d8', arrow='g5-d8'/}
+{chess '8/8/8/4k3/8/8/4K3/8', size=240, title='Opposition'/}
+```
 
 ---
 
@@ -4645,6 +4659,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `icon` | Output | One of 79 built-in line icons as inline SVG in `currentColor` |
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
 | `notation` | Output | A text in a notation drawn on the server - the files of `pad/subs/notations/types/`: AsciiMath, chemistry, ABC music, chords, piano, braille, morse, semaphore, signal flags, chess, go, draughts |
+| `chess` | Output | A chess position from FEN as inline SVG - the chess notation, as a built-in tag |
 | `game` | Output | A little game played in the browser - 18 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
 | `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
 | `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
