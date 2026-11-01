@@ -375,36 +375,23 @@
         $object ['@id'] = $id;
     }
 
-    $ok = padJsonLdFill ( $object, $spec ['fields'], $spec ['objects'], $values, "the JSON-LD $kind", TRUE, $report );
+    $written = [];
 
-    // A field that needs others - a price its currency, a salary its currency and its period - is judged on what
-    // was written (a need given but dropped as no valid value does not count) and on what was given (a need
-    // whose path another field's value fills - per inside salary - counts only when it was given itself).
+    $ok = padJsonLdFill ( $object, $spec ['fields'], $spec ['objects'], $values, "the JSON-LD $kind", TRUE, $report, $written );
+
+    // A field that needs others - a price its currency, a salary its currency and its period - is judged on the
+    // fields written, never on their paths: a need given but dropped as no valid value does not count (its own
+    // error said why), nor does the path of a need another field's value fills - per inside salary.
 
     foreach ( $spec ['needs'] as $field => $needs )
       foreach ( (array) $needs as $need )
-        if ( padJsonLdWritten ( $object, $spec ['fields'] [$field] ['path'] )
-             and ( ! padJsonLdWritten ( $object, $spec ['fields'] [$need] ['path'] ) or ! isset ( $values [$need] ) ) ) {
+        if ( ( $written [$field] ?? FALSE ) and ! ( $written [$need] ?? FALSE ) ) {
           if ( ! isset ( $values [$need] ) )
             $report ( "the JSON-LD $kind has a $field and no $need - give it as $need= or as a field $need of the row" );
           $ok = FALSE;
         }
 
     return $ok ? $object : FALSE;
-
-  }
-
-  // Whether the object holds a value on a field's path - offers.price.
-
-  function padJsonLdWritten ( $object, $path ) {
-
-    foreach ( explode ( '.', $path ) as $step )
-      if ( is_array ( $object ) and array_key_exists ( $step, $object ) )
-        $object = $object [$step];
-      else
-        return FALSE;
-
-    return TRUE;
 
   }
 
@@ -428,9 +415,10 @@
   // Writes the fields with a value into the object, in the order the kind lists them, each
   // object on its path made with its @type first. FALSE when a required field has no value -
   // the others are written all the same, so every error of the object is named. $options
-  // says the fields could have been options of the tag, as an item's cannot.
+  // says the fields could have been options of the tag, as an item's cannot; $written gets
+  // TRUE for the name of every field written.
 
-  function padJsonLdFill ( &$object, $fields, $objects, $values, $what, $options, $report ) {
+  function padJsonLdFill ( &$object, $fields, $objects, $values, $what, $options, $report, &$written = [] ) {
 
     $ok = TRUE;
 
@@ -464,6 +452,8 @@
       $at [$last] = $value;
 
       unset ( $at );
+
+      $written [$name] = TRUE;
 
     }
 
