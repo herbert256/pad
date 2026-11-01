@@ -514,13 +514,13 @@ shows.</p>
   
     <tr id="pmt">
       <th scope="row">PMT</th>
-      <td>PMT(rate, nper, pv, [fv], [type]) is the payment of each period of a loan or a saving - rate the interest of a period, nper the number of periods, pv what it is worth now, fv what it is worth at the end (0), type 1 to pay at the start of each period (0, at the end). Money paid out is negative, as in Excel: a loan of 10000 is paid off with a payment below 0.</td>
+      <td>PMT(rate, nper, pv, [fv], [type]) is the payment of each period of a loan or a saving - rate the interest of a period, nper the number of periods, pv what it is worth now, fv what it is worth at the end (0), type 1 to pay at the start of each period (0, at the end). Money paid out is negative, as in Excel: a loan of 10000 is paid off with a payment below 0. A rate that leaves no period to pay in - -200% over 2 periods grows to 1 again, -100% paid at the start - is #NUM!.</td>
       <td><ul class="sheets-examples"><li><code>=ROUND(PMT(8%/12, 10, 10000), 2)</code> <samp>-1037.03</samp></li><li><code>=ROUND(PMT(8%/12, 10, 10000, 0, 1), 2)</code> <samp>-1030.16</samp></li></ul></td>
     </tr>
   
     <tr id="pv">
       <th scope="row">PV</th>
-      <td>PV(rate, nper, pmt, [fv], [type]) is what a series of payments is worth now - the loan a payment pays off, the sum a pension costs - at a rate over nper periods, with fv left at the end (0); type 1 pays at the start of each period.</td>
+      <td>PV(rate, nper, pmt, [fv], [type]) is what a series of payments is worth now - the loan a payment pays off, the sum a pension costs - at a rate over nper periods, with fv left at the end (0); type 1 pays at the start of each period. A rate of -100%, or one that discounts past what a float holds - (1-90%)^400 - is #NUM!.</td>
       <td><ul class="sheets-examples"><li><code>=ROUND(PV(8%/12, 12*20, 500, , 0), 2)</code> <samp>-59777.15</samp></li><li><code>=ROUND(PV(5%/12, 120, -100), 2)</code> <samp>9428.14</samp></li></ul></td>
     </tr>
   

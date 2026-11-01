@@ -16,9 +16,14 @@
         return $error;
       if ( $rate == -1 )
         return padFormulaError ( '#DIV/0!' );
+      // A rate that discounts a period past what a float holds - -99.9999% over 60 - is #NUM!.
       $total = 0.0;
-      foreach ( $numbers as $period => $value )
-        $total += $value / ( 1 + $rate ) ** ( $period + 1 );
+      foreach ( $numbers as $period => $value ) {
+        $grow = ( 1 + $rate ) ** ( $period + 1 );
+        if ( $grow == 0 or ! is_finite ( $grow ) )
+          return padFormulaError ( '#NUM!' );
+        $total += $value / $grow;
+      }
       return $total;
     }
   ];

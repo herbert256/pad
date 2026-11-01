@@ -21,8 +21,12 @@
         return padFormulaError ( '#NUM!' );
       return padFormulaNewton ( function ( $rate ) use ( $numbers ) {
         $total = 0.0;
-        foreach ( $numbers as $period => $value )
-          $total += $value / ( 1 + $rate ) ** $period;
+        foreach ( $numbers as $period => $value ) {
+          $grow = ( 1 + $rate ) ** $period;
+          if ( $grow == 0 )
+            return NAN;
+          $total += $value / $grow;
+        }
         return $total;
       }, $guess );
     }

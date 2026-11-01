@@ -18,11 +18,16 @@
       $type = $type != 0 ? 1 : 0;
       if ( $rate == 0 )
         return $pmt == 0 ? padFormulaError ( '#NUM!' ) : -( $pv + $fv ) / $pmt;
-      $top    = $pmt * ( 1 + $rate * $type ) - $fv * $rate;
+      // log ( top / bottom ) / log ( 1 + rate ), each log of 1 and a little worked out with
+      // log1p - top less bottom is -rate * ( fv + pv ) - so a rate too small for 1+rate to
+      // differ from 1, 1E-20, counts as the rate it is, where log ( 1 + rate ) was 0.
       $bottom = $pmt * ( 1 + $rate * $type ) + $pv * $rate;
-      if ( $bottom == 0 or $top / $bottom <= 0 or $rate <= -1 )
+      if ( $bottom == 0 or $rate <= -1 )
         return padFormulaError ( '#NUM!' );
-      return log ( $top / $bottom ) / log ( 1 + $rate );
+      $more = -$rate * ( $fv + $pv ) / $bottom;
+      if ( $more <= -1 or log1p ( $rate ) == 0 )
+        return padFormulaError ( '#NUM!' );
+      return log1p ( $more ) / log1p ( $rate );
     }
   ];
 

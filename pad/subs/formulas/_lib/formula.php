@@ -619,7 +619,13 @@
         $args = [];
         foreach ( $node [2] as $arg )
           $args [] = padFormulaEval ( $arg, $env );
-        $result = padFormulaType ( $node [1] ) ['call'] ( $args, $env );
+        // A function that still divides by 0 on some number - PHP throws where a spreadsheet
+        // answers an error value - answers #NUM!: a visitor's input ends no request.
+        try {
+          $result = padFormulaType ( $node [1] ) ['call'] ( $args, $env );
+        } catch ( ArithmeticError $error ) {
+          return padFormulaError ( '#NUM!' );
+        }
         return is_float ( $result ) ? ( padFormulaKept ( $result ) ?? padFormulaError ( '#NUM!' ) ) : $result;
 
     }

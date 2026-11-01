@@ -123,9 +123,40 @@
     if ( $rate == 0 )
       return $pv + $pmt * $nper + $fv;
 
-    $grow = ( 1 + $rate ) ** $nper;
+    [ $grow, $sum ] = padFormulaGrowth ( $rate, $nper );
 
-    return $pv * $grow + $pmt * ( 1 + $rate * $type ) * ( $grow - 1 ) / $rate + $fv;
+    return $pv * $grow + $pmt * ( 1 + $rate * $type ) * $sum + $fv;
+
+  }
+
+  // The terms of every annuity: what a rate grows to over nper periods, (1+rate)^nper, and
+  // the sum of what it grew to in the periods before, ((1+rate)^nper - 1) / rate - nper at a
+  // rate of 0. Both are worked out from log1p, with exp and expm1, where 1+rate is above 0:
+  // a rate too small for 1+rate to differ from 1 - 1E-17 - still counts as the rate it is,
+  // where (1+rate)^nper - 1 was 0, PMT divided by it and the request ended; and 1+rate is
+  // never rounded before it is raised to the power, which cost the last two of the 15
+  // digits of a payment over 300 months. Below -1 the power of a negative number is all
+  // there is - (1-200%)^2 is 1, and a fraction of a period NAN, which is #NUM!.
+
+  function padFormulaGrowth ( $rate, $nper ) {
+
+    if ( $rate == 0 )
+      return [ 1.0, (float) $nper ];
+
+    if ( $rate > -1 ) {
+      $log = $nper * log1p ( $rate );
+      return [ exp ( $log ), expm1 ( $log ) / $rate ];
+    }
+
+    // 0 to a negative power - a rate of -100% over periods before now - is INF, and #NUM!:
+    // PHP deprecates the power, and PAD reports the deprecation as an error.
+
+    if ( 1 + $rate == 0 )
+      $grow = $nper > 0 ? 0.0 : ( $nper == 0 ? 1.0 : INF );
+    else
+      $grow = (float) ( ( 1 + $rate ) ** $nper );
+
+    return [ $grow, ( $grow - 1 ) / $rate ];
 
   }
 
