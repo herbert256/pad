@@ -459,10 +459,15 @@
     $top    = $margin ? $margin [0] : ( $preset [7] ?? ( $paper [1] - $spanY ) / 2 );
     $left   = $margin ? $margin [1] : ( $preset [8] ?? ( $paper [0] - $spanX ) / 2 );
 
+    // The message gives the room the grid takes, and where it starts when margin= says so:
+    // the far corner it gave read a centred grid too wide as fitting and one too tall by the
+    // margin it had made up.
+
     if ( ( $top < -0.01 or $left < -0.01 or $left + $spanX > $paper [0] + 0.01 or $top + $spanY > $paper [1] + 0.01 ) and $padCheckSyntax )
       padError ( 'the ' . padPrintableWhat () . " does not fit on its paper - $across across and $down down of "
-                 . padPrintableMm ( $width ) . ' by ' . padPrintableMm ( $height ) . ' mm take ' . padPrintableMm ( $left + $spanX ) . ' by '
-                 . padPrintableMm ( $top + $spanY ) . " mm of $paperName, " . padPrintableMm ( $paper [0] ) . ' by ' . padPrintableMm ( $paper [1] ) . ' mm' );
+                 . padPrintableMm ( $width ) . ' by ' . padPrintableMm ( $height ) . ' mm take ' . padPrintableMm ( $spanX ) . ' by '
+                 . padPrintableMm ( $spanY ) . ' mm' . ( $margin ? ' from ' . padPrintableMm ( $top ) . ' mm down and ' . padPrintableMm ( $left ) . ' mm across' : '' )
+                 . " of $paperName, " . padPrintableMm ( $paper [0] ) . ' by ' . padPrintableMm ( $paper [1] ) . ' mm' );
 
     $cells = [];
 
