@@ -23,6 +23,7 @@
 {countup to=1250, from=0, prefix='€', suffix='+', scroll/}
 {marquee duration=20, direction='left', gap=48, label='name'} ... {/marquee}
 {reveal motion='up', distance=32} ... {/reveal}
+{scrollprogress at='top', size=3, color='#e11d48'/}
 {tilt angle=8, toward='top-right', glare} ... {/tilt}
 {nudge style='bounce', repeat=2, delay=0} ... {/nudge}
 {spotlight at='top', color='#f59e0b'} ... {/spotlight}
@@ -46,7 +47,7 @@ PAD;
     'mono'      => 'Bare option, typewriter and decipher: monospaced letters, one step or one sign a letter exactly.',
     'glyphs'    => 'decipher: the signs it settles out of - symbols, letters, digits or binary.',
     'colors'    => 'gradient, confetti: CSS colours between commas.',
-    'color'     => 'highlighter, underline, strike, encircle: the ink; spotlight: the light; spinner: the spinner.',
+    'color'     => 'highlighter, underline, strike, encircle: the ink; scrollprogress: the bar; spotlight: the light; spinner: the spinner.',
     'thickness' => 'underline, strike, encircle: the stroke in pixels, 1 to 12.',
     'hover'     => 'Bare option, underline and encircle: drawn while the pointer is on it or the focus is in it.',
     'angle'     => 'gradient: the direction in degrees (90); tilt: how far it leans (8).',
@@ -61,9 +62,9 @@ PAD;
     'motion'    => 'reveal: up, down, left, right, fade or zoom; <code>distance</code> how far in pixels (32).',
     'toward'    => 'tilt: the corner that comes toward the viewer - top-right, top-left, bottom-right, bottom-left.',
     'glare'     => 'Bare option, tilt: a sheen slides over the card as it leans.',
-    'at'        => 'spotlight: where the light rests - top, center, a corner, or two percentages.',
+    'at'        => 'spotlight: where the light rests - top, center, a corner, or two percentages; scrollprogress: top or bottom.',
     'style'     => 'spinner: ring, dots, bars, pulse or orbit; underline: line, double, dashed or dotted; strike: line or double; encircle: circle or box; nudge: bounce, shake, pulse, wiggle or heartbeat.',
-    'size'      => 'spinner: pixels (24); skeleton: the avatar\'s (48).',
+    'size'      => 'spinner: pixels (24); skeleton: the avatar\'s (48); scrollprogress: the bar\'s height (3).',
     'shape'     => 'skeleton: text, block, avatar, card or media - the shape of what is still on its way.',
     'lines'     => 'skeleton: the lines of text (3, media 2).',
     'height'    => 'skeleton: the picture of a block or a card, in pixels (160).',

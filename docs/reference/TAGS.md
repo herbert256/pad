@@ -4233,7 +4233,7 @@ moving copies of the wave and the glitch are `aria-hidden`, the count-up reads i
 What repeats runs `repeat=` times (3, or `forever`); `duration=` is the seconds of one run and
 `delay=` the seconds before the first, where a kind animates in time. Every option is checked
 under the strict check: an unknown kind, a value out of its bounds or none of its words, a colour
-that is no CSS colour, a kind that wraps a block written single, a skeleton written as a pair, a
+that is no CSS colour, a kind that wraps a block written single, a skeleton or a scrollprogress written as a pair, a
 text kind without its text, a stroke drawn on `scroll` and on `hover` at once.
 
 | Effect | Form | Does | Its options |
@@ -4252,6 +4252,7 @@ text kind without its text, a stroke drawn on `scroll` and on `hover` at once.
 | `countup` | both | A whole number counted up by the CSS, read as its last value | `to` (or the parameter or the content), `from` (0), `prefix`, `suffix`, `duration` (2), `delay`, `scroll` |
 | `marquee` | both | A band whose content scrolls by without end; a Pause button | `duration` (20), `direction` (left, right), `gap` (48 px), `label` |
 | `reveal` | pair | A block that comes into view as it is scrolled to | `motion` (up, down, left, right, fade, zoom), `distance` (32 px) |
+| `scrollprogress` | single | A bar along the top of the window the page's scrolling fills - `scroll()`, `aria-hidden` | `at` (top, bottom), `size` (3 px), `color` |
 | `tilt` | pair | A card that leans in 3D on hover and focus | `angle` (8), `toward` (top-right, top-left, bottom-right, bottom-left), `glare` |
 | `nudge` | both | A short movement that draws the eye, then lets it be; a transform, nothing around it moves | `style` (bounce, shake, pulse, wiggle, heartbeat), `duration` (about 1), `delay`, `repeat` (2) |
 | `spotlight` | pair | A soft light sweeps across the block and rests | `at` (top, center, a side, a corner, '30% 20%'), `color`, `duration` (2.5), `delay`, `repeat` (1) |

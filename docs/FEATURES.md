@@ -1985,6 +1985,7 @@ page with the CSP nonce; `pad/subs/sections/section.php` the body every form run
 {gradient colors='#f97316, #db2777', animate}Launch week{/gradient}
 {marquee duration=25, label='Built with'}...{/marquee}         # a band that scrolls, a Pause button without script
 {reveal motion='left'}<div>...</div>{/reveal}                  # comes into view as it is scrolled to - view()
+{scrollprogress/}                                              # a bar along the window the page's scrolling fills
 {tilt glare}<div class="card">...</div>{/tilt}                 # leans in 3D on hover and focus
 {nudge style='shake'}<a href="?signup">Try it</a>{/nudge}      # bounce, shake, pulse, wiggle, heartbeat - twice
 {spotlight at='top left'}...{/spotlight}                       # a soft light that sweeps across and rests
@@ -2011,7 +2012,7 @@ colours are `--pad-effect-accent`, `-accent2`, `-accent3`, `-text`, `-mark` and 
 `.pad-effect`, light and dark, falling back to the frame's `--accent`, `--text` and `--line`, so a
 theme colours them. The kinds are the files of `pad/subs/effects/types/` - typewriter, glitch,
 shimmer, gradient, wave, highlighter, underline, strike, encircle, rotator, decipher, countup, marquee, reveal,
-tilt, nudge, spotlight, spinner, skeleton, confetti -
+scrollprogress, tilt, nudge, spotlight, spinner, skeleton, confetti -
 and an effect is added by adding its file. Each is written three ways, the same effect:
 `{effect 'typewriter'}...{/effect}`, the effect type `{effect:typewriter}...{/effect:typewriter}`
 and bare, `{typewriter}...{/typewriter}`, when no tag, store, field or sequence has the name. A pair
@@ -2019,7 +2020,8 @@ works on its content, rendered first; a single tag on its first parameter, `{typ
 `highlighter` is so named because `{highlight}` colours code. The reveal, the highlighter's and the
 count-up's `scroll` are scroll-driven animations (`animation-timeline: view()`): where a browser
 has none, the block stands there and the stroke or the count runs in time, as without scroll.
-The underline's, the strike's and the encircle's `scroll` too; their `hover` (not the strike's)
+The underline's, the strike's and the encircle's `scroll` too, and the scrollprogress bar, which
+follows `scroll(root)` and is not there at all where a browser has none or less motion is asked for; their `hover` (not the strike's)
 draws the stroke while the pointer is on it or the focus in it, at once under reduced motion; on
 paper and in forced colours the underline and the strike are the text's own line. Code: the effects
 subsystem in `pad/subs/effects/` - `effect.php` the body every form runs, `_lib/effect.php` the
