@@ -313,7 +313,10 @@
   // The tree of a formula, or throws. A node is [ kind, ... ]:
   //
   //   [ 'v', value ]               a number, a text, TRUE or FALSE, an error value
-  //   [ 'r', c1, r1, c2, r2 ]      a reference, one cell when c1 = c2 and r1 = r2
+  //   [ 'r', c1, r1, c2, r2, at, text ]
+  //                                a reference, one cell when c1 = c2 and r1 = r2; at and text
+  //                                where it stands in the formula and how it is written there,
+  //                                A:A for a whole column - for a message about it
   //   [ 'u', '-' or '+', node ]    a sign before a value
   //   [ '%', node ]                a value divided by 100
   //   [ 'o', operator, a, b ]      an operator between two values
@@ -456,7 +459,7 @@
 
       case 'ref':
         $state ['at']++;
-        return [ 'r', ...$token [1] ];
+        return [ 'r', ...$token [1], $token [2], $token [3] ];
 
       case 'name':
         $state ['at']++;
@@ -537,8 +540,8 @@
 
     if ( isset ( $type ['arrays'] ) and ( $range = padFormulaArrayOperand ( [ 'f', $name, $args ], FALSE ) ) !== NULL ) {
       if ( $state ['check'] )
-        padFormulaThrow ( strtoupper ( $name ) . " takes ranges as they are - an operator on the range $range asks for"
-                        . ' array evaluation, which the formulas do not have; SUMIFS and COUNTIFS add up and count with criteria', $text, $token [2] );
+        padFormulaThrow ( strtoupper ( $name ) . " takes ranges as they are - an operator on the range {$range [6]} asks for"
+                        . ' array evaluation, which the formulas do not have; SUMIFS and COUNTIFS add up and count with criteria', $text, $range [5] );
       return [ 'v', padFormulaError ( '#VALUE!' ) ];
     }
 
@@ -546,8 +549,9 @@
 
   }
 
-  // The first range of more than one cell an operator stands on in a tree, as text - A1:A9 -
-  // or NULL: in the arguments of a function that takes arrays it asks for array evaluation.
+  // The first range of more than one cell an operator stands on in a tree - its node, which
+  // says where it stands and how it is written, A1:A9 or A:A - or NULL: in the arguments of a
+  // function that takes arrays it asks for array evaluation.
 
   function padFormulaArrayOperand ( $node, $operand ) {
 
@@ -555,7 +559,7 @@
 
       case 'r':
         if ( $operand and ( $node [1] != $node [3] or $node [2] != $node [4] ) )
-          return padFormulaCellName ( $node [1], $node [2] ) . ':' . padFormulaCellName ( $node [3], $node [4] );
+          return $node;
         return NULL;
 
       case 'o': return padFormulaArrayOperand ( $node [2], TRUE ) ?? padFormulaArrayOperand ( $node [3], TRUE );
