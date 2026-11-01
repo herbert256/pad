@@ -381,12 +381,16 @@
 
     // A field that needs others - a price its currency, a salary its currency and its period - is judged on the
     // fields written, never on their paths: a need given but dropped as no valid value does not count (its own
-    // error said why), nor does the path of a need another field's value fills - per inside salary.
+    // error said why), nor does the path of a need another field's value fills - per inside salary. A need given
+    // a value that writes nothing - countries beside a remote that is no - is named as a need not given is.
 
     foreach ( $spec ['needs'] as $field => $needs )
       foreach ( (array) $needs as $need )
         if ( ( $written [$field] ?? FALSE ) and ! ( $written [$need] ?? FALSE ) ) {
-          if ( ! isset ( $values [$need] ) )
+          if ( ( $written [$need] ?? NULL ) === FALSE )
+            $report ( "the JSON-LD $kind has a $field and a $need of '" . padMakeSafe ( padJsonLdScalar ( $values [$need] ?? $spec ['fields'] [$need] ['default'] ), 40 )
+                      . "', which writes no {$spec ['fields'] [$need] ['path']} - a $field is no use without it" );
+          elseif ( ! isset ( $values [$need] ) )
             $report ( "the JSON-LD $kind has a $field and no $need - give it as $need= or as a field $need of the row" );
           $ok = FALSE;
         }
@@ -416,16 +420,27 @@
   // object on its path made with its @type first. FALSE when a required field has no value -
   // the others are written all the same, so every error of the object is named. $options
   // says the fields could have been options of the tag, as an item's cannot; $written gets
-  // TRUE for the name of every field written.
+  // TRUE for the name of every field written, and FALSE for one given a value that writes
+  // nothing without being an error - a flag that is no.
 
   function padJsonLdFill ( &$object, $fields, $objects, $values, $what, $options, $report, &$written = [] ) {
 
-    $ok = TRUE;
+    $ok   = TRUE;
+    $said = FALSE;
+    $tell = function ( $message ) use ( $report, &$said ) {
+      $said = TRUE;
+      $report ( $message );
+    };
 
     foreach ( $fields as $name => $field ) {
 
       $value = $values [$name] ?? $field ['default'];
-      $value = ( padJsonLdEmpty ( $value ) and ! padJsonLdFlagged ( $value, $field ) ) ? NULL : padJsonLdValue ( $value, $field ['how'], $name, $what, $report );
+      $said  = FALSE;
+
+      if ( padJsonLdEmpty ( $value ) and ! padJsonLdFlagged ( $value, $field ) )
+        $value = NULL;
+      elseif ( ( $value = padJsonLdValue ( $value, $field ['how'], $name, $what, $tell ) ) === NULL and ! $said )
+        $written [$name] = FALSE;
 
       if ( $value === NULL ) {
         if ( $field ['required'] ) {
