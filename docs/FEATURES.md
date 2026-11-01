@@ -198,7 +198,7 @@ company required, expires (validThrough), employment (one or more of FULL_TIME, 
 CONTRACTOR, TEMPORARY, INTERN, VOLUNTEER, PER_DIEM and OTHER, `full time` too), companyurl and
 logo of the hiring Organization, street, city, region, postcode and country of its place - the
 country needed with any of them - remote (yes writes jobLocationType TELECOMMUTE) with countries
-(applicantLocationRequirements, a Country each), and salary (an amount or a range, `3200-3800`),
+(applicantLocationRequirements, a Country each - an error beside a remote that is no), and salary (an amount or a range, `3200-3800`),
 currency and per (HOUR, DAY, WEEK, MONTH or YEAR) as a MonetaryAmount - a salary needs both;
 not `min=`/`max=`, which are options of every tag. `software`: a SoftwareApplication - type
 (MobileApplication, WebApplication), name and price required (`0` for one that is free), description,

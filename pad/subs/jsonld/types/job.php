@@ -17,7 +17,8 @@
   // PostalAddress of a Place: street, city, region, postcode and country (addressCountry,
   // which Google needs whenever the place is given), remote (yes writes jobLocationType
   // TELECOMMUTE, a job done entirely from home) with countries (applicantLocationRequirements,
-  // the countries a remote worker may live in, each a Country by its name), and the pay as a
+  // the countries a remote worker may live in, each a Country by its name - beside a remote
+  // that is no they are no use, an error as countries without a remote is), and the pay as a
   // MonetaryAmount: salary (an amount, 4200, or a range, 3200-3800), currency (ISO 4217)
   // and per (its unitText: HOUR, DAY, WEEK, MONTH or YEAR) - a salary needs both, as Google
   // asks for the actual pay of a period. Not min= and max=: those are options every tag
