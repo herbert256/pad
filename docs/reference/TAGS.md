@@ -3099,7 +3099,9 @@ than at 1x - the same picture and options, the same file, its bytes the same on 
 filter (pixelate and the dithers) is made at 1x alone and drawn `image-rendering: pixelated`; a
 filter of flat colours is a PNG unless `format=` says otherwise. halftone's dots, ascii's text and
 the placeholders are kept in `_thumbs/` as well, beside the thumbnails, made once. BlurHash is the
-reference algorithm, its hash made of the 1x picture at most 64 pixels on its longer side. An
+reference algorithm, its hash made of the 1x picture at most 64 pixels on its longer side. A
+picture with transparent parts keeps them through blur, its colours weighed by their opacity;
+dominant counts a pixel by its opacity, and lqip and blurhash lay the picture on white. An
 unknown filter, an option out of its bounds, a filter after halftone or ascii, a placeholder
 beside them, two pictures behind one `<img>` and an option no filter of the list reads are errors
 under the strict check.

@@ -7,7 +7,9 @@
   //
   // Every pixel of the 1x picture, the filters before it applied, is counted in a box of 16
   // steps of red, green and blue; the colour is the average of the pixels of the fullest box
-  // - of two equally full, the one of less red, then less green, then less blue.
+  // - of two equally full, the one of less red, then less green, then less blue. A pixel
+  // counts by its opacity: a transparent one not at all, where it counted as black and a logo
+  // on a transparent ground got a black placeholder.
 
   return [
 
@@ -21,15 +23,24 @@
 
       for ( $y = 0; $y < $h; $y++ )
         for ( $x = 0; $x < $w; $x++ ) {
-          $c   = imagecolorat ( $image, $x, $y );
+          $c      = imagecolorat ( $image, $x, $y );
+          $weight = 127 - ( ( $c >> 24 ) & 127 );
+          if ( ! $weight )
+            continue;
           $box = ( ( $c >> 20 ) & 15 ) << 8 | ( ( $c >> 12 ) & 15 ) << 4 | ( ( $c >> 4 ) & 15 );
           if ( ! isset ( $boxes [$box] ) )
             $boxes [$box] = [ 0, 0, 0, 0 ];
-          $boxes [$box] [0]++;
-          $boxes [$box] [1] += ( $c >> 16 ) & 255;
-          $boxes [$box] [2] += ( $c >> 8 ) & 255;
-          $boxes [$box] [3] += $c & 255;
+          $boxes [$box] [0] += $weight;
+          $boxes [$box] [1] += $weight * ( ( $c >> 16 ) & 255 );
+          $boxes [$box] [2] += $weight * ( ( $c >> 8 ) & 255 );
+          $boxes [$box] [3] += $weight * ( $c & 255 );
         }
+
+      // A picture transparent everywhere has no colour to show: the quiet colour of every
+      // picture stays behind it.
+
+      if ( ! $boxes )
+        return [];
 
       ksort ( $boxes );
 

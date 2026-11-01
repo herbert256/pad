@@ -10,7 +10,8 @@
   // longer side first - each pixel the average of what it covers, as a picture's hash is
   // usually made; the decoded PNG is 32 pixels on its longer side, drawn over the whole box
   // (background-size: cover). The encoder and decoder are the reference algorithm
-  // (_lib/blurhash.php).
+  // (_lib/blurhash.php). A BlurHash has no transparency: a picture with transparent parts is
+  // laid on white first, as a JPEG thumbnail is - they were read as black.
 
   return [
 
@@ -24,7 +25,7 @@
 
       $w     = imagesx ( $image );
       $h     = imagesy ( $image );
-      $small = padFilterResize ( $image, (int) round ( $w * min ( 1, 64 / max ( $w, $h ) ) ), (int) round ( $h * min ( 1, 64 / max ( $w, $h ) ) ) );
+      $small = padFilterResize ( padFilterFlat ( $image, 0xffffff ),(int) round ( $w * min ( 1, 64 / max ( $w, $h ) ) ), (int) round ( $h * min ( 1, 64 / max ( $w, $h ) ) ) );
       $hash  = padBlurhashEncode ( padBlurhashPixels ( $small ), $o ['components'] [0], $o ['components'] [1] );
 
       $dw     = max ( 1, (int) round ( $w * 32 / max ( $w, $h ) ) );

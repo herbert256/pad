@@ -42,6 +42,9 @@
   // padFilterLuma     the luminance of a colour, 0 to 255 (Rec. 601, as GD's grayscale)
   // padFilterRgb      a hex colour as [ r, g, b ]
   // padFilterMix      the colour a part of the way from one colour to another
+  // padFilterResize   a picture at a new size, its transparency kept
+  // padFilterFlat     a picture laid on a colour, without transparency
+  // padFilterOpacity  the opacity of every pixel as a grey picture - NULL when all is opaque
   // padFilterStyle    the rules of the filtered pictures, once a page
   //
   // GD's output is the same bytes for the same picture and options on a machine (its PNG,
@@ -276,15 +279,62 @@
 
   }
 
-  // A picture resized with GD's resampling - the average of what it covers - to a new size.
+  // A picture resized with GD's resampling - the average of what it covers, each colour weighed
+  // by its opacity - to a new size, its transparency kept: the new picture starts transparent
+  // and takes the averages as they are. On a picture of opaque black, as before, a transparent
+  // part became black and a pixel half on it half black.
 
   function padFilterResize ( $image, $w, $h ) {
 
     $out = imagecreatetruecolor ( max ( 1, $w ), max ( 1, $h ) );
 
+    imagealphablending ( $out, FALSE );
+    imagesavealpha ( $out, TRUE );
+    imagefill ( $out, 0, 0, imagecolorallocatealpha ( $out, 0, 0, 0, 127 ) );
+
     imagecopyresampled ( $out, $image, 0, 0, 0, 0, max ( 1, $w ), max ( 1, $h ), imagesx ( $image ), imagesy ( $image ) );
 
     return $out;
+
+  }
+
+  // The picture laid on a colour, 0xRRGGBB: a copy without transparency - what lqip and blurhash
+  // read, as their pictures have none; the same pixels for a picture that has none either.
+
+  function padFilterFlat ( $image, $rgb ) {
+
+    $w   = imagesx ( $image );
+    $h   = imagesy ( $image );
+    $out = imagecreatetruecolor ( $w, $h );
+
+    imagefill ( $out, 0, 0, $rgb );
+    imagecopy ( $out, $image, 0, 0, 0, 0, $w, $h );
+
+    return $out;
+
+  }
+
+  // The opacity of every pixel as a grey picture without transparency - white where the
+  // picture shows fully, black where it is transparent - or NULL when the picture shows
+  // fully everywhere: its average opacity, GD's resampling to one pixel, is full.
+
+  function padFilterOpacity ( $image ) {
+
+    $w     = imagesx ( $image );
+    $h     = imagesy ( $image );
+    $white = imagecreatetruecolor ( $w, $h );
+
+    imagealphablending ( $white, FALSE );
+    imagecopy ( $white, $image, 0, 0, 0, 0, $w, $h );
+    imagefilter ( $white, IMG_FILTER_BRIGHTNESS, 255 );
+
+    $mask = imagecreatetruecolor ( $w, $h );
+    imagecopy ( $mask, $white, 0, 0, 0, 0, $w, $h );
+
+    $one = imagecreatetruecolor ( 1, 1 );
+    imagecopyresampled ( $one, $mask, 0, 0, 0, 0, 1, 1, $w, $h );
+
+    return ( ( imagecolorat ( $one, 0, 0 ) & 255 ) == 255 ) ? NULL : $mask;
 
   }
 

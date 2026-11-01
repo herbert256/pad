@@ -7,7 +7,8 @@
   //
   // The 1x picture, the filters before it applied, made small - each pixel the average of
   // what it covers - and blurred once by GD's Gaussian blur, a few hundred bytes in the page,
-  // drawn over the whole box (background-size: cover).
+  // drawn over the whole box (background-size: cover). A picture with transparent parts is
+  // laid on white first, as a JPEG thumbnail is: they were black.
 
   return [
 
@@ -18,9 +19,10 @@
 
       $w     = imagesx ( $image );
       $h     = imagesy ( $image );
-      $small = padFilterResize ( $image, max ( 1, (int) round ( $w * 16 / max ( $w, $h ) ) ), max ( 1, (int) round ( $h * 16 / max ( $w, $h ) ) ) );
+      $small = padFilterResize ( padFilterFlat ( $image, 0xffffff ), max ( 1, (int) round ( $w * 16 / max ( $w, $h ) ) ), max ( 1, (int) round ( $h * 16 / max ( $w, $h ) ) ) );
 
       imagefilter ( $small, IMG_FILTER_GAUSSIAN_BLUR );
+      imagesavealpha ( $small, FALSE );
 
       ob_start ();
       imagepng ( $small, NULL, 9 );
