@@ -71,7 +71,7 @@
       if ( ! $note )
         return "no note '$token' - a note is a letter, a sharp or flat and its octave: C4, F#3, Bb5";
 
-      list ( $class, $octave, $name ) = $note;
+      list ( $class, $octave, $name, $shift ) = $note;
 
       if ( $octave === NULL ) {
         $midi = 60 + $class;
@@ -83,7 +83,10 @@
       if ( $midi < 21 or $midi > 108 )
         return "a note '$token' off the keyboard - a piano runs from A0 to C8";
 
-      $notes [$midi] = $name . ( intdiv ( $midi, 12 ) - 1 );
+      // The note is named with the octave of its letter, as it was written: Cb4 is the key of
+      // B3 and says C♭4, B#3 the key of C4 and says B♯3 - the octave of the key put C♭3 and B♯4.
+
+      $notes [$midi] = $name . ( intdiv ( $midi - $shift, 12 ) - 1 );
       $last          = $midi;
 
     }

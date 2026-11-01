@@ -3,7 +3,8 @@
   // What the chord and the piano notations share: the names of the notes and of the chords.
   //
   // padMusicNote    a note name - C, F#, Bb, Ebb, C#4 - as [ pitch class 0-11, octave or NULL,
-  //                 the name as written with ♯ and ♭ ], or NULL
+  //                 the name as written with ♯ and ♭, the semitones of its accidental ], or
+  //                 NULL
   // padMusicChord   a chord name - C, Am, F#m7, Bbmaj7, Dsus4, G7/B - as [ root, intervals,
   //                 bass, the name, the name in words ], or NULL
   // padMusicName    the name of a pitch class in the spelling of a chord's root: sharps for a
@@ -70,7 +71,7 @@
 
     $name = $letter . strtr ( (string) ( $m [2] ?? '' ), [ '##' => '𝄪', 'x' => '𝄪', 'bb' => '𝄫', '#' => '♯', 'b' => '♭' ] );
 
-    return [ ( $class % 12 + 12 ) % 12, $octave, $name ];
+    return [ ( $class % 12 + 12 ) % 12, $octave, $name, $shift ];
 
   }
 
