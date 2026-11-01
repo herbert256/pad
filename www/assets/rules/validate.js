@@ -162,13 +162,20 @@
     return String(high + 1);
   }
 
-  // The filing of the values a check reads - made once for all its fields, again for each
-  // check (check, field, form), whose values may have changed since.
-  var filing = { values: null, top: null };
+  // The filing of the values a check of many fields reads - check, the checks of a form -
+  // made once for them all and kept only while it runs (batch): the values a page's script
+  // hands padValidate.field may have changed by its next call.
+  var filing = null;
 
   function filingOf(values) {
+    if (!filing) return filed(values);
     if (filing.values !== values) filing = { values: values, top: filed(values) };
     return filing.top;
+  }
+
+  function batch(run) {
+    filing = { values: null, top: null };
+    try { return run(); } finally { filing = null; }
   }
 
   // A field of the post where PHP files it, as padFormFind finds it in the post PHP filed:
@@ -288,13 +295,14 @@
   }
 
   function check(rules, values) {
-    var errors = {};
-    filing = { values: null, top: null };
-    Object.keys(rules || {}).forEach(function (name) {
-      var problem = field(rules[name], values[name], values);
-      if (problem) errors[name] = problem;
+    return batch(function () {
+      var errors = {};
+      Object.keys(rules || {}).forEach(function (name) {
+        var problem = field(rules[name], values[name], values);
+        if (problem) errors[name] = problem;
+      });
+      return errors;
     });
-    return errors;
   }
 
   // ---------------------------------------------------------------- forms in the page
@@ -475,7 +483,7 @@
   function checkOne(form, name) {
     var rules = rulesOf(form);
     if (!rules[name]) return true;
-    return !judge(form, rules, valuesOf(form, rules), controlsBy(form), name);
+    return batch(function () { return !judge(form, rules, valuesOf(form, rules), controlsBy(form), name); });
   }
 
   function checkForm(form) {
@@ -483,9 +491,11 @@
     var values = valuesOf(form, rules);
     var controls = controlsBy(form);
     var first = null;
-    Object.keys(rules).forEach(function (name) {
-      var mine = controls[name] || [];
-      if (judge(form, rules, values, controls, name) && !first && mine[0]) first = shownBy(mine[0]);
+    batch(function () {
+      Object.keys(rules).forEach(function (name) {
+        var mine = controls[name] || [];
+        if (judge(form, rules, values, controls, name) && !first && mine[0]) first = shownBy(mine[0]);
+      });
     });
     banner(form, !!first);
     if (first && first.focus) first.focus();
@@ -533,17 +543,19 @@
   // been touched.
   function recheck(form, name) {
     var rules = rulesOf(form), seen = marks(form), values = null, controls = null;
-    Object.keys(rules).forEach(function (one) {
-      if (one === name || !(rules[one].watch || []).some(function (other) { return touches(other, name); })) return;
-      controls = controls || controlsBy(form);
-      var mine = controls[one] || [];
-      if (!seen[one] && !showing(mine)) return;
-      values = values || valuesOf(form, rules);
-      var label = labelOf(form, mine[mine.length - 1]) || rules[one].label;
-      var problem = field(rules[one], values[one], values, label);
-      if (!seen[one] && !problem && !follows(rules[one], said(one, mine), label)) return;
-      show(form, one, problem, mine);
-      seen[one] = true;
+    batch(function () {
+      Object.keys(rules).forEach(function (one) {
+        if (one === name || !(rules[one].watch || []).some(function (other) { return touches(other, name); })) return;
+        controls = controls || controlsBy(form);
+        var mine = controls[one] || [];
+        if (!seen[one] && !showing(mine)) return;
+        values = values || valuesOf(form, rules);
+        var label = labelOf(form, mine[mine.length - 1]) || rules[one].label;
+        var problem = field(rules[one], values[one], values, label);
+        if (!seen[one] && !problem && !follows(rules[one], said(one, mine), label)) return;
+        show(form, one, problem, mine);
+        seen[one] = true;
+      });
     });
   }
 
@@ -588,10 +600,6 @@
     });
   });
 
-  window.padValidate = {
-    check: check,
-    field: function (spec, value, values, label) { filing = { values: null, top: null }; return field(spec, value, values, label); },
-    form: checkForm
-  };
+  window.padValidate = { check: check, field: field, form: checkForm };
 
 })();

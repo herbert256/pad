@@ -243,6 +243,16 @@ const checkoutForm = "{form 'checkout', client}{input 'address', rules='required
   });
 });
 
+// The values a page's script hands padValidate.field again after changing them are read
+// anew: the filing of the values is kept only while one check of many fields runs.
+const kinds = cases.find(one => one.client.note && one.client.note.rules[0][1] === 'kinds,gift');
+const again = { 'kinds[0]': 'book', note: '' };
+const before = context.window.padValidate.field(kinds.client.note, '', again);
+again['kinds[0]'] = 'gift';
+const after = context.window.padValidate.field(kinds.client.note, '', again);
+if (before !== '' || after !== 'Note is required when Kinds is gift')
+  watching.push(`padValidate.field on values changed between two calls said ${JSON.stringify(before)} and ${JSON.stringify(after)}`);
+
 // A keystroke in a field that many fields watch reads the rules, the values and the controls
 // once for all of them: read again for each, it took time growing with the square of their
 // number - half a second a key at 500 watchers.

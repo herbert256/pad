@@ -101,10 +101,15 @@
     level.forEach(function (one, key) { if (/^(0|-?[1-9]\d*)$/.test(key) && +key > high) high = +key; });
     return String(high + 1);
   }
-  var filing = { values: null, top: null };
+  var filing = null;
   function filingOf(values) {
+    if (!filing) return filed(values);
     if (filing.values !== values) filing = { values: values, top: filed(values) };
     return filing.top;
+  }
+  function batch(run) {
+    filing = { values: null, top: null };
+    try { return run(); } finally { filing = null; }
   }
   function find(values, name) {
     var at = path(String(name)), level = filingOf(values);
@@ -516,13 +521,14 @@ addRule('uuid', {
     return '';
   }
   function check(rules, values) {
-    var errors = {};
-    filing = { values: null, top: null };
-    Object.keys(rules || {}).forEach(function (name) {
-      var problem = field(rules[name], values[name], values);
-      if (problem) errors[name] = problem;
+    return batch(function () {
+      var errors = {};
+      Object.keys(rules || {}).forEach(function (name) {
+        var problem = field(rules[name], values[name], values);
+        if (problem) errors[name] = problem;
+      });
+      return errors;
     });
-    return errors;
   }
   function rulesOf(form) {
     try { return JSON.parse(form.getAttribute('data-pad-rules') || '{}'); } catch (e) { return {}; }
@@ -645,16 +651,18 @@ addRule('uuid', {
   function checkOne(form, name) {
     var rules = rulesOf(form);
     if (!rules[name]) return true;
-    return !judge(form, rules, valuesOf(form, rules), controlsBy(form), name);
+    return batch(function () { return !judge(form, rules, valuesOf(form, rules), controlsBy(form), name); });
   }
   function checkForm(form) {
     var rules = rulesOf(form);
     var values = valuesOf(form, rules);
     var controls = controlsBy(form);
     var first = null;
-    Object.keys(rules).forEach(function (name) {
-      var mine = controls[name] || [];
-      if (judge(form, rules, values, controls, name) && !first && mine[0]) first = shownBy(mine[0]);
+    batch(function () {
+      Object.keys(rules).forEach(function (name) {
+        var mine = controls[name] || [];
+        if (judge(form, rules, values, controls, name) && !first && mine[0]) first = shownBy(mine[0]);
+      });
     });
     banner(form, !!first);
     if (first && first.focus) first.focus();
@@ -677,17 +685,19 @@ addRule('uuid', {
   }
   function recheck(form, name) {
     var rules = rulesOf(form), seen = marks(form), values = null, controls = null;
-    Object.keys(rules).forEach(function (one) {
-      if (one === name || !(rules[one].watch || []).some(function (other) { return touches(other, name); })) return;
-      controls = controls || controlsBy(form);
-      var mine = controls[one] || [];
-      if (!seen[one] && !showing(mine)) return;
-      values = values || valuesOf(form, rules);
-      var label = labelOf(form, mine[mine.length - 1]) || rules[one].label;
-      var problem = field(rules[one], values[one], values, label);
-      if (!seen[one] && !problem && !follows(rules[one], said(one, mine), label)) return;
-      show(form, one, problem, mine);
-      seen[one] = true;
+    batch(function () {
+      Object.keys(rules).forEach(function (one) {
+        if (one === name || !(rules[one].watch || []).some(function (other) { return touches(other, name); })) return;
+        controls = controls || controlsBy(form);
+        var mine = controls[one] || [];
+        if (!seen[one] && !showing(mine)) return;
+        values = values || valuesOf(form, rules);
+        var label = labelOf(form, mine[mine.length - 1]) || rules[one].label;
+        var problem = field(rules[one], values[one], values, label);
+        if (!seen[one] && !problem && !follows(rules[one], said(one, mine), label)) return;
+        show(form, one, problem, mine);
+        seen[one] = true;
+      });
     });
   }
   function said(name, controls) {
@@ -720,10 +730,6 @@ addRule('uuid', {
       recheck(form, event.target.name);
     });
   });
-  window.padValidate = {
-    check: check,
-    field: function (spec, value, values, label) { filing = { values: null, top: null }; return field(spec, value, values, label); },
-    form: checkForm
-  };
+  window.padValidate = { check: check, field: field, form: checkForm };
 })();
 </script>
