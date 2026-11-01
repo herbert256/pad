@@ -54,7 +54,13 @@
   $padCalendarTitle = padChartPick ( 'title', $padCalendarTexts, $padCalendarUsed );
   $padCalendarLink  = (string) padTagParm ( 'link' );
 
-  $padCalendarHolidays = padCalendarHolidays ( padUnprotect ( (string) padTagParm ( 'holidays' ) ), $padCalendarMonth );
+  // A month no parameter fixes, or one that holds the month the request asked for, is the
+  // visitor's: the links stay for it, and holidays= marks only the days its country's file
+  // knows instead of reporting the year.
+
+  $padCalendarAskedFor = trim ( (string) $padParm ) === '' || $padCalendarMonth === $padCalendarAsked;
+
+  $padCalendarHolidays = padCalendarHolidays ( padUnprotect ( (string) padTagParm ( 'holidays' ) ), $padCalendarMonth, $padCalendarAskedFor );
 
   $padCalendarWeeks = padCalendarWeeks ( $padCalendarMonth, $padCalendarRows, $padCalendarDate, (bool) padTagParm ( 'sunday', FALSE ), $padCalendarHolidays );
 
@@ -65,7 +71,6 @@
   // $month}, the request value the links set - as following them changes it: dropped for
   // every parameter, such a calendar could no longer leave the month it showed.
 
-  return padCalendarHtml ( $padCalendarMonth, $padCalendarWeeks, $padCalendarTitle, $padCalendarLink, $padCalendarQuery,
-                           trim ( (string) $padParm ) === '' or $padCalendarMonth === $padCalendarAsked );
+  return padCalendarHtml ( $padCalendarMonth, $padCalendarWeeks, $padCalendarTitle, $padCalendarLink, $padCalendarQuery, $padCalendarAskedFor );
 
 ?>

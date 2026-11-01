@@ -182,11 +182,17 @@
   // holidays joined, class holiday when one of them is a public holiday, else observance.
   // The name is the local one when the request's locale is in a language of the country
   // (padLocale nl_NL and the Netherlands: Koningsdag), else the English one. A country
-  // without a file, a region it does not have or a month in a year its file does not know
-  // (New Zealand's after 2052) is an error under the strict check. NULL
-  // for a calendar without holidays=: its days get no field holiday.
+  // without a file, a region it does not have or a month the template fixes in a year its
+  // file does not know (New Zealand's after 2052) is an error under the strict check. No
+  // day outside the years the file knows is marked, the neighbouring weeks of the grid
+  // neither: a month the visitor asked for ($asked: the request value, which the calendar's
+  // own links set, or this month) outside them is no fault of the template and shows only
+  // the days inside them - it answered an error page, the link to the month before South
+  // Africa's 2014 leading there - and the last days of December 2052 on New Zealand's grid
+  // are marked as January 2053 shows them. NULL for a calendar without holidays=: its days
+  // get no field holiday.
 
-  function padCalendarHolidays ( $place, $month ) {
+  function padCalendarHolidays ( $place, $month, $asked = FALSE ) {
 
     if ( trim ( $place ) === '' )
       return NULL;
@@ -205,15 +211,20 @@
 
     $known = padHolidaysKnown ( $where [0], padHolidaysDay ( $y, $m, 1 ), padHolidaysDay ( $y, $m, 1 ) );
 
-    if ( $known !== '' and $GLOBALS ['padCheckSyntax'] )
+    if ( $known !== '' and ! $asked and $GLOBALS ['padCheckSyntax'] )
       padError ( "the calendar's holidays= - $known" );
 
     $lang  = strtolower ( substr ( padLocaleOf ( '' ), 0, 2 ) );
     $local = in_array ( $lang, padHolidaysCountry ( $where [0] ) ['langs'], TRUE );
     $days  = [];
 
-    $from = max ( padHolidaysDay ( padHolidaysFirst, 1, 1 ), padHolidaysDay ( $y, $m, 1 ) - 7 );
-    $to   = min ( padHolidaysDay ( padHolidaysLast, 12, 31 ), padHolidaysDay ( $y, $m + 1, 1 ) + 6 );
+    [ $first, $last ] = padHolidaysCountry ( $where [0] ) ['years'];
+
+    $from = max ( padHolidaysDay ( $first, 1, 1 ), padHolidaysDay ( $y, $m, 1 ) - 7 );
+    $to   = min ( padHolidaysDay ( $last, 12, 31 ), padHolidaysDay ( $y, $m + 1, 1 ) + 6 );
+
+    if ( $from > $to )
+      return $days;
 
     foreach ( padHolidaysRange ( $where [0], $where [1], $from, $to, $lang ) as $row ) {
       $day   = $days [ $row ['date'] ] ?? [ 'names' => [], 'class' => 'observance' ];
