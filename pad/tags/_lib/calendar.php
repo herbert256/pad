@@ -21,7 +21,11 @@
 
   include_once PAD . 'subs/charts/_lib/chart.php';
 
-  function padCalendarWeeks ( $month, $rows, $dField, $sunday, $holidays = [] ) {
+  // A day has the field holiday only on a calendar of holidays= ($holidays an array, maybe
+  // empty): handed to every day of every calendar it hid a page's own $holiday inside
+  // {days} - a calendar without holidays= gave it '' on every day.
+
+  function padCalendarWeeks ( $month, $rows, $dField, $sunday, $holidays = NULL ) {
 
     $utc    = new DateTimeZone ( 'UTC' );
     $first  = new DateTimeImmutable ( "$month-01", $utc );
@@ -62,8 +66,8 @@
         'today'   => $date == $today,
         'weekend' => $weekend,
         'count'   => count ( $list ),
-        'events'  => $list,
-        'holiday' => $holiday ['name'] ?? '',
+        'events'  => $list
+      ] + ( is_array ( $holidays ) ? [ 'holiday' => $holiday ['name'] ?? '' ] : [] ) + [
         'class'   => $class
       ];
 
@@ -178,12 +182,13 @@
   // holidays joined, class holiday when one of them is a public holiday, else observance.
   // The name is the local one when the request's locale is in a language of the country
   // (padLocale nl_NL and the Netherlands: Koningsdag), else the English one. A country
-  // without a file, or a region it does not have, is an error under the strict check.
+  // without a file, or a region it does not have, is an error under the strict check. NULL
+  // for a calendar without holidays=: its days get no field holiday.
 
   function padCalendarHolidays ( $place, $month ) {
 
     if ( trim ( $place ) === '' )
-      return [];
+      return NULL;
 
     include_once PAD . 'subs/holidays/_lib/holidays.php';
 

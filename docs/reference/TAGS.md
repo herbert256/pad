@@ -1578,7 +1578,7 @@ A month as a calendar, with its events (`tags/_lib/calendar.php`).
 | `link` | A field with a link for the event - http(s), a page or an anchor; never `javascript:` or `data:` |
 | `query` | The request value the links to the months around set, default `month` |
 | `sunday` | Weeks start on Sunday instead of Monday |
-| `holidays` | A country's public holidays marked - `'nl'`, or with its region `'de-by'` (see `{holidays}`): the day's class gets `holiday` (`observance` for a day that is no day off) and its name stands under the number - the local name when the request's locale speaks the country's language; the pair form's days get `$holiday`, the name or `''` |
+| `holidays` | A country's public holidays marked - `'nl'`, or with its region `'de-by'` (see `{holidays}`): the day's class gets `holiday` (`observance` for a day that is no day off) and its name stands under the number - the local name when the request's locale speaks the country's language; the pair form's days get `$holiday`, the name or `''` - only with `holidays`, so without it a page's own `$holiday` is read there |
 
 **Behavior:** as a single tag it answers a table - the month in its caption between links to
 the month before and after (keeping the other request values, as `{pager}` does; none when the

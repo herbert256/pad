@@ -15,8 +15,8 @@
   // when no parameter fixes it, or the parameter holds the month the request asked for - a
   // column per weekday, a cell per day with its events. Written as a pair it hands the
   // weeks over as rows instead - week, and days: date, day, weekday, month, other, today,
-  // weekend, count, events, holiday (its name, or '') and class - for markup of the
-  // template's own.
+  // weekend, count, events, holiday (with holidays= only: its name, or '') and class - for
+  // markup of the template's own.
 
   $padCalendarQuery = trim ( (string) padTagParm ( 'query', 'month' ) );
   $padCalendarAsked = padCalendarMonth ( $_GET [$padCalendarQuery] ?? '' );
