@@ -20,7 +20,7 @@ PAD;
             . '. The pattern: type names it as well - <code>{pattern:topography/}</code>; a pattern is never reached bare.' ];
 
   $tagOptions = [
-    'seed'    => 'A number or a word: what the pattern picks at random, the same for the same seed (1 when left out). A tile repeated - stripes, dots, grid, checks, chevron, isometric, herringbone, a brick wall of one ink - does not change with it.',
+    'seed'    => 'A number or a word: what the pattern picks at random, the same for the same seed (1 when left out). A tile repeated - stripes, dots, grid, checks, chevron, isometric, herringbone, scales, a brick wall of one ink - does not change with it.',
     'colors'  => 'A list of colours, the background first and the inks after it: <code>colors=\'#fff, #1d3557, #e63946\'</code> - hex, a name, or <code>rgb()</code>, <code>hsl()</code> and their like; <code>none</code> leaves the background out. Each kind has its own palette.',
     'size'    => 'The size of the motif in pixels - a stripe, a dot\'s tile, a hexagon\'s radius, a hill of the topography, the largest circle; each kind its own default and bounds.',
     'width'   => 'The width of the picture in pixels (480); the SVG covers its box when it is made larger or smaller, <code>preserveAspectRatio="xMidYMid slice"</code>.',
@@ -32,7 +32,8 @@ PAD;
     'levels'  => 'topography: the number of contour lines (12), every fifth the bolder index line.',
     'ratio'   => 'herringbone: a block\'s length to its width, a whole number (3); brick: a brick\'s length to its height (3).',
     'offset'  => 'brick: how far a course is shifted along the one below, in bricks - 0.5 the running bond, 0 stacked, a third or a quarter raking; taken in twelfths.',
-    'joint'   => 'brick: the width of the mortar between the bricks in pixels (2), at most nearly half a brick\'s height.' ];
+    'joint'   => 'brick: the width of the mortar between the bricks in pixels (2), at most nearly half a brick\'s height.',
+    'rings'   => 'scales: the circles in a scale (3) - 1 a plain fish scale, more the waves of seigaiha.' ];
 
   $tagSee     = [ 'placeholder', 'identicon', 'chart' ];
 

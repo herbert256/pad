@@ -1736,12 +1736,14 @@ Seeded SVG backgrounds and generative art drawn on the server: stripes, dots, gr
 hexagons, triangles (a low-poly mosaic), waves, chevron, topography (value noise traced by
 marching squares), truchet, voronoi, circles (circle packing), isometric (tumbling blocks), blobs,
 grain (the browser's feTurbulence), mesh (a soft gradient), herringbone (parquet blocks),
-and brick (a wall in any bond, mottled by the seed).
+brick (a wall in any bond, mottled by the seed),
+and scales (fish scales or the waves of seigaiha).
 Every pattern takes `seed=`,
 `colors=` (a list, the background first), `size=` (the motif in pixels), `width=` and `height=`
 (480 by 240; the SVG covers its box), `opacity=`, `title=` and `as='url'`, and its own besides: stripes `angle=`,
 topography `levels=`, herringbone `ratio=` and `angle=`,
-brick `ratio=`, `offset=` and `joint=`. The same options give the same bytes on every request and every
+brick `ratio=`, `offset=` and `joint=`,
+scales `rings=`. The same options give the same bytes on every request and every
 machine - the random numbers are PAD's own seeded sequence (`padFake`'s, put back afterwards) and
 every number is written to a fixed precision - so stored answers hold a pattern; without `seed=`
 the seed is 1. A pattern is decoration (`aria-hidden`) unless `title=` names it, and draws no
