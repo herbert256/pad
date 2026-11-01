@@ -111,13 +111,21 @@
 
   }
 
+  // A byte that is no UTF-8 - a latin1 or cp1252 row - is a ? first, as the XML of a feed has
+  // it (padFormatXml): mb_strcut backs up over such bytes as over the tail of a character, and
+  // a run of 74 of them was cut to nothing, the loop growing the text until the memory ran
+  // out. A piece is never empty all the same.
+
   function padLinesFold ( $line ) {
 
     $out   = '';
     $limit = 75;
+    $line  = mb_scrub ( (string) $line, 'UTF-8' );
 
     while ( strlen ( $line ) > $limit ) {
       $piece = mb_strcut ( $line, 0, $limit, 'UTF-8' );
+      if ( $piece === '' )
+        $piece = substr ( $line, 0, $limit );
       $out  .= $piece . "\r\n ";
       $line  = substr ( $line, strlen ( $piece ) );
       $limit = 74;
