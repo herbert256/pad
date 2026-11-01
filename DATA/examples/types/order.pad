@@ -1,0 +1,28 @@
+{meta title='The order of the types'/}
+<h1>The order of the types</h1>
+<p class="lead">A name written without its prefix - <code>&#123;orders&#125;</code> - is the first of
+these types that has it: an application tag before a built-in one, a store before a field, a field
+before a sequence type of the same name. A prefix says which is meant, <code>&#123;pad:orders&#125;</code>
+or <code>&#123;data:orders&#125;</code>.</p>
+
+<section class="section" id="bare">
+  <div class="section-head"><h2>Tried in this order</h2><span>{$bareCount} types</span></div>
+  <ol class="list order">
+    {bare}
+    <li><a class="name" href="?{$link}">{$key}</a> <span class="about">{$about}</span></li>
+    {/bare}
+  </ol>
+  <p>A PHP function gives way to a pipe function of the same name - <code>&#123;trim&#125;</code>,
+  <code>&#123;date&#125;</code> - and <code>common:</code> is tried only where the application has
+  <code>_common</code> switched on. A name that is only a request value comes after them all: a
+  visitor's <code>?prime=x</code> never takes the place of what the template names.</p>
+</section>
+
+<section class="section" id="prefixed">
+  <div class="section-head"><h2>Only with their prefix</h2><span>{$prefixedCount} types</span></div>
+  <ul class="list">
+    {prefixed}
+    <li><a class="name" href="?{$link}">{$key}</a> <span class="about">{$about}</span></li>
+    {/prefixed}
+  </ul>
+</section>

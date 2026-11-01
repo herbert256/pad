@@ -1,0 +1,16 @@
+{meta title='Types by group'/}
+<h1>Types by group</h1>
+<p class="lead">The types by what they reach, in {$groupCount} groups.</p>
+
+<nav class="jump" aria-label="Groups">{groups}<a href="#{$key}">{$label}</a>{/groups}</nav>
+
+{groups}
+<section class="section" id="{$key}">
+  <div class="section-head"><h2>{$label}</h2><span>{$tagline} - {$count} {echo $count eq 1 ? 'type' : 'types'/}</span></div>
+  <ul class="list">
+    {types}
+    <li><a class="name" href="?{$link}">{$key}</a> <span class="about">{$about}</span></li>
+    {/types}
+  </ul>
+</section>
+{/groups}
