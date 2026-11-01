@@ -278,6 +278,9 @@
 
       $body = [];
 
+      // A run of blank lines ends the text when a subtitle starts behind it, else the whole
+      // run is the text's - kept at once, where each blank line of it looked over the run again.
+
       for ( $at++; $at < $count; $at++ ) {
         if ( trim ( $lines [$at] ) === '' ) {
           $next = $at;
@@ -285,6 +288,8 @@
             $next++;
           if ( $next >= $count or padSrtBegins ( $lines, $next ) )
             break;
+          for ( ; $at < $next; $at++ )
+            $body [] = $lines [$at];
         }
         $body [] = $lines [$at];
       }
