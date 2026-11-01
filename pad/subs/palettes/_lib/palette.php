@@ -13,9 +13,9 @@
   //
   //   sequential   a scale from low to high - viridis, magma, plasma, inferno and cividis from
   //                matplotlib's published 256-colour tables, the ColorBrewer blues, greens,
-  //                oranges and greys of nine classes
+  //                oranges and greys of nine classes, Crameri's batlow
   //   diverging    two scales meeting in a light middle - ColorBrewer's rdbu, brbg and piyg of
-  //                eleven classes
+  //                eleven classes, Crameri's vik
   //   cyclic       a scale that goes round, for what does - an angle, a direction, the hour,
   //                the month: its colours run once round a circle, its last next to its first
   //                again - Crameri's romaO

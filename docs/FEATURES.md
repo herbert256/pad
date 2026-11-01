@@ -2057,12 +2057,14 @@ Colour scales for charts and anything else. The palettes are the files of
 `pad/subs/palettes/types/` - each its name, its type and its colours - and a palette is added by
 adding its file. Sequential: viridis, magma, plasma, inferno and cividis, perceptually uniform,
 from matplotlib's published 256-colour tables (`_cm_listed.py`), and ColorBrewer's blues, greens,
-oranges and greys of nine classes; diverging: ColorBrewer's rdbu, brbg and piyg of eleven;
+oranges and greys of nine classes, and batlow, Fabio Crameri's, its lightness rising all the way;
+diverging: ColorBrewer's rdbu, brbg and piyg of eleven, and Crameri's vik;
 categorical, told apart by colour-blind eyes: okabe-ito (Okabe and Ito's eight, black put last,
 where it vanishes on a dark surface) and Paul Tol's bright, muted and vibrant (from his
 `tol_colors` package), and ColorBrewer's pastel (Pastel1) and PAD's own earth; cyclic, for what
 goes round - an angle, a direction, the hour, the month - whose colours run once round a circle,
-the last next to the first: romaO (Crameri's Scientific colour maps 8.0.1, MIT licence). `steps=` samples a
+the last next to the first: romaO. Crameri's are the 256-colour tables of his Scientific colour
+maps 8.0.1 (MIT licence), made for colour-blind eyes. `steps=` samples a
 sequential or diverging palette evenly from its first colour to its last, the colours between
 two of its own mixed in sRGB - nine steps of a nine-class scale are the scale itself - one step
 its middle; a cyclic palette evenly round its circle from its first colour, the last step short
