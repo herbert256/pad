@@ -630,6 +630,9 @@ gone. A channel is added by adding its file: its settings and a `send` function.
 - pushover - a push to a Pushover user or group (pushover.net): `PUSHOVER_TOKEN`, the key in the
   row's `pushover` or `PUSHOVER_USER`; the title, the text - plain, cut at 1024 characters - and
   the url, the options `priority` (-2 to 1; an emergency, 2, is refused), `sound` and `ttl`.
+- gotify - a message to a self-hosted Gotify server: `GOTIFY_URL`, the application's
+  `GOTIFY_TOKEN` (as a bearer token, never in the address); the title, the text as plain text -
+  no markdown - and the url a click opens, the option `priority` (0 to 10).
 
 ### A language model answering in the page
 ```
