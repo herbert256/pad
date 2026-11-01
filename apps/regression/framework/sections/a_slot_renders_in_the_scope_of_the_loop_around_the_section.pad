@@ -1,0 +1,6 @@
+{data 'people'}
+[ { "name": "Ann" }, { "name": "Bob" } ]
+{/data}
+{people}
+  {section:cta button='Mail', link='?mail'}{slot 'title'}Hi {$name}{/slot}{slot 'note'}row {current@people/}{/slot}{/section:cta}
+{/people}

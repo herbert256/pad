@@ -1,0 +1,16 @@
+/* pricing - a card per plan, the featured one raised in the accent with its badge. */
+.pad-section-pricing .ps-plans{align-items:stretch}
+.pad-section-pricing .ps-plan{position:relative;display:flex;flex-direction:column;gap:14px;padding:28px}
+.pad-section-pricing .ps-plan-featured{border:2px solid var(--pad-section-accent);box-shadow:0 18px 40px -22px color-mix(in srgb,var(--pad-section-accent) 60%,transparent)}
+.pad-section-pricing .ps-plan-badge{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);margin:0;padding:4px 12px;border-radius:999px;background:var(--pad-section-accent);color:var(--pad-section-accent-text);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.pad-section-pricing .ps-plan-name{margin:0;font-size:18px;font-weight:650;line-height:1.3;color:inherit}
+.pad-section-pricing .ps-plan-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px;margin:0}
+.pad-section-pricing .ps-plan-amount{font-size:40px;font-weight:750;line-height:1;letter-spacing:-.03em}
+.pad-section-pricing .ps-plan-period{font-size:15px;color:var(--ps-ink-dim)}
+.pad-section-pricing .ps-plan-text{margin:0;color:var(--pad-section-soft)}
+.pad-section-pricing .ps-plan-features{display:grid;gap:10px;margin:4px 0 0;padding:16px 0 0;border-top:1px solid var(--pad-section-line);list-style:none}
+.pad-section-pricing .ps-plan-features li{position:relative;padding-left:26px}
+.pad-section-pricing .ps-plan-features li::before{content:"";position:absolute;left:3px;top:.32em;width:6px;height:11px;border:solid var(--pad-section-accent);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.pad-section-pricing .ps-plan .ps-button{margin-top:auto;width:100%}
+.pad-section-pricing .ps-plans-note{text-align:center}
+.pad-section-pricing.ps-align-left .ps-plans-note{text-align:left}

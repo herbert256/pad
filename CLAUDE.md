@@ -710,6 +710,7 @@ Resolve naming conflicts with explicit prefixes:
 | `printable:` | Printable | `{printable:labels data='rows'}...{/printable:labels}`, as `{printable 'labels', ...}...{/printable}` - a kind is a file of `pad/subs/printables/types/`; never bare |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
+| `section:` | Section of a landing page | `{section:hero title='...'}...{/section:hero}`, as `{section 'hero', ...}` - a kind is a file of `pad/subs/sections/types/`; never bare |
 | `effect:` | Effect | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect 'typewriter'}` or bare `{typewriter}` - a kind is a file of `pad/subs/effects/types/` |
 
 ---
@@ -825,6 +826,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Application tests](docs/FEATURES.md#application-tests) | `_tests/name.pad` + `name.txt`, `{assert}`, `pad test` |
 | [The frame of the PAD apps](docs/FEATURES.md#the-frame-of-the-pad-applications) | `{common:padFrame}`, `$frameMenu`, `www/_common/pad.css`; the brand top left of every app `{common:padBrand/}`; the playground and live icons top right of every example, `padPlayLink ()` |
 | [Common patterns](docs/FEATURES.md#common-patterns) | zebra rows, comma lists, first/last wrappers, counters |
+| [Sections](docs/FEATURES.md#sections) | `{section:hero title=}`, `{section:pricing data=/}`, `{section:item 'Pro', price=}`, `{slot 'eyebrow'}` - landing-page blocks in pure CSS, a kind per file of `pad/subs/sections/types/` |
 | [Effects](docs/FEATURES.md#effects) | `{typewriter}`, `{highlighter}`, `{countup to=/}`, `{reveal}`, `{marquee}`, `{spinner/}`, `{confetti/}` - CSS first, still under reduced motion, a kind per file of `pad/subs/effects/types/` |
 
 ---

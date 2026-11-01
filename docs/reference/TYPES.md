@@ -66,15 +66,18 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 26. **barcode** - Barcode symbology, a file of `PAD/subs/codes/types/`
 27. **embed** - Embed provider, a file of `PAD/subs/embeds/types/`
 28. **input** - Rich form field, a file of `PAD/subs/inputs/types/`
-29. **effect** - Effect, a file of `PAD/subs/effects/types/`
-30. **function** - PAD function (fallback)
+29. **notation** - Notation, a file of `PAD/subs/notations/types/`
+30. **effect** - Effect, a file of `PAD/subs/effects/types/`
+31. **function** - PAD function (fallback)
 
-Items 21 to 29 are the subsystems of `padSubsystems` (`PAD/lib/subsystem.php`), tried in that
+Items 21 to 30 are the subsystems of `padSubsystems` (`PAD/lib/subsystem.php`), tried in that
 order. The icons (`PAD/subs/icons/types/`) and the fake kinds (`PAD/subs/fakes/types/`) are never reached
 bare - their names, home or email, are those of fields and pages - only as `{icon:star/}` and
-`{fake:email/}`.
-The patterns (`PAD/subs/patterns/types/`) are never reached bare either - dots, grid and waves are
-names of fields and pages - only as `{pattern:dots/}`.
+`{fake:email/}`. Nor are the patterns (`PAD/subs/patterns/types/`), the sounds
+(`PAD/subs/sounds/types/`), the printables (`PAD/subs/printables/types/`) and the sections
+(`PAD/subs/sections/types/`) - dots, grid, click, error, labels, letter, hero, team and footer are
+the names of fields and pages too - only as `{pattern:dots/}`, `{sound:click/}`,
+`{printable:labels}` and `{section:hero}`.
 
 A field or array that exists only as a request value - a GET, POST or cookie value the page's PHP
 (its configuration, `_inits.php`, the page, `_exits.php`) does not name, held by no row - comes
@@ -729,6 +732,26 @@ reached bare and draws as it did. `{notation:zebra/}` is "there is no notation n
 
 ---
 
+## Section Types
+
+### section
+
+A block of a landing page - a hero, the features, the prices, the questions, a footer ... - of the
+kind the tag names: the sections subsystem in `PAD/subs/sections/` builds it, as the `{section}` tag
+builds the section its first parameter names.
+
+```
+{section:hero title='Pages that drive themselves', button='Start', link='?start'}The text.{/section:hero}
+{section:pricing data='plans'/}
+{section:faq}{section:item 'Is it free?'}Yes.{/section:item}{/section:faq}
+```
+
+**Resolution:** a PHP file `PAD/subs/sections/types/<name>.php` (`padKinds ( 'sections' )`,
+`PAD/lib/subsystem.php`), its style `PAD/subs/sections/assets/<name>.css`: the files of `types/` are
+the sections, and a section is added by adding its files. Only ever written with its prefix.
+
+---
+
 ## Effect Types
 
 ### effect
@@ -892,6 +915,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `sound` | PAD/subs/sounds/types/ | Sounds |
 | `printable` | PAD/subs/printables/types/ | Printables |
 | `notation` | PAD/subs/notations/types/ | Notations |
+| `section` | PAD/subs/sections/types/ | Landing-page sections |
 | `effect` | PAD/subs/effects/types/ | Effects |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
@@ -944,6 +968,7 @@ types/
 ├── pull.php        → Sequence pull
 ├── remove.php      → Sequence remove
 ├── script.php      → Shell script
+├── section.php     → Section
 ├── select.php      → Select table query
 ├── sequence.php    → Sequence type
 ├── sound.php       → Sound

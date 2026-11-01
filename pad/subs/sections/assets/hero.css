@@ -1,0 +1,15 @@
+/* hero - the big heading over the hero's background; side by side with its picture when the
+   section is wide enough. */
+.pad-section-hero{background:var(--pad-section-hero)}
+.pad-section-hero.ps-tone-soft{background:var(--pad-section-accent-soft)}
+.pad-section-hero.ps-tone-accent{background:var(--pad-section-accent)}
+.pad-section-hero .ps-inner{padding-top:64px;padding-bottom:64px}
+@container pad-section (min-width:720px){.pad-section-hero .ps-inner{padding-top:104px;padding-bottom:104px}}
+.pad-section-hero .ps-head{margin-bottom:0;max-width:760px}
+.pad-section-hero .ps-title{font-size:clamp(34px,6.4cqi,60px);line-height:1.06;letter-spacing:-.03em}
+.pad-section-hero .ps-text{margin-top:18px;font-size:clamp(17px,2.2cqi,21px)}
+.pad-section-hero .ps-actions{margin-top:32px}
+.pad-section-hero .ps-hero-split{display:grid;gap:40px;align-items:center}
+.pad-section-hero .ps-hero-image{border-radius:calc(var(--pad-section-radius) + 4px);overflow:hidden;box-shadow:0 24px 48px -24px rgba(15,23,42,.35)}
+.pad-section-hero .ps-hero-image img,.pad-section-hero .ps-hero-image svg{display:block;width:100%;height:auto}
+@container pad-section (min-width:820px){.pad-section-hero .ps-hero-split{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px}}

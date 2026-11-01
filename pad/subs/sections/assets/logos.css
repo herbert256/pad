@@ -1,0 +1,14 @@
+/* logos - a quiet row that wraps; a logo takes its colours under the pointer. */
+.pad-section-logos .ps-inner{padding-top:40px;padding-bottom:40px}
+.pad-section-logos .ps-head{margin-bottom:24px}
+.pad-section-logos .ps-title{font-size:clamp(20px,3cqi,26px)}
+.pad-section-logos .ps-text{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ps-ink-dim)}
+.pad-section-logos .ps-logos{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:20px 44px;margin:0;padding:0;list-style:none}
+.pad-section-logos.ps-align-left .ps-logos{justify-content:flex-start}
+.pad-section-logos .ps-logo{display:flex;align-items:center;height:40px;color:var(--ps-ink-dim);filter:grayscale(1);transition:filter .2s}
+.pad-section-logos .ps-logo:hover{filter:none}
+.pad-section-logos .ps-logo a{display:flex;align-items:center;height:100%;color:inherit;text-decoration:none}
+.pad-section-logos .ps-logo img,.pad-section-logos .ps-logo svg{width:auto;max-width:150px;height:32px}
+.pad-section-logos .ps-logo-name{font-size:20px;font-weight:750;letter-spacing:-.02em;white-space:nowrap}
+.pad-section-logos.ps-tone-accent .ps-logo,.pad-section-logos.ps-tone-accent .ps-text{color:inherit}
+@media (prefers-reduced-motion:reduce){.pad-section-logos .ps-logo{transition:none}}

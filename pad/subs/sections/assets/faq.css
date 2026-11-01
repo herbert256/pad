@@ -1,0 +1,16 @@
+/* faq - the questions as details, a line between them and a plus that turns into a minus. */
+.pad-section-faq .ps-faq{max-width:760px;margin:0 auto;border-top:1px solid var(--pad-section-line);text-align:left}
+.pad-section-faq.ps-align-left .ps-faq{margin:0}
+.pad-section-faq .ps-faq-item{border-bottom:1px solid var(--pad-section-line)}
+.pad-section-faq .ps-faq-item summary{position:relative;display:block;padding:18px 40px 18px 0;font-size:17px;font-weight:600;line-height:1.4;cursor:pointer;list-style:none}
+.pad-section-faq .ps-faq-item summary::-webkit-details-marker{display:none}
+.pad-section-faq .ps-faq-item summary::before,.pad-section-faq .ps-faq-item summary::after{content:"";position:absolute;right:8px;top:50%;width:14px;height:2px;margin-top:-1px;border-radius:2px;background:var(--pad-section-accent);transition:transform .2s}
+.pad-section-faq .ps-faq-item summary::after{transform:rotate(90deg)}
+.pad-section-faq .ps-faq-item[open] summary::after{transform:rotate(0)}
+.pad-section-faq .ps-faq-item summary:focus-visible{outline:2px solid var(--pad-section-accent);outline-offset:2px;border-radius:4px}
+.pad-section-faq .ps-faq-answer{margin:0;padding:0 40px 20px 0;color:var(--pad-section-soft)}
+.pad-section-faq .ps-faq-answer>:first-child{margin-top:0}
+.pad-section-faq .ps-faq-answer>:last-child{margin-bottom:0}
+.pad-section-faq.ps-tone-accent .ps-faq-answer{color:inherit}
+.pad-section-faq.ps-tone-accent .ps-faq-item summary::before,.pad-section-faq.ps-tone-accent .ps-faq-item summary::after{background:var(--pad-section-accent-text)}
+@media (prefers-reduced-motion:reduce){.pad-section-faq .ps-faq-item summary::before,.pad-section-faq .ps-faq-item summary::after{transition:none}}

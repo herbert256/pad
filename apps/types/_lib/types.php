@@ -95,6 +95,8 @@
                       "{printable:labels data='rows', sheet='a4-3x8'}...{/printable:labels}\n{printable 'labels', data='rows'}...{/printable}" ],
       'notation' => [ 'A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.', 'subsystems',
                       "{notation:braille 'Hello'/}\n{notation 'braille', 'Hello'/}\n{braille 'Hello'/}\n{math}a/b{/math}" ],
+      'section'  => [ 'A section of a landing page, a file of pad/subs/sections/types/ - pure CSS, coloured by the theme, never bare.', 'subsystems',
+                      "{section:hero title='Build faster'}...{/section:hero}\n{section 'hero', title='Build faster'}...{/section}" ],
       'effect'   => [ 'An effect, a file of pad/subs/effects/types/ - motion and decoration, CSS first, still under reduced motion.', 'subsystems',
                       "{effect:typewriter}Hello{/effect:typewriter}\n{effect 'typewriter'}Hello{/effect}\n{typewriter}Hello{/typewriter}" ],
 

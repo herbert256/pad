@@ -31,6 +31,7 @@
       'sound'    => [ 'Sounds',            'A sound of {sound} each, synthesised in the browser', 'single', '/}',                                          'sound'   ],
       'printable' => [ 'Printables',       'A kind of {printable} each, pages made for paper',   'pair',   "}\n  ...\n{/printable:%s}",                   'printable' ],
       'notation' => [ 'Notations',         'A notation of {notation} each, drawn on the server',  'both',   " 'text'/}",                                   'notation' ],
+      'section'  => [ 'Sections',          'A block of a landing page of {section} each, pure CSS', 'pair', " title='...'}\n  ...\n{/section:%s}",          'section' ],
       'effect'   => [ 'Effects',           'An effect of {effect} each, motion and decoration',  'both',   "}...{/effect:%s}",                             'effect'  ],
     ];
 
@@ -270,6 +271,7 @@
         $parm = tagsKindSequenceParm ( $kind );
         return $example ( 'The first ten terms', $parm ? 'With the parameter the type takes.' : '', "{sequence:$kind$parm rows=10}{\$$kind} {/sequence:$kind}" );
 
+      case 'section':
       case 'effect':
         $file = APPS . "sections/_examples/$type/$kind.pad";
         return $example ( "The $kind $type", 'As the sections application shows it.', is_file ( $file ) ? trim ( padFileGet ( $file ) ) : "{{$type}:$kind}...{/$type:$kind}" );
@@ -373,6 +375,7 @@
       'sound'    => [ "{sound:$kind/}", "{sound '$kind'/}" ],
       'printable' => [ "{printable:$kind}...{/printable:$kind}", "{printable '$kind'}...{/printable}" ],
       'notation' => [ "{notation:$kind 'text'/}", "{notation '$kind', 'text'/}" ],
+      'section'  => [ "{section:$kind ...}...{/section:$kind}", "{section '$kind', ...}...{/section}" ],
       'effect'   => [ "{effect:$kind}...{/effect:$kind}", "{effect '$kind'}...{/effect}" ] ] [$type];
 
     if ( tagsKindBare ( $type, $kind ) )

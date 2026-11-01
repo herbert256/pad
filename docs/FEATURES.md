@@ -70,6 +70,7 @@ applications show them working.
   - [Notations](#notations)
   - [Showcase tags](#showcase-tags)
   - [Live Regions (interactivity without app JavaScript)](#live-regions-interactivity-without-app-javascript)
+  - [Sections](#sections)
   - [Effects](#effects)
 - [Development](#development)
   - [Configuration settings](#configuration-settings)
@@ -1320,6 +1321,54 @@ Every one is rendered on the server; the `showcase` application has examples of 
 to the page's own URL; the page's PHP reads `padLiveEvent()` / `padLiveValue()` and keeps state
 in the session (`$padSessionVars`) or the event's value; only that region's content comes back
 and is swapped in. The first region brings a small inline script.
+
+### Sections
+```
+{section:hero title='Pages that drive themselves', button='Start', link='?start', image='hero.jpg', alt='...'}
+  The text under the heading.                          # the content is the text
+  {slot 'eyebrow'}New in PAD{/slot}                    # a part filled with markup - wins over eyebrow=
+{/section:hero}
+{section 'cta', 'Ready?', button='Go', link='?go'/}    # the tag; the second value the heading
+{section:features title='Why'}                         # a list section: its items are pairs ...
+  {section:item 'Fast', icon='zap'}Renders in milliseconds.{/section:item}
+{/section:features}
+{section:pricing title='Plans', data='plans'/}         # ... or the rows of data=, by their fields
+{section:pricing}{section:item 'Pro', price='€12', period='month', featured, link='?pro'}
+  Every page                                           # a plan's features, a line each
+{/section:item}{/section:pricing}
+{section:faq open=1, single}{section:item 'Is it free?'}Yes.{/section:item}{/section:faq}
+{section:newsletter 'Stay in the loop'/}               # a form posting back: padPosted ( 'newsletter' )
+{section:contact 'Get in touch', mail='hi@example.com', phone='+31 20 123 4567', form/}
+{section:footer brand='PAD', note='© 2026'}{section:item 'Product'}Pricing | ?pricing{/section:item}{/section:footer}
+```
+The blocks a landing page is built of, in HTML and CSS alone - the questions are `<details>`, the
+forms post back without a script: hero, features, pricing (a featured plan with its badge),
+testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery and footer, and
+`item`, the item of the sections that list things. A part of a section comes three ways, the
+first that has one winning: a `{slot 'name'}` pair directly in its content - template, rendered
+where the section stands, in the scope of the loop around it - an option of the part's name,
+and for the text under the heading the rest of the content. A list section takes its items from
+the rows `data=` names (a store, the page's array, a `_data` file) and from `{section:item}`
+pairs inside it, also ones a loop makes: the item's first value is its name - a plan, a
+question, a person - its options its fields and its content its text, a plan's features a line
+each; an option the section has no field for, a slot of a part it has not and an item outside a
+list section are reported under the strict check. The newsletter and the contact form post back
+as `{form 'newsletter'}` does - the session's token and the form's name - so the page's PHP asks
+`padPosted ( 'newsletter' )` and checks the post with `padValidate`; the fields refill and show
+the messages, and once the post came back right the section says `thanks=` in the form's place.
+Every section is a size container - its layout follows the room it has (`@container`), not the
+window; the colours are `--pad-section-bg`, `-panel`, `-text`, `-soft`, `-dim`, `-line`,
+`-accent`, `-accent-text`, `-accent-soft` on `.pad-section`, their defaults the frame's palette
+(`--bg`, `--text`, `--accent` ... of `www/_common/pad.css`) and light and dark steps of their own
+without it, so a theme colours the sections without a word; `--pad-section-hero`, `-radius`,
+`-max`, `-font` and `-heading-font` are the rest. `tone=` (plain, soft, accent) and `align=`
+(center, left) on every section, `level=` its heading's level (2), `id=` an anchor. A section is
+written `{section:hero}` or `{section 'hero'}` - never bare: hero, team, stats and footer are the
+names of fields and pages. The kinds are the files of `pad/subs/sections/types/`, the style
+`pad/subs/sections/assets/` - `section.css` shared and a sheet per kind, each written once per
+page with the CSP nonce; `pad/subs/sections/section.php` the body every form runs,
+`_lib/section.php` the parts, items and forms; `pad/types/section.php` the section type. The
+`sections` application shows every one beside its template.
 
 ### Effects
 ```

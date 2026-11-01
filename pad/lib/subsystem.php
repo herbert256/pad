@@ -29,6 +29,7 @@
     'sound'   => [ 'sounds',   FALSE, 'sound'          ],
     'printable' => [ 'printables', FALSE, 'printable'  ],
     'notation' => [ 'notations', TRUE, 'notation'      ],
+    'section' => [ 'sections', FALSE, 'section'        ],
     'effect'  => [ 'effects',  TRUE,  'effect'         ],
   ];
 

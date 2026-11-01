@@ -1,0 +1,77 @@
+<?php
+
+  // The body of a section, whichever way it is written: {section 'hero', title='...'} ...
+  // {/section}, or the section: type - {section:hero title='...'} ... {/section:hero}. The
+  // sections are never reached bare: hero, team, stats and footer are the names of fields and
+  // pages. The caller sets $padSectionKind; a section is a file of subs/sections/types/, and
+  // the files there are all the sections there are (padSectionTypes, _lib/section.php).
+  //
+  // A pair runs twice: the start walk takes the section's slots out of its content and puts
+  // them back between markers, reads the rows of data= and opens the collection its
+  // {section:item}s hand themselves to; the content renders; the end walk splits the slots off
+  // what it rendered to and builds the section from its parts, its text and its items. A
+  // single tag is built at once. A {section:item} is collected, not built: it hands its first
+  // value, its options and what its content rendered to to the section around it.
+
+  include_once PAD . 'subs/sections/_lib/section.php';
+
+  if ( ! padSectionType ( $padSectionKind ) ) {
+    if ( $padCheckSyntax )
+      padError ( "there is no section named '" . padMakeSafe ( $padSectionKind, 20 ) . "' - " . implode ( ', ', padSectionTypes () ) );
+    return '';
+  }
+
+  if ( $padSectionKind == 'item' ) {
+
+    if ( $padWalk [$pad] == 'start' ) {
+
+      if ( padSectionOwner () === FALSE ) {
+        if ( $padCheckSyntax )
+          padError ( "a {section:item} belongs inside a section that lists items - {section:pricing}, {section:faq}, {section:team} ..." );
+        $padContent = '';
+        return $padPair [$pad] ? TRUE : '';
+      }
+
+      if ( $padPair [$pad] ) {
+        $padWalk [$pad] = 'end';
+        return TRUE;
+      }
+
+      padSectionItemAdd ( padSectionOwner (), NULL );
+
+      return '';
+
+    }
+
+    padSectionItemAdd ( padSectionOwner (), $padContent );
+
+    $padContent = '';
+
+    return TRUE;
+
+  }
+
+  // The section used goes on the xref record, which the reference application shows: the
+  // pages that use each section - once, on its first walk.
+
+  if ( $padWalk [$pad] == 'start' ) {
+
+    if ( $padInfoXref ?? FALSE )
+      padInfoXref ( 'section', $padSectionKind );
+
+    padSectionOpen ( $padSectionKind, $padContent, $padPair [$pad] );
+
+    if ( $padPair [$pad] ) {
+      $padWalk [$pad] = 'end';
+      return TRUE;
+    }
+
+    return padSectionBuild ( $padSectionKind, '' );
+
+  }
+
+  $padContent = padSectionBuild ( $padSectionKind, $padContent );
+
+  return TRUE;
+
+?>

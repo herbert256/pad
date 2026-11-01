@@ -3794,6 +3794,110 @@ a `data` name that names nothing and no value at all are strict errors.
 
 ---
 
+### section
+A block of a landing page - a hero, the features, the prices, what customers say, the questions,
+a call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact
+details, a gallery or the footer - in HTML and CSS alone. Every section is a file of
+`pad/subs/sections/types/`, its style in `pad/subs/sections/assets/` (`section.css`, shared, and a
+sheet per kind, each written once per page with the CSP nonce); the files of `types/` are the
+sections there are, and the subsystem is `pad/subs/sections/`.
+
+```html
+{section 'hero', 'Pages that drive themselves', button='Start', link='?start', second='Read more', secondLink='?docs'}
+  Write the page, and the page renders itself.
+  {slot 'eyebrow'}New in PAD{/slot}
+  {slot 'image'}{placeholder ratio='4:3', fluid/}{/slot}
+{/section}
+{section:features title='Why PAD', columns=3}
+  {section:item 'Fast', icon='zap'}Pages render in milliseconds.{/section:item}
+  {section:item 'Safe', icon='shield-check'}Every value is text.{/section:item}
+{/section:features}
+{section:pricing title='Plans', data='plans', note='Without VAT.'/}
+{section:faq title='Questions', open=1, single}
+  {section:item 'Is it free?'}Yes, under the GPL.{/section:item}
+{/section:faq}
+{section:newsletter 'Stay in the loop', button='Subscribe'/}
+{section:footer brand='PAD', note='© 2026 PAD'}
+  {section:item 'Product'}
+    Features | ?features
+    Pricing | ?pricing
+  {/section:item}
+{/section:footer}
+```
+
+A section is written two ways, the same section each time: the tag, `{section 'hero', ...}`, whose
+second value is the section's first, and the section: type, `{section:hero ...}`. It is never
+reached bare - hero, team, stats and footer are the names of fields and pages. The section's first
+value is its heading (as `title=`), an item's first value its name.
+
+**Parts.** A part comes three ways, the first that has one winning: a `{slot 'name'}` pair standing
+directly in the section's content - template, rendered where the section stands, in the scope of
+the loop around it - an option of the part's name, escaped, and for `text` the rest of the content.
+A slot of a part the section has not is an error under the strict check.
+
+**Items.** A section that lists things takes its items from the rows `data=` names - a store, the
+page's array, a field holding a list, a `_data` file - by their fields, a row's other fields left
+alone; then from `{section:item}` pairs or single tags inside it, a loop's too: the item's first
+value fills its first field, its options the others, its content the content field. An option
+the section has no field for is reported, and so is an item outside a list section, a list
+section without items, and items in a section that lists nothing.
+
+**Forms.** The newsletter and the contact form post back to the page as `{form 'newsletter'}`
+does: the session's CSRF token when they post here, the hidden `padForm` field with their name.
+The page's PHP asks `padPosted ( 'newsletter' )` and checks the post with
+`padValidate ( [ 'email' => 'required|email' ] )`; the fields refill and show the message, tied to
+the field for a screen reader, and once the post came back right - posted, and no message for any
+of its fields - the section shows `thanks=` in the form's place (`role="status"`).
+
+**Look.** Every section is a size container: its layout follows the room it has, not the window
+(`@container`). The colours are custom properties on `.pad-section` - `--pad-section-bg`,
+`-panel`, `-text`, `-soft`, `-dim`, `-line`, `-accent`, `-accent-text`, `-accent-soft` - whose
+defaults are the frame's palette (`--bg`, `--panel`, `--text` ... of `www/_common/pad.css`), with
+light and dark steps of their own on a page without it; `--pad-section-hero` (the hero's
+background), `-radius`, `-max` (the content's width), `-font` and `-heading-font` are the rest. A
+theme sets them on `.pad-section`.
+
+| Option | On | Meaning |
+|--------|----|---------|
+| `title` | every section | The heading - also the first value; a slot `title` of markup wins |
+| `eyebrow` | hero, features, pricing, testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery | The small line above the heading |
+| `text` | every section | The line under the heading; the content wins over it, a slot `text` over both |
+| `level` | every section | The heading's level, 1 to 6 (2); an item's heading one more |
+| `tone` | every section | `plain`, `soft` or `accent` - the background (cta: accent, newsletter: soft) |
+| `align` | every section | `center` or `left` (hero with a picture, contact and footer: left) |
+| `id` | every section | The section's id, an anchor to link to |
+| `button`, `link` | hero, cta | The main button and the page it goes to - one without the other is reported |
+| `second`, `secondLink` | hero, cta | A quieter second button |
+| `image`, `alt` | hero | A picture beside the words - a slot `image` of markup in its place |
+| `note` | hero, cta, pricing, newsletter, footer | The small print |
+| `data` | the list sections | The items from rows |
+| `columns` | features, pricing, testimonials, stats, steps, team, gallery | The cards side by side at the widest, 1 to 6 |
+| `open`, `single` | faq | The question open at first by its number, bare every one; one open at a time |
+| `form`, `thanks` | newsletter, contact | The form's name (`newsletter`; contact: bare for a message form, or its name); the thanks |
+| `button`, `label`, `placeholder` | newsletter | The form's button (`Subscribe`), the field's label and its example |
+| `address`, `mail`, `phone`, `hours` | contact | The details - the mail address and the phone number as links |
+| `brand` | footer | The name at its side |
+
+| Section | Shows | Parts | An item's fields - its first value first, its content last |
+|---------|-------|-------|-----------------------------------------------------------|
+| `hero` | The heading of the page, its text, buttons, a picture beside them | eyebrow, title, text, actions, image, note | - |
+| `features` | A card per feature, an icon of `{icon}` each | eyebrow, title, text | title, icon, link, text |
+| `pricing` | A card per plan, a featured one with its badge | eyebrow, title, text, note | name, price, period, text, button, link, featured, badge, features (a line each) |
+| `testimonials` | A card per quote over who said it, initials without a picture | eyebrow, title, text | name, role, image, link, text (the quote) |
+| `faq` | A `<details>` per question | eyebrow, title, text | question, answer |
+| `cta` | A band in the accent with its buttons | eyebrow, title, text, actions, note | - |
+| `stats` | The numbers, a label under each (a `<dl>`) | eyebrow, title, text | value, label, text |
+| `steps` | Numbered steps (an `<ol>`) | eyebrow, title, text | title, text |
+| `team` | A card per person, a picture or initials | eyebrow, title, text | name, role, image, link, text |
+| `logos` | A row of logos, a name in letters without one | eyebrow, title, text | name, image, link, the logo itself (an `<svg>`) |
+| `newsletter` | A form with one e-mail field | eyebrow, title, text, note | - |
+| `contact` | The address, mail, phone and hours, and a message form | eyebrow, title, text, details | - |
+| `gallery` | Pictures in a grid with their captions | eyebrow, title, text | image, caption, alt, link, the caption (or a picture of markup) |
+| `footer` | The name and its line, columns of links, the small print | brand, text, note | title, then a link a line - `Label \| ?page`; rows: column, label, link |
+| `item` | One item of the list section around it | - | - |
+
+---
+
 ### effect
 Motion and decoration on a text or a block, CSS first: every effect is a file of
 `pad/subs/effects/types/`, its look `pad/subs/effects/assets/<kind>.css`, written once per page with
@@ -4460,6 +4564,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `emoji` | Output | An emoji by its shortcode, labelled for screen readers; also an `emoji` pipe |
 | `country` | Output | A country's flag emoji and English name from an ISO 3166 code |
 | `jsonview` | Output | A JSON value or PHP array as a foldable, coloured tree of details elements |
+| `section` | Output | A block of a landing page - the files of `pad/subs/sections/types/`: hero, features, pricing, faq, cta, footer ... - pure CSS, coloured by the theme; `{section:item}` an item of a list section |
 | `effect` | Output | Motion and decoration, CSS first - the files of `pad/subs/effects/types/`: typewriter, highlighter, countup, reveal, marquee, spinner, confetti ... - still under reduced motion |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
@@ -4541,6 +4646,7 @@ Resolve naming conflicts with explicit prefixes:
 | `sequence:` | Sequence type | `{sequence:fibonacci}` |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
+| `section:` | Section kind | `{section:hero title='...'}...{/section:hero}`, as `{section 'hero', ...}` - a kind is a file of `pad/subs/sections/types/`; never bare |
 | `effect:` | Effect kind | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect 'typewriter'}` or bare `{typewriter}` - a kind is a file of `pad/subs/effects/types/` |
 
 ---
