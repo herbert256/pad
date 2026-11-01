@@ -768,7 +768,7 @@ reveal on scroll, a loader, confetti ... - of the kind the tag names: the effect
 ```
 
 **Resolution:** a PHP file `PAD/subs/effects/types/<name>.php`, its style
-`www/assets/effects/<name>.css` (confetti's script `confetti.js` beside it), the effect written
+`www/assets/effects/<name>.css` (the scripts of confetti and decipher beside them), the effect written
 by `PAD/subs/effects/effect.php`: the files of `types/` are the effects, and an effect is added by
 adding its files. Bare, an effect comes after every other kind of tag and after the subsystems
 before it in `padSubsystems`, so a store, a field or an array of the name wins.

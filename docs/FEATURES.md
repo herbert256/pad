@@ -1981,6 +1981,7 @@ page with the CSP nonce; `pad/subs/sections/section.php` the body every form run
 {effect 'countup', to=1250, suffix='+'/}                       # counted by the CSS (@property), read as 1250+
 {glitch}SIGNAL LOST{/glitch}  {shimmer}New{/shimmer}  {wave}Hi!{/wave}
 <h1>Built for {rotator}teams, makers, you{/rotator}</h1>       # the phrases take turns in one place - a list unmoved
+<h2>{decipher}ACCESS GRANTED{/decipher}</h2>                   # settles out of changing signs - a script, aria-hidden
 {gradient colors='#f97316, #db2777', animate}Launch week{/gradient}
 {marquee duration=25, label='Built with'}...{/marquee}         # a band that scrolls, a Pause button without script
 {reveal motion='left'}<div>...</div>{/reveal}                  # comes into view as it is scrolled to - view()
@@ -1990,11 +1991,12 @@ page with the CSP nonce; `pad/subs/sections/section.php` the body every form run
 {skeleton shape='media', lines=3/}                             # grey bones while a part loads - a status
 {confetti}<button type="button">Celebrate</button>{/confetti}  # the one with a script; single: bursts in view
 ```
-Motion and decoration on a text or a block, CSS first: confetti is the only effect with a script,
-`www/assets/effects/confetti.js`; the rest is CSS, a stylesheet per kind written once per page
+Motion and decoration on a text or a block, CSS first: confetti and decipher are the only effects
+with a script, `www/assets/effects/confetti.js` and `decipher.js`; the rest is CSS, a stylesheet per kind written once per page
 with the CSP nonce, after the base every effect shares. Every animation stands inside
 `@media (prefers-reduced-motion: no-preference)`, so a visitor who asks for less motion gets the
-content still and whole - typed out, counted, revealed, marked - and confetti does not burst.
+content still and whole - typed out, counted, revealed, marked - confetti does not burst and
+decipher shows no signs.
 A screen reader reads the text once, as it ends: the letters of a wave and the slices of a glitch
 are a copy marked `aria-hidden`, the typewriter's text is whole in the page while the CSS
 uncovers it, a count-up reads its last number, a spinner and a skeleton are a `role="status"` with
@@ -2007,7 +2009,7 @@ page with the nonce - never a style attribute, which a CSP nonce drops; the
 colours are `--pad-effect-accent`, `-accent2`, `-accent3`, `-text`, `-mark` and `-track` on
 `.pad-effect`, light and dark, falling back to the frame's `--accent`, `--text` and `--line`, so a
 theme colours them. The kinds are the files of `pad/subs/effects/types/` - typewriter, glitch,
-shimmer, gradient, wave, highlighter, underline, strike, encircle, rotator, countup, marquee, reveal,
+shimmer, gradient, wave, highlighter, underline, strike, encircle, rotator, decipher, countup, marquee, reveal,
 tilt, spotlight, spinner, skeleton, confetti -
 and an effect is added by adding its file. Each is written three ways, the same effect:
 `{effect 'typewriter'}...{/effect}`, the effect type `{effect:typewriter}...{/effect:typewriter}`

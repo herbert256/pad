@@ -1,0 +1,1 @@
+{if 1}{decipher 'x'/}{decipher 'y'/}{/if | php:substr_count(@, 'window.PadDecipher = ')}|{decipher}ACCESS GRANTED{/decipher | php:preg_replace('/<svg class="pad-effect-css".*/s', '', @)}{decipher 'a & <b>', glyphs='binary', duration=2, delay=0.5, mono | php:preg_replace('/<svg class="pad-effect-css".*/s', '', @)/}

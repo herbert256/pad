@@ -10,12 +10,13 @@
   // An effect is a file of subs/effects/types/ - <kind>.php reads its options and answers its
   // markup - and the files there are the effects there are (padKinds ( 'effects' ),
   // lib/subsystem.php); www/assets/effects/ holds the look of each, <kind>.css, beside the
-  // base every effect shares, effect.css, and the one script, confetti.js. subs/effects/
-  // effect.php is the body the {effect} tag, the effect: type and a bare name all run.
+  // base every effect shares, effect.css, and the two scripts, confetti.js and decipher.js.
+  // subs/effects/effect.php is the body the {effect} tag, the effect: type and a bare name all
+  // run.
   //
   // What every effect keeps to:
   //
-  //   - CSS first: only confetti has a script. The style of the effects and the style of a
+  //   - CSS first: only confetti and decipher have a script. The style of the effects and the style of a
   //     kind are written once per page, with the CSP nonce (padWidgetStyle, padWidgetOnce);
   //     the colours are --pad-effect-* custom properties on .pad-effect with light-dark()
   //     defaults that fall back to the frame's (--accent, --text, --line), so a theme

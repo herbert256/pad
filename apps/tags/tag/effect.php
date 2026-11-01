@@ -19,6 +19,7 @@
 {strike style='line', scroll} ... {/strike}
 {encircle style='circle', thickness=2, hover} ... {/encircle}
 {rotator hold=2.5, repeat=3} teams, makers, you {/rotator}
+{decipher duration=1.2, glyphs='symbols', mono} ... {/decipher}
 {countup to=1250, from=0, prefix='€', suffix='+', scroll/}
 {marquee duration=20, direction='left', gap=48, label='name'} ... {/marquee}
 {reveal motion='up', distance=32} ... {/reveal}
@@ -41,7 +42,8 @@ PAD;
     'repeat'    => 'How often an animation that repeats runs - 3 unless given, <code>forever</code> as the author\'s choice.',
     'speed'     => 'typewriter: letters a second (14).',
     'caret'     => 'typewriter: <code>bar</code> or <code>none</code>.',
-    'mono'      => 'Bare option, typewriter: monospaced letters, one step a letter exactly.',
+    'mono'      => 'Bare option, typewriter and decipher: monospaced letters, one step or one sign a letter exactly.',
+    'glyphs'    => 'decipher: the signs it settles out of - symbols, letters, digits or binary.',
     'colors'    => 'gradient, confetti: CSS colours between commas.',
     'color'     => 'highlighter, underline, strike, encircle: the ink; spotlight: the light; spinner: the spinner.',
     'thickness' => 'underline, strike, encircle: the stroke in pixels, 1 to 12.',
