@@ -34,8 +34,8 @@
   // sub (583231), name, email, email_verified, avatar and username - '' where the provider has
   // none. The email is a contact: email_verified is TRUE only when the provider vouches that
   // the address is the account's - an application links a login to an existing account by
-  // its address only then, else anyone who typed that address at the provider gets the account. The code is in
-  // subs/oauth/_lib/oauth.php, read the first time one of these runs.
+  // its address only then, else anyone who typed that address at the provider gets the
+  // account. The code is in subs/oauth/_lib/oauth.php, read the first time one of these runs.
   //
   // A provider's client id and secret come from padEnv - GITHUB_CLIENT_ID and
   // GITHUB_CLIENT_SECRET in the application's .env - or from the options. A missing one is

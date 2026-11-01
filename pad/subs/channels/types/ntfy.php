@@ -2,9 +2,9 @@
 
   // ntfy - a push to the phones and desktops subscribed to an ntfy topic: the topic in the
   // recipient's field ntfy or NTFY_TOPIC - letters, digits, _ and - -, the server in NTFY_URL
-  // (https://ntfy.sh unless given; never the recipient's), an access token in NTFY_TOKEN when the topic is protected. The title goes as the
-  // Title header, the @ntfy@ section, or the plain text, as the body; a url of the message as
-  // the Click header.
+  // (https://ntfy.sh unless given; never the recipient's), an access token in NTFY_TOKEN when
+  // the topic is protected. The title goes as the Title header, the @ntfy@ section, or the
+  // plain text, as the body; a url of the message as the Click header.
 
   return [
     'settings' => [ 'topic'  => [ 'env' => 'NTFY_TOPIC', 'to' => 'ntfy', 'pattern' => '/^[A-Za-z0-9_-]{1,64}$/D',

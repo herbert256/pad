@@ -35,16 +35,20 @@
   // The state (24 random bytes), the PKCE verifier and the nonce are kept in the session
   // under padOAuth/<application>/<state>, at most twenty logins at once - a page of buttons
   // written with padOAuthUrl, two tabs - the ones over their ten minutes dropped first; the
-  // answer that brings the state takes its record out, so a state works once. Apple's sealed
-  // cookie (below) holds the last login started with it alone. For a provider that posts its answer back - Apple - the record goes into a sealed
-  // cookie as well (padEncrypt, SameSite=None, Secure, HttpOnly), as a post from another
-  // site brings no SameSite=Lax session cookie: __Host-padOAuth, which a sibling subdomain or
-  // a page over plain http cannot set, and a state taken by either road is marked spent for
-  // its ten minutes (padCacheIncrement), so the cookie and its state, posted again, log no
-  // one in - the session's record alone was taken out, the cookie's never. The record keeps the token endpoint and the
-  // issuer the login went to, and the way back must resolve to the same: handled with other
-  // options - another base=, issuer= or tenant= - it would send the code, the verifier and
-  // the client secret to another instance and log its user in (RFC 9207's mix-up).
+  // answer that brings the state takes its record out, so a state works once.
+  //
+  // For a provider that posts its answer back - Apple - the record goes into a sealed cookie
+  // as well (padEncrypt, SameSite=None, Secure, HttpOnly), as a post from another site brings
+  // no SameSite=Lax session cookie: __Host-padOAuth, which a sibling subdomain or a page over
+  // plain http cannot set, holding the last login started with that provider alone. A state
+  // taken by either road is marked spent for its ten minutes (padCacheIncrement), so the
+  // cookie and its state, posted again, log no one in - the session's record alone was taken
+  // out, the cookie's never.
+  //
+  // The record keeps the token endpoint and the issuer the login went to, and the way back
+  // must resolve to the same: handled with other options - another base=, issuer= or
+  // tenant= - it would send the code, the verifier and the client secret to another instance
+  // and log its user in (RFC 9207's mix-up).
   //
   // The id_token of OpenID Connect is checked for its issuer, its audience (and azp when it
   // names several), its expiry and the nonce kept. Its signature is not checked: the token

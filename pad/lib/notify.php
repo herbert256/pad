@@ -39,9 +39,10 @@
   // padEnv - SLACK_WEBHOOK_URL in the application's .env. An address a request goes to - the
   // webhook of Slack, Discord or Teams, a homeserver, a gateway - is never the row's, only the
   // options' or padEnv's, and the row's fields are checked: a chat, topic or room that is
-  // none, a push endpoint on no browser's push service, is not sent to. A setting that is missing everywhere is an error under the strict
-  // check naming the variable to set; a channel that fails to deliver is no author's error:
-  // padNotify answers FALSE, padNotifyResults says why, and the failure is logged (padLog).
+  // none, a push endpoint on no browser's push service, is not sent to. A setting that is
+  // missing everywhere is an error under the strict check naming the variable to set; a
+  // channel that fails to deliver is no author's error: padNotify answers FALSE,
+  // padNotifyResults says why, and the failure is logged (padLog).
   // The code is in subs/channels/, read the first time one of these runs.
 
   function padNotify ( $to, $name, $data = [], $channels = NULL, $options = [] ) {
