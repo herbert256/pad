@@ -47,7 +47,8 @@
 
     return padInputFrame ( 'multiselect', $worded,
              $label
-           . "<select multiple $head$size$rest>$options</select>" . padInputSentField ( padInputName () )
+           . "<select multiple $head$size$rest>$options</select>"
+           . padInputSentField ( padInputName (), isset ( $GLOBALS ['padInputNow'] ['attrs'] ['disabled'] ) )
            . '<noscript><p class="pi-noscript">Hold Ctrl - or &#8984; on a Mac - to choose more than one.</p></noscript>'
            . '<span class="pi-hide pi-ms-said" aria-live="polite"></span>',
              $error, [ 'filter' => is_scalar ( $padInputFilter ) ? (string) $padInputFilter : '' ] );

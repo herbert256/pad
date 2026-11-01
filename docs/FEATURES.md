@@ -728,7 +728,8 @@ out, as the browser posts a select with no choice - never `value=` again - and a
 that is no choice is not shown, nor added as an option. A hidden `padLists[]` beside the select,
 naming the list, tells that post from any other request - a click in a `{live}` region, a post
 of another form of the page, a link with a value to the page of a GET form - which shows
-`value=`, as every other field does.
+`value=`, as every other field does; a disabled multiselect, which the browser leaves out of
+the post, keeps `value=` after a post of its form too.
 
 ### Layouts (extends / block / parent)
 ```

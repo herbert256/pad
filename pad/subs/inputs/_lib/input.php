@@ -362,11 +362,15 @@
 
   }
 
-  // The hidden field that says a post held the list $name, chosen or empty (padInputSent).
+  // The hidden field that says a post held the list $name, chosen or empty (padInputSent) -
+  // disabled with its select, which the browser leaves out of the post: written enabled
+  // beside a disabled select it went along alone, and the choices shown locked came back
+  // emptied after a failed post of the form. A <fieldset disabled> round the field disables
+  // both by itself.
 
-  function padInputSentField ( $name ) {
+  function padInputSentField ( $name, $disabled = FALSE ) {
 
-    return '<input type="hidden" name="' . padInputLists . '[]" value="' . padInputEscape ( $name ) . '">';
+    return '<input type="hidden" name="' . padInputLists . '[]" value="' . padInputEscape ( $name ) . '"' . ( $disabled ? ' disabled' : '' ) . '>';
 
   }
 
