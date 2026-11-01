@@ -250,7 +250,9 @@
 
   // Text compaction: the values of the characters in their submode, a latch or a shift where
   // the submode changes, two values to a codeword - 30 times the first and the second - the
-  // last filled with the punctuation shift. Answers the submode it ends in.
+  // last filled with a 29: the punctuation shift in alpha, lower and mixed, which a shifted
+  // byte (913) after it takes away, but the latch to alpha in punctuation, so the text after
+  // that byte goes on in alpha. Answers the submode it ends in.
 
   function padPdf417Text ( $text, $sub, &$words ) {
 
@@ -299,8 +301,11 @@
 
     }
 
-    if ( count ( $values ) % 2 )
+    if ( count ( $values ) % 2 ) {
       $values [] = 29;
+      if ( $sub == 'punct' )
+        $sub = 'alpha';
+    }
 
     for ( $k = 0; $k < count ( $values ); $k += 2 )
       $words [] = 30 * $values [$k] + $values [$k + 1];
