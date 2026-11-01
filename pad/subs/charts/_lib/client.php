@@ -48,7 +48,8 @@
     'waterfall'    => [ 'waterfall' ],
     'ecdf'         => [ 'distribution', 'ecdf' ],
     'ridgeline'    => [ 'distribution', 'ridgeline' ],
-    'likert'       => [ 'likert' ] ];
+    'likert'       => [ 'likert' ],
+    'hexbin'       => [ 'hexbin' ] ];
 
   function padChartClient ( $kind, $source = '', $handled = NULL, $palette = '' ) {
 

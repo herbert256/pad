@@ -44,7 +44,8 @@ out, and a chart without points writes nothing, so its <code>&#64;else&#64;</cod
   computed, drawn as given (<code>value</code>, <code>low</code>, <code>high</code>,
   <code>interval</code>); <code>ecdf</code>, the share at or below each value;
   <code>ridgeline</code>, a density per group stacked (<code>bandwidth</code>,
-  <code>overlap</code>).</li>
+  <code>overlap</code>); <code>hexbin</code>, many points counted in hexagons (<code>x</code>,
+  <code>y</code>, <code>bins</code>).</li>
   <li><b>Measures</b> - <code>gauge</code> (<code>from</code>, <code>to</code>,
   <code>bands</code>, <code>target</code>, <code>unit</code> - <code>value=72</code> is the
   number itself, no data needed), <code>bullet</code>, <code>rings</code>,
@@ -67,7 +68,7 @@ reports. The chart's options are named apart from the handling options every tag
 
 <h3>Size, colours and accessibility</h3>
 <p>The default size is 600 x 300; the round kinds are 480 x 280, the tall ones (sankey,
-network, treemap, radar, chord, pack, orgchart, parallel, multiples, ridgeline) 600 x 400.
+network, treemap, radar, chord, pack, orgchart, parallel, multiples, ridgeline, hexbin) 600 x 400.
 <code>.pad-chart { max-width: 100%; height: auto }</code> in the page's CSS lets a chart
 shrink with its column. The colours are CSS custom properties on <code>.pad-chart</code> -
 <code>--pad-chart-series</code>, <code>--pad-chart-text</code>, <code>--pad-chart-grid</code>,

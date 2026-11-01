@@ -52,7 +52,8 @@
       'scatter' => [ 'Scatter & bubble', 'How two numbers relate', [
         'scatter/athletes'  => [ 'Height against weight', 'A dot per row, and trend draws the least-squares line.' ],
         'scatter/flowers'   => [ 'Three kinds of flowers', 'color= colours the dots by a field.' ],
-        'scatter/countries' => [ 'Income, life and people', 'A bubble\'s area is its size= - here the population.' ] ] ],
+        'scatter/countries' => [ 'Income, life and people', 'A bubble\'s area is its size= - here the population.' ],
+        'scatter/rides'     => [ '3,000 taxi rides',        'hexbin: the rides counted in hexagons, where 3,000 dots would be one blot - the airport fare stands apart.' ] ] ],
 
       'heatmap' => [ 'Heatmap', 'Patterns in dense data', [
         'heatmap/traffic'  => [ 'Traffic by day and hour', 'Data made by a PHP loop - seven steps of one hue.' ],
