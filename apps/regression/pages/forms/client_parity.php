@@ -246,7 +246,12 @@
     [ 'again',    'same:first_name',                    [ 'first.name' => 'Ada', 'again' => 'Ada' ] ],
     [ 'again',    'same:first_name',                    [ 'first.name' => 'Ada', 'again' => 'Eve' ] ],
     [ 'again',    'same:user[pass]',                    [ 'user[pass]' => 'pw', 'again' => 'pw' ] ],
-    [ 'again',    'same:pass',                          [ 'pass[0]' => 'pw', 'again' => 'pw' ] ]
+    [ 'again',    'same:pass',                          [ 'pass[0]' => 'pw', 'again' => 'pw' ] ],
+    [ 'again',    'different:first_name',               [ 'first.name' => 'Ada', 'again' => 'Ada' ] ],
+    [ 'again',    'different:first_name',               [ 'first.name' => 'Ada', 'again' => 'Eve' ] ],
+    [ 'again',    'different:emails[0]',                [ 'emails[]' => [ 'a@b.c' ], 'again' => 'a@b.c' ] ],
+    [ 'again',    'different:other_x',                  [ 'other.x' => 'pw', 'again' => 'pw' ] ],
+    [ 'again',    'different:pass',                     [ 'pass[0]' => 'pw', 'again' => 'pw' ] ]
   ];
 
   $parity = [];

@@ -15494,6 +15494,143 @@
                     ]
                 }
             }
+        },
+        {
+            "field": "again",
+            "data": {
+                "first.name": "Ada",
+                "again": "Ada"
+            },
+            "server": "Again must be different from First name",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "different",
+                            "first_name",
+                            ":label must be different from :n",
+                            "First name"
+                        ]
+                    ],
+                    "watch": [
+                        "first_name"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "first.name": "Ada",
+                "again": "Eve"
+            },
+            "server": "",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "different",
+                            "first_name",
+                            ":label must be different from :n",
+                            "First name"
+                        ]
+                    ],
+                    "watch": [
+                        "first_name"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "emails[]": [
+                    "a@b.c"
+                ],
+                "again": "a@b.c"
+            },
+            "server": "Again must be different from Emails[0]",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "different",
+                            "emails[0]",
+                            ":label must be different from :n",
+                            "Emails[0]"
+                        ]
+                    ],
+                    "watch": [
+                        "emails[0]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "other.x": "pw",
+                "again": "pw"
+            },
+            "server": "Again must be different from Other x",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "different",
+                            "other_x",
+                            ":label must be different from :n",
+                            "Other x"
+                        ]
+                    ],
+                    "watch": [
+                        "other_x"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "pass[0]": "pw",
+                "again": "pw"
+            },
+            "server": "",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "different",
+                            "pass",
+                            ":label must be different from :n",
+                            "Pass"
+                        ]
+                    ],
+                    "watch": [
+                        "pass"
+                    ]
+                }
+            }
         }
     ]
 }

@@ -262,7 +262,7 @@ addRule('date', {
 (function () {
 addRule('different', {
   check: function (value, arg, values) {
-    var other = values[arg];
+    var other = find(values, arg)[1];
     return !(typeof other !== 'object' && value === trim(String(other === undefined ? '' : other)));
   }
 });
