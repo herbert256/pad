@@ -873,6 +873,7 @@ checker:
   {multiselect 'tags', label='Tags', options='pad, php, maps', rules='required|in:pad,php,maps'/}   # posts the list tags[]
   {segmented 'size', label='Size', options='S, M, L'/}    # a radio group drawn as one bar
   {durationpicker 'length', label='Length', parts='hm'/} # posts seconds: 5400 for 1 h 30 min
+  {rangeslider 'price', label='Price', max=500, unit=' EUR'/}   # posts price_from and price_to
   {signature 'signed', label='Signature'/}                 # posts a PNG data URL
   {dropzone 'cv', label='Your CV', accept='.pdf', limit='2M'/}   # padUpload takes it
 {/form}
@@ -881,8 +882,8 @@ The kinds are the files of `pad/subs/inputs/types/` - colorpicker, combobox, dat
 durationpicker (a box per part - days, hours, minutes, seconds - over a number of seconds),
 mdeditor (Markdown with a live preview), multiselect (chips and a filtered list over a select of
 many), newpassword (strength meter, show/hide; `known` for a
-login), otp (a box per character), segmented (a radio group drawn as one bar, without script),
-signature, slider, stars, stepper, taginput, timepicker and
+login), otp (a box per character), rangeslider (two thumbs on one track), segmented (a radio
+group drawn as one bar, without script), signature, slider, stars, stepper, taginput, timepicker and
 toggle (a switch posting `on=`/`off=`) - their script and style in `www/assets/inputs/`. Each
 is a field of its `{form}` as `{input}` is: named by its first parameter, labelled by `label=`,
 refilled from a post of its own form, the message of `padValidate` or of its `rules=` (read
@@ -907,6 +908,13 @@ naming the list, tells that post from any other request - a click in a `{live}` 
 of another form of the page, a link with a value to the page of a GET form - which shows
 `value=`, as every other field does; a disabled multiselect, which the browser leaves out of
 the post, keeps `value=` after a post of its form too.
+
+A range is two fields: `{rangeslider 'price'}` posts `price_from` and `price_to` - `names=` two
+others, `labels=` what each end says (From, To), `value=` the two before a post - each refilled
+from its own form's post and given its own message, under one legend. Its `rules=` are refused,
+since the rules of the template are read for one field: the page's PHP checks the two,
+`padValidate ( [ 'price_from' => 'integer', 'price_to' => 'integer' ] )`. Without the script
+the two can be posted crossed.
 
 ### Layouts (extends / block / parent)
 ```
