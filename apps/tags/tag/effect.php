@@ -18,6 +18,7 @@
 {underline style='line', color='#e11d48', thickness=2, hover} ... {/underline}
 {strike style='line', scroll} ... {/strike}
 {encircle style='circle', thickness=2, hover} ... {/encircle}
+{rotator hold=2.5, repeat=3} teams, makers, you {/rotator}
 {countup to=1250, from=0, prefix='€', suffix='+', scroll/}
 {marquee duration=20, direction='left', gap=48, label='name'} ... {/marquee}
 {reveal motion='up', distance=32} ... {/reveal}
@@ -63,6 +64,7 @@ PAD;
     'shape'     => 'skeleton: text, block, avatar, card or media - the shape of what is still on its way.',
     'lines'     => 'skeleton: the lines of text (3, media 2).',
     'height'    => 'skeleton: the picture of a block or a card, in pixels (160).',
+    'hold'      => 'rotator: seconds each phrase stands (2.5).',
     'pieces'    => 'confetti: how many (120); <code>spread</code> the angle they fly out in; <code>seed</code> which pieces.' ];
 
   $tagSee     = [ 'widget', 'toy', 'section' ];

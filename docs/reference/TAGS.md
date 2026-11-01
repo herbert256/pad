@@ -4210,6 +4210,7 @@ subsystem is `pad/subs/effects/`.
 {encircle style='box', color='#16a34a'}42{/encircle}
 {typewriter speed=20, mono}npm install pad{/typewriter}
 {countup to=1250, prefix='€', suffix='+'/}
+<h1>Built for {rotator hold=2}teams, makers, you{/rotator}</h1>
 {gradient colors='#f97316, #db2777', angle=120, animate}Launch week{/gradient}
 {marquee duration=25, label='Built with'}<b>PHP</b> <b>SQLite</b> <b>htmx</b>{/marquee}
 {reveal motion='left'}<div class="card">...</div>{/reveal}
@@ -4244,6 +4245,7 @@ text kind without its text, a stroke drawn on `scroll` and on `hover` at once.
 | `underline` | both | A line drawn under the words, left to right; a link inside keeps its click | `style` (line, double, dashed, dotted), `color`, `thickness` (px), `duration` (0.6), `delay`, `scroll`, `hover` |
 | `strike` | both | A line drawn through the words, an `<s>` - the old price | `style` (line, double), `color` (the text's), `thickness` (px), `duration` (0.5), `delay`, `scroll` |
 | `encircle` | both | A ring drawn by hand round a word or a phrase, an `aria-hidden` svg | `style` (circle, box), `color`, `thickness` (2 px), `duration` (0.9), `delay`, `scroll`, `hover` |
+| `rotator` | both | Its phrases, between commas, take turns in one place; a list under reduced motion | `hold` (2.5 seconds a phrase), `delay`, `repeat` (3) |
 | `countup` | both | A whole number counted up by the CSS, read as its last value | `to` (or the parameter or the content), `from` (0), `prefix`, `suffix`, `duration` (2), `delay`, `scroll` |
 | `marquee` | both | A band whose content scrolls by without end; a Pause button | `duration` (20), `direction` (left, right), `gap` (48 px), `label` |
 | `reveal` | pair | A block that comes into view as it is scrolled to | `motion` (up, down, left, right, fade, zoom), `distance` (32 px) |
