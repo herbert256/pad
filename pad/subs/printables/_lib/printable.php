@@ -124,15 +124,15 @@
     $copies = padPrintableInt ( 'copies', 1, 1, 1000 );
     $all    = [];
 
-    foreach ( $items as $item )
-      for ( $i = 0; $i < $copies; $i++ )
-        $all [] = $item;
+    // Counted before they are made, and no more made than the most: 10000 rows of 1000
+    // copies were ten million items, 256 MB, before the count that refuses them.
 
-    if ( count ( $all ) > PAD_PRINTABLE_MOST ) {
-      if ( $padCheckSyntax )
-        padError ( 'the ' . padPrintableWhat () . ' has ' . count ( $all ) . ' items - at most ' . PAD_PRINTABLE_MOST . ' a printable' );
-      $all = array_slice ( $all, 0, PAD_PRINTABLE_MOST );
-    }
+    if ( count ( $items ) * $copies > PAD_PRINTABLE_MOST and $padCheckSyntax )
+      padError ( 'the ' . padPrintableWhat () . ' has ' . count ( $items ) * $copies . ' items - at most ' . PAD_PRINTABLE_MOST . ' a printable' );
+
+    foreach ( $items as $item )
+      for ( $i = 0; $i < $copies and count ( $all ) < PAD_PRINTABLE_MOST; $i++ )
+        $all [] = $item;
 
     $html = padPrintableBuild ( $kind, $plan, $all );
 
