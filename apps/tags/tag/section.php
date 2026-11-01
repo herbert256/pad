@@ -21,6 +21,7 @@
 {section:footer brand='name', note='small print'} {section:item 'column'} Label | ?page {/section:item} ... {/section:footer}
 {section:comparison plans='name, name', featured='name'} {section:item 'feature', values='yes; no'/} ... {/section:comparison}
 {section:changelog} {section:item 'version', date='2026-10-30', added='a; b', fixed='c'} text {/section:item} ... {/section:changelog}
+{section:downloads} {section:item 'file', link='?file', size=2457600, checksum='sha256:...'/} ... {/section:downloads}
 {section:hero} {slot 'eyebrow'} ... {/slot} {slot 'actions'} ... {/slot} {/section:hero}
 PAD;
 
@@ -38,7 +39,7 @@ PAD;
     'second'     => 'hero, cta: a quieter second button, with <code>secondLink</code>.',
     'image'      => 'hero: a picture beside the words, <code>alt</code> its text - a <code>{slot \'image\'}</code> of markup in its place.',
     'note'       => 'hero, cta, pricing, newsletter: the small print; footer: the line under it all.',
-    'data'       => 'A list section - features, pricing, testimonials, faq, stats, steps, team, logos, gallery, footer, comparison, changelog: its items from the rows of a store, the page\'s array or a <code>_data</code> file, by their fields.',
+    'data'       => 'A list section - features, pricing, testimonials, faq, stats, steps, team, logos, gallery, footer, comparison, changelog, downloads: its items from the rows of a store, the page\'s array or a <code>_data</code> file, by their fields.',
     'columns'    => 'The cards side by side at the widest, 1 to 6 - fewer as the section narrows.',
     'open'       => 'faq: the question open at first, by its number; bare, every question. <code>single</code> keeps one open at a time.',
     'form'       => 'newsletter: the form\'s name (<code>newsletter</code>); contact: bare for a message form, or its name. <code>thanks</code> is what shows once it came back right.',

@@ -1,0 +1,22 @@
+/* downloads - a file a row: an icon, its name with what it is for in a line under it, the
+   checksum to unfold, and its button at the end - under the rest when the section is narrow.
+   The featured file has a border in the accent. */
+.pad-section-downloads .ps-downloads{display:grid;gap:14px;max-width:880px;margin:0;padding:0;list-style:none;text-align:left}
+.pad-section-downloads.ps-align-center .ps-downloads{margin:0 auto}
+.pad-section-downloads .ps-download{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;align-items:start;padding:20px}
+.pad-section-downloads .ps-download-featured{border:2px solid var(--pad-section-accent)}
+.pad-section-downloads .ps-download-icon{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:10px;background:var(--pad-section-accent-soft);color:var(--pad-section-accent)}
+.pad-section-downloads .ps-download .ps-item-title{margin:0;overflow-wrap:anywhere}
+.pad-section-downloads .ps-download-meta{display:flex;flex-wrap:wrap;gap:2px 8px;margin:2px 0 0;font-size:14px;color:var(--ps-ink-dim)}
+.pad-section-downloads .ps-download-meta dd:not(:last-of-type)::after{content:"·";margin-left:8px}
+.pad-section-downloads .ps-download-meta dd{margin:0;font-variant-numeric:tabular-nums}
+.pad-section-downloads .ps-download .ps-item-text{margin-top:8px}
+.pad-section-downloads .ps-download-sum{margin-top:8px;font-size:13px}
+.pad-section-downloads .ps-download-sum summary{width:max-content;color:var(--ps-ink-accent);font-weight:600;cursor:pointer}
+.pad-section-downloads .ps-download-sum summary:focus-visible{outline:2px solid var(--pad-section-accent);outline-offset:2px;border-radius:4px}
+.pad-section-downloads .ps-download-sum code{display:block;margin-top:6px;padding:8px 10px;border:1px solid var(--pad-section-line);border-radius:8px;background:var(--pad-section-bg);color:var(--pad-section-text);font:13px/1.5 var(--mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);overflow-wrap:anywhere;user-select:all}
+.pad-section-downloads .ps-download .ps-button{grid-column:1/-1;margin-top:12px;justify-self:stretch}
+@container pad-section (min-width:620px){.pad-section-downloads .ps-download{grid-template-columns:auto minmax(0,1fr) auto}.pad-section-downloads .ps-download .ps-button{grid-column:3;grid-row:1;margin-top:0;align-self:center;white-space:nowrap}}
+.pad-section-downloads .ps-downloads-note{text-align:center}
+.pad-section-downloads.ps-align-left .ps-downloads-note{text-align:left}
+.pad-section-downloads.ps-tone-soft .ps-download-icon{background:var(--pad-section-bg)}

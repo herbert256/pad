@@ -4016,10 +4016,10 @@ a `data` name that names nothing and no value at all are strict errors.
 ### section
 A block of a landing page - a hero, the features, the prices, what customers say, the questions, a
 call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact details,
-a gallery, the footer, a comparison table or a changelog - in HTML and CSS alone. Every section is a
-file of `pad/subs/sections/types/`, its style in `www/assets/sections/` (`section.css`, shared, and
-a sheet per kind, each written once per page with the CSP nonce); the files of `types/` are the
-sections there are, and the subsystem is `pad/subs/sections/`.
+a gallery, the footer, a comparison table, a changelog or the downloads - in HTML and CSS alone.
+Every section is a file of `pad/subs/sections/types/`, its style in `www/assets/sections/`
+(`section.css`, shared, and a sheet per kind, each written once per page with the CSP nonce); the
+files of `types/` are the sections there are, and the subsystem is `pad/subs/sections/`.
 
 ```html
 {section 'hero', 'Pages that drive themselves', button='Start', link='?start', second='Read more', secondLink='?docs'}
@@ -4090,6 +4090,13 @@ so a link to it stays: `#v2.1.0` (a v before a digit), `#Unreleased`, with the s
 before it when given; its heading links there, or to `link=`. A date is written as Keep a Changelog
 writes it, 2026-10-30; another date, a version given twice and a release without one are reported.
 
+**Downloads.** A file's size in bytes is written as one a person reads (2457600 is 2.3 MB), another
+size stands as given. Its checksum is shown as given, in lower case, under a summary of its algorithm -
+`sha256:<hex>` is SHA-256, md5, sha1, sha224, sha384, sha512, sha3-256, sha3-512, blake2b and blake3
+are known, digits alone a checksum - and checked only for its digits: hex, and as many as the
+algorithm makes. The section never says a file was verified. Without a featured file every button is
+in the accent; with one, only its.
+
 **Look.** Every section is a size container: its layout follows the room it has, not the window
 (`@container`). The colours are custom properties on `.pad-section` - `--pad-section-bg`,
 `-panel`, `-text`, `-soft`, `-dim`, `-line`, `-accent`, `-accent-text`, `-accent-soft` - whose
@@ -4101,7 +4108,7 @@ theme sets them on `.pad-section`.
 | Option | On | Meaning |
 |--------|----|---------|
 | `title` | every section | The heading - also the first value; a slot `title` of markup wins |
-| `eyebrow` | hero, features, pricing, testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, comparison, changelog | The small line above the heading |
+| `eyebrow` | hero, features, pricing, testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, comparison, changelog, downloads | The small line above the heading |
 | `text` | every section | The line under the heading; the content wins over it, a slot `text` over both |
 | `level` | every section | The heading's level, 1 to 6 (2); an item's heading one more |
 | `tone` | every section | `plain`, `soft` or `accent` - the background (cta: accent, newsletter: soft) |
@@ -4110,7 +4117,7 @@ theme sets them on `.pad-section`.
 | `button`, `link` | hero, cta | The main button and the page it goes to - one without the other is reported |
 | `second`, `secondLink` | hero, cta | A quieter second button |
 | `image`, `alt` | hero | A picture beside the words - a slot `image` of markup in its place |
-| `note` | hero, cta, pricing, newsletter, footer, comparison | The small print |
+| `note` | hero, cta, pricing, newsletter, footer, comparison, downloads | The small print |
 | `data` | the list sections | The items from rows - the handling options on them; none is a miss, `@else@` shows |
 | `columns` | features, pricing, testimonials, stats, steps, team, gallery | The cards side by side at the widest, 1 to 6 |
 | `open`, `single` | faq | The question open at first by its number, bare every one; one open at a time |
@@ -4140,6 +4147,7 @@ theme sets them on `.pad-section`.
 | `footer` | The name and its line, columns of links, the small print | brand, text, note | title, then a link a line - `Label \| ?page`; rows: column, label, link |
 | `comparison` | A table of the plans, a row per feature: a value, a check, a dash or a question mark | eyebrow, title, text, note | feature, category, text, values (a `;` between them, or the content's lines), an option of a plan's name |
 | `changelog` | The releases as written, each an anchor of its version, its changes in Keep a Changelog's groups | eyebrow, title, text | version, date (2026-10-30), title, added, changed, deprecated, removed, fixed, security, link, badge, text |
+| `downloads` | A row per file - platform, version, size, date, checksum - and its button | eyebrow, title, text, note | name, link, platform, version, size, date, checksum (`sha256:<hex>`), button, featured, text |
 | `item` | One item of the list section around it | - | - |
 
 ---
