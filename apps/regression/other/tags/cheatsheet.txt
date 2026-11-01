@@ -295,6 +295,16 @@
   <div class="cheat">
     
     <div class="cheat-item">
+      <a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a> <span class="about">Writes the structured data of a page - a &lt;script type=&quot;application/ld+json&quot;&gt; holding a Schema.org object - for 8 kinds, from an article to a product, each field mapped by name, so nothing else of a row reaches the page.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld</span> <span class="hl-str">&#039;kind&#039;</span>, <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld</span> <span class="hl-str">&#039;article&#039;</span>, <span class="hl-opt">headline</span>=<span class="hl-var">$title</span>, <span class="hl-opt">author</span>=<span class="hl-var">$author</span>, <span class="hl-opt">published</span>=<span class="hl-var">$date</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:article</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;post&#039;</span>, <span class="hl-opt">url</span>=<span class="hl-var">$padGoExt</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:faq</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;questions&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:breadcrumb</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:website</span> <span class="hl-opt">name</span>=<span class="hl-str">&#039;Shop&#039;</span>, <span class="hl-opt">search</span>=<span class="hl-str">&#039;?search&amp;q=&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?tag/pager">&#123;pad:pager&#125;</a> <span class="about">Page links for a tag written with the page option: first and last, a window round the current page, previous and next.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">&#039;name&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">pager</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">window</span>=<span class="hl-num">2</span>, <span class="hl-opt">query</span>=<span class="hl-str">&#039;p&#039;</span><span class="hl-brc">/}</span>
@@ -692,7 +702,7 @@
     </div>
     
     <div class="cheat-item">
-      <a class="name" href="?tag/chart">&#123;pad:chart&#125;</a> <span class="about">Draws a chart as inline SVG on the server - 45 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
+      <a class="name" href="?tag/chart">&#123;pad:chart&#125;</a> <span class="about">Draws a chart as inline SVG on the server - 47 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">&#039;bar&#039;</span>, <span class="hl-opt">data</span>=<span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field, field&#039;</span>, stacked, <span class="hl-opt">title</span>=<span class="hl-str">&#039;text&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">600</span>, <span class="hl-opt">height</span>=<span class="hl-num">300</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">&#039;line&#039;</span>, <span class="hl-opt">sequence</span>=<span class="hl-str">&#039;fibonacci&#039;</span>, <span class="hl-opt">rows</span>=<span class="hl-num">12</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">chart</span> <span class="hl-str">&#039;pie&#039;</span>, <span class="hl-opt">data</span>=<span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span>
@@ -1331,6 +1341,18 @@
       <a class="name" href="?tag/chart/dual">&#123;chart:dual&#125;</a> <span class="about">Two measures on two axes.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:dual</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">dual</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/chart/dumbbell">&#123;chart:dumbbell&#125;</a> <span class="about">Two values per row joined by a line.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:dumbbell</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">dumbbell</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/chart/errorbar">&#123;chart:errorbar&#125;</a> <span class="about">An estimate per row with the interval around it, already computed.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">chart:errorbar</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">errorbar</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;field&#039;</span>, <span class="hl-opt">value</span>=<span class="hl-str">&#039;field&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -2123,6 +2145,12 @@
       <a class="name" href="?tag/input/mdeditor">&#123;input:mdeditor&#125;</a> <span class="about">Markdown written beside its preview.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:mdeditor</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">mdeditor</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/input/multiselect">&#123;input:multiselect&#125;</a> <span class="about">A few choices of a list: a native select that chooses many, posting every choice made as the list name[].</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:multiselect</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">multiselect</span> <span class="hl-str">&#039;name&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;...&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">
@@ -4550,6 +4578,57 @@
       <a class="name" href="?tag/effect/wave">&#123;effect:wave&#125;</a> <span class="about">The letters rise and fall one after the other, a wave running through the word.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">effect:wave</span><span class="hl-brc">}</span>Hello there<span class="hl-brc">{</span><span class="hl-tag">/effect:wave</span><span class="hl-brc">}</span>
 <span class="hl-brc">{</span><span class="hl-tag">effect:wave</span> <span class="hl-str">&#039;Hello there&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+  </div>
+</section>
+
+<section class="section" id="kind-jsonld">
+  <div class="section-head"><h2>JSON-LD kinds</h2></div>
+  <div class="cheat">
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/jsonld/article">&#123;jsonld:article&#125;</a> <span class="about">An Article: a post of a blog, a news item, a page of a magazine, its headline, who wrote it and when.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:article</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;post&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:article</span> <span class="hl-opt">headline</span>=<span class="hl-var">$title</span>, <span class="hl-opt">author</span>=<span class="hl-var">$author</span>, <span class="hl-opt">published</span>=<span class="hl-var">$date</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/jsonld/breadcrumb">&#123;jsonld:breadcrumb&#125;</a> <span class="about">A BreadcrumbList: where the page stands, from the home page down, each step a ListItem numbered by its position.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:breadcrumb</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:breadcrumb</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;trail&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/jsonld/event">&#123;jsonld:event&#125;</a> <span class="about">An Event: a concert, a course, a meeting, when it starts and where, and the tickets for it.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:event</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;concert&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:event</span> <span class="hl-opt">name</span>=<span class="hl-str">&#039;PAD day&#039;</span>, <span class="hl-opt">starts</span>=<span class="hl-str">&#039;2026-11-20 19:30&#039;</span>, <span class="hl-opt">place</span>=<span class="hl-str">&#039;The Hall&#039;</span>, <span class="hl-opt">address</span>=<span class="hl-str">&#039;Main Street 1, Utrecht&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/jsonld/faq">&#123;jsonld:faq&#125;</a> <span class="about">An FAQPage: the questions of a page and their answers, each a Question with its acceptedAnswer.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:faq</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;questions&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/jsonld/organization">&#123;jsonld:organization&#125;</a> <span class="about">An Organization: the company, the club or the project behind the site, its logo and its profiles elsewhere.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:organization</span> <span class="hl-opt">name</span>=<span class="hl-str">&#039;PAD&#039;</span>, <span class="hl-opt">url</span>=<span class="hl-str">&#039;https://pad.example&#039;</span>, <span class="hl-opt">logo</span>=<span class="hl-str">&#039;logo.png&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/jsonld/person">&#123;jsonld:person&#125;</a> <span class="about">A Person: the author of a site, a speaker, a member of a team.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:person</span> <span class="hl-opt">name</span>=<span class="hl-str">&#039;Ann Smith&#039;</span>, <span class="hl-opt">job</span>=<span class="hl-str">&#039;Engineer&#039;</span>, <span class="hl-opt">profiles</span>=<span class="hl-str">&#039;https://github.com/ann&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/jsonld/product">&#123;jsonld:product&#125;</a> <span class="about">A Product: a thing for sale, what it is and what it costs.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:product</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;product&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">jsonld:product</span> <span class="hl-opt">name</span>=<span class="hl-str">&#039;Kettle&#039;</span>, <span class="hl-opt">price</span>=<span class="hl-var">$price</span>, <span class="hl-opt">currency</span>=<span class="hl-str">&#039;EUR&#039;</span>, <span class="hl-opt">availability</span>=<span class="hl-str">&#039;InStock&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?tag/jsonld/website">&#123;jsonld:website&#125;</a> <span class="about">A WebSite: the site itself, its name and its address, and how to search it, which a search engine may offer as a search box of its own.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">jsonld:website</span> <span class="hl-opt">name</span>=<span class="hl-str">&#039;PAD&#039;</span>, <span class="hl-opt">search</span>=<span class="hl-str">&#039;?search&amp;q=&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
   </div>

@@ -53,6 +53,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">address</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of event (<code>location.address</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">ajax</td>
       <td><a class="name" href="?tag/page">&#123;pad:page&#125;</a></td>
       <td>With <code>app=</code>: <code>ajax=false</code> fetches the other application's page on the server and inserts its body instead of leaving it to the browser.</td>
@@ -207,6 +215,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">author</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of article (<code>author.name</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">availability</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of event (<code>offers.availability</code>), product (<code>offers.availability</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">back</td>
       <td><a class="name" href="?tag/widget">&#123;pad:widget&#125;</a></td>
       <td>wizard: the text of the Back button (<code>Back</code>).</td>
@@ -285,7 +309,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">brand</td>
+      <td class="opt" rowspan="2">brand</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of product (<code>brand.name</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
       <td>footer: the name at its side.</td>
     </tr>
@@ -555,6 +585,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">contact</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of organization (<code>contactPoint.contactType</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">cookies</td>
       <td><a class="name" href="?tag/curl">&#123;pad:curl&#125;</a></td>
       <td>An array of cookies to send.</td>
@@ -587,7 +625,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="11">data</td>
+      <td class="opt" rowspan="1">currency</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of event (<code>offers.priceCurrency</code>), product (<code>offers.priceCurrency</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="12">data</td>
       <td><a class="name" href="?tag/calendar">&#123;pad:calendar&#125;</a></td>
       <td>The events: a <code>{data}</code> store, a page array or a <code>_data</code> file, as for <code>{chart}</code>.</td>
     </tr>
@@ -608,6 +654,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/game">&#123;pad:game&#125;</a></td>
       <td>The words, the symbols or the questions of a game that takes them, from a <code>{data}</code> store, the page's array or a <code>_data</code> file - else they stand between the tags, one a line.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>The row or rows of the fields: a {data} store, the page's array, a field holding a list or a _data file - one row of fields, or rows, which a kind of one object writes as a <code>@graph</code> and faq and breadcrumb as their items. The handling options work on them.</td>
     </tr>
     
     <tr>
@@ -705,6 +757,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">description</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of article (<code>description</code>), event (<code>description</code>), organization (<code>description</code>), person (<code>description</code>), product (<code>description</code>), website (<code>description</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">digits</td>
       <td><a class="name" href="?tag/game">&#123;pad:game&#125;</a></td>
       <td>bullscows: how long the secret number is (4).</td>
@@ -792,6 +852,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">ellipsis</td>
       <td><a class="name" href="?tag/excerpt">&#123;pad:excerpt&#125;</a></td>
       <td>What stands for the text that was cut off, default <code>…</code>.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">email</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of organization (<code>contactPoint.email</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">ends</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of event (<code>endDate</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1017,7 +1093,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="9">from</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
-      <td>Gauge: the start of the scale (0). Gantt: the field with the start of a task.</td>
+      <td>Gauge: the start of the scale (0). Gantt: the field with the start of a task. Dumbbell: the field of the first end, the first colour.</td>
     </tr>
     
     <tr>
@@ -1137,6 +1213,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">headline</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of article (<code>headline</code>, required) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">heaps</td>
       <td><a class="name" href="?tag/game">&#123;pad:game&#125;</a></td>
       <td>nim: the heaps, <code>'3, 4, 5'</code>; <code>misere</code> - who takes the last match loses.</td>
@@ -1201,6 +1285,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">high</td>
+      <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
+      <td>Errorbar: the field of the upper bound of a row's interval (<code>high</code>). Candlestick: the field of the highest price (<code>high</code>).</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="3">highlight</td>
       <td><a class="name" href="?tag/chess">&#123;pad:chess&#125;</a></td>
       <td>Squares to mark, separated by commas: <code>'e2, e4'</code>.</td>
@@ -1229,7 +1321,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">home</td>
+      <td class="opt" rowspan="2">home</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>breadcrumb without data=: the text of the first step of the trail (Home), as the breadcrumb widget takes it.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/widget">&#123;pad:widget&#125;</a></td>
       <td>breadcrumb: the first step's text when the trail is the page's path (<code>Home</code>).</td>
     </tr>
@@ -1273,7 +1371,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="6">id</td>
+      <td class="opt" rowspan="7">id</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Orgchart: the field with a row's id.</td>
     </tr>
@@ -1288,6 +1386,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/input">&#123;pad:input&#125;</a></td>
       <td>The id, by default the name.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>The object's <code>@id</code>, an address made absolute - <code>id='#org'</code> - or an IRI of another scheme.</td>
     </tr>
     
     <tr>
@@ -1319,7 +1423,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">image</td>
+      <td class="opt" rowspan="2">image</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of article (<code>image</code>), event (<code>image</code>), person (<code>image</code>), product (<code>image</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
       <td>hero: a picture beside the words, <code>alt</code> its text - a <code>{slot 'image'}</code> of markup in its place.</td>
     </tr>
@@ -1359,9 +1469,25 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">interval</td>
+      <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
+      <td>Errorbar: what the whisker is - <code>'95% CI'</code>, <code>'min-max'</code> - in the legend, the title and the description; never made up, without it the legend names the bound fields.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">iterations</td>
       <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
       <td>mandelbrot: how long a point is followed (300); lsystem: how often the word is rewritten.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">job</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of person (<code>jobTitle</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -1643,9 +1769,25 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">logo</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of article (<code>publisher.logo</code>), organization (<code>logo</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">lon</td>
       <td><a class="name" href="?tag/embed">&#123;pad:embed&#125;</a></td>
       <td>OpenStreetMap: the longitude of the place.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">low</td>
+      <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
+      <td>Errorbar: the field of the lower bound of a row's interval (<code>low</code>). Candlestick: the field of the lowest price (<code>low</code>).</td>
     </tr>
     
   
@@ -1751,6 +1893,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">modified</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of article (<code>dateModified</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">mono</td>
       <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
       <td>Bare option, typewriter: monospaced letters, one step a letter exactly.</td>
@@ -1775,7 +1925,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="9">name</td>
+      <td class="opt" rowspan="10">name</td>
       <td><a class="name" href="?tag/array">&#123;pad:array&#125;</a></td>
       <td>Names the level, so its properties read <code>first@orders</code>; in the designer preview (<code>&amp;padSample</code>) the sample's rows of that name answer instead of the database.</td>
     </tr>
@@ -1812,6 +1962,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of event (<code>name</code>, required), organization (<code>name</code>, required), person (<code>name</code>, required), product (<code>name</code>, required), website (<code>name</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/record">&#123;pad:record&#125;</a></td>
       <td>In the designer preview (<code>&amp;padSample</code>) the sample's row of that name answers instead of the database; a capture records the database's answer under it.</td>
     </tr>
@@ -1826,6 +1982,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/trans">&#123;pad:trans&#125;</a></td>
       <td>Any other name: its value replaces <code>:name</code> in the text. The names are read raw, so even <code>content=</code> or <code>data=</code> is a substitution here.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">names</td>
+      <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
+      <td>Dumbbell: the names of the two ends in the legend (<code>'2025, 2026'</code>), else the fields' own.</td>
     </tr>
     
   
@@ -2115,6 +2279,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">phone</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of organization (<code>contactPoint.telephone</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">pieces</td>
       <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
       <td>confetti: how many (120); <code>spread</code> the angle they fly out in; <code>seed</code> which pieces.</td>
@@ -2131,7 +2303,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">place</td>
+      <td class="opt" rowspan="2">place</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of event (<code>location.name</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/widget">&#123;pad:widget&#125;</a></td>
       <td>tooltip: <code>top</code> or <code>bottom</code>; toast: <code>inline</code>, <code>top</code> or <code>bottom</code> - in the flow, or in that corner of the window.</td>
     </tr>
@@ -2191,6 +2369,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">price</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of event (<code>offers.price</code>), product (<code>offers.price</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">profiles</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of organization (<code>sameAs</code>), person (<code>sameAs</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">progress</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Gantt: the field with the part done, 0 to 100.</td>
@@ -2208,6 +2402,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/reactData">&#123;pad:reactData&#125;</a></td>
       <td>The file <code>_providers/&lt;name&gt;.php</code> that answers the data - default the id. A plain name only.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">published</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of article (<code>datePublished</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">publisher</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of article (<code>publisher.name</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2284,6 +2494,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">range</td>
       <td><a class="name" href="?tag/sequence">&#123;pad:sequence&#125;</a></td>
       <td>The range as an option: <code>range='20..30'</code>.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">ranked</td>
+      <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
+      <td>Bare option, dumbbell: the rows in the order of their change, the largest rise first.</td>
     </tr>
     
   
@@ -2458,6 +2676,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">scroll</td>
       <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
       <td>Bare option, countup and highlighter: counted or drawn as it scrolls into view.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">search</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of website (<code>potentialAction</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2729,6 +2955,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">sku</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of product (<code>sku</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">slug</td>
       <td><a class="name" href="?tag/collection">&#123;pad:collection&#125;</a></td>
       <td>Only the file of that name (without <code>.md</code>). A slug that names no file, or is not a plain file name, gives no rows - the <code>@else@</code> branch.</td>
@@ -2800,6 +3034,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">stamp</td>
       <td><a class="name" href="?tag/file">&#123;pad:file&#125;</a></td>
       <td>Bare option: a time stamp added to the name.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">starts</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of event (<code>startDate</code>, required) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -2950,6 +3192,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">thumbnail</td>
       <td><a class="name" href="?tag/embed">&#123;pad:embed&#125;</a></td>
       <td>Bare option: the provider's own picture as the poster, where it has one at a known address (YouTube) - an image asked of the provider before the click.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">tickets</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of event (<code>offers.url</code>) - it wins over the field of the row.</td>
     </tr>
     
   
@@ -3111,7 +3361,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="8">to</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
-      <td>Gauge: the end of the scale (100). Gantt: the field with the end of a task. Radar, radialbar, rings, bullet: the end of the scale, a number (or for rings and bullet a field).</td>
+      <td>Gauge: the end of the scale (100). Gantt: the field with the end of a task. Dumbbell: the field of the second end, the second colour. Radar, radialbar, rings, bullet: the end of the scale, a number (or for rings and bullet a field).</td>
     </tr>
     
     <tr>
@@ -3342,6 +3592,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">units</td>
       <td><a class="name" href="?tag/countdown">&#123;pad:countdown&#125;</a></td>
       <td>How many units are shown, 1 to 4 (days, hours, minutes, seconds), default 2.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">url</td>
+      <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
+      <td>A field of article (<code>url</code>), event (<code>url</code>), organization (<code>url</code>), person (<code>url</code>), product (<code>url</code>), website (<code>url</code>) - it wins over the field of the row.</td>
     </tr>
     
   

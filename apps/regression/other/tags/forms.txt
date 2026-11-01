@@ -6,7 +6,7 @@
 
 
 <section class="section" id="single">
-  <div class="section-head"><h2>Single tags</h2><span>Written alone - {name ...} - and replaced by what they answer - 345 tags</span></div>
+  <div class="section-head"><h2>Single tags</h2><span>Written alone - {name ...} - and replaced by what they answer - 355 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/ajax">&#123;pad:ajax&#125;</a> <span class="about">Writes an empty div and a script that has the browser fetch another page into it after the page has loaded. <a class="meta" href="?groups#pages">Pages and execution</a></span></li>
@@ -84,6 +84,8 @@
     <li><a class="name" href="?tag/increment">&#123;pad:increment&#125;</a> <span class="about">Adds one to a variable, starting it at 1 when it does not exist yet. <a class="meta" href="?groups#values">Variables and stores</a></span></li>
     
     <li><a class="name" href="?tag/input">&#123;pad:input&#125;</a> <span class="about">A form field with its label that refills from what its form sent and shows the error validation found for it. <a class="meta" href="?groups#forms">Forms and security</a></span></li>
+    
+    <li><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a> <span class="about">Writes the structured data of a page - a &lt;script type=&quot;application/ld+json&quot;&gt; holding a Schema.org object - for 8 kinds, from an article to a product, each field mapped by name, so nothing else of a row reaches the page. <a class="meta" href="?groups#navigation">Navigation</a></span></li>
     
     <li><a class="name" href="?tag/lorem">&#123;pad:lorem&#125;</a> <span class="about">Placeholder text - Lorem ipsum and Latin words - in words, sentences or paragraphs, the same text for the same seed. <a class="meta" href="?groups#text">Text and formatting</a></span></li>
     
@@ -210,6 +212,8 @@
     <li><a class="name" href="?tag/input/dropzone">&#123;input:dropzone&#125;</a> <span class="about">A file dropped on a frame or chosen, its name and size listed. <a class="meta" href="?groups#kind-input">Rich form fields</a></span></li>
     
     <li><a class="name" href="?tag/input/mdeditor">&#123;input:mdeditor&#125;</a> <span class="about">Markdown written beside its preview. <a class="meta" href="?groups#kind-input">Rich form fields</a></span></li>
+    
+    <li><a class="name" href="?tag/input/multiselect">&#123;input:multiselect&#125;</a> <span class="about">A few choices of a list: a native select that chooses many, posting every choice made as the list name[]. <a class="meta" href="?groups#kind-input">Rich form fields</a></span></li>
     
     <li><a class="name" href="?tag/input/newpassword">&#123;input:newpassword&#125;</a> <span class="about">A password chosen, with a meter of its strength and a button that shows it. <a class="meta" href="?groups#kind-input">Rich form fields</a></span></li>
     
@@ -699,6 +703,22 @@
     
     <li><a class="name" href="?tag/sound/whoosh">&#123;sound:whoosh&#125;</a> <span class="about">Air rushing past: noise through a bandpass filter that sweeps up from low to high, swelling and fading. <a class="meta" href="?groups#kind-sound">Sounds</a></span></li>
     
+    <li><a class="name" href="?tag/jsonld/article">&#123;jsonld:article&#125;</a> <span class="about">An Article: a post of a blog, a news item, a page of a magazine, its headline, who wrote it and when. <a class="meta" href="?groups#kind-jsonld">JSON-LD kinds</a></span></li>
+    
+    <li><a class="name" href="?tag/jsonld/breadcrumb">&#123;jsonld:breadcrumb&#125;</a> <span class="about">A BreadcrumbList: where the page stands, from the home page down, each step a ListItem numbered by its position. <a class="meta" href="?groups#kind-jsonld">JSON-LD kinds</a></span></li>
+    
+    <li><a class="name" href="?tag/jsonld/event">&#123;jsonld:event&#125;</a> <span class="about">An Event: a concert, a course, a meeting, when it starts and where, and the tickets for it. <a class="meta" href="?groups#kind-jsonld">JSON-LD kinds</a></span></li>
+    
+    <li><a class="name" href="?tag/jsonld/faq">&#123;jsonld:faq&#125;</a> <span class="about">An FAQPage: the questions of a page and their answers, each a Question with its acceptedAnswer. <a class="meta" href="?groups#kind-jsonld">JSON-LD kinds</a></span></li>
+    
+    <li><a class="name" href="?tag/jsonld/organization">&#123;jsonld:organization&#125;</a> <span class="about">An Organization: the company, the club or the project behind the site, its logo and its profiles elsewhere. <a class="meta" href="?groups#kind-jsonld">JSON-LD kinds</a></span></li>
+    
+    <li><a class="name" href="?tag/jsonld/person">&#123;jsonld:person&#125;</a> <span class="about">A Person: the author of a site, a speaker, a member of a team. <a class="meta" href="?groups#kind-jsonld">JSON-LD kinds</a></span></li>
+    
+    <li><a class="name" href="?tag/jsonld/product">&#123;jsonld:product&#125;</a> <span class="about">A Product: a thing for sale, what it is and what it costs. <a class="meta" href="?groups#kind-jsonld">JSON-LD kinds</a></span></li>
+    
+    <li><a class="name" href="?tag/jsonld/website">&#123;jsonld:website&#125;</a> <span class="about">A WebSite: the site itself, its name and its address, and how to search it, which a search engine may offer as a search box of its own. <a class="meta" href="?groups#kind-jsonld">JSON-LD kinds</a></span></li>
+    
   </ul>
 </section>
 
@@ -876,7 +896,7 @@
 </section>
 
 <section class="section" id="both">
-  <div class="section-head"><h2>Either form</h2><span>Alone or as a pair - the pair form gives them content to use - 304 tags</span></div>
+  <div class="section-head"><h2>Either form</h2><span>Alone or as a pair - the pair form gives them content to use - 306 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/ai">&#123;pad:ai&#125;</a> <span class="about">Prints the answer of a language model to the prompt its content renders, as text, kept for a while. <a class="meta" href="?groups#network">Network and mail</a></span></li>
@@ -885,7 +905,7 @@
     
     <li><a class="name" href="?tag/calendar">&#123;pad:calendar&#125;</a> <span class="about">Writes a month as a calendar table with its events, or hands over its weeks and days as rows for markup of your own. <a class="meta" href="?groups#graphics">Charts and codes</a></span></li>
     
-    <li><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a> <span class="about">Draws a chart as inline SVG on the server - 45 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts. <a class="meta" href="?groups#graphics">Charts and codes</a></span></li>
+    <li><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a> <span class="about">Draws a chart as inline SVG on the server - 47 kinds, from bars and lines to sankeys, maps of a hierarchy and org charts. <a class="meta" href="?groups#graphics">Charts and codes</a></span></li>
     
     <li><a class="name" href="?tag/chess">&#123;pad:chess&#125;</a> <span class="about">A chess position from FEN as an SVG board, with marked squares and arrows - the chess notation, as a built-in tag. <a class="meta" href="?groups#games">Games</a></span></li>
     
@@ -974,6 +994,10 @@
     <li><a class="name" href="?tag/chart/donut">&#123;chart:donut&#125;</a> <span class="about">Parts of a whole - positive values only, past eight the smallest folded into a grey &#039;Other&#039;, a legend with value and share. <a class="meta" href="?groups#kind-chart">Chart types</a></span></li>
     
     <li><a class="name" href="?tag/chart/dual">&#123;chart:dual&#125;</a> <span class="about">Two measures on two axes. <a class="meta" href="?groups#kind-chart">Chart types</a></span></li>
+    
+    <li><a class="name" href="?tag/chart/dumbbell">&#123;chart:dumbbell&#125;</a> <span class="about">Two values per row joined by a line. <a class="meta" href="?groups#kind-chart">Chart types</a></span></li>
+    
+    <li><a class="name" href="?tag/chart/errorbar">&#123;chart:errorbar&#125;</a> <span class="about">An estimate per row with the interval around it, already computed. <a class="meta" href="?groups#kind-chart">Chart types</a></span></li>
     
     <li><a class="name" href="?tag/chart/funnel">&#123;chart:funnel&#125;</a> <span class="about">The rows top to bottom as centred bars as wide as their value against the largest, joined by light bands. <a class="meta" href="?groups#kind-chart">Chart types</a></span></li>
     
