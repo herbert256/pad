@@ -3340,6 +3340,7 @@ presses the button; a file of the application is an element that loads nothing b
 {embed 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', title='Abbey Road'/}
 {figma 'https://www.figma.com/design/nrPSsILSYjesyc5UHjYYa4/Embed-Kit-2.0-examples', title='Embed Kit 2.0 examples', theme='system'/}
 {loom 'fa3c0bc94e904ab6b0746f844ca7a385', title='A demo', at='0:05'/}
+{embed 'https://stackblitz.com/github/vitejs/vite/tree/main/packages/create-vite/template-vanilla', title='Vite', view='preview'/}
 {audio 'sounds/bell.mp3', title='The bell'/}
 {embed 'docs/leaflet.pdf', title='The leaflet'/}
 ```
@@ -3348,7 +3349,7 @@ presses the button; a file of the application is an element that loads nothing b
 
 | Option | Description |
 |--------|-------------|
-| first parameter | An address a provider knows - a file of `pad/subs/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), `applemusic` (music.apple.com/`<country>`/album, playlist, song, artist, music-video or station, `?i=` a song of an album) and `applepodcasts` (podcasts.apple.com/`<country>`/podcast/.../id`<id>`, `?i=` an episode), `figma` (figma.com/design, /proto, /board, /slides, /deck and the old /file, with its `node-id`), `loom` (loom.com/share/ with the title before the id or not, /embed/), `tiktok` (tiktok.com/@`<user>`/video/`<id>`, /photo/, /player/v1/, /embed/v2/), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
+| first parameter | An address a provider knows - a file of `pad/subs/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), `applemusic` (music.apple.com/`<country>`/album, playlist, song, artist, music-video or station, `?i=` a song of an album) and `applepodcasts` (podcasts.apple.com/`<country>`/podcast/.../id`<id>`, `?i=` an episode), `figma` (figma.com/design, /proto, /board, /slides, /deck and the old /file, with its `node-id`), `loom` (loom.com/share/ with the title before the id or not, /embed/), `tiktok` (tiktok.com/@`<user>`/video/`<id>`, /photo/, /player/v1/, /embed/v2/), `stackblitz` (stackblitz.com/edit/`<project>`, /github/`<owner>`/`<repository>`), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
 | `title` | Required - the button's text, the frame's title, the element's name |
 | `poster` | A picture of `www/<application>/` (versioned as `{asset}`) in place of the drawn poster |
 | `thumbnail` | Bare: the provider's own picture as the poster where it has one at a known address (YouTube) - asked of the provider before the click |
@@ -3356,6 +3357,7 @@ presses the button; a file of the application is an element that loads nothing b
 | `at` | youtube, vimeo, peertube, dailymotion, loom: the moment to start at - `90`, `1m30s`, `1:30` |
 | `lat`, `lon`, `zoom` | openstreetmap: the place and the zoom, 1 to 19 (13) |
 | `theme` | figma: the viewer's theme - `light` (Figma's default), `dark` or `system`, the visitor's |
+| `file`, `view` | stackblitz: the file open in the editor, and what is shown - `editor`, `preview` or `both` (default) |
 | `tab` | codepen: the panes - `result` (default), `html`, `css`, `js`, or two of them |
 
 **Behavior:** a frame of another site is a facade first: a poster drawn for its kind (video,

@@ -31,6 +31,8 @@ PAD;
     'lon'       => 'OpenStreetMap: the longitude of the place.',
     'zoom'      => 'OpenStreetMap: 1 (the world) to 19 (a street), default 13.',
     'theme'     => 'Figma: the viewer\'s theme - <code>light</code> (Figma\'s default), <code>dark</code> or <code>system</code>, the visitor\'s.',
+    'file'      => 'StackBlitz: the file open in the editor - a <code>?file=</code> in the address says it too.',
+    'view'      => 'StackBlitz: what is shown - <code>editor</code>, <code>preview</code> or <code>both</code> (default).',
     'tab'       => 'CodePen: the panes shown - <code>result</code> (default), <code>html</code>, <code>css</code>, <code>js</code>, or two of them.' ];
 
   $tagSee     = [ 'video', 'map', 'img' ];
