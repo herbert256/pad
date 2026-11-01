@@ -7999,6 +7999,83 @@
         {
             "field": "start",
             "data": {
+                "start": "2026-11-01T14:30:15.999",
+                "end": "2026-11-01T14:30:16"
+            },
+            "server": "",
+            "client": {
+                "start": {
+                    "label": "Start",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "before",
+                            "end",
+                            ":label must be a date before :n",
+                            "End"
+                        ]
+                    ],
+                    "watch": [
+                        "end"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "start",
+            "data": {
+                "start": "2026-11-01T14:30:15.5",
+                "end": "2026-11-01T14:30:15.500"
+            },
+            "server": "Start must be a date before End",
+            "client": {
+                "start": {
+                    "label": "Start",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "before",
+                            "end",
+                            ":label must be a date before :n",
+                            "End"
+                        ]
+                    ],
+                    "watch": [
+                        "end"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "start",
+            "data": {
+                "start": "2026-11-01T14:30:15.25"
+            },
+            "server": "",
+            "client": {
+                "start": {
+                    "label": "Start",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "before",
+                            "2026-11-01T14:30:15.5",
+                            ":label must be a date before :n",
+                            "2026-11-01T14:30:15.5"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "start",
+            "data": {
                 "start": "",
                 "end": "2026-01-01"
             },
@@ -8442,6 +8519,168 @@
                 "end": "2000-01-01"
             },
             "server": "",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01T09:00",
+                "end": "2026-11-01T14:30:15.25"
+            },
+            "server": "",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01T14:30:15.5",
+                "end": "2026-11-01T14:30:15.25"
+            },
+            "server": "End must be a date after Start",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01T14:30:15",
+                "end": "2026-11-01T14:30:15.001"
+            },
+            "server": "",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01T14:30:15.1234",
+                "end": "2026-11-01T14:30:16"
+            },
+            "server": "",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01",
+                "end": "2026-11-01T14:30:15.1234"
+            },
+            "server": "End must be a date after Start",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01",
+                "end": "2026-11-01T14:30.5"
+            },
+            "server": "End must be a date after Start",
             "client": {
                 "end": {
                     "label": "End",
@@ -14734,6 +14973,524 @@
                             ":label must be at most :n words",
                             "3"
                         ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "phone",
+            "data": {
+                "emails[0]": "ada@example.com",
+                "phone": ""
+            },
+            "server": "",
+            "client": {
+                "phone": {
+                    "label": "Phone",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_without",
+                            "emails[]",
+                            ":label is required when :n is empty",
+                            "Emails"
+                        ]
+                    ],
+                    "watch": [
+                        "emails[]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "phone",
+            "data": {
+                "emails[0]": "",
+                "phone": ""
+            },
+            "server": "",
+            "client": {
+                "phone": {
+                    "label": "Phone",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_without",
+                            "emails",
+                            ":label is required when :n is empty",
+                            "Emails"
+                        ]
+                    ],
+                    "watch": [
+                        "emails"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "phones[0]": "0612",
+                "code": ""
+            },
+            "server": "Code is required when Phones is filled in",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_with",
+                            "phones",
+                            ":label is required when :n is filled in",
+                            "Phones"
+                        ]
+                    ],
+                    "watch": [
+                        "phones"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "phones[0]": "0612",
+                "code": ""
+            },
+            "server": "Code is required when Phones is filled in",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_with",
+                            "phones[]",
+                            ":label is required when :n is filled in",
+                            "Phones"
+                        ]
+                    ],
+                    "watch": [
+                        "phones[]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "note",
+            "data": {
+                "kinds[0]": "book",
+                "kinds[1]": "gift",
+                "note": ""
+            },
+            "server": "Note is required when Kinds is gift",
+            "client": {
+                "note": {
+                    "label": "Note",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_if",
+                            "kinds,gift",
+                            ":label is required when :n",
+                            "Kinds is gift"
+                        ]
+                    ],
+                    "watch": [
+                        "kinds"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "note",
+            "data": {
+                "kinds[]": [
+                    "book"
+                ],
+                "kinds[1]": "gift",
+                "note": ""
+            },
+            "server": "Note is required when Kinds is gift",
+            "client": {
+                "note": {
+                    "label": "Note",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_if",
+                            "kinds[],gift",
+                            ":label is required when :n",
+                            "Kinds is gift"
+                        ]
+                    ],
+                    "watch": [
+                        "kinds[]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "note",
+            "data": {
+                "kinds[1]": "gift",
+                "kinds[0]": "book",
+                "note": ""
+            },
+            "server": "",
+            "client": {
+                "note": {
+                    "label": "Note",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_if",
+                            "kinds,gift",
+                            ":label is required when :n",
+                            "Kinds is gift"
+                        ]
+                    ],
+                    "watch": [
+                        "kinds"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "note",
+            "data": {
+                "kinds[a]": "gift",
+                "note": ""
+            },
+            "server": "",
+            "client": {
+                "note": {
+                    "label": "Note",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_if",
+                            "kinds,gift",
+                            ":label is required when :n",
+                            "Kinds is gift"
+                        ]
+                    ],
+                    "watch": [
+                        "kinds"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "note",
+            "data": {
+                "kinds[0]": "gift",
+                "note": ""
+            },
+            "server": "",
+            "client": {
+                "note": {
+                    "label": "Note",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_unless",
+                            "kinds,gift",
+                            ":label is required unless :n",
+                            "Kinds is gift"
+                        ]
+                    ],
+                    "watch": [
+                        "kinds"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "note",
+            "data": {
+                "first.name": "x",
+                "note": ""
+            },
+            "server": "Note is required when First name is x",
+            "client": {
+                "note": {
+                    "label": "Note",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_if",
+                            "first_name,x",
+                            ":label is required when :n",
+                            "First name is x"
+                        ]
+                    ],
+                    "watch": [
+                        "first_name"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "note",
+            "data": {
+                "first name": "x",
+                "note": ""
+            },
+            "server": "Note is required when First name is x",
+            "client": {
+                "note": {
+                    "label": "Note",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_if",
+                            "first name,x",
+                            ":label is required when :n",
+                            "First name is x"
+                        ]
+                    ],
+                    "watch": [
+                        "first name"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "note",
+            "data": {
+                "user[kind]": "company",
+                "note": ""
+            },
+            "server": "Note is required when User[kind] is company",
+            "client": {
+                "note": {
+                    "label": "Note",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_if",
+                            "user[kind],company",
+                            ":label is required when :n",
+                            "User[kind] is company"
+                        ]
+                    ],
+                    "watch": [
+                        "user[kind]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "note",
+            "data": {
+                "user[kind]": "company",
+                "note": ""
+            },
+            "server": "",
+            "client": {
+                "note": {
+                    "label": "Note",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_if",
+                            "user,company",
+                            ":label is required when :n",
+                            "User is company"
+                        ]
+                    ],
+                    "watch": [
+                        "user"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "trip[start]": "2026-06-01",
+                "end": "2026-05-01"
+            },
+            "server": "End must be a date after Trip[start]",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "trip[start]",
+                            ":label must be a date after :n",
+                            "Trip[start]"
+                        ]
+                    ],
+                    "watch": [
+                        "trip[start]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "trip.start": "2026-06-01",
+                "end": "2026-05-01"
+            },
+            "server": "End must be a date after Trip start",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "trip_start",
+                            ":label must be a date after :n",
+                            "Trip start"
+                        ]
+                    ],
+                    "watch": [
+                        "trip_start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "first.name": "Ada",
+                "again": "Ada"
+            },
+            "server": "",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "same",
+                            "first_name",
+                            ":label must be the same as :n",
+                            "First name"
+                        ]
+                    ],
+                    "watch": [
+                        "first_name"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "first.name": "Ada",
+                "again": "Eve"
+            },
+            "server": "Again must be the same as First name",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "same",
+                            "first_name",
+                            ":label must be the same as :n",
+                            "First name"
+                        ]
+                    ],
+                    "watch": [
+                        "first_name"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "user[pass]": "pw",
+                "again": "pw"
+            },
+            "server": "",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "same",
+                            "user[pass]",
+                            ":label must be the same as :n",
+                            "User[pass]"
+                        ]
+                    ],
+                    "watch": [
+                        "user[pass]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "pass[0]": "pw",
+                "again": "pw"
+            },
+            "server": "Again must be the same as Pass",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "same",
+                            "pass",
+                            ":label must be the same as :n",
+                            "Pass"
+                        ]
+                    ],
+                    "watch": [
+                        "pass"
                     ]
                 }
             }
