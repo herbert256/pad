@@ -3492,7 +3492,8 @@ edges reads every pixel in PHP, within the same 2 megapixels; its strength is a 
 gradient's length - a hard step from black to white the full line colour on the pixels either
 side of it, a picture of one colour no line at all, the border read again - and a transparent
 pixel reads as the pixel it borders while the opacity has edges of its own: the outline of a shape
-on a transparent ground, drawn on its own pixels, the ground left transparent.
+on a transparent ground, drawn on its own pixels, the ground left transparent. The 2x picture reads
+its neighbours a CSS pixel away, so its lines are as strong and as wide as those of the 1x picture.
 threshold reads every pixel in PHP too; its cut is `threshold` x 255 / 100 of the luminance - at 50
 a pixel of 128 and more is paper, at 0 every pixel, at 100 white alone - and every pixel keeps its
 opacity.
