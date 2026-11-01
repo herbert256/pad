@@ -2,7 +2,7 @@
 
 <p>Besides JSON, XML, YAML and CSV, {tag 'data'/} reads the formats of
 <code>pad/subs/formats/</code>: TOML, INI, TSV, NDJSON, Markdown pipe tables, iCalendar,
-vCard, GeoJSON, GPX, WebVTT and SRT subtitles and Excel spreadsheets. Name the format with <code>format=</code> - or
+vCard, GeoJSON, GPX, KML, WebVTT and SRT subtitles and Excel spreadsheets. Name the format with <code>format=</code> - or
 <code>type=</code>, the same option:</p>
 
 {example 'fragments/data_formats_1'/}
@@ -29,6 +29,15 @@ speaks:</p>
 
 {example 'fragments/data_formats_4'/}
 
+<h2>Places</h2>
+
+<p>A KML file of Google Earth is a placemark a row, with the folder it stands in, the fields of
+its <code>ExtendedData</code> and its geometry as GeoJSON has it - <code>lat</code> and
+<code>lon</code> of a point, <code>coordinates</code> of a line or a polygon - so the rows of
+one are written as the other:</p>
+
+{example 'fragments/data_formats_5'/}
+
 <h2>Files and PHP</h2>
 
 <p>A file in <code>_data/</code> is read by its extension - <code>_data/trip.toml</code> is
@@ -41,12 +50,13 @@ speaks:</p>
 
 <ul>
   <li>The formats are the files of <code>pad/subs/formats/types/</code> - toml, ini, tsv,
-      ndjson, jsonseq (JSON text sequences), markdown, ics, vcf, geojson, gpx, vtt, srt, xlsx
-      and json, csv, yaml, xml; rss, atom and jsonfeed write only. An extension names its format too: md, jsonl, yml.</li>
+      ndjson, jsonseq (JSON text sequences), markdown, ics, vcf, geojson, gpx, kml, vtt, srt,
+      xlsx and json, csv, yaml, xml; rss, atom and jsonfeed write only. An extension names its
+      format too: md, jsonl, yml.</li>
   <li>A text a format cannot read is an error naming the format and the line -
       <code>TOML error on line 3: the key 'name' is defined twice</code>; with the strict check
       off it gives no rows.</li>
-  <li>TOML, INI, GeoJSON and GPX are never guessed - they read as CSV, JSON or XML before -
+  <li>TOML, INI, GeoJSON, GPX and KML are never guessed - they read as CSV, JSON or XML before -
       so name them, or keep them in a file with their extension.</li>
   <li>Writing data out - a calendar, a feed, a spreadsheet - is {manual 'feeds_and_exports'/}.</li>
 </ul>

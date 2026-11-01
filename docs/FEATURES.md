@@ -312,6 +312,7 @@ with a reader, a writer or both - added by adding its file, its code in `_lib/`,
 | `geojson` | yes | yes | a feature a row: its properties, id, geometry, lat/lon of a Point - Points written from lat and lon |
 | `gpx` | yes | yes | waypoints, route and track points as rows: type, track, segment, point, name, lat, lon, ele, time, desc |
 | `xlsx` | yes | yes | one sheet: a bold frozen header, numbers, booleans and dates as such, text never a formula; read: the first sheet (`sheet=`) |
+| `kml` | yes | yes | KML 2.2 placemarks as rows - their ExtendedData, id, name, description, folder, address, style, time, and the geometry as `geojson` has it; written in folders by `folder`, Points from lat and lon; a DOCTYPE refused, a NetworkLink never fetched |
 | `jsonseq` | yes | yes | JSON text sequences (RFC 7464): an RS (0x1E), a JSON text and a line feed a record, as `jq --seq` writes them; a record that is no JSON or a number cut short passed over on the lenient walk, as the RFC recovers |
 | `vtt`, `srt` | yes | yes | WebVTT captions and SRT subtitles: a cue a row - id, start and end (`00:01:02.500`), startms and endms, text with its markup, plain without, voice (`<v Ann>`), settings; written in the order of their start, an end left out the next cue's start (chapters) - `?talk&padFormat=vtt` is the `src` of a `<track>` |
 | `rss`, `atom`, `jsonfeed` | - | yes | feeds of rows with title, link, date, summary, body, id - a Markdown collection's rows as they are |
@@ -339,10 +340,10 @@ $padFormatOptions = [ 'title' => 'Talks', 'name' => 'Talks' ];  // the writer's 
   `&padFormat=<format>` (or an extension, `md`) or an `Accept` header naming the format's media
   type that does not accept `text/html` - `text/calendar`, a feed reader's `application/rss+xml,
   */*;q=0.8`; Markdown, an agent's `text/markdown` asking for the page, only by `padFormat=`.
-  A table format - `ics`, `xlsx`, the feeds, `geojson`, `gpx`, `vcf`, `md`, `tsv`, `ndjson`, `jsonseq`, `vtt`, `srt` -
+  A table format - `ics`, `xlsx`, the feeds, `geojson`, `gpx`, `kml`, `vcf`, `md`, `tsv`, `ndjson`, `jsonseq`, `vtt`, `srt` -
   answers the first exposed list, `toml`, `yaml` and `ini` the variables by name. The answer
   has the format's content type and, for a file, the page's name with the format's
-  extension - `inline` (`events.ics`), an `attachment` for `xlsx` and `gpx`,
+  extension - `inline` (`events.ics`), an `attachment` for `xlsx`, `gpx` and `kml`,
   none for a feed. A row the format has no place for - an order without a date in a calendar -
   is left out of such an answer; asked of the helper it is an error under the strict check.
   `$padOutputType = 'format'` with `$padOutputFormat = 'ics'` makes every page answer that.
@@ -354,14 +355,14 @@ $padFormatOptions = [ 'title' => 'Talks', 'name' => 'Talks' ];  // the writer's 
   walk; a cue a browser drops - a timing that is none, a block that is no cue - is passed over
   there and the other cues are read, and so is a broken record of a JSON text sequence.
   The formats known on sight are known only where the text would have read as CSV, or
-  as a JSON document that is none: TOML, INI, GeoJSON and GPX are named, or read by extension.
+  as a JSON document that is none: TOML, INI, GeoJSON, GPX and KML are named, or read by extension.
   A fetched body - `{curl}`, `data='https://...'` - is read in the format its media type names:
   `application/x-ndjson`, `text/calendar`, `application/toml`, `application/geo+json` ...
 - A data file runs as PAD before it is read, as a JSON file does - a `{` in a TOML comment is a
   tag; an `xlsx` is bytes, read as the file holds them - a part of at most 32 MB unpacked,
   500000 cells and shared strings, columns up to XFD: past that, the format's error.
 - Option names: `title`, `link`, `self`, `description`, `author`, `language`, `id`, `updated`
-  (feeds), `name`, `stamp`, `prodid` (ics), `name`, `as`, `creator` (gpx), `sheet` (xlsx),
+  (feeds), `name`, `stamp`, `prodid` (ics), `name`, `as`, `creator` (gpx), `name` (kml), `sheet` (xlsx),
   `name` (toml, for a list handed over whole).
 
 ### Maintenance mode

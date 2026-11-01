@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The placemarks of the examples of Google's KML reference and tutorial (code samples under
+     the Apache License 2.0), in a Document with folders, a style, a schema, a NetworkLink and
+     an overlay that are no rows. -->
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+  <Document>
+    <name>KML reference examples</name>
+    <Style id="red"><IconStyle><color>ff0000ff</color></IconStyle></Style>
+    <Schema name="TrailHeadType" id="TrailHeadTypeId">
+      <SimpleField type="string" name="TrailHeadName"/>
+      <SimpleField type="double" name="TrailLength"/>
+    </Schema>
+    <Placemark id="simple">
+      <name>Simple placemark</name>
+      <description>Attached to the ground.</description>
+      <styleUrl>#red</styleUrl>
+      <Point>
+        <coordinates>-122.0822035425683,37.42228990140251,0</coordinates>
+      </Point>
+    </Placemark>
+    <Folder>
+      <name>Paths</name>
+      <Placemark>
+        <name>Tessellated</name>
+        <description><![CDATA[If the <tessellate> tag has a value of 1, the line will contour to the underlying terrain]]></description>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates> -112.0814237830345,36.10677870477137,0
+            -112.0870267752693,36.0905099328766,0 </coordinates>
+        </LineString>
+      </Placemark>
+      <Folder>
+        <name>Buildings</name>
+        <Placemark>
+          <name>The Pentagon</name>
+          <TimeSpan><begin>1941-09-11</begin><end>1943-01-15</end></TimeSpan>
+          <Polygon>
+            <outerBoundaryIs>
+              <LinearRing>
+                <coordinates>
+                  -77.05788457660967,38.87253259892824,100 -77.05465973756702,38.87291016281703,100
+                  -77.05315536854791,38.87053267794386,100 -77.05552622493516,38.868757801256,100
+                  -77.05844056290393,38.86996206506943,100 -77.05788457660967,38.87253259892824,100
+                </coordinates>
+              </LinearRing>
+            </outerBoundaryIs>
+            <innerBoundaryIs>
+              <LinearRing>
+                <coordinates>
+                  -77.05668055019126,38.87154239798456,100 -77.05542625960818,38.87167890344077,100
+                  -77.05485125901024,38.87076535397792,100 -77.05577677433152,38.87008686581446,100
+                  -77.05691162017543,38.87054446963351,100
+                </coordinates>
+              </LinearRing>
+            </innerBoundaryIs>
+          </Polygon>
+        </Placemark>
+      </Folder>
+    </Folder>
+    <Placemark>
+      <name>Club house</name>
+      <ExtendedData>
+        <Data name="holeNumber"><value>1</value></Data>
+        <Data name="holePar"><value>4</value></Data>
+      </ExtendedData>
+    </Placemark>
+    <Placemark>
+      <name>Easy trail</name>
+      <TimeStamp><when>2007-01-14T21:05:02Z</when></TimeStamp>
+      <ExtendedData>
+        <SchemaData schemaUrl="#TrailHeadTypeId">
+          <SimpleData name="TrailHeadName">Pi in the sky</SimpleData>
+          <SimpleData name="TrailLength">3.14159</SimpleData>
+        </SchemaData>
+      </ExtendedData>
+      <Point>
+        <coordinates>-122.000, 37.002</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>A track</name>
+      <gx:Track>
+        <when>2010-05-28T02:02:09Z</when>
+        <when>2010-05-28T02:02:35Z</when>
+        <gx:coord>-122.207881 37.371915 156.000000</gx:coord>
+        <gx:coord>-122.205712 37.373288 152.000000</gx:coord>
+      </gx:Track>
+    </Placemark>
+    <NetworkLink>
+      <name>Never fetched</name>
+      <Link><href>http://example.com/never.kml</href></Link>
+    </NetworkLink>
+    <GroundOverlay><name>An overlay</name></GroundOverlay>
+  </Document>
+</kml>

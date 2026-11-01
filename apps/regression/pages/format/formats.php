@@ -5,7 +5,8 @@
   // as ~, a spreadsheet as its sheet's XML and the rows read back) - and the Accept headers
   // that ask for them: text/calendar is the calendar, application/rss+xml the feed, a
   // browser's header the page; padFormat=md is markdown by its extension, xml - read only -
-  // is 406, and vcf, whose cards the events have no name for, an empty answer and no error.
+  // is 406, and vcf, whose cards the events have no name for, an empty answer and no error,
+  // as are vtt and srt, whose cues have no time a date is.
 
   function formatsAsk ( $query, $accept = '' ) {
 
@@ -22,7 +23,7 @@
 
   $formatsOut = [];
 
-  foreach ( [ 'toml', 'yaml', 'ini', 'ndjson', 'md', 'tsv', 'ics', 'vcf', 'rss', 'atom', 'jsonfeed', 'geojson', 'gpx', 'xlsx' ] as $formatsKind ) {
+  foreach ( [ 'toml', 'yaml', 'ini', 'ndjson', 'jsonseq', 'md', 'tsv', 'ics', 'vcf', 'vtt', 'srt', 'rss', 'atom', 'jsonfeed', 'geojson', 'gpx', 'kml', 'xlsx' ] as $formatsKind ) {
 
     $formatsAnswer = formatsAsk ( "format/events&padFormat=$formatsKind" );
     $formatsBody   = $formatsAnswer ['data'];

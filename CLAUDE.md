@@ -776,7 +776,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Sitemap](docs/FEATURES.md#sitemap-from-the-file-tree) | `{sitemap}`, `$padSitemap` → `?sitemap.xml`, `?robots.txt` |
 | [Structured data (JSON-LD)](docs/FEATURES.md#structured-data-json-ld) | `{jsonld:article data='post'/}`, `{jsonld:faq data='questions'/}`, `{jsonld:breadcrumb/}`, `padJsonLd ( 'product', $row )` - a Schema.org object per kind, explicitly mapped, a kind per file of `pad/subs/jsonld/types/` |
 | [JSON and CSV answers](docs/FEATURES.md#json-and-csv-from-the-same-page) | `$padExpose` + `&padFormat=json` or `Accept` |
-| [Data formats](docs/FEATURES.md#data-formats) | `{data 'x', format='toml'}`, `_data/x.ics`, `&padFormat=xlsx`, `padFormatRead ()`, `padFormatWrite ()` - toml, ini, tsv, ndjson, jsonseq, markdown, ics, vcf, geojson, gpx, vtt, srt, xlsx, rss, atom, jsonfeed: a format per file of `pad/subs/formats/types/` |
+| [Data formats](docs/FEATURES.md#data-formats) | `{data 'x', format='toml'}`, `_data/x.ics`, `&padFormat=xlsx`, `padFormatRead ()`, `padFormatWrite ()` - toml, ini, tsv, ndjson, jsonseq, markdown, ics, vcf, geojson, gpx, kml, vtt, srt, xlsx, rss, atom, jsonfeed: a format per file of `pad/subs/formats/types/` |
 | [Maintenance mode](docs/FEATURES.md#maintenance-mode) | `pad down shop --secret=word`, `pad up shop` |
 | [Custom error pages](docs/FEATURES.md#custom-error-pages) | `_errors/404.pad`, `4xx.pad`, `5xx.pad` |
 | [Health check](docs/FEATURES.md#health-check) | `$padHealth` → `?up`, `_health.php` |

@@ -1083,7 +1083,7 @@ are 2010 to 2052, the last year of its Matariki schedule.
 | Function | Answers |
 |----------|---------|
 | `padFormatRead ( $format, $text, $options = [] )` | The rows of a text - `$format` a format (`toml`, `ics`, `xlsx` ...) or an extension of one (`md`, `jsonl`, `yml`); a malformed text is an error naming the format and the line under the strict check, no rows without it; `[ 'sheet' => 'Notes' ]` for an xlsx |
-| `padFormatWrite ( $format, $rows, $options = [] )` | The text of rows - or of any value, for `toml`, `yaml`, `ini`, `json`; options: `title`, `link`, `self`, `description`, `author` of a feed, `name`, `stamp` of a calendar, `sheet` of a spreadsheet, `as` of GPX; deterministic, the same rows the same bytes |
+| `padFormatWrite ( $format, $rows, $options = [] )` | The text of rows - or of any value, for `toml`, `yaml`, `ini`, `json`; options: `title`, `link`, `self`, `description`, `author` of a feed, `name`, `stamp` of a calendar, `sheet` of a spreadsheet, `as` of GPX, `name` of KML; deterministic, the same rows the same bytes |
 | `padFormatKinds ()`, `padFormatFind ( $name, $can = '' )` | The formats - the files of `pad/subs/formats/types/`; the format a name or extension stands for that can `read` or `write` - `''` for none |
 | `padFormatDef ( $format )` | What its file says: `name`, `mime`, `extension`, `shape` (`rows` or `data`), `read`, `write` ... |
 

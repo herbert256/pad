@@ -1,6 +1,6 @@
 <p>Besides JSON, XML, YAML and CSV, <b>{data}</b> reads the formats of
 <code>pad/subs/formats/</code>: TOML, INI, TSV, NDJSON, Markdown pipe tables, iCalendar,
-vCard, GeoJSON, GPX, WebVTT and SRT subtitles and Excel spreadsheets. Name the format with <code>format=</code> - or
+vCard, GeoJSON, GPX, KML, WebVTT and SRT subtitles and Excel spreadsheets. Name the format with <code>format=</code> - or
 <code>type=</code>, the same option:</p>
 
 
@@ -217,6 +217,76 @@ speaks:</p>
 
 
 
+<h2>Places</h2>
+
+<p>A KML file of Google Earth is a placemark a row, with the folder it stands in, the fields of
+its <code>ExtendedData</code> and its geometry as GeoJSON has it - <code>lat</code> and
+<code>lon</code> of a point, <code>coordinates</code> of a line or a polygon - so the rows of
+one are written as the other:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/data_formats_5.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiJ7ZGF0YSAnd2FsaycsIGZvcm1hdD0na21sJ31cbiAgPGttbCB4bWxucz1cImh0dHA6Ly93d3cub3Blbmdpcy5uZXQva21sLzIuMlwiPlxuICAgIDxGb2xkZXI+XG4gICAgICA8bmFtZT5HaGVudDwvbmFtZT5cbiAgICAgIDxQbGFjZW1hcms+XG4gICAgICAgIDxuYW1lPkdyYXZlbnN0ZWVuPC9uYW1lPlxuICAgICAgICA8RXh0ZW5kZWREYXRhPjxEYXRhIG5hbWU9XCJob3Vyc1wiPjx2YWx1ZT4yPC92YWx1ZT48L0RhdGE+PC9FeHRlbmRlZERhdGE+XG4gICAgICAgIDxQb2ludD48Y29vcmRpbmF0ZXM+My43MjA2LDUxLjA1NzM8L2Nvb3JkaW5hdGVzPjwvUG9pbnQ+XG4gICAgICA8L1BsYWNlbWFyaz5cbiAgICAgIDxQbGFjZW1hcms+XG4gICAgICAgIDxuYW1lPkFsb25nIHRoZSBMZWllPC9uYW1lPlxuICAgICAgICA8TGluZVN0cmluZz48Y29vcmRpbmF0ZXM+My43MjA2LDUxLjA1NzMgMy43MTg5LDUxLjA1NDU8L2Nvb3JkaW5hdGVzPjwvTGluZVN0cmluZz5cbiAgICAgIDwvUGxhY2VtYXJrPlxuICAgIDwvRm9sZGVyPlxuICA8L2ttbD5cbnsvZGF0YX1cblxuPHVsPlxuICB7d2Fsa308bGk+eyRmb2xkZXJ9OiB7JG5hbWV9IC0geyRnZW9tZXRyeX17aWYgJGxhdH0gYXQgeyRsYXR9LCB7JGxvbn17L2lmfTwvbGk+ey93YWxrfVxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGF0YSAnd2FsaycsIGZvcm1hdD0na21sJ31cbiAgPGttbCB4bWxucz1cImh0dHA6Ly93d3cub3Blbmdpcy5uZXQva21sLzIuMlwiPlxuICAgIDxGb2xkZXI+XG4gICAgICA8bmFtZT5HaGVudDwvbmFtZT5cbiAgICAgIDxQbGFjZW1hcms+XG4gICAgICAgIDxuYW1lPkdyYXZlbnN0ZWVuPC9uYW1lPlxuICAgICAgICA8RXh0ZW5kZWREYXRhPjxEYXRhIG5hbWU9XCJob3Vyc1wiPjx2YWx1ZT4yPC92YWx1ZT48L0RhdGE+PC9FeHRlbmRlZERhdGE+XG4gICAgICAgIDxQb2ludD48Y29vcmRpbmF0ZXM+My43MjA2LDUxLjA1NzM8L2Nvb3JkaW5hdGVzPjwvUG9pbnQ+XG4gICAgICA8L1BsYWNlbWFyaz5cbiAgICAgIDxQbGFjZW1hcms+XG4gICAgICAgIDxuYW1lPkFsb25nIHRoZSBMZWllPC9uYW1lPlxuICAgICAgICA8TGluZVN0cmluZz48Y29vcmRpbmF0ZXM+My43MjA2LDUxLjA1NzMgMy43MTg5LDUxLjA1NDU8L2Nvb3JkaW5hdGVzPjwvTGluZVN0cmluZz5cbiAgICAgIDwvUGxhY2VtYXJrPlxuICAgIDwvRm9sZGVyPlxuICA8L2ttbD5cbnsvZGF0YX1cblxuPHVsPlxuICB7d2Fsa308bGk+eyRmb2xkZXJ9OiB7JG5hbWV9IC0geyRnZW9tZXRyeX17aWYgJGxhdH0gYXQgeyRsYXR9LCB7JGxvbn17L2lmfTwvbGk+ey93YWxrfVxuPC91bD5cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>walk<font color="black">'</font><font color="black">,</font> format=<font color="black">'</font>kml<font color="black">'</font></font>}</b><br>  &lt;kml xmlns="http://www.opengis.net/kml/2.2"&gt;<br>    &lt;Folder&gt;<br>      &lt;name&gt;Ghent&lt;/name&gt;<br>      &lt;Placemark&gt;<br>        &lt;name&gt;Gravensteen&lt;/name&gt;<br>        &lt;ExtendedData&gt;&lt;Data name="hours"&gt;&lt;value&gt;2&lt;/value&gt;&lt;/Data&gt;&lt;/ExtendedData&gt;<br>        &lt;Point&gt;&lt;coordinates&gt;3.7206,51.0573&lt;/coordinates&gt;&lt;/Point&gt;<br>      &lt;/Placemark&gt;<br>      &lt;Placemark&gt;<br>        &lt;name&gt;Along the Leie&lt;/name&gt;<br>        &lt;LineString&gt;&lt;coordinates&gt;3.7206,51.0573 3.7189,51.0545&lt;/coordinates&gt;&lt;/LineString&gt;<br>      &lt;/Placemark&gt;<br>    &lt;/Folder&gt;<br>  &lt;/kml&gt;<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;ul&gt;<br>  <b>{<font color="blue">walk</font><font color="red"></font>}</b>&lt;li&gt;<b>{<font color="green"><font color="red">$</font>folder</font>}</b>: <b>{<font color="green"><font color="red">$</font>name</font>}</b> - <b>{<font color="green"><font color="red">$</font>geometry</font>}</b><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>lat</font>}</b> at <b>{<font color="green"><font color="red">$</font>lat</font>}</b>, <b>{<font color="green"><font color="red">$</font>lon</font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/li&gt;<b>{/<font color="blue">walk</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+<ul>
+  <li>Ghent: Gravensteen - Point at 51.0573, 3.7206</li><li>Ghent: Along the Leie - LineString</li>
+</ul>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
 <h2>Files and PHP</h2>
 
 <p>A file in <code>_data/</code> is read by its extension - <code>_data/trip.toml</code> is
@@ -290,12 +360,13 @@ Bob	17
 
 <ul>
   <li>The formats are the files of <code>pad/subs/formats/types/</code> - toml, ini, tsv,
-      ndjson, jsonseq (JSON text sequences), markdown, ics, vcf, geojson, gpx, vtt, srt, xlsx
-      and json, csv, yaml, xml; rss, atom and jsonfeed write only. An extension names its format too: md, jsonl, yml.</li>
+      ndjson, jsonseq (JSON text sequences), markdown, ics, vcf, geojson, gpx, kml, vtt, srt,
+      xlsx and json, csv, yaml, xml; rss, atom and jsonfeed write only. An extension names its
+      format too: md, jsonl, yml.</li>
   <li>A text a format cannot read is an error naming the format and the line -
       <code>TOML error on line 3: the key 'name' is defined twice</code>; with the strict check
       off it gives no rows.</li>
-  <li>TOML, INI, GeoJSON and GPX are never guessed - they read as CSV, JSON or XML before -
+  <li>TOML, INI, GeoJSON, GPX and KML are never guessed - they read as CSV, JSON or XML before -
       so name them, or keep them in a file with their extension.</li>
   <li>Writing data out - a calendar, a feed, a spreadsheet - is <a href="/pad/manual/?pages/feeds_and_exports">Feeds and exports</a>.</li>
 </ul>
