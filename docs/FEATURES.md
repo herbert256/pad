@@ -1382,6 +1382,7 @@ and Apple Podcasts, the `sandbox` of Apple's code: the frame may do only what th
 {boids birds=300, cohesion=8, seed=7/}         # seed= the same start on every load
 {pendulum pendulums=3, paused/}                # paused: waits for Play, as under reduced motion
 {reactiondiffusion pattern='mitosis'/}         # Gray-Scott: a pattern's feed and kill rates, or feed= kill=
+{epicycles shape='square', circles=15/}        # a Fourier series: circles on circles, how far off they are
 {life}                                         # a pattern of your own, a row a line: O alive, . dead
   .O.
   ..O
@@ -1399,8 +1400,10 @@ The toys are the files of `pad/subs/toys/types/` - `<toy>.php` checks the option
 there are the toys there are (`padToyTypes()`): the Game of Life, Langton's ant, an elementary
 cellular automaton, the Mandelbrot set, sorting algorithms, a double pendulum, boids, fireworks,
 falling sand, a harmonograph, a spirograph, three clocks, a starfield, a flow field, L-systems, a
-ripple tank, orbits, a Galton board, a kaleidoscope and reaction-diffusion (Pearson's Gray-Scott
-model, a feed and kill of your own picked on its map). Every toy can be touched - draw, drag,
+ripple tank, orbits, a Galton board, a kaleidoscope, reaction-diffusion (Pearson's Gray-Scott
+model, a feed and kill of your own picked on its map) and epicycles (a drawing's Fourier series,
+the circles that redraw it and how far off they are - a drawing of your own between the tags as an
+SVG polyline's x,y points). Every toy can be touched - draw, drag,
 click - and has labelled controls, a status line and a canvas with `role="img"` and a label. The
 runtime (`www/assets/toys/toy.js`: a seeded random number, the palette resolved for the canvas, the
 pointer, the controls, the animation loop) and every toy's script are written once per page with

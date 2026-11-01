@@ -2402,7 +2402,8 @@ subsystem is `pad/subs/toys/`.
 
 A toy is written three ways, the same toy each time: the tag, `{toy 'life'/}`; the toy: type,
 `{toy:life/}`; and bare, `{life/}`, when no tag, store, field or sequence has the name. The pattern
-of a Game of Life and the rules of an L-system stand between its tags, a line each - taken as they
+of a Game of Life, the rules of an L-system and the x,y points of an epicycles drawing stand between
+its tags, a line each - taken as they
 are written, so they may hold braces; an L-system's first value names one of its systems.
 
 | Toy | Shows | Its options |
@@ -2411,6 +2412,7 @@ are written, so they may hold braces; an L-system's first value names one of its
 | `automaton` | An elementary cellular automaton, the rows scrolling up; click a case of the rule to flip it | `rule` (30), `cells` (240), `initial` (single, random), `speed` (30) |
 | `boids` | A flock from separation, alignment and cohesion; the pointer is a hawk | `birds` (150), `separation`, `alignment`, `cohesion` (5), `speed` (5) |
 | `clocks` | An analog, a binary and a word clock; drag the minute hand, run them fast | `show` ('analog, binary, words'), `zone` |
+| `epicycles` | A drawing redrawn by circles turning on circles, its Fourier series; the error shown, draw your own | `shape` (heart, star, square, trefoil), `circles` (30), `points` (256), `order` (size, frequency), `speed` (3), the points |
 | `fireworks` | Shells bursting in a night sky; click to send one up | `rate` (4), `gravity` (5), `shell` (mix, peony, ring, willow, palm, crossette) |
 | `flowfield` | Particles drifting on a noise field, painting the flow; the pointer stirs | `particles` (1500), `scale` (4), `speed` (3), `fade` (3) |
 | `galton` | Galton's board, the balls piling into a bell curve | `levels` (12), `balls` (500), `bias` (50) |
@@ -2435,7 +2437,8 @@ motion - a drawing toy then shows its figure finished. The root carries `data-st
 `paused` or `held`; the colours are `--pad-toy-ink`, `-canvas`, `-accent`, `-accent2`, `-night` and
 their like on `.pad-toy`, `light-dark()` defaults, resolved by the script for the canvas and again
 when the scheme changes. An option out of its bounds, a word a choice does not know, a life rule or
-pattern row, an L-system line or a time zone that is none are errors under the strict check.
+pattern row, an L-system line, an epicycles point or a time zone that is none are errors under the
+strict check.
 
 ---
 
