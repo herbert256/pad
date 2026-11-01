@@ -647,7 +647,7 @@ of fields and pages. `padJsonLd ( 'article', $post )` answers the same object as
 | Kind | Schema.org | Its fields (required in bold) |
 |------|------------|-------------------------------|
 | `article` | Article | **headline**, description, image, url, author, published, modified, publisher, logo |
-| `breadcrumb` | BreadcrumbList | rows of **name** (or label, text) and url (or link, href); without `data=` the page's trail, `home=` its first step |
+| `breadcrumb` | BreadcrumbList | rows of **name** (or label, text) and url (or link, href); without `data=` the page's trail, `home=` its first step, a directory that is no page left out |
 | `event` | Event | **name**, **starts**, ends, place, address, description, image, url, price, currency, availability, tickets |
 | `faq` | FAQPage | rows of **question** and **answer** |
 | `organization` | Organization | **name**, url, logo, description, profiles, phone, email, contact |

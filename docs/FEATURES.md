@@ -158,8 +158,9 @@ for a rich result - from ordinary PAD data, explicitly mapped. Eight kinds, each
 fills: `article` (headline required, description, image, url, author, published, modified,
 publisher, logo), `breadcrumb` (rows of name and url - the rows `{breadcrumb data=}` takes,
 label and link too - or without `data=` the page's trail as the breadcrumb widget shows it,
-`home=` its first step), `event` (name and starts required, ends, place and address as its
-Place, description, image, url, and price, currency, availability and tickets as an Offer - not
+`home=` its first step, a directory that is no page left out, as a step needs its address),
+`event` (name and starts required, ends, place and address as its Place, description, image,
+url, and price, currency, availability and tickets as an Offer - not
 `start=`/`end=`, which are the handling options), `faq` (rows of question and answer),
 `organization` (name required, url, logo, description, profiles as sameAs, and phone, email
 and contact as a ContactPoint), `person` (name required, url, image, job, description,

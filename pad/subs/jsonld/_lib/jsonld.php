@@ -644,7 +644,10 @@
 
   // The page's own trail, as the breadcrumb widget shows it without data= (padBreadcrumbPath,
   // subs/widgets/_lib/breadcrumb.php): its steps come escaped for HTML, and are read back as
-  // the characters they hold - home= names the first step there as here.
+  // the characters they hold - home= names the first step there as here. A step that is no
+  // page - a directory without an index, which the widget shows as a text - is left out but
+  // for the last: a search engine wants the address of every step before it, and a ListItem
+  // without its item is "Missing field 'item'" to Google's breadcrumb.
 
   function padJsonLdTrail () {
 
@@ -652,10 +655,13 @@
     include_once PAD . 'subs/widgets/_lib/breadcrumb.php';
 
     $rows = [];
+    $path = padBreadcrumbPath ();
+    $last = array_key_last ( $path );
 
-    foreach ( padBreadcrumbPath () as [ $label, $link ] )
-      $rows [] = [ 'name' => html_entity_decode ( $label, ENT_QUOTES | ENT_HTML5, 'UTF-8' ),
-                   'url'  => html_entity_decode ( $link,  ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ];
+    foreach ( $path as $at => [ $label, $link ] )
+      if ( $link !== '' or $at === $last )
+        $rows [] = [ 'name' => html_entity_decode ( $label, ENT_QUOTES | ENT_HTML5, 'UTF-8' ),
+                     'url'  => html_entity_decode ( $link,  ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ];
 
     return $rows;
 

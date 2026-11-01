@@ -5,7 +5,8 @@
   //
   // Alone it is the trail the breadcrumb widget {breadcrumb/} shows for the page - Home, every
   // directory of the page's path and the page itself, home= naming the first step - read from
-  // the widget, so the two say the same. With data= the steps are its rows, the rows the
+  // the widget, so the two say the same, but for a directory that is no page, which has no
+  // address to give and is left out. With data= the steps are its rows, the rows the
   // widget's data= takes as well: name (name, required - or label, text) and url (item, an
   // address - or link, href). A step without an address is written without one, as the last
   // step may be.
