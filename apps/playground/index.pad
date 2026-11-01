@@ -13,7 +13,7 @@
     <h1>Type a template, see the result</h1>
   </header>
 
-  <form method="post" action="?render" target="playOut" id="playForm">
+  <form method="post" action="?render" target="playOut" id="playForm" data-monaco="{$editorMonaco}" data-names="{^editorNames}">
     <div class="panes">
       <div class="pane">
         <label for="source">Template</label>
@@ -44,6 +44,7 @@
   PHP code in the data pane runs as written, with all of PHP's reach. The output frame is
   sandboxed: its scripts do not run. Errors show as PAD reports them.</p>
 
+  {if $editorPadMode}<script src="{$editorPadMode}"></script>{/if}
   <script src="{asset 'playground.js'/}"></script>
 
 </body>

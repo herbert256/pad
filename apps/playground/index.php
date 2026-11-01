@@ -13,6 +13,48 @@
 
   $sampleData = "{\n  \"title\": \"Fruit\",\n  \"items\": [\n    { \"name\": \"Apple\", \"stock\": 3 },\n    { \"name\": \"Pear\",  \"stock\": 0 }\n  ]\n}\n";
 
+  // The boxes become editors with colours when Monaco loads from $playMonaco: the template
+  // in the PAD colouring of the edit application - its own www/edit/pad-mode.js, linked
+  // with the version of its contents as {asset} links a file of the playground - and the
+  // names it colours, PAD's built-in tags, functions, options, properties and prefixes as
+  // the edit application gathers them (apps/edit/_lib/language.php) from
+  // editors/lsp/completions.json, which editors/generate.php keeps in step with pad/. No
+  // documentation: the colours and the completion of names need none.
+
+  $editorMonaco  = $playMonaco ?? '';
+  $editorPadMode = '';
+  $editorNames   = [];
+
+  if ( $editorMonaco ) {
+
+    $editorFile    = dirname ( APPS ) . '/www/edit/pad-mode.js';
+    $editorAlgo    = in_array ( 'xxh128', hash_algos (), TRUE ) ? 'xxh128' : 'sha256';
+    $editorPadMode = is_file ( $editorFile ) ? "{$padRoot}edit/pad-mode.js?v=" . substr ( (string) hash_file ( $editorAlgo, $editorFile ), 0, 10 ) : '';
+
+    $editorGroups  = [ 'PAD tag' => 'tags', 'pipe function' => 'functions', 'property@tag' => 'properties',
+                       'option' => 'options', 'type prefix' => 'prefixes', 'operator' => 'operators',
+                       'sequence type' => 'sequences' ];
+
+    $editorNames   = array_fill_keys ( array_values ( $editorGroups ), [] ) + [ 'single' => [] ];
+
+    foreach ( json_decode ( (string) @file_get_contents ( dirname ( APPS ) . '/editors/lsp/completions.json' ), TRUE ) ?: [] as $editorOne ) {
+      if ( isset ( $editorGroups [ $editorOne ['detail'] ?? '' ] ) )
+        $editorNames [ $editorGroups [ $editorOne ['detail'] ] ] [] = rtrim ( $editorOne ['label'], ':' );
+      if ( ! empty ( $editorOne ['single'] ) and ( $editorOne ['detail'] ?? '' ) == 'PAD tag' )
+        $editorNames ['single'] [] = $editorOne ['label'];
+    }
+
+    $editorFiles = fn ( $dir ) => array_values ( array_filter ( array_map ( fn ( $f ) => basename ( $f, '.php' ), glob ( "$dir/*.php" ) ?: [] ),
+                                                                fn ( $n ) => $n [0] != '_' ) );
+
+    $editorNames ['actions']    = $editorFiles ( PAD . 'sequence/actions/types' );
+    $editorNames ['constructs'] = $editorFiles ( PAD . 'constructs' );
+    $editorNames ['branch']     = [ 'else', 'elseif', 'when' ];
+
+    unset ( $editorFile, $editorAlgo, $editorGroups, $editorOne, $editorFiles );
+
+  }
+
   $samplePhp = "<?php\n\n  \$title = 'Fruit';\n\n  \$items = [\n    [ 'name' => 'Apple', 'stock' => 3 ],\n    [ 'name' => 'Pear',  'stock' => 0 ]\n  ];\n\n?>\n";
 
 ?>

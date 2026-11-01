@@ -21,6 +21,13 @@
   $padRequestVars  = [];
   $padTidy         = FALSE;
 
+  // The editor component of the boxes, as in the edit application: Monaco's AMD build, from
+  // its CDN or from a copy of its min/vs directory under www/. Empty, the boxes stay plain
+  // text fields. Monaco runs in the playground's own page, so it could post the page's form
+  // like the page itself: the address names one version of it, as the edit application's does.
+
+  $playMonaco      = 'https://cdn.jsdelivr.net/npm/monaco-editor@0.57.0/min/vs';
+
   $padSqlHost      = padEnv ( 'padSqlHost' );
   $padSqlDatabase  = padEnv ( 'padSqlDatabase' );
   $padSqlUser      = padEnv ( 'padSqlUser' );

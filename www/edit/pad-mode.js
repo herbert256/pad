@@ -2,6 +2,9 @@
 // parses. What it knows comes from the editor's language call (apps/edit/_lib/language.php):
 // the built-in names of editors/lsp/completions.json with their documentation from
 // docs/reference, and the application's own tags, functions, snippets, pages and fields.
+// The playground's template box uses it too (www/playground/playground.js): the built-in
+// names without their documentation, and hooks that answer no application - no files, no
+// fields, no pages.
 //
 // tokenizer    a Monarch grammar of PAD inside HTML: comments {# #} and {-- --}, {ignore}
 //              raw text, constructs (@page@), tag names - the built-in ones apart from the

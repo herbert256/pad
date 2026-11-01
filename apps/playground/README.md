@@ -16,6 +16,14 @@ which has no names of its own (CSV, a JSON or YAML array, a range), becomes the 
 PHP code, written as a page's `.php`: the variables it sets become the template's and what
 it echoes stands before the template; **Switch to data** swaps back, each pane keeping what
 was typed in it.
+
+The boxes are editors with colours, as in the [edit](../edit/README.md) application: Monaco,
+loaded from `$playMonaco`, with the edit application's own PAD colouring
+(`www/edit/pad-mode.js`) for the template - and its completion of PAD's built-in names - the
+colours of the format the data text reads as (JSON, YAML, XML, plain for CSV), changing as it
+is typed, and PHP's for the PHP code. Without Monaco - no internet, `$playMonaco = ''` - the
+boxes are plain text fields.
+
 **Render** (or Ctrl+Enter) renders it, **Show the HTML** shows the HTML it produced. The
 address bar always holds the panes and which data is used in its `#s=` hash, so copying it
 shares the example. An example opened from such a link fills the panes but does not run until
@@ -47,6 +55,10 @@ The playground runs the template it is given, so it is closed down:
 - **Limits.** Five seconds of run time, 64 KB of template and of data, 256 KB of output.
 - **A sandboxed output frame.** The rendered page's scripts do not run, and it cannot reach
   the playground page or its cookies.
+- **One script from elsewhere.** Monaco runs in the playground's own page, from the address of
+  `$playMonaco` - pinned to one version of it on jsDelivr, as the edit application's
+  `$editMonaco` - so it could post the page's form like the page itself; a copy of its
+  `min/vs` under `www/` takes the CDN out, an empty address takes Monaco out.
 
 What it does not stop: tags that read files (`{file}`, `{files}`, `{dir}`, `local:`), fetch
 URLs (`{curl}`, `{get}`) or render other applications' pages (`{page app=/}`) work as they do
@@ -60,6 +72,6 @@ anywhere else - on this machine, for this machine's user - and a data text that 
 | `index.php` / `index.pad` | The editor: template, data (a text in any data format, or PHP), output frame |
 | `render.php` / `render.pad` | Reads the posted data text with the reader of its type, or runs the posted PHP code, then renders the posted template with that data through `padCode()` |
 | `_inits.php` | Turns every non-local request away |
-| `_config/config.php` | CSRF tokens; no PHP functions, no request variables, no `_common`, no database |
-| `www/playground/playground.js` | Switches the data between the text and PHP, keeps the panes in the URL hash, renders the sample on load and on Ctrl+Enter |
+| `_config/config.php` | CSRF tokens; no PHP functions, no request variables, no `_common`, no database; `$playMonaco`, where Monaco comes from |
+| `www/playground/playground.js` | Makes the boxes Monaco editors with colours, switches the data between the text and PHP, keeps the panes in the URL hash, renders the sample on load and on Ctrl+Enter |
 | `www/playground/playground.css` | The two-pane layout |

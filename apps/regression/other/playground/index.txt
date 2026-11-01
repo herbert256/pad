@@ -23,7 +23,7 @@
     \<h1\>Type a template, see the result\<\/h1\>
   \<\/header\>
 
-  \<form method\="post" action\="\?render" target\="playOut" id\="playForm"\>\<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>
+  \<form method\="post" action\="\?render" target\="playOut" id\="playForm" data\-monaco\="https\:\/\/cdn\.jsdelivr\.net\/npm\/monaco\-editor@0\.57\.0\/min\/vs" data\-names\="[^"]+"\>\<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>
     \<div class\="panes"\>
       \<div class\="pane"\>
         \<label for\="source"\>Template\<\/label\>
@@ -77,6 +77,7 @@
   PHP code in the data pane runs as written, with all of PHP's reach\. The output frame is
   sandboxed\: its scripts do not run\. Errors show as PAD reports them\.\<\/p\>
 
+  \<script src\="\/pad\/edit\/pad\-mode\.js\?v\=[0-9a-f]+"\>\<\/script\>
   \<script src\="\/pad\/playground\/playground\.js\?v\=[0-9a-f]+"\>\<\/script\>
 
 \<\/body\>
