@@ -68,6 +68,46 @@
     toggle.textContent = which === 'php' ? 'Switch to data' : 'Switch to PHP';
   }
 
+  // The template and the data or PHP box share their rows - fourteen and ten as written. A
+  // box without data or PHP is small, its placeholder on a line or two, and the template
+  // takes the rows it gives up: an example of a template alone, most of those opened from
+  // their icon, stood in a box of fourteen rows above ten empty ones. And when the text of
+  // one box does not fit while the other has rows to spare, the one that needs them takes
+  // them - a long template above a few lines of data, or the other way round - keeping a
+  // line to spare in each; when neither fits both keep their own rows. Fitted again on every
+  // change and on the switch; an editor's box takes its height from --rows (CSS, .editorBox).
+
+  var rows  = { source: source.rows, data: data.rows };
+  var total = rows.source + rows.data;
+  var small = 3;
+  var least = 5;
+
+  function rowsOf(area, count) {
+    if (area.rows === count) return;
+    area.rows = count;
+    if (area.host) area.host.style.setProperty('--rows', count);
+  }
+
+  function lines(text) {
+    return text === '' ? 0 : text.split('\n').length;
+  }
+
+  function fit() {
+    var box  = mode.value === 'php' ? php : data;
+    var want = lines(source.value) + 1;
+    var need = Math.max(small, lines(box.value) + 1);
+    var keep = rows.data;
+    if (box.value === '')
+      keep = small;
+    else if (need > rows.data && want < rows.source)
+      keep = Math.min(need, total - Math.max(want, least));
+    else if (want > rows.source && need < rows.data)
+      keep = need;
+    rowsOf(source, total - keep);
+    rowsOf(data,   keep);
+    rowsOf(php,    keep);
+  }
+
   var shared = location.hash.indexOf('#s=') === 0 ? decode(location.hash.slice(3)) : null;
 
   if (shared) {
@@ -77,19 +117,21 @@
   }
 
   show(shared && shared.mode === 'php' ? 'php' : 'data');
+  fit();
   toggle.hidden = false;
   relink(boxes());
 
   toggle.addEventListener('click', function () {
     show(mode.value === 'php' ? 'data' : 'php');
+    fit();
     remember();
     var box = mode.value === 'php' ? php : data;
     if (box.editor) box.editor.focus(); else box.focus();
   });
 
-  source.addEventListener('input', remember);
-  data.addEventListener('input', remember);
-  php.addEventListener('input', remember);
+  source.addEventListener('input', function () { fit(); remember(); });
+  data.addEventListener('input', function () { fit(); remember(); });
+  php.addEventListener('input', function () { fit(); remember(); });
 
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
@@ -194,6 +236,7 @@
         area.removeAttribute('data-mode');
       }
       area.hidden = true;
+      area.host = host;
       area.parentNode.insertBefore(host, area);
       var label = document.querySelector('label[for="' + area.id + '"]');
       var editor = monaco.editor.create(host, {
