@@ -356,6 +356,24 @@
 
   }
 
+  // A query as its text: a list - ?q[]=a&q[]=b through padRequest - its values one after the
+  // other, anything else that is no value nothing.
+
+  function padSearchQueryText ( $q ) {
+
+    if ( is_array ( $q ) ) {
+      $words = [];
+      array_walk_recursive ( $q, function ( $value ) use ( &$words ) {
+        if ( is_scalar ( $value ) )
+          $words [] = (string) $value;
+      } );
+      return implode ( ' ', $words );
+    }
+
+    return is_scalar ( $q ) ? (string) $q : '';
+
+  }
+
   // The terms of the words that begin with a prefix, read from the sorted words of the index.
 
   function padSearchExpand ( $prefix, $index ) {

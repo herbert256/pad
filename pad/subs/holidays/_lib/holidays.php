@@ -79,9 +79,16 @@
   }
 
   // A place: the country with its region, written 'de-by' or 'de' and 'by' apart, in any case.
-  // An error message for a country without a file or a region the country does not list.
+  // An error message for a country without a file or a region the country does not list -
+  // and for a country or region that is no value: a list met the (string) cast and ended
+  // the request in PHP's "Array to string conversion".
 
   function padHolidaysPlace ( $country, $region = '' ) {
+
+    $region ??= '';
+
+    if ( ! is_scalar ( $country ) or ! is_scalar ( $region ) )
+      return 'a country is its code, with its region after it - nl, de-by - not ' . get_debug_type ( is_scalar ( $country ) ? $region : $country );
 
     $country = strtolower ( trim ( (string) $country ) );
     $region  = strtolower ( trim ( (string) $region ) );

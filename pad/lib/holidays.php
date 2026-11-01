@@ -63,8 +63,8 @@
 
     $year = $year ?? padNow ( 'Y' );
 
-    if ( ! ctype_digit ( (string) $year ) or $year < padHolidaysFirst or $year > padHolidaysLast ) {
-      padError ( "padHolidays: '" . padMakeSafe ( (string) $year, 20 ) . "' is no year from 1583 to 9999" );
+    if ( ! is_scalar ( $year ) or ! ctype_digit ( (string) $year ) or $year < padHolidaysFirst or $year > padHolidaysLast ) {
+      padError ( "padHolidays: '" . padMakeSafe ( is_scalar ( $year ) ? (string) $year : get_debug_type ( $year ), 20 ) . "' is no year from 1583 to 9999" );
       return [];
     }
 

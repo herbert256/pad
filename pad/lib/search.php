@@ -14,8 +14,9 @@
   // language, else en), words (the excerpt's length, 30), excerpt (the field it is cut from,
   // the last of fields) and name - what the index of rows is kept under in
   // DATA/cache/search/<app>/, 'rows' unless given: rows of one name share one index, made
-  // again whenever they change. A wrong argument is reported with padError naming the
-  // function, which then answers no rows.
+  // again whenever they change. The query is what a visitor typed - a list of words, as
+  // ?q[]= makes one, is searched for its words. A wrong argument is reported with padError
+  // naming the function, which then answers no rows.
 
   function padSearch ( $source, $query, $options = [] ) {
 
@@ -26,6 +27,15 @@
       return [];
     }
 
+    // Each option is one value: a list met a (string) cast deeper down, and the request
+    // ended in PHP's "Array to string conversion" instead of this function's report.
+
+    foreach ( [ 'name', 'fields', 'lang', 'words', 'excerpt' ] as $option )
+      if ( isset ( $options [$option] ) and ! is_scalar ( $options [$option] ) ) {
+        padError ( "padSearch: the option $option is a value - not " . get_debug_type ( $options [$option] ) );
+        return [];
+      }
+
     if ( is_array ( $source ) )
       $source = [ 'rows:' . ( $options ['name'] ?? 'rows' ), padSearchSign ( $source ), $source, FALSE ];
     elseif ( is_string ( $source ) )
@@ -33,7 +43,7 @@
     else
       $source = "the source is the name of a collection or data, or the rows - not " . get_debug_type ( $source );
 
-    $found = is_string ( $source ) ? $source : padSearchRun ( $source, (string) $query, $options );
+    $found = is_string ( $source ) ? $source : padSearchRun ( $source, padSearchQueryText ( $query ), $options );
 
     if ( is_string ( $found ) ) {
       padError ( "padSearch: $found" );
