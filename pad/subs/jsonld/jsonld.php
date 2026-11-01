@@ -44,7 +44,9 @@
 
   // The rows data= names, NULL without it. The level got them as its data, and would write
   // the script once per row: it gets its one default occurrence back. The handling options
-  // run on the rows here, so the level does not run them again.
+  // run on the rows here, so the level does not run them again. Handling that left no row
+  // gives the level the one row of its @else@ - or, beside else=, notOk= or error=, the one
+  // row of the content standing in (options/_go/reset.php): no rows either way.
 
   include_once PAD . 'subs/widgets/_lib/widget.php';
 
@@ -57,7 +59,7 @@
     if ( $padJsonLdRows and padJsonLdHandles () ) {
       $padData [$pad]     = padData ( $padJsonLdRows );
       include PAD . 'handling/handling.php';
-      $padJsonLdRows      = $padElse [$pad] ? [] : array_values ( $padData [$pad] );
+      $padJsonLdRows      = ( $padElse [$pad] or ( $padHandStoodIn [$pad] ?? 0 ) === $padLevelId [$pad] ) ? [] : array_values ( $padData [$pad] );
       $padHandDone [$pad] = TRUE;
     }
 
