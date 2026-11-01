@@ -111,7 +111,7 @@
   }
 
   // The value of another field of the post, as the rules that look at one read it - the
-  // required_if family: its text trimmed, or the trimmed texts of a list
+  // required_if family, before and after: its text trimmed, or the trimmed texts of a list
   // (a field named kinds[]). It is found where PHP files it, as padFormFind finds it -
   // user[kind] in $_POST ['user'] ['kind'] - and kinds finds the list kinds[] as kinds[]
   // finds kinds. A field the post leaves out is '', as an empty one is; so is anything else
@@ -195,6 +195,75 @@
     [ $name, $values ] = padRuleFieldValues ( $arg );
 
     return padValidateName ( $name ) . ' is ' . implode ( ' or ', $values );
+
+  }
+
+  // A moment as before: and after: read one, in ISO 8601 alone - the day 2026-11-01, or the
+  // day with a time, 2026-11-01T14:30 or 14:30:15, what <input type="date"> and
+  // <input type="datetime-local"> post - made one text that compares as the moments do:
+  // 2026-11-01T14:30:00, a day its first moment, 00:00. NULL for anything else - a day the
+  // calendar does not have, a time of 24:00, a zone, a space for the T, a day written
+  // another way, a word strtotime would read - as the browser reads it (validate.js, moment):
+  // a form judged alike everywhere, where strtotime and Date.parse read other texts each.
+
+  function padRuleMoment ( $text ) {
+
+    if ( ! is_string ( $text ) or ! preg_match ( '/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2})(?::(\d{2}))?)?$/D', $text, $at ) )
+      return NULL;
+
+    if ( ! checkdate ( (int) $at [2], (int) $at [3], (int) $at [1] ) )
+      return NULL;
+
+    [ $hour, $minute, $second ] = [ $at [4] ?? '00', $at [5] ?? '00', $at [6] ?? '00' ];
+
+    if ( (int) $hour > 23 or (int) $minute > 59 or (int) $second > 59 )
+      return NULL;
+
+    return "$at[1]-$at[2]-$at[3]T$hour:$minute:$second";
+
+  }
+
+  // Whether the argument of before: or after: is a date written in the rule - four digits, a
+  // dash and a digit: 2027-01-01 - rather than the name of the other field. A date it is
+  // whatever field the post has of that name, and one the calendar lacks is the author's
+  // error (padRuleWhenArgument).
+
+  function padRuleDateArg ( $arg ) {
+
+    return preg_match ( '/^\d{4}-\d/', trim ( (string) $arg ) ) === 1;
+
+  }
+
+  function padRuleWhenArgument ( $arg, $rule ) {
+
+    if ( trim ( (string) $arg ) === '' )
+      return "no field name or date - $rule:start or $rule:2027-01-01";
+
+    if ( padRuleDateArg ( $arg ) and padRuleMoment ( trim ( (string) $arg ) ) === NULL )
+      return "no valid date - $rule:2027-01-01 or $rule:2027-01-01T09:00";
+
+    return '';
+
+  }
+
+  // before: and after: - whether the field's moment stands before ( -1 ) or after ( 1 ) the
+  // other: the date of the rule, or the value of the other field. A value that is no moment
+  // fails; an other field that is empty, no moment or a list lets it pass - its own rules
+  // speak about it.
+
+  function padRuleWhen ( $value, $arg, $data, $side ) {
+
+    $mine = padRuleMoment ( $value );
+
+    if ( $mine === NULL )
+      return FALSE;
+
+    $other = padRuleMoment ( padRuleDateArg ( $arg ) ? trim ( $arg ) : padRuleSibling ( $data, $arg ) );
+
+    if ( $other === NULL )
+      return TRUE;
+
+    return ( $side < 0 ) ? $mine < $other : $mine > $other;
 
   }
 

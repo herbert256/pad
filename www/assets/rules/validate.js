@@ -152,6 +152,36 @@
     return texts(arg).some(function (name) { return filled(sibling(values, name)) === wanted; });
   }
 
+  // A moment as before and after read one, as padRuleMoment: the ISO day, or the day with a
+  // time - 2026-11-01T14:30 or 14:30:15 - made 2026-11-01T14:30:00, which compares as the
+  // moments do; null for any other text. Date.parse read other texts in every browser.
+  function moment(value) {
+    var at = typeof value === 'string' && value.match(/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2})(?::(\d{2}))?)?$/);
+    if (!at) return null;
+    var year = +at[1], month = +at[2], day = +at[3];
+    var check = new Date(0);
+    check.setUTCFullYear(year, month - 1, day);
+    if (year < 1 || check.getUTCFullYear() !== year || check.getUTCMonth() !== month - 1 || check.getUTCDate() !== day) return null;
+    var hour = at[4] || '00', minute = at[5] || '00', second = at[6] || '00';
+    if (+hour > 23 || +minute > 59 || +second > 59) return null;
+    return at[1] + '-' + at[2] + '-' + at[3] + 'T' + hour + ':' + minute + ':' + second;
+  }
+
+  // before and after (padRuleWhenArgument, padRuleWhen): a date written in the rule - four
+  // digits, a dash, a digit - or the other field's value. A value that is no moment fails,
+  // an other that is none passes.
+  function dateArg(arg) {
+    return /^\d{4}-\d/.test(trim(String(arg)));
+  }
+
+  function when(value, arg, values, side) {
+    var mine = moment(value);
+    if (mine === null) return false;
+    var other = moment(dateArg(arg) ? trim(String(arg)) : sibling(values, arg));
+    if (other === null) return true;
+    return side < 0 ? mine < other : mine > other;
+  }
+
   /*rules*/
 
   function rule(name, arg, value, values, number) {

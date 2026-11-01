@@ -1,8 +1,9 @@
 <?php
 
   // The rules that look at other fields - required_if, required_unless, required_with,
-  // required_without - each with the posts that tell its cases apart: the other field
-  // absent, empty, 0 or blanks, a list, a nested name. One table,
+  // required_without, before, after - each with the posts that tell its cases apart: the
+  // other field absent, empty, 0 or blanks, a list, a nested name, the two orders of two
+  // dates, the same date, a date that is none, a date written in the rule. One table,
   // read twice: forms/client_parity.php adds its rows to the cases the browser's checker
   // must judge as padValidate does (the validate line of ./ci.sh), and the framework cases
   // of rules/ answer padValidate's verdict on the rows of their rule, which pins it. A row
@@ -94,6 +95,76 @@
       [ 'phone',    'required_without:user[email]',      [ 'user[email]' => '', 'phone' => '' ] ],
       [ 'phone',    'required_without:user[email]',      [ 'user[email]' => 'ada@example.com', 'phone' => '' ] ],
       [ 'phones[]', 'required_without:email',            [ 'email' => '', 'phones[]' => [ ] ] ]
+    ],
+
+    'before' => [
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01', 'end' => '2026-01-02' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-02', 'end' => '2026-01-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01', 'end' => '2026-01-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2025-12-31', 'end' => '2026-01-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-02-30', 'end' => '2026-12-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-13-01', 'end' => '2027-12-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '0000-01-01', 'end' => '2027-12-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => 'tomorrow', 'end' => '2027-12-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-1-5', 'end' => '2027-12-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '01-05-2026', 'end' => '2027-12-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-05 09:00', 'end' => '2027-12-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-05T24:00', 'end' => '2027-12-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-05T09:00Z', 'end' => '2027-12-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2028-02-29', 'end' => '2028-03-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2027-02-29', 'end' => '2028-03-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => ' 2026-01-01 ', 'end' => ' 2026-01-02 ' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01', 'end' => '' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01', 'end' => 'someday' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01', 'end' => '2026-02-30' ] ],
+      [ 'start',    'before:end',                        [ 'start' => 'someday', 'end' => '' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '', 'end' => '2026-01-01' ] ],
+      [ 'start',    'before:end',                        [ 'end' => '2026-01-01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01T09:00', 'end' => '2026-01-01T10:30' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01T10:30', 'end' => '2026-01-01T09:00' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01T09:00:30', 'end' => '2026-01-01T09:00' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01T09:00', 'end' => '2026-01-01T09:00:00' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01', 'end' => '2026-01-01T00:00' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01', 'end' => '2026-01-01T00:01' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01T23:59:59', 'end' => '2026-01-02' ] ],
+      [ 'start',    'before:end',                        [ 'start' => '2026-01-01T09:60', 'end' => '2026-01-02' ] ],
+      [ 'start',    'before:end[]',                      [ 'start' => '2026-01-01', 'end[]' => [ '2025-01-01' ] ] ],
+      [ 'start',    'before:trip[end]',                  [ 'start' => '2026-02-01', 'trip[end]' => '2026-01-01' ] ],
+      [ 'start',    'before:trip[end]',                  [ 'start' => '2025-02-01', 'trip[end]' => '2026-01-01' ] ],
+      [ 'start',    'before:2027-01-01',                 [ 'start' => '2026-12-31' ] ],
+      [ 'start',    'before:2027-01-01',                 [ 'start' => '2027-01-01' ] ],
+      [ 'start',    'before:2027-01-01',                 [ 'start' => '2027-01-02' ] ],
+      [ 'start',    'before:2027-01-01T12:00',           [ 'start' => '2027-01-01T11:59' ] ],
+      [ 'start',    'before:2027-01-01T12:00',           [ 'start' => '2027-01-01' ] ],
+      [ 'start',    'before:2027-01-01',                 [ 'start' => '2026-12-31', '2027-01-01' => '2000-01-01' ] ],
+      [ 'start',    'required|before:end',               [ 'start' => '', 'end' => '2026-01-01' ] ],
+      [ 'starts[]', 'before:end',                        [ 'starts[]' => [ '2026-01-01' ], 'end' => '2027-01-01' ] ]
+    ],
+
+    'after' => [
+      [ 'end',      'after:start',                       [ 'start' => '2026-01-01', 'end' => '2026-01-02' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '2026-01-02', 'end' => '2026-01-01' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '2026-01-01', 'end' => '2026-01-01' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '2026-01-01', 'end' => '2026-02-30' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '2026-01-01', 'end' => 'next week' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '', 'end' => '2026-01-01' ] ],
+      [ 'end',      'after:start',                       [ 'end' => '2026-01-01' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '2026-02-30', 'end' => '2026-01-01' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '2026-01-01', 'end' => '' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '2026-01-01T09:00', 'end' => '2026-01-01T09:01' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '2026-01-01T09:00', 'end' => '2026-01-01' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '2026-01-01', 'end' => '2026-01-01T00:00:01' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '2026-01-01', 'end' => '2026-01-01T00:00' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '2026-01-01', 'end' => '2026-01-01t10:00' ] ],
+      [ 'end',      'after:start',                       [ 'start' => '1999-12-31', 'end' => '2000-01-01' ] ],
+      [ 'end',      'after:trip[start]',                 [ 'trip[start]' => '2026-06-01', 'end' => '2026-05-01' ] ],
+      [ 'end',      'after:2026-01-01',                  [ 'end' => '2026-01-02' ] ],
+      [ 'end',      'after:2026-01-01',                  [ 'end' => '2026-01-01' ] ],
+      [ 'end',      'after:2026-01-01',                  [ 'end' => '2025-12-31T23:59' ] ],
+      [ 'end',      'after: 2026-01-01T08:00 ',          [ 'end' => '2026-01-01T08:00:01' ] ],
+      [ 'end',      'after:2026-01-01',                  [ 'end' => '2025-12-31', '2026-01-01' => '1999-01-01' ] ],
+      [ 'end',      'after:start_date',                  [ 'start_date' => '2026-03-01', 'end' => '2026-02-01' ] ]
     ]
 
   ];

@@ -653,14 +653,22 @@ Some rules look at another field of the post:
 {input 'note', rules='required_unless:delivery,collect'/}       # required unless it is
 {input 'code', rules='required_with:phone,fax'/}                # required when one of them is filled
 {input 'phone', rules='required_without:email'/}                # required when one of them is empty
+{input 'end', type='date', rules='after:start'/}                # or before:end, after:2026-01-01
 ```
 The other field is found where PHP files the post (`user[kind]`, `kinds[]` - which `kinds`
 finds too), its text trimmed; one the post leaves out is empty. `required_if`/`required_unless`
 compare as written, case and all, and a list meets the value when one of its items does;
 filled is what `required` passes (`0` is filled, blanks are not, a list with an item is). The
-four judge an empty field, and require a list as `required` does. The messages:
+four judge an empty field, and require a list as `required` does. `before`/`after` read ISO
+8601 alone - the day `2026-11-01` (its first moment) or the day with a time `2026-11-01T14:30`
+(`:15` seconds too), what date and datetime-local fields post - no other spelling, zone or
+word, alike on the server and in the browser; strictly before or after, so the same moment
+fails. A value that is no such moment fails; an other field that is empty, no moment or a
+list lets the rule pass - its own rules speak. An argument that reads as a date - four
+digits, a dash, a digit - is a date written in the rule, whatever field the post has of that
+name, and one the calendar lacks (`after:2026-02-30`) is the author's error. The messages:
 "Address is required when Delivery is ship", "... unless Delivery is collect", "... when
-Phone or Fax is filled in", "... when Email is empty".
+Phone or Fax is filled in", "... when Email is empty", "End must be a date after Start".
 
 `client` on the form checks the same rules in the browser too, with the same messages, before
 the form leaves (the runtime `www/assets/rules/validate.js` with every rule's script, written
