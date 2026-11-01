@@ -1638,6 +1638,8 @@ holidays subsystem in `pad/subs/holidays/` - `holidays.php` the body of `{holida
 A file may name the years its rules are known for, `years`: a year outside them is an error of
 `{holidays}` and of the calendar's `holidays=` under the strict check, and of the helpers -
 New Zealand's are 2010 to 2052, the years of its published dates and of the Matariki schedule.
+The calendar marks no day outside them: a month the visitor asked for - the request value its
+links set - is no error there and shows only the days inside those years.
 New Zealand (`nz`) adds the anniversary day of a province by the ISO 3166-2 code of the region
 of its name (`nz-auk`, `nz-can` - Christchurch Show Day, `nz-cit`), and observes Waitangi Day
 and Anzac Day on a weekend on the following Monday, Christmas and New Year on the next free
