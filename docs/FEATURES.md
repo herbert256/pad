@@ -409,7 +409,8 @@ reproducible after `padFakeSeed ( 42 )`: `padFakeName`, `padFakeEmail`, `padFake
 `pad seed shop [name]`.
 
 The kinds of fake value are the files of `pad/subs/fakes/types/` - address, boolean, city, colour,
-company, country, date, decimal, ean (an EAN-13 of the GS1 prefixes 20-29 kept for
+company, country, currency (a code of ISO 4217, three capitals the currency pipe takes), date,
+decimal, ean (an EAN-13 of the GS1 prefixes 20-29 kept for
 restricted circulation, its check digit right), email, firstname, iban (a Dutch number of the bank TEST that
 passes the check), ip (the documentation ranges), ipv6 (of 2001:db8::/32, kept for
 documentation, as RFC 5952 writes it), isbn (an ISBN-13 of 978 whose check digit holds), job, lastname, latitude and longitude (a
