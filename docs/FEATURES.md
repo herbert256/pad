@@ -1983,6 +1983,7 @@ page with the CSP nonce; `pad/subs/sections/section.php` the body every form run
 {tilt glare}<div class="card">...</div>{/tilt}                 # leans in 3D on hover and focus
 {spotlight at='top left'}...{/spotlight}                       # a soft light that sweeps across and rests
 {spinner style='dots', label='Saving'/}                        # ring, dots, bars, pulse, orbit - a status
+{skeleton shape='media', lines=3/}                             # grey bones while a part loads - a status
 {confetti}<button type="button">Celebrate</button>{/confetti}  # the one with a script; single: bursts in view
 ```
 Motion and decoration on a text or a block, CSS first: confetti is the only effect with a script,
@@ -1992,7 +1993,8 @@ with the CSP nonce, after the base every effect shares. Every animation stands i
 content still and whole - typed out, counted, revealed, marked - and confetti does not burst.
 A screen reader reads the text once, as it ends: the letters of a wave and the slices of a glitch
 are a copy marked `aria-hidden`, the typewriter's text is whole in the page while the CSS
-uncovers it, a count-up reads its last number, a spinner is a `role="status"` with its label.
+uncovers it, a count-up reads its last number, a spinner and a skeleton are a `role="status"` with
+its label.
 What repeats runs `repeat=` times - three unless given, `forever` the author's choice; the marquee
 stops while the pointer or the focus is on it and has a Pause button that works without script.
 The numbers of one effect - its duration, its delay, the length of its text - are custom
@@ -2001,7 +2003,8 @@ page with the nonce - never a style attribute, which a CSP nonce drops; the
 colours are `--pad-effect-accent`, `-accent2`, `-accent3`, `-text`, `-mark` and `-track` on
 `.pad-effect`, light and dark, falling back to the frame's `--accent`, `--text` and `--line`, so a
 theme colours them. The kinds are the files of `pad/subs/effects/types/` - typewriter, glitch,
-shimmer, gradient, wave, highlighter, countup, marquee, reveal, tilt, spotlight, spinner, confetti -
+shimmer, gradient, wave, highlighter, countup, marquee, reveal, tilt, spotlight, spinner, skeleton,
+confetti -
 and an effect is added by adding its file. Each is written three ways, the same effect:
 `{effect 'typewriter'}...{/effect}`, the effect type `{effect:typewriter}...{/effect:typewriter}`
 and bare, `{typewriter}...{/typewriter}`, when no tag, store, field or sequence has the name. A pair

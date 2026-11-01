@@ -839,7 +839,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [The frame of the PAD apps](docs/FEATURES.md#the-frame-of-the-pad-applications) | `{common:padFrame}`, `$frameMenu`, `www/_common/pad.css`, the theme switcher in its bar; the brand top left of every app `{common:padBrand/}`; the playground and live icons top right of every example, `padPlayLink ()` |
 | [Common patterns](docs/FEATURES.md#common-patterns) | zebra rows, comma lists, first/last wrappers, counters |
 | [Sections](docs/FEATURES.md#sections) | `{section:hero title=}`, `{section:pricing data=/}`, `{section:item 'Pro', price=}`, `{slot 'eyebrow'}` - landing-page blocks in pure CSS, a kind per file of `pad/subs/sections/types/` |
-| [Effects](docs/FEATURES.md#effects) | `{typewriter}`, `{highlighter}`, `{countup to=/}`, `{reveal}`, `{marquee}`, `{spinner/}`, `{confetti/}` - CSS first, still under reduced motion, a kind per file of `pad/subs/effects/types/` |
+| [Effects](docs/FEATURES.md#effects) | `{typewriter}`, `{highlighter}`, `{countup to=/}`, `{reveal}`, `{marquee}`, `{spinner/}`, `{skeleton/}`, `{confetti/}` - CSS first, still under reduced motion, a kind per file of `pad/subs/effects/types/` |
 | [Themes](docs/FEATURES.md#themes) | `$padTheme = 'paper'`, `{theme 'terminal'/}`, `{themes/}` - the frame's colours swapped, WCAG AA, a theme per file of `pad/subs/themes/types/` |
 | [Palettes](docs/FEATURES.md#palettes) | `{palette 'viridis', steps=7/}`, `palette=` on `{chart}`, `padPalette ()` - colour scales, a palette per file of `pad/subs/palettes/types/` |
 

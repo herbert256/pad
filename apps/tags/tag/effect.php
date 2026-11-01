@@ -21,6 +21,7 @@
 {tilt angle=8, toward='top-right', glare} ... {/tilt}
 {spotlight at='top', color='#f59e0b'} ... {/spotlight}
 {spinner style='ring', label='Loading', size=24/}
+{skeleton shape='text', lines=3, height=160, size=48, label='Loading'/}
 {confetti pieces=120, spread=70, seed=7/}
 PAD;
 
@@ -47,13 +48,16 @@ PAD;
     'scroll'    => 'Bare option, countup and highlighter: counted or drawn as it scrolls into view.',
     'direction' => 'marquee: <code>left</code> or <code>right</code>.',
     'gap'       => 'marquee: pixels between one round and the next (48).',
-    'label'     => 'marquee: the name of the band for a screen reader; spinner: what it says (<code>Loading</code>).',
+    'label'     => 'marquee: the name of the band for a screen reader; spinner and skeleton: what it says (<code>Loading</code>).',
     'motion'    => 'reveal: up, down, left, right, fade or zoom; <code>distance</code> how far in pixels (32).',
     'toward'    => 'tilt: the corner that comes toward the viewer - top-right, top-left, bottom-right, bottom-left.',
     'glare'     => 'Bare option, tilt: a sheen slides over the card as it leans.',
     'at'        => 'spotlight: where the light rests - top, center, a corner, or two percentages.',
     'style'     => 'spinner: ring, dots, bars, pulse or orbit.',
-    'size'      => 'spinner: pixels (24).',
+    'size'      => 'spinner: pixels (24); skeleton: the avatar\'s (48).',
+    'shape'     => 'skeleton: text, block, avatar, card or media - the shape of what is still on its way.',
+    'lines'     => 'skeleton: the lines of text (3, media 2).',
+    'height'    => 'skeleton: the picture of a block or a card, in pixels (160).',
     'pieces'    => 'confetti: how many (120); <code>spread</code> the angle they fly out in; <code>seed</code> which pieces.' ];
 
   $tagSee     = [ 'widget', 'toy', 'section' ];

@@ -4211,6 +4211,7 @@ subsystem is `pad/subs/effects/`.
 {marquee duration=25, label='Built with'}<b>PHP</b> <b>SQLite</b> <b>htmx</b>{/marquee}
 {reveal motion='left'}<div class="card">...</div>{/reveal}
 {spinner style='dots', label='Saving'/}
+{skeleton shape='card', lines=2/}
 {confetti}<button type="button">Celebrate</button>{/confetti}
 ```
 
@@ -4226,7 +4227,8 @@ moving copies of the wave and the glitch are `aria-hidden`, the count-up reads i
 What repeats runs `repeat=` times (3, or `forever`); `duration=` is the seconds of one run and
 `delay=` the seconds before the first, where a kind animates in time. Every option is checked
 under the strict check: an unknown kind, a value out of its bounds or none of its words, a colour
-that is no CSS colour, a kind that wraps a block written single, a text kind without its text.
+that is no CSS colour, a kind that wraps a block written single, a skeleton written as a pair, a
+text kind without its text.
 
 | Effect | Form | Does | Its options |
 |--------|------|------|-------------|
@@ -4242,6 +4244,7 @@ that is no CSS colour, a kind that wraps a block written single, a text kind wit
 | `tilt` | pair | A card that leans in 3D on hover and focus | `angle` (8), `toward` (top-right, top-left, bottom-right, bottom-left), `glare` |
 | `spotlight` | pair | A soft light sweeps across the block and rests | `at` (top, center, a side, a corner, '30% 20%'), `color`, `duration` (2.5), `delay`, `repeat` (1) |
 | `spinner` | both | A loader, `role="status"`; the pair's content is its shown label | `style` (ring, dots, bars, pulse, orbit), `label` (Loading), `size` (24 px), `color` |
+| `skeleton` | single | A placeholder of grey bones while a part loads, `role="status"`; a sheen sweeps over it | `shape` (text, block, avatar, card, media), `lines` (3; media 2), `height` (160 px), `size` (48 px), `label` (Loading) |
 | `confetti` | both | A burst of confetti: single when in view, a pair on a click in it | `pieces` (120), `spread` (70 degrees), `colors` (2 to 8), `seed` (7) |
 
 The colours are custom properties on `.pad-effect` - `--pad-effect-accent`, `-accent2`,
