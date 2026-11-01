@@ -41,93 +41,89 @@
         $at++;
     };
 
-    // A game tree: ( sequence of nodes, then its variations ). The main line goes on into the
-    // first variation; the others are read past.
-
-    $tree = function ( $main ) use ( &$tree, $text, $length, &$at, $skip ) {
-
-      $skip ();
-
-      if ( ( $text [$at] ?? '' ) != '(' )
-        return 'it does not start with (';
-
-      $at++;
-      $nodes = [];
-      $first = TRUE;
-
-      while ( TRUE ) {
-
-        $skip ();
-
-        if ( $at >= $length )
-          return 'a ( never closes';
-
-        $char = $text [$at];
-
-        if ( $char == ')' ) {
-          $at++;
-          return $nodes;
-        }
-
-        if ( $char == '(' ) {
-          $branch = $tree ( $main and $first );
-          if ( is_string ( $branch ) )
-            return $branch;
-          if ( $main and $first )
-            $nodes = array_merge ( $nodes, $branch );
-          $first = FALSE;
-          continue;
-        }
-
-        if ( $char != ';' )
-          return "it has a '$char' where a node starts with ;";
-
-        $at++;
-        $node = [];
-
-        while ( TRUE ) {
-
-          $skip ();
-
-          if ( ! preg_match ( '/\G([A-Z]+)/', $text, $m, 0, $at ) )
-            break;
-
-          $name = $m [1];
-          $at  += strlen ( $name );
-          $skip ();
-
-          if ( ( $text [$at] ?? '' ) != '[' )
-            return "the property $name has no value in [ ]";
-
-          while ( ( $text [$at] ?? '' ) == '[' ) {
-            $at++;
-            $value = '';
-            while ( $at < $length and $text [$at] != ']' ) {
-              if ( $text [$at] == '\\' and $at + 1 < $length )
-                $at++;
-              $value .= $text [$at++];
-            }
-            if ( $at >= $length )
-              return "a value of $name never closes with ]";
-            $at++;
-            $node [$name] [] = $value;
-            $skip ();
-          }
-
-        }
-
-        $nodes [] = $node;
-
-      }
-
-    };
-
     $skip ();
 
     if ( $at >= $length )
       return [];
 
-    $nodes = $tree ( TRUE );
+    if ( $text [$at] != '(' )
+      return 'it does not start with (';
+
+    // A game tree: ( sequence of nodes, then its variations ). The main line goes on into the
+    // first variation; the others are read past. The trees open are a stack, each whether it
+    // is on the main line and whether its first variation is still to come, and the nodes of
+    // the main line go into one list: a function calling itself per ( ended a record nested
+    // 50 000 deep with PHP's "Maximum call stack size reached", and merged the main line into
+    // the tree around it once per level.
+
+    $at++;
+    $open  = [ [ TRUE, TRUE ] ];
+    $nodes = [];
+
+    while ( $open ) {
+
+      $skip ();
+
+      if ( $at >= $length )
+        return 'a ( never closes';
+
+      $char = $text [$at];
+
+      if ( $char == ')' ) {
+        $at++;
+        array_pop ( $open );
+        continue;
+      }
+
+      if ( $char == '(' ) {
+        $at++;
+        $top = array_key_last ( $open );
+        $open [] = [ $open [$top] [0] and $open [$top] [1], TRUE ];
+        $open [$top] [1] = FALSE;
+        continue;
+      }
+
+      if ( $char != ';' )
+        return "it has a '$char' where a node starts with ;";
+
+      $at++;
+      $node = [];
+
+      while ( TRUE ) {
+
+        $skip ();
+
+        if ( ! preg_match ( '/\G([A-Z]+)/', $text, $m, 0, $at ) )
+          break;
+
+        $name = $m [1];
+        $at  += strlen ( $name );
+        $skip ();
+
+        if ( ( $text [$at] ?? '' ) != '[' )
+          return "the property $name has no value in [ ]";
+
+        while ( ( $text [$at] ?? '' ) == '[' ) {
+          $at++;
+          $value = '';
+          while ( $at < $length and $text [$at] != ']' ) {
+            if ( $text [$at] == '\\' and $at + 1 < $length )
+              $at++;
+            $value .= $text [$at++];
+          }
+          if ( $at >= $length )
+            return "a value of $name never closes with ]";
+          $at++;
+          $node [$name] [] = $value;
+          $skip ();
+        }
+
+      }
+
+      if ( end ( $open ) [0] )
+        $nodes [] = $node;
+
+    }
 
     return $nodes;
 
