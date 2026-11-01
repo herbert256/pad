@@ -21,8 +21,9 @@
   //   note     the pitch: a note name - A4, C#5, Bb3 - or a number of Hz; of noise, the rate
   //            it is held at for a coarse, pitched noise, white without it
   //   notes    a run of notes instead, 'C5 E5 G5', a - a step of rest; step= the seconds from
-  //            one to the next (its length without it)
-  //   to       the pitch it sweeps to, over glide= seconds (its length without it); bend= the
+  //            one to the next (its length without it); of noise, x a hit of white noise -
+  //            'x x - x', a run of claps
+  //   to      the pitch it sweeps to, over glide= seconds (its length without it); bend= the
   //            same as semitones, for every note of a run
   //   start    when it starts, in seconds; length= how long a note lasts
   //   attack, decay, sustain, release   the envelope - seconds, and sustain a level 0 to 1
@@ -117,7 +118,9 @@
 
         foreach ( preg_split ( '/[\s,]+/', trim ( (string) $one ['notes'] ) ) as $name ) {
           if ( $name !== '-' ) {
-            $hz      = padSoundHz ( $kind, $name );
+            if ( $name === 'x' and $wave != 'noise' )
+              padError ( "the sound '$kind' has an x in the notes of a $wave voice - x is a hit of white noise, in the notes of a noise voice" );
+            $hz      = ( $name === 'x' ) ? 0.0 : padSoundHz ( $kind, $name );
             $notes[] = [ $at, $hz, $bend ? $hz * pow ( 2, $bend / 12 ) : $hz ];
           }
           $at += $step;

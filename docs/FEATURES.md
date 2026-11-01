@@ -1421,10 +1421,11 @@ show them.
 A sound is a recipe, a file of `pad/subs/sounds/types/` that returns a PHP array - no audio file
 anywhere: voices played together, each an oscillator (sine, square, saw, triangle) or noise, with
 an envelope (attack, decay to a sustain level, release), a pitch that sweeps (`to=`), wobbles
-(`vibrato`) or steps through a short run of notes (`notes='C5 E5 G5'`, `step=`), and a filter -
-lowpass, highpass or bandpass - whose cutoff may sweep too. The sounds: bell, chime, click, coin,
-error, hihat, jump, kick, laser, notify, pop, powerup, snare, success, tick, warning, whoosh; a
-sound is added by adding its file. The server settles the recipe - every note to its Hz, every
+(`vibrato`) or steps through a short run of notes (`notes='C5 E5 G5'`, `step=`; of noise
+`notes='x x - x'`, a hit of white noise at every `x`), and a filter -
+lowpass, highpass or bandpass - whose cutoff may sweep too. The sounds: bell, chime, clap, click, coin,
+error, hihat, jump, kick, laser, notify, pop, powerup, shaker, snare, success, tick, warning, whoosh,
+woodblock; a sound is added by adding its file. The server settles the recipe - every note to its Hz, every
 default filled in - and both renderings read that one definition with the same arithmetic: the
 browser's script (`www/assets/sounds/sound.js`, written once per page with the CSP nonce,
 every recipe with it) renders the samples and plays them through WebAudio, and `padSoundWav (

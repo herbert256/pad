@@ -2471,6 +2471,7 @@ from a page's own script.
 |-------|------------|
 | `bell` | A struck bell, inharmonic partials dying away for two seconds |
 | `chime` | Two soft bells a fifth apart - something went well |
+| `clap` | A hand clap as a drum machine makes it: three bursts of noise, then the room |
 | `click` | The short dry click of a switch or a key |
 | `coin` | The two square notes of a coin in an old video game |
 | `error` | Two low buzzing notes falling a tritone |
@@ -2481,15 +2482,17 @@ from a page's own script.
 | `notify` | A gentle ding-dong - something came in |
 | `pop` | A bubble bursting, a sine swept quickly up |
 | `powerup` | A fast run of square notes up two octaves |
+| `shaker` | A shaker moved forth and back: two soft swells of bright noise |
 | `snare` | A snare drum: highpassed noise over a falling tone |
 | `success` | A rising major arpeggio |
 | `tick` | The tick of a clock, a high wooden tap |
 | `warning` | Two tones taking turns, a small siren |
 | `whoosh` | Noise through a bandpass sweeping up - air rushing past |
+| `woodblock` | The hollow knock of a wood block, its two modes and the stick |
 
 **The recipe:** `voices` played together; a voice has `wave` (sine, square, saw, triangle,
 noise), `note` (A4, C#5, Bb3 or Hz; of noise the rate it is held at) or `notes` ('C5 E5 G5', `-`
-a rest) with `step`, `to` and `glide` for a sweep or `bend` in semitones for every note of a run,
+a rest; of noise 'x x - x', a hit of white noise at every `x`) with `step`, `to` and `glide` for a sweep or `bend` in semitones for every note of a run,
 `start`, `length`, `attack`, `decay`, `sustain`, `release`, `gain`, `duty` (a square's pulse),
 `vibrato` ([ Hz, semitones ]) and `filter` ([ lowpass|highpass|bandpass, Hz, to Hz, q ]); the
 recipe `title`, `level` (the peak it is scaled to, 0.8) and `seed` (its noise). The server settles
