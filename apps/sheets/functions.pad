@@ -6,10 +6,10 @@ shows.</p>
 
 {spreadsheet 'sample', data='sample', caption='The sample sheet', formats='C:0.00'/}
 
-<nav class="sheets-groups" aria-label="Groups">{groups}<a href="#{$id}">{$group}</a>{/groups}</nav>
+<nav class="sheets-groups" aria-label="Groups">{groups}<a href="#group-{$id}">{$group}</a>{/groups}</nav>
 
 {groups}
-<h2 id="{$id}">{$group}</h2>
+<h2 id="group-{$id}">{$group}</h2>
 <table class="sheets-functions">
   <thead><tr><th scope="col">Function</th><th scope="col">What it does</th><th scope="col">Examples</th></tr></thead>
   <tbody>
