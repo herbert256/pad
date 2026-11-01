@@ -89,7 +89,26 @@
     if ( ! preg_match ( '/^### ' . preg_quote ( $name, '/' ) . '\s*\n(.*?)(?=^#{2,3} |^---)/ms', $text, $match ) )
       return '';
 
-    return padMarkdown ( trim ( $match [1] ) );
+    // A link of the section to another document - ../DATABASE.md - is to that file in the
+    // repository: relative, on a page of this application it led nowhere.
+
+    return preg_replace_callback ( '/href="(?![a-z]+:|#|\/)([^"]*\.md(?:#[^"]*)?)"/',
+             fn ( $m ) => 'href="https://github.com/herbert256/pad/blob/master/' . typesDocPath ( 'docs/reference/' . $m [1] ) . '"',
+             padMarkdown ( trim ( $match [1] ) ) );
+
+  }
+
+  // A path with its ../ and ./ resolved.
+
+  function typesDocPath ( $path ) {
+
+    $parts = [];
+
+    foreach ( explode ( '/', $path ) as $part )
+      if ( $part == '..' ) array_pop ( $parts );
+      elseif ( $part != '.' and $part !== '' ) $parts [] = $part;
+
+    return implode ( '/', $parts );
 
   }
 
