@@ -1,6 +1,6 @@
 <p><code>{widget}</code> puts an interactive part on the page - tabs, an accordion, a carousel,
 a wizard, a lightbox, a split pane, a modal, a drawer, a dropdown, a context menu, a command
-palette, a tooltip, a toast, a copy box, a poll, a breadcrumb. Every one is built on the server and works without JavaScript: radio buttons and
+palette, a tooltip, a toast, a copy box, a poll, a breadcrumb, a sortable list. Every one is built on the server and works without JavaScript: radio buttons and
 CSS, <code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code>, the <code>popover</code>
 attribute, <code>:target</code>. Where a widget has a script it only makes it handier - Escape,
 the arrow keys, the focus - and is written once per page, with the CSP nonce. Every widget is a
@@ -16,7 +16,7 @@ wins - a page's <code>$tabs</code> array is the data of <code>{tabs}</code>. Two
 built-in tags: <a href="?tag/copy"><code>{copy}</code></a>, as PHP has a <code>copy()</code>
 function a bare name would reach first, and <a href="?tag/tab"><code>{tab}</code></a>, the item
 of the widgets that take a list of labelled parts - tabs, accordion, carousel, wizard,
-lightbox and splitpane.</p>
+lightbox, splitpane and sortable.</p>
 
 <ul>
   <li><b>tabs</b> - panels behind a row of tabs: a radio button and a label per tab, the arrow
@@ -40,7 +40,9 @@ lightbox and splitpane.</p>
   the browser has none - no form of its own, so it stands inside a form too;
   <code>timeout=</code> closes it by itself.</li>
   <li><b>copy</b> - a text and a copy-to-clipboard button. <b>poll</b> - a vote once per visitor,
-  the results as bars. <b>breadcrumb</b> - the trail from home to the page, from the page's
+  the results as bars. <b>sortable</b> - a short list put in order by hand, every item posted
+  with its place: dragged, moved by buttons or the keyboard, number fields without scripting.
+  <b>breadcrumb</b> - the trail from home to the page, from the page's
   path, the lines of a pair or <code>data=</code>.</li>
 </ul>
 

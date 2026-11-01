@@ -1575,6 +1575,7 @@ as graph paper's are; the content between the tags is a line over the staves.
 {splitpane size=30, collapse}{tab 'Files'}...{/tab}{tab 'Editor'}...{/tab}{/splitpane}   # two panes, a bar dragged or moved by the keys
 {contextmenu 'Actions for a.pdf', area='tr'}<a href="?open">Open</a>...{/contextmenu}   # right click, Shift+F10 or its dots button
 {commandpalette 'Go to', data='commands'/}   # Ctrl+K: a search box over the commands, Enter runs one
+{form 'f'}{sortable 'order'}{tab 'a1'}...{/tab}...{/sortable}{/form}   # put in order by hand, posted as order[a1]=1
 {widget 'modal', 'terms', title='Terms'}...{/widget}   # the widget tag: its first parameter names the widget
 {widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type - or bare, as above
 ```
@@ -1587,7 +1588,7 @@ parameter is the widget's first), the widget type `{widget:modal 'terms'}`, and 
 an array of the name wins - a page's `$tabs` array is the data of `{tabs}`. `{copy}` is a
 built-in tag as well, which runs the copy widget, since PHP's `copy()` would take the bare
 name first; `{tab}` - the item of `{tabs}`, `{accordion}`, `{carousel}`, `{wizard}`,
-`{lightbox}` and `{splitpane}` - is a built-in tag. A widget works without JavaScript; its script, where it has one, is written once per page
+`{lightbox}`, `{splitpane}` and `{sortable}` - is a built-in tag. A widget works without JavaScript; its script, where it has one, is written once per page
 with the CSP nonce, and its colours are `--pad-<widget>-*` custom properties with light and
 dark defaults. The `showcase` application has examples of each, the tags application's widget
 page lists every widget with its options, the manual has a widgets page.

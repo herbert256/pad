@@ -2726,7 +2726,8 @@ out.
 ### widget
 An interactive part of the page that works without JavaScript and gets better with it - tabs,
 an accordion, a carousel, a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a
-toast, a copy box, a poll, a breadcrumb, a split pane, a context menu, a command palette. Every widget is a file of
+toast, a copy box, a poll, a breadcrumb, a split pane, a context menu, a command palette, a
+sortable list. Every widget is a file of
 `pad/subs/widgets/types/` - its tag code - with its functions in `pad/subs/widgets/_lib/`, its style and
 script in `www/assets/widgets/`, and the files of `types/` are the widgets there are
 (`padWidgetTypes()`); the subsystem is `pad/subs/widgets/`.
@@ -2759,6 +2760,7 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | `lightbox` | Every `{tab}` a thumbnail that opens its picture large over the page, `:target` | `label` |
 | `modal` | A `<dialog>` and the button that opens it | the name, `title`, `button` |
 | `poll` | A vote once per visitor, the results as bars | the name, `options`, `title`, `button`, `results` |
+| `sortable` | A short list put in order by hand - every `{tab}` an item, dragged, moved by buttons or the keyboard, its place posted with the form | the name, `label` |
 | `splitpane` | Two `{tab}` panes and the bar between them, dragged or moved by the arrow keys; the browser's resize grip without scripting | `size`, `min`, `max`, `stacked`, `collapse`, `height` |
 | `tabs` | Panels behind a row of tabs - radio buttons and CSS | `active` |
 | `toast` | A notice the visitor dismisses, in the flow or in a corner of the window | the title, `tone`, `place`, `timeout` |
@@ -2775,8 +2777,8 @@ written once per page. A name that is no widget is an error, "there is no widget
 ### tabs
 Panels behind a row of tabs, without JavaScript - a radio button and a label per tab, the CSS
 showing the panel of the checked one (`subs/widgets/_lib/tabs.php`). The items are `{tab}` pairs,
-which `{accordion}`, `{carousel}`, `{wizard}`, `{lightbox}` and `{splitpane}` take as well -
-`{tab}` is a built-in tag.
+which `{accordion}`, `{carousel}`, `{wizard}`, `{lightbox}`, `{splitpane}` and `{sortable}` take
+as well - `{tab}` is a built-in tag.
 
 ```html
 {tabs active='Specs'}
@@ -2795,7 +2797,7 @@ which `{accordion}`, `{carousel}`, `{wizard}`, `{lightbox}` and `{splitpane}` ta
 | `{tab 'label'}` | One tab: the first parameter is its label, the content its panel |
 
 **Behavior:** a `{tab}` renders its content and hands it to the nearest `{tabs}`,
-`{accordion}`, `{carousel}`, `{wizard}`, `{lightbox}` or `{splitpane}` below it instead of printing it - it
+`{accordion}`, `{carousel}`, `{wizard}`, `{lightbox}`, `{splitpane}` or `{sortable}` below it instead of printing it - it
 may stand in an `{if}` or in a loop that makes a tab per row. The set is a radio group: one stop in the tab order, the
 arrow keys move between the tabs, a screen reader hears the label and 'checked'; each panel is
 a `region` named by its tab. No fragment goes into the address, so two sets on a page keep
@@ -3347,6 +3349,63 @@ text area or an editable part, whose own keys stay theirs; the button shows it, 
 `-text`, `-muted`, `-line`, `-surface`, `-hover` and `-backdrop` on `.pad-commandpalette`,
 taken from the page's palette where it has one, with `light-dark()` defaults. A palette without
 commands and a `key` outside the letters above are errors under the strict check.
+
+---
+
+### sortable
+A short list put in order by hand - a to-do list ranked, the tracks of a playlist, the steps of
+a recipe - its order posted with the form it stands in: every `{tab}` an item, its parameter the
+key the item is posted under, its content what the item shows
+(`subs/widgets/_lib/sortable.php`).
+
+```html
+{form 'ranking'}
+  {sortable 'priority', label='The tasks, most urgent first'}
+    {tasks}{tab $id}{$title}{/tab}{/tasks}
+  {/sortable}
+  <button>Save the order</button>
+{/form}
+```
+
+```php
+if ( padPosted ( 'ranking' ) ) {
+  $places = array_intersect_key ( (array) padRequest ( 'priority', [] ), $mine );  // the keys this page wrote
+  asort ( $places );                                                             // [ key => place ]
+  $order  = array_keys ( $places );                                              // first to last
+}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The name the items are posted under - letters, digits, `_` and `-`: `priority[a1]=1`, `priority[b7]=2` |
+| `label` | The name of the list for a screen reader - the name made readable when not given (`Priority`) |
+| `{tab 'key'}` | An item: its key - letters, digits, `_`, `-`, `.` and `:`, never twice - and its content |
+
+**Behavior:** every item is posted with its place under its key, from 1, the same with a script
+and without one. Without scripting each item shows a number field, its place, which the visitor
+changes by hand: the list is sorted by those numbers and items of one number keep the order they
+had - 0 puts an item first, the number of another item puts it just before that one - as
+`asort` sorts them. What comes back is a proposal: the application checks that its keys are the
+ones it wrote and keeps the order itself, the form's CSRF token guarding the post. A form that
+comes back - a field elsewhere in it failed its rules - shows the items in the order posted,
+when the post names every item once. With scripting a small script, once per page with the CSP
+nonce, takes the number fields out of sight and keeps them filled, and gives each item a grip
+to drag it with a mouse, a pen or a finger - the item takes its place among the others as the
+pointer passes their middles, Escape puts it back - and Move up and Move down buttons, one click
+a place, for a pointer that cannot drag (WCAG 2.5.7), dimmed and `aria-disabled` at the ends. The
+grip works from the keyboard as well: Space or Enter picks the item up, the arrow keys, Home and
+End move it, Space or Enter puts it down, Escape puts it back, and leaving the grip puts it
+down. Every move is said in a live region - 'Write the report, place 3 of 5' - and the grip and
+the buttons are named by the item's text; the item stays where it is in the document while
+the others move round it, so it keeps the focus and a drag its pointer. After a move a
+`pad-sortable` event bubbles from the list, the keys in their new order in its `detail`, and each
+number field whose place changed sends `change`. Printed, the controls go. The colours are
+`--pad-sortable-accent`, `-text`, `-muted`, `-line`, `-surface` and `-hover` on `.pad-sortable`,
+taken from the page's palette where it has one, with `light-dark()` defaults. A sortable without
+a valid name, an item without a key or with one that is no key, and two items of one key are
+errors under the strict check; the lenient walk shows the items as they are, without the list.
 
 ---
 
@@ -5171,6 +5230,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `splitpane` | Widget | Two panes and a bar between them, dragged or moved by the arrow keys - the window splitter pattern; the resize grip without scripting |
 | `contextmenu` | Widget | The actions on a part of the page - a right click, Shift+F10 or the context menu key; its button of three dots opens the same popover without scripting |
 | `commandpalette` | Widget | A search over the commands of an application - Ctrl+K or a button opens a dialog, typing narrows the links, Enter runs one; the whole list without scripting |
+| `sortable` | Widget | A short list put in order by hand - dragged, moved by buttons or the keyboard; every item posted with its place, number fields without scripting |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/subs/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |

@@ -15,6 +15,7 @@
 {wizard active=1, next='Next', back='Back'} {tab 'step'} ... {/tab} ... {/wizard}
 {lightbox label='name'} {tab 'caption'} <img ...> {/tab} ... {/lightbox}
 {splitpane size=30, min=20, max=60, stacked, collapse, height='16rem'} {tab 'label'} ... {/tab} {tab 'label'} ... {/tab} {/splitpane}
+{sortable 'name', label='text'} {tab 'key'} ... {/tab} ... {/sortable}
 {modal 'name', title='heading', button='text'} ... {/modal}
 {drawer 'name', title='heading', button='text', side='left'} ... {/drawer}
 {dropdown 'text', align='end'} <a href="..."> ... </a> ... {/dropdown}
@@ -31,13 +32,13 @@ PAD;
     'name' => 'The widget, a file of <code>pad/subs/widgets/types/</code>: '
             . implode ( ', ', array_map ( fn ( $widget ) => "<code>$widget</code>", padWidgetTypes () ) )
             . '. The widget: type names it as well - <code>{widget:modal \'terms\'}</code> - and so does the bare name, <code>{modal \'terms\'}</code>, after every other kind of tag: a store, a field or an array of the name wins.',
-    'first'  => 'The widget\'s own first parameter, the second of <code>{widget}</code>: the name of a modal, a drawer, a poll or a context menu, the text of a copy box, the title of a toast, the button of a dropdown, the tip of a tooltip, the button of a command palette.' ];
+    'first'  => 'The widget\'s own first parameter, the second of <code>{widget}</code>: the name of a modal, a drawer, a poll, a context menu or a sortable, the text of a copy box, the title of a toast, the button of a dropdown, the tip of a tooltip, the button of a command palette.' ];
 
   $tagOptions = [
     'active'  => 'tabs, wizard: the tab or step shown first, by its number from 1 or its label.',
     'single'  => 'Bare option, accordion: one item open at a time.',
     'open'    => 'accordion: the item open at first, by its number or its label; bare, every item.',
-    'label'   => 'carousel, lightbox, wizard, breadcrumb: the name for a screen reader; copy: the button\'s text.',
+    'label'   => 'carousel, lightbox, wizard, breadcrumb, sortable: the name for a screen reader; copy: the button\'s text.',
     'title'   => 'modal, drawer: the heading that names the dialog; poll: the question.',
     'button'  => 'modal, drawer: the text of the button that opens it (<code>Open</code>); poll: the vote button.',
     'side'    => 'drawer: <code>right</code> (the default), <code>left</code> or <code>bottom</code>.',

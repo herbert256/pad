@@ -1,9 +1,10 @@
 {ignore}
-<p><code>{tab}</code> is the item of the six <a href="?tag/widget">widgets</a> that take a list
+<p><code>{tab}</code> is the item of the seven <a href="?tag/widget">widgets</a> that take a list
 of labelled parts: <code>{tabs}</code> (a tab and its panel), <code>{accordion}</code> (a
 <code>&lt;details&gt;</code> with the label as its summary), <code>{carousel}</code> (a slide
 with the label as its caption), <code>{wizard}</code> (a step), <code>{lightbox}</code> (a
-picture with its caption) and <code>{splitpane}</code> (one of its two panes). It prints nothing where it stands: its content is rendered, trimmed,
+picture with its caption), <code>{splitpane}</code> (one of its two panes) and
+<code>{sortable}</code> (an item put in order, the label its key). It prints nothing where it stands: its content is rendered, trimmed,
 and handed to the nearest of those owners above it, which builds its markup from the items once
 its own content has rendered.</p>
 
@@ -15,6 +16,7 @@ with a field named <code>tab</code> still makes tabs.</p>
 
 <p>Under the strict check a <code>{tab}</code> outside any owner is an error, as is one that
 never closes, and a tab of a <code>{tabs}</code>, an <code>{accordion}</code>, a
-<code>{wizard}</code> or a <code>{splitpane}</code> without a label. A carousel slide and a lightbox picture may go without a
+<code>{wizard}</code> or a <code>{splitpane}</code> without a label, an item of a
+<code>{sortable}</code> without its key. A carousel slide and a lightbox picture may go without a
 label; they then have no caption.</p>
 {/ignore}
