@@ -293,12 +293,18 @@ PadToys.register('percolation', function (k, cfg) {
     draw();
     k.status('Site ' + (cursor.x + 1) + ', ' + (cursor.y + 1) + (open[i] ? ' opened' : ' closed'));
   }
+  // The chance makes the grid of flow; an experiment's trial opens its own sites in a random
+  // order, so there the chance is only kept for flow, the trial and its sites left alone.
+  function chance() {
+    if (mode === 'flow') apply(true);
+    else k.status('The chance is for flow - the experiment opens its sites in a random order');
+    draw();
+    drawChart();
+  }
   function setP(v) {
     p = Math.max(0, Math.min(1, Math.round(v * 1000) / 1000));
     pIn.set(p);
-    apply(true);
-    draw();
-    drawChart();
+    chance();
   }
   function setMode(v) {
     mode = v;
@@ -339,7 +345,7 @@ PadToys.register('percolation', function (k, cfg) {
   k.button('New grid', newGrid, 'New random numbers, or the trials again (R)');
   var modeIn = k.select('Mode', [['flow', 'Flow'], ['experiment', 'Experiment']], mode, setMode).querySelector('select');
   k.row();
-  var pIn = k.slider('Chance', 0, 1, 0.001, p, function (v) { p = v; apply(true); draw(); drawChart(); }, function (v) { return v.toFixed(3); });
+  var pIn = k.slider('Chance', 0, 1, 0.001, p, function (v) { p = v; chance(); }, function (v) { return v.toFixed(3); });
   k.select('Neighbours', [['4', '4, beside'], ['8', '8, corners too']], String(nb), function (v) { nb = +v; trials = []; if (mode === 'flow') apply(true); else trial(); draw(); drawChart(); });
   k.select('Colour', [['flow', 'The water'], ['clusters', 'Clusters']], colour, function (v) { colour = v; draw(); });
   k.slider('Speed', 1, 10, 1, speed, function (v) { speed = v; });
