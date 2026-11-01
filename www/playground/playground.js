@@ -168,11 +168,17 @@
         automaticLayout: true, minimap: { enabled: false }, fontSize: 13, tabSize: 2, insertSpaces: true,
         scrollBeyondLastLine: false, lineNumbersMinChars: 3, renderLineHighlight: 'none',
         bracketPairColorization: { enabled: true }, fontFamily: 'ui-monospace, Menlo, monospace',
-        padding: { top: 6 }, overviewRulerLanes: 0
+        padding: { top: 6 }, overviewRulerLanes: 0, placeholder: area.getAttribute('placeholder') || ''
       });
+
+      // An empty box has no line numbers: the 1 of its one empty line read as a value in it.
+
+      var numbers = function () { editor.updateOptions({ lineNumbers: editor.getValue() === '' ? 'off' : 'on' }); };
+      numbers();
       editor.onDidChangeModelContent(function () {
         area.value = editor.getValue();
         area.dispatchEvent(new Event('input'));
+        numbers();
       });
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, render);
       if (label) label.addEventListener('click', function () { editor.focus(); });
