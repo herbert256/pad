@@ -1,7 +1,8 @@
 <?php
 
   // min_items and max_items - at least, at most n values of a list, the items left blank not
-  // counted; a field of one value holds one, an empty list is judged by required alone.
+  // counted; a field of one value holds one, an empty list - its items all left blank too -
+  // is judged by required alone, which it fails.
   // The rows are the shared table of the Pages suite's forms/_rules.php, which its
   // client_parity holds the browser's checker to.
 

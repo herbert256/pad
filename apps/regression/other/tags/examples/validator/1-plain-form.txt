@@ -17,7 +17,7 @@
     return typeof value === 'string' ? value.replace(/^[ \t\n\r\0\x0B]+|[ \t\n\r\0\x0B]+$/g, '') : value;
   }
   function empty(value) {
-    return value === '' || value === null || value === undefined || (Array.isArray(value) && value.length === 0);
+    return value === '' || value === null || value === undefined || (Array.isArray(value) && counted(value) === 0);
   }
   function toNumber(value) {
     var found = String(value).match(/^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?/);
@@ -136,7 +136,7 @@
     return text(value) ? trim(String(value)) : '';
   }
   function filled(value) {
-    return Array.isArray(value) ? value.length > 0 : trim(String(value)) !== '';
+    return Array.isArray(value) ? counted(value) > 0 : trim(String(value)) !== '';
   }
   function siblingIs(values, arg) {
     var parts = String(arg).split(',');
@@ -510,7 +510,7 @@ addRule('regex', {
 (function () {
 addRule('required', {
   check: function (value) { return value !== ''; },
-  list: function (list) { return list.length > 0; }
+  list: function (list) { return counted(list) > 0; }
 });
 })();
 (function () {

@@ -50,8 +50,9 @@
     return typeof value === 'string' ? value.replace(/^[ \t\n\r\0\x0B]+|[ \t\n\r\0\x0B]+$/g, '') : value;
   }
 
+  // Empty as padValidate takes it: a list whose items are all left blank too.
   function empty(value) {
-    return value === '' || value === null || value === undefined || (Array.isArray(value) && value.length === 0);
+    return value === '' || value === null || value === undefined || (Array.isArray(value) && counted(value) === 0);
   }
 
   // PHP's (float) of a text: the number its start spells, 0 when it spells none - the white
@@ -217,9 +218,9 @@
     return text(value) ? trim(String(value)) : '';
   }
 
-  // Filled as required judges it: a text that is not empty, a list with an item.
+  // Filled as required judges it: a text that is not empty, a list with an item filled in.
   function filled(value) {
-    return Array.isArray(value) ? value.length > 0 : trim(String(value)) !== '';
+    return Array.isArray(value) ? counted(value) > 0 : trim(String(value)) !== '';
   }
 
   // Whether the field required_if or required_unless names first holds one of the values

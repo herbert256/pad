@@ -798,8 +798,9 @@ twice - as written, each trimmed, an item left blank no value (three fields of `
 of them empty, pass) - "Guests must not hold the same value twice"; a field of one value holds
 its value once. `min_items:n` and `max_items:n` count the values of a list - two or three
 toppings ticked, `required|min_items:2|max_items:3` - the items left blank not counted, a field
-of one value holding one, an empty list judged by `required` alone (as `min:` leaves an empty
-text): "Toppings must hold at least 2 values". Their argument is a whole number from 1.
+of one value holding one, an empty list - or one whose items are all left blank - judged by
+`required` alone (as `min:` leaves an empty text), so `min_items:2` alone asks for two guests or
+none: "Toppings must hold at least 2 values". Their argument is a whole number from 1.
 
 Some rules look at another field of the post:
 ```
@@ -820,7 +821,8 @@ not ticked - is read where the page reads it, from the query string of the addre
 posts to (`?checkout&delivery=collect`), by the checker too, and is empty when that has none
 either. `required_if`/`required_unless`
 compare as written, case and all, and a list meets the value when one of its items does;
-filled is what `required` passes (`0` is filled, blanks are not, a list with an item is). The
+filled is what `required` passes (`0` is filled, blanks are not, a list with an item filled in
+is - three boxes of `guests[]` left blank are not). The
 four judge an empty field, and require a list as `required` does. `before`/`after` read ISO
 8601 alone - the day `2026-11-01` (its first moment) or the day with a time `2026-11-01T14:30`
 (`:15` seconds and `:15.25` a fraction of one too, as a field with a step under a second posts

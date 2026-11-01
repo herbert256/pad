@@ -3,9 +3,9 @@
   // required_without:field[,field...] - required, as required judges it, when one of the
   // other fields is empty - one of two ways to be reached, a phone when there is no e-mail,
   // required_without:email. Empty is what required refuses: a text that is empty once
-  // trimmed, a list without an item, a field neither the post nor the query string has. Its
-  // argument is a field name - required_without: with none never required anything, and is
-  // the author's error.
+  // trimmed, a list without an item filled in, a field neither the post nor the query string
+  // has. Its argument is a field name - required_without: with none never required anything,
+  // and is the author's error.
 
   return [
     'empty'    => TRUE,

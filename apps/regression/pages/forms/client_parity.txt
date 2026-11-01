@@ -5051,6 +5051,83 @@
             }
         },
         {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "",
+                    " "
+                ]
+            },
+            "server": "Guests is required",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "",
+                    "ada"
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "colors[]",
+            "data": {
+                "colors[]": [
+                    ""
+                ]
+            },
+            "server": "",
+            "client": {
+                "colors[]": {
+                    "label": "Colors",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "in",
+                            "red,green",
+                            ":label must be one of :n",
+                            "red, green"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
             "field": "again",
             "data": {
                 "again": "p1",
@@ -5854,6 +5931,36 @@
             }
         },
         {
+            "field": "gifts[]",
+            "data": {
+                "delivery": "ship",
+                "gifts[]": [
+                    "",
+                    " "
+                ]
+            },
+            "server": "Gifts is required when Delivery is ship",
+            "client": {
+                "gifts[]": {
+                    "label": "Gifts",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_if",
+                            "delivery,ship",
+                            ":label is required when :n",
+                            "Delivery is ship"
+                        ]
+                    ],
+                    "watch": [
+                        "delivery"
+                    ]
+                }
+            }
+        },
+        {
             "field": "address",
             "data": {
                 "delivery": "collect",
@@ -6647,6 +6754,66 @@
             }
         },
         {
+            "field": "code",
+            "data": {
+                "phones[]": [
+                    "",
+                    " "
+                ],
+                "code": ""
+            },
+            "server": "",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_with",
+                            "phones[]",
+                            ":label is required when :n is filled in",
+                            "Phones"
+                        ]
+                    ],
+                    "watch": [
+                        "phones[]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "phones[]": [
+                    "",
+                    "0612"
+                ],
+                "code": ""
+            },
+            "server": "Code is required when Phones is filled in",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_with",
+                            "phones[]",
+                            ":label is required when :n is filled in",
+                            "Phones"
+                        ]
+                    ],
+                    "watch": [
+                        "phones[]"
+                    ]
+                }
+            }
+        },
+        {
             "field": "phone",
             "data": {
                 "email": "",
@@ -7004,6 +7171,66 @@
             "data": {
                 "email": "",
                 "phones[]": []
+            },
+            "server": "Phones is required when Email is empty",
+            "client": {
+                "phones[]": {
+                    "label": "Phones",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_without",
+                            "email",
+                            ":label is required when :n is empty",
+                            "Email"
+                        ]
+                    ],
+                    "watch": [
+                        "email"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "phone",
+            "data": {
+                "emails[]": [
+                    "",
+                    " "
+                ],
+                "phone": ""
+            },
+            "server": "Phone is required when Emails is empty",
+            "client": {
+                "phone": {
+                    "label": "Phone",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_without",
+                            "emails[]",
+                            ":label is required when :n is empty",
+                            "Emails"
+                        ]
+                    ],
+                    "watch": [
+                        "emails[]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "phones[]",
+            "data": {
+                "email": "",
+                "phones[]": [
+                    "",
+                    ""
+                ]
             },
             "server": "Phones is required when Email is empty",
             "client": {
@@ -14032,7 +14259,7 @@
                     ""
                 ]
             },
-            "server": "Toppings must hold at least 2 values",
+            "server": "",
             "client": {
                 "toppings[]": {
                     "label": "Toppings",
@@ -14187,7 +14414,7 @@
                     " "
                 ]
             },
-            "server": "Toppings must hold at least 1 value",
+            "server": "",
             "client": {
                 "toppings[]": {
                     "label": "Toppings",
@@ -14325,6 +14552,132 @@
                     "list": false,
                     "single": ":label must be a single value",
                     "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "server": "Guests is required",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "min_items",
+                            "1",
+                            ":label must hold at least :n value",
+                            "1"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "ada",
+                    "",
+                    ""
+                ]
+            },
+            "server": "Guests must hold at least 2 values",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "ada",
+                    "bob",
+                    ""
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
                         [
                             "min_items",
                             "2",
@@ -15242,7 +15595,7 @@
                 "emails[0]": "",
                 "phone": ""
             },
-            "server": "",
+            "server": "Phone is required when Emails is empty",
             "client": {
                 "phone": {
                     "label": "Phone",

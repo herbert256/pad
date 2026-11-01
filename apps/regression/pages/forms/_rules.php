@@ -42,7 +42,8 @@
       [ 'gifts[]',  'required_if:delivery,ship',         [ 'delivery' => 'ship', 'gifts[]' => [ 'card' ] ] ],
       [ 'gifts[]',  'required_if:delivery,ship',         [ 'delivery' => 'collect', 'gifts[]' => [ ] ] ],
       [ 'address',  'required_if:delivery,ship|min:5',   [ 'delivery' => 'ship', 'address' => 'Main' ] ],
-      [ 'address',  'required_if:delivery,ship|min:5',   [ 'delivery' => 'collect', 'address' => '' ] ]
+      [ 'address',  'required_if:delivery,ship|min:5',   [ 'delivery' => 'collect', 'address' => '' ] ],
+      [ 'gifts[]',  'required_if:delivery,ship',         [ 'delivery' => 'ship', 'gifts[]' => [ '', ' ' ] ] ]
     ],
 
     'required_unless' => [
@@ -77,7 +78,9 @@
       [ 'code',     'required_with:phones',              [ 'phones[]' => [ '0612' ], 'code' => '' ] ],
       [ 'code',     'required_with:user[phone]',         [ 'user[phone]' => '0612', 'code' => '' ] ],
       [ 'codes[]',  'required_with:phone',               [ 'phone' => '0612', 'codes[]' => [ ] ] ],
-      [ 'codes[]',  'required_with:phone',               [ 'phone' => '0612', 'codes[]' => [ '31' ] ] ]
+      [ 'codes[]',  'required_with:phone',               [ 'phone' => '0612', 'codes[]' => [ '31' ] ] ],
+      [ 'code',     'required_with:phones[]',            [ 'phones[]' => [ '', ' ' ], 'code' => '' ] ],
+      [ 'code',     'required_with:phones[]',            [ 'phones[]' => [ '', '0612' ], 'code' => '' ] ]
     ],
 
     'required_without' => [
@@ -94,7 +97,9 @@
       [ 'phone',    'required_without:emails[]',         [ 'emails[]' => [ 'ada@example.com' ], 'phone' => '' ] ],
       [ 'phone',    'required_without:user[email]',      [ 'user[email]' => '', 'phone' => '' ] ],
       [ 'phone',    'required_without:user[email]',      [ 'user[email]' => 'ada@example.com', 'phone' => '' ] ],
-      [ 'phones[]', 'required_without:email',            [ 'email' => '', 'phones[]' => [ ] ] ]
+      [ 'phones[]', 'required_without:email',            [ 'email' => '', 'phones[]' => [ ] ] ],
+      [ 'phone',    'required_without:emails[]',         [ 'emails[]' => [ '', ' ' ], 'phone' => '' ] ],
+      [ 'phones[]', 'required_without:email',            [ 'email' => '', 'phones[]' => [ '', '' ] ] ]
     ],
 
     'before' => [
@@ -411,7 +416,11 @@
       [ 'toppings[]', 'min_items:2|in:cheese,olives',    [ 'toppings[]' => [ 'cheese', 'ham' ] ] ],
       [ 'topping',  'min_items:1',                       [ 'topping' => 'cheese' ] ],
       [ 'topping',  'min_items:2',                       [ 'topping' => 'cheese' ] ],
-      [ 'topping',  'min_items:2',                       [ 'topping' => [ 'cheese', 'olives' ] ] ]
+      [ 'topping',  'min_items:2',                       [ 'topping' => [ 'cheese', 'olives' ] ] ],
+      [ 'guests[]', 'min_items:2',                       [ 'guests[]' => [ '', '', '' ] ] ],
+      [ 'guests[]', 'required|min_items:1',              [ 'guests[]' => [ '', '', '' ] ] ],
+      [ 'guests[]', 'required|min_items:2',              [ 'guests[]' => [ 'ada', '', '' ] ] ],
+      [ 'guests[]', 'required|min_items:2',              [ 'guests[]' => [ 'ada', 'bob', '' ] ] ]
     ],
 
     'max_items' => [

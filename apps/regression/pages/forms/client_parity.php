@@ -216,6 +216,9 @@
     [ 'age',      'min:5|numeric',            [ 'age' => "\u{A0}9" ] ],
     [ 'age',      'between:1,5|numeric',      [ 'age' => "\u{FEFF}3" ] ],
     [ 'age',      'max:5|integer',            [ 'age' => "\u{2028}9" ] ],
+    [ 'guests[]', 'required',                 [ 'guests[]' => [ '', ' ' ] ] ],
+    [ 'guests[]', 'required',                 [ 'guests[]' => [ '', 'ada' ] ] ],
+    [ 'colors[]', 'in:red,green',             [ 'colors[]' => [ '' ] ] ],
     [ 'again',    'same:password[]',          [ 'again' => 'p1', 'password[]' => [ 'p1' ] ] ],
   ];
 
