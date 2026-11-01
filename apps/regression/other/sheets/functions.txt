@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 114 functions a formula can call, each a file of
+<p class="sheets-lead">The 120 functions a formula can call, each a file of
 <code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -614,6 +614,12 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=DATE(2024, 2, 30)</code> <samp>2024-03-01</samp></li><li><code>=DATE(2024, 13, 1)</code> <samp>2025-01-01</samp></li><li><code>=DATE(2024, 1, 15)*1</code> <samp>45306</samp></li></ul></td>
     </tr>
   
+    <tr id="datevalue">
+      <th scope="row">DATEVALUE</th>
+      <td>DATEVALUE(text) is the serial of the date a text says - 2024-01-15, 1/15/2024 (the month first), 15-Jan-2024, January 15, 2024 - its time of day left out, shown as a date. A text that reads as no date of 1900 to 9999 - a time alone too - and a value that is no text - a number, a cell holding a date - is #VALUE!; so is a date without a year, which Excel reads in the year of its clock.</td>
+      <td><ul class="sheets-examples"><li><code>=DATEVALUE(&quot;8/22/2011&quot;)*1</code> <samp>40777</samp></li><li><code>=DATEVALUE(&quot;22-MAY-2011&quot;)</code> <samp>2011-05-22</samp></li><li><code>=DATEVALUE(&quot;2011/02/23 13:45&quot;)</code> <samp>2011-02-23</samp></li><li><code>=DATEVALUE(D2)</code> <samp>#VALUE!</samp></li></ul></td>
+    </tr>
+  
     <tr id="day">
       <th scope="row">DAY</th>
       <td>DAY(date) is the day of the month of a date, 1 to 31.</td>
@@ -638,6 +644,18 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=EOMONTH(D2, 1)</code> <samp>2024-02-29</samp></li><li><code>=EOMONTH(&quot;2024-03-15&quot;, -1)</code> <samp>2024-02-29</samp></li></ul></td>
     </tr>
   
+    <tr id="hour">
+      <th scope="row">HOUR</th>
+      <td>HOUR(time) is the hour of a time, 0 to 23: of the fraction of a day a serial holds past its whole days, or of a text that reads as a time or a date and a time. The time is rounded to the second first, as it shows - 13:45 less 1:45 is 12. A date alone is midnight, 0; a serial below 0 or past 9999-12-31 is #NUM!, a text that is no time #VALUE!.</td>
+      <td><ul class="sheets-examples"><li><code>=HOUR(0.75)</code> <samp>18</samp></li><li><code>=HOUR(&quot;2011-07-18 7:45&quot;)</code> <samp>7</samp></li><li><code>=HOUR(&quot;6:45 PM&quot;)</code> <samp>18</samp></li><li><code>=HOUR(D2)</code> <samp>0</samp></li></ul></td>
+    </tr>
+  
+    <tr id="minute">
+      <th scope="row">MINUTE</th>
+      <td>MINUTE(time) is the minute of a time, 0 to 59: of the fraction of a day a serial holds past its whole days, or of a text that reads as a time or a date and a time. The time is rounded to the second first, as it shows. A serial below 0 or past 9999-12-31 is #NUM!, a text that is no time #VALUE!.</td>
+      <td><ul class="sheets-examples"><li><code>=MINUTE(&quot;12:45:00 PM&quot;)</code> <samp>45</samp></li><li><code>=MINUTE(0.78125)</code> <samp>45</samp></li><li><code>=MINUTE(&quot;13:45&quot;-&quot;1:45&quot;)</code> <samp>0</samp></li></ul></td>
+    </tr>
+  
     <tr id="month">
       <th scope="row">MONTH</th>
       <td>MONTH(date) is the month of a date, 1 to 12.</td>
@@ -660,6 +678,24 @@ shows.</p>
       <th scope="row">NOW</th>
       <td>NOW() is the serial of this moment, the time of day its fraction - to the second.</td>
       <td><ul class="sheets-examples"><li><code>=NOW()-TODAY()&lt;1</code> <samp>TRUE</samp></li></ul></td>
+    </tr>
+  
+    <tr id="second">
+      <th scope="row">SECOND</th>
+      <td>SECOND(time) is the second of a time, 0 to 59: of the fraction of a day a serial holds past its whole days, or of a text that reads as a time or a date and a time - rounded to the nearest second, as it shows. A serial below 0 or past 9999-12-31 is #NUM!, a text that is no time #VALUE!.</td>
+      <td><ul class="sheets-examples"><li><code>=SECOND(&quot;4:48:18 PM&quot;)</code> <samp>18</samp></li><li><code>=SECOND(&quot;4:48 PM&quot;)</code> <samp>0</samp></li><li><code>=SECOND(TIME(1, 2, 3))</code> <samp>3</samp></li></ul></td>
+    </tr>
+  
+    <tr id="time">
+      <th scope="row">TIME</th>
+      <td>TIME(hour, minute, second) is a time of day as the fraction of a day a spreadsheet keeps it as - 0.5 is noon - shown as hh:mm. Each part is cut to a whole number toward 0 and may run over: 27 hours is 3:00 the next day, of which only the time is kept, 750 minutes 12:30. A part past 32767, or a time below 0 in all - TIME(0, -1, 0) - is #NUM!.</td>
+      <td><ul class="sheets-examples"><li><code>=TIME(16, 48, 10)*1</code> <samp>0.700115741</samp></li><li><code>=TIME(27, 0, 0)</code> <samp>03:00</samp></li><li><code>=TIME(0, 750, 0)</code> <samp>12:30</samp></li><li><code>=TIME(1, -30, 0)</code> <samp>00:30</samp></li><li><code>=TIME(0, -1, 0)</code> <samp>#NUM!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="timevalue">
+      <th scope="row">TIMEVALUE</th>
+      <td>TIMEVALUE(text) is the time of day a text says, as the fraction of a day: 13:45, 1:45 PM, 13:45:30, alone or after a date, whose date is left out - a date alone is 0. A text that reads as no time, and a value that is no text - a number, a cell holding a time - is #VALUE!.</td>
+      <td><ul class="sheets-examples"><li><code>=TIMEVALUE(&quot;2:24 AM&quot;)</code> <samp>0.1</samp></li><li><code>=TIMEVALUE(&quot;22-Aug-2011 6:35 AM&quot;)</code> <samp>0.274305556</samp></li><li><code>=TIMEVALUE(&quot;18:45&quot;)*24</code> <samp>18.75</samp></li><li><code>=TIMEVALUE(0.5)</code> <samp>#VALUE!</samp></li></ul></td>
     </tr>
   
     <tr id="today">
