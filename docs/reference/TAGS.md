@@ -2719,9 +2719,10 @@ answer the value and read their options with `padFakeOpt`; a kind is added by ad
 A kind there is none of, a field that is no plain name, `rows` that are no number from 0 to
 10000 and an option no kind of the tag reads are errors; `{fake:zebra/}` is "there is no fake
 kind named 'zebra'". Fake kinds are never reached bare: their names are those of fields.
-A latitude beyond a pole, a longitude beyond the 180th meridian and `decimals` that are no
-whole number from 0 to 10 are errors under the strict check; the lenient walk leaves the value
-out.
+A latitude or longitude rounded to its `decimals` stays in its box; a latitude beyond a pole,
+a longitude beyond the 180th meridian, a box without a value of that many places (52.3 to 52.4
+with `decimals=0`) and `decimals` that are no whole number from 0 to 10 are errors under the
+strict check; the lenient walk leaves the value out.
 
 ### widget
 An interactive part of the page that works without JavaScript and gets better with it - tabs,

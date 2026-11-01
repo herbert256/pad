@@ -29,9 +29,37 @@
     return '';
   }
 
+  // A value rounded to its decimals stays in the box: the bounds are the first and the last
+  // value of that many places inside it, the draw the part of the box that rounds to them -
+  // with decimals=0 south=50.75 to north=53.55 gives 51 to 53, where the value drawn in the
+  // whole box and then rounded was 54 for one past 53.5, and 52.3 to 52.4 was 52 every time.
+  // A box without such a value is an error of the strict check, the lenient walk leaves the
+  // value out. A box whose bounds have no more places draws as it did, the same values.
+
+  $south    = (float) $south;
+  $north    = (float) $north;
+  $decimals = (int) $decimals;
+  $half     = 0.5 / 10 ** $decimals;
+  $low      = round ( $south, $decimals );
+  $high     = round ( $north, $decimals );
+
+  if ( $low < $south )
+    $low = round ( $low + 2 * $half, $decimals );
+
+  if ( $high > $north )
+    $high = round ( $high - 2 * $half, $decimals );
+
+  if ( $low > $high ) {
+    if ( $GLOBALS ['padCheckSyntax'] ?? TRUE )
+      padError ( "the fake latitude has no value of decimals=$decimals from south=$south to north=$north" );
+    return '';
+  }
+
+  $value = padFakeFloat ( max ( $south, $low - $half ), min ( $north, $high + $half ), $decimals );
+
   // number_format keeps the places a coordinate is written with, where a float would print
   // 1.0E-6 for a point just north of the equator and -0 for one just south of it.
 
-  return number_format ( padFakeFloat ( (float) $south, (float) $north, (int) $decimals ), (int) $decimals, '.', '' );
+  return number_format ( min ( $high, max ( $low, $value ) ), $decimals, '.', '' );
 
 ?>

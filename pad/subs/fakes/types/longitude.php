@@ -26,14 +26,36 @@
   }
 
   // Across the 180th meridian the span goes on past 180 and what lies beyond is counted from
-  // -180 again.
+  // -180 again. A value rounded to its decimals stays in the box, as a latitude's does
+  // (latitude.php): the bounds are the first and the last value of that many places from
+  // west= to east=, the draw the part of the box that rounds to them - decimals=0 from 3.36
+  // to 7.23 gives 4 to 7, where the value rounded after the draw was 3 for one before 3.5.
 
-  $west  = (float) $west;
-  $span  = (float) $east - $west;
-  $span += ( $span < 0 ) ? 360 : 0;
-  $value = $west + padFakeUnit () * $span;
-  $value = ( $value > 180 ) ? $value - 360 : $value;
+  $west     = (float) $west;
+  $span     = (float) $east - $west;
+  $span    += ( $span < 0 ) ? 360 : 0;
+  $decimals = (int) $decimals;
+  $half     = 0.5 / 10 ** $decimals;
+  $low      = round ( $west, $decimals );
+  $high     = round ( $west + $span, $decimals );
 
-  return number_format ( round ( $value, (int) $decimals ), (int) $decimals, '.', '' );
+  if ( $low < $west )
+    $low = round ( $low + 2 * $half, $decimals );
+
+  if ( $high > $west + $span )
+    $high = round ( $high - 2 * $half, $decimals );
+
+  if ( $low > $high ) {
+    if ( $GLOBALS ['padCheckSyntax'] ?? TRUE )
+      padError ( "the fake longitude has no value of decimals=$decimals from west=$west to east=" . (float) $east );
+    return '';
+  }
+
+  $from  = max ( 0.0, $low - $half - $west );
+  $to    = min ( $span, $high + $half - $west );
+  $value = min ( $high, max ( $low, round ( $west + $from + padFakeUnit () * ( $to - $from ), $decimals ) ) );
+  $value = ( $value > 180 ) ? round ( $value - 360, $decimals ) : $value;
+
+  return number_format ( $value, $decimals, '.', '' );
 
 ?>
