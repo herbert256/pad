@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Game: · PAD types
+    </title>
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=fed7d54d23">
+    <script src="/pad/_common/pad.js?v=94ab524d77"></script>
+    <link rel="stylesheet" href="types.css">
+    <style>
+    :where(.pad-game){--pad-game-ink:#1a1a19;--pad-game-muted:#6b6a65;--pad-game-line:#c9c8c2;--pad-game-surface:#fcfcfb;--pad-game-cell:#ffffff;--pad-game-shade:#f0efea;--pad-game-accent:#2a78d6;--pad-game-accent2:#eb6834;--pad-game-good:#1a8a5a;--pad-game-bad:#d43c3b;--pad-game-mark:#fff1b8;}@supports (color:light-dark(#000,#fff)){:where(.pad-game){--pad-game-ink:light-dark(#1a1a19,#f4f3ee);--pad-game-muted:light-dark(#6b6a65,#a8a79f);--pad-game-line:light-dark(#c9c8c2,#4a4a46);--pad-game-surface:light-dark(#fcfcfb,#1a1a19);--pad-game-cell:light-dark(#ffffff,#242422);--pad-game-shade:light-dark(#f0efea,#2c2c29);--pad-game-accent:light-dark(#2a78d6,#5598e7);--pad-game-accent2:light-dark(#eb6834,#e8875f);--pad-game-good:light-dark(#1a8a5a,#3fbf86);--pad-game-bad:light-dark(#d43c3b,#ef6b6a);--pad-game-mark:light-dark(#fff1b8,#4a4320);}}:where(.pad-game){display:block;width:fit-content;max-width:100%;margin:1em 0;padding:14px 16px;border:1px solid var(--pad-game-line);border-radius:10px;background:var(--pad-game-surface);color:var(--pad-game-ink);font:15px/1.4 system-ui,sans-serif;box-sizing:border-box}
+    .pad-game *,.pad-game *::before,.pad-game *::after{box-sizing:border-box}
+    .pad-game .pg-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px;margin:0 0 10px}
+    .pad-game .pg-title{font-weight:650;font-size:16px}
+    .pad-game .pg-status{color:var(--pad-game-muted);min-height:1.4em}
+    .pad-game.is-won .pg-status{color:var(--pad-game-good);font-weight:600}
+    .pad-game.is-lost .pg-status{color:var(--pad-game-bad);font-weight:600}
+    .pad-game .pg-board{position:relative;max-width:100%;overflow-x:auto}
+    .pad-game .pg-bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .pad-game .pg-bar:empty{display:none}
+    .pad-game .pg-button{font:inherit;font-size:14px;padding:6px 12px;border-radius:6px;border:1px solid var(--pad-game-line);background:var(--pad-game-cell);color:var(--pad-game-ink);cursor:pointer}
+    .pad-game .pg-button:hover:not(:disabled){border-color:var(--pad-game-accent)}
+    .pad-game .pg-button:disabled{opacity:.45;cursor:default}
+    .pad-game .pg-button.is-on{background:var(--pad-game-accent);border-color:var(--pad-game-accent);color:#fff}
+    .pad-game button:focus-visible,.pad-game [tabindex]:focus-visible,.pad-game input:focus-visible{outline:2px solid var(--pad-game-accent);outline-offset:2px}
+    .pad-game .pg-hide{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    .pad-game .pg-noscript{color:var(--pad-game-bad);margin:0}
+    .pad-game .pg-note{color:var(--pad-game-muted);font-size:13px;margin:8px 0 0}
+    .pad-game .pg-input{font:inherit;padding:6px 8px;border:1px solid var(--pad-game-line);border-radius:6px;background:var(--pad-game-cell);color:var(--pad-game-ink)}
+    </style>
+    <style>
+    .pad-game-tictactoe .ttt-grid{display:grid;grid-template-columns:repeat(3,72px);grid-template-rows:repeat(3,72px);gap:6px}
+    .pad-game-tictactoe .ttt-cell{font:700 40px/1 system-ui,sans-serif;border:0;border-radius:8px;background:var(--pad-game-shade);color:var(--pad-game-ink);cursor:pointer;padding:0}
+    .pad-game-tictactoe .ttt-cell:hover:not(:disabled){background:var(--pad-game-mark)}
+    .pad-game-tictactoe .ttt-cell:disabled{cursor:default}
+    .pad-game-tictactoe .ttt-cell.is-x{color:var(--pad-game-accent)}
+    .pad-game-tictactoe .ttt-cell.is-o{color:var(--pad-game-accent2)}
+    .pad-game-tictactoe .ttt-cell.is-line{background:var(--pad-game-mark)}
+    </style>
+  </head>
+  <body class="frame app-types">
+    <aside class="frame-side">
+      <details class="frame-brand">
+        <summary title="The PAD applications">
+          <span class="frame-logo" aria-hidden="true">{}</span> <span class="frame-name">PAD <b>types</b></span> <svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-chevron-down" aria-hidden="true" focusable="false" width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9.5l6 6 6-6"></path></svg>
+        </summary>
+        <nav class="frame-apps" aria-label="PAD applications">
+          <a href="../pad/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> <span><b>home</b><small>What PAD is, Hello World</small></span></a><a href="../manual/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-help" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17v.01"></path></svg> <span><b>manual</b><small>The manual, a page per subject</small></span></a><a href="../tags/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-tag" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 4.5v6.3a1 1 0 0 0 .3.7l8.7 8.7a1 1 0 0 0 1.4 0l6.3-6.3a1 1 0 0 0 0-1.4L11.5 3.8a1 1 0 0 0-.7-.3H4.5a1 1 0 0 0-1 1Z"></path>
+          <path d="M8 8v.01"></path></svg> <span><b>tags</b><small>Every tag by its prefix, with examples</small></span></a><a href="index.html" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-layers" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3.5l9 4.5-9 4.5L3 8Z"></path>
+          <path d="M3 12.5l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"></path></svg> <span><b>types</b><small>Every type of tag - the prefixes</small></span></a><a href="../reference/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> <span><b>reference</b><small>Tags, functions and options, cross-referenced</small></span></a><a href="../sequence/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-bar-chart" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"></path></svg> <span><b>sequence</b><small>The sequence subsystem</small></span></a><a href="../regression/main/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-check-circle" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M8 12.3l2.7 2.7L16 9.7"></path></svg> <span><b>regression</b><small>The regression suites</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-settings" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h3M11 7h9M4 12h9M17 12h3M4 17h1M9 17h11"></path>
+          <circle cx="9" cy="7" r="2"></circle>
+          <circle cx="15" cy="12" r="2"></circle>
+          <circle cx="7" cy="17" r="2"></circle></svg> <span><b>admin</b><small>The console of this installation</small></span></a><a href="/pad/edit/"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-edit" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20l1.2-4.6L15.6 5a2 2 0 0 1 2.9 0l.5.5a2 2 0 0 1 0 2.9L8.6 18.8Z"></path>
+          <path d="M14 6.5l3.5 3.5"></path></svg> <span><b>edit</b><small>The editor of the applications</small></span></a>
+          <div class="frame-head">
+            More
+          </div><a href="../examples/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-code" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5M13.5 5l-3 14"></path></svg> <span><b>examples</b><small>The examples of the manual and the suites</small></span></a><a href="../develop/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-terminal" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.5" width="18" height="15" rx="2"></rect>
+          <path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"></path></svg> <span><b>develop</b><small>Builds and tools for PAD itself</small></span></a><a href="../apps/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+          <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> <span><b>apps</b><small>Every application of this installation</small></span></a><a href="../classicModels/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-database" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+          <path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"></path></svg> <span><b>classicModels</b><small>PAD Select over the Classic Models database</small></span></a><a href="../padSelect/index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-filter" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h16l-6 7.5V19l-4 1.5v-8Z"></path></svg> <span><b>padSelect</b><small>PAD Select, every option with its SQL</small></span></a><a href="../structure/index%EF%B9%96abc%EA%A4%B7klm%EA%A4%B7xyz%EA%A4%B7page.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-folder" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"></path></svg> <span><b>structure</b><small>The _xxx directories at every level</small></span></a>
+        </nav>
+      </details>
+      <nav class="frame-nav" aria-label="types">
+        <a href="index%EF%B9%96index.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-home" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11l8-7 8 7M6 9.5V20h12V9.5M10 20v-6h4v6"></path></svg> Home</a> <a href="index%EF%B9%96names.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-list" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 6h11M9 12h11M9 18h11M4.5 6v.01M4.5 12v.01M4.5 18v.01"></path></svg> A-Z</a> <a href="index%EF%B9%96order.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-repeat" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 2.5l3 3-3 3"></path>
+        <path d="M4 11.5v-2a4 4 0 0 1 4-4h12"></path>
+        <path d="M7 21.5l-3-3 3-3"></path>
+        <path d="M20 12.5v2a4 4 0 0 1-4 4H4"></path></svg> Order</a> <a href="index%EF%B9%96groups.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-grid" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect>
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></svg> Groups</a> <a href="index%EF%B9%96cheatsheet.html"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-file" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h8l5 5v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path>
+        <path d="M14 3v5h5"></path></svg> Cheat sheet</a>
+      </nav>
+    </aside>
+    <main class="frame-main">
+      <header class="frame-top">
+        <form class="search" action="" method="get" role="search">
+          <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the types</label> <input type="search" id="q" name="q" value="" placeholder="Search 37 types" autocomplete="off">
+        </form>
+        <div class="frame-tools">
+          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
+        </div>
+      </header>
+      <div class="frame-body">
+        <article class="tag">
+          <nav class="crumbs" aria-label="Where you are">
+            <a href="index%EF%B9%96index.html">Types</a><span>/</span><a href="index%EF%B9%96groups.html#subsystems">Subsystems</a><span>/</span><span aria-current="page">game:</span>
+          </nav>
+          <header class="tag-head">
+            <h1>
+              game:
+            </h1>
+            <p class="tag-about">
+              A game, a file of pad/games/types/, played in the browser.
+            </p>
+            <p class="chips">
+              <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#bare">Tried 24 of 31 for a bare name</a>
+            </p>
+          </header>
+          <section class="block" aria-labelledby="syntax">
+            <h2 id="syntax">
+              Syntax
+            </h2>
+            <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">game:memory</span> <span class="hl-opt">pairs</span>=<span class="hl-num">6</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">game</span> <span class="hl-str">'memory'</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">memory</span><span class="hl-brc">/}</span></code></pre>
+          </section>
+          <section class="block prose" aria-labelledby="description">
+            <h2 id="description">
+              Description
+            </h2>
+            <p>
+              A little game played in the browser, of the kind the tag names - the games subsystem in <code>PAD/games/</code> sets it up, as the <code>{game}</code> tag sets up the game its parameter names.
+            </p>
+            <pre><code>{game:memory pairs=6/}
+{sudoku givens=26/}
+{hangman}lighthouse{/hangman}
+</code></pre>
+            <p>
+              <strong>Resolution:</strong> a PHP file <code>PAD/games/types/&lt;name&gt;.php</code> (<code>padGameType()</code> in <code>PAD/lib/game.php</code>), its script and style <code>PAD/games/assets/&lt;name&gt;.js</code> and <code>.css</code>: the files of <code>types/</code> are the games, and a game is added by adding its files. Bare, a game comes after every other kind of tag, the chart kinds too.
+            </p>
+            <h3>
+              The handler
+            </h3>
+            <p>
+              <code>pad/types/game.php</code>: Type handler for a game: {game:memory pairs=6/}, or a bare tag naming a file of games/types/ when nothing else has the name, {sudoku/}. The game is the tag's name, and it is set up as {game 'memory'} sets it up, by games/game.php - run as a built-in tag's PHP half is run, types/_go/tag.php.
+            </p>
+          </section>
+          <section class="block" aria-labelledby="members">
+            <h2 id="members">
+              What it reaches by name
+            </h2>
+            <p>
+              18 of them, each with its page in the tags application.
+            </p>
+            <div class="tagcloud">
+              <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7bullscows.html">game:bullscows</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7crossword.html">game:crossword</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7fifteen.html">game:fifteen</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7gomoku.html">game:gomoku</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7hangman.html">game:hangman</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7hanoi.html">game:hanoi</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7maze.html">game:maze</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7memory.html">game:memory</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7nim.html">game:nim</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7nonogram.html">game:nonogram</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7pegsolitaire.html">game:pegsolitaire</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7quiz.html">game:quiz</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7reversi.html">game:reversi</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7scramble.html">game:scramble</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7snake.html">game:snake</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7sudoku.html">game:sudoku</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7tictactoe.html">game:tictactoe</a> <a href="../tags/index%EF%B9%96tag%EA%A4%B7game%EA%A4%B7wordsearch.html">game:wordsearch</a>
+            </div>
+          </section>
+          <section class="block" aria-labelledby="examples">
+            <h2 id="examples">
+              Examples
+            </h2>
+            <div class="example" id="example-1">
+              <h3>
+                A game
+              </h3>
+              <p class="example-about">
+                Played in the browser, against the page.
+              </p>
+              <div class="example-grid">
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Template</span><span class="cell-file">examples/game/1-tictactoe.pad</span>
+                  </div>
+                  <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">game:tictactoe</span><span class="hl-brc">/}</span></code></pre>
+                </div>
+                <div class="cell">
+                  <div class="cell-head">
+                    <span>Result</span><a class="cell-file" href="index%EF%B9%96examples%EA%A4%B7game%EA%A4%B71-tictactoe.html">open alone</a>
+                  </div>
+                  <div class="result">
+                    <section class="pad-game pad-game-tictactoe" id="pad-game-tictactoe-34eb1ddb" data-pad-game="tictactoe" data-config="{&quot;opens&quot;:&quot;you&quot;,&quot;two&quot;:false,&quot;name&quot;:&quot;Tic-tac-toe&quot;}" aria-label="Tic-tac-toe">
+                      <header class="pg-head">
+                        <strong class="pg-title">Tic-tac-toe</strong><span class="pg-status" role="status" aria-live="polite"></span>
+                      </header>
+                      <div class="pg-board"></div>
+                      <div class="pg-bar"></div><noscript>
+                      <p class="pg-noscript">
+                        This game is played in the browser and needs JavaScript.
+                      </p></noscript>
+                    </section>
+                    <script>
+                    /* The runtime of the PAD games (pad/games/_lib/game.php writes it once per page). A game's
+                    script registers itself - PadGames.register('memory', function (k, cfg) { ... }) - and is
+                    started on every board of its kind: the ones on the page, and the ones a fragment, a live
+                    region or a script brings later. k is the game's kit: its board, its status line and its
+                    bar, a random number seeded by seed= (the same games on every load) or by the browser,
+                    timers that stop with the game, and the end of a game, which the board carries as
+                    data-result="won" or "lost" and announces with a pad-game-end event. */
+
+                    (function () {
+                    'use strict';
+
+                    if (window.PadGames) return;
+
+                    var kinds = {};
+
+                    // mulberry32: a small, fast generator whose numbers follow from the seed alone.
+
+                    function random(seed) {
+                    var a = seed >>> 0;
+                    return function () {
+                    a = (a + 0x6D2B79F5) >>> 0;
+                    var t = a;
+                    t = Math.imul(t ^ (t >>> 15), t | 1);
+                    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+                    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+                    };
+                    }
+
+                    function el(tag, cls, text) {
+                    var e = document.createElement(tag);
+                    if (cls) e.className = cls;
+                    if (text !== undefined && text !== null) e.textContent = text;
+                    return e;
+                    }
+
+                    function Kit(root, cfg) {
+                    this.root = root;
+                    this.cfg = cfg;
+                    this.board = root.querySelector('.pg-board');
+                    this.bar = root.querySelector('.pg-bar');
+                    this.statusEl = root.querySelector('.pg-status');
+                    this.seed = (typeof cfg.seed === 'number') ? cfg.seed : Math.floor(Math.random() * 2147483647);
+                    this.rand = random(this.seed);
+                    this.timers = [];
+                    }
+
+                    Kit.prototype = {
+                    el: el,
+                    int: function (n) { return Math.floor(this.rand() * n); },
+                    pick: function (list) { return list[this.int(list.length)]; },
+                    shuffle: function (list) {
+                    for (var i = list.length - 1; i > 0; i--) {
+                    var j = this.int(i + 1), t = list[i];
+                    list[i] = list[j];
+                    list[j] = t;
+                    }
+                    return list;
+                    },
+                    status: function (text) { this.statusEl.textContent = text; },
+                    button: function (label, fn, cls) {
+                    var b = el('button', 'pg-button' + (cls ? ' ' + cls : ''), label);
+                    b.type = 'button';
+                    b.addEventListener('click', fn);
+                    this.bar.appendChild(b);
+                    return b;
+                    },
+                    // A new game: the board emptied, the result and the timers of the last one gone.
+                    fresh: function () {
+                    this.stop();
+                    this.board.textContent = '';
+                    this.root.classList.remove('is-won', 'is-lost');
+                    this.root.removeAttribute('data-result');
+                    },
+                    won: function (text) { this.finish('won', text); },
+                    lost: function (text) { this.finish('lost', text); },
+                    finish: function (result, text) {
+                    this.stop();
+                    this.root.classList.add(result === 'won' ? 'is-won' : 'is-lost');
+                    this.root.setAttribute('data-result', result);
+                    this.status(text);
+                    this.root.dispatchEvent(new CustomEvent('pad-game-end', { bubbles: true, detail: { result: result } }));
+                    },
+                    over: function () { return this.root.hasAttribute('data-result'); },
+                    later: function (fn, ms) { var t = setTimeout(fn, ms); this.timers.push(t); return t; },
+                    every: function (fn, ms) { var t = setInterval(fn, ms); this.timers.push(t); return t; },
+                    stop: function () {
+                    this.timers.forEach(function (t) { clearTimeout(t); clearInterval(t); });
+                    this.timers = [];
+                    },
+                    // Keys the game reads while it has the focus; the arrows then do not scroll the page.
+                    keys: function (map) {
+                    this.root.addEventListener('keydown', function (e) {
+                    if (e.altKey || e.ctrlKey || e.metaKey) return;
+                    var fn = map[e.key];
+                    if (fn && fn(e) !== false) e.preventDefault();
+                    });
+                    },
+                    // A swipe over the board, as the arrow it points: 'ArrowUp', 'ArrowLeft' ...
+                    swipe: function (fn) {
+                    var x0 = null, y0 = null, board = this.board;
+                    board.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+                    board.addEventListener('touchend', function (e) {
+                    if (x0 === null) return;
+                    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+                    x0 = null;
+                    if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
+                    fn(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'ArrowRight' : 'ArrowLeft') : (dy > 0 ? 'ArrowDown' : 'ArrowUp'));
+                    });
+                    }
+                    };
+
+                    function start(root) {
+                    if (root.padGameKit) return;
+                    var init = kinds[root.getAttribute('data-pad-game')];
+                    if (!init) return;
+                    var cfg = {};
+                    try { cfg = JSON.parse(root.getAttribute('data-config') || '{}') || {}; } catch (e) { cfg = {}; }
+                    var kit = new Kit(root, cfg);
+                    root.padGameKit = kit;
+                    root.classList.add('is-ready');
+                    init(kit, cfg);
+                    }
+
+                    // The games of the page, or of a part of it - and of the open shadow roots in it: a game in
+                    // a web component's {shadow}, which the document's own querySelectorAll does not see into.
+                    // A shadow root found is watched for games that come, as the page is.
+                    function scan(where) {
+                    where = where || document;
+                    var list = where.querySelectorAll('.pad-game[data-pad-game]');
+                    for (var i = 0; i < list.length; i++) start(list[i]);
+                    var all = where.querySelectorAll('*');
+                    for (var j = 0; j < all.length; j++)
+                    if (all[j].shadowRoot) { watch(all[j].shadowRoot); scan(all[j].shadowRoot); }
+                    }
+
+                    window.PadGames = {
+                    register: function (name, init) { kinds[name] = init; scan(); },
+                    scan: scan,
+                    random: random,
+                    el: el
+                    };
+
+                    document.addEventListener('DOMContentLoaded', function () { scan(); });
+
+                    var watcher = window.MutationObserver ? new MutationObserver(function (records) {
+                    for (var i = 0; i < records.length; i++)
+                    for (var j = 0; j < records[i].addedNodes.length; j++) {
+                    var n = records[i].addedNodes[j];
+                    if (n.nodeType === 1 && (n.matches('.pad-game') || n.querySelector('.pad-game') || n.shadowRoot)) { scan(); return; }
+                    }
+                    }) : null;
+
+                    if (watcher) watcher.observe(document.documentElement, { childList: true, subtree: true });
+
+                    var watched = [];
+                    function watch(root) {
+                    if (!watcher || watched.indexOf(root) >= 0) return;
+                    watched.push(root);
+                    watcher.observe(root, { childList: true, subtree: true });
+                    }
+                    })();
+                    </script>
+                    <script>
+                    PadGames.register('tictactoe', function (k, cfg) {
+                    var LINES = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+                    var cells, board, turn, grid;
+
+                    function winner(b) {
+                    for (var i = 0; i < LINES.length; i++) {
+                    var l = LINES[i];
+                    if (b[l[0]] && b[l[0]] === b[l[1]] && b[l[0]] === b[l[2]]) return { mark: b[l[0]], line: l };
+                    }
+                    return b.indexOf('') < 0 ? { mark: '' } : null;
+                    }
+
+                    // Minimax over the whole game: the computer is O, a win sooner scores higher.
+                    function score(b, mark, depth) {
+                    var w = winner(b);
+                    if (w) return w.mark === 'O' ? 10 - depth : (w.mark === 'X' ? depth - 10 : 0);
+                    var best = mark === 'O' ? -99 : 99;
+                    for (var i = 0; i < 9; i++) if (!b[i]) {
+                    b[i] = mark;
+                    var s = score(b, mark === 'O' ? 'X' : 'O', depth + 1);
+                    b[i] = '';
+                    best = mark === 'O' ? Math.max(best, s) : Math.min(best, s);
+                    }
+                    return best;
+                    }
+
+                    function computer() {
+                    var best = -99, moves = [];
+                    for (var i = 0; i < 9; i++) if (!board[i]) {
+                    board[i] = 'O';
+                    var s = score(board, 'X', 1);
+                    board[i] = '';
+                    if (s > best) { best = s; moves = [i]; } else if (s === best) moves.push(i);
+                    }
+                    place(k.pick(moves));
+                    }
+
+                    function place(i) {
+                    board[i] = turn;
+                    cells[i].textContent = turn;
+                    cells[i].classList.add(turn === 'X' ? 'is-x' : 'is-o');
+                    cells[i].disabled = true;
+                    cells[i].setAttribute('aria-label', 'square ' + (i + 1) + ', ' + turn);
+                    var w = winner(board);
+                    if (w) {
+                    cells.forEach(function (c) { c.disabled = true; });
+                    if (w.line) w.line.forEach(function (j) { cells[j].classList.add('is-line'); });
+                    if (!w.mark) return k.won("A draw - nobody wins.");
+                    if (cfg.two) return k.won(w.mark + ' wins!');
+                    return w.mark === 'X' ? k.won('You win!') : k.lost('The computer wins.');
+                    }
+                    turn = turn === 'X' ? 'O' : 'X';
+                    if (!cfg.two && turn === 'O') { k.status('The computer thinks...'); k.later(computer, 350); }
+                    else k.status(cfg.two ? turn + ' to play' : 'Your turn - you are X');
+                    }
+
+                    function newGame() {
+                    k.fresh();
+                    board = ['', '', '', '', '', '', '', '', ''];
+                    grid = k.el('div', 'ttt-grid');
+                    grid.setAttribute('role', 'grid');
+                    cells = board.map(function (_, i) {
+                    var c = k.el('button', 'ttt-cell');
+                    c.type = 'button';
+                    c.setAttribute('aria-label', 'square ' + (i + 1) + ', empty');
+                    c.addEventListener('click', function () { if (!c.disabled && (cfg.two || turn === 'X')) place(i); });
+                    grid.appendChild(c);
+                    return c;
+                    });
+                    k.board.appendChild(grid);
+                    turn = 'X';
+                    if (!cfg.two && cfg.opens === 'computer') { turn = 'O'; k.status('The computer opens...'); k.later(computer, 350); }
+                    else k.status(cfg.two ? 'X to play' : 'Your turn - you are X');
+                    }
+
+                    k.button('New game', newGame);
+                    newGame();
+                    });
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <nav class="prevnext" aria-label="Other types">
+            <a href="index%EF%B9%96type%EA%A4%B7fake.html">← fake:</a> <a href="index%EF%B9%96names.html">All types A-Z</a> <a href="index%EF%B9%96type%EA%A4%B7icon.html">icon: →</a>
+          </nav>
+        </article>
+        <footer class="foot">
+          <p>
+            37 types of PAD tags - the prefix before the colon of <code>{pad:if}</code> - each with what it reaches, the order a bare name is tried in and live examples; every tag of them in the <a href="../tags/index.html">tags application</a>.
+          </p>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
