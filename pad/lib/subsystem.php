@@ -31,6 +31,7 @@
     'notation' => [ 'notations', TRUE, 'notation'      ],
     'section' => [ 'sections', FALSE, 'section'        ],
     'effect'  => [ 'effects',  TRUE,  'effect'         ],
+    'jsonld'  => [ 'jsonld',   FALSE, 'JSON-LD kind'   ],
   ];
 
   // The subsystems of pad/subs/ whose kinds are no tag type - a view of {map}, a rule of
