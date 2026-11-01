@@ -4,8 +4,8 @@
   // every exchange - here a key of the test's own, so the token endpoint (a fake) verifies
   // the signature with its public half. Apple posts its answer back from its own site, which
   // brings no SameSite=Lax session cookie: the session's record is gone here, and the login
-  // is found through the sealed padOAuth cookie the start set. The name comes once, in the
-  // posted user field; the rest is the id_token's.
+  // is found through the sealed __Host-padOAuth cookie the start set. The name comes once, in
+  // the posted user field; the rest is the id_token's.
 
   include_once PAD . 'subs/oauth/_lib/jwt.php';
 
@@ -19,7 +19,7 @@
   $sealed = '';
 
   foreach ( headers_list () as $header )
-    if ( preg_match ( '/^Set-Cookie: padOAuth=([^;]+);.*SameSite=None/i', $header, $match ) and preg_match ( '/; secure/i', $header ) )
+    if ( preg_match ( '/^Set-Cookie: __Host-padOAuth=([^;]+);.*SameSite=None/i', $header, $match ) and preg_match ( '/; secure/i', $header ) )
       $sealed = $match [1];
 
   unset ( $_SESSION ['padOAuth'] );
@@ -36,7 +36,7 @@
     return [ 'data' => [ 'access_token' => 'a1', 'token_type' => 'Bearer', 'id_token' => 'e30.' . padCryptB64 ( json_encode ( $claims ) ) . '.c2ln' ] ];
   } ] );
 
-  $_COOKIE ['padOAuth'] = $sealed;
+  $_COOKIE ['__Host-padOAuth'] = $sealed;
   $_POST = [ 'code' => 'c1', 'state' => $asked ['state'], 'user' => '{"name":{"firstName":"Ann","lastName":"Smith"},"email":"x7q2@privaterelay.appleid.com"}' ];
 
   $user = padOAuthUser ( 'apple', $options );

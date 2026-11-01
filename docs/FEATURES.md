@@ -413,7 +413,8 @@ straight from the token endpoint over TLS, which OpenID Connect Core 3.1.3.7 let
 calls to the provider's API. `{oauth 'github'/}` is the button - its link `oauth/<provider>`
 unless `href=`, the provider's icon when `pad/subs/icons/` has one. Apple posts its answer back
 from its own site, which brings no `SameSite=Lax` session cookie, so its state also goes in a
-sealed cookie (https); with `$padCsrf` on that post is refused - it carries no token.
+sealed cookie, `__Host-padOAuth` (https, no other subdomain can set it), spent once used like
+the session's; with `$padCsrf` on that post is refused - it carries no token.
 
 ### Notifications on every channel
 

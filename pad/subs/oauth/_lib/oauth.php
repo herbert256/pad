@@ -36,7 +36,10 @@
   // minutes long; the answer that brings the state takes its record out, so a state works
   // once. For a provider that posts its answer back - Apple - the record goes into a sealed
   // cookie as well (padEncrypt, SameSite=None, Secure, HttpOnly), as a post from another
-  // site brings no SameSite=Lax session cookie. The record keeps the token endpoint and the
+  // site brings no SameSite=Lax session cookie: __Host-padOAuth, which a sibling subdomain or
+  // a page over plain http cannot set, and a state taken by either road is marked spent for
+  // its ten minutes (padCacheIncrement), so the cookie and its state, posted again, log no
+  // one in - the session's record alone was taken out, the cookie's never. The record keeps the token endpoint and the
   // issuer the login went to, and the way back must resolve to the same: handled with other
   // options - another base=, issuer= or tenant= - it would send the code, the verifier and
   // the client secret to another instance and log its user in (RFC 9207's mix-up).
@@ -52,7 +55,8 @@
   // and nothing reaches the provider; the discovery document is kept a day (padCacheGet),
   // except while the fetches are faked.
 
-  const padOAuthKeep = 600;
+  const padOAuthKeep   = 600;
+  const padOAuthCookie = '__Host-padOAuth';
 
   // The provider of a kind, its settings read, or NULL - an unknown kind or a missing setting
   // is the author's: a padError under the strict check, and padOAuthError says it either way.
@@ -237,7 +241,7 @@
     $_SESSION ['padOAuth'] [$app] = array_slice ( $list, -5, NULL, TRUE );
 
     if ( $post and ! headers_sent () )
-      setcookie ( 'padOAuth', padEncrypt ( [ 'state' => $state ] + $record ),
+      setcookie ( padOAuthCookie, padEncrypt ( [ 'state' => $state ] + $record ),
                   [ 'expires' => time () + padOAuthKeep, 'path' => '/', 'secure' => TRUE, 'httponly' => TRUE, 'samesite' => 'None' ] );
 
     return TRUE;
@@ -259,17 +263,23 @@
       unset ( $_SESSION ['padOAuth'] [$app] [$state] );
     }
 
-    if ( $record === NULL and isset ( $_COOKIE ['padOAuth'] ) ) {
-      $sealed = padDecrypt ( $_COOKIE ['padOAuth'] );
+    if ( $record === NULL and is_string ( $_COOKIE [padOAuthCookie] ?? NULL ) ) {
+      $sealed = padDecrypt ( $_COOKIE [padOAuthCookie] );
       if ( is_array ( $sealed ) and hash_equals ( (string) ( $sealed ['state'] ?? '' ), $state ) )
         $record = $sealed;
     }
 
-    if ( isset ( $_COOKIE ['padOAuth'] ) and ! headers_sent () )
-      setcookie ( 'padOAuth', '', [ 'expires' => 1, 'path' => '/', 'secure' => TRUE, 'httponly' => TRUE, 'samesite' => 'None' ] );
+    if ( isset ( $_COOKIE [padOAuthCookie] ) and ! headers_sent () )
+      setcookie ( padOAuthCookie, '', [ 'expires' => 1, 'path' => '/', 'secure' => TRUE, 'httponly' => TRUE, 'samesite' => 'None' ] );
 
     if ( ! is_array ( $record ) or ( $record ['kind'] ?? '' ) !== $kind or ( $record ['app'] ?? '' ) !== $app
          or (int) ( $record ['time'] ?? 0 ) < time () - padOAuthKeep )
+      return NULL;
+
+    // A state works once on either road: the cookie is the visitor's to send again, and a
+    // login that came back by the cookie left the session's record where it was.
+
+    if ( padCacheIncrement ( 'pad-oauth-spent:' . hash ( 'sha256', $state ), 1, padOAuthKeep ) !== 1 )
       return NULL;
 
     return $record;

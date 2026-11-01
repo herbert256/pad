@@ -7,7 +7,8 @@
   // user is the id_token's claims - Apple has no userinfo - and the name comes once, with the
   // first login, in the user field Apple posts back; later logins have none. Apple posts the
   // answer (response_mode form_post) from its own site, which brings no SameSite=Lax session
-  // cookie: the state goes in a sealed cookie of its own as well (SameSite=None, https only).
+  // cookie: the state goes in a sealed cookie of its own as well (__Host-padOAuth, SameSite=None,
+  // https only), spent once used.
 
   return [
     'name'      => 'Apple',
