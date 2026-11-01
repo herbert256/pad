@@ -804,6 +804,28 @@ is FALSE and, under the strict check, an error.
 
 ---
 
+### oauth
+A "Log in with ..." link styled as a button, for the OAuth subsystem (`pad/subs/oauth/`).
+
+```html
+{oauth 'github'/}
+{oauth 'oidc', href='?login/company', label='Log in with your company account'/}
+```
+
+**Parameters:** the provider, a file of `pad/subs/oauth/types/` - apple, discord, forgejo,
+github, gitlab, google, microsoft, oidc.
+
+**Options:** `href` - where it links, `oauth/<provider>` of the application by default (a page
+`oauth/[provider].php` calling `padOAuthStart` and `padOAuthUser`); `label` - its text instead of
+`Log in with <name>`.
+
+**Behavior:** the provider's icon when `pad/subs/icons/` has one of its name, else the log-in
+icon; the style once per page, `--pad-oauth-*` custom properties. The button reads no setting -
+the page it links to needs the client id and secret. An unknown provider is an error under the
+strict check.
+
+---
+
 ### asset
 The address of a file of `www/<app>/` with a version of its contents, for a far-future cache.
 

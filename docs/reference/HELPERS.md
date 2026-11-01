@@ -32,6 +32,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Migrations and fake data](#migrations-and-fake-data) | `padMigrate`, `padSeed`, `padFake*`, `padFactory`, ... | - |
 | [Queues, schedule and HTTP fakes](#queues-schedule-and-http-fakes) | `padQueue`, `padQueueWork`, `padCronMatch`, `padCurlFake`, ... | - |
 | [Maintenance and assets](#maintenance-and-assets) | `padMaintenanceDown`, `padAsset`, ... | - |
+| [OAuth, notifications and language models](#oauth-notifications-and-language-models) | `padOAuthStart`, `padOAuthUser`, `padOAuthError`, ... | social_login |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1006,6 +1007,22 @@ never pasted into SQL: `db ( "RECORD * FROM users WHERE id={0}", [ $id ] )`.
 | `padMaintenanceDown ( $app, $secret, $retry, $message )`, `padMaintenanceUp ( $app )` | Takes an application down - what `pad down` does - and back up |
 | `padMaintenanceRead ( $app )`, `padMaintenanceList ()` | Its record; the applications that are down |
 | `padAsset ( $file )`, `padAssetTag ( $file )` | The versioned address of a file of `www/<app>/`; the element that loads it |
+
+## OAuth, notifications and language models
+
+`pad/lib/oauth.php`, `pad/lib/notify.php`, `pad/lib/ai.php` - entries of the subsystems in
+`pad/subs/oauth/`, `pad/subs/channels/` and `pad/subs/ai/`, a provider or channel per file of
+their `types/`. Every request they make goes through `padCurl`, so `padCurlFake` answers them in
+a test. A setting missing from the options and from `padEnv` is an error under the strict check
+naming the variable to set.
+
+| Function | Answers |
+|----------|---------|
+| `padOAuthStart ( $provider, $options = [] )` | Sends the visitor to the provider's authorize page - state, PKCE S256 and (OpenID Connect) a nonce kept in the session; options `client_id`, `client_secret`, `scopes`, `redirect`, `params` and the provider's own (`base`, `tenant`, `issuer`, `env`) |
+| `padOAuthUrl ( $provider, $options = [] )` | That address, the login kept, without going there |
+| `padOAuthUser ( $provider, $options = [] )` | On the way back: the state checked, the code exchanged, the id_token checked, the user fetched - `[ provider, id, sub, name, email, avatar, username ]` for `padLogin`, or FALSE |
+| `padOAuthError ()`, `padOAuthToken ()` | Why the last call answered FALSE; the token endpoint's answer of the last login |
+| `padOAuthKinds ()` | The providers - the files of `pad/subs/oauth/types/` |
 
 ## Engine functions
 

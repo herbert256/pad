@@ -25,6 +25,7 @@ applications show them working.
   - [Queues and the scheduler](#queues-and-the-scheduler)
   - [Offline applications in the browser](#offline-applications-in-the-browser)
   - [HTTP fakes for tests](#http-fakes-for-tests)
+  - [Log in with GitHub, Google ... (OAuth)](#log-in-with-github-google--oauth)
 - [Template features](#template-features)
   - [Lookups Between Data Sets](#lookups-between-data-sets)
   - [Grouping with subtotals (group option)](#grouping-with-subtotals-group-option)
@@ -292,6 +293,43 @@ MySQL, no network from PHP. `wasm/README.md`; `notes`, `ledger`, `kanban` are th
 answers every fetch of the request - `{curl}`, `data='https://...'`, padCurl, padPrefetch, a ttl
 fetch (which skips its cache) - from the fakes, a closure answering per request; a URL no fake
 matches is an error without `'*'`. `padCurlRecorded ()` lists the calls, `padCurlFakeStop ()` ends it.
+
+### Log in with GitHub, Google ... (OAuth)
+
+The authorization code flow of OAuth 2.0 with PKCE (S256), and OpenID Connect where the
+provider speaks it, as two calls on one page - what comes back is a row for `padLogin`:
+```php
+// oauth/[provider].php - the start and the way back of every provider
+if ( ! padRequestHas ( 'code' ) and ! padRequestHas ( 'error' ) )
+  padOAuthStart ( $provider );                 // off to the provider: state, PKCE, nonce kept in the session
+if ( $user = padOAuthUser ( $provider ) ) {    // back: the state checked, the code exchanged, the user fetched
+  padLogin ( $user );
+  padRedirectIntended ();
+}
+$problem = padOAuthError ();                    // a no at the provider, a stale state ...
+```
+```
+{oauth 'github'/}  {oauth 'google'/}  {oauth 'oidc', href='?login/company', label='Company account'/}
+```
+The providers are the files of `pad/subs/oauth/types/` - apple, discord, forgejo (Codeberg, or
+`base=`), github, gitlab (`base=` for one's own), google, microsoft (`tenant=`), oidc (any OpenID
+provider, its endpoints from `<issuer>/.well-known/openid-configuration`) - each an array: the
+endpoints, the scopes, PKCE, the settings it needs and how its answer maps to the user. The
+user: `provider`, `id` (`github:583231` - never the same for two providers), `sub` (the
+provider's own id), `name`, `email`, `avatar`, `username`; GitHub's private address comes from
+`/user/emails`, Apple's name from the first login's post. The settings are `padEnv` values -
+`GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GITLAB_URL`, `MICROSOFT_TENANT`, `OIDC_ISSUER`;
+Apple takes `APPLE_CLIENT_ID`, `APPLE_TEAM_ID`, `APPLE_KEY_ID` and `APPLE_PRIVATE_KEY` and makes
+its client secret, an ES256 JWT, with openssl - or options of the same names; a missing one is
+a strict error naming the variable. The redirect address is the page itself unless `redirect=`
+names another. A state works once, for ten minutes, five logins at once; OpenID Connect's
+id_token is checked for its issuer, audience, expiry and nonce - its signature is not: it comes
+straight from the token endpoint over TLS, which OpenID Connect Core 3.1.3.7 lets stand for it.
+`padOAuthUrl` gives the address without going there; `padOAuthToken ()` the token answer, for
+calls to the provider's API. `{oauth 'github'/}` is the button - its link `oauth/<provider>`
+unless `href=`, the provider's icon when `pad/subs/icons/` has one. Apple posts its answer back
+from its own site, which brings no `SameSite=Lax` session cookie, so its state also goes in a
+sealed cookie (https); with `$padCsrf` on that post is refused - it carries no token.
 
 ## Template features
 

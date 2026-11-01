@@ -1,0 +1,5 @@
+<?php
+
+  padOAuthStart ( 'github' );
+
+?>
