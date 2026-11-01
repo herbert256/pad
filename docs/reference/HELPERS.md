@@ -1184,7 +1184,7 @@ forms, the current tag's parameters, the database, data, files, mail, evaluation
 | `padNonce()` | This request's CSP nonce (`{nonce}`), named by `'nonce'` in `$padCsp` |
 | `padFlash($message, $type)` | A message for the next request - `padFlash('Saved.'); padRedirect('list');` then `{flash}<p class="{$type}">{$message}</p>{/flash}` |
 | `padValidate($rules, $data, $messages)` | `['email' => 'required\|email']` - one message per failing field, shown by `{input}` |
-| `padValidateClient($rules, $messages)` | The same rules for the browser's checker - each with the message padValidate would give |
+| `padValidateClient($rules, $messages)` | The same rules for the browser's checker - each with the message padValidate would give, and per field the other fields its rules look at (`watch`) |
 | `padFormRules($form)` | The `rules=` the page's template gives the fields of a named form |
 
 ### Field Access

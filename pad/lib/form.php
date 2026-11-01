@@ -64,6 +64,10 @@
   //   argument  fn ( $arg ) - '' when the argument is one the rule can use, else why not:
   //             a pattern PCRE cannot read is the author's error, named before any value
   //             is judged
+  //   fields    fn ( $arg ) - the other fields of the post the rule looks at: same:password
+  //             names password, required_if:delivery,ship delivery. padValidateClient hands
+  //             them to the browser's checker as the field's watch, and a change of one of
+  //             them checks the field again there
   //
   // A rule without a .js file is judged by the server alone: the browser lets it pass.
 
@@ -1188,7 +1192,11 @@
   // the <label> of the field wins in a form), whether it is a number - min and max then
   // compare values, not lengths - and a list (name[]), the message of a list where one
   // value belongs, and per rule [ name, argument, message, the argument as the message
-  // shows it ]. A rule that does not exist is the error padValidate makes of it.
+  // shows it ]. A rule that does not exist is the error padValidate makes of it. A field
+  // whose rules look at other fields - same:password, required_if:delivery,ship, after:start
+  // - has their names in watch, from the rules' fields: the checker in the page checks it
+  // again when one of them changes, so its message follows them (validate.js, recheck).
+  // Only such a field has a watch, and the browser needs to know no rule by name for it.
 
   function padValidateClient ( $rules, $messages = [] ) {
 
@@ -1205,6 +1213,7 @@
       $list   = array_values ( array_filter ( array_map ( 'trim', $list ), 'strlen' ) );
       $number = padValidateNumber ( $list );
       $one    = [];
+      $watch  = [];
 
       foreach ( $list as $rule ) {
 
@@ -1219,6 +1228,11 @@
 
         $one [] = [ $name, $arg, $text, (string) $shown ];
 
+        if ( isset ( padRule ( $name ) ['fields'] ) )
+          foreach ( padRule ( $name ) ['fields'] ( $arg ) as $other )
+            if ( ( $other = trim ( (string) $other ) ) !== '' and ! in_array ( $other, $watch, TRUE ) )
+              $watch [] = $other;
+
       }
 
       $client [$field] = [ 'label'  => padValidateName ( $field ),
@@ -1226,6 +1240,9 @@
                            'list'   => str_ends_with ( (string) $field, '[]' ),
                            'single' => padValidateMessage ( $field, 'single', '', $number, $messages ) [0],
                            'rules'  => $one ];
+
+      if ( $watch )
+        $client [$field] ['watch'] = $watch;
 
     }
 

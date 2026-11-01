@@ -11,6 +11,7 @@
       return is_scalar ( $other ) and $value === trim ( (string) $other );
     },
     'argument' => fn ( $arg ) => trim ( $arg ) !== '' ? '' : 'no field name - same:password',
+    'fields'   => fn ( $arg ) => [ $arg ],
     'shown'    => fn ( $arg ) => padValidateName ( $arg ),
     'message'  => ':label must be the same as :n'
   ];

@@ -761,7 +761,9 @@ would stop the send first, with messages of their own; a field is checked when i
 in once it showed a message, and every field when the form is sent - a form that fails is not
 sent, the first field with a message gets the focus. The messages stand where the server's
 would, in a `<span class="error" id="<id>-error">` with `aria-invalid` and
-`aria-describedby`. The server still checks every post. `client` on a form without a name, or
+`aria-describedby`. A field whose rules look at another - `same:password`,
+`required_if:delivery,ship`, `after:start` - is checked again when that one changes, if it
+shows a message or was left before: the message follows the other field. The server still checks every post. `client` on a form without a name, or
 without a field with rules, is an error.
 
 ```html

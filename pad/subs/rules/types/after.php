@@ -9,6 +9,7 @@
   return [
     'check'    => fn ( $value, $arg, $data ) => padRuleWhen ( $value, $arg, $data, 1 ),
     'argument' => fn ( $arg ) => padRuleWhenArgument ( $arg, 'after' ),
+    'fields'   => fn ( $arg ) => padRuleDateArg ( $arg ) ? [] : [ $arg ],
     'shown'    => fn ( $arg ) => padRuleDateArg ( $arg ) ? trim ( $arg ) : padValidateName ( $arg ),
     'message'  => ':label must be a date after :n'
   ];

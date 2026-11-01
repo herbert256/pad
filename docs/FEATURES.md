@@ -672,7 +672,12 @@ Phone or Fax is filled in", "... when Email is empty", "End must be a date after
 
 `client` on the form checks the same rules in the browser too, with the same messages, before
 the form leaves (the runtime `www/assets/rules/validate.js` with every rule's script, written
-once a page). For a form a component draws,
+once a page). A field whose rules look at another - `same:`, the `required_*` rules, `before:`,
+`after:` with a field - is checked again when that one changes, if it shows a message or was
+checked or left before: "is required when Delivery is ship" goes when delivery becomes
+collect, and comes on an address already left when it becomes ship. The rules name those
+fields themselves (`fields` in their files); `padValidateClient` hands them on as the field's
+`watch`. For a form a component draws,
 keep the rules in PHP - `padValidate ( $rules )` checks the post, `padValidateClient ( $rules )`
 exports them for `padValidate.check ( rules, values )` in the browser, `{validator}` brings the
 checker:

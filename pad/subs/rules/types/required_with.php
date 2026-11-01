@@ -11,6 +11,7 @@
     'check'    => fn ( $value, $arg, $data ) => padRuleFilled ( $value ) or ! padRuleAny ( $data, $arg, TRUE ),
     'list'     => fn ( $list, $arg, $data ) => padRuleFilled ( $list ) or ! padRuleAny ( $data, $arg, TRUE ),
     'argument' => fn ( $arg ) => padRuleTexts ( $arg ) ? '' : 'no field name - required_with:phone',
+    'fields'   => fn ( $arg ) => padRuleTexts ( $arg ),
     'shown'    => fn ( $arg ) => implode ( ' or ', array_map ( 'padValidateName', padRuleTexts ( $arg ) ) ),
     'message'  => ':label is required when :n is filled in'
   ];

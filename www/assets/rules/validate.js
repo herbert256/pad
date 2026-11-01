@@ -14,8 +14,11 @@
 //                                      messages the way {input} does; true when it holds
 //
 // Every form with data-pad-rules is checked when it is sent, and a field again when it is
-// left or - once it showed a message - while it is typed in. Its values are read as the
-// post would carry them (FormData): the last value of a name, every value of name[].
+// left or - once it showed a message - while it is typed in. A field whose rules look at
+// another - same:password, required_if:delivery,ship, after:start, its watch - is checked
+// again when that one changes, if it shows a message or was checked or left before. Its
+// values are read as the post would carry them (FormData): the last value of a name, every
+// value of name[].
 //
 // A rule's script calls addRule ( name, { check, list } ): check ( value, arg, values,
 // number ) judges one text, list ( items, arg, values, number ) a list - a rule without
@@ -337,6 +340,16 @@
     }
   }
 
+  // The fields of each form checked or left so far, by name: a change of a field their
+  // rules look at checks them again (recheck).
+  var marked = new WeakMap();
+
+  function marks(form) {
+    var seen = marked.get(form);
+    if (!seen) marked.set(form, seen = {});
+    return seen;
+  }
+
   function checkOne(form, name) {
     var rules = rulesOf(form);
     if (!rules[name]) return true;
@@ -344,6 +357,7 @@
     var controls = controlsOf(form, name);
     var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
     show(form, name, problem);
+    marks(form)[name] = true;
     return !problem;
   }
 
@@ -355,6 +369,7 @@
       var controls = controlsOf(form, name);
       var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
       show(form, name, problem);
+      marks(form)[name] = true;
       if (problem && !first && controls[0]) first = shownBy(controls[0]);
     });
     banner(form, !!first);
@@ -364,6 +379,28 @@
 
   function ruled(target) {
     return target && target.form && target.form.hasAttribute('data-pad-rules') && target.name ? target.form : null;
+  }
+
+  function showing(form, name) {
+    return controlsOf(form, name).some(function (control) { return shownBy(control).getAttribute('aria-invalid') === 'true'; });
+  }
+
+  function bare(name) {
+    return trim(String(name)).replace(/\[\]$/, '');
+  }
+
+  // A field whose rules look at other fields has their names in its watch, from the rules'
+  // fields (padValidateClient): when one of them changes, the field is checked again if it
+  // shows a message - the server's or the checker's - or was checked or left before. Only
+  // the field typed in was checked: an "is required when Delivery is ship" stayed after
+  // delivery became collect, and "must be the same as Password" after the password was
+  // typed again to match. kinds and kinds[] are one name here, as sibling reads them.
+  function recheck(form, name) {
+    var rules = rulesOf(form), seen = marks(form);
+    Object.keys(rules).forEach(function (one) {
+      if (one === name || !(rules[one].watch || []).some(function (other) { return bare(other) === bare(name); })) return;
+      if (seen[one] || showing(form, one)) checkOne(form, one);
+    });
   }
 
   // Captured on the document, so a form that fails stops here - before a live region, htmx
@@ -377,17 +414,22 @@
     }
   }, true);
 
+  // A field left empty is not checked - a required one would speak before it was filled in
+  // - but it is left, and a change of a field its rules look at checks it from then on.
   document.addEventListener('focusout', function (event) {
     var form = ruled(event.target);
     if (form && (event.target.value !== '' || document.getElementById(idOf(event.target.name, event.target) + '-error')))
       checkOne(form, event.target.name);
+    if (form) marks(form)[event.target.name] = true;
   });
 
   ['input', 'change'].forEach(function (type) {
     document.addEventListener(type, function (event) {
       var form = ruled(event.target);
-      if (form && shownBy(event.target).getAttribute('aria-invalid') === 'true')
+      if (!form) return;
+      if (shownBy(event.target).getAttribute('aria-invalid') === 'true')
         checkOne(form, event.target.name);
+      recheck(form, event.target.name);
     });
   });
 

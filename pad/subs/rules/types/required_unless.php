@@ -12,6 +12,7 @@
     'check'    => fn ( $value, $arg, $data ) => padRuleSiblingIs ( $data, $arg ) or padRuleFilled ( $value ),
     'list'     => fn ( $list, $arg, $data ) => padRuleSiblingIs ( $data, $arg ) or padRuleFilled ( $list ),
     'argument' => fn ( $arg ) => ( padRuleFieldValues ( $arg ) [0] !== '' and padRuleFieldValues ( $arg ) [1] ) ? '' : 'no field name and value - required_unless:delivery,collect',
+    'fields'   => fn ( $arg ) => [ padRuleFieldValues ( $arg ) [0] ],
     'shown'    => fn ( $arg ) => padRuleShownIs ( $arg ),
     'message'  => ':label is required unless :n'
   ];

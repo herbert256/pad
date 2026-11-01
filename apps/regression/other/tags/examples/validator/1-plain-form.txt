@@ -8,7 +8,7 @@
   'use strict';
   if (window.padValidate) return;
   var rules = {};
-  var empties = {"accepted":true,"required":true};
+  var empties = {"accepted":true,"required":true,"required_if":true,"required_unless":true,"required_with":true,"required_without":true};
   function addRule(name, spec) {
     rules[name] = spec;
   }
@@ -66,9 +66,60 @@
     }
     return (compressed && blocks <= 8) || blocks === 8;
   }
+  function texts(arg) {
+    return items(arg).filter(function (one) { return one !== ''; });
+  }
+  function text(value) {
+    return typeof value === 'string' || typeof value === 'number';
+  }
+  function sibling(values, name) {
+    name = trim(String(name));
+    var value = values[name];
+    if (value === undefined) value = /\[\]$/.test(name) ? values[name.slice(0, -2)] : values[name + '[]'];
+    if (Array.isArray(value)) return value.filter(text).map(function (one) { return trim(String(one)); });
+    return text(value) ? trim(String(value)) : '';
+  }
+  function filled(value) {
+    return Array.isArray(value) ? value.length > 0 : trim(String(value)) !== '';
+  }
+  function siblingIs(values, arg) {
+    var parts = String(arg).split(',');
+    var wanted = texts(parts.slice(1).join(','));
+    var other = sibling(values, parts[0]);
+    return (Array.isArray(other) ? other : [other]).some(function (one) { return wanted.indexOf(one) >= 0; });
+  }
+  function anyFilled(values, arg, wanted) {
+    return texts(arg).some(function (name) { return filled(sibling(values, name)) === wanted; });
+  }
+  function moment(value) {
+    var at = typeof value === 'string' && value.match(/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2})(?::(\d{2}))?)?$/);
+    if (!at) return null;
+    var year = +at[1], month = +at[2], day = +at[3];
+    var check = new Date(0);
+    check.setUTCFullYear(year, month - 1, day);
+    if (year < 1 || check.getUTCFullYear() !== year || check.getUTCMonth() !== month - 1 || check.getUTCDate() !== day) return null;
+    var hour = at[4] || '00', minute = at[5] || '00', second = at[6] || '00';
+    if (+hour > 23 || +minute > 59 || +second > 59) return null;
+    return at[1] + '-' + at[2] + '-' + at[3] + 'T' + hour + ':' + minute + ':' + second;
+  }
+  function dateArg(arg) {
+    return /^\d{4}-\d/.test(trim(String(arg)));
+  }
+  function when(value, arg, values, side) {
+    var mine = moment(value);
+    if (mine === null) return false;
+    var other = moment(dateArg(arg) ? trim(String(arg)) : sibling(values, arg));
+    if (other === null) return true;
+    return side < 0 ? mine < other : mine > other;
+  }
   (function () {
 addRule('accepted', {
   check: function (value) { return ['1', 'on', 'yes', 'true'].indexOf(value.toLowerCase()) >= 0; }
+});
+})();
+(function () {
+addRule('after', {
+  check: function (value, arg, values) { return when(value, arg, values, 1); }
 });
 })();
 (function () {
@@ -79,6 +130,11 @@ addRule('alpha', {
 (function () {
 addRule('alphanum', {
   check: function (value) { return /^[\p{L}\p{M}\p{N}]+$/u.test(value); }
+});
+})();
+(function () {
+addRule('before', {
+  check: function (value, arg, values) { return when(value, arg, values, -1); }
 });
 })();
 (function () {
@@ -206,6 +262,14 @@ addRule('min', {
 });
 })();
 (function () {
+addRule('not_in', {
+  check: function (value, arg) { return items(arg).indexOf(value) < 0; },
+  list: function (list, arg) {
+    return list.every(function (one) { return typeof one === 'string' && items(arg).indexOf(trim(one)) < 0; });
+  }
+});
+})();
+(function () {
 addRule('numeric', {
   check: function (value) { return /^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?[ \t\n\r\v\f]*$/.test(value); }
 });
@@ -273,6 +337,30 @@ addRule('regex', {
 addRule('required', {
   check: function (value) { return value !== ''; },
   list: function (list) { return list.length > 0; }
+});
+})();
+(function () {
+addRule('required_if', {
+  check: function (value, arg, values) { return !siblingIs(values, arg) || filled(value); },
+  list: function (list, arg, values) { return !siblingIs(values, arg) || filled(list); }
+});
+})();
+(function () {
+addRule('required_unless', {
+  check: function (value, arg, values) { return siblingIs(values, arg) || filled(value); },
+  list: function (list, arg, values) { return siblingIs(values, arg) || filled(list); }
+});
+})();
+(function () {
+addRule('required_with', {
+  check: function (value, arg, values) { return filled(value) || !anyFilled(values, arg, true); },
+  list: function (list, arg, values) { return filled(list) || !anyFilled(values, arg, true); }
+});
+})();
+(function () {
+addRule('required_without', {
+  check: function (value, arg, values) { return filled(value) || !anyFilled(values, arg, false); },
+  list: function (list, arg, values) { return filled(list) || !anyFilled(values, arg, false); }
 });
 })();
 (function () {
@@ -394,7 +482,9 @@ addRule('uuid', {
     var data = new FormData(form);
     var values = {};
     data.forEach(function (one, name) {
-      if (typeof one === 'string') values[name] = sent(one);
+      if (typeof one !== 'string') return;
+      if (/\[\]$/.test(name)) (values[name] = Array.isArray(values[name]) ? values[name] : []).push(sent(one));
+      else values[name] = sent(one);
     });
     Object.keys(rules).forEach(function (name) {
       var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; }).map(sent);
@@ -467,6 +557,12 @@ addRule('uuid', {
       shown.remove();
     }
   }
+  var marked = new WeakMap();
+  function marks(form) {
+    var seen = marked.get(form);
+    if (!seen) marked.set(form, seen = {});
+    return seen;
+  }
   function checkOne(form, name) {
     var rules = rulesOf(form);
     if (!rules[name]) return true;
@@ -474,6 +570,7 @@ addRule('uuid', {
     var controls = controlsOf(form, name);
     var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
     show(form, name, problem);
+    marks(form)[name] = true;
     return !problem;
   }
   function checkForm(form) {
@@ -484,6 +581,7 @@ addRule('uuid', {
       var controls = controlsOf(form, name);
       var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
       show(form, name, problem);
+      marks(form)[name] = true;
       if (problem && !first && controls[0]) first = shownBy(controls[0]);
     });
     banner(form, !!first);
@@ -492,6 +590,19 @@ addRule('uuid', {
   }
   function ruled(target) {
     return target && target.form && target.form.hasAttribute('data-pad-rules') && target.name ? target.form : null;
+  }
+  function showing(form, name) {
+    return controlsOf(form, name).some(function (control) { return shownBy(control).getAttribute('aria-invalid') === 'true'; });
+  }
+  function bare(name) {
+    return trim(String(name)).replace(/\[\]$/, '');
+  }
+  function recheck(form, name) {
+    var rules = rulesOf(form), seen = marks(form);
+    Object.keys(rules).forEach(function (one) {
+      if (one === name || !(rules[one].watch || []).some(function (other) { return bare(other) === bare(name); })) return;
+      if (seen[one] || showing(form, one)) checkOne(form, one);
+    });
   }
   document.addEventListener('submit', function (event) {
     var form = event.target;
@@ -505,12 +616,15 @@ addRule('uuid', {
     var form = ruled(event.target);
     if (form && (event.target.value !== '' || document.getElementById(idOf(event.target.name, event.target) + '-error')))
       checkOne(form, event.target.name);
+    if (form) marks(form)[event.target.name] = true;
   });
   ['input', 'change'].forEach(function (type) {
     document.addEventListener(type, function (event) {
       var form = ruled(event.target);
-      if (form && shownBy(event.target).getAttribute('aria-invalid') === 'true')
+      if (!form) return;
+      if (shownBy(event.target).getAttribute('aria-invalid') === 'true')
         checkOne(form, event.target.name);
+      recheck(form, event.target.name);
     });
   });
   window.padValidate = { check: check, field: field, form: checkForm };
