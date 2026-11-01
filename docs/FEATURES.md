@@ -874,11 +874,13 @@ checker:
   {segmented 'size', label='Size', options='S, M, L'/}    # a radio group drawn as one bar
   {durationpicker 'length', label='Length', parts='hm'/} # posts seconds: 5400 for 1 h 30 min
   {rangeslider 'price', label='Price', max=500, unit=' EUR'/}   # posts price_from and price_to
+  {daterange 'stay', label='Stay', nights/}               # posts stay_from and stay_to, one month to pick both
   {signature 'signed', label='Signature'/}                 # posts a PNG data URL
   {dropzone 'cv', label='Your CV', accept='.pdf', limit='2M'/}   # padUpload takes it
 {/form}
 ```
-The kinds are the files of `pad/subs/inputs/types/` - colorpicker, combobox, datepicker, dropzone,
+The kinds are the files of `pad/subs/inputs/types/` - colorpicker, combobox, datepicker, daterange
+(a first and a last day picked from one month, the days or `nights` counted), dropzone,
 durationpicker (a box per part - days, hours, minutes, seconds - over a number of seconds),
 mdeditor (Markdown with a live preview), multiselect (chips and a filtered list over a select of
 many), newpassword (strength meter, show/hide; `known` for a
@@ -909,12 +911,14 @@ of another form of the page, a link with a value to the page of a GET form - whi
 `value=`, as every other field does; a disabled multiselect, which the browser leaves out of
 the post, keeps `value=` after a post of its form too.
 
-A range is two fields: `{rangeslider 'price'}` posts `price_from` and `price_to` - `names=` two
+A range is two fields: `{rangeslider 'price'}` posts `price_from` and `price_to`, `{daterange 'stay'}`
+`stay_from` and `stay_to` - `names=` two
 others, `labels=` what each end says (From, To), `value=` the two before a post - each refilled
 from its own form's post and given its own message, under one legend. Its `rules=` are refused,
 since the rules of the template are read for one field: the page's PHP checks the two,
-`padValidate ( [ 'price_from' => 'integer', 'price_to' => 'integer' ] )`. Without the script
-the two can be posted crossed.
+`padValidate ( [ 'price_from' => 'integer', 'price_to' => 'integer' ] )` - for a stay
+`'stay_to' => 'required|date|after:stay_from'`. Without the script the two can be posted crossed;
+with it the last day's field takes no day before the first (its `min` follows it).
 
 ### Layouts (extends / block / parent)
 ```

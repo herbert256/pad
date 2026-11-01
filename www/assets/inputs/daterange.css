@@ -1,0 +1,24 @@
+fieldset.pad-input-daterange{border:0;padding:0;min-width:0}
+.pad-input-daterange legend{padding:0;margin:0 0 .3em;font-weight:600}
+.pad-input-daterange .pi-dr-row{align-items:flex-end}
+.pad-input-daterange .pi-dr-end>label{display:block;margin:0 0 .2em;font-weight:400;font-size:.92em}
+.pad-input-daterange .pi-dr-open{display:inline-flex;align-items:center;justify-content:center;padding:.45em .55em}
+.pad-input-daterange .pi-dr-count{align-self:center;font-variant-numeric:tabular-nums}
+.pad-input-daterange .pi-calendar{left:0;top:100%;width:max-content}
+.pad-input-daterange .pi-dr-hint{margin:0 0 .35em;font-size:.85em}
+.pad-input-daterange .pi-cal-head{display:flex;align-items:center;justify-content:space-between;gap:.5em;margin-bottom:.35em}
+.pad-input-daterange .pi-cal-title{font-weight:650;text-align:center;flex:1}
+.pad-input-daterange .pi-cal-step{padding:.2em .6em;font-size:1.1em}
+.pad-input-daterange .pi-cal-grid{border-collapse:collapse}
+.pad-input-daterange .pi-cal-grid th{font-size:.75em;font-weight:600;color:var(--pad-input-muted);padding:.25em 0;text-align:center;width:2.4em}
+.pad-input-daterange .pi-cal-grid td{padding:1px 0;text-align:center}
+.pad-input-daterange .pi-cal-day{width:2.3em;height:2.1em;font:inherit;font-size:.9em;font-variant-numeric:tabular-nums;border:1px solid transparent;border-radius:6px;background:none;color:var(--pad-input-ink);cursor:pointer}
+.pad-input-daterange .pi-cal-day:hover:not(:disabled){border-color:var(--pad-input-accent)}
+.pad-input-daterange .pi-cal-day[aria-current=date]{font-weight:700;border-color:var(--pad-input-line)}
+.pad-input-daterange .pi-cal-day.is-between{background:var(--pad-input-shade);border-radius:0;box-shadow:inset 0 2px 0 var(--pad-input-accent),inset 0 -2px 0 var(--pad-input-accent)}
+.pad-input-daterange .pi-cal-day.is-first,.pad-input-daterange .pi-cal-day.is-last{background:var(--pad-input-accent);border-color:var(--pad-input-accent);color:var(--pad-input-on)}
+.pad-input-daterange .pi-cal-day.is-first:not(.is-last){border-radius:6px 0 0 6px}
+.pad-input-daterange .pi-cal-day.is-last:not(.is-first){border-radius:0 6px 6px 0}
+.pad-input-daterange .pi-cal-day:disabled{color:var(--pad-input-muted);opacity:.45;cursor:default}
+.pad-input-daterange .pi-cal-foot{display:flex;justify-content:space-between;gap:.5em;margin-top:.4em}
+@media (forced-colors:active){.pad-input-daterange .pi-cal-day.is-first,.pad-input-daterange .pi-cal-day.is-last{border:2px solid Highlight}.pad-input-daterange .pi-cal-day.is-between{border-top:1px solid Highlight;border-bottom:1px solid Highlight}}

@@ -22,6 +22,7 @@ the server checks the post again all the same. Send it empty to see them.</p>
   {segmented 'size', label='Size', options='S, M, L, XL', rules='required|in:S,M,L,XL'/}
   {durationpicker 'length', label='Length', parts='hm', rules='required|integer|between:600,28800'/}
   {rangeslider 'budget', label='Budget', max=1000, step=50, unit=' EUR', value='200, 600'/}
+  {daterange 'stay', label='Your stay', labels='Arrival, Departure', nights/}
   <button class="inputs-send">Send</button>
 {/form}
 
