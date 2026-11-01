@@ -36,7 +36,10 @@ PAD;
     'color'     => 'badges: the band; certificate: the frame and the title.',
     'signed'    => 'certificate: the names under the lines to sign on, between semicolons, a role after a comma.',
     'number'    => 'tickets: the number of the first ticket, on a stub without an aside.',
-    'card'      => 'indexcards: 5x3, 6x4, a6 or a7.' ];
+    'card'      => 'indexcards: 5x3, 6x4, a6 or a7.',
+    'grid'      => 'graphpaper: squares, dots or lines.',
+    'spacing'   => 'graphpaper: the step of the grid in mm, 5 (8 for lines).',
+    'major'     => 'graphpaper: every that many lines a heavier one, or a bigger dot - millimetre paper is <code>spacing=1, major=10</code>.' ];
 
   $tagSee     = [ 'pdf', 'barcode', 'qr', 'fake' ];
 

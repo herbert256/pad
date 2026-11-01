@@ -32,7 +32,7 @@
   // element with data-pdf-sheet="210 297" is a page of its own, of that size in millimetres,
   // and on it an element with data-pdf-box="x y w h" sets its content inside that box -
   // clipped to it, never broken over a page - and data-pdf-rect and data-pdf-line draw a
-  // rectangle and a line, all in millimetres from the sheet's top left corner, with their
+  // rectangle and a line (a row of dots with dots=), all in millimetres from the sheet's top left corner, with their
   // padding, text size, alignment, font, turn and colours in data-pdf-style. In such a box
   // an SVG of rectangles and straight paths - a barcode, a QR code - is drawn, its text set
   // in Helvetica or Courier; an element with data-pdf-skip - what only the screen shows -
@@ -1949,7 +1949,10 @@
 
   }
 
-  // A line of a sheet - a crop mark, a fold, a perforation.
+  // A line of a sheet - a crop mark, a fold, a perforation. With dots= it is a row of round
+  // dots that many millimetres apart, as wide as the line is thick: a dash of no length with
+  // round caps, the line drawn half a step past its end so that its last dot is not lost to
+  // the rounding of the step.
 
   function padPdfPrintLine ( &$doc, $el ) {
 
@@ -1962,6 +1965,13 @@
     $height = $doc ['pages'] [$last] ['size'] [1] ?? $doc ['h'];
     $style  = padPdfPrintStyle ( $el );
     $stroke = padPdfRgb ( $style ['stroke'] ?? '' ) ?? '0 0 0';
+    $step   = padPdfDots ( $style );
+    $long   = sqrt ( ( $line [2] - $line [0] ) ** 2 + ( $line [3] - $line [1] ) ** 2 );
+
+    if ( $step and $long > 0 ) {
+      $line [2] += ( $line [2] - $line [0] ) / $long * $step / 2;
+      $line [3] += ( $line [3] - $line [1] ) / $long * $step / 2;
+    }
 
     padPdfOps ( $doc, 'q ' . padPdfStroke ( $stroke, $style ) . ' ' . padPdfN ( $line [0] ) . ' ' . padPdfN ( $height - $line [1] ) . ' m '
                     . padPdfN ( $line [2] ) . ' ' . padPdfN ( $height - $line [3] ) . ' l S Q' );
@@ -1972,7 +1982,21 @@
 
     $width = max ( 0.05, min ( 20, (float) ( $style ['width'] ?? 0.5 ) ) );
 
+    if ( $step = padPdfDots ( $style ) )
+      return "$rgb RG " . padPdfN ( $width ) . ' w 1 J [0 ' . padPdfN ( $step ) . '] 0 d';
+
     return "$rgb RG " . padPdfN ( $width ) . ' w' . ( ( $style ['dash'] ?? '' ) ? ' [' . padPdfN ( $width * 6 ) . ' ' . padPdfN ( $width * 4 ) . '] 0 d' : '' );
+
+  }
+
+  // The step of a line of dots in points, dots= in millimetres - 0 for a line of no dots, or
+  // of a step of less than a tenth of a millimetre.
+
+  function padPdfDots ( $style ) {
+
+    $mm = $style ['dots'] ?? '';
+
+    return ( is_numeric ( $mm ) and (float) $mm >= 0.1 and (float) $mm <= 1000 ) ? (float) $mm * 72 / 25.4 : 0;
 
   }
 

@@ -1255,6 +1255,7 @@ and its WAV.
   <p>Dear {$name},</p> ... <footer>...</footer>
 {/printable:letter}
 {printable 'envelope', paper='c5', sender='PAD, Utrecht', scale=0.5, pdf}...{/printable}
+{printable:graphpaper grid='dots', major=2, copies=10}Name ________{/printable:graphpaper}   # squares, dots or lines, drawn exactly
 ```
 Pages made for paper. A kind is a file of `pad/subs/printables/types/` - labels (sheet grids named
 by their paper and their grid: a4-3x8, a4-3x7, a4-2x7, a4-2x8, a4-2x4, a4-4x10, a4-5x13,
@@ -1282,6 +1283,15 @@ of a sheet: what does not fit is cut at its edge - a letter is one page. Positio
 a style written with the CSP nonce, no inline style. Never reached bare: labels, cards and letter
 are the names of fields and pages. The `printables` application shows every kind, its template
 beside what it prints, with the PDF.
+
+Graph paper (`graphpaper`) is a grid over the whole sheet in as many whole squares as fit inside
+`margin=` (10 mm), centred - `grid=` squares, dots or lines, `spacing=` the step in mm (5; 8 for
+lines), every `major=` line heavier or dot bigger (millimetre paper is `spacing=1, major=10`),
+`color=`, `paper=` and `landscape` - the content between the tags a line over it, a name and a date
+to fill in. Its lines, and any line of dots, are drawn exactly: one SVG over the sheet in
+millimetres, where a line drawn as the border of a box is printed on the nearest of 96 pixels an
+inch and a pixel thick at the least - squares of 5 mm 4.76 and 5.03 mm wide, the heavy lines as
+thin as the others - so that printed at its actual size 5 mm is 5 mm, on paper as in the PDF.
 
 ### Widgets
 ```

@@ -33,6 +33,11 @@
 
       $name = preg_match ( "/\\[ '([a-z ]+)', '([a-z ]+)' \\]/", $file, $match ) ? ucfirst ( $match [2] ) : ucfirst ( $kind );
 
+      // A kind of paper names its items pages of that paper: its name is the paper's - Graph
+      // paper, not Pages of graph paper.
+
+      $name = preg_match ( '/^Pages of (.+)$/', $name, $match ) ? ucfirst ( $match [1] ) : $name;
+
       $printables [$kind] = [ 'kind' => $kind, 'name' => $name, 'line' => $line, 'text' => $text ];
 
     }

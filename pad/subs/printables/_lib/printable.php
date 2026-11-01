@@ -47,6 +47,7 @@
   // padPrintableParts   an item cut into the parts of its kind
   // padPrintablePlan    a kind's plan with its defaults
   // padPrintableBuild   the plan and the items as the markup, its style and its bar
+  // padPrintableExact   the lines of a sheet drawn exactly, one SVG in millimetres
   // padPrintableGrid    the grid of a sheet: sheet=, paper=, across=, down=, width=,
   //                     height=, margin=, pitch=, skip=
   // padPrintableBox     the look of a box: padding=, size=, align=
@@ -190,15 +191,17 @@
   //           $parts is NULL, and the kind draws what a sheet shows there - an edge
   //   sheet   fn ( $sheet ) - what every sheet draws, the crop marks and the fold marks
   //   font    sans or serif
+  //   exact   every line drawn exactly (padPrintableExact) - graph paper
   //
   // What an item and a sheet draw is a list of:
   //
   //   [ 'box',  x, y, w, h, html, [ pad, size, align, valign, turn, font, fill, color, class ] ]
   //   [ 'rect', x, y, w, h, [ fill, stroke, width, dash, screen ] ]
-  //   [ 'line', x1, y1, x2, y2, [ stroke, width, dash, screen ] ]
+  //   [ 'line', x1, y1, x2, y2, [ stroke, width, dash, dots, screen ] ]
   //
   // in millimetres; a size in points; screen for what the screen alone shows - an edge to
-  // see, the stamp of an envelope - left out on paper and in the PDF.
+  // see, the stamp of an envelope - left out on paper and in the PDF. A line is across or
+  // down; dots= makes it a row of round dots that far apart, as wide as the line is thick.
 
   function padPrintablePlan ( $plan ) {
 
@@ -253,9 +256,11 @@
       $draw .= padProtect ( '<section class="pp-sheet" data-pdf-sheet="' . padPrintableMm ( $plan ['paper'] [0] ) . ' ' . padPrintableMm ( $plan ['paper'] [1] )
                           . '" aria-label="Sheet ' . ( $sheet + 1 ) . ' of ' . $total . '">' );
 
-      foreach ( $prims as $prim )
+      $exact = padPrintableExact ( $plan, $prims );
+
+      foreach ( $prims as $k => $prim )
         if ( $prim )
-          $draw .= padPrintablePrim ( $css, $prim );
+          $draw .= ( $k === $exact [1] ? $exact [0] : '' ) . padPrintablePrim ( $css, $prim );
 
       $draw .= padProtect ( '</section>' );
 
@@ -370,11 +375,11 @@
 
     }
 
-    $o = ( $prim [5] ?? [] ) + [ 'fill' => '', 'stroke' => '', 'width' => 0.5, 'dash' => FALSE, 'screen' => FALSE ];
+    $o = ( $prim [5] ?? [] ) + [ 'fill' => '', 'stroke' => '', 'width' => 0.5, 'dash' => FALSE, 'dots' => 0, 'exact' => FALSE, 'screen' => FALSE ];
 
     $border = ( $o ['stroke'] !== '' ) ? padPrintableMm ( $o ['width'] ) . 'pt ' . ( $o ['dash'] ? 'dashed' : 'solid' ) . ' ' . $o ['stroke'] : '';
     $pdf    = ( $o ['fill'] !== '' ? 'fill=' . $o ['fill'] . ';' : '' ) . ( $o ['stroke'] !== '' ? 'stroke=' . $o ['stroke'] . ';' : '' )
-            . 'width=' . padPrintableMm ( $o ['width'] ) . ( $o ['dash'] ? ';dash=1' : '' );
+            . 'width=' . padPrintableMm ( $o ['width'] ) . ( $o ['dash'] ? ';dash=1' : '' ) . ( $o ['dots'] ? ';dots=' . padPrintableMm ( $o ['dots'] ) : '' );
     $where  = $o ['screen'] ? 'data-pdf-skip' : '';
 
     if ( $kind == 'rect' ) {
@@ -394,6 +399,12 @@
             ? 'left:' . $mm ( min ( $x1, $x2 ) ) . ';top:' . $mm ( $y1 ) . ';width:' . $mm ( abs ( $x2 - $x1 ) ) . ";height:0;border-top:$border"
             : 'left:' . $mm ( $x1 ) . ';top:' . $mm ( min ( $y1, $y2 ) ) . ';width:0;height:' . $mm ( abs ( $y2 - $y1 ) ) . ";border-left:$border";
 
+      // A line drawn exactly is drawn by the sheet's SVG (padPrintableExact): here it is the
+      // PDF's alone, hidden on the screen and on paper.
+
+      if ( $o ['exact'] or $o ['dots'] )
+        return padProtect ( "<div class=\"pp-line pp-pdf\" data-pdf-line=\"" . padPrintableMms ( $x1, $y1, $x2, $y2 ) . "\" data-pdf-style=\"$pdf\" aria-hidden=\"true\"></div>" );
+
       $attrs = $where ?: 'data-pdf-line="' . padPrintableMms ( $x1, $y1, $x2, $y2 ) . "\" data-pdf-style=\"$pdf\"";
 
     }
@@ -401,6 +412,63 @@
     $class = 'pp-' . $kind . ' ' . padPrintableClass ( $css, $rule ) . ( $o ['screen'] ? ' pp-screen' : '' );
 
     return padProtect ( "<div class=\"$class\" $attrs aria-hidden=\"true\"></div>" );
+
+  }
+
+  // The lines of a sheet drawn exactly - every line of a kind whose plan says exact, the
+  // grid of graph paper, and every line of dots - as one SVG over the whole sheet, its units
+  // millimetres, a path for every look: on the screen and on paper each at its place and as
+  // thick as it is, where a line drawn as the border of a box is put on the nearest of 96
+  // pixels an inch and drawn a pixel thick at the least - squares of 5 mm printed 4.76 and
+  // 5.03 mm wide, the heavy lines of a grid as thin as the others. A line of dots is a dash
+  // of no length every dots= mm with round caps. The lines stay in the markup for the PDF
+  // (padPrintablePrim), hidden; the SVG is no part of the PDF. It stands where the first of
+  // its lines stands, over what comes before it - a rectangle's fill - as the PDF draws the
+  // lines over the rectangles: [ the SVG, the place of its first line ].
+
+  function padPrintableExact ( $plan, &$prims ) {
+
+    $paths = [];
+    $first = NULL;
+
+    foreach ( $prims as $k => $prim ) {
+
+      if ( ! $prim or $prim [0] != 'line' )
+        continue;
+
+      $o = ( $prim [5] ?? [] ) + [ 'stroke' => '#000000', 'width' => 0.5, 'dash' => FALSE, 'dots' => 0, 'exact' => FALSE, 'screen' => FALSE ];
+
+      if ( ! ( $o ['exact'] or $o ['dots'] or ( $plan ['exact'] ?? FALSE ) ) or $o ['screen'] )
+        continue;
+
+      $wide = $o ['width'] * 25.4 / 72;
+      $look = 'stroke="' . padWidgetAttr ( $o ['stroke'] ) . '" stroke-width="' . padPrintableMm ( $wide ) . '"'
+            . ( $o ['dots'] ? ' stroke-dasharray="0 ' . padPrintableMm ( $o ['dots'] ) . '" stroke-linecap="round"'
+                            : ( $o ['dash'] ? ' stroke-dasharray="' . padPrintableMm ( 6 * $wide ) . ' ' . padPrintableMm ( 4 * $wide ) . '"' : '' ) );
+
+      list ( , $x1, $y1, $x2, $y2 ) = $prim;
+
+      // Half a step past its end, as the PDF has it: the last dot is not lost to rounding.
+
+      if ( $o ['dots'] and ( $long = hypot ( $x2 - $x1, $y2 - $y1 ) ) > 0 ) {
+        $x2 += ( $x2 - $x1 ) / $long * $o ['dots'] / 2;
+        $y2 += ( $y2 - $y1 ) / $long * $o ['dots'] / 2;
+      }
+
+      $paths [$look] = ( $paths [$look] ?? '' ) . 'M' . padPrintableMm ( $x1 ) . ' ' . padPrintableMm ( $y1 )
+                     . ( $y1 == $y2 ? 'H' . padPrintableMm ( $x2 ) : ( $x1 == $x2 ? 'V' . padPrintableMm ( $y2 ) : 'L' . padPrintableMm ( $x2 ) . ' ' . padPrintableMm ( $y2 ) ) );
+
+      $prims [$k] [5] ['exact'] = TRUE;
+      $first ??= $k;
+
+    }
+
+    if ( ! $paths )
+      return [ '', NULL ];
+
+    return [ padProtect ( '<svg class="pp-lines" data-pdf-skip aria-hidden="true" focusable="false" viewBox="0 0 ' . padPrintableMms ( ...$plan ['paper'] ) . '" fill="none">'
+                        . implode ( '', array_map ( fn ( $look, $d ) => "<path $look d=\"$d\"/>", array_keys ( $paths ), $paths ) )
+                        . '</svg>' ), $first ];
 
   }
 
