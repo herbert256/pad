@@ -3,9 +3,10 @@
   // required_unless:field,value[,value...] - required, as required judges it, unless another
   // field holds one of the values, as written: an address unless delivery is collect. The
   // other field is read as required_if reads it - a list holds a value when one of its items
-  // does - and a field the post leaves out holds none of them, so the field is required
-  // then. Its argument is a field name and a value: required_unless:delivery, with none
-  // always required the field, and is the author's error.
+  // does, one the post leaves out is read from the query string - and a field neither has
+  // holds none of them, so the field is required then. Its argument is a field name and a
+  // value: required_unless:delivery, with none always required the field, and is the
+  // author's error.
 
   return [
     'empty'    => TRUE,

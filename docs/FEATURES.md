@@ -663,7 +663,10 @@ Some rules look at another field of the post:
 ```
 The other field is found where PHP files the post, by the browser's checker too (`user[kind]`,
 `kinds[]` - which `kinds` finds too - the items `kinds[0]` and `kinds[1]`, `first.name` as
-`first_name`), its text trimmed; one the post leaves out is empty. `required_if`/`required_unless`
+`first_name`), its text trimmed; one the post leaves out - a radio group without a choice, a box
+not ticked - is read where the page reads it, from the query string of the address the form
+posts to (`?checkout&delivery=collect`), by the checker too, and is empty when that has none
+either. `required_if`/`required_unless`
 compare as written, case and all, and a list meets the value when one of its items does;
 filled is what `required` passes (`0` is filled, blanks are not, a list with an item is). The
 four judge an empty field, and require a list as `required` does. `before`/`after` read ISO

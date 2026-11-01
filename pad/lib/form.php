@@ -118,10 +118,12 @@
   // required_if family, before and after: its text trimmed, or the trimmed texts of a list
   // (a field named kinds[]). It is found where PHP files it, as padFormFind finds it -
   // user[kind] in $_POST ['user'] ['kind'] - and kinds finds the list kinds[] as kinds[]
-  // finds kinds. A field the post leaves out is '', as an empty one is; so is anything else
-  // the browser's checker could not see as one field's value (www/assets/rules/validate.js,
-  // sibling): an array with keys of its own - user, when the post has user[kind] - or an
-  // item of a list that is no text. The browser reads the same.
+  // finds kinds. Without data handed to padValidate a field the post leaves out is read from
+  // the query string, as the page reads it (padRequestInput) - the checker reads the query
+  // string of the address the form posts to alike - and one neither has is '', as an empty
+  // one is; so is anything else the browser's checker could not see as one field's value
+  // (www/assets/rules/validate.js, sibling): an array with keys of its own - user, when the
+  // post has user[kind] - or an item of a list that is no text. The browser reads the same.
 
   function padRuleSibling ( $data, $name ) {
 
@@ -167,7 +169,7 @@
 
   // The argument of required_if and required_unless: the other field's name, then the values
   // that meet the condition - [ name, values ], each trimmed, the empty values left out, so
-  // an empty field - or one the post leaves out - is none of them.
+  // an empty field - or one the request does not have - is none of them.
 
   function padRuleFieldValues ( $arg ) {
 
@@ -377,7 +379,8 @@
   // query string). The post alone was checked, a field it did not carry was empty there
   // and passed every rule but required, and a post of name alone to an address carrying
   // ?website=javascript:... or ?plan=enterprise handed the page that value past its url
-  // and in: rules.
+  // and in: rules. The other field of a rule is read so too: posted to ?delivery=ship
+  // without a delivery, the page ships, and required_if:delivery,ship requires the address.
 
   function padValidate ( $rules, $data = NULL, $messages = [] ) {
 

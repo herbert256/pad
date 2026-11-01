@@ -531,9 +531,14 @@ addRule('uuid', {
     return one.replace(/\r\n|\r|\n/g, '\r\n');
   }
   function valuesOf(form, rules) {
-    var all = Object.create(null), values = {};
+    var all = Object.create(null), values = {}, posted = Object.create(null);
     new FormData(form).forEach(function (one, name) {
-      if (typeof one === 'string') (all[name] = all[name] || []).push(sent(one));
+      if (typeof one !== 'string') return;
+      (all[name] = all[name] || []).push(sent(one));
+      posted[path(name)[0]] = true;
+    });
+    queryOf(form).forEach(function (one) {
+      if (!posted[path(one[0])[0]]) (all[one[0]] = all[one[0]] || []).push(one[1]);
     });
     Object.keys(all).forEach(function (name) {
       values[name] = /\[\]$/.test(name) ? all[name] : all[name][all[name].length - 1];
@@ -543,6 +548,14 @@ addRule('uuid', {
       values[name] = rules[name].list ? list : (list.length ? list[list.length - 1] : '');
     });
     return values;
+  }
+  function queryOf(form) {
+    var entries = [];
+    try {
+      var address = typeof form.action === 'string' && form.action ? form.action : window.location.href;
+      new URL(address).searchParams.forEach(function (one, name) { entries.push([name, one]); });
+    } catch (e) {}
+    return entries;
   }
   function controlsBy(form) {
     var by = Object.create(null);

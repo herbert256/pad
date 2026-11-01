@@ -197,8 +197,8 @@
   // Another field of the post as the rules that look at one read it, as padRuleSibling: its
   // text trimmed, or the trimmed texts of a list - kinds finds kinds[] and kinds[] finds
   // kinds, emails[] the items emails[0] and emails[1], first_name the field first.name - and
-  // '' for a field the form does not send, as for an empty one, or for anything that is no
-  // one field's value.
+  // '' for a field neither the post nor the query string has (valuesOf), as for an empty one,
+  // or for anything that is no one field's value.
   function sibling(values, name) {
     name = trim(String(name));
     var found = find(values, name), value = found[1];
@@ -315,10 +315,23 @@
   // never sees, and the confirmation passed here what the server refused.
   // One walk of the entries: the values of a rule's field taken with getAll walked them all
   // again for every field.
+  //
+  // What the post leaves out - a radio group without a choice, a box not ticked, a field the
+  // form does not have - is read from the query string of the address the form posts to, by
+  // the name PHP files it under, as the server reads the request (padRequestInput: the post,
+  // then the query string): posted to ?checkout&delivery=collect without a delivery, the page
+  // has delivery collect, and its rules judge that. Read as empty here, required_unless:
+  // delivery,collect blocked a post the server takes, required_with:newsletter on
+  // ?x&newsletter=1 let one through it refuses.
   function valuesOf(form, rules) {
-    var all = Object.create(null), values = {};
+    var all = Object.create(null), values = {}, posted = Object.create(null);
     new FormData(form).forEach(function (one, name) {
-      if (typeof one === 'string') (all[name] = all[name] || []).push(sent(one));
+      if (typeof one !== 'string') return;
+      (all[name] = all[name] || []).push(sent(one));
+      posted[path(name)[0]] = true;
+    });
+    queryOf(form).forEach(function (one) {
+      if (!posted[path(one[0])[0]]) (all[one[0]] = all[one[0]] || []).push(one[1]);
     });
     Object.keys(all).forEach(function (name) {
       values[name] = /\[\]$/.test(name) ? all[name] : all[name][all[name].length - 1];
@@ -328,6 +341,17 @@
       values[name] = rules[name].list ? list : (list.length ? list[list.length - 1] : '');
     });
     return values;
+  }
+
+  // The names and values of the query string of the address the form posts to - its action,
+  // the page's own address when it has none - as [ name, value ] each.
+  function queryOf(form) {
+    var entries = [];
+    try {
+      var address = typeof form.action === 'string' && form.action ? form.action : window.location.href;
+      new URL(address).searchParams.forEach(function (one, name) { entries.push([name, one]); });
+    } catch (e) {}
+    return entries;
   }
 
   // The controls of the form by name, in one walk of its elements: looked up field by field,

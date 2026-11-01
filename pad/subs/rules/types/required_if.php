@@ -4,10 +4,10 @@
   // holds one of the values, as written - case and all, as in: compares: an address when
   // delivery is ship, required_if:delivery,ship,courier for either. The other field is read
   // as padRuleSibling reads it, user[kind] too, its text trimmed; a list (kinds[]) meets the
-  // condition when one of its items does. A field the post leaves out holds nothing, and
-  // nothing is none of the values - the field is not required then. Its argument is a field
-  // name and a value: required_if:delivery, with none never required anything, and is the
-  // author's error.
+  // condition when one of its items does. A field the post leaves out is read from the query
+  // string, as the page reads it; one neither has holds nothing, and nothing is none of the
+  // values - the field is not required then. Its argument is a field name and a value:
+  // required_if:delivery, with none never required anything, and is the author's error.
 
   return [
     'empty'    => TRUE,

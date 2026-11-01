@@ -84,11 +84,11 @@ for (const one of cases) {
 // _chrome.mjs, run by hand, drives them and the cases above through a real page.
 
 // The world of one form: fields is [ name, value ] each; server the messages the server wrote
-// beside them, by name; count says how often the checker read the rules, made the values
-// (FormData) and walked the form's controls.
+// beside them, by name; action the address the form posts to; count says how often the
+// checker read the rules, made the values (FormData) and walked the form's controls.
 const rendered = {};
 
-function world(template, fields, server) {
+function world(template, fields, server, action) {
   const found = (rendered[template] = rendered[template] || render('forms/client_parity_watch', template)).match(/data-pad-rules="([^"]*)"/);
   if (!found) return null;
   const listeners = {};
@@ -101,7 +101,7 @@ function world(template, fields, server) {
   };
   const rules = found[1].replace(/&quot;/g, '"').replace(/&amp;/g, '&');
   const elements = [];
-  const form = { get elements() { count.walks++; return elements; }, hasAttribute(name) { return name === 'data-pad-rules'; },
+  const form = { action, get elements() { count.walks++; return elements; }, hasAttribute(name) { return name === 'data-pad-rules'; },
                  querySelector() { return null; }, contains(span) { return byId[span.id] === span; },
                  getAttribute(name) { if (name !== 'data-pad-rules') return null; count.rules++; return rules; } };
   const controls = {};
@@ -121,7 +121,7 @@ function world(template, fields, server) {
     getAll(name) { return this.entries.filter(one => one[0] === name).map(one => one[1]); }
     forEach(each) { this.entries.forEach(one => each(one[1], one[0])); }
   }
-  const scope = { window: {}, document: page, FormData: PageData };
+  const scope = { window: {}, document: page, FormData: PageData, URL };
   vm.runInNewContext(checker[1], scope);
   const fire = (type, name, value) => {
     if (value !== undefined) controls[name].value = value;
@@ -224,6 +224,24 @@ else {
       watching.push(`watcher: ${name} shows ${JSON.stringify(filedForm.shown(name))} when ${other} became ${value}, not ${JSON.stringify(text)}`);
   });
 }
+
+// What the post leaves out is read from the query string of the address the form posts to,
+// as the server reads the request (padRequestInput): posted to ?checkout&delivery=collect&
+// newsletter=1 without them, the page has delivery collect and a newsletter, and a field the
+// form does send wins (request/form_rules_that_look_at_other_fields_post holds the server).
+const checkoutForm = "{form 'checkout', client}{input 'address', rules='required_unless:delivery,collect'/}" +
+                     "{input 'email', rules='required_with:newsletter'/}{/form}";
+
+[[[], { address: '', email: 'Email is required when Newsletter is filled in' }],
+ [[['delivery', 'ship'], ['newsletter', '']], { address: 'Address is required unless Delivery is collect', email: '' }]].forEach(([sent, want]) => {
+  const out = world(checkoutForm, [['address', ''], ['email', '']].concat(sent), {}, 'http://localhost/pad/shop/?checkout&delivery=collect&newsletter=1');
+  if (!out) return watching.push('{form ..., client} wrote no data-pad-rules');
+  out.padValidate.form(out.form);
+  Object.keys(want).forEach(name => {
+    if (out.shown(name) !== want[name])
+      watching.push(`the query string of the address posted to, ${sent.length ? 'with' : 'without'} delivery and newsletter in the post: ${name} shows ${JSON.stringify(out.shown(name))}, not ${JSON.stringify(want[name])}`);
+  });
+});
 
 // A keystroke in a field that many fields watch reads the rules, the values and the controls
 // once for all of them: read again for each, it took time growing with the square of their
