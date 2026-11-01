@@ -26,6 +26,7 @@ applications show them working.
   - [Offline applications in the browser](#offline-applications-in-the-browser)
   - [HTTP fakes for tests](#http-fakes-for-tests)
   - [Log in with GitHub, Google ... (OAuth)](#log-in-with-github-google--oauth)
+  - [Notifications on every channel](#notifications-on-every-channel)
 - [Template features](#template-features)
   - [Lookups Between Data Sets](#lookups-between-data-sets)
   - [Grouping with subtotals (group option)](#grouping-with-subtotals-group-option)
@@ -330,6 +331,35 @@ calls to the provider's API. `{oauth 'github'/}` is the button - its link `oauth
 unless `href=`, the provider's icon when `pad/subs/icons/` has one. Apple posts its answer back
 from its own site, which brings no `SameSite=Lax` session cookie, so its state also goes in a
 sealed cookie (https); with `$padCsrf` on that post is refused - it carries no token.
+
+### Notifications on every channel
+
+`padNotify ( $user, 'order-shipped', [ 'order' => 42 ], [ 'mail', 'database', 'slack' ] )` renders
+`_notifications/order-shipped.pad` for each channel and sends it - a section per channel, or the
+plain text for every channel without one:
+```
+Your order {$order} has shipped.        # the plain text
+@title@
+Order {$order} shipped                  # the subject, the push title
+@mail@
+<p>Hello {$name}, your order <b>{$order}</b> is on its way.</p>
+@slack@
+:package: Order *{$order}* shipped
+```
+The channels are the files of `pad/subs/channels/types/`: mail (`padMail`), database (kept under
+`DATA/notifications/<app>/` - `{notifications/}` lists the unread ones of the user logged in, each
+with a signed link that marks it read; `padNotifications`, `padNotificationRead`), webpush (RFC
+8291 encryption and VAPID with openssl - `padWebPushKeys ()` makes the key pair), slack, discord,
+teams, telegram, ntfy, matrix and sms (a generic HTTP gateway). The recipient is a row - `email`,
+`phone`, and a field per channel holding the person's own address there (`slack`, `telegram`,
+`webpush` ...) - or an e-mail address. Each setting comes from the options (`[ 'slack' => [ 'url'
+=> ... ] ]`), the row, or `padEnv`: `SLACK_WEBHOOK_URL`, `DISCORD_WEBHOOK_URL`,
+`TEAMS_WEBHOOK_URL`, `TELEGRAM_BOT_TOKEN`, `NTFY_TOPIC`, `MATRIX_TOKEN`, `SMS_URL`,
+`VAPID_PUBLIC_KEY` ...; one missing everywhere is a strict error naming the variable. With
+`[ 'queue' => TRUE ]` (or a queue's name) every channel is a job of its own, `@notify`, rendered
+and sent by `pad work` - a failing channel is retried alone. A channel that does not deliver is
+no error: FALSE, logged, and `padNotifyResults ()` says why - and which push subscriptions are
+gone. A channel is added by adding its file: its settings and a `send` function.
 
 ## Template features
 

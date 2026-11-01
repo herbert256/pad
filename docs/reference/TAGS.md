@@ -826,6 +826,26 @@ strict check.
 
 ---
 
+### notifications
+The notifications the database channel of `padNotify` kept for the user logged in, unread,
+newest first, each with a link that marks it read.
+
+```html
+{notifications/}
+{notifications all}<li>{$title} - {$created}{if $read} (read){/if}</li>{/notifications}
+```
+
+**Options:** `for` - the recipient, an id or an email, instead of the user logged in; `all` - the
+read ones too.
+
+**Behavior:** single, a list in a `<section aria-label="Notifications">` - title, text, time and
+a "Mark read" link - or "No new notifications."; nothing for a guest. As a pair the
+notifications are its rows: `id`, `name`, `title`, `text`, `html`, `url`, `created` (Y-m-d H:i),
+`read`, `link`. The link brings this page back with `padNotificationRead=<id>.<signature>`, an
+HMAC of the application, the recipient and the id: it marks only that one of that person.
+
+---
+
 ### asset
 The address of a file of `www/<app>/` with a version of its contents, for a far-future cache.
 

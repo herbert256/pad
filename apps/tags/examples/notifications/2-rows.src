@@ -1,0 +1,8 @@
+{meta title='As rows', about='The pair form: every notification a row, read ones too with all - the handling options apply.'/}
+<ul>
+  {notifications all, first=10}
+    <li class="{if $read}read{/if}">{$title} - {$created} {if ! $read}<a href="{$link}">done</a>{/if}</li>
+  @else@
+    <li>Nothing yet.</li>
+  {/notifications}
+</ul>

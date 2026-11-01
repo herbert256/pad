@@ -32,7 +32,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Migrations and fake data](#migrations-and-fake-data) | `padMigrate`, `padSeed`, `padFake*`, `padFactory`, ... | - |
 | [Queues, schedule and HTTP fakes](#queues-schedule-and-http-fakes) | `padQueue`, `padQueueWork`, `padCronMatch`, `padCurlFake`, ... | - |
 | [Maintenance and assets](#maintenance-and-assets) | `padMaintenanceDown`, `padAsset`, ... | - |
-| [OAuth, notifications and language models](#oauth-notifications-and-language-models) | `padOAuthStart`, `padOAuthUser`, `padOAuthError`, ... | social_login |
+| [OAuth, notifications and language models](#oauth-notifications-and-language-models) | `padOAuthStart`, `padOAuthUser`, `padNotify`, `padWebPushKeys`, ... | social_login, notifications |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1023,6 +1023,11 @@ naming the variable to set.
 | `padOAuthUser ( $provider, $options = [] )` | On the way back: the state checked, the code exchanged, the id_token checked, the user fetched - `[ provider, id, sub, name, email, avatar, username ]` for `padLogin`, or FALSE |
 | `padOAuthError ()`, `padOAuthToken ()` | Why the last call answered FALSE; the token endpoint's answer of the last login |
 | `padOAuthKinds ()` | The providers - the files of `pad/subs/oauth/types/` |
+| `padNotify ( $to, $name, $data = [], $channels = NULL, $options = [] )` | Renders `_notifications/<name>.pad` per channel and sends it - TRUE when every channel delivered (or was queued, with `[ 'queue' => TRUE ]`); without channels, those with a section in the template |
+| `padNotifyResults ()` | Per channel of the last `padNotify`: `ok`, `error`, `gone` (push subscriptions to forget), `job` when queued |
+| `padNotifications ( $to = NULL, $all = FALSE )`, `padNotificationRead ( $id \| 'all', $to = NULL )` | The database channel's notifications of a recipient - the user logged in by default - newest first; one or all marked read |
+| `padWebPushKeys ()` | A new VAPID key pair, base64url - `[ public, private ]` for `VAPID_PUBLIC_KEY` and `VAPID_PRIVATE_KEY` |
+| `padNotifyChannels ()` | The channels - the files of `pad/subs/channels/types/` |
 
 ## Engine functions
 

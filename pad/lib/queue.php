@@ -295,7 +295,8 @@
   }
 
   // One run of a handler. '@mail' is the engine's own job, a mail padMail queued
-  // (lib/mail.php); every other name is the application's _jobs/<name>.php.
+  // (lib/mail.php), and so is '@notify', one channel of a notification padNotify queued
+  // (lib/notify.php); every other name is the application's _jobs/<name>.php.
   //
   // While the handler runs, padError throws instead of ending the request, as it does in
   // the _events/error.php hook (padErrorHook), and PHP's warnings throw as well: a failing
@@ -312,7 +313,7 @@
 
     $file = str_starts_with ( (string) $job, '@' ) ? '' : padQueueHandler ( (string) $job );
 
-    if ( $file === '' and $job !== '@mail' )
+    if ( $file === '' and $job !== '@mail' and $job !== '@notify' )
       return [ 'ok' => FALSE, 'error' => "there is no job handler _jobs/$job.php", 'ms' => 0 ];
 
     $busy               = $padEventErrorBusy ?? FALSE;
@@ -326,6 +327,8 @@
 
       if ( $job === '@mail' )
         $result = padQueueMail ( $data );
+      elseif ( $job === '@notify' )
+        $result = padNotifyQueued ( $data );
       else
         $result = padQueueInclude ( $file, $data, $record );
 
@@ -605,11 +608,11 @@
   }
 
   // A job is named as its handler is - letters, digits, _ and -, nested with / - or is one
-  // of the engine's own, @mail.
+  // of the engine's own, @mail and @notify.
 
   function padQueueJobName ( $job, $function ) {
 
-    if ( $job === '@mail'
+    if ( $job === '@mail' or $job === '@notify'
          or ( is_string ( $job ) and preg_match ( '#^[A-Za-z0-9][A-Za-z0-9_-]*(/[A-Za-z0-9][A-Za-z0-9_-]*)*$#D', $job ) ) )
       return TRUE;
 

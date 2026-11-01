@@ -770,6 +770,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Offline applications](docs/FEATURES.md#offline-applications-in-the-browser) | `pad pack notes`, `_offline.json`, `padWasm ()` |
 | [HTTP fakes for tests](docs/FEATURES.md#http-fakes-for-tests) | `padCurlFake ()`, `padCurlRecorded ()` |
 | [Log in with GitHub, Google ... (OAuth)](docs/FEATURES.md#log-in-with-github-google--oauth) | `padOAuthStart ( 'github' )`, `padOAuthUser ()` → `padLogin`, `{oauth 'github'/}` - a provider per file of `pad/subs/oauth/types/` |
+| [Notifications on every channel](docs/FEATURES.md#notifications-on-every-channel) | `padNotify ( $user, 'shipped', $data, [ 'mail', 'slack' ] )`, `_notifications/`, `{notifications/}`, `padWebPushKeys ()` - a channel per file of `pad/subs/channels/types/` |
 | [Live regions](docs/FEATURES.md#live-regions-interactivity-without-app-javascript) | `{live 'cart'}`, `pad-click`, `padLiveEvent ()` |
 | [Lookups between data sets](docs/FEATURES.md#lookups-between-data-sets) | `\| lookup('customers', 'id', 'name')` |
 | [Grouping with subtotals](docs/FEATURES.md#grouping-with-subtotals-group-option) | `{orders group='customer', sum='total'}` |

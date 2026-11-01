@@ -1,0 +1,169 @@
+<p>A notification is one message to one person - an order shipped, a comment answered - written
+once and sent on the channels asked for. <code>padNotify</code> renders the template
+<code>_notifications/order-shipped.pad</code> for each channel and hands it over:</p>
+
+<pre>padNotify ( $user, 'order-shipped', [ 'order' => 42 ], [ 'mail', 'database', 'slack' ] );</pre>
+
+<p>The template is a section per channel, or the plain text for every channel without one. A line
+<code>&#64;slack&#64;</code> opens Slack's section, <code>&#64;title&#64;</code> the title - the mail's subject, the
+push's heading; what stands before the first one is the plain text:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/notify_1.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">_notifications/order-shipped.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Slack and ntfy are not asked here: a fake answers every request, as a test answers them,<br>  // and keeps what was sent. The mail goes to DATA/mail/ - the file transport. In an<br>  // application the addresses stand in .env: SLACK_WEBHOOK_URL, NTFY_TOPIC.<br><br>  </span><span style="color: #0000BB">padCurlFake </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'*' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ok' </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$ann </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'manual-ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ann@example.com'</span><span style="color: #007700">, </span><span style="color: #DD0000">'ntfy' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ann-orders' </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">padNotify </span><span style="color: #007700">( </span><span style="color: #0000BB">$ann</span><span style="color: #007700">, </span><span style="color: #DD0000">'order-shipped'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">42</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://shop.example/orders/42' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'mail'</span><span style="color: #007700">, </span><span style="color: #DD0000">'slack'</span><span style="color: #007700">, </span><span style="color: #DD0000">'ntfy' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'slack' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://hooks.slack.com/services/T0/B0/example' </span><span style="color: #007700">] ] );<br><br>  </span><span style="color: #0000BB">$results </span><span style="color: #007700">= [];<br><br>  foreach ( </span><span style="color: #0000BB">padNotifyResults </span><span style="color: #007700">() as </span><span style="color: #0000BB">$channel </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$result </span><span style="color: #007700">)<br>    </span><span style="color: #0000BB">$results </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'channel' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$channel</span><span style="color: #007700">, </span><span style="color: #DD0000">'ok' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$result </span><span style="color: #007700">[</span><span style="color: #DD0000">'ok'</span><span style="color: #007700">] ? </span><span style="color: #DD0000">'sent' </span><span style="color: #007700">: </span><span style="color: #0000BB">$result </span><span style="color: #007700">[</span><span style="color: #DD0000">'error'</span><span style="color: #007700">] ];<br><br>  </span><span style="color: #0000BB">$subject </span><span style="color: #007700">= </span><span style="color: #0000BB">$padMailLast </span><span style="color: #007700">[</span><span style="color: #DD0000">'subject'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$slack   </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">padCurlRecorded </span><span style="color: #007700">() [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'post'</span><span style="color: #007700">], </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) [</span><span style="color: #DD0000">'text'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$ntfy    </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurlRecorded </span><span style="color: #007700">() [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'post'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">padCurlFakeStop </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiJZb3VyIG9yZGVyIHskb3JkZXJ9IGhhcyBzaGlwcGVkLlxuVHJhY2sgaXQgYXQgeyR1cmx9XG5AdGl0bGVAXG5PcmRlciB7JG9yZGVyfSBzaGlwcGVkXG5AbWFpbEBcbjxwPkhlbGxvIHskbmFtZX0sPC9wPlxuPHA+eW91ciBvcmRlciA8Yj57JG9yZGVyfTwvYj4gaXMgb24gaXRzIHdheSAtIDxhIGhyZWY9XCJ7JHVybH1cIj50cmFjayBpdDwvYT4uPC9wPlxuQHNsYWNrQFxuOnBhY2thZ2U6IE9yZGVyICp7JG9yZGVyfSogc2hpcHBlZCB0byB7JG5hbWV9IC0gPHskdXJsfXx0cmFjayBpdD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBTbGFjayBhbmQgbnRmeSBhcmUgbm90IGFza2VkIGhlcmU6IGEgZmFrZSBhbnN3ZXJzIGV2ZXJ5IHJlcXVlc3QsIGFzIGEgdGVzdCBhbnN3ZXJzIHRoZW0sXG4gIC8vIGFuZCBrZWVwcyB3aGF0IHdhcyBzZW50LiBUaGUgbWFpbCBnb2VzIHRvIERBVEEvbWFpbC8gLSB0aGUgZmlsZSB0cmFuc3BvcnQuIEluIGFuXG4gIC8vIGFwcGxpY2F0aW9uIHRoZSBhZGRyZXNzZXMgc3RhbmQgaW4gLmVudjogU0xBQ0tfV0VCSE9PS19VUkwsIE5URllfVE9QSUMuXG5cbiAgcGFkQ3VybEZha2UgKCBbICcqJyA9PiAnb2snIF0gKTtcblxuICAkYW5uID0gWyAnaWQnID0+ICdtYW51YWwtYW5uJywgJ2VtYWlsJyA9PiAnYW5uQGV4YW1wbGUuY29tJywgJ250ZnknID0+ICdhbm4tb3JkZXJzJyBdO1xuXG4gIHBhZE5vdGlmeSAoICRhbm4sICdvcmRlci1zaGlwcGVkJywgWyAnb3JkZXInID0+IDQyLCAnbmFtZScgPT4gJ0FubicsICd1cmwnID0+ICdodHRwczovL3Nob3AuZXhhbXBsZS9vcmRlcnMvNDInIF0sXG4gICAgICAgICAgICAgIFsgJ21haWwnLCAnc2xhY2snLCAnbnRmeScgXSwgWyAnc2xhY2snID0+IFsgJ3VybCcgPT4gJ2h0dHBzOi8vaG9va3Muc2xhY2suY29tL3NlcnZpY2VzL1QwL0IwL2V4YW1wbGUnIF0gXSApO1xuXG4gICRyZXN1bHRzID0gW107XG5cbiAgZm9yZWFjaCAoIHBhZE5vdGlmeVJlc3VsdHMgKCkgYXMgJGNoYW5uZWwgPT4gJHJlc3VsdCApXG4gICAgJHJlc3VsdHMgW10gPSBbICdjaGFubmVsJyA9PiAkY2hhbm5lbCwgJ29rJyA9PiAkcmVzdWx0IFsnb2snXSA/ICdzZW50JyA6ICRyZXN1bHQgWydlcnJvciddIF07XG5cbiAgJHN1YmplY3QgPSAkcGFkTWFpbExhc3QgWydzdWJqZWN0J107XG4gICRzbGFjayAgID0ganNvbl9kZWNvZGUgKCBwYWRDdXJsUmVjb3JkZWQgKCkgWzBdIFsncG9zdCddLCBUUlVFICkgWyd0ZXh0J107XG4gICRudGZ5ICAgID0gcGFkQ3VybFJlY29yZGVkICgpIFsxXSBbJ3Bvc3QnXTtcblxuICBwYWRDdXJsRmFrZVN0b3AgKCk7XG5cbj8+XG4ifQ==" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJZb3VyIG9yZGVyIHskb3JkZXJ9IGhhcyBzaGlwcGVkLlxuVHJhY2sgaXQgYXQgeyR1cmx9XG5AdGl0bGVAXG5PcmRlciB7JG9yZGVyfSBzaGlwcGVkXG5AbWFpbEBcbjxwPkhlbGxvIHskbmFtZX0sPC9wPlxuPHA+eW91ciBvcmRlciA8Yj57JG9yZGVyfTwvYj4gaXMgb24gaXRzIHdheSAtIDxhIGhyZWY9XCJ7JHVybH1cIj50cmFjayBpdDwvYT4uPC9wPlxuQHNsYWNrQFxuOnBhY2thZ2U6IE9yZGVyICp7JG9yZGVyfSogc2hpcHBlZCB0byB7JG5hbWV9IC0gPHskdXJsfXx0cmFjayBpdD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBTbGFjayBhbmQgbnRmeSBhcmUgbm90IGFza2VkIGhlcmU6IGEgZmFrZSBhbnN3ZXJzIGV2ZXJ5IHJlcXVlc3QsIGFzIGEgdGVzdCBhbnN3ZXJzIHRoZW0sXG4gIC8vIGFuZCBrZWVwcyB3aGF0IHdhcyBzZW50LiBUaGUgbWFpbCBnb2VzIHRvIERBVEEvbWFpbC8gLSB0aGUgZmlsZSB0cmFuc3BvcnQuIEluIGFuXG4gIC8vIGFwcGxpY2F0aW9uIHRoZSBhZGRyZXNzZXMgc3RhbmQgaW4gLmVudjogU0xBQ0tfV0VCSE9PS19VUkwsIE5URllfVE9QSUMuXG5cbiAgcGFkQ3VybEZha2UgKCBbICcqJyA9PiAnb2snIF0gKTtcblxuICAkYW5uID0gWyAnaWQnID0+ICdtYW51YWwtYW5uJywgJ2VtYWlsJyA9PiAnYW5uQGV4YW1wbGUuY29tJywgJ250ZnknID0+ICdhbm4tb3JkZXJzJyBdO1xuXG4gIHBhZE5vdGlmeSAoICRhbm4sICdvcmRlci1zaGlwcGVkJywgWyAnb3JkZXInID0+IDQyLCAnbmFtZScgPT4gJ0FubicsICd1cmwnID0+ICdodHRwczovL3Nob3AuZXhhbXBsZS9vcmRlcnMvNDInIF0sXG4gICAgICAgICAgICAgIFsgJ21haWwnLCAnc2xhY2snLCAnbnRmeScgXSwgWyAnc2xhY2snID0+IFsgJ3VybCcgPT4gJ2h0dHBzOi8vaG9va3Muc2xhY2suY29tL3NlcnZpY2VzL1QwL0IwL2V4YW1wbGUnIF0gXSApO1xuXG4gICRyZXN1bHRzID0gW107XG5cbiAgZm9yZWFjaCAoIHBhZE5vdGlmeVJlc3VsdHMgKCkgYXMgJGNoYW5uZWwgPT4gJHJlc3VsdCApXG4gICAgJHJlc3VsdHMgW10gPSBbICdjaGFubmVsJyA9PiAkY2hhbm5lbCwgJ29rJyA9PiAkcmVzdWx0IFsnb2snXSA/ICdzZW50JyA6ICRyZXN1bHQgWydlcnJvciddIF07XG5cbiAgJHN1YmplY3QgPSAkcGFkTWFpbExhc3QgWydzdWJqZWN0J107XG4gICRzbGFjayAgID0ganNvbl9kZWNvZGUgKCBwYWRDdXJsUmVjb3JkZWQgKCkgWzBdIFsncG9zdCddLCBUUlVFICkgWyd0ZXh0J107XG4gICRudGZ5ICAgID0gcGFkQ3VybFJlY29yZGVkICgpIFsxXSBbJ3Bvc3QnXTtcblxuICBwYWRDdXJsRmFrZVN0b3AgKCk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">Your order <b>{<font color="green"><font color="red">$</font>order</font>}</b> has shipped.<br>Track it at <b>{<font color="green"><font color="red">$</font>url</font>}</b><br><b><font color="black">@</font><font color="purple">title</font><font color="black">@</font></b><br>Order <b>{<font color="green"><font color="red">$</font>order</font>}</b> shipped<br><b><font color="black">@</font><font color="purple">mail</font><font color="black">@</font></b><br>&lt;p&gt;Hello <b>{<font color="green"><font color="red">$</font>name</font>}</b>,&lt;/p&gt;<br>&lt;p&gt;your order &lt;b&gt;<b>{<font color="green"><font color="red">$</font>order</font>}</b>&lt;/b&gt; is on its way - &lt;a href="<b>{<font color="green"><font color="red">$</font>url</font>}</b>"&gt;track it&lt;/a&gt;.&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">slack</font><font color="black">@</font></b><br>:package: Order *<b>{<font color="green"><font color="red">$</font>order</font>}</b>* shipped to <b>{<font color="green"><font color="red">$</font>name</font>}</b> - &lt;<b>{<font color="green"><font color="red">$</font>url</font>}</b>|track it&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <ul>
+  <li>mail: sent</li><li>slack: sent</li><li>ntfy: sent</li>
+</ul>
+<p>The mail's subject: Order 42 shipped</p>
+<p>Slack got: <code>:package: Order *42* shipped to Ann - &lt;https://shop.example/orders/42|track it&gt;</code></p>
+<p>ntfy got: <code>Your order 42 has shipped.
+Track it at https://shop.example/orders/42</code></p>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<p>The channels are the files of <code>pad/subs/channels/types/</code> - database, discord, mail, matrix, ntfy, slack, sms, teams, telegram, webpush.
+A channel is added by adding its file: the settings it needs and a function that sends.</p>
+
+<h2>Kept on the site</h2>
+
+<p>The database channel keeps a notification for its recipient under <code>DATA/notifications/</code>.
+{notifications/} lists the unread ones of the user logged in, newest first, each with
+a <em>Mark read</em> link - signed for that person, so it marks nothing of anyone else's. As a
+pair the notifications are its rows:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/notify_2.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/notify_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The database channel keeps the notification on the site. What Bo had before is marked<br>  // read first, so the list shows this one alone - Bo's id is one of this page's own, as the<br>  // example runs on two pages of the manual.<br><br>  </span><span style="color: #0000BB">$bo </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'bo@' </span><span style="color: #007700">. </span><span style="color: #0000BB">$padPage </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">padNotificationRead </span><span style="color: #007700">( </span><span style="color: #DD0000">'all'</span><span style="color: #007700">, </span><span style="color: #0000BB">$bo </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">padNotify </span><span style="color: #007700">( </span><span style="color: #0000BB">$bo</span><span style="color: #007700">, </span><span style="color: #DD0000">'order-shipped'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">43</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bo'</span><span style="color: #007700">, </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://shop.example/orders/43' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'database' </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtub3RpZmljYXRpb25zIGZvcj0kYm8uaWR9PGxpPjxiPnskdGl0bGV9PC9iPiAtIHskdGV4dH08L2xpPnsvbm90aWZpY2F0aW9uc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gVGhlIGRhdGFiYXNlIGNoYW5uZWwga2VlcHMgdGhlIG5vdGlmaWNhdGlvbiBvbiB0aGUgc2l0ZS4gV2hhdCBCbyBoYWQgYmVmb3JlIGlzIG1hcmtlZFxuICAvLyByZWFkIGZpcnN0LCBzbyB0aGUgbGlzdCBzaG93cyB0aGlzIG9uZSBhbG9uZSAtIEJvJ3MgaWQgaXMgb25lIG9mIHRoaXMgcGFnZSdzIG93biwgYXMgdGhlXG4gIC8vIGV4YW1wbGUgcnVucyBvbiB0d28gcGFnZXMgb2YgdGhlIG1hbnVhbC5cblxuICAkYm8gPSBbICdpZCcgPT4gJ2JvQCcgLiAkcGFkUGFnZSBdO1xuXG4gIHBhZE5vdGlmaWNhdGlvblJlYWQgKCAnYWxsJywgJGJvICk7XG5cbiAgcGFkTm90aWZ5ICggJGJvLCAnb3JkZXItc2hpcHBlZCcsIFsgJ29yZGVyJyA9PiA0MywgJ25hbWUnID0+ICdCbycsICd1cmwnID0+ICdodHRwczovL3Nob3AuZXhhbXBsZS9vcmRlcnMvNDMnIF0sIFsgJ2RhdGFiYXNlJyBdICk7XG5cbj8+XG4ifQ==" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtub3RpZmljYXRpb25zIGZvcj0kYm8uaWR9PGxpPjxiPnskdGl0bGV9PC9iPiAtIHskdGV4dH08L2xpPnsvbm90aWZpY2F0aW9uc31cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgLy8gVGhlIGRhdGFiYXNlIGNoYW5uZWwga2VlcHMgdGhlIG5vdGlmaWNhdGlvbiBvbiB0aGUgc2l0ZS4gV2hhdCBCbyBoYWQgYmVmb3JlIGlzIG1hcmtlZFxuICAvLyByZWFkIGZpcnN0LCBzbyB0aGUgbGlzdCBzaG93cyB0aGlzIG9uZSBhbG9uZSAtIEJvJ3MgaWQgaXMgb25lIG9mIHRoaXMgcGFnZSdzIG93biwgYXMgdGhlXG4gIC8vIGV4YW1wbGUgcnVucyBvbiB0d28gcGFnZXMgb2YgdGhlIG1hbnVhbC5cblxuICAkYm8gPSBbICdpZCcgPT4gJ2JvQCcgLiAkcGFkUGFnZSBdO1xuXG4gIHBhZE5vdGlmaWNhdGlvblJlYWQgKCAnYWxsJywgJGJvICk7XG5cbiAgcGFkTm90aWZ5ICggJGJvLCAnb3JkZXItc2hpcHBlZCcsIFsgJ29yZGVyJyA9PiA0MywgJ25hbWUnID0+ICdCbycsICd1cmwnID0+ICdodHRwczovL3Nob3AuZXhhbXBsZS9vcmRlcnMvNDMnIF0sIFsgJ2RhdGFiYXNlJyBdICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">notifications </font><font color="red">for=<font color="red">$</font>bo.id</font>}</b>&lt;li&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/b&gt; - <b>{<font color="green"><font color="red">$</font>text</font>}</b>&lt;/li&gt;<b>{/<font color="blue">notifications</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <ul>
+  <li><b>Order 43 shipped</b> - Your order 43 has shipped.
+Track it at https://shop.example/orders/43</li>
+</ul>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Who gets it, and where</h2>
+
+<ul>
+  <li>The recipient is a user row - <code>email</code>, <code>phone</code>, and a field per channel
+      with the person's own address there: <code>slack</code>, <code>telegram</code>,
+      <code>ntfy</code>, <code>matrix</code>, <code>webpush</code> - or an e-mail address alone.</li>
+  <li>Every setting is looked for in the options (<code>[ 'slack' => [ 'url' => ... ] ]</code>), then
+      in that row, then in <code>.env</code>: <code>SLACK_WEBHOOK_URL</code>,
+      <code>DISCORD_WEBHOOK_URL</code>, <code>TEAMS_WEBHOOK_URL</code>, <code>TELEGRAM_BOT_TOKEN</code>,
+      <code>NTFY_TOPIC</code>, <code>MATRIX_TOKEN</code>, <code>SMS_URL</code> ... One missing
+      everywhere is an error under the strict check naming the variable.</li>
+  <li>webpush reaches the browsers the person allowed, the site closed: their
+      <code>PushSubscription</code> in the row, the message encrypted for each as RFC 8291 has it
+      and signed with the application's VAPID keys - <code>padWebPushKeys ()</code> makes the pair
+      for <code>VAPID_PUBLIC_KEY</code> and <code>VAPID_PRIVATE_KEY</code>, and openssl does the rest.</li>
+  <li><code>[ 'queue' => TRUE ]</code> sends later: every channel a job of its own for
+      <code>pad work</code>, so a channel that fails is retried alone and the mail that went is not
+      sent twice.</li>
+  <li>A channel that does not deliver is no error of the page: <code>padNotify</code> answers FALSE,
+      the failure is logged, and <code>padNotifyResults ()</code> says what each channel did - and
+      which push subscriptions are gone.</li>
+</ul>

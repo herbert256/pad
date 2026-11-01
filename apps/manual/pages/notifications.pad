@@ -1,0 +1,48 @@
+{meta title='Notifications'/}
+
+<p>A notification is one message to one person - an order shipped, a comment answered - written
+once and sent on the channels asked for. <code>padNotify</code> renders the template
+<code>_notifications/order-shipped.pad</code> for each channel and hands it over:</p>
+
+<pre>padNotify ( $user, 'order-shipped', [ 'order' => 42 ], [ 'mail', 'database', 'slack' ] );</pre>
+
+<p>The template is a section per channel, or the plain text for every channel without one. A line
+<code>&#64;slack&#64;</code> opens Slack's section, <code>&#64;title&#64;</code> the title - the mail's subject, the
+push's heading; what stands before the first one is the plain text:</p>
+
+{example 'fragments/notify_1', pad='_notifications/order-shipped.pad'/}
+
+<p>The channels are the files of <code>pad/subs/channels/types/</code> - {echo php:implode(', ', padNotifyChannels())/}.
+A channel is added by adding its file: the settings it needs and a function that sends.</p>
+
+<h2>Kept on the site</h2>
+
+<p>The database channel keeps a notification for its recipient under <code>DATA/notifications/</code>.
+{open/}notifications/{close/} lists the unread ones of the user logged in, newest first, each with
+a <em>Mark read</em> link - signed for that person, so it marks nothing of anyone else's. As a
+pair the notifications are its rows:</p>
+
+{example 'fragments/notify_2'/}
+
+<h2>Who gets it, and where</h2>
+
+<ul>
+  <li>The recipient is a user row - <code>email</code>, <code>phone</code>, and a field per channel
+      with the person's own address there: <code>slack</code>, <code>telegram</code>,
+      <code>ntfy</code>, <code>matrix</code>, <code>webpush</code> - or an e-mail address alone.</li>
+  <li>Every setting is looked for in the options (<code>[ 'slack' => [ 'url' => ... ] ]</code>), then
+      in that row, then in <code>.env</code>: <code>SLACK_WEBHOOK_URL</code>,
+      <code>DISCORD_WEBHOOK_URL</code>, <code>TEAMS_WEBHOOK_URL</code>, <code>TELEGRAM_BOT_TOKEN</code>,
+      <code>NTFY_TOPIC</code>, <code>MATRIX_TOKEN</code>, <code>SMS_URL</code> ... One missing
+      everywhere is an error under the strict check naming the variable.</li>
+  <li>webpush reaches the browsers the person allowed, the site closed: their
+      <code>PushSubscription</code> in the row, the message encrypted for each as RFC 8291 has it
+      and signed with the application's VAPID keys - <code>padWebPushKeys ()</code> makes the pair
+      for <code>VAPID_PUBLIC_KEY</code> and <code>VAPID_PRIVATE_KEY</code>, and openssl does the rest.</li>
+  <li><code>[ 'queue' => TRUE ]</code> sends later: every channel a job of its own for
+      <code>pad work</code>, so a channel that fails is retried alone and the mail that went is not
+      sent twice.</li>
+  <li>A channel that does not deliver is no error of the page: <code>padNotify</code> answers FALSE,
+      the failure is logged, and <code>padNotifyResults ()</code> says what each channel did - and
+      which push subscriptions are gone.</li>
+</ul>
