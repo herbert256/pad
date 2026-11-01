@@ -14,9 +14,15 @@ Install: copy (or symlink) this directory to
 | `language-configuration.json` | Auto-closing `{}` and quotes, `{-- --}` comment toggling, auto-indent for block tags |
 | `snippets/pad.code-snippets` | `padif`, `padloop`, `paddata`, `padcase`, `padignore` |
 
-The repo's `.vscode/tasks.json` adds **PAD: render page** (default build task,
-`cmd+shift+B`): renders the current `.pad` file through
-`http://localhost/pad/` via `editors/padrun.sh`.
+`editors/padrun.sh` renders the current `.pad` file through `http://localhost/pad/`. The
+repository ships no `.vscode/tasks.json`; a task of your own makes it the default build task
+(`cmd+shift+B`):
+
+```json
+{ "version": "2.0.0", "tasks": [ { "label": "PAD: render page", "type": "process",
+  "command": "${workspaceFolder}/editors/padrun.sh", "args": [ "${file}" ],
+  "group": { "kind": "build", "isDefault": true }, "problemMatcher": [] } ] }
+```
 
 `completions.json` is generated from the framework source
 (`pad/tags/`, `pad/functions/`, `pad/properties/`, `pad/options/`,
