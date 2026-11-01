@@ -7,7 +7,9 @@
   $words      = preg_split ( '/\s+/', strtolower ( $tagsSearch ), -1, PREG_SPLIT_NO_EMPTY );
   $found      = [];
 
-  foreach ( tagsCatalog () as $name => $tag ) {
+  foreach ( tagsCatalog () as $key => $tag ) {
+
+    $name = $tag ['name'];
 
     if ( ! $words )
       break;
@@ -19,8 +21,8 @@
 
     foreach ( $words as $word ) {
 
-      if     ( $name === $word )                 $score += 100;
-      elseif ( str_contains ( $name, $word ) )   $score += 30;
+      if     ( $name === $word or $key === $word ) $score += 100;
+      elseif ( str_contains ( $key, $word ) )     $score += 30;
       elseif ( str_contains ( $about, $word ) )  $score += 10;
       elseif ( str_contains ( $rest, $word ) )   $score += 3;
       else { $score = 0; break; }

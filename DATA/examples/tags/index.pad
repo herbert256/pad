@@ -1,10 +1,12 @@
 {meta title='Every PAD tag'/}
 <section class="hero">
   <h1>Every PAD tag</h1>
-  <p class="lead">A page for each built-in tag of PAD: what it does in one line, its syntax and
-  the options that belong to it, a longer description and live examples - every result
-  rendered by the tag it documents. Find a tag by name, by group, by form or by option, or
-  search for it.</p>
+  <p class="lead">A page for each tag of PAD, named with its type prefix - every built-in tag,
+  <code>&#123;pad:if&#125;</code>, every kind of the subsystems, <code>&#123;chart:pie&#125;</code>,
+  <code>&#123;toy:life&#125;</code>, <code>&#123;icon:star&#125;</code>, and every sequence type,
+  <code>&#123;sequence:fibonacci&#125;</code>: what it does in one line, its syntax and the
+  options that belong to it, a longer description and live examples - every result rendered by
+  the tag it documents. Find a tag by name, by group, by form or by option, or search for it.</p>
   <ul class="stats">
     <li><b>{$tagsCount}</b> tags</li>
     <li><b>{$tagsGroupCnt}</b> groups</li>
@@ -27,7 +29,7 @@
   <section class="card">
     <h3><a href="?groups#{$key}">{$label}</a> <span class="count">{$count}</span></h3>
     <p>{$tagline}</p>
-    <div class="tagcloud">{tags}<a href="?tag/{$name}" title="{$about}">{$name}</a>{/tags}</div>
+    <div class="tagcloud">{tags}<a href="?{$link}" title="{$about}">{$key}</a>{/tags}</div>
   </section>
   {/groups}
 </div>

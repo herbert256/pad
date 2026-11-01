@@ -1,6 +1,7 @@
-{meta title='Every kind', about='The kinds of pad/fakes/types/ as a page array, a value of each - the same on every request.'/}
+{meta title='Every kind', about='The kinds of pad/fakes/types/ as a page array, a value of each - the same on every request; the date between bounds of its own, as by default it falls in the year before today.'/}
 <table>
   {kinds}
   <tr><td><code>{$kind}</code></td><td>{fake $kind/}</td></tr>
   {/kinds}
+  <tr><td><code>date</code></td><td>{fake 'date', from='2026-01-01', to='2026-12-31'/}</td></tr>
 </table>
