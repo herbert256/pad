@@ -4016,10 +4016,10 @@ a `data` name that names nothing and no value at all are strict errors.
 ### section
 A block of a landing page - a hero, the features, the prices, what customers say, the questions, a
 call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact details,
-a gallery, the footer or a comparison table - in HTML and CSS alone. Every section is a file of
-`pad/subs/sections/types/`, its style in `www/assets/sections/` (`section.css`, shared, and a sheet
-per kind, each written once per page with the CSP nonce); the files of `types/` are the sections
-there are, and the subsystem is `pad/subs/sections/`.
+a gallery, the footer, a comparison table or a changelog - in HTML and CSS alone. Every section is a
+file of `pad/subs/sections/types/`, its style in `www/assets/sections/` (`section.css`, shared, and
+a sheet per kind, each written once per page with the CSP nonce); the files of `types/` are the
+sections there are, and the subsystem is `pad/subs/sections/`.
 
 ```html
 {section 'hero', 'Pages that drive themselves', button='Start', link='?start', second='Read more', secondLink='?docs'}
@@ -4084,6 +4084,12 @@ no plans at all, a plan named twice, a plan no row has a field for and a `featur
 plan. The table scrolls sideways in a section too narrow for it, the features' column standing
 still.
 
+**Changelog.** The releases stand in the order they are written, newest first as a changelog keeps
+them - a version's order is never guessed by sorting. Each is an anchor named by its version alone,
+so a link to it stays: `#v2.1.0` (a v before a digit), `#Unreleased`, with the section's `id=`
+before it when given; its heading links there, or to `link=`. A date is written as Keep a Changelog
+writes it, 2026-10-30; another date, a version given twice and a release without one are reported.
+
 **Look.** Every section is a size container: its layout follows the room it has, not the window
 (`@container`). The colours are custom properties on `.pad-section` - `--pad-section-bg`,
 `-panel`, `-text`, `-soft`, `-dim`, `-line`, `-accent`, `-accent-text`, `-accent-soft` - whose
@@ -4095,11 +4101,11 @@ theme sets them on `.pad-section`.
 | Option | On | Meaning |
 |--------|----|---------|
 | `title` | every section | The heading - also the first value; a slot `title` of markup wins |
-| `eyebrow` | hero, features, pricing, testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, comparison | The small line above the heading |
+| `eyebrow` | hero, features, pricing, testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, comparison, changelog | The small line above the heading |
 | `text` | every section | The line under the heading; the content wins over it, a slot `text` over both |
 | `level` | every section | The heading's level, 1 to 6 (2); an item's heading one more |
 | `tone` | every section | `plain`, `soft` or `accent` - the background (cta: accent, newsletter: soft) |
-| `align` | every section | `center` or `left` (hero with a picture, contact and footer: left) |
+| `align` | every section | `center` or `left` (hero with a picture, contact, footer and changelog: left) |
 | `id` | every section | The section's id, an anchor to link to |
 | `button`, `link` | hero, cta | The main button and the page it goes to - one without the other is reported |
 | `second`, `secondLink` | hero, cta | A quieter second button |
@@ -4133,6 +4139,7 @@ theme sets them on `.pad-section`.
 | `gallery` | Pictures in a grid with their captions | eyebrow, title, text | image, caption, alt, link, the caption (or a picture of markup) |
 | `footer` | The name and its line, columns of links, the small print | brand, text, note | title, then a link a line - `Label \| ?page`; rows: column, label, link |
 | `comparison` | A table of the plans, a row per feature: a value, a check, a dash or a question mark | eyebrow, title, text, note | feature, category, text, values (a `;` between them, or the content's lines), an option of a plan's name |
+| `changelog` | The releases as written, each an anchor of its version, its changes in Keep a Changelog's groups | eyebrow, title, text | version, date (2026-10-30), title, added, changed, deprecated, removed, fixed, security, link, badge, text |
 | `item` | One item of the list section around it | - | - |
 
 ---

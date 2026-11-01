@@ -1865,11 +1865,12 @@ list itself is `$_POST ['tags']`.
 {section:contact 'Get in touch', mail='hi@example.com', phone='+31 20 123 4567', form/}
 {section:footer brand='PAD', note='© 2026'}{section:item 'Product'}Pricing | ?pricing{/section:item}{/section:footer}
 {section:comparison plans='Hobby, Pro', featured='Pro'}{section:item 'Domain', values='no; yes'/}{/section:comparison}
+{section:changelog}{section:item '2.1.0', date='2026-10-30', added='A table; An agenda'/}{/section:changelog}
 ```
 The blocks a landing page is built of, in HTML and CSS alone - the questions are `<details>`, the
 forms post back without a script: hero, features, pricing (a featured plan with its badge),
-testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, footer and
-comparison (a table of plans), and
+testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, footer, comparison
+(a table of plans) and changelog, and
 `item`, the item of the sections that list things. A part of a section comes three ways, the
 first that has one winning: a `{slot 'name'}` pair directly in its content - template, rendered
 where the section stands, in the scope of the loop around it - an option of the part's name,
@@ -1891,6 +1892,10 @@ rows of `data=` - each cell a value as written, a check for yes, a dash for no a
 for a value nobody gave, read out as `included=`, `excluded=` and `unknown=`; it scrolls sideways in
 a narrow section with the features' column standing still, and `featured=` names the plan in the
 accent.
+A changelog keeps its releases in the order written - never sorted by version - each an anchor named
+by its version alone (`#v2.1.0`, after the section's `id=` when given), its date written 2026-10-30
+and its changes in the groups of Keep a Changelog: `added=`, `changed=`, `deprecated=`, `removed=`,
+`fixed=`, `security=`, each a list.
 Every section is a size container - its layout follows the room it has (`@container`), not the
 window; the colours are `--pad-section-bg`, `-panel`, `-text`, `-soft`, `-dim`, `-line`,
 `-accent`, `-accent-text`, `-accent-soft` on `.pad-section`, their defaults the frame's palette
