@@ -53,9 +53,12 @@ php -d memory_limit=2G -- "$padHome" "$host" "$work" <<'PHP' || exit 1
   $origin = $parts ['scheme'] . '://' . $parts ['host'] . ( isset ( $parts ['port'] ) ? ':' . $parts ['port'] : '' );
   $root   = $parts ['path'] ?? '/';
 
-  // The applications whose pages and files are copied.
+  // The applications whose pages and files are copied - and _common, which has no pages:
+  // the stylesheets and scripts of the frame and of the brand every application shows top
+  // left (www/_common/), which stayed links to the server, so on the copy no frame and no
+  // brand had its styles.
 
-  $apps = [ 'pad', 'manual', 'reference', 'sequence', 'examples', 'apps', 'demo', 'hello',
+  $apps = [ '_common', 'pad', 'manual', 'reference', 'sequence', 'examples', 'apps', 'demo', 'hello',
             'nono', 'react', 'structure', 'cli', 'classicModels', 'padSelect', 'regression/main', 'develop',
             'tags', 'types', 'charts', 'games', 'toys', 'inputs', 'showcase', 'alpine', 'htmx', 'islands', 'webcomponents',
             'notes', 'ledger', 'kanban' ];
