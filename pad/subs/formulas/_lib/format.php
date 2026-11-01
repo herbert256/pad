@@ -20,8 +20,11 @@
     if ( $text === '' )
       return NULL;
 
+    // A number past what a float holds - 1e400, or 400 digits - is none: Excel keeps such a
+    // text a text.
+
     if ( preg_match ( '/^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?$/', $text ) )
-      return (float) $text;
+      return padFormulaKept ( (float) $text );
 
     $sign = 1;
 
@@ -37,7 +40,7 @@
         $number = -$number;
       if ( $match [7] == '%' )
         $number /= 100;
-      return $sign * $number;
+      return padFormulaKept ( $sign * $number );
     }
 
     if ( $sign == 1 ) {
@@ -54,6 +57,9 @@
 
     $number = padFormulaRound15 ( (float) $number );
 
+    if ( ! is_finite ( $number ) )
+      return '#NUM!';
+
     if ( $number == 0 )
       return '0';
 
@@ -61,12 +67,13 @@
     $width = 11 - strlen ( $sign );
     $abs   = abs ( $number );
 
-    // The plain form: as many decimals as fit beside the whole part, its zeros taken off.
+    // The plain form: as many decimals as fit beside the whole part, its zeros taken off -
+    // never for 1E+11 and more, which has more digits than fit, so its whole part is counted
+    // only below that: a number of 9.22E+18 or more is no int, and the cast ended the request.
 
-    $whole = strlen ( (string) (int) floor ( $abs ) );
     $plain = NULL;
 
-    if ( $abs < 1e11 and $whole <= $width ) {
+    if ( $abs < 1e11 and ( $whole = strlen ( (string) (int) floor ( $abs ) ) ) <= $width ) {
       $decimals = max ( 0, $width - $whole - 1 );
       $plain    = padFormulaFixed ( $abs, $decimals );
       if ( str_contains ( $plain, '.' ) )
@@ -182,7 +189,10 @@
       return $value;
     }
 
-    $number = (float) $value;
+    $number = padFormulaKept ( (float) $value );
+
+    if ( $number === NULL )
+      return '#NUM!';
 
     if ( count ( $sections ) >= 3 and $number == 0 )
       return padFormulaFormatNumber ( 0.0, $sections [2], FALSE );
@@ -397,17 +407,27 @@
 
     }
 
-    $abs = $abs * ( 100 ** $percent ) / ( 1000 ** $scale );
+    // A number a code scales past what a float holds - 1E+300 with six % - cannot be written
+    // in it: #VALUE!, as TEXT answers for a value its code cannot show.
+
+    if ( $abs != 0 )
+      $abs = padFormulaKept ( $abs * ( 100 ** $percent ) / ( 1000 ** $scale ) );
+
+    if ( $abs === NULL )
+      return '#VALUE!';
 
     // The exponent: the number written with as many digits before its point as the code has
-    // there.
+    // there - divided by 10^power in steps where that power is past what a float holds,
+    // 0.00000000000000000000000000000E+0 for a number near 1E-300.
 
     $power = 0;
 
     if ( $expSign !== '' and $abs != 0 ) {
       $before = max ( 1, count ( $integer ) );
       $power  = (int) floor ( log10 ( $abs ) ) - ( $before - 1 );
-      $abs    = $abs / ( 10 ** $power );
+      $abs    = padFormulaShiftPower ( $abs, $power );
+      if ( ! is_finite ( $abs ) )
+        return '#VALUE!';
       if ( padFormulaRoundTo ( $abs, count ( $fraction ) ) >= 10 ** $before ) {
         $power++;
         $abs /= 10;
@@ -502,6 +522,25 @@
       $out = $whole . $out;
 
     return $minus . $out;
+
+  }
+
+  // A number divided by 10^power, in steps of 10^300 where the power is past what a float
+  // holds.
+
+  function padFormulaShiftPower ( $number, $power ) {
+
+    while ( $power > 300 ) {
+      $number /= 1e300;
+      $power  -= 300;
+    }
+
+    while ( $power < -300 ) {
+      $number *= 1e300;
+      $power  += 300;
+    }
+
+    return $number / ( 10 ** $power );
 
   }
 

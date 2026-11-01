@@ -81,19 +81,25 @@
       return $cell;
     }
 
-    if ( preg_match ( '/^[+-]?(?:\d{1,3}(?:,\d{3})+|\d+)?(?:\.\d+)?(?:[eE][+-]?\d+)?$/', $trim ) and preg_match ( '/\d/', $trim ) ) {
-      $cell ['value'] = (float) str_replace ( ',', '', $trim );
+    // A number past what a float holds - 1e400, or 400 digits - stays the text it is, as
+    // Excel keeps it; one below 2.2251E-308 is 0 (padFormulaKept).
+
+    if ( preg_match ( '/^[+-]?(?:\d{1,3}(?:,\d{3})+|\d+)?(?:\.\d+)?(?:[eE][+-]?\d+)?$/', $trim ) and preg_match ( '/\d/', $trim )
+         and ( $number = padFormulaKept ( (float) str_replace ( ',', '', $trim ) ) ) !== NULL ) {
+      $cell ['value'] = $number;
       return $cell;
     }
 
-    if ( preg_match ( '/^[+-]?(?:\d+)?(?:\.(\d+))?%$/', $trim, $match ) and preg_match ( '/\d/', $trim ) ) {
-      $cell ['value']  = (float) rtrim ( $trim, '%' ) / 100;
+    if ( preg_match ( '/^[+-]?(?:\d+)?(?:\.(\d+))?%$/', $trim, $match ) and preg_match ( '/\d/', $trim )
+         and ( $number = padFormulaKept ( (float) rtrim ( $trim, '%' ) / 100 ) ) !== NULL ) {
+      $cell ['value']  = $number;
       $cell ['format'] = isset ( $match [1] ) ? '0.' . str_repeat ( '0', strlen ( $match [1] ) ) . '%' : '0%';
       return $cell;
     }
 
-    if ( preg_match ( '/^([+-]?)([' . padFormulaCurrencies . '])\s*((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d+))?)$/u', $trim, $match ) ) {
-      $cell ['value']  = ( $match [1] == '-' ? -1 : 1 ) * (float) str_replace ( ',', '', $match [3] );
+    if ( preg_match ( '/^([+-]?)([' . padFormulaCurrencies . '])\s*((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d+))?)$/u', $trim, $match )
+         and ( $number = padFormulaKept ( ( $match [1] == '-' ? -1 : 1 ) * (float) str_replace ( ',', '', $match [3] ) ) ) !== NULL ) {
+      $cell ['value']  = $number;
       $cell ['format'] = $match [2] . ( str_contains ( $trim, $match [2] . ' ' ) ? ' ' : '' ) . '#,##0' . ( isset ( $match [4] ) ? '.00' : '' );
       return $cell;
     }
@@ -124,8 +130,12 @@
     if ( is_bool ( $value ) )
       return [ 'source' => $value ? 'TRUE' : 'FALSE', 'value' => $value, 'formula' => NULL, 'format' => NULL ];
 
-    if ( is_int ( $value ) or is_float ( $value ) )
-      return [ 'source' => padFormulaNumberText ( (float) $value ), 'value' => (float) $value, 'formula' => NULL, 'format' => NULL ];
+    // A float of the page's that is no number a cell holds - INF, NAN - is #NUM!.
+
+    if ( is_int ( $value ) or is_float ( $value ) ) {
+      $number = padFormulaKept ( (float) $value );
+      return [ 'source' => padFormulaNumberText ( (float) $value ), 'value' => $number ?? padFormulaError ( '#NUM!' ), 'formula' => NULL, 'format' => NULL ];
+    }
 
     if ( ! is_scalar ( $value ) and ! $value instanceof Stringable )
       return padSheetTyped ( '' );

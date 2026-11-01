@@ -3624,7 +3624,8 @@ them), answering what Excel answers. See [Spreadsheets](../FEATURES.md#spreadshe
 
 **Behavior:** a cell typed `=...` is a formula, `42` and `1,250.5` numbers, `12%` a number shown
 as a percentage, `2024-01-15` a date (the serial of the 1900 system), `$4.50` an amount, TRUE and
-FALSE logical values, `'...` a text; a column without a format shows a cell as it was typed, a
+FALSE logical values, `'...` a text - a number past what a float holds (`1e400`) stays the text
+typed and one below 2.2251E-308 is 0, as in Excel; a column without a format shows a cell as it was typed, a
 formula as its first cell (DATE, EOMONTH a date), else General. Numbers stand right, errors are
 marked (`class="err"`) and explained in their title; a formula's cell carries it in `title` and
 `data-formula`, its number in `data-value`. A circle of references answers `#REF!` in every cell

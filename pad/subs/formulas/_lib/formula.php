@@ -427,6 +427,9 @@
     switch ( $token [0] ) {
 
       case 'num':
+        $state ['at']++;
+        return [ 'v', padFormulaKept ( $token [1] ) ?? padFormulaError ( '#NUM!' ) ];
+
       case 'str':
       case 'bool':
         $state ['at']++;
@@ -606,7 +609,7 @@
 
       case '%':
         $value = padFormulaNumber ( padFormulaScalar ( padFormulaEval ( $node [1], $env ), $env ) );
-        return padFormulaIsError ( $value ) ? $value : $value / 100;
+        return padFormulaIsError ( $value ) ? $value : padFormulaKept ( $value / 100 );
 
       case 'o':
         return padFormulaOperator ( $node [1], padFormulaScalar ( padFormulaEval ( $node [2], $env ), $env ),
@@ -617,7 +620,7 @@
         foreach ( $node [2] as $arg )
           $args [] = padFormulaEval ( $arg, $env );
         $result = padFormulaType ( $node [1] ) ['call'] ( $args, $env );
-        return ( is_float ( $result ) and ! is_finite ( $result ) ) ? padFormulaError ( '#NUM!' ) : $result;
+        return is_float ( $result ) ? ( padFormulaKept ( $result ) ?? padFormulaError ( '#NUM!' ) ) : $result;
 
     }
 
@@ -822,7 +825,22 @@
       '^' => padFormulaPow ( $a, $b )
     };
 
-    return ( is_float ( $result ) and ! is_finite ( $result ) ) ? padFormulaError ( '#NUM!' ) : $result;
+    return is_float ( $result ) ? ( padFormulaKept ( $result ) ?? padFormulaError ( '#NUM!' ) ) : $result;
+
+  }
+
+  // A number as a spreadsheet keeps it, or NULL: past the largest a float holds - INF, and
+  // NAN - is no number, as Excel holds none past 9.99999999999999E+307; one below the
+  // smallest normal float, 2.2251E-308, is 0, as Excel makes it. A number past either end
+  // never reaches a cell: the General form divided by a power of ten that was 0, and cast a
+  // number past an int.
+
+  function padFormulaKept ( $number ) {
+
+    if ( ! is_finite ( $number ) )
+      return NULL;
+
+    return abs ( $number ) < PHP_FLOAT_MIN ? 0.0 : (float) $number;
 
   }
 
@@ -883,11 +901,15 @@
 
   }
 
-  // A number to the 15 significant digits a spreadsheet keeps.
+  // A number to the 15 significant digits a spreadsheet keeps - one below the smallest
+  // normal float 0, as padFormulaKept makes it.
 
   function padFormulaRound15 ( $number ) {
 
-    return ( $number == 0 or ! is_finite ( $number ) ) ? (float) $number : (float) sprintf ( '%.14e', $number );
+    if ( abs ( $number ) < PHP_FLOAT_MIN )
+      return 0.0;
+
+    return ! is_finite ( $number ) ? (float) $number : (float) sprintf ( '%.14e', $number );
 
   }
 
