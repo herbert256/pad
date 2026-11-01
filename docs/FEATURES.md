@@ -563,7 +563,8 @@ $problem = padOAuthError ();                    // a no at the provider, a stale
 ```
 {oauth 'github'/}  {oauth 'google'/}  {oauth 'oidc', href='?login/company', label='Company account'/}
 ```
-The providers are the files of `pad/subs/oauth/types/` - apple, discord, forgejo (Codeberg, or
+The providers are the files of `pad/subs/oauth/types/` - apple, bitbucket (Bitbucket Cloud: its
+consumer's permissions set at Bitbucket, the key and secret sent as HTTP Basic), discord, forgejo (Codeberg, or
 `base=`), github, gitlab (`base=` for one's own), google, microsoft (`tenant=`), oidc (any OpenID
 provider, its endpoints from `<issuer>/.well-known/openid-configuration`) - each an array: the
 endpoints, the scopes, PKCE, the settings it needs and how its answer maps to the user. The
@@ -574,7 +575,8 @@ provider's own id), `name`, `email`, `email_verified`, `avatar`, `username`; Git
 address comes from `/user/emails`, Apple's name from the first login's post. `email` is a
 contact, not an identity: `email_verified` is TRUE only when the provider vouches for the
 address - Google's, Apple's and an OpenID provider's `email_verified`, Discord's `verified`,
-GitLab's `confirmed_at`, GitHub's and Forgejo's `/user/emails`, Microsoft's optional claim
+GitLab's `confirmed_at`, GitHub's and Forgejo's `/user/emails`, Bitbucket's confirmed addresses of
+`/2.0/user/emails`, Microsoft's optional claim
 `xms_edov` (its email is the email claim alone, never `preferred_username`) - so an application
 links a login to an existing account by its address only when it is TRUE. The settings are `padEnv` values -
 `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GITLAB_URL`, `MICROSOFT_TENANT`, `OIDC_ISSUER`;

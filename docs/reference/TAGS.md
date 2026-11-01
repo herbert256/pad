@@ -923,7 +923,7 @@ A "Log in with ..." link styled as a button, for the OAuth subsystem (`pad/subs/
 {oauth 'oidc', href='?login/company', label='Log in with your company account'/}
 ```
 
-**Parameters:** the provider, a file of `pad/subs/oauth/types/` - apple, discord, forgejo,
+**Parameters:** the provider, a file of `pad/subs/oauth/types/` - apple, bitbucket, discord, forgejo,
 github, gitlab, google, microsoft, oidc.
 
 **Options:** `href` - where it links, `oauth/<provider>` of the application by default (a page

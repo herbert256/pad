@@ -2,7 +2,7 @@
 
   // {oauth 'github'/} - a "Log in with GitHub" link styled as a button, for the OAuth
   // subsystem of subs/oauth/: the first parameter is the provider, a file of
-  // subs/oauth/types/ - apple, discord, forgejo, github, gitlab, google, microsoft, oidc. It
+  // subs/oauth/types/ (padOAuthKinds) - apple, bitbucket, discord, github, google, oidc ... It
   // links to the page oauth/<provider> of the application - a page oauth/[provider].php that
   // calls padOAuthStart and, on the way back, padOAuthUser (lib/oauth.php) - unless href=
   // names another; label= is its text instead of Log in with <name>. The provider's icon

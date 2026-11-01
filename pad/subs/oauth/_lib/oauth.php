@@ -22,6 +22,9 @@
   //   post       the provider posts its answer back (response_mode form_post)
   //   params     more values for the authorize address
   //   needs      the settings - option name => the padEnv name read when no option gives it
+  //   auth       how the client authenticates at the token endpoint: post (default) - the id
+  //              and the secret in the body - or basic, HTTP Basic, for a provider that
+  //              documents only that (Bitbucket's); a discovery document decides for oidc
   //   secret     a function making the client secret from the settings (Apple's JWT)
   //   headers    more headers for the provider's API
   //   user       the normalised user's fields - id, name, email, avatar, username - as a
@@ -84,9 +87,10 @@
 
     $provider += [ 'name' => $kind, 'icon' => '', 'authorize' => '', 'token' => '', 'userinfo' => '', 'discovery' => FALSE, 'instance' => '',
                    'issuer' => '', 'claims' => [], 'oidc' => FALSE, 'scopes' => '', 'pkce' => TRUE, 'post' => FALSE,
-                   'params' => [], 'needs' => [], 'secret' => NULL, 'headers' => [], 'user' => [], 'more' => NULL ];
+                   'params' => [], 'needs' => [], 'auth' => 'post', 'secret' => NULL, 'headers' => [], 'user' => [], 'more' => NULL ];
 
     $provider ['kind'] = $kind;
+    $provider ['auth'] = ( $provider ['auth'] === 'basic' ) ? 'basic' : 'post';
 
     // Each setting from the options, else from the environment - and every one missing named
     // at once, with the variable to set.
@@ -108,7 +112,6 @@
                               . implode ( ', ', array_keys ( $missing ) ) );
 
     $provider ['settings'] = $settings;
-    $provider ['auth']     = 'post';
 
     if ( $provider ['discovery'] ) {
 
