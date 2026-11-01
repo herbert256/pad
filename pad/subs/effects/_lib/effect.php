@@ -293,11 +293,16 @@
 
   // The characters a rendered text shows: its markup taken off, its character references
   // read. The stand-ins of a value's braces and quotes stay what they are - one character
-  // each, made the character again when the page is written out.
+  // each, made the character again when the page is written out. A <style> or a <script>
+  // shows nothing, and goes with its content - the style an effect inside writes on its first
+  // use, in its svg, a widget's, confetti's script: strip_tags kept their text, so a wave
+  // around a shimmer drew its CSS letter by letter, a glitch flashed it and a typewriter
+  // typed it, minutes long.
 
   function padEffectPlain ( $html ) {
 
-    $text = strip_tags ( (string) $html );
+    $text = preg_replace ( '#<(style|script)\b[^>]*>.*?</\1\s*>#is', '', (string) $html );
+    $text = strip_tags ( $text );
     $text = html_entity_decode ( $text, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 
     return trim ( preg_replace ( '/\s+/u', ' ', $text ) );
