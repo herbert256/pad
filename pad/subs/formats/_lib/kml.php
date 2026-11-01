@@ -10,7 +10,8 @@
   //   id           the Placemark's id, when it has one
   //   name, description, folder
   //                its name, its description - the balloon's HTML, as KML has it - and the
-  //                names of the folders it stands in, a / between them ('' for none)
+  //                names of the folders it stands in, a / between them ('' for none) - a /
+  //                inside a name written ∕ (U+2215), which the writer writes as / again
   //   address, style, time, begin, end
   //                its address, its styleUrl (#red-pin), the when of its TimeStamp and the
   //                begin and end of its TimeSpan - each only when it has one
@@ -152,7 +153,7 @@
 
     $row ['name']        = padKmlText ( $placemark, 'name' );
     $row ['description'] = padKmlText ( $placemark, 'description' );
-    $row ['folder']      = implode ( ' / ', $folders );
+    $row ['folder']      = implode ( ' / ', str_replace ( '/', "\u{2215}", $folders ) );
 
     if ( padKmlChild ( $placemark, 'address' ) )
       $row ['address'] = padKmlText ( $placemark, 'address' );
@@ -299,8 +300,9 @@
 
   }
 
-  // The folders are a tree, a / between the names of a folder= path, each standing where its
-  // first row stands: rows read from KML are written back in their order and folders.
+  // The folders are a tree, a / between the names of a folder= path - a ∕ inside a name, the
+  // reader's / of one, written / - each standing where its first row stands: rows read from
+  // KML are written back in their order and folders.
 
   function padKmlWrite ( $rows, $options ) {
 
@@ -309,6 +311,7 @@
     foreach ( $rows as $index => $row ) {
       $node = &$tree;
       foreach ( preg_split ( '#\s*/\s*#', trim ( padFormatPick ( $row, [ 'folder' ] ) ), -1, PREG_SPLIT_NO_EMPTY ) as $name ) {
+        $name = str_replace ( "\u{2215}", '/', $name );
         if ( ! isset ( $node ['folders'] [$name] ) ) {
           $node ['folders'] [$name] = [ 'items' => [], 'folders' => [] ];
           $node ['items'] [] = [ 'folder', $name ];
