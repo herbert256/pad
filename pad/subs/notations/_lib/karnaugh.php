@@ -557,11 +557,16 @@
 
   }
 
-  // A variable as the formula writes it: x1 with its digits as a subscript, x_1.
+  // A variable or a name as the formula writes it: x1 with its digits as a subscript, x_1; a
+  // name of more letters - sum, carry, gt - as a text, upright as a function's name stands,
+  // never the AsciiMath word it may be: sum is the sign Σ there, gt the sign >, cin c∈.
 
   function padKarnaughMathName ( $var ) {
 
-    return preg_replace ( '/^([A-Za-z])(\d+)$/D', '$1_$2', $var );
+    if ( preg_match ( '/^([A-Za-z])(?:_?(\d+))?$/D', $var, $parts ) )
+      return isset ( $parts [2] ) ? "$parts[1]_$parts[2]" : $parts [1];
+
+    return '"' . $var . '"';
 
   }
 
