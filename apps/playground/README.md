@@ -18,7 +18,10 @@ it echoes stands before the template; **Switch to data** swaps back, each pane k
 was typed in it.
 
 The [live](../live/README.md) application looks the same and runs what is typed as a real
-page of this server instead: forms that post back, request values, sessions.
+page of this server instead: forms that post back, request values, sessions. **Open in
+live**, beside the buttons, opens the boxes there as they stand here - the template, the data
+and the PHP, and which of the two is used - and the live application's **Open in the
+playground** brings them back; the other side waits for its button, as for any link.
 
 The boxes are editors with colours, as in the [edit](../edit/README.md) application: Monaco,
 loaded from `$playMonaco`, with the edit application's own PAD colouring
@@ -87,5 +90,5 @@ anywhere else - on this machine, for this machine's user - and a data text that 
 | `render.php` / `render.pad` | Reads the posted data text with the reader of its type, or runs the posted PHP code, then renders the posted template with that data through `padCode()` |
 | `_inits.php` | Turns every non-local request away |
 | `_config/config.php` | CSRF tokens; no PHP functions, no request variables, no `_common`, no database; `$playMonaco`, where Monaco comes from |
-| `www/playground/playground.js` | Makes the boxes Monaco editors with colours, switches the data between the text and PHP, keeps the panes in the URL hash, renders the sample on load and on Ctrl+Enter |
+| `www/playground/playground.js` | Makes the boxes Monaco editors with colours, switches the data between the text and PHP, keeps the panes in the URL hash and in the link to the live application, renders the sample on load and on Ctrl+Enter |
 | `www/playground/playground.css` | The two-pane layout |

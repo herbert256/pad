@@ -30,8 +30,24 @@
     try { return JSON.parse(decodeURIComponent(escape(atob(text)))); } catch (e) { return null; }
   }
 
+  // The link to the live application beside the buttons carries the same hash: it opens the
+  // boxes there as they stand here, and waits there for its button as any link does.
+
+  var other     = document.getElementById('toOther');
+  var otherBase = other ? other.getAttribute('href').split('#')[0] : '';
+
+  function boxes() {
+    return '#s=' + encode({ source: source.value, data: data.value, php: php.value, mode: mode.value });
+  }
+
+  function relink(hash) {
+    if (other) other.href = otherBase + hash;
+  }
+
   function remember() {
-    history.replaceState(null, '', '#s=' + encode({ source: source.value, data: data.value, php: php.value, mode: mode.value }));
+    var hash = boxes();
+    history.replaceState(null, '', hash);
+    relink(hash);
   }
 
   function render() {
@@ -59,6 +75,7 @@
 
   show(shared && shared.mode === 'php' ? 'php' : 'data');
   toggle.hidden = false;
+  relink(boxes());
 
   toggle.addEventListener('click', function () {
     show(mode.value === 'php' ? 'data' : 'php');

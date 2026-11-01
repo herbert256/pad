@@ -22,7 +22,9 @@ own request, here the page is a page: `padPosted`, `padRequest` and `?name=value
 scripts all work, and its PHP may call any function a page's PHP may.
 
 The address bar holds the boxes in its `#s=` hash, as the playground's does, so copying it
-shares the page; one opened from such a link fills the boxes and waits for **Run**. Every
+shares the page; one opened from such a link fills the boxes and waits for **Run**. **Open in
+the playground**, beside **Run**, is such a link: the boxes as they stand, in the playground,
+waiting there for **Render** - and the playground's **Open in live** brings them back. Every
 example of the other applications has such a link, the ⚡ icon at its top right beside the
 playground's ▶ - and some have only that one: an example that needs what only a page of this
 server has, as classicModels' database examples
@@ -57,5 +59,5 @@ The live application runs the code it is given, as a page of this server, so:
 | `_guard.php` | Turns every non-local request away |
 | `_config/config.php` | CSRF tokens; `$liveMonaco`, where Monaco comes from |
 | `www/live/index.php` | The entry point: hands a saved page's template to the engine (`$padPageSource`) |
-| `www/live/live.js` | The editors, the switch, the boxes in the URL hash, Run on Ctrl+Enter, open alone |
+| `www/live/live.js` | The editors, the switch, the boxes in the URL hash and in the link to the playground, Run on Ctrl+Enter, open alone |
 | `www/live/live.css` | The two-pane layout |
