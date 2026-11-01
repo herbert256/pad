@@ -3403,7 +3403,10 @@ the others move round it, so it keeps the focus and a drag its pointer. After a 
 `pad-sortable` event bubbles from the list, the keys in their new order in its `detail`, and each
 number field whose place changed sends `change`. Printed, the controls go. The colours are
 `--pad-sortable-accent`, `-text`, `-muted`, `-line`, `-surface` and `-hover` on `.pad-sortable`,
-taken from the page's palette where it has one, with `light-dark()` defaults. A sortable without
+taken from the page's palette where it has one, with `light-dark()` defaults. A sortable with no
+item - the loop that makes them found no row - is no list and no error: it shows what its
+content rendered, nothing or the loop's `@else@` -
+`{tasks}{tab $id}{$title}{/tab}@else@<p>Nothing to sort</p>{/tasks}`. A sortable without
 a valid name, an item without a key or with one that is no key, and two items of one key are
 errors under the strict check; the lenient walk shows the items as they are, without the list.
 
