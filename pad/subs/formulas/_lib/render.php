@@ -153,14 +153,16 @@
   }
 
   // Why a formula answers an error, for its title: the circle it stands in, the place its
-  // formula cannot be read, else what the error means.
+  // formula cannot be read - whatever error the lenient reading of it answers, #ERROR!, a
+  // #NAME? for a function that is not there, #N/A for the wrong number of arguments, #VALUE!
+  // for a SUMPRODUCT of an operator on a range - else what the error means.
 
   function padSheetWhy ( $cell, $error ) {
 
     if ( isset ( $cell ['circle'] ) )
       return 'a circular reference: ' . $cell ['circle'];
 
-    if ( isset ( $cell ['problem'] ) and in_array ( $error, [ '#ERROR!', '#NAME?', '#N/A' ], TRUE ) )
+    if ( isset ( $cell ['problem'] ) )
       return $cell ['problem'] [0] . ' (at ' . $cell ['problem'] [1] . ')';
 
     return padFormulaErrorTexts [$error] ?? '';

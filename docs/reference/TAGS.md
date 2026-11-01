@@ -3725,7 +3725,8 @@ types into the cells named only, a formula too, 1000 characters at most. Colours
 Under the strict check a formula of the template that cannot be read - or calls no function of
 `types/`, or with the wrong number of arguments - is an error naming its cell and its position;
 so are no cells, a name that is no name, and an option naming no cell, range or column.
-Without the check, and for a posted formula, the cell shows `#ERROR!`, `#NAME?` or `#N/A`.
+Without the check, and for a posted formula, the cell shows `#ERROR!`, `#NAME?`, `#N/A` or
+`#VALUE!` (a SUMPRODUCT asking for array evaluation), the reason in its title.
 
 ---
 

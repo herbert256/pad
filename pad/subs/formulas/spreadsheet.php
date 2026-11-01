@@ -48,7 +48,8 @@
   // Under $padCheckSyntax a formula of the template that cannot be read - or calls a function
   // that is no file of subs/formulas/types/, or with the wrong number of arguments - is an
   // error naming its cell and its place in the formula, as a wrong option is. Without the
-  // check, and for a formula a visitor posted, the cell shows #ERROR!, #NAME? or #N/A.
+  // check, and for a formula a visitor posted, the cell shows #ERROR!, #NAME?, #N/A or
+  // #VALUE! (a SUMPRODUCT asking for array evaluation), the reason in its title.
 
   include_once PAD . 'subs/formulas/_lib/options.php';
   include_once PAD . 'subs/formulas/_lib/render.php';
