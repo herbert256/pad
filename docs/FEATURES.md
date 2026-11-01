@@ -1499,7 +1499,7 @@ padWorkdays ( '2026-04-01', '2026-04-30', 'nl' );   // 20 - weekdays that are no
 padAddWorkdays ( '2026-04-24', 1, 'nl' );           // '2026-04-28' - the Monday is King's Day; 0 is the date itself
 ```
 The countries are the files of `pad/subs/holidays/types/`, named by their ISO 3166-1 alpha-2
-code - at, be, ca, ch, cz, de, dk, es, fi, fr, gb, ie, it, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us -
+code - at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, ie, it, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us -
 and a country is
 added by adding its file. Each holds its national public holidays as rules, not dates: a fixed
 date, days from Easter Sunday (the Gregorian computus), the nth or last weekday of a month, the
@@ -1542,6 +1542,9 @@ years since 2009.
 Mexico (`mx`) holds three of its days on a Monday - the first of February, the third of March
 and of November - and the inauguration of the president every six years, on 1 December until
 2018 and on 1 October since 2024; it knows the years since 2007.
+Brazil (`br`) has the national holidays of federal law, 20 November since 2024, and Good Friday
+as the federal government lists it; Carnival and Corpus Christi, optional days of that list,
+are observances; it knows the years since 2003.
 
 ### Syntax highlighting
 ```

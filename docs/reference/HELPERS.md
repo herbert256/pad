@@ -1052,7 +1052,7 @@ naming the variable to set.
 ## Public holidays
 
 `pad/lib/holidays.php` - the entries of the holidays subsystem, `pad/subs/holidays/`. A country
-is its ISO 3166-1 alpha-2 code, a file of `pad/subs/holidays/types/` - at, be, ca, ch, cz, de, dk,
+is its ISO 3166-1 alpha-2 code, a file of `pad/subs/holidays/types/` - at, be, br, ca, ch, cz, de, dk,
 es, fi, fr, gb, ie, it, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us - with a region after it as ISO 3166-2 writes it,
 `'de-by'`. A date is text, a timestamp or a date object, read in the application's zone
 (`padDateParse`); the years are 1583 to 9999. A wrong argument is a `padError` naming the
