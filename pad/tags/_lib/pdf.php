@@ -471,6 +471,18 @@
         continue;
       }
 
+      // An inline element of a box that holds an SVG - a barcode in a <span>, a link round a
+      // QR code - is set as a block of its own, in its own style, so the SVG is drawn where
+      // the line it stood in skipped it.
+
+      if ( $name !== '' and isset ( $doc ['box'] ) and $name != 'img' and ! padPdfSkip ( $name ) and ! padPdfBlock ( $name )
+           and $child->getElementsByTagName ( 'svg' )->length ) {
+        padPdfParagraph ( $doc, $runs, $ctx );
+        $runs = [];
+        padPdfFlow ( $doc, $child, padPdfInlineStyle ( $child, $ctx ) );
+        continue;
+      }
+
       if ( $name !== '' and padPdfSkip ( $name ) )
         continue;
 
@@ -743,7 +755,26 @@
       return;
     }
 
-    switch ( $name ) {
+    $ctx   = padPdfInlineStyle ( $node, $ctx );
+    $block = padPdfBlock ( $name );
+
+    if ( $block and $runs )
+      $runs [] = [ NULL, $ctx ];
+
+    foreach ( $node->childNodes as $child )
+      padPdfInline ( $child, $ctx, $runs );
+
+    if ( $block )
+      $runs [] = [ NULL, $ctx ];
+
+  }
+
+  // The style an inline element gives its content: bold, italic, underlined, monospaced, a
+  // link.
+
+  function padPdfInlineStyle ( $node, $ctx ) {
+
+    switch ( strtolower ( $node->tagName ) ) {
       case 'b': case 'strong': case 'th':               $ctx ['bold']   = TRUE; break;
       case 'i': case 'em': case 'cite': case 'var':
       case 'dfn':                                       $ctx ['italic'] = TRUE; break;
@@ -759,16 +790,7 @@
         break;
     }
 
-    $block = padPdfBlock ( $name );
-
-    if ( $block and $runs )
-      $runs [] = [ NULL, $ctx ];
-
-    foreach ( $node->childNodes as $child )
-      padPdfInline ( $child, $ctx, $runs );
-
-    if ( $block )
-      $runs [] = [ NULL, $ctx ];
+    return $ctx;
 
   }
 
@@ -1125,7 +1147,12 @@
         foreach ( $td->childNodes as $child )
           padPdfInline ( $child, $style, $runs );
 
-        $cells [$r] [] = [ 'col' => $col, 'span' => $span, 'head' => $head, 'runs' => $runs, 'style' => $style ];
+        // The SVGs of a cell in a printable's box - a label laid out as a table, the barcode in
+        // one cell and the name in the next - are drawn under the cell's text.
+
+        $pics = isset ( $doc ['box'] ) ? iterator_to_array ( $td->getElementsByTagName ( 'svg' ) ) : [];
+
+        $cells [$r] [] = [ 'col' => $col, 'span' => $span, 'head' => $head, 'runs' => $runs, 'style' => $style, 'pics' => $pics ];
 
         $col += $span;
 
@@ -1151,6 +1178,8 @@
         if ( $cell ['span'] != 1 )
           continue;
         list ( $nat, $min ) = padPdfMeasure ( $doc, $cell ['runs'], $cell ['style'] );
+        foreach ( $cell ['pics'] as $pic )
+          $nat = max ( $nat, ( padPdfSvgFit ( $pic, 1e6, 1e6 ) ?? [ 0 ] ) [0] );
         $natural [ $cell ['col'] ] = max ( $natural [ $cell ['col'] ], $nat + 2 * $pad );
         $least   [ $cell ['col'] ] = max ( $least   [ $cell ['col'] ], $min + 2 * $pad );
       }
@@ -1180,8 +1209,12 @@
       foreach ( $row as $cell ) {
         $wide   = array_sum ( array_slice ( $widths, $cell ['col'], $cell ['span'] ) );
         $lines  = padPdfLines ( $doc, $cell ['runs'], $cell ['style'], $wide - 2 * $pad );
-        $set [] = [ $cell, $wide, $lines ];
-        $height = max ( $height, count ( $lines ) * $cell ['style'] ['size'] * 1.3 + 2 * $pad );
+        $fits   = [];
+        foreach ( $cell ['pics'] as $pic )
+          if ( $fit = padPdfSvgFit ( $pic, $wide - 2 * $pad, $doc ['box'] ['tall'] ) )
+            $fits [] = [ $pic, $fit ];
+        $set [] = [ $cell, $wide, $lines, $fits ];
+        $height = max ( $height, count ( $lines ) * $cell ['style'] ['size'] * 1.3 + array_sum ( array_map ( fn ( $one ) => $one [1] [1] + 2, $fits ) ) + 2 * $pad );
       }
 
       $laid [] = [ $set, max ( $height, 9.5 * 1.3 + 2 * $pad ), ! array_filter ( $row, fn ( $c ) => ! $c ['head'] ) ];
@@ -1292,7 +1325,9 @@
     $top = $doc ['y'];
     $x   = $doc ['margin'] + $ctx ['indent'];
 
-    foreach ( $set as list ( $cell, $wide, $lines ) ) {
+    foreach ( $set as $one ) {
+
+      list ( $cell, $wide, $lines ) = $one;
 
       $box = padPdfN ( $x ) . ' ' . padPdfN ( $top - $height ) . ' ' . padPdfN ( $wide ) . ' ' . padPdfN ( $height ) . ' re';
 
@@ -1307,6 +1342,14 @@
       foreach ( $lines as $line ) {
         padPdfLine ( $doc, $line, $x + $pad, $wide - 2 * $pad, $base + $size * 0.15, $cell ['style'] ['align'] );
         $base -= $size * 1.3;
+      }
+
+      $y = $top - $pad - count ( $lines ) * $size * 1.3;
+
+      foreach ( $one [3] ?? [] as list ( $pic, list ( $w, $h, $view ) ) ) {
+        $left = $x + $pad + ( [ 'center' => ( $wide - 2 * $pad - $w ) / 2, 'right' => $wide - 2 * $pad - $w ] [ $cell ['style'] ['align'] ] ?? 0 );
+        padPdfSvgDraw ( $doc, $pic, [ $left, $y, $w / $view [2], $h / $view [3], $view [0], $view [1] ], $cell ['style'] );
+        $y -= $h + 2;
       }
 
       $x += $wide;
@@ -1986,36 +2029,15 @@
   // a group with a transform. The viewBox is read as viewbox: the HTML parser writes every
   // attribute name in lower case.
 
-  // A number past the range of a float - width="1e400" is INF - is no number of it: the
-  // scale was INF times 0, and the content stream held nan where a reader wants a number.
-
   function padPdfSvg ( &$doc, $svg, $ctx ) {
 
-    $real = fn ( $attr ) => is_numeric ( $attr ) and is_finite ( (float) $attr );
+    $room = padPdfWidthLeft ( $doc, $ctx );
+    $fit  = padPdfSvgFit ( $svg, $room, $doc ['box'] ['tall'] ?? ( $doc ['h'] - 2 * $doc ['margin'] - 20 ) );
 
-    $view = preg_split ( '/[\s,]+/', trim ( $svg->getAttribute ( 'viewbox' ) ) );
-    $view = ( count ( $view ) == 4 and count ( array_filter ( $view, $real ) ) == 4 ) ? array_map ( 'floatval', $view ) : NULL;
-
-    $px = fn ( $attr, $other ) => ( $real ( $attr ) and (float) $attr > 0 ) ? (float) $attr : $other;
-
-    $pw = $px ( preg_replace ( '/px$/', '', $svg->getAttribute ( 'width' ) ), $view [2] ?? 0 );
-    $ph = $px ( preg_replace ( '/px$/', '', $svg->getAttribute ( 'height' ) ), $view [3] ?? 0 );
-
-    if ( ! ( $pw > 0 ) or ! ( $ph > 0 ) )
+    if ( ! $fit )
       return;
 
-    $view = ( $view and $view [2] > 0 and $view [3] > 0 ) ? $view : [ 0, 0, $pw, $ph ];
-
-    $w     = $pw * 0.75;
-    $h     = $ph * 0.75;
-    $room  = padPdfWidthLeft ( $doc, $ctx );
-    $tall  = $doc ['box'] ['tall'] ?? ( $doc ['h'] - 2 * $doc ['margin'] - 20 );
-    $scale = min ( 1, $room / $w, $tall / $h );
-    $w    *= $scale;
-    $h    *= $scale;
-
-    if ( ! ( $w > 0 ) or ! ( $h > 0 ) or ! is_finite ( $w / $view [2] ) or ! is_finite ( $h / $view [3] ) )
-      return;
+    list ( $w, $h, $view ) = $fit;
 
     padPdfMarkerLine ( $doc );
     padPdfSpace ( $doc, 2 );
@@ -2033,6 +2055,41 @@
     padPdfSvgDraw ( $doc, $svg, $map, $ctx );
 
     padPdfAfter ( $doc, 4 );
+
+  }
+
+  // The size an SVG is drawn at, in points, in a room so wide and so tall: its own, made
+  // smaller to fit - [ width, height, viewBox ], or NULL for an SVG of no size. A number past
+  // the range of a float - width="1e400" is INF - is no number of it: the scale was INF
+  // times 0, and the content stream held nan where a reader wants a number.
+
+  function padPdfSvgFit ( $svg, $room, $tall ) {
+
+    $real = fn ( $attr ) => is_numeric ( $attr ) and is_finite ( (float) $attr );
+
+    $view = preg_split ( '/[\s,]+/', trim ( $svg->getAttribute ( 'viewbox' ) ) );
+    $view = ( count ( $view ) == 4 and count ( array_filter ( $view, $real ) ) == 4 ) ? array_map ( 'floatval', $view ) : NULL;
+
+    $px = fn ( $attr, $other ) => ( $real ( $attr ) and (float) $attr > 0 ) ? (float) $attr : $other;
+
+    $pw = $px ( preg_replace ( '/px$/', '', $svg->getAttribute ( 'width' ) ), $view [2] ?? 0 );
+    $ph = $px ( preg_replace ( '/px$/', '', $svg->getAttribute ( 'height' ) ), $view [3] ?? 0 );
+
+    if ( ! ( $pw > 0 ) or ! ( $ph > 0 ) )
+      return NULL;
+
+    $view = ( $view and $view [2] > 0 and $view [3] > 0 ) ? $view : [ 0, 0, $pw, $ph ];
+
+    $w     = $pw * 0.75;
+    $h     = $ph * 0.75;
+    $scale = min ( 1, $room / $w, $tall / $h );
+    $w    *= $scale;
+    $h    *= $scale;
+
+    if ( ! ( $w > 0 ) or ! ( $h > 0 ) or ! is_finite ( $w / $view [2] ) or ! is_finite ( $h / $view [3] ) )
+      return NULL;
+
+    return [ $w, $h, $view ];
 
   }
 
