@@ -151,8 +151,11 @@
     $lines = explode ( "\n", padChartDedent ( (string) $text ) );
     $tab   = FALSE;
 
+    // A line holds a tab when one stands between its texts: one at its end, or the indent of
+    // a line among others flush with the tag, made every line of the sheet a single cell.
+
     foreach ( $lines as $line )
-      if ( str_contains ( trim ( $line, " \r" ), "\t" ) )
+      if ( str_contains ( trim ( $line, " \t\r" ), "\t" ) )
         $tab = TRUE;
 
     $rows = [];
@@ -175,7 +178,9 @@
 
     while ( TRUE ) {
 
-      while ( $at < $length and $line [$at] == ' ' )
+      // The space before a cell - a tab too where commas part the cells: the indent of a line.
+
+      while ( $at < $length and ( $line [$at] == ' ' or ( $line [$at] == "\t" and $separator != "\t" ) ) )
         $at++;
 
       if ( $at < $length and $line [$at] == '"' ) {
