@@ -56,8 +56,6 @@
   // padPrintableStyle   the shared style, assets/printable.css, and the kind's, once a page
   // padPrintableScript  the Print button's script, once a page
 
-  const PAD_PRINTABLE_ITEM = '<!--pad:printable-item-->';
-
   const PAD_PRINTABLE_PAPERS = [ 'a3' => [ 297, 420 ], 'a4' => [ 210, 297 ], 'a5' => [ 148, 210 ], 'a6' => [ 105, 148 ],
                                  'letter' => [ 215.9, 279.4 ], 'legal' => [ 215.9, 355.6 ] ];
 
@@ -69,15 +67,28 @@
   // The items.
   // ------------------------------------------------------------------------------------
 
+  // The marker a pair puts in front of the template of its item: an HTML comment of the
+  // seal of the markers (padMarkSeal), so no value carries it - with one marker for every
+  // printable, <!--pad:printable-item--> in a value written raw, {echo $v/}, made two labels
+  // of one - and digits alone, which no case pipe changes.
+
+  function padPrintableItemMark () {
+
+    static $mark = NULL;
+
+    return $mark ??= '<!--' . padMarkSeal ( 'printable item' ) . '-->';
+
+  }
+
   // The items of a pair's rendering: the text after each marker, trimmed - NULL when there is
   // no marker, as for the @else@ half of a level left without rows.
 
   function padPrintableSplit ( $content ) {
 
-    if ( ! str_contains ( (string) $content, PAD_PRINTABLE_ITEM ) )
+    if ( ! str_contains ( (string) $content, padPrintableItemMark () ) )
       return NULL;
 
-    $items = explode ( PAD_PRINTABLE_ITEM, (string) $content );
+    $items = explode ( padPrintableItemMark (), (string) $content );
 
     array_shift ( $items );
 

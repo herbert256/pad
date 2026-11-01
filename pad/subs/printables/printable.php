@@ -31,7 +31,7 @@
       padInfoXref ( 'printable', $padPrintableKind );
 
     if ( $padPair [$pad] ) {
-      $padContent     = PAD_PRINTABLE_ITEM . $padContent;
+      $padContent     = padPrintableItemMark () . $padContent;
       $padWalk [$pad] = 'end';
       return TRUE;
     }
