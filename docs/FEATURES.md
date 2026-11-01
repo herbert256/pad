@@ -1621,9 +1621,11 @@ days its yearly decree moves around them; it knows the years since 2013.
 {gs1128 '(01)09501101530003(17)261231(10)AB-123'/}   # GS1-128: GS1 element strings, FNC1 where GS1 wants it
 {aztec $ticket, size=150, ecc=33/}              # Aztec Code, compact or full; ecc= percent of error correction (23)
 {pdf417 $boardingPass, columns=6, level=5/}     # PDF417, stacked rows; scale= module width, level= 0-8
+{bookland 'ISBN 0-306-40615-2', addon='51995'/} # a book's ISBN as an EAN-13, the price as an add-on
+{ean13 '977031784700', addon='07'/}             # addon= 2 or 5 digits on ean13, upca, upce and bookland
 ```
 The symbologies are the files of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`,
-`code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `qr`, `datamatrix`, `aztec` and `pdf417` - one
+`code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `bookland`, `qr`, `datamatrix`, `aztec` and `pdf417` - one
 file a symbology, which encodes the text and draws it; a symbology is added by adding its file.
 Each is written three ways, the same code: `{barcode '...', type='upce'/}`, the barcode type
 `{barcode:upce '...'/}`, and bare, `{upce '...'/}`, when no tag, store, field or sequence has
@@ -1659,6 +1661,14 @@ marked as UTF-8 by its ECI (`pad/subs/codes/_lib/pdf417.php`). `level=` is the e
 columns, 1 to 30 - by default those that make it about three times as wide as high - and
 `scale=` the width of a module in pixels, a row three modules high. A text of more than 928
 codewords, or of more than 90 rows in the columns asked, is an error under the strict check.
+
+`bookland` is the barcode of a book: its ISBN-13 as an EAN-13, the ISBN written above the bars
+with the hyphens it was given; an ISBN-10 is made the ISBN-13 (978 in front, the EAN check digit
+behind) after its own check digit (modulo 11, X for 10) was checked, and `ISBN` in front, spaces
+and hyphens are allowed (`pad/subs/codes/_lib/isbn.php`). `addon=` puts an add-on behind an
+`ean13`, `upca`, `upce` or `bookland` - two digits (a magazine's issue) or five (a book's price:
+5 and US dollars, 0 or 1 pounds, 90000 none) - in a small symbol nine modules on, its digits
+above it (`pad/subs/codes/_lib/addon.php`); an add-on of another length is an error.
 
 ### Icons
 ```

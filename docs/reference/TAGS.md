@@ -1590,7 +1590,7 @@ check, and writes nothing.
 ### barcode
 A barcode as inline SVG, encoded on the server by the codes subsystem (`pad/subs/codes/`): a
 symbology is a file of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`, `code128`,
-`code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `qr`, `datamatrix`, `aztec` and `pdf417` - and `type=` names
+`code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `bookland`, `qr`, `datamatrix`, `aztec` and `pdf417` - and `type=` names
 it. The barcode type writes a symbology by its name, `{barcode:upce '0425261'/}`, and so does
 the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequence has it.
 
@@ -1605,6 +1605,7 @@ the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequenc
 {gs1128 '(01)09501101530003(17)261231(10)AB-123'/}   <!-- GS1-128, FNC1 where GS1 wants it -->
 {aztec $ticket, size=150/}                         <!-- Aztec Code, a bullseye in the middle -->
 {pdf417 $boardingPass, columns=6/}                 <!-- PDF417, rows of codewords -->
+{bookland '978-0-306-40615-7', addon='51995'/}    <!-- a book's ISBN, its price in an add-on -->
 ```
 
 | Option | Description |
@@ -1621,6 +1622,7 @@ the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequenc
 | `ecc` | `aztec`: the error correction in percent of the codewords, 3 more always added - 23 unless given, 5 to 90 |
 | `level` | `qr`: the error correction, as `{qr}` takes it; `pdf417`: 0 to 8, by default the standard's recommendation for the size of the data |
 | `columns` | `pdf417`: the data columns, 1 to 30 - by default about three times as wide as high |
+| `addon` | `ean13`, `upca`, `upce` and `bookland`: the 2 or 5 digits of an add-on, a small symbol right of the bars |
 
 **Behavior:** an EAN or UPC number is given with or without its check digit - left off, it
 is added; given, it is checked. EAN and UPC draw their guard bars longer and set the digits
@@ -1647,6 +1649,9 @@ beyond ASCII is marked as UTF-8 by its ECI.
 `pdf417` is PDF417 (ISO/IEC 15438): rows of codewords in numeric, text and byte compaction
 between start and stop patterns and row indicators, `scale=` the module width, a row three
 modules high; a text beyond ASCII is marked as UTF-8 by its ECI.
+`bookland` is a book's ISBN-13 as an EAN-13, the ISBN above the bars; an ISBN-10 is made one
+after its check digit (modulo 11) was checked. An add-on (`addon=`) of 2 digits takes the sets of
+its value modulo 4, of 5 those of its check of weights 3 and 9, nine modules after the bars.
 
 ---
 

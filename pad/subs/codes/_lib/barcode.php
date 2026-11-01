@@ -167,19 +167,32 @@
 
     list ( $bars, $groups, $guards, $quiet ) = $coded;
 
+    // An EAN or UPC add-on ([ first module, digits ], subs/codes/_lib/addon.php) has its bars
+    // as long as the guards, their tops lowered under its digits, which stand above them; a
+    // line above the bars - the ISBN over a Bookland EAN - moves everything down by a line.
+
+    $addon  = $coded [5] ?? NULL;
+    $above  = $plain ? '' : (string) ( $coded [6] ?? '' );
     $bearer = ( $coded [4] ?? 0 ) * $scale;
     $width  = ( strlen ( $bars ) + 2 * $quiet ) * $scale;
     $font   = round ( 5.5 * $scale + 1, 1 );
-    $total  = $height + 2 * $bearer + ( $plain ? 0 : round ( $font * 1.2 ) );
+    $band   = ( $above !== '' ) ? round ( $font * 1.2 ) : 0;
+    $total  = $height + 2 * $bearer + ( $plain ? 0 : round ( $font * 1.2 ) ) + $band;
     $long   = $plain ? $height : $height + $font / 2;
-    $top    = $bearer ? padBarcodeNum ( $bearer ) : '0';
+    $top    = ( $bearer or $band ) ? padBarcodeNum ( $bearer + $band ) : '0';
+    $lower  = ( $addon and ! $plain ) ? ( $band ?: min ( round ( $font * 1.2 ), $height / 2 ) ) : $band;
     $path   = '';
 
     for ( $x = 0; $x < strlen ( $bars ); $x++ )
       if ( $bars [$x] == '1' ) {
         $run   = strspn ( $bars, '1', $x );
         $end   = ( $guards and padBarcodeGuard ( $x, $guards ) ) ? $long : $height;
-        $path .= 'M' . padBarcodeNum ( ( $x + $quiet ) * $scale ) . ",{$top}h" . padBarcodeNum ( $run * $scale )
+        $from  = $top;
+        if ( $addon and $x >= $addon [0] ) {
+          $from = padBarcodeNum ( $lower );
+          $end  = $band + $long - $lower;
+        }
+        $path .= 'M' . padBarcodeNum ( ( $x + $quiet ) * $scale ) . ",{$from}h" . padBarcodeNum ( $run * $scale )
                . 'v' . padBarcodeNum ( $end ) . 'h-' . padBarcodeNum ( $run * $scale ) . 'z';
         $x    += $run - 1;
       }
@@ -189,10 +202,12 @@
         $path .= 'M0,' . padBarcodeNum ( $y ) . 'h' . padBarcodeNum ( $width ) . 'v' . padBarcodeNum ( $bearer )
                . 'h-' . padBarcodeNum ( $width ) . 'z';
 
+    $name = ( (string) ( $coded [6] ?? '' ) ?: implode ( '', array_column ( $groups, 1 ) ) ) . ( $addon ? ' ' . $addon [1] : '' );
+
     $svg = '<svg xmlns="http://www.w3.org/2000/svg" class="pad-barcode" role="img"'
          . ' width="' . padBarcodeNum ( $width ) . '" height="' . padBarcodeNum ( $total ) . '"'
          . ' viewBox="0 0 ' . padBarcodeNum ( $width ) . ' ' . padBarcodeNum ( $total ) . '" shape-rendering="crispEdges">'
-         . '<title>' . padQrAttr ( $title !== '' ? $title : implode ( '', array_column ( $groups, 1 ) ) ) . '</title>'
+         . '<title>' . padQrAttr ( $title !== '' ? $title : $name ) . '</title>'
          . '<rect width="100%" height="100%" fill="' . padQrAttr ( $light ) . '"/>'
          . '<path fill="' . padQrAttr ( $dark ) . "\" d=\"$path\"/>";
 
@@ -203,6 +218,18 @@
               . ' fill="' . padQrAttr ( $dark ) . '"'
               . ( $guards ? ' textLength="' . padBarcodeNum ( strlen ( $digits ) * 6 * $scale ) . '" lengthAdjust="spacing"' : '' ) . '>'
               . padQrAttr ( $digits ) . '</text>';
+
+    $line = fn ( $x, $y, $text, $spread ) => '<text x="' . padBarcodeNum ( $x ) . '" y="' . padBarcodeNum ( $y ) . '"'
+          . ' text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="' . padBarcodeNum ( $font ) . '"'
+          . ' fill="' . padQrAttr ( $dark ) . '"'
+          . ( $spread ? ' textLength="' . padBarcodeNum ( strlen ( $text ) * 6 * $scale ) . '" lengthAdjust="spacing"' : '' ) . '>'
+          . padQrAttr ( $text ) . '</text>';
+
+    if ( $above !== '' )
+      $svg .= $line ( ( ( $addon ? $addon [2] : strlen ( $bars ) ) / 2 + $quiet ) * $scale, $band - $font * 0.2, $above, FALSE );
+
+    if ( $addon and ! $plain )
+      $svg .= $line ( ( ( $addon [0] + strlen ( $bars ) ) / 2 + $quiet ) * $scale, $lower - $font * 0.2, $addon [1], TRUE );
 
     return "$svg</svg>";
 
