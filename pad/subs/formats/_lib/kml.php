@@ -36,7 +36,8 @@
   // Data of its ExtendedData - an empty name, description or other field of the placemark's
   // own none - and a Point of lat and lon (ele its altitude), or the geometry and coordinates
   // the reader gives; a row without either has no geometry, as in GeoJSON, and one whose
-  // geometry has no positions none either, an error under the strict check. The rows of a
+  // geometry has no positions - or one the reader refuses, past the poles or the date line -
+  // none either, an error under the strict check. The rows of a
   // folder= - a / between nested ones - go in their Folder, which stands where its first row
   // stands. An id that is an XML name is the Placemark's id, any other a Data. The elements
   // stand in the order the KML 2.2 schema has them.
@@ -443,7 +444,8 @@
       return NULL;
 
     if ( ! padKmlValid ( $geometry ) ) {
-      padFormatSkip ( 'row ' . ( $index + 1 ) . ' has a geometry that is none - lat and lon, or a GeoJSON geometry and its coordinates' );
+      padFormatSkip ( 'row ' . ( $index + 1 ) . ' has a geometry that is none - lat and lon, or a GeoJSON geometry and its coordinates,'
+                      . ' a longitude of -180 to 180 and a latitude of -90 to 90' );
       return NULL;
     }
 
@@ -451,10 +453,15 @@
 
   }
 
+  // A geometry the reader takes again: a position a longitude of -180 to 180 and a latitude
+  // of -90 to 90 - its altitude a number too - as padKmlPosition has it.
+
   function padKmlValid ( $geometry, $depth = 0 ) {
 
     $position = fn ( $p ) => is_array ( $p ) and array_is_list ( $p ) and count ( $p ) >= 2 and count ( $p ) <= 3
-                             and count ( array_filter ( $p, fn ( $n ) => is_int ( $n ) or is_float ( $n ) or ( is_string ( $n ) and is_numeric ( $n ) ) ) ) == count ( $p );
+                             and count ( array_filter ( $p, fn ( $n ) => ( is_int ( $n ) or is_float ( $n ) or ( is_string ( $n ) and is_numeric ( $n ) ) )
+                                                                        and is_finite ( (float) $n ) ) ) == count ( $p )
+                             and abs ( (float) $p [0] ) <= 180 and abs ( (float) $p [1] ) <= 90;
     $list     = fn ( $l, $test, $min ) => is_array ( $l ) and array_is_list ( $l ) and count ( $l ) >= $min and count ( array_filter ( $l, $test ) ) == count ( $l );
     $line     = fn ( $l ) => $list ( $l, $position, 2 );
     $polygon  = fn ( $l ) => $list ( $l, fn ( $r ) => $list ( $r, $position, 3 ), 1 );
