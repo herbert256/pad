@@ -62,8 +62,13 @@
   $padChartClient = padTagParm ( 'client', FALSE );
   $padChartClient = ( $padChartClient !== FALSE and $padChartClient !== '' and $padChartClient !== 0 and $padChartClient !== '0' );
 
-  $padChartSvg = $padChartClient ? padChartClient ( $padChartKind, $padChartSource, $padChartRows )
-                                 : padChartTag    ( $padChartKind, $padChartSource, $padChartRows );
+  // palette= draws the chart in the colours of a palette of subs/palettes/types/
+  // (_lib/palette.php) - on the server here, in the browser from what client.php hands over.
+
+  $padChartPalette = padChartPaletteName ();
+
+  $padChartSvg = $padChartClient ? padChartClient ( $padChartKind, $padChartSource, $padChartRows, $padChartPalette )
+                                 : padChartPaletteApply ( padChartTag ( $padChartKind, $padChartSource, $padChartRows ), $padChartPalette );
 
   return ( $padChartSvg === '' ) ? FALSE : $padChartSvg;
 

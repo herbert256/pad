@@ -46,7 +46,7 @@
     'violin'       => [ 'distribution', 'density' ],    'waffle'      => [ 'waffle' ],
     'waterfall'    => [ 'waterfall' ] ];
 
-  function padChartClient ( $kind, $source = '', $handled = NULL ) {
+  function padChartClient ( $kind, $source = '', $handled = NULL, $palette = '' ) {
 
     global $pad, $padPrm, $padChartNow, $padCheckSyntax;
 
@@ -82,9 +82,18 @@
       'zone'   => padDateZone ()->getName ()
     ];
 
+    // A chart given palette= gets the style attribute of each number of slots it may use
+    // (_lib/palette.php) and client/palette.js, which puts the one it uses on the svg.
+
+    if ( $palette !== '' )
+      $spec ['palette'] = padChartPaletteStyles ( $palette );
+
     $json = json_encode ( $spec, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE );
 
     $scripts = padWidgetScript ( 'chart', padChartClientFile ( 'core' ) );
+
+    if ( $palette !== '' )
+      $scripts .= padWidgetScript ( 'chart-palette', padChartClientFile ( 'palette' ) );
 
     foreach ( padChartClientFiles [$kind] ?? [] as $file )
       $scripts .= padWidgetScript ( "chart-$file", padChartClientFile ( $file ) );

@@ -4010,6 +4010,34 @@ the session's token as every form then does. Content is a strict error.
 
 ---
 
+### palette
+The colours of a palette as a row of swatches, each with its hex value in black or white,
+whichever reads better. Every palette is a file of `pad/subs/palettes/types/`; the files there are
+the palettes there are, and the subsystem is `pad/subs/palettes/`.
+
+```html
+{palette 'viridis', steps=7/}
+{palette 'okabe-ito', title='The chart colours'/}
+{chart 'bar', data='sales', value='north, south, west', palette='viridis'/}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The palette: viridis, magma, plasma, inferno, cividis (perceptual, sequential); blues, greens, oranges, greys (sequential); rdbu, brbg, piyg (diverging); okabe-ito, tol-bright, tol-muted, tol-vibrant, pastel, earth (categorical) |
+| `steps` | How many colours, 1 to 256 - a scale sampled evenly from its first colour to its last (one: its middle), a categorical palette its colours in order, starting again past its last; without it a categorical palette's own colours, nine of a scale |
+| `title` | The row's name for a screen reader (the palette's name and the count) |
+
+**Behavior:** the row is a list for a screen reader, `role="list"`, a swatch an item; its style
+is written once per page with the nonce. `padPalette ( 'viridis', 7 )` answers the same colours
+to a page's PHP. `palette='name'` on `{chart}` colours a chart of any kind - a categorical
+palette its series in order, a scale spread over the series the chart has and over the
+heatmap's ramp - as custom properties on the svg's style attribute, server and `client` alike. A
+name that is no palette, steps out of bounds and content are strict errors.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -4625,6 +4653,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `effect` | Output | Motion and decoration, CSS first - the files of `pad/subs/effects/types/`: typewriter, highlighter, countup, reveal, marquee, spinner, confetti ... - still under reduced motion |
 | `theme` | Output | The page in a theme of `pad/subs/themes/types/` - the frame's colours swapped; as a pair, its content alone |
 | `themes` | Output | A switcher of the themes, the visitor's choice kept in the session - a form, no script |
+| `palette` | Output | The colours of a palette of `pad/subs/palettes/types/` as swatches with their hex values; palette= colours a chart |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |

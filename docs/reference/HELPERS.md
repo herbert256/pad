@@ -40,6 +40,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Sounds](#sounds) | `padSoundWav`, `padSoundSend`, `padSoundKinds` | - |
 | [Printables](#printables) | `padPrintableKinds`, `padPrintableKind` | - |
 | [Spreadsheet formulas](#spreadsheet-formulas) | `padFormula`, `padSheet` | - |
+| [Colours](#colours) | `padPalette` | - |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1125,6 +1126,19 @@ A whole number comes back as an int, an error as its code - `'#DIV/0!'`, `'#N/A'
 for a circle of references, `'#ERROR!'` for a formula that cannot be read, `'#NAME?'` for a
 function that is not there - and an empty result as 0. Cells that are neither named nor rows of
 values, and a formula that is no text, are reported with `padError`.
+
+## Colours
+
+`pad/lib/palette.php` - the palettes subsystem, `pad/subs/palettes/`, included when it runs.
+
+| Function | Answers |
+|----------|---------|
+| `padPalette ( $name, $steps = NULL )` | The colours of a palette of `pad/subs/palettes/types/`, `'#rrggbb'` each: a sequential or diverging one (viridis, blues, rdbu ...) sampled evenly from its first colour to its last in `$steps` steps, one step its middle; a categorical one (okabe-ito, tol-bright ...) its colours in order, starting again past its last; without `$steps` a categorical palette's own colours, nine of the others. A name that is no palette, or steps that are no whole number from 1 to 256, is reported and answers `[]` |
+
+```php
+$colors = padPalette ( 'viridis', 5 );   // [ '#440154', '#3b528b', '#21918d', '#5dc863', '#fde725' ]
+$series = padPalette ( 'okabe-ito', 3 ); // [ '#e69f00', '#56b4e9', '#009e73' ]
+```
 
 ## Engine functions
 

@@ -1,0 +1,20 @@
+<p><code>{palette}</code> shows the colours of a palette as a row of swatches, each with its hex
+value written on it in black or white, whichever reads better. A palette is a file of
+<code>pad/subs/palettes/types/</code> - its name, its type and its colours - and the files there
+are the palettes there are; the subsystem is <code>pad/subs/palettes/</code>.</p>
+
+<p>Three types. The sequential ones run from low to high: viridis, magma, plasma, inferno and
+cividis from matplotlib's published 256-colour tables, perceptually uniform, readable in grey and
+by colour-blind eyes, and ColorBrewer's blues, greens, oranges and greys. The diverging ones meet
+in a light middle - ColorBrewer's rdbu, brbg and piyg. The categorical ones tell things apart:
+okabe-ito and Paul Tol's bright, muted and vibrant, made for every kind of colour vision,
+ColorBrewer's pastel and PAD's own earth.</p>
+
+<p>The same palettes colour a chart: <code>palette='viridis'</code> on any kind of
+<code>{chart}</code> puts the palette's colours on its series - a scale spread over the series the
+chart has, so three series are its two ends and its middle - and on the heatmap's ramp, as custom
+properties on the svg. A chart drawn in the browser (<code>client</code>) gets the same colours.
+<code>padPalette ( 'viridis', 7 )</code> answers them to a page's PHP.</p>
+
+<p>The row is a list - <code>role="list"</code>, a swatch an item - so a screen reader counts
+the colours and reads their values.</p>

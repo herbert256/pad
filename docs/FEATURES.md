@@ -73,6 +73,7 @@ applications show them working.
   - [Sections](#sections)
   - [Effects](#effects)
   - [Themes](#themes)
+  - [Palettes](#palettes)
 - [Development](#development)
   - [Configuration settings](#configuration-settings)
   - [Designer preview with sample data](#designer-preview-with-sample-data)
@@ -1454,6 +1455,43 @@ writes no token of its own, so showing it starts no session; with `$padCsrf` on 
 session's token as every form then does. Code: `pad/subs/themes/` - `_lib/theme.php`
 (`padThemeCss`, `padThemeChosen`, `padThemeAdd`, `padThemeContrasts`), `theme.php` and
 `themes.php` the bodies of `{theme}` and `{themes}`.
+
+### Palettes
+```
+{palette 'viridis', steps=7/}                    # swatches, each with its hex value
+{palette 'okabe-ito'/}                           # a categorical palette: its own colours
+{chart 'bar', data='sales', value='north, south, west', palette='viridis'/}   # any kind of chart
+{chart 'heatmap', data='temps', x='month', y='day', value='change', palette='rdbu'/}
+$colors = padPalette ( 'viridis', 7 );           # [ '#440154', '#443a83', ... ] for the page's PHP
+```
+Colour scales for charts and anything else. The palettes are the files of
+`pad/subs/palettes/types/` - each its name, its type and its colours - and a palette is added by
+adding its file. Sequential: viridis, magma, plasma, inferno and cividis, perceptually uniform,
+from matplotlib's published 256-colour tables (`_cm_listed.py`), and ColorBrewer's blues, greens,
+oranges and greys of nine classes; diverging: ColorBrewer's rdbu, brbg and piyg of eleven;
+categorical, told apart by colour-blind eyes: okabe-ito (Okabe and Ito's eight, black put last,
+where it vanishes on a dark surface) and Paul Tol's bright, muted and vibrant (from his
+`tol_colors` package), and ColorBrewer's pastel (Pastel1) and PAD's own earth. `steps=` samples a
+sequential or diverging palette evenly from its first colour to its last, the colours between
+two of its own mixed in sRGB - nine steps of a nine-class scale are the scale itself - one step
+its middle; a categorical palette gives its colours in order and starts again past its last.
+Without `steps` a categorical palette gives its own colours, the others nine; 1 to 256.
+`padPalette ( $name, $steps )` answers the same list to a page's PHP. `{palette}` writes a row of
+swatches - a list for a screen reader, each hex value in black or white, whichever contrasts
+more - its style once per page with the nonce; `title=` names the row.
+`palette=` on `{chart}` colours a chart of any kind: the kinds draw as ever - their marks carry
+the classes of the categorical slots (`pc-c1`...`pc-c8`) and of the heatmap's ramp
+(`pc-h0`...`pc-h6`) - and the svg gets the palette's colours for those as custom properties on
+its style attribute: a categorical palette its colours in order, a sequential or diverging one
+spread over the slots the chart uses - the middles of so many equal parts, so three series of
+viridis are purple, teal and green, never three purples, and neither pale end is a slot - and its
+whole length on the ramp. A chart drawn in the browser (`client`) gets the same: the server hands
+it the style for each number of slots and `pad/subs/charts/client/palette.js` puts on the one its
+drawing needs - the same SVG, character for character, which the `charts` line of `./ci.sh` holds
+by drawing every example of the charts application once more in a palette, the palettes in turn.
+Without `palette=` a chart is drawn as before, byte for byte. Code: `pad/subs/palettes/`
+(`_lib/palette.php`, `palette.php` the body of `{palette}`), `pad/lib/palette.php` (`padPalette`),
+`pad/subs/charts/_lib/palette.php` and `client/palette.js` for the charts.
 
 ## Development
 

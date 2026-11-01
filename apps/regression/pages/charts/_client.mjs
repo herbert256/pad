@@ -49,14 +49,22 @@ const norm   = s => s.replace(/pad-chart-[0-9a-f]{8}(-\d+)?/g, 'pad-chart-ID');
 let alike = 0, charts = 0;
 const kinds = new Set();
 
-for (const page of pages) {
+// A second pass draws every page again in a palette (palette=, pad/subs/charts/_lib/palette.php
+// and client/palette.js) - the palettes of pad/subs/palettes/types/ in turn, a page each - so
+// the colours the browser puts on a chart are the server's as well.
 
-  const src = readFileSync(join(dir, page + '.pad'), 'utf8');
+const palettes  = readdirSync(join(HOME, 'pad/subs/palettes/types')).filter(f => f.endsWith('.php')).map(f => f.slice(0, -4)).sort();
+const paletteOf = (src, palette) => src.replace(tagRe, (m, name, params, slash) => '{' + name + ' ' + (params.trim() ? params.trimEnd() + ', ' : '') + "palette='" + palette + "'" + slash + '}');
+
+for (const [pass, page, n] of [...pages.map((page, n) => [0, page, n]), ...pages.map((page, n) => [1, page, n])]) {
+
+  const palette = pass ? palettes[n % palettes.length] : '';
+  const src     = palette ? paletteOf(readFileSync(join(dir, page + '.pad'), 'utf8'), palette) : readFileSync(join(dir, page + '.pad'), 'utf8');
 
   if (kindsWanted.length && !kindsWanted.includes(kindOf(src)))
     continue;
 
-  const server = (render(page).match(/<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" class="pad-chart[\s\S]*?<\/svg>/g) || []).map(norm);
+  const server = (render(page, palette ? src : undefined).match(/<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" class="pad-chart[\s\S]*?<\/svg>/g) || []).map(norm);
   const specs  = [...render(page, clientOf(src)).matchAll(/<span class="pad-chart-client" data-pad-chart="([^"]*)"><\/span>/g)].map(m => JSON.parse(unhtml(m[1])));
   const client = specs.map(spec => { try { return norm(C.render(spec)); } catch (e) { return 'ERROR ' + e.message; } })
                       .filter(svg => svg !== '');
@@ -65,6 +73,7 @@ for (const page of pages) {
 
   if (!server.length) why = 'the server drew no chart';
   else if (server.length !== client.length) why = `the server drew ${server.length} charts, the browser ${client.length}`;
+  else if (palette && !server.every(s => s.includes(' style="--pad-chart-series:'))) why = `the server drew no colours of the palette`;
   else {
     const i = server.findIndex((s, j) => s !== client[j]);
     if (i >= 0) {
@@ -76,9 +85,11 @@ for (const page of pages) {
   }
 
   if (why) {
-    console.log(`charts: ${page} [${specs[0]?.kind || kindOf(src)}] - ${why}`);
+    console.log(`charts: ${page} [${specs[0]?.kind || kindOf(src)}]${palette ? ' in ' + palette : ''} - ${why}`);
     process.exit(1);
   }
+
+  if (palette) continue;
 
   alike++;
   charts += server.length;
@@ -88,4 +99,4 @@ for (const page of pages) {
 
 }
 
-console.log(`${alike} example pages, ${charts} charts of ${kinds.size} kinds, drawn alike by the server and the browser`);
+console.log(`${alike} example pages, ${charts} charts of ${kinds.size} kinds, drawn alike by the server and the browser - and again in the ${palettes.length} palettes`);
