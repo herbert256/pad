@@ -2197,7 +2197,8 @@ the classes of the categorical slots (`pc-c1`...`pc-c8`) and of the heatmap's ra
 whose rule in the chart's own `<style>` gives it the palette's colours for those as custom
 properties: a categorical palette its colours in order, a sequential or diverging one spread
 over the slots the chart uses - the middles of so many equal parts, so three series of viridis
-are purple, teal and green, never three purples, and neither pale end is a slot - and its whole
+are purple, teal and green, never three purples, and neither pale end is a slot, one slot of a
+diverging palette the middle of its first arm, never its pale middle - and its whole
 length on the ramp, a cyclic palette seven steps round its circle, so the lowest and the
 highest step are neighbours, never one colour. No colour stands in a style attribute, which a CSP nonce drops. A chart drawn
 in the browser (`client`) gets the same: the server hands it the class and the rules for each

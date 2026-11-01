@@ -196,7 +196,8 @@
   // the first) - those $n alone. A categorical palette gives the slots its colours in its
   // order. A sequential, diverging or cyclic palette spreads the slots over its whole length -
   // the middles of $n equal parts, so neither end, which is near the surface for some, is a
-  // slot - and gives the seven steps of the heatmap's ramp (--pad-chart-heat-0 to -6) from
+  // slot; one slot of a diverging palette, whose middle is pale, the middle of its first arm
+  // instead - and gives the seven steps of the heatmap's ramp (--pad-chart-heat-0 to -6) from
   // its first colour to its last, a cyclic one seven steps round its circle, the last short
   // of the first, so the lowest and the highest step are neighbours and never one colour; a
   // categorical palette leaves the ramp as it is.
@@ -214,8 +215,15 @@
 
     $at = ( $data ['type'] == 'cyclic' ) ? 'padPaletteRound' : 'padPaletteAt';
 
+    // One slot of a diverging palette is the middle of its first arm, 0.2: the middle of the
+    // whole, which one slot of a scale is, is the pale part where its two arms meet - a
+    // ridgeline, an ecdf of one group or a bar of one series in rdylbu was drawn in #ffffbf,
+    // a contrast of 1.01 with the light surface.
+
     if ( $data ['type'] == 'categorical' )
       $slots = padPaletteColors ( $name, $n );
+    elseif ( $n == 1 and $data ['type'] == 'diverging' )
+      $slots [] = padPaletteAt ( $data ['colors'], 0.2 );
     else
       for ( $i = 0; $i < $n; $i++ )
         $slots [] = $at ( $data ['colors'], ( $i + 0.5 ) / $n );
