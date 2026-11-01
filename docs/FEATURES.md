@@ -985,8 +985,8 @@ name comes last, after every other kind of tag). `{sparkline .../}` is the spark
 `{chart:calendar .../}` and `{chart:pack .../}` (or `{chart 'pack', .../}`).
 Code: the chart subsystem in `pad/subs/charts/` - `chart.php` the body every form runs,
 `_lib/` the drawing (`chart.php` bar, line and sparkline, the files beside it the other
-kinds, `client.php` the hand-over to the browser), `types/` the kinds, `client/` the drawing
-in the browser; `pad/types/chart.php` the chart type.
+kinds, `client.php` the hand-over to the browser), `types/` the kinds, `www/assets/charts/`
+the drawing in the browser; `pad/types/chart.php` the chart type.
 
 ### Games
 ```

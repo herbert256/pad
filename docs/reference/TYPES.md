@@ -487,7 +487,7 @@ A little game played in the browser, of the kind the tag names - the games subsy
 ```
 
 **Resolution:** a PHP file `PAD/subs/games/types/<name>.php` (`padGameType()` in `PAD/lib/game.php`),
-its script and style `PAD/subs/games/assets/<name>.js` and `.css`: the files of `types/` are the
+its script and style `www/assets/games/<name>.js` and `.css`: the files of `types/` are the
 games, and a game is added by adding its files. Bare, a game comes after every other kind of tag, the chart kinds too.
 
 ---
@@ -618,7 +618,7 @@ subsystem in `PAD/subs/toys/` sets it up, as the `{toy}` tag sets up the toy its
 ```
 
 **Resolution:** a PHP file `PAD/subs/toys/types/<name>.php` (`padToyType()` in `PAD/lib/toy.php`), its
-script `PAD/subs/toys/assets/<name>.js` and its style, when it has one, `<name>.css` beside it: the files
+script `www/assets/toys/<name>.js` and its style, when it has one, `<name>.css` beside it: the files
 of `types/` are the toys, and a toy is added by adding its files. Bare, a toy comes after every other
 kind of tag, the chart kinds and the games too.
 
@@ -638,7 +638,7 @@ An interactive part of the page - tabs, an accordion, a carousel, a modal, a cop
 
 **Resolution:** a PHP file `PAD/subs/widgets/types/<name>.php` (`padWidgetType()` in `PAD/lib/widget.php`),
 the widget's tag code; its functions in `PAD/subs/widgets/_lib/<name>.php`, its style and script in
-`PAD/subs/widgets/assets/<name>.css` and `.js`. The files of `types/` are the widgets, and a widget is
+`www/assets/widgets/<name>.css` and `.js`. The files of `types/` are the widgets, and a widget is
 added by adding its files. Bare, a widget comes after every other kind of tag - the chart kinds
 and the games too - so a store, a field or an array of the name wins: a page's `$tabs` array
 is the data of `{tabs}`. `{copy}` stays a built-in tag that runs the copy widget, as PHP has a
@@ -662,7 +662,7 @@ signature ... - the inputs subsystem in `PAD/subs/inputs/` writes it, a field of
 ```
 
 **Resolution:** a PHP file `PAD/subs/inputs/types/<name>.php`, its script and style in
-`PAD/subs/inputs/assets/`, the field written by `PAD/subs/inputs/input.php`: the files of `types/` are
+`www/assets/inputs/`, the field written by `PAD/subs/inputs/input.php`: the files of `types/` are
 the kinds, and a kind is added by adding its file. Its items are read raw, as `{input}`'s are -
 `label=`, `rules=`, `min=` are the field's, never an option of the engine. Bare, an input kind
 comes last of the subsystems, so a store, a field, an array of the name - a page's `$slider` -
@@ -724,7 +724,7 @@ The text is the first parameter, or the content between the tags taken as it sta
 ```
 
 **Resolution:** a PHP file `PAD/subs/notations/types/<name>.php`, its functions in
-`PAD/subs/notations/_lib/<name>.php` and its style in `PAD/subs/notations/assets/<name>.css`: the files
+`PAD/subs/notations/_lib/<name>.php` and its style in `www/assets/notations/<name>.css`: the files
 of `types/` are the notations, and a notation is added by adding its files. Bare, a notation
 comes after every other kind of tag and the subsystems before it in `padSubsystems`, so a store, a
 field, an array of the name or a kind of another subsystem wins: bare `{chord}` is the chord
@@ -748,7 +748,7 @@ builds the section its first parameter names.
 ```
 
 **Resolution:** a PHP file `PAD/subs/sections/types/<name>.php` (`padKinds ( 'sections' )`,
-`PAD/lib/subsystem.php`), its style `PAD/subs/sections/assets/<name>.css`: the files of `types/` are
+`PAD/lib/subsystem.php`), its style `www/assets/sections/<name>.css`: the files of `types/` are
 the sections, and a section is added by adding its files. Only ever written with its prefix.
 
 ---
@@ -768,7 +768,7 @@ reveal on scroll, a loader, confetti ... - of the kind the tag names: the effect
 ```
 
 **Resolution:** a PHP file `PAD/subs/effects/types/<name>.php`, its style
-`PAD/subs/effects/assets/<name>.css` (confetti's script `confetti.js` beside it), the effect written
+`www/assets/effects/<name>.css` (confetti's script `confetti.js` beside it), the effect written
 by `PAD/subs/effects/effect.php`: the files of `types/` are the effects, and an effect is added by
 adding its files. Bare, an effect comes after every other kind of tag and after the subsystems
 before it in `padSubsystems`, so a store, a field or an array of the name wins.
