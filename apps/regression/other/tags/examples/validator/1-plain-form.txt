@@ -73,10 +73,60 @@
   function text(value) {
     return typeof value === 'string' || typeof value === 'number';
   }
+  function path(name) {
+    name = String(name).replace(/^ +/, '');
+    var at = name.match(/^([^\[]*)((?:\[[^\]]*\])+)/);
+    if (!at) return [name.replace(/[ .\[]/g, '_')];
+    return [at[1].replace(/[ .]/g, '_')].concat(at[2].slice(1, -1).split(']['));
+  }
+  function filed(values) {
+    var top = new Map();
+    Object.keys(values).forEach(function (name) {
+      var at = path(name), value = values[name];
+      if (at[0] === '') return;
+      (at[at.length - 1] === '' && Array.isArray(value) ? value : [value]).forEach(function (one) {
+        var level = top;
+        at.forEach(function (key, i) {
+          if (key === '' && i) key = next(level);
+          if (i === at.length - 1) return level.set(key, one);
+          if (!(level.get(key) instanceof Map)) level.set(key, new Map());
+          level = level.get(key);
+        });
+      });
+    });
+    return top;
+  }
+  function next(level) {
+    var high = -1;
+    level.forEach(function (one, key) { if (/^(0|-?[1-9]\d*)$/.test(key) && +key > high) high = +key; });
+    return String(high + 1);
+  }
+  var filing = { values: null, top: null };
+  function filingOf(values) {
+    if (filing.values !== values) filing = { values: values, top: filed(values) };
+    return filing.top;
+  }
+  function find(values, name) {
+    var at = path(String(name)), level = filingOf(values);
+    for (var i = 0; i < at.length; i++) {
+      if (at[i] === '' && i) break;
+      var map = level instanceof Map;
+      if (map ? !level.has(at[i]) : !(level && typeof level === 'object' && Object.prototype.hasOwnProperty.call(level, at[i]))) return [false, undefined];
+      level = map ? level.get(at[i]) : level[at[i]];
+    }
+    return [true, level];
+  }
+  function listOf(level) {
+    if (!(level instanceof Map)) return level;
+    var items = [], at = 0, keyed = false;
+    level.forEach(function (one, key) { keyed = keyed || key !== String(at++); items.push(one); });
+    return keyed ? null : items;
+  }
   function sibling(values, name) {
     name = trim(String(name));
-    var value = values[name];
-    if (value === undefined) value = /\[\]$/.test(name) ? values[name.slice(0, -2)] : values[name + '[]'];
+    var found = find(values, name), value = found[1];
+    if (!found[0] && !/\[\]$/.test(name)) value = find(values, name + '[]')[1];
+    value = listOf(value);
     if (Array.isArray(value)) return value.filter(text).map(function (one) { return trim(String(one)); });
     return text(value) ? trim(String(value)) : '';
   }
@@ -367,7 +417,7 @@ addRule('required_without', {
 (function () {
 addRule('same', {
   check: function (value, arg, values) {
-    var other = values[arg];
+    var other = find(values, arg)[1];
     return typeof other !== 'object' && value === trim(String(other === undefined ? '' : other));
   }
 });
@@ -467,6 +517,7 @@ addRule('uuid', {
   }
   function check(rules, values) {
     var errors = {};
+    filing = { values: null, top: null };
     Object.keys(rules || {}).forEach(function (name) {
       var problem = field(rules[name], values[name], values);
       if (problem) errors[name] = problem;
@@ -602,13 +653,19 @@ addRule('uuid', {
   function showing(controls) {
     return controls.some(function (control) { return shownBy(control).getAttribute('aria-invalid') === 'true'; });
   }
-  function bare(name) {
-    return trim(String(name)).replace(/\[\]$/, '');
+  function place(name) {
+    var at = path(trim(String(name))), list = at.indexOf('', 1);
+    return list < 0 ? at : at.slice(0, list);
+  }
+  function touches(watched, changed) {
+    var a = place(watched), b = place(changed);
+    for (var i = 0; i < Math.min(a.length, b.length); i++) if (a[i] !== b[i]) return false;
+    return true;
   }
   function recheck(form, name) {
     var rules = rulesOf(form), seen = marks(form), values = null, controls = null;
     Object.keys(rules).forEach(function (one) {
-      if (one === name || !(rules[one].watch || []).some(function (other) { return bare(other) === bare(name); })) return;
+      if (one === name || !(rules[one].watch || []).some(function (other) { return touches(other, name); })) return;
       controls = controls || controlsBy(form);
       var mine = controls[one] || [];
       if (!seen[one] && !showing(mine)) return;
@@ -650,6 +707,10 @@ addRule('uuid', {
       recheck(form, event.target.name);
     });
   });
-  window.padValidate = { check: check, field: field, form: checkForm };
+  window.padValidate = {
+    check: check,
+    field: function (spec, value, values, label) { filing = { values: null, top: null }; return field(spec, value, values, label); },
+    form: checkForm
+  };
 })();
 </script>

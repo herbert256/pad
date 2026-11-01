@@ -125,14 +125,85 @@
     return typeof value === 'string' || typeof value === 'number';
   }
 
+  // A name as PHP reads it, padFormPath: the spaces before it dropped, a space or a dot before
+  // the first [ an underscore, then each [key] a level, [] the list itself - up to a ] that
+  // no [ follows. A [ that never closes is an underscore too.
+  function path(name) {
+    name = String(name).replace(/^ +/, '');
+    var at = name.match(/^([^\[]*)((?:\[[^\]]*\])+)/);
+    if (!at) return [name.replace(/[ .\[]/g, '_')];
+    return [at[1].replace(/[ .]/g, '_')].concat(at[2].slice(1, -1).split(']['));
+  }
+
+  // The values filed as PHP files the post they make: emails[0] an item of the list emails,
+  // first.name the field first_name, user[kind] the kind of user. A level is a Map, which
+  // keeps the order PHP keeps; [] adds after the highest number, as PHP adds.
+  function filed(values) {
+    var top = new Map();
+    Object.keys(values).forEach(function (name) {
+      var at = path(name), value = values[name];
+      if (at[0] === '') return;
+      (at[at.length - 1] === '' && Array.isArray(value) ? value : [value]).forEach(function (one) {
+        var level = top;
+        at.forEach(function (key, i) {
+          if (key === '' && i) key = next(level);
+          if (i === at.length - 1) return level.set(key, one);
+          if (!(level.get(key) instanceof Map)) level.set(key, new Map());
+          level = level.get(key);
+        });
+      });
+    });
+    return top;
+  }
+
+  function next(level) {
+    var high = -1;
+    level.forEach(function (one, key) { if (/^(0|-?[1-9]\d*)$/.test(key) && +key > high) high = +key; });
+    return String(high + 1);
+  }
+
+  // The filing of the values a check reads - made once for all its fields, again for each
+  // check (check, field, form), whose values may have changed since.
+  var filing = { values: null, top: null };
+
+  function filingOf(values) {
+    if (filing.values !== values) filing = { values: values, top: filed(values) };
+    return filing.top;
+  }
+
+  // A field of the post where PHP files it, as padFormFind finds it in the post PHP filed:
+  // [ found, value ], a level of the filing a Map. The values hold the names the form sends,
+  // so the key that is the name itself is no answer - kinds[] and kinds[1] are one list.
+  function find(values, name) {
+    var at = path(String(name)), level = filingOf(values);
+    for (var i = 0; i < at.length; i++) {
+      if (at[i] === '' && i) break;
+      var map = level instanceof Map;
+      if (map ? !level.has(at[i]) : !(level && typeof level === 'object' && Object.prototype.hasOwnProperty.call(level, at[i]))) return [false, undefined];
+      level = map ? level.get(at[i]) : level[at[i]];
+    }
+    return [true, level];
+  }
+
+  // A level of the filing as PHP has it: a list - its keys 0, 1, 2 in that order - an
+  // array, one with keys of its own null.
+  function listOf(level) {
+    if (!(level instanceof Map)) return level;
+    var items = [], at = 0, keyed = false;
+    level.forEach(function (one, key) { keyed = keyed || key !== String(at++); items.push(one); });
+    return keyed ? null : items;
+  }
+
   // Another field of the post as the rules that look at one read it, as padRuleSibling: its
   // text trimmed, or the trimmed texts of a list - kinds finds kinds[] and kinds[] finds
-  // kinds - and '' for a field the form does not send, as for an empty one, or for anything
-  // that is no one field's value.
+  // kinds, emails[] the items emails[0] and emails[1], first_name the field first.name - and
+  // '' for a field the form does not send, as for an empty one, or for anything that is no
+  // one field's value.
   function sibling(values, name) {
     name = trim(String(name));
-    var value = values[name];
-    if (value === undefined) value = /\[\]$/.test(name) ? values[name.slice(0, -2)] : values[name + '[]'];
+    var found = find(values, name), value = found[1];
+    if (!found[0] && !/\[\]$/.test(name)) value = find(values, name + '[]')[1];
+    value = listOf(value);
     if (Array.isArray(value)) return value.filter(text).map(function (one) { return trim(String(one)); });
     return text(value) ? trim(String(value)) : '';
   }
@@ -217,6 +288,7 @@
 
   function check(rules, values) {
     var errors = {};
+    filing = { values: null, top: null };
     Object.keys(rules || {}).forEach(function (name) {
       var problem = field(rules[name], values[name], values);
       if (problem) errors[name] = problem;
@@ -403,8 +475,19 @@
     return controls.some(function (control) { return shownBy(control).getAttribute('aria-invalid') === 'true'; });
   }
 
-  function bare(name) {
-    return trim(String(name)).replace(/\[\]$/, '');
+  // Where PHP files a name, up to its first [] - kinds and kinds[] one place, first.name and
+  // first_name too.
+  function place(name) {
+    var at = path(trim(String(name))), list = at.indexOf('', 1);
+    return list < 0 ? at : at.slice(0, list);
+  }
+
+  // Whether a field changed is the field a watch names, or stands in it or holds it: emails[0]
+  // changes what required_without:emails[] reads, user[kind] what a rule on user does.
+  function touches(watched, changed) {
+    var a = place(watched), b = place(changed);
+    for (var i = 0; i < Math.min(a.length, b.length); i++) if (a[i] !== b[i]) return false;
+    return true;
   }
 
   // A field whose rules look at other fields has their names in its watch, from the rules'
@@ -412,8 +495,9 @@
   // shows a message - the server's or the checker's - or was checked or left before. Only
   // the field typed in was checked: an "is required when Delivery is ship" stayed after
   // delivery became collect, and "must be the same as Password" after the password was
-  // typed again to match. kinds and kinds[] are one name here, as sibling reads them. The
-  // rules, the values and the controls are read once for all the fields checked again.
+  // typed again to match. A name is where PHP files it here, as sibling reads it: kinds and
+  // kinds[] are one, emails[0] stands in emails[] (touches). The rules, the values and the
+  // controls are read once for all the fields checked again.
   //
   // A message the server wrote on a field not checked or left since speaks about the value
   // the field still holds, which a change of another field does not change: it stays unless
@@ -425,7 +509,7 @@
   function recheck(form, name) {
     var rules = rulesOf(form), seen = marks(form), values = null, controls = null;
     Object.keys(rules).forEach(function (one) {
-      if (one === name || !(rules[one].watch || []).some(function (other) { return bare(other) === bare(name); })) return;
+      if (one === name || !(rules[one].watch || []).some(function (other) { return touches(other, name); })) return;
       controls = controls || controlsBy(form);
       var mine = controls[one] || [];
       if (!seen[one] && !showing(mine)) return;
@@ -479,6 +563,10 @@
     });
   });
 
-  window.padValidate = { check: check, field: field, form: checkForm };
+  window.padValidate = {
+    check: check,
+    field: function (spec, value, values, label) { filing = { values: null, top: null }; return field(spec, value, values, label); },
+    form: checkForm
+  };
 
 })();

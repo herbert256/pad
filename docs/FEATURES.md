@@ -661,8 +661,9 @@ Some rules look at another field of the post:
 {input 'phone', rules='required_without:email'/}                # required when one of them is empty
 {input 'end', type='date', rules='after:start'/}                # or before:end, after:2026-01-01
 ```
-The other field is found where PHP files the post (`user[kind]`, `kinds[]` - which `kinds`
-finds too), its text trimmed; one the post leaves out is empty. `required_if`/`required_unless`
+The other field is found where PHP files the post, by the browser's checker too (`user[kind]`,
+`kinds[]` - which `kinds` finds too - the items `kinds[0]` and `kinds[1]`, `first.name` as
+`first_name`), its text trimmed; one the post leaves out is empty. `required_if`/`required_unless`
 compare as written, case and all, and a list meets the value when one of its items does;
 filled is what `required` passes (`0` is filled, blanks are not, a list with an item is). The
 four judge an empty field, and require a list as `required` does. `before`/`after` read ISO

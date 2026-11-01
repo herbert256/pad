@@ -222,17 +222,53 @@
   foreach ( include __DIR__ . '/_rules.php' as $padRows )
     array_push ( $padCases, ...$padRows );
 
+  // Posts whose names PHP files elsewhere than the form sends them - emails[0] an item of the
+  // list emails, first.name the field first_name: padValidate is handed the post as PHP files
+  // it (parse_str), the browser the names the form sends, and the other field of a rule is
+  // found alike.
+
+  $padFiled = [
+    [ 'phone',    'required_without:emails[]',          [ 'emails[0]' => 'ada@example.com', 'phone' => '' ] ],
+    [ 'phone',    'required_without:emails',            [ 'emails[0]' => '', 'phone' => '' ] ],
+    [ 'code',     'required_with:phones',               [ 'phones[0]' => '0612', 'code' => '' ] ],
+    [ 'code',     'required_with:phones[]',             [ 'phones[0]' => '0612', 'code' => '' ] ],
+    [ 'note',     'required_if:kinds,gift',             [ 'kinds[0]' => 'book', 'kinds[1]' => 'gift', 'note' => '' ] ],
+    [ 'note',     'required_if:kinds[],gift',           [ 'kinds[]' => [ 'book' ], 'kinds[1]' => 'gift', 'note' => '' ] ],
+    [ 'note',     'required_if:kinds,gift',             [ 'kinds[1]' => 'gift', 'kinds[0]' => 'book', 'note' => '' ] ],
+    [ 'note',     'required_if:kinds,gift',             [ 'kinds[a]' => 'gift', 'note' => '' ] ],
+    [ 'note',     'required_unless:kinds,gift',         [ 'kinds[0]' => 'gift', 'note' => '' ] ],
+    [ 'note',     'required_if:first_name,x',           [ 'first.name' => 'x', 'note' => '' ] ],
+    [ 'note',     'required_if:first name,x',           [ 'first name' => 'x', 'note' => '' ] ],
+    [ 'note',     'required_if:user[kind],company',     [ 'user[kind]' => 'company', 'note' => '' ] ],
+    [ 'note',     'required_if:user,company',           [ 'user[kind]' => 'company', 'note' => '' ] ],
+    [ 'end',      'after:trip[start]',                  [ 'trip[start]' => '2026-06-01', 'end' => '2026-05-01' ] ],
+    [ 'end',      'after:trip_start',                   [ 'trip.start' => '2026-06-01', 'end' => '2026-05-01' ] ],
+    [ 'again',    'same:first_name',                    [ 'first.name' => 'Ada', 'again' => 'Ada' ] ],
+    [ 'again',    'same:first_name',                    [ 'first.name' => 'Ada', 'again' => 'Eve' ] ],
+    [ 'again',    'same:user[pass]',                    [ 'user[pass]' => 'pw', 'again' => 'pw' ] ],
+    [ 'again',    'same:pass',                          [ 'pass[0]' => 'pw', 'again' => 'pw' ] ]
+  ];
+
   $parity = [];
 
-  foreach ( $padCases as $padCase ) {
+  foreach ( array_merge ( $padCases, array_map ( fn ( $one ) => $one + [ 3 => [], 4 => TRUE ], $padFiled ) ) as $padCase ) {
 
     [ $field, $rules, $data ] = $padCase;
 
     $messages = $padCase [3] ?? [];
+    $posted   = $data;
+
+    if ( $padCase [4] ?? FALSE ) {
+      $pairs = [];
+      foreach ( $data as $key => $value )
+        foreach ( (array) $value as $one )
+          $pairs [] = rawurlencode ( $key ) . '=' . rawurlencode ( $one );
+      parse_str ( implode ( '&', $pairs ), $posted );
+    }
 
     $parity [] = [ 'field'  => $field,
                       'data'   => (object) $data,
-                      'server' => padValidate ( [ $field => $rules ], $data, $messages ) [$field] ?? '',
+                      'server' => padValidate ( [ $field => $rules ], $posted, $messages ) [$field] ?? '',
                       'client' => padValidateClient ( [ $field => $rules ], $messages ) ];
 
   }

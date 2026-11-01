@@ -209,6 +209,22 @@ posted({ address: 'Address is required when Delivery is ship', end: 'End must be
   expect("the start moved before the end, the server's message of after:start follows it", 'end', '');
 });
 
+// A field watched under the place PHP files it: phones names the list phones[0] is an item
+// of, first_name the field first.name is.
+const filedForm = world("{form 'reach', client}{input 'phones[0]'/}{input 'code', rules='required_with:phones'/}" +
+                        "{input 'first.name'/}{input 'note', rules='required_if:first_name,x'/}{/form}",
+                        [['phones[0]', ''], ['code', ''], ['first.name', ''], ['note', '']]);
+
+if (!filedForm) watching.push('{form ..., client} wrote no data-pad-rules');
+else {
+  [['code', 'phones[0]', '0612', 'Code is required when Phones is filled in'], ['note', 'first.name', 'x', 'Note is required when First name is x']].forEach(([name, other, value, text]) => {
+    filedForm.fire('focusout', name);
+    filedForm.fire('input', other, value);
+    if (filedForm.shown(name) !== text)
+      watching.push(`watcher: ${name} shows ${JSON.stringify(filedForm.shown(name))} when ${other} became ${value}, not ${JSON.stringify(text)}`);
+  });
+}
+
 // A keystroke in a field that many fields watch reads the rules, the values and the controls
 // once for all of them: read again for each, it took time growing with the square of their
 // number - half a second a key at 500 watchers.
