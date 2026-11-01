@@ -445,7 +445,9 @@ Each setting comes from the options (`[ 'slack' => [ 'url' => ... ] ]`), the row
 strict error naming the variable. An address a request goes to - a webhook, a homeserver, a
 gateway - is the options' or `padEnv`'s alone, never the row's, and absolute http(s); the row's
 fields are checked, and a push endpoint must be on a browser's push service (FCM, Mozilla's,
-WNS, Apple's - `WEBPUSH_SERVICES` names more): a value that is none is not sent to. With
+WNS, Apple's - `WEBPUSH_SERVICES` names more): a value that is none is not sent to. The Telegram
+token and the webhooks' addresses are credentials: the dumps, the error report and
+`_events/curl.php` see them redacted, as a header's. With
 `[ 'queue' => TRUE ]` (or a queue's name) every channel is a job of its own, `@notify`, rendered
 and sent by `pad work` - a failing channel is retried alone; the job keeps of the recipient what
 `padLogin` keeps of a row, its password hash, tokens and secrets left out. A channel that does not deliver is

@@ -708,11 +708,12 @@
   }
 
   // A remote fetch that finished, well or not, told to the application's _events/curl.php
-  // (lib/events.php) - the place to log an API that is slow or down.
+  // (lib/events.php) - the place to log an API that is slow or down. Its address without the
+  // secret a service puts in it - a Telegram bot's token, a webhook's path (padRedactAddress).
 
   function padCurlEvent ( $output, $ms ) {
 
-    padEvent ( 'curl', [ 'url'    => $output ['url'],
+    padEvent ( 'curl', [ 'url'    => function_exists ( 'padRedactAddress' ) ? padRedactAddress ( (string) $output ['url'] ) : $output ['url'],
                          'result' => $output ['result'],
                          'error'  => $output ['ERROR'] ?? '',
                          'ms'     => $ms ] );

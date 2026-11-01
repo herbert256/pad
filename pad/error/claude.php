@@ -247,6 +247,11 @@
     if ( str_contains ( $text, '://' ) and str_contains ( $text, '@' ) )
       $text = preg_replace ( '~(\b[a-z][a-z0-9+.-]*+://[^\s/?#@:]*+:)[^\s/?#@]++@~i', '$1*** redacted ***@', $text ) ?? $text;
 
+    // The secret a service puts in the address itself, as a header carries the others'.
+
+    if ( str_contains ( $text, '://' ) )
+      $text = padRedactAddress ( $text );
+
     // A secret in a query: ?reset&token=... was redacted in $_GET and stood in clear in
     // REQUEST_URI, QUERY_STRING and the referer of the next page.
 
@@ -254,6 +259,26 @@
       $text = padRedactQuery ( $text, FALSE );
 
     return $text;
+
+  }
+
+  // The credentials some services put in an address rather than a header: a Telegram bot's
+  // token in the path, the webhooks of Slack, Discord and Teams (Office), whose path is the
+  // credential, and a signature in a query - sig=, a Teams workflow's and Azure's SAS. The
+  // address keeps its service and its path up to the secret. For padRedactText and for the
+  // address padCurlEvent hands to _events/curl.php.
+
+  function padRedactAddress ( $text ) {
+
+    if ( ! preg_match ( '~telegram\.org/|hooks\.slack\.com/|discord(?:app)?\.com/|webhook\.office\.com/|sig=~i', $text ) )
+      return $text;
+
+    return preg_replace ( [ '~(\bapi\.telegram\.org/(?:file/)?bot)\d++:[A-Za-z0-9_-]++~i',
+                            '~(\bhooks\.slack\.com/(?:services|workflows|triggers)/)[A-Za-z0-9/_-]++~i',
+                            '~(\b(?:(?:canary|ptb)\.)?discord(?:app)?\.com/api(?:/v\d++)?/webhooks/)[A-Za-z0-9/_-]++~i',
+                            '~(\.webhook\.office\.com/webhookb2/)[A-Za-z0-9@/_-]++~i',
+                            '~(://[^\s"\'<>]*?[?&](?:amp;)?sig=)[^&\s"\'<>#]++~i' ],
+                          '$1*** redacted ***', $text ) ?? $text;
 
   }
 
