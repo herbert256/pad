@@ -7,6 +7,7 @@
     if (!button) return;
     event.preventDefault();
     var frame = document.createElement('iframe');
+    if (button.hasAttribute('data-pad-sandbox')) frame.setAttribute('sandbox', button.getAttribute('data-pad-sandbox'));
     frame.src = button.getAttribute('data-pad-embed');
     frame.title = button.getAttribute('data-pad-title');
     if (button.hasAttribute('data-pad-allow')) frame.allow = button.getAttribute('data-pad-allow');

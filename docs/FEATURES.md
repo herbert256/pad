@@ -1320,6 +1320,7 @@ budget, a loan, grades, dates, an editable sheet and a page of every function.
 {embed:vimeo '76979871', title='The new Vimeo player', at='1:30'/}          # the embed: type, a bare id
 {openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}              # bare, when nothing else has the name
 {embed 'https://soundcloud.com/forss/flickermood', title='Flickermood'/}     # also spotify, peertube, dailymotion, internetarchive, codepen
+{embed 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', title='Abbey Road'/}   # applemusic, applepodcasts: in Apple's sandbox
 {audio 'sounds/bell.mp3', title='The bell'/}                                # a file: <audio preload="none">; videofile, pdffile
 ```
 A frame of another site is a click-to-load facade: a poster drawn for its kind (or `poster=`,
@@ -1331,6 +1332,8 @@ knows (`match`), its frame (`embed`), its origin for `frame-src` and its own opt
 provider is added by adding its file. `padEmbedSources ()` lists the origins a Content
 Security Policy needs: `$padCsp = "...; frame-src " . implode ( ' ', padEmbedSources () )`.
 `{video}` is the video-only form of the same providers, its markup as before.
+A frame is given what the provider's own embed code gives it - its `allow` and, for Apple Music
+and Apple Podcasts, the `sandbox` of Apple's code: the frame may do only what those tokens allow.
 ### Toys
 ```
 {toy 'life', pattern='gun', wrap/}             # small live simulations and visual toys, in the browser

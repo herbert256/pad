@@ -362,6 +362,8 @@
       'spotify'         => [ 'https://open.spotify.com/intl-nl/track/4uLU6hMCjMI75M1A2tKUQC', 'A track on Spotify' ],
       'codepen'         => [ 'https://codepen.io/team/codepen/pen/PNaGbb',             'A pen on CodePen' ],
       'openstreetmap'   => [ '52.3731,4.8922',                                         'Dam Square, Amsterdam' ],
+      'applemusic'      => [ 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', 'Abbey Road - The Beatles' ],
+      'applepodcasts'   => [ 'https://podcasts.apple.com/us/podcast/the-daily/id1200361736', 'The Daily' ],
       'videofile'       => [ 'https://example.org/clips/sunrise.webm',                 'A sunrise' ],
       'audio'           => [ 'https://example.org/sounds/bell.mp3',                    'A bell' ],
       'pdffile'         => [ 'https://www.example.org/docs/plan.pdf',                  'The floor plan' ] ];

@@ -3337,6 +3337,7 @@ presses the button; a file of the application is an element that loads nothing b
 {embed:vimeo '76979871', title='The new Vimeo player', at='1:30'/}
 {openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}
 {embed 'https://codepen.io/team/codepen/pen/PNaGbb', title='A pen', tab='html,result'/}
+{embed 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', title='Abbey Road'/}
 {audio 'sounds/bell.mp3', title='The bell'/}
 {embed 'docs/leaflet.pdf', title='The leaflet'/}
 ```
@@ -3345,11 +3346,11 @@ presses the button; a file of the application is an element that loads nothing b
 
 | Option | Description |
 |--------|-------------|
-| first parameter | An address a provider knows - a file of `pad/subs/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
+| first parameter | An address a provider knows - a file of `pad/subs/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), `applemusic` (music.apple.com/`<country>`/album, playlist, song, artist, music-video or station, `?i=` a song of an album) and `applepodcasts` (podcasts.apple.com/`<country>`/podcast/.../id`<id>`, `?i=` an episode), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
 | `title` | Required - the button's text, the frame's title, the element's name |
 | `poster` | A picture of `www/<application>/` (versioned as `{asset}`) in place of the drawn poster |
 | `thumbnail` | Bare: the provider's own picture as the poster where it has one at a known address (YouTube) - asked of the provider before the click |
-| `ratio` | The proportion - `16:9`, SoundCloud and Spotify `2:1`, a PDF `4:5`, a YouTube short `9:16` (kept to a phone's width) |
+| `ratio` | The proportion - `16:9`, SoundCloud and Spotify `2:1`, a PDF `4:5`, a YouTube short `9:16` (kept to a phone's width), Apple Music and Apple Podcasts `4:3` - a song or an episode `5:2` |
 | `at` | youtube, vimeo, peertube, dailymotion: the moment to start at - `90`, `1m30s`, `1:30` |
 | `lat`, `lon`, `zoom` | openstreetmap: the place and the zoom, 1 to 19 (13) |
 | `tab` | codepen: the panes - `result` (default), `html`, `css`, `js`, or two of them |
@@ -3367,11 +3368,15 @@ a frame of the application loaded lazily with a link to open it; of the web, a P
 too. A proportion other than 16:9 is a class with its own nonce'd rule - no `style=`
 attribute, so a strict `style-src` holds. The colours are `--pad-embed-*` custom properties
 with `light-dark()` steps on `.pad-embed`.
+The frame gets the provider's `allow` and, where the provider's own embed code has one, its
+`sandbox`, waiting in `data-pad-sandbox` until the click - Apple Music and Apple Podcasts the six
+tokens of Apple's code: `allow-forms allow-popups allow-same-origin allow-scripts
+allow-storage-access-by-user-activation allow-top-navigation-by-user-activation`.
 
 **Providers:** a provider is a file of `pad/subs/embeds/types/<name>.php` answering its `name`,
 `kind`, the `frame` origin(s), whether it is `generic` (known by the shape of its addresses,
 tried after those that know their host), its own `options`, `match` - the address read into
-its parts, or NULL - and `embed` - the frame's address, the link, the ratio, the `allow`. The
+its parts, or NULL - and `embed` - the frame's address, the link, the ratio, the `allow`, the `sandbox`. The
 files there are the providers there are (`padEmbedProviders`), and a provider is added by
 adding its file. A bare provider name comes after every other kind of tag, so a tag, a store
 or a field of the name wins.

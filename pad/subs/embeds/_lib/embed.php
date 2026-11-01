@@ -27,11 +27,13 @@
   //             when it is none of the provider's; $named when the provider was named, so a
   //             bare id is the provider's to read as well
   //   embed     fn ( $parts, $opts ) - what is written: [ mode, src, link, thumb, ratio,
-  //             allow, type, name ], the mode frame (a facade, the frame loaded on a click),
-  //             page (a frame of the application's own, loaded lazily), video or audio (an
-  //             element that loads nothing before it is played); name the site the click
-  //             loads from where that is not the provider - a PeerTube instance, the host of
-  //             a PDF - and src '' when there is nothing to write
+  //             allow, sandbox, type, name ], the mode frame (a facade, the frame loaded on
+  //             a click), page (a frame of the application's own, loaded lazily), video or
+  //             audio (an element that loads nothing before it is played); sandbox the
+  //             frame's sandbox tokens where the provider's own embed code has them - the
+  //             frame then may do only what they allow; name the site the click loads from
+  //             where that is not the provider - a PeerTube instance, the host of a PDF - and
+  //             src '' when there is nothing to write
   //
   // A frame of another site is a facade first: a poster - drawn for its kind, or poster= a
   // picture of www/<application>/, or with thumbnail the provider's own picture - the title,
@@ -134,8 +136,8 @@
   function padEmbed ( $name, $parts, $title, $opts ) {
 
     $provider = padEmbedProvider ( $name );
-    $embed    = $provider ['embed'] ( $parts, $opts ) + [ 'mode' => 'frame', 'link' => '', 'thumb' => '', 'ratio' => '16:9', 'allow' => '', 'type' => '',
-                                                         'name' => $provider ['name'] ];
+    $embed    = $provider ['embed'] ( $parts, $opts ) + [ 'mode' => 'frame', 'link' => '', 'thumb' => '', 'ratio' => '16:9', 'allow' => '', 'sandbox' => '',
+                                                         'type' => '', 'name' => $provider ['name'] ];
 
     if ( $embed ['src'] === '' )
       return '';
@@ -171,7 +173,8 @@
          . ( $poster !== '' ? '<img class="pad-embed-poster" src="' . padWidgetAttr ( $poster ) . '" alt="" loading="lazy" decoding="async">'
                             : padEmbedDrawn ( $provider ['kind'] ) )
          . '<button type="button" class="pad-embed-load" data-pad-embed="' . padWidgetAttr ( $embed ['src'] ) . '"'
-         . " data-pad-title=\"$label\"" . ( $embed ['allow'] !== '' ? ' data-pad-allow="' . padWidgetAttr ( $embed ['allow'] ) . '"' : '' ) . '>'
+         . " data-pad-title=\"$label\"" . ( $embed ['allow'] !== '' ? ' data-pad-allow="' . padWidgetAttr ( $embed ['allow'] ) . '"' : '' )
+         . ( $embed ['sandbox'] !== '' ? ' data-pad-sandbox="' . padWidgetAttr ( $embed ['sandbox'] ) . '"' : '' ) . '>'
          . padEmbedIcon ( $provider ['kind'] )
          . "<span class=\"pad-embed-title\"><span class=\"pad-embed-hidden\">$verb </span>$label</span>"
          . '<span class="pad-embed-site">' . $site . '</span></button>'
@@ -341,6 +344,7 @@
     if (!button) return;
     event.preventDefault();
     var frame = document.createElement('iframe');
+    if (button.hasAttribute('data-pad-sandbox')) frame.setAttribute('sandbox', button.getAttribute('data-pad-sandbox'));
     frame.src = button.getAttribute('data-pad-embed');
     frame.title = button.getAttribute('data-pad-title');
     if (button.hasAttribute('data-pad-allow')) frame.allow = button.getAttribute('data-pad-allow');
