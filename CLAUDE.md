@@ -825,7 +825,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Month calendar](docs/FEATURES.md#month-calendar) | `{calendar}` |
 | [Public holidays](docs/FEATURES.md#public-holidays) | `{holidays 'nl', year=2026}`, `{calendar holidays='de-by'/}`, `padHolidays`, `padIsHoliday`, `padWorkdays`, `padAddWorkdays` - a country per file of `pad/subs/holidays/types/` |
 | [Syntax highlighting](docs/FEATURES.md#syntax-highlighting) | `{highlight 'php'}`, `{source}` |
-| [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{qr}`, `{barcode type='upce'}`, `{barcode:ean13 '...'/}`, bare `{itf14 '...'/}`, `{datamatrix '...'/}` - a symbology per file of `pad/subs/codes/types/` |
+| [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{qr}`, `{barcode type='upce'}`, `{barcode:ean13 '...'/}`, bare `{itf14 '...'/}`, `{datamatrix '...'/}`, `{aztec '...'/}`, `{pdf417 '...'/}`, `{gs1128 '(01)...'/}`, `{bookland 'ISBN ...', addon='51995'/}`, `{databar '...'/}` - a symbology per file of `pad/subs/codes/types/` |
 | [Icons](docs/FEATURES.md#icons) | `{icon 'star'/}`, `{icon:star/}` - an icon per file of `pad/subs/icons/types/` (an SVG each) |
 | [Patterns](docs/FEATURES.md#patterns) | `{pattern 'topography', seed=7/}`, `{pattern:dots as='url'/}`, `padPattern ()` - seeded SVG backgrounds, the same bytes for the same seed, a kind per file of `pad/subs/patterns/types/` |
 | [Image filters](docs/FEATURES.md#image-filters) | `{img 'p.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='...'/}`, `filter='grayscale, dither'`, `halftone`, `ascii`, placeholders `blurhash`, `dominant`, `lqip` - a filter per file of `pad/subs/filters/types/` |
