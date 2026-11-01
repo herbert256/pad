@@ -303,26 +303,43 @@
   }
 
   // What a field of many values shows - the choices made in a multiselect: the posted list
-  // when its form came back, else value= - a list, or a comma text. padFormValue answers a
-  // text only, so the list is read here, where PHP files it: interests[] is $_POST
-  // ['interests']. A form that came back without the field had nothing chosen in it - the
-  // browser leaves a select with no option chosen out of the post - so the absence is the
-  // empty list, not value= once more, which would bring a field emptied on purpose back
-  // full. A text posted where the list belongs - interests[]=a written as interests=a - is
-  // a list of that one text, and an item that is no text - interests[0][]=a - is left out.
-  // Every item a trimmed text, the empty ones and the second copies left out.
+  // when its form came back with it, else value= - a list, or a comma text. padFormValue
+  // answers a text only, so the list is read here, where PHP files it: interests[] is $_POST
+  // ['interests']. The browser leaves a select with no option chosen out of the post, so the
+  // field writes padLists[] beside its select, naming the list (padInputSent): a post that
+  // names it there and leaves the list out had nothing chosen in it, and shows the empty
+  // list - not value= once more, which would bring a field emptied on purpose back full.
+  // Any other request without the list shows value=, as a field of one value shows it when
+  // the post has none: a click in a live region, a post of another form of the page, a
+  // link to the page of a form that asks by GET with a value of its own (?shop&sort=name) -
+  // where each of them, a request with data, emptied the field. A form that asks by GET with
+  // its one field a list left empty sends padLists[] alone, which padFormSource counts as no
+  // question of the form - a name of the engine's - and the query is read for it here.
+  // A text posted where the list belongs - interests[]=a written as interests=a - is a list
+  // of that one text, and an item that is no text - interests[0][]=a - is left out. Every
+  // item a trimmed text, the empty ones and the second copies left out.
+
+  const padInputLists = 'padLists';
 
   function padInputValues ( $default = [] ) {
 
+    global $padFormStack;
+
     $given  = padInputTake ( 'value', $default );
+    $name   = padInputName ();
     $source = padFormSource ();
 
-    if ( $source === NULL )
+    if ( $source === NULL and $padFormStack and end ( $padFormStack ) ['method'] == 'get' and padInputSent ( $_GET, $name ) )
+      $source = $_GET;
+
+    [ $found, $posted ] = ( $source === NULL ) ? [ FALSE, NULL ] : padFormFind ( $source, $name );
+
+    if ( $found )
+      $list = is_array ( $posted ) ? $posted : [ $posted ];
+    elseif ( $source !== NULL and padInputSent ( $source, $name ) )
+      $list = [];
+    else
       $list = is_array ( $given ) ? $given : explode ( ',', is_scalar ( $given ) ? (string) $given : '' );
-    else {
-      [ $found, $posted ] = padFormFind ( $source, padInputName () );
-      $list = ( ! $found ) ? [] : ( is_array ( $posted ) ? $posted : [ $posted ] );
-    }
 
     $out = [];
 
@@ -331,6 +348,25 @@
         $out [$item] = TRUE;
 
     return array_map ( 'strval', array_keys ( $out ) );
+
+  }
+
+  // Whether the posted data held the list $name, chosen or empty: padLists[] names it - the
+  // hidden field a multiselect writes beside its select, which its form posts with it.
+
+  function padInputSent ( $data, $name ) {
+
+    $lists = $data [padInputLists] ?? [];
+
+    return in_array ( (string) $name, is_array ( $lists ) ? $lists : [ $lists ], TRUE );
+
+  }
+
+  // The hidden field that says a post held the list $name, chosen or empty (padInputSent).
+
+  function padInputSentField ( $name ) {
+
+    return '<input type="hidden" name="' . padInputLists . '[]" value="' . padInputEscape ( $name ) . '">';
 
   }
 

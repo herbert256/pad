@@ -57,7 +57,7 @@
     $rows = [];
 
     foreach ( $_POST as $name => $value ) {
-      if ( in_array ( $name, [ 'padForm', 'padFormAt', 'padCsrfToken' ], TRUE ) )
+      if ( in_array ( $name, [ 'padForm', 'padFormAt', 'padCsrfToken', 'padLists' ], TRUE ) )
         continue;
       $text = is_array ( $value ) ? json_encode ( $value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) : (string) $value;
       if ( strlen ( $text ) > 72 )

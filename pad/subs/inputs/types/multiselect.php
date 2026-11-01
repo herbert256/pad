@@ -9,11 +9,13 @@
   // stays what the form posts. The choices are options=, a list, or the rows of the store
   // data= names - field= the field of a row they are read from, its first unless given - or
   // the lines between the tags, as a combobox's; value= the choices made before a post, a
-  // list or a comma text. After a post it shows the list posted - nothing chosen when the
-  // form came back without the field, as the browser posts a select with no choice - and
-  // a posted value that is no choice is not shown, nor added: the select posts only its
-  // options, and rules='in:...' refuses it. The rules are those of the list, interests[],
-  // as padValidate names a list; the messages say Interests.
+  // list or a comma text. After a post of its form it shows the list posted - nothing chosen
+  // when the form came back without it, as the browser posts a select with no choice, the
+  // hidden padLists[] beside the select saying the form held the list; any other request, a
+  // click in a live region or a post of another form, shows value= - and a posted value that
+  // is no choice is not shown, nor added: the select posts only its options, and
+  // rules='in:...' refuses it. The rules are those of the list, interests[], as padValidate
+  // names a list; the messages say Interests.
 
   $padInputField   = (string) padInputTake ( 'field', '' );
   $padInputChoices = padInputList ( 'options', $padInputField );
@@ -45,7 +47,7 @@
 
     return padInputFrame ( 'multiselect', $worded,
              $label
-           . "<select multiple $head$size$rest>$options</select>"
+           . "<select multiple $head$size$rest>$options</select>" . padInputSentField ( padInputName () )
            . '<noscript><p class="pi-noscript">Hold Ctrl - or &#8984; on a Mac - to choose more than one.</p></noscript>'
            . '<span class="pi-hide pi-ms-said" aria-live="polite"></span>',
              $error, [ 'filter' => is_scalar ( $padInputFilter ) ? (string) $padInputFilter : '' ] );

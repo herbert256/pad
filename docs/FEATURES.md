@@ -725,7 +725,10 @@ its messages say Tags). Its choices are `options=`, `data=` with `field=`, or a 
 its tags, as a combobox's; `value=` - a list or a comma text - the choices made before a post.
 After a post of its form it shows the list posted: nothing chosen when the post left the field
 out, as the browser posts a select with no choice - never `value=` again - and a posted value
-that is no choice is not shown, nor added as an option.
+that is no choice is not shown, nor added as an option. A hidden `padLists[]` beside the select,
+naming the list, tells that post from any other request - a click in a `{live}` region, a post
+of another form of the page, a link with a value to the page of a GET form - which shows
+`value=`, as every other field does.
 
 ### Layouts (extends / block / parent)
 ```

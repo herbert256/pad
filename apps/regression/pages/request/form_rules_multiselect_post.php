@@ -5,14 +5,16 @@
   // comes back with nothing chosen - not value= - a choice that is no option breaks in: and
   // comes back without it, the other list refilled, and a post of choices of the lists is
   // stored. A list was refused under the name the template wrote, interests, as no single
-  // value. The style and the script of the fields, and the session's token, are left out of
-  // what is compared.
+  // value. Each post carries padLists[] naming both lists, as the browser posts the form.
+  // The style and the script of the fields, and the session's token, are left out of what
+  // is compared.
 
   $pickResult = '';
+  $pickLists  = '&padLists[]=interests[]&padLists[]=days[]';
 
-  foreach ( [ 'padForm=pick',
-              'padForm=pick&interests[]=PHP&interests[]=Nope&days[]=Monday',
-              'padForm=pick&interests[]=Maps&interests[]=Music&days[]=Tuesday&days[]=Monday' ] as $pickPost ) {
+  foreach ( [ 'padForm=pick' . $pickLists,
+              'padForm=pick&interests[]=PHP&interests[]=Nope&days[]=Monday' . $pickLists,
+              'padForm=pick&interests[]=Maps&interests[]=Music&days[]=Tuesday&days[]=Monday' . $pickLists ] as $pickPost ) {
 
     $pickCurl = padCurl ( [ 'url'  => $padGoExt . 'request/form_rules_multiselect&padInclude',
                             'post' => $pickPost ] );
