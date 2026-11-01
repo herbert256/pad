@@ -152,13 +152,14 @@ template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip
 {jsonld:business type='Bakery', name='The Loaf', city='Utrecht', hours='Mo-Fr 08:00-18:00; Sa 08:00-16:00'/}
 {jsonld:job data='vacancy', salary='3200-3800', currency='EUR', per='month'/}
 {jsonld:software name='Pocket Ledger', category='finance application', price=0, rating='4.6', ratings=1523/}
+{jsonld:profile data='member'/}                           # a member's page, the person its mainEntity
 ```
 ```php
 $url  = padUrl ( '', [], TRUE );                          // the page's own address, for url=
 $data = padJsonLd ( 'event', $concert );                  // the same object as a plain array
 ```
 One `<script type="application/ld+json">` holding a Schema.org object - what search engines read
-for a rich result - from ordinary PAD data, explicitly mapped. Fourteen kinds, each a file of
+for a rich result - from ordinary PAD data, explicitly mapped. Fifteen kinds, each a file of
 `pad/subs/jsonld/types/` whose header lists its fields, a PAD name and the Schema.org property it
 fills: `article` (headline required, description, image, url, author, published, modified,
 publisher, logo), `breadcrumb` (rows of name and url - the rows `{breadcrumb data=}` takes,
@@ -201,7 +202,11 @@ not `min=`/`max=`, which are options of every tag. `software`: a SoftwareApplica
 (MobileApplication, WebApplication), name and price required (`0` for one that is free), description,
 url, image, os, category (one of the 22 applicationCategory values Google takes, `finance
 application`), version, download, currency, and rating with ratings as an AggregateRating - Google
-shows the rich result for an application with a rating or a review.
+shows the rich result for an application with a rating or a review. `profile`: a ProfilePage, the
+page of one member of a site, with the person - or `type='organization'` - as its mainEntity: name
+required, handle (alternateName), identifier, description, image, profiles (sameAs), followers and
+posts as InteractionCounters of the FollowAction and the WriteAction, and created and modified,
+the page's own dates.
 
 The fields come from the row or rows `data=` names - a `{data}` store, the page's array, a
 field holding a list or a `_data` file (a store holds rows, so a single row in a `{data}` block

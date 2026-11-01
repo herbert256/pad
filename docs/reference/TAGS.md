@@ -657,6 +657,7 @@ of fields and pages. `padJsonLd ( 'article', $post )` answers the same object as
 | `organization` | Organization | **name**, url, logo, description, profiles, phone, email, contact |
 | `person` | Person | **name**, url, image, job, description, profiles |
 | `product` | Product | **name**, description, image, url, sku, brand, price, currency, availability |
+| `profile` | ProfilePage, a Person (or Organization, type=) its mainEntity | **name**, type, handle, identifier, description, image, profiles, followers, posts, created, modified |
 | `recipe` | Recipe | **name**, **image**, description, author, published, prep, cook, total (durations), yield, category, cuisine, keywords, calories (needs yield), ingredients, steps, rating, ratings |
 | `restaurant` | Restaurant (or another FoodEstablishment, type=) | every field of business, cuisine, menu |
 | `software` | SoftwareApplication (MobileApplication, WebApplication, type=) | **name**, **price** (0 for free), type, description, url, image, os, category, version, download, currency, rating, ratings |
@@ -4713,7 +4714,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `redirect` | Navigation | HTTP redirect |
 | `restart` | Navigation | Restart processing |
 | `pager` | Navigation | Page links for a tag with the page option |
-| `jsonld` | Navigation | The structured data of a page - a Schema.org object of `pad/subs/jsonld/types/` as JSON-LD: article, breadcrumb, business, event, faq, job, organization, person, product, recipe, restaurant, software, video, website - its fields mapped by name |
+| `jsonld` | Navigation | The structured data of a page - a Schema.org object of `pad/subs/jsonld/types/` as JSON-LD: article, breadcrumb, business, event, faq, job, organization, person, product, profile, recipe, restaurant, software, video, website - its fields mapped by name |
 | `csrf` | Web | Hidden CSRF token field of the session |
 | `extends` | Layout | Frame the page with a layout |
 | `block` | Layout | A named region of a layout or wrapper, and its override |
