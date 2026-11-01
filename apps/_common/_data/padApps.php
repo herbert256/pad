@@ -38,6 +38,7 @@
       'demo'            => [ 'demo',          'play',         'Guestbook, todo, contact, counter, clock' ],
       'hello'           => [ 'hello',         'message',      'Hello World, the page pairing' ],
       'playground'      => [ 'playground',    'keyboard',     'Type a template, see the result' ],
+      'live'            => [ 'live',          'zap',          'Type a page, run it on this server' ],
       'examples'        => [ 'examples',      'code',         'The examples of the manual and the suites' ],
       'classicModels'   => [ 'classicModels', 'database',     'PAD Select over the Classic Models database' ],
       'padSelect'       => [ 'padSelect',     'filter',       'PAD Select, every option with its SQL' ],

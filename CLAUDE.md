@@ -1171,6 +1171,7 @@ the `claude` line of `./ci.sh`.
 | `nono` | Plain PHP | PHP application without PAD templating |
 | `notes` | Offline | A Markdown notebook on SQLite - tags, search as you type (a `{fragment}`), pins and colours (`{live}`), pictures and PDFs attached (`padUpload`, `padUploadSend`), a JSON export (`$padExpose`) and import - packed by `pad pack notes` it runs in the browser |
 | `pad` | Standard | PAD framework introduction and reference |
+| `live` | Standard | Like the playground, but Run saves the page and this HTTP server answers it as a real page, `live/?page/<id>` - its PHP, request values, forms that post back, sessions, scripts - local requests only |
 | `playground` | Standard | Type a template and its data - JSON, YAML, XML or CSV recognised on sight, or PHP code as a page's `.php` (a button switches) - in editors with PAD's colours and see the result - local requests only, no PHP functions in the template, shareable through the URL hash; every example of the other applications opens here from its icon top right |
 | `react` | Standard | PAD + React: components mounted on islands of PAD pages, JSON answers to `fetch()`, forms checked by PAD with the CSRF header, `{fragment}`s, a cart in the session, polling - fourteen examples, each with its sources |
 | `reference` | Standard | Cross-reference and directory utilities |

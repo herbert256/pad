@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PAD live</title>
+  <link rel="stylesheet" href="{asset 'live.css'/}">
+</head>
+<body>
+
+  <header class="top">
+    {common:padBrand/}
+    <h1>Type a page, run it on this server</h1>
+  </header>
+
+  <form method="post" action="?save" target="liveOut" id="liveForm" data-monaco="{$editorMonaco}" data-names="{^editorNames}">
+    <div class="panes">
+      <div class="pane">
+        <label for="source">Template</label>
+        <textarea id="source" name="source" spellcheck="false" rows="14">{$sampleSource}</textarea>
+        <div class="dataHead">
+          <label for="data" data-mode="data">Data - JSON, YAML, XML or CSV, recognised on sight: each key a variable, a list the variable rows</label>
+          <label for="php" data-mode="php" hidden>Data - PHP code, as a page's .php: the variables it sets are the template's</label>
+          <button type="button" id="dataSwitch" hidden>Switch to PHP</button>
+        </div>
+        <input type="hidden" id="mode" name="mode" value="data">
+        <textarea id="data" name="data" data-mode="data" spellcheck="false" rows="10">{$sampleData}</textarea>
+        <textarea id="php" name="php" data-mode="php" spellcheck="false" rows="10" hidden>{$samplePhp}</textarea>
+        <p>
+          <button type="submit">Run</button>
+          <span class="hint">Ctrl+Enter runs; the address bar always links to what is typed here.</span>
+        </p>
+      </div>
+      <div class="pane">
+        <div class="outHead"><span class="caption">The page</span><a id="liveOpen" href="#" target="_blank" hidden>open alone</a></div>
+        <iframe id="liveOut" name="liveOut" title="The page" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads"></iframe>
+      </div>
+    </div>
+  </form>
+
+  <p class="limits">This machine only. Run saves the template with its data or PHP as a page of
+  this server, kept a day, and shows it as the server answers it: its PHP runs as written,
+  with all of PHP's reach, and the page has what any page has - PHP functions, request values,
+  sessions, the database, forms that post back, scripts. It is a page of this site: it is
+  not kept apart from this one. Errors show as PAD reports them.</p>
+
+  {if $editorPadMode}<script src="{$editorPadMode}"></script>{/if}
+  <script src="{asset 'live.js'/}"></script>
+
+</body>
+</html>

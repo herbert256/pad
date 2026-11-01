@@ -1,0 +1,84 @@
+/^\<\!DOCTYPE html\>
+\<html lang\="en"\>
+\<head\>
+  \<meta charset\="utf\-8"\>
+  \<meta name\="viewport" content\="width\=device\-width, initial\-scale\=1"\>
+  \<title\>PAD live\<\/title\>
+  \<link rel\="stylesheet" href\="\/pad\/live\/live\.css\?v\=[0-9a-f]+"\>
+\<\/head\>
+\<body\>
+
+  \<header class\="top"\>
+    \<link rel\="stylesheet" href\="\/pad\/_common\/brand\.css\?v\=[0-9a-f]+"\>\<script src\="\/pad\/_common\/brand\.js\?v\=[0-9a-f]+" defer\>\<\/script\>
+\<div class\="pad\-brand"\>
+  
+    \<a class\="pad\-brand\-logo" href\="\/pad\/pad\/" title\="PAD home" aria\-label\="PAD home"\>&\#123;&\#125;\<\/a\>
+    \<details class\="pad\-brand\-menu"\>
+      \<summary title\="The PAD applications"\>\<span class\="pad\-brand\-name"\>\<span class\="pad\-brand\-pad"\>PAD \<\/span\>\<b\>live\<\/b\>\<\/span\>\<svg xmlns\="http\:\/\/www\.w3\.org\/2000\/svg" class\="pad\-icon pad\-icon\-chevron\-down" aria\-hidden\="true" focusable\="false" width\="14" height\="14" viewBox\="0 0 24 24" fill\="none" stroke\="currentColor" stroke\-width\="2" stroke\-linecap\="round" stroke\-linejoin\="round"\>\<path d\="M6 9\.5l6 6 6\-6"\/\>\<\/svg\>\<\/summary\>
+      [\s\S]*?
+    \<\/details\>
+  
+\<\/div\>
+
+    \<h1\>Type a page, run it on this server\<\/h1\>
+  \<\/header\>
+
+  \<form method\="post" action\="\?save" target\="liveOut" id\="liveForm" data\-monaco\="https\:\/\/cdn\.jsdelivr\.net\/npm\/monaco\-editor@0\.57\.0\/min\/vs" data\-names\="[^"]+"\>\<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>
+    \<div class\="panes"\>
+      \<div class\="pane"\>
+        \<label for\="source"\>Template\<\/label\>
+        \<textarea id\="source" name\="source" spellcheck\="false" rows\="14"\>&lt;h2&gt;\{\$title\}&lt;\/h2&gt;
+&lt;ul&gt;
+  \{items\}
+    &lt;li&gt;\{\$name\}\{if \$stock eq 0\} \- sold out\{\/if\}&lt;\/li&gt;
+  \{\/items\}
+&lt;\/ul&gt;
+\<\/textarea\>
+        \<div class\="dataHead"\>
+          \<label for\="data" data\-mode\="data"\>Data \- JSON, YAML, XML or CSV, recognised on sight\: each key a variable, a list the variable rows\<\/label\>
+          \<label for\="php" data\-mode\="php" hidden\>Data \- PHP code, as a page's \.php\: the variables it sets are the template's\<\/label\>
+          \<button type\="button" id\="dataSwitch" hidden\>Switch to PHP\<\/button\>
+        \<\/div\>
+        \<input type\="hidden" id\="mode" name\="mode" value\="data"\>
+        \<textarea id\="data" name\="data" data\-mode\="data" spellcheck\="false" rows\="10"\>\{
+  &quot;title&quot;\: &quot;Fruit&quot;,
+  &quot;items&quot;\: \[
+    \{ &quot;name&quot;\: &quot;Apple&quot;, &quot;stock&quot;\: 3 \},
+    \{ &quot;name&quot;\: &quot;Pear&quot;,  &quot;stock&quot;\: 0 \}
+  \]
+\}
+\<\/textarea\>
+        \<textarea id\="php" name\="php" data\-mode\="php" spellcheck\="false" rows\="10" hidden\>&lt;\?php
+
+  \$title \= &\#039;Fruit&\#039;;
+
+  \$items \= \[
+    \[ &\#039;name&\#039; \=&gt; &\#039;Apple&\#039;, &\#039;stock&\#039; \=&gt; 3 \],
+    \[ &\#039;name&\#039; \=&gt; &\#039;Pear&\#039;,  &\#039;stock&\#039; \=&gt; 0 \]
+  \];
+
+\?&gt;
+\<\/textarea\>
+        \<p\>
+          \<button type\="submit"\>Run\<\/button\>
+          \<span class\="hint"\>Ctrl\+Enter runs; the address bar always links to what is typed here\.\<\/span\>
+        \<\/p\>
+      \<\/div\>
+      \<div class\="pane"\>
+        \<div class\="outHead"\>\<span class\="caption"\>The page\<\/span\>\<a id\="liveOpen" href\="\#" target\="_blank" hidden\>open alone\<\/a\>\<\/div\>
+        \<iframe id\="liveOut" name\="liveOut" title\="The page" sandbox\="allow\-scripts allow\-same\-origin allow\-forms allow\-popups allow\-modals allow\-downloads"\>\<\/iframe\>
+      \<\/div\>
+    \<\/div\>
+  \<\/form\>
+
+  \<p class\="limits"\>This machine only\. Run saves the template with its data or PHP as a page of
+  this server, kept a day, and shows it as the server answers it\: its PHP runs as written,
+  with all of PHP's reach, and the page has what any page has \- PHP functions, request values,
+  sessions, the database, forms that post back, scripts\. It is a page of this site\: it is
+  not kept apart from this one\. Errors show as PAD reports them\.\<\/p\>
+
+  \<script src\="\/pad\/edit\/pad\-mode\.js\?v\=[0-9a-f]+"\>\<\/script\>
+  \<script src\="\/pad\/live\/live\.js\?v\=[0-9a-f]+"\>\<\/script\>
+
+\<\/body\>
+\<\/html\>$/

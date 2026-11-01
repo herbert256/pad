@@ -17,6 +17,9 @@ PHP code, written as a page's `.php`: the variables it sets become the template'
 it echoes stands before the template; **Switch to data** swaps back, each pane keeping what
 was typed in it.
 
+The [live](../live/README.md) application looks the same and runs what is typed as a real
+page of this server instead: forms that post back, request values, sessions.
+
 The boxes are editors with colours, as in the [edit](../edit/README.md) application: Monaco,
 loaded from `$playMonaco`, with the edit application's own PAD colouring
 (`www/edit/pad-mode.js`) for the template - and its completion of PAD's built-in names - the

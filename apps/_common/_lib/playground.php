@@ -15,6 +15,8 @@
   // padPlayPage  the icon for a page of an application: its template less a {meta} line on
   //              top, which belongs to the application that shows it, with its paired PHP or
   //              else the _data file its template names with data='...'
+  // padPlayEditor, padPlaySamples  what the editors of the playground and the live
+  //              application start with: Monaco's PAD grammar and its names, the sample
   //
   // The icon stands at the top right of the nearest positioned box, so an example's box is
   // position: relative - the class pad-play-box, or a style of its own. Inline, it floats at
@@ -79,6 +81,58 @@
         }
 
     return padPlayLink ( ( $template === '' ) ? '' : "$template\n", $data, $php, $inline );
+
+  }
+
+  // The boxes of the playground and of the live application as editors with colours (their
+  // index.php): where Monaco's grammar for PAD is - the edit application's own
+  // www/edit/pad-mode.js, with the version of its contents as {asset} gives one - and the
+  // names it colours, PAD's built-in tags, functions, options, properties and prefixes, as
+  // the edit application gathers them (apps/edit/_lib/language.php) from
+  // editors/lsp/completions.json, which editors/generate.php keeps in step with pad/. No
+  // documentation: the colours and the completion of names need none.
+
+  function padPlayEditor () {
+
+    global $padRoot;
+
+    $file   = dirname ( APPS ) . '/www/edit/pad-mode.js';
+    $algo   = in_array ( 'xxh128', hash_algos (), TRUE ) ? 'xxh128' : 'sha256';
+    $mode   = is_file ( $file ) ? ( $padRoot ?? '/' ) . 'edit/pad-mode.js?v=' . substr ( (string) hash_file ( $algo, $file ), 0, 10 ) : '';
+
+    $groups = [ 'PAD tag' => 'tags', 'pipe function' => 'functions', 'property@tag' => 'properties',
+                'option' => 'options', 'type prefix' => 'prefixes', 'operator' => 'operators',
+                'sequence type' => 'sequences' ];
+
+    $names  = array_fill_keys ( array_values ( $groups ), [] ) + [ 'single' => [] ];
+
+    foreach ( json_decode ( (string) @file_get_contents ( dirname ( APPS ) . '/editors/lsp/completions.json' ), TRUE ) ?: [] as $one ) {
+      if ( isset ( $groups [ $one ['detail'] ?? '' ] ) )
+        $names [ $groups [ $one ['detail'] ] ] [] = rtrim ( $one ['label'], ':' );
+      if ( ! empty ( $one ['single'] ) and ( $one ['detail'] ?? '' ) == 'PAD tag' )
+        $names ['single'] [] = $one ['label'];
+    }
+
+    $files = fn ( $dir ) => array_values ( array_filter ( array_map ( fn ( $f ) => basename ( $f, '.php' ), glob ( "$dir/*.php" ) ?: [] ),
+                                                          fn ( $n ) => $n [0] != '_' ) );
+
+    $names ['actions']    = $files ( PAD . 'sequence/actions/types' );
+    $names ['constructs'] = $files ( PAD . 'constructs' );
+    $names ['branch']     = [ 'else', 'elseif', 'when' ];
+
+    return [ $mode, $names ];
+
+  }
+
+  // The sample both of them start with: a template, its data as JSON and the same as PHP.
+
+  function padPlaySamples () {
+
+    return [
+      "<h2>{\$title}</h2>\n<ul>\n  {items}\n    <li>{\$name}{if \$stock eq 0} - sold out{/if}</li>\n  {/items}\n</ul>\n",
+      "{\n  \"title\": \"Fruit\",\n  \"items\": [\n    { \"name\": \"Apple\", \"stock\": 3 },\n    { \"name\": \"Pear\",  \"stock\": 0 }\n  ]\n}\n",
+      "<?php\n\n  \$title = 'Fruit';\n\n  \$items = [\n    [ 'name' => 'Apple', 'stock' => 3 ],\n    [ 'name' => 'Pear',  'stock' => 0 ]\n  ];\n\n?>\n"
+    ];
 
   }
 

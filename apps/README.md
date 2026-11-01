@@ -32,6 +32,7 @@ This directory contains PAD applications and examples.
 | [nono](nono/README.md) | Plain PHP | PHP application without PAD templating |
 | [notes](notes/README.md) | Offline | A Markdown notebook on SQLite - search, tags, pins, attachments, JSON export and import - that `pad pack notes` runs in the browser |
 | [pad](pad/README.md) | Standard | PAD framework introduction and reference |
+| [live](live/README.md) | Standard | Type a PAD page - its template, and its data or PHP - and run it on this server as a real page: request values, forms that post back, sessions, scripts - local requests only |
 | [playground](playground/README.md) | Standard | Type a template and its data - JSON, YAML, XML or CSV recognised on sight, or PHP code as a page's `.php` - and see the result - local requests only, shareable through the URL |
 | [react](react/README.md) | Standard | PAD + React: components mounted on islands of PAD pages, JSON answers to `fetch()`, forms checked by PAD, `{fragment}`s, a cart in the session, polling - fourteen examples with their sources |
 | [reference](reference/README.md) | Standard | Cross-reference and directory utilities |
