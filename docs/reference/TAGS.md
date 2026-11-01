@@ -4014,12 +4014,12 @@ a `data` name that names nothing and no value at all are strict errors.
 ---
 
 ### section
-A block of a landing page - a hero, the features, the prices, what customers say, the questions,
-a call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact
-details, a gallery or the footer - in HTML and CSS alone. Every section is a file of
-`pad/subs/sections/types/`, its style in `www/assets/sections/` (`section.css`, shared, and a
-sheet per kind, each written once per page with the CSP nonce); the files of `types/` are the
-sections there are, and the subsystem is `pad/subs/sections/`.
+A block of a landing page - a hero, the features, the prices, what customers say, the questions, a
+call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact details,
+a gallery, the footer or a comparison table - in HTML and CSS alone. Every section is a file of
+`pad/subs/sections/types/`, its style in `www/assets/sections/` (`section.css`, shared, and a sheet
+per kind, each written once per page with the CSP nonce); the files of `types/` are the sections
+there are, and the subsystem is `pad/subs/sections/`.
 
 ```html
 {section 'hero', 'Pages that drive themselves', button='Start', link='?start', second='Read more', secondLink='?docs'}
@@ -4074,6 +4074,16 @@ is the section's and its name, so two sections of a kind have fields of their ow
 one name on a page are told apart as two `{form 'newsletter'}` are - the second carries its
 place - so only the one that was sent says thanks, refills and shows the messages.
 
+**Comparison.** A table with a column per plan - `plans=`, or the fields of the first row of `data=`
+after feature, category and text - and a row per feature, its `category=` a heading row over the
+features of it. A cell is the value as written; yes, true and ✓ are a check, no, false and - a dash,
+and a value nobody gave - a missing field, null, ? - a question mark, each with its word for a
+screen reader and a copy of the table. An item's values are `values=` in the order of the plans, the
+lines of its content, or an option of a plan's name; more values than plans are reported, and so are
+no plans at all, a plan named twice, a plan no row has a field for and a `featured=` that names no
+plan. The table scrolls sideways in a section too narrow for it, the features' column standing
+still.
+
 **Look.** Every section is a size container: its layout follows the room it has, not the window
 (`@container`). The colours are custom properties on `.pad-section` - `--pad-section-bg`,
 `-panel`, `-text`, `-soft`, `-dim`, `-line`, `-accent`, `-accent-text`, `-accent-soft` - whose
@@ -4085,7 +4095,7 @@ theme sets them on `.pad-section`.
 | Option | On | Meaning |
 |--------|----|---------|
 | `title` | every section | The heading - also the first value; a slot `title` of markup wins |
-| `eyebrow` | hero, features, pricing, testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery | The small line above the heading |
+| `eyebrow` | hero, features, pricing, testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, comparison | The small line above the heading |
 | `text` | every section | The line under the heading; the content wins over it, a slot `text` over both |
 | `level` | every section | The heading's level, 1 to 6 (2); an item's heading one more |
 | `tone` | every section | `plain`, `soft` or `accent` - the background (cta: accent, newsletter: soft) |
@@ -4094,7 +4104,7 @@ theme sets them on `.pad-section`.
 | `button`, `link` | hero, cta | The main button and the page it goes to - one without the other is reported |
 | `second`, `secondLink` | hero, cta | A quieter second button |
 | `image`, `alt` | hero | A picture beside the words - a slot `image` of markup in its place |
-| `note` | hero, cta, pricing, newsletter, footer | The small print |
+| `note` | hero, cta, pricing, newsletter, footer, comparison | The small print |
 | `data` | the list sections | The items from rows - the handling options on them; none is a miss, `@else@` shows |
 | `columns` | features, pricing, testimonials, stats, steps, team, gallery | The cards side by side at the widest, 1 to 6 |
 | `open`, `single` | faq | The question open at first by its number, bare every one; one open at a time |
@@ -4102,6 +4112,9 @@ theme sets them on `.pad-section`.
 | `button`, `label`, `placeholder` | newsletter | The form's button (`Subscribe`), the field's label and its example |
 | `address`, `mail`, `phone`, `hours` | contact | The details - the mail address and the phone number as links |
 | `brand` | footer | The name at its side |
+| `plans` | comparison | The plans, a column each, a comma between them - else the fields of the rows of `data=` |
+| `featured`, `badge` | comparison | The plan drawn in the accent, and a word over its name |
+| `included`, `excluded`, `unknown` | comparison | The words a check, a dash and a question mark are read as (Included, Not included, Unknown) |
 
 | Section | Shows | Parts | An item's fields - its first value first, its content last |
 |---------|-------|-------|-----------------------------------------------------------|
@@ -4119,6 +4132,7 @@ theme sets them on `.pad-section`.
 | `contact` | The address, mail, phone and hours, and a message form | eyebrow, title, text, details | - |
 | `gallery` | Pictures in a grid with their captions | eyebrow, title, text | image, caption, alt, link, the caption (or a picture of markup) |
 | `footer` | The name and its line, columns of links, the small print | brand, text, note | title, then a link a line - `Label \| ?page`; rows: column, label, link |
+| `comparison` | A table of the plans, a row per feature: a value, a check, a dash or a question mark | eyebrow, title, text, note | feature, category, text, values (a `;` between them, or the content's lines), an option of a plan's name |
 | `item` | One item of the list section around it | - | - |
 
 ---

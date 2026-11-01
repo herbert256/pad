@@ -1,0 +1,34 @@
+/* comparison - a table of the plans, a column each, that scrolls sideways when the section is
+   too narrow for it, the features' column standing still at its left; the featured plan in a
+   tint of the accent. */
+.pad-section-comparison{--ps-cmp-bg:var(--pad-section-bg)}
+.pad-section-comparison.ps-tone-soft{--ps-cmp-bg:var(--pad-section-accent-soft)}
+.pad-section-comparison.ps-tone-accent{--ps-cmp-bg:var(--pad-section-accent)}
+.pad-section-comparison .ps-cmp-scroll{overflow-x:auto;overscroll-behavior-x:contain}
+.pad-section-comparison .ps-cmp-scroll:focus-visible{outline:3px solid var(--pad-section-accent);outline-offset:3px}
+.pad-section-comparison.ps-tone-accent .ps-cmp-scroll:focus-visible{outline-color:var(--pad-section-accent-text)}
+.pad-section-comparison .ps-cmp{width:100%;min-width:max-content;border-collapse:separate;border-spacing:0;font-size:15px;line-height:1.45;text-align:center}
+.pad-section-comparison .ps-cmp th,.pad-section-comparison .ps-cmp td{padding:12px 16px;border-bottom:1px solid var(--pad-section-line);vertical-align:middle}
+.pad-section-comparison .ps-cmp thead th{min-width:120px;padding-top:18px;font-size:16px;font-weight:700;vertical-align:bottom}
+.pad-section-comparison .ps-cmp thead th,.pad-section-comparison .ps-cmp thead td{border-bottom:2px solid var(--pad-section-line)}
+.pad-section-comparison .ps-cmp th[scope="row"],.pad-section-comparison .ps-cmp .ps-cmp-corner{position:sticky;left:0;z-index:1;min-width:180px;max-width:300px;background:var(--ps-cmp-bg);text-align:left;font-weight:600;white-space:normal}
+@container pad-section (max-width:559px){.pad-section-comparison .ps-cmp{font-size:14px}.pad-section-comparison .ps-cmp th,.pad-section-comparison .ps-cmp td{padding:10px 8px}.pad-section-comparison .ps-cmp thead th{min-width:84px;font-size:15px}.pad-section-comparison .ps-cmp th[scope="row"],.pad-section-comparison .ps-cmp .ps-cmp-corner{min-width:120px;max-width:150px;padding-left:0;box-shadow:inset -1px 0 0 var(--pad-section-line)}}
+.pad-section-comparison .ps-cmp-text{display:block;margin-top:2px;font-size:13px;font-weight:400;color:var(--ps-ink-dim)}
+.pad-section-comparison .ps-cmp-category th{padding-top:28px;text-align:left;font-size:13px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--ps-ink-accent)}
+.pad-section-comparison .ps-cmp-category span{position:sticky;left:16px}
+.pad-section-comparison .ps-cmp-featured{background:color-mix(in srgb,var(--pad-section-accent) 9%,var(--ps-cmp-bg))}
+.pad-section-comparison thead .ps-cmp-featured{border-top:3px solid var(--pad-section-accent);border-radius:var(--pad-section-radius) var(--pad-section-radius) 0 0}
+.pad-section-comparison .ps-cmp-badge{display:block;width:max-content;margin:0 auto 6px;padding:2px 10px;border-radius:999px;background:var(--pad-section-accent);color:var(--pad-section-accent-text);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.pad-section-comparison .ps-cmp-yes,.pad-section-comparison .ps-cmp-no,.pad-section-comparison .ps-cmp-unknown{display:inline-grid;place-items:center;vertical-align:middle}
+.pad-section-comparison .ps-cmp-yes{color:var(--ps-ink-accent)}
+.pad-section-comparison .ps-cmp-no{color:var(--ps-ink-dim)}
+.pad-section-comparison .ps-cmp-unknown{width:22px;height:22px;border:1px dashed var(--pad-section-dim);border-radius:50%;color:var(--ps-ink-dim);font-size:13px;font-weight:700;line-height:1}
+.pad-section-comparison .ps-cmp-note{text-align:center}
+.pad-section-comparison.ps-align-left .ps-cmp-note{text-align:left}
+.pad-section-comparison.ps-tone-accent .ps-cmp th,.pad-section-comparison.ps-tone-accent .ps-cmp td{border-color:color-mix(in srgb,var(--pad-section-accent-text) 35%,transparent)}
+.pad-section-comparison.ps-tone-accent .ps-cmp-text,.pad-section-comparison.ps-tone-accent .ps-cmp-category th,.pad-section-comparison.ps-tone-accent .ps-cmp-yes,.pad-section-comparison.ps-tone-accent .ps-cmp-no,.pad-section-comparison.ps-tone-accent .ps-cmp-unknown{color:inherit}
+.pad-section-comparison.ps-tone-accent .ps-cmp-unknown{border-color:currentColor}
+.pad-section-comparison.ps-tone-accent .ps-cmp-featured{background:color-mix(in srgb,var(--pad-section-accent-text) 14%,var(--ps-cmp-bg))}
+.pad-section-comparison.ps-tone-accent thead .ps-cmp-featured{border-top-color:var(--pad-section-accent-text)}
+.pad-section-comparison.ps-tone-accent .ps-cmp-badge{background:var(--pad-section-accent-text);color:var(--pad-section-accent)}
+@media print{.pad-section-comparison .ps-cmp-scroll{overflow:visible}.pad-section-comparison .ps-cmp{min-width:0}.pad-section-comparison .ps-cmp th[scope="row"],.pad-section-comparison .ps-cmp .ps-cmp-corner{position:static}}

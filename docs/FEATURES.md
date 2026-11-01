@@ -1864,10 +1864,12 @@ list itself is `$_POST ['tags']`.
 {section:newsletter 'Stay in the loop'/}               # a form posting back: padPosted ( 'newsletter' )
 {section:contact 'Get in touch', mail='hi@example.com', phone='+31 20 123 4567', form/}
 {section:footer brand='PAD', note='© 2026'}{section:item 'Product'}Pricing | ?pricing{/section:item}{/section:footer}
+{section:comparison plans='Hobby, Pro', featured='Pro'}{section:item 'Domain', values='no; yes'/}{/section:comparison}
 ```
 The blocks a landing page is built of, in HTML and CSS alone - the questions are `<details>`, the
 forms post back without a script: hero, features, pricing (a featured plan with its badge),
-testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery and footer, and
+testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, footer and
+comparison (a table of plans), and
 `item`, the item of the sections that list things. A part of a section comes three ways, the
 first that has one winning: a `{slot 'name'}` pair directly in its content - template, rendered
 where the section stands, in the scope of the loop around it - an option of the part's name,
@@ -1884,6 +1886,11 @@ as `{form 'newsletter'}` does - the session's token and the form's name - so the
 the messages, and once the post came back right the section says `thanks=` in the form's place -
 the one that was sent, of two of a name on a page, as of two `{form}`s; a field's id is the
 section's and its name.
+A comparison is a table, a row per feature and a column per plan - `plans=`, or the fields of the
+rows of `data=` - each cell a value as written, a check for yes, a dash for no and a question mark
+for a value nobody gave, read out as `included=`, `excluded=` and `unknown=`; it scrolls sideways in
+a narrow section with the features' column standing still, and `featured=` names the plan in the
+accent.
 Every section is a size container - its layout follows the room it has (`@container`), not the
 window; the colours are `--pad-section-bg`, `-panel`, `-text`, `-soft`, `-dim`, `-line`,
 `-accent`, `-accent-text`, `-accent-soft` on `.pad-section`, their defaults the frame's palette

@@ -19,6 +19,7 @@
 {section:newsletter 'heading', button='Subscribe'/}
 {section:contact 'heading', mail='...', phone='...', address='...', form/}
 {section:footer brand='name', note='small print'} {section:item 'column'} Label | ?page {/section:item} ... {/section:footer}
+{section:comparison plans='name, name', featured='name'} {section:item 'feature', values='yes; no'/} ... {/section:comparison}
 {section:hero} {slot 'eyebrow'} ... {/slot} {slot 'actions'} ... {/slot} {/section:hero}
 PAD;
 
@@ -36,12 +37,13 @@ PAD;
     'second'     => 'hero, cta: a quieter second button, with <code>secondLink</code>.',
     'image'      => 'hero: a picture beside the words, <code>alt</code> its text - a <code>{slot \'image\'}</code> of markup in its place.',
     'note'       => 'hero, cta, pricing, newsletter: the small print; footer: the line under it all.',
-    'data'       => 'A list section - features, pricing, testimonials, faq, stats, steps, team, logos, gallery, footer: its items from the rows of a store, the page\'s array or a <code>_data</code> file, by their fields.',
+    'data'       => 'A list section - features, pricing, testimonials, faq, stats, steps, team, logos, gallery, footer, comparison: its items from the rows of a store, the page\'s array or a <code>_data</code> file, by their fields.',
     'columns'    => 'The cards side by side at the widest, 1 to 6 - fewer as the section narrows.',
     'open'       => 'faq: the question open at first, by its number; bare, every question. <code>single</code> keeps one open at a time.',
     'form'       => 'newsletter: the form\'s name (<code>newsletter</code>); contact: bare for a message form, or its name. <code>thanks</code> is what shows once it came back right.',
     'mail'       => 'contact: the mail address, a link; <code>phone</code>, <code>address</code> and <code>hours</code> the rest of the details.',
     'brand'      => 'footer: the name at its side.',
+    'plans'      => 'comparison: the plans, a column each - else the fields of the rows of <code>data</code>; <code>featured</code> the plan in the accent.',
     'level'      => 'The heading\'s level, 1 to 6 (2); the items\' headings one more.',
     'tone'       => '<code>plain</code>, <code>soft</code> (the accent\'s light shade) or <code>accent</code> (the accent itself) - the background.',
     'align'      => '<code>center</code> or <code>left</code>.',
