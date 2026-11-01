@@ -34,15 +34,16 @@
       </div>
       <div class="pane">
         <span class="caption">Output</span>
-        <iframe id="playOut" name="playOut" title="Output" sandbox></iframe>
+        <iframe id="playOut" name="playOut" title="Output" sandbox="allow-scripts"></iframe>
       </div>
     </div>
   </form>
 
   <p class="limits">This machine only. A template here may not call PHP functions, sees no
   request values and no database, and gets five seconds, 64 KB of source and 256 KB of output.
-  PHP code in the data pane runs as written, with all of PHP's reach. The output frame is
-  sandboxed: its scripts do not run. Errors show as PAD reports them.</p>
+  PHP code in the data pane runs as written, with all of PHP's reach. The output's scripts
+  run in a sandbox of their own: they cannot reach this page, its cookies or this site's
+  storage. Errors show as PAD reports them.</p>
 
   {if $editorPadMode}<script src="{$editorPadMode}"></script>{/if}
   <script src="{asset 'playground.js'/}"></script>

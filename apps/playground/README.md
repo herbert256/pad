@@ -59,8 +59,12 @@ The playground runs the template it is given, so it is closed down:
 - **No database.** The application's credentials name no real database, so the database tags
   fail instead of reaching one.
 - **Limits.** Five seconds of run time, 64 KB of template and of data, 256 KB of output.
-- **A sandboxed output frame.** The rendered page's scripts do not run, and it cannot reach
-  the playground page or its cookies.
+- **A sandboxed output frame.** The rendered page's scripts run - a toy moves, a game plays -
+  but the frame allows scripts and nothing more (`sandbox="allow-scripts"`, no
+  `allow-same-origin`): its page is an origin of its own, so they cannot reach the playground
+  page, its form and token, this site's cookies or storage, nor open a window, move the
+  playground's or send a form. What they can do - fetch an address - the template could do
+  on the server already.
 - **One script from elsewhere.** Monaco runs in the playground's own page, from the address of
   `$playMonaco` - pinned to one version of it on jsDelivr, as the edit application's
   `$editMonaco` - so it could post the page's form like the page itself; a copy of its

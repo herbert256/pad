@@ -68,5 +68,5 @@ data tag recognises it, a record's keys becoming variables and a list the variab
 <p>Because it runs what it is given, the playground answers this machine only, and a template
 there may not call PHP functions, sees no request values and no database, and gets five
 seconds, 64 KB of source and 256 KB of output. The output shows in a sandboxed frame, where
-the rendered page's scripts do not run. Tags that read files or fetch URLs still work - on
+the rendered page's scripts run in an origin of their own, out of reach of the playground. Tags that read files or fetch URLs still work - on
 this machine, for its own user - and the PHP code of the data runs as written.</p>

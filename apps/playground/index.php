@@ -4,8 +4,10 @@
   // the right. The data is a text in any format PAD reads - JSON, YAML, XML, CSV ... - or,
   // switched with the button beside its label, PHP code as a page's .php; each has its own
   // pane, with the same sample in it - the text's in JSON. The form
-  // posts to ?render into the output frame, which is sandboxed - the rendered page's own
-  // scripts do not run, and it cannot reach the playground or its cookies.
+  // posts to ?render into the output frame, which is sandboxed with scripts allowed and
+  // nothing else - the rendered page's own scripts run, so a toy moves and a game plays, but
+  // in an origin of their own: they cannot reach the playground, its form and its token,
+  // this site's cookies or storage, or open or move a window.
   // www/playground/playground.js keeps the panes in the URL hash, so a link carries the
   // example, switches the data pane, and renders on load and on Ctrl+Enter.
 
