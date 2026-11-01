@@ -147,7 +147,8 @@
         <path d="M8 5v14l11-7Z"></path></svg> Chess</a> <a href="?chord"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 5v14l11-7Z"></path></svg> Chord boxes</a> <a href="?draughts"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 5v14l11-7Z"></path></svg> Draughts</a> <a href="?go"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M8 5v14l11-7Z"></path></svg> Go</a> <a href="?math"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Go</a> <a href="?karnaugh"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Karnaugh maps</a> <a href="?math"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 5v14l11-7Z"></path></svg> Mathematics</a> <a href="?morse"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 5v14l11-7Z"></path></svg> Morse code</a> <a href="?piano"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 5v14l11-7Z"></path></svg> Piano keys</a> <a href="?semaphore"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -206,7 +207,7 @@
       </header>
       <div class="frame-body">
         <p class="nt-lead">
-          Text written in a notation and drawn on the server - a formula, a chemical equation, a tune, a chord, a word in braille, morse or flags, a chess, go or draughts position, a guitar tab. Each is a tag of its own, a file of <code>pad/subs/notations/types/</code> in the engine, written <code>{notation 'kind', 'text'/}</code>, as <code>{notation:kind 'text'/}</code> or, when nothing else has the name, bare: <code>{math 'a/b'/}</code>. The text is its first parameter or the content between its tags. What comes out is MathML, HTML or inline SVG - no script, the same for the same text, and readable by a screen reader.
+          Text written in a notation and drawn on the server - a formula, a chemical equation, a tune, a chord, a word in braille, morse or flags, a chess, go or draughts position, a guitar tab, a Karnaugh map. Each is a tag of its own, a file of <code>pad/subs/notations/types/</code> in the engine, written <code>{notation 'kind', 'text'/}</code>, as <code>{notation:kind 'text'/}</code> or, when nothing else has the name, bare: <code>{math 'a/b'/}</code>. The text is its first parameter or the content between its tags. What comes out is MathML, HTML or inline SVG - no script, the same for the same text, and readable by a screen reader.
         </p>
         <ul class="nt-cards">
           <li>
@@ -229,6 +230,9 @@
           </li>
           <li>
             <a class="nt-card" href="?go"><b>Go</b><span>A go position from a game record in SGF, drawn as a board.</span><code>{go}</code></a>
+          </li>
+          <li>
+            <a class="nt-card" href="?karnaugh"><b>Karnaugh maps</b><span>A Boolean function of two to four variables drawn as its Karnaugh map, the cells in Gray-code order with their 1s, 0s and don't cares, the groups of a minimal sum of products looped round, and the minimal expression under the map in MathML.</span><code>{karnaugh}</code></a>
           </li>
           <li>
             <a class="nt-card" href="?math"><b>Mathematics</b><span>A formula written in AsciiMath, the notation of asciimath.org, as MathML.</span><code>{math}</code></a>

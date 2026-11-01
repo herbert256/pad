@@ -2,7 +2,7 @@
 <p><code>{notation}</code> draws a text written in a notation on the server, the way
 <code>{diagram}</code> lays out a flowchart: a formula, a chemical equation, a tune, a guitar
 chord, a word in braille, morse, semaphore or signal flags, a chess, go or draughts position, a
-guitar tab.
+guitar tab, a Karnaugh map.
 Every notation is a file of <code>pad/subs/notations/types/</code> - its functions in
 <code>pad/subs/notations/_lib/</code>, its style in <code>www/assets/notations/</code> -
 and the files there are the notations there are. Nothing needs a script: the formulas are
@@ -38,6 +38,10 @@ needs no ignore. A field gives the text as a parameter, <code>{chess $fen/}</cod
   text, a line a string, drawn as a printed tab with the signs of the On-line Guitar Archive's
   guide to tab notation - hammer-ons, pull-offs, bends, slides, vibrato, harmonics - and every
   note said with its string, its fret and its pitch.</li>
+  <li><b>karnaugh</b> - a Boolean function of two to four variables - its minterms, its maxterms,
+  the column of its truth table or an expression - as its Karnaugh map, the groups of a minimal
+  cover looped round and the minimal sum of products, or with <code>form='pos'</code> product of
+  sums, under it.</li>
 </ul>
 
 <p>Every drawing is an image for a screen reader with a name and a description in words - the
