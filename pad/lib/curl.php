@@ -405,8 +405,13 @@
           if ( $name == 'content-disposition' and !$file)
             padBetween ($value, '"', '"', $before, $file, $after);
 
+          // A media type a format of the formats subsystem reads names that format first
+          // (padFormatMedia, lib/format.php): application/x-ndjson was taken for one JSON
+          // document by the json in it, application/toml was read as CSV.
+
           if ( $name == 'content-type' )
-            if     (strpos ($value, 'html')       !== FALSE) $output ['type'] = 'html';
+            if     ( ( $kind = padFormatMedia ( $value ) ) !== '' ) $output ['type'] = $kind;
+            elseif (strpos ($value, 'html')       !== FALSE) $output ['type'] = 'html';
             elseif (strpos ($value, 'xml')        !== FALSE) $output ['type'] = 'xml';
             elseif (strpos ($value, 'json')       !== FALSE) $output ['type'] = 'json';
             elseif (strpos ($value, 'javascript') !== FALSE) $output ['type'] = 'json';

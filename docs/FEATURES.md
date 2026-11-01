@@ -219,6 +219,8 @@ $padFormatOptions = [ 'title' => 'Talks', 'name' => 'Talks' ];  // the writer's 
   line - `TOML error on line 3: the key 'name' is defined twice` - and no rows on the lenient
   walk. The formats known on sight are known only where the text would have read as CSV, or
   as a JSON document that is none: TOML, INI, GeoJSON and GPX are named, or read by extension.
+  A fetched body - `{curl}`, `data='https://...'` - is read in the format its media type names:
+  `application/x-ndjson`, `text/calendar`, `application/toml`, `application/geo+json` ...
 - A data file runs as PAD before it is read, as a JSON file does - a `{` in a TOML comment is a
   tag; an `xlsx` is bytes, read as the file holds them - a part of at most 32 MB unpacked,
   500000 cells and shared strings, columns up to XFD: past that, the format's error.

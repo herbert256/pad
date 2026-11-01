@@ -90,6 +90,29 @@
 
   }
 
+  // The format that reads a fetched body of a media type (lib/curl.php) - the format whose
+  // accept, or else mime, names it: application/x-ndjson is NDJSON, text/calendar iCalendar,
+  // application/toml TOML - or '' for none, the content type then read as before (html, xml,
+  // json ...). A format of bytes is none: a fetched body is text, trimmed. The types of
+  // every page and API are answered without a format looked at.
+
+  function padFormatMedia ( $type ) {
+
+    $type = strtolower ( trim ( explode ( ';', (string) $type ) [0] ) );
+
+    if ( $type === '' or in_array ( $type, [ 'text/html', 'application/json', 'text/plain', 'application/xml', 'text/xml', 'text/csv' ], TRUE ) )
+      return '';
+
+    foreach ( padFormatKinds () as $kind ) {
+      $def = padFormatDef ( $kind );
+      if ( isset ( $def ['read'] ) and ! ( $def ['binary'] ?? FALSE ) and in_array ( $type, $def ['accept'] ?? [ $def ['mime'] ?? '' ], TRUE ) )
+        return $kind;
+    }
+
+    return '';
+
+  }
+
   // A text as rows. $kind is a format or one of its extensions; a format that does not read,
   // or none of the name, is an error under every check - the author named it. The input is
   // a template's text as {data} hands it over - a brace still wearing the stand-in the tag
