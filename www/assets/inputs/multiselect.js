@@ -2,24 +2,25 @@
    the WAI-ARIA listbox that chooses many (aria-multiselectable). The select the server wrote
    stays what the form posts, hidden: a choice made or let go here is made in it and said with
    its input and change events, and the chips and the list show what it holds - a page's
-   script that changes it, a form reset, are shown too. The filter box takes the select's id,
-   so the label, the server's message and the browser's checker of the rules go by it (the
-   select's data-pad-shows), and its required: a hidden select the browser cannot focus
-   refused the send without a word. The focus stays in the filter box, the option the arrow
-   keys stand on its aria-activedescendant: Down or Up open the list and walk it - with Shift
-   they choose the option walked to - Space or Enter choose the option stood on or let it go,
-   Enter the one option a filter leaves; Escape closes the list, then empties the filter;
-   Backspace in the empty filter takes the last chip out, and every chip has a button that
-   takes it out. Typing filters the list - in any case, accents or not. What changes is said
-   to a screen reader, politely. Nothing moves: no transition, the list scrolled at once. A
-   field disabled - by its attribute or by a <fieldset disabled> round it - opens nothing and
-   changes nothing, as the native select. */
+   script that changes it, the options it adds or takes away, a form reset, are shown too.
+   The filter box takes the select's id, so the label, the server's message and the
+   browser's checker of the rules go by it (the select's data-pad-shows), and its required:
+   a hidden select the browser cannot focus refused the send without a word. The focus
+   stays in the filter box, the option the arrow keys stand on its aria-activedescendant:
+   Down or Up open the list and walk it - with Shift they choose the option walked to -
+   Space or Enter choose the option stood on or let it go, Enter the one option a filter
+   leaves; Escape closes the list, then empties the filter; Backspace in the empty filter
+   takes the last chip out, and every chip has a button that takes it out. Typing filters
+   the list - in any case, accents or not. What changes is said to a screen reader,
+   politely. Nothing moves: no transition, the list scrolled at once. A field disabled - by
+   its attribute or by a <fieldset disabled> round it - opens nothing and changes nothing,
+   as the native select. */
 PadInputs.register('multiselect', function (frame, cfg, kit) {
   var select = frame.querySelector('select[multiple]');
   var said = frame.querySelector('.pi-ms-said');
   if (!select) return;
 
-  var options = Array.prototype.slice.call(select.options);
+  var options = [], texts = [], folded = [], items = [];
   var label = kit.label(frame) || 'Choices';
 
   var anchor = kit.el('div', 'pi-anchor pi-ms-anchor');
@@ -66,20 +67,30 @@ PadInputs.register('multiselect', function (frame, cfg, kit) {
     return String(text).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
   }
 
-  var folded = options.map(function (option) { return fold(option.text); });
+  // The items of the list, an item per option of the select - made again when a page's script
+  // adds options to the select, takes them away or renames them (the cities of the country
+  // chosen), so the list and the chips show what the form posts: made once, a selected
+  // option a script added posted without a chip, and one it took away stayed in the list.
+  function build() {
+    options = Array.prototype.slice.call(select.options);
+    texts = options.map(function (option) { return option.text; });
+    folded = texts.map(fold);
+    list.textContent = '';
+    items = options.map(function (option, i) {
+      var li = kit.el('li', 'pi-ms-option');
+      li.id = list.id + '-' + i;
+      li.setAttribute('role', 'option');
+      if (option.disabled) li.setAttribute('aria-disabled', 'true');
+      var check = kit.el('span', 'pi-ms-check');
+      check.setAttribute('aria-hidden', 'true');
+      li.appendChild(check);
+      li.appendChild(document.createTextNode(option.text));
+      list.appendChild(li);
+      return li;
+    });
+  }
 
-  var items = options.map(function (option, i) {
-    var li = kit.el('li', 'pi-ms-option');
-    li.id = list.id + '-' + i;
-    li.setAttribute('role', 'option');
-    if (option.disabled) li.setAttribute('aria-disabled', 'true');
-    var check = kit.el('span', 'pi-ms-check');
-    check.setAttribute('aria-hidden', 'true');
-    li.appendChild(check);
-    li.appendChild(document.createTextNode(option.text));
-    list.appendChild(li);
-    return li;
-  });
+  build();
 
   box.appendChild(chips);
   box.appendChild(filter);
@@ -100,6 +111,19 @@ PadInputs.register('multiselect', function (frame, cfg, kit) {
   function say(text) {
     clearTimeout(timer);
     timer = setTimeout(function () { if (said) said.textContent = text; }, 150);
+  }
+
+  // The items made again when the select's options are no longer the ones they were made of:
+  // the item stood on let go, the list filtered again when it is open.
+  function sync() {
+    var now = select.options;
+    if (now.length === options.length && options.every(function (option, i) { return now[i] === option && option.text === texts[i]; }))
+      return false;
+    current = -1;
+    filter.removeAttribute('aria-activedescendant');
+    build();
+    if (!list.hidden) fill();
+    return true;
   }
 
   // The chips and the marks of the list, from what the select holds.
@@ -225,7 +249,10 @@ PadInputs.register('multiselect', function (frame, cfg, kit) {
   kit.outside(anchor, close);
   filter.addEventListener('blur', function () { setTimeout(function () { if (document.activeElement !== filter) close(); }, 0); });
 
-  select.addEventListener('change', render);
+  select.addEventListener('change', function () { sync(); render(); });
+  if (window.MutationObserver)
+    new MutationObserver(function () { if (sync()) render(); })
+      .observe(select, { childList: true, subtree: true, characterData: true });
   if (select.form) select.form.addEventListener('reset', function () { setTimeout(render, 0); });
 
   render();
