@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 96 functions a formula can call, each a file of
+<p class="sheets-lead">The 100 functions a formula can call, each a file of
 <code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -572,6 +572,18 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=MONTH(D3)</code> <samp>2</samp></li><li><code>=MONTH(&quot;15 March 2024&quot;)</code> <samp>3</samp></li></ul></td>
     </tr>
   
+    <tr id="networkdays">
+      <th scope="row">NETWORKDAYS</th>
+      <td>NETWORKDAYS(start, end, [holidays]) counts the workdays from one date to another, both counted - Monday to Friday, less the holidays: a range of dates, its empty cells left out, or one date. A holiday in the weekend or listed twice is left out once; a holiday that is text that reads as no date, or a logical value, is #VALUE!. A start after the end counts backward, below 0. The times of day are cut off.</td>
+      <td><ul class="sheets-examples"><li><code>=NETWORKDAYS(D2, D3)</code> <samp>34</samp></li><li><code>=NETWORKDAYS(D3, D2)</code> <samp>-34</samp></li><li><code>=NETWORKDAYS(D2, D7, D3:D6)</code> <samp>378</samp></li><li><code>=NETWORKDAYS(&quot;2024-12-23&quot;, &quot;2024-12-27&quot;, &quot;2024-12-25&quot;)</code> <samp>4</samp></li></ul></td>
+    </tr>
+  
+    <tr id="networkdays.intl">
+      <th scope="row">NETWORKDAYS.INTL</th>
+      <td>NETWORKDAYS.INTL(start, end, [weekend], [holidays]) counts the workdays from one date to another as NETWORKDAYS does, with a weekend of its own: a number, 1 (the default) Saturday and Sunday, 2 Sunday and Monday ... 7 Friday and Saturday, 11 Sunday alone ... 17 Saturday alone - another number is #NUM! - or a text of seven 0s and 1s from Monday, 1 a day off: &quot;0000110&quot; is Friday and Saturday, &quot;1111111&quot; leaves no workday and counts 0; another text is #VALUE!.</td>
+      <td><ul class="sheets-examples"><li><code>=NETWORKDAYS.INTL(D2, D3)</code> <samp>34</samp></li><li><code>=NETWORKDAYS.INTL(D2, D3, 11)</code> <samp>40</samp></li><li><code>=NETWORKDAYS.INTL(D2, D3, 11, D3)</code> <samp>39</samp></li><li><code>=NETWORKDAYS.INTL(D2, D3, &quot;0010001&quot;)</code> <samp>33</samp></li><li><code>=NETWORKDAYS.INTL(D2, D3, 0)</code> <samp>#NUM!</samp></li></ul></td>
+    </tr>
+  
     <tr id="now">
       <th scope="row">NOW</th>
       <td>NOW() is the serial of this moment, the time of day its fraction - to the second.</td>
@@ -588,6 +600,18 @@ shows.</p>
       <th scope="row">WEEKDAY</th>
       <td>WEEKDAY(date, [type]) is the day of the week of a date as a number: type 1 (the default) Sunday 1 to Saturday 7, 2 Monday 1 to Sunday 7, 3 Monday 0 to Sunday 6, 11 to 17 the week starting on Monday to Sunday at 1. Another type is #NUM!.</td>
       <td><ul class="sheets-examples"><li><code>=WEEKDAY(D2)</code> <samp>2</samp></li><li><code>=WEEKDAY(D2, 2)</code> <samp>1</samp></li><li><code>=WEEKDAY(D2, 3)</code> <samp>0</samp></li></ul></td>
+    </tr>
+  
+    <tr id="workday">
+      <th scope="row">WORKDAY</th>
+      <td>WORKDAY(start, days, [holidays]) is the date a number of workdays after a date - Monday to Friday, passing over the holidays: a range of dates, its empty cells left out, or one date. Days below 0 go back, 0 is the start itself, a weekend day too; days are cut to a whole number toward 0, and a date before 1900 or past 9999-12-31 is #NUM!. A holiday that is text that reads as no date, or a logical value, is #VALUE!.</td>
+      <td><ul class="sheets-examples"><li><code>=WORKDAY(D2, 10)</code> <samp>2024-01-29</samp></li><li><code>=WORKDAY(D3, -1)</code> <samp>2024-02-28</samp></li><li><code>=WORKDAY(D4, 0)</code> <samp>2024-03-31</samp></li><li><code>=WORKDAY(&quot;2024-12-24&quot;, 1, &quot;2024-12-25&quot;)</code> <samp>2024-12-26</samp></li></ul></td>
+    </tr>
+  
+    <tr id="workday.intl">
+      <th scope="row">WORKDAY.INTL</th>
+      <td>WORKDAY.INTL(start, days, [weekend], [holidays]) is the date a number of workdays after a date as WORKDAY finds it, with a weekend of its own: a number, 1 (the default) Saturday and Sunday, 2 Sunday and Monday ... 7 Friday and Saturday, 11 Sunday alone ... 17 Saturday alone - another number is #NUM! - or a text of seven 0s and 1s from Monday, 1 a day off: &quot;0000110&quot; is Friday and Saturday. A text of another kind, and &quot;1111111&quot;, which leaves no workday, are #VALUE!.</td>
+      <td><ul class="sheets-examples"><li><code>=WORKDAY.INTL(D2, 10, 11)</code> <samp>2024-01-26</samp></li><li><code>=WORKDAY.INTL(D2, 10, &quot;0000110&quot;)</code> <samp>2024-01-29</samp></li><li><code>=WORKDAY.INTL(D2, -10, &quot;1000001&quot;)</code> <samp>2024-01-02</samp></li><li><code>=WORKDAY.INTL(D2, 10, &quot;1111111&quot;)</code> <samp>#VALUE!</samp></li></ul></td>
     </tr>
   
     <tr id="year">

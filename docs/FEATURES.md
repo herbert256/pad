@@ -1120,7 +1120,9 @@ on 15 digits too), MROUND, ABS, INT, MOD (the divisor's sign), POWER, SQRT, EXP,
 (seeded, `seed=`); CONCAT, TEXTJOIN, LEFT, RIGHT, MID, LEN, UPPER, LOWER, PROPER, TRIM,
 SUBSTITUTE, FIND, SEARCH, TEXT (the common format codes), VALUE; VLOOKUP, HLOOKUP, XLOOKUP,
 INDEX, MATCH, CHOOSE; DATE, TODAY, NOW, YEAR, MONTH, DAY, WEEKDAY, EOMONTH, EDATE, DAYS (the
-serials of the 1900 system, 1899-12-30 based, with its 29 February 1900); PMT, FV, PV, NPER,
+serials of the 1900 system, 1899-12-30 based, with its 29 February 1900), NETWORKDAYS and
+WORKDAY (holidays a range of dates, those in the weekend left out once) and their .INTL forms
+(a weekend of a number, 1 to 7 and 11 to 17, or seven 0s and 1s from Monday); PMT, FV, PV, NPER,
 RATE, NPV, IRR (Excel's signs, RATE and IRR by Newton from 10%, `#NUM!` when 150 steps do not
 settle). The cells are computed in the order they need one another; a circle of references
 answers `#REF!` in each of its cells, the title naming the circle (`A1 → B1 → A1`). There is no

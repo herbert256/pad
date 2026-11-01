@@ -14,6 +14,11 @@
   //   padFormulaYmd       a serial as [ year, month, day ]
   //   padFormulaWeekday   0 for Sunday to 6 for Saturday
   //   padFormulaToday     today and now as serials, from padNow - padNowFreeze holds them
+  //   padFormulaWeekend   the weekend of NETWORKDAYS.INTL and WORKDAY.INTL: the days of the
+  //                       week that are no workdays
+  //   padFormulaHolidays  the holidays of NETWORKDAYS and WORKDAY as serials
+  //   padFormulaWorkdays  the workdays from one date to another, both counted
+  //   padFormulaWorkday   the date a number of workdays before or after another
 
   const padFormulaLastSerial = 2958465;      // 9999-12-31
 
@@ -111,6 +116,161 @@
       return padFormulaError ( '#NUM!' );
 
     return $number;
+
+  }
+
+  // The weekend of an argument, as seven flags from Sunday (padFormulaWeekday) - TRUE a day
+  // that is no workday: left out - or an empty cell - Saturday and Sunday; a number, cut to a
+  // whole one, 1 to 7 two days from Saturday and Sunday (1) to Friday and Saturday (7), 11 to
+  // 17 one day from Sunday (11) to Saturday (17), another number #NUM!; a text seven 0s and 1s
+  // from Monday, 1 a day off - 0000011 is Saturday and Sunday - another text #VALUE!. Seven 1s
+  // leave no workday, which WORKDAY.INTL refuses with #VALUE! and NETWORKDAYS.INTL counts as 0.
+
+  function padFormulaWeekend ( $value, $env ) {
+
+    if ( $value === NULL or ( $value = padFormulaScalar ( $value, $env ) ) === NULL )
+      return [ TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE ];
+
+    if ( is_string ( $value ) ) {
+      if ( ! preg_match ( '/^[01]{7}$/D', $value ) )
+        return padFormulaError ( '#VALUE!' );
+      $mask = $value;
+    } else {
+      $number = padFormulaArgInt ( $value, $env );
+      if ( padFormulaIsError ( $number ) )
+        return $number;
+      $mask = match ( $number ) {
+        1  => '0000011', 2  => '1000001', 3  => '1100000', 4  => '0110000',
+        5  => '0011000', 6  => '0001100', 7  => '0000110',
+        11 => '0000001', 12 => '1000000', 13 => '0100000', 14 => '0010000',
+        15 => '0001000', 16 => '0000100', 17 => '0000010',
+        default => NULL
+      };
+      if ( $mask === NULL )
+        return padFormulaError ( '#NUM!' );
+    }
+
+    $weekend = [];
+
+    for ( $day = 0; $day < 7; $day++ )
+      $weekend [$day] = $mask [ ( $day + 6 ) % 7 ] == '1';
+
+    return $weekend;
+
+  }
+
+  // The holidays of an argument as whole serials, sorted, each once: the dates of a range - its
+  // empty cells left out - or one date typed into the call; a text that reads as a date is that
+  // date, another text and a logical value #VALUE!, a date before 0 or past 9999-12-31 #NUM!,
+  // and an error the answer. A holiday's time of day is cut off.
+
+  function padFormulaHolidays ( $value ) {
+
+    if ( $value === NULL )
+      return [];
+
+    $holidays = [];
+
+    foreach ( padFormulaIsRange ( $value ) ? padFormulaFlat ( $value ) : [ $value ] as $one ) {
+
+      if ( $one === NULL )
+        continue;
+
+      if ( padFormulaIsError ( $one ) )
+        return $one;
+
+      if ( is_bool ( $one ) )
+        return padFormulaError ( '#VALUE!' );
+
+      if ( is_string ( $one ) and ( $one = padFormulaParseValue ( $one ) ) === NULL )
+        return padFormulaError ( '#VALUE!' );
+
+      if ( $one < 0 or $one >= padFormulaLastSerial + 1 )
+        return padFormulaError ( '#NUM!' );
+
+      $holidays [ (int) floor ( $one ) ] = TRUE;
+
+    }
+
+    $holidays = array_keys ( $holidays );
+
+    sort ( $holidays );
+
+    return $holidays;
+
+  }
+
+  // The workdays from one whole serial to another, both counted - below 0 when the start is
+  // after the end: the whole weeks at once, each as many workdays as the weekend leaves, the
+  // days past them one by one, less the holidays among them that fall on a workday.
+
+  function padFormulaWorkdays ( $start, $end, $weekend, $holidays ) {
+
+    $sign = 1;
+
+    if ( $start > $end ) {
+      [ $start, $end ] = [ $end, $start ];
+      $sign = -1;
+    }
+
+    $weeks = intdiv ( $end - $start + 1, 7 );
+    $count = $weeks * count ( array_filter ( $weekend, fn ( $off ) => ! $off ) );
+
+    for ( $day = $start + $weeks * 7; $day <= $end; $day++ )
+      if ( ! $weekend [ padFormulaWeekday ( $day ) ] )
+        $count++;
+
+    foreach ( $holidays as $holiday )
+      if ( $holiday >= $start and $holiday <= $end and ! $weekend [ padFormulaWeekday ( $holiday ) ] )
+        $count--;
+
+    return (float) ( $sign * $count );
+
+  }
+
+  // The serial a number of workdays after a whole serial - before it for a number below 0, the
+  // serial itself for 0, whatever day it is. The whole weeks go at once - any seven days in a
+  // row hold the same number of workdays - the rest day by day; then each holiday on a workday
+  // that was passed asks for one workday more, and those are walked the same way, so a count
+  // of a billion workdays takes a few steps. A date before 0 or past 9999-12-31 is #NUM!.
+
+  function padFormulaWorkday ( $start, $days, $weekend, $holidays ) {
+
+    if ( $days == 0 )
+      return (float) $start;
+
+    $step = $days > 0 ? 1 : -1;
+    $left = abs ( $days );
+    $week = count ( array_filter ( $weekend, fn ( $off ) => ! $off ) );
+    $at   = $start;
+    $off  = array_values ( array_filter ( $holidays, fn ( $holiday ) => ! $weekend [ padFormulaWeekday ( $holiday ) ] ) );
+
+    while ( $left > 0 ) {
+
+      $from  = $at;
+      $weeks = intdiv ( $left - 1, $week );
+      $at   += $step * 7 * $weeks;
+      $left -= $weeks * $week;
+
+      if ( $at < 0 or $at > padFormulaLastSerial )
+        return padFormulaError ( '#NUM!' );
+
+      while ( $left > 0 ) {
+        $at += $step;
+        if ( ! $weekend [ padFormulaWeekday ( $at ) ] )
+          $left--;
+      }
+
+      if ( $at < 0 or $at > padFormulaLastSerial )
+        return padFormulaError ( '#NUM!' );
+
+      foreach ( $off as $holiday )
+        if ( $step > 0 ? ( $holiday > $from and $holiday <= $at ) : ( $holiday < $from and $holiday >= $at ) )
+          $left++;
+
+    }
+
+    return (float) $at;
 
   }
 

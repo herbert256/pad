@@ -644,7 +644,8 @@
   }
 
   // The format a formula's cell takes when its column has none: DATE, TODAY, EDATE and
-  // EOMONTH answer a date, NOW a date and a time; a reference, a sum or a difference whose
+  // EOMONTH answer a date, NOW a date and a time, a function whose file says a 'format' -
+  // WORKDAY - that format; a reference, a sum or a difference whose
   // first cell was typed as a date, a percentage or an amount, and a product or a quotient of
   // an amount, are shown as that cell is - as Excel carries a format over. Worked out in the
   // order the formulas are computed, so a formula's cells have theirs already.
@@ -657,6 +658,7 @@
     switch ( $node [0] ) {
 
       case 'f':
+        if ( isset ( padFormulaType ( $node [1] ) ['format'] ) )                                  return padFormulaType ( $node [1] ) ['format'];
         if ( in_array ( $node [1], [ 'date', 'today', 'edate', 'eomonth', 'datevalue' ], TRUE ) ) return 'yyyy-mm-dd';
         if ( $node [1] == 'now' )                                                               return 'yyyy-mm-dd hh:mm';
         if ( in_array ( $node [1], [ 'sum', 'average', 'min', 'max', 'median', 'large', 'small', 'averageifs', 'minifs', 'maxifs' ], TRUE ) and isset ( $node [2] [0] ) )
