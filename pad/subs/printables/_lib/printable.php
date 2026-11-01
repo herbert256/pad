@@ -263,13 +263,15 @@
 
     // Not inside a {page} - a page shown in another, the manual's {example}: only the page
     // the request asked for answers a document, as {pdf} has it, and its links asked the
-    // page around it, which answered its HTML.
+    // page around it, which answered its HTML. Nor inside a {pdf}, whose document the sheets
+    // are a part of already: asked for its own, the printable's sheets came first, under its
+    // name, and the {pdf}'s content brought them again.
 
     if ( padPrintableFlag ( 'pdf' ) ) {
 
       $file = padPrintableText ( 'file', $kind );
 
-      if ( ! ( $padGuardNested ?? FALSE ) ) {
+      if ( ! ( $padGuardNested ?? FALSE ) and ! padPrintableInPdf () ) {
         include_once PAD . 'tags/_lib/pdf.php';
         $links = padPdfLinks ( $file );
       }
@@ -299,6 +301,21 @@
                            'font' => 'helvetica', 'title' => ucfirst ( $more ) ] );
 
     return $style . $html . padPrintableScript ();
+
+  }
+
+  // Whether a {pdf} pair stands round the printable: its content - the sheets with it - is
+  // that document.
+
+  function padPrintableInPdf () {
+
+    global $pad, $padTag, $padType;
+
+    for ( $i = $pad - 1; $i >= 0; $i-- )
+      if ( ( $padTag [$i] ?? '' ) === 'pdf' and ( $padType [$i] ?? '' ) === 'pad' )
+        return TRUE;
+
+    return FALSE;
 
   }
 
