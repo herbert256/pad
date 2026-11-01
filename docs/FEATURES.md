@@ -1975,6 +1975,9 @@ page with the CSP nonce; `pad/subs/sections/section.php` the body every form run
 ```
 {typewriter}Pages that write themselves.{/typewriter}           # typed out behind a caret, once
 {effect:highlighter}the terms{/effect:highlighter}             # a marker stroke behind the words - a <mark>
+{underline hover}<a href="?terms">the terms</a>{/underline}    # a line drawn under the words - on hover: it grows
+{strike}€49{/strike} €29                                       # a line drawn through the words - an <s>
+{encircle style='box'}42{/encircle}                            # a ring drawn by hand round a word - an svg
 {effect 'countup', to=1250, suffix='+'/}                       # counted by the CSS (@property), read as 1250+
 {glitch}SIGNAL LOST{/glitch}  {shimmer}New{/shimmer}  {wave}Hi!{/wave}
 {gradient colors='#f97316, #db2777', animate}Launch week{/gradient}
@@ -2003,15 +2006,18 @@ page with the nonce - never a style attribute, which a CSP nonce drops; the
 colours are `--pad-effect-accent`, `-accent2`, `-accent3`, `-text`, `-mark` and `-track` on
 `.pad-effect`, light and dark, falling back to the frame's `--accent`, `--text` and `--line`, so a
 theme colours them. The kinds are the files of `pad/subs/effects/types/` - typewriter, glitch,
-shimmer, gradient, wave, highlighter, countup, marquee, reveal, tilt, spotlight, spinner, skeleton,
-confetti -
+shimmer, gradient, wave, highlighter, underline, strike, encircle, countup, marquee, reveal, tilt,
+spotlight, spinner, skeleton, confetti -
 and an effect is added by adding its file. Each is written three ways, the same effect:
 `{effect 'typewriter'}...{/effect}`, the effect type `{effect:typewriter}...{/effect:typewriter}`
 and bare, `{typewriter}...{/typewriter}`, when no tag, store, field or sequence has the name. A pair
 works on its content, rendered first; a single tag on its first parameter, `{typewriter 'Hi'/}`.
 `highlighter` is so named because `{highlight}` colours code. The reveal, the highlighter's and the
 count-up's `scroll` are scroll-driven animations (`animation-timeline: view()`): where a browser
-has none, the block stands there and the stroke or the count runs in time, as without scroll. Code: the effects
+has none, the block stands there and the stroke or the count runs in time, as without scroll.
+The underline's, the strike's and the encircle's `scroll` too; their `hover` (not the strike's)
+draws the stroke while the pointer is on it or the focus in it, at once under reduced motion; on
+paper and in forced colours the underline and the strike are the text's own line. Code: the effects
 subsystem in `pad/subs/effects/` - `effect.php` the body every form runs, `_lib/effect.php` the
 options and the markup, `types/` the kinds, `assets/` their looks; `pad/types/effect.php` the
 effect type, `pad/tags/effect.php` the tag.

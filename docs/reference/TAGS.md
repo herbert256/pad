@@ -4205,6 +4205,9 @@ subsystem is `pad/subs/effects/`.
 ```html
 {effect 'typewriter'}Hello, world{/effect}
 {effect:highlighter}the one thing to remember{/effect:highlighter}
+{underline hover}<a href="?terms">the terms</a>{/underline}
+{strike}€49{/strike} <b>€29</b>
+{encircle style='box', color='#16a34a'}42{/encircle}
 {typewriter speed=20, mono}npm install pad{/typewriter}
 {countup to=1250, prefix='€', suffix='+'/}
 {gradient colors='#f97316, #db2777', angle=120, animate}Launch week{/gradient}
@@ -4228,7 +4231,7 @@ What repeats runs `repeat=` times (3, or `forever`); `duration=` is the seconds 
 `delay=` the seconds before the first, where a kind animates in time. Every option is checked
 under the strict check: an unknown kind, a value out of its bounds or none of its words, a colour
 that is no CSS colour, a kind that wraps a block written single, a skeleton written as a pair, a
-text kind without its text.
+text kind without its text, a stroke drawn on `scroll` and on `hover` at once.
 
 | Effect | Form | Does | Its options |
 |--------|------|------|-------------|
@@ -4238,6 +4241,9 @@ text kind without its text.
 | `gradient` | both | Letters painted with a gradient; `animate` lets it flow | `colors` (2 to 6), `angle` (90), `animate`, `duration` (4), `delay`, `repeat` (3) |
 | `wave` | both | The letters rise and fall, a wave through the word | `height` (0.25 em), `duration` (1.6), `delay`, `repeat` (3) |
 | `highlighter` | both | A marker stroke drawn behind the words, a `<mark>` | `color`, `duration` (0.8), `delay`, `scroll` |
+| `underline` | both | A line drawn under the words, left to right; a link inside keeps its click | `style` (line, double, dashed, dotted), `color`, `thickness` (px), `duration` (0.6), `delay`, `scroll`, `hover` |
+| `strike` | both | A line drawn through the words, an `<s>` - the old price | `style` (line, double), `color` (the text's), `thickness` (px), `duration` (0.5), `delay`, `scroll` |
+| `encircle` | both | A ring drawn by hand round a word or a phrase, an `aria-hidden` svg | `style` (circle, box), `color`, `thickness` (2 px), `duration` (0.9), `delay`, `scroll`, `hover` |
 | `countup` | both | A whole number counted up by the CSS, read as its last value | `to` (or the parameter or the content), `from` (0), `prefix`, `suffix`, `duration` (2), `delay`, `scroll` |
 | `marquee` | both | A band whose content scrolls by without end; a Pause button | `duration` (20), `direction` (left, right), `gap` (48 px), `label` |
 | `reveal` | pair | A block that comes into view as it is scrolled to | `motion` (up, down, left, right, fade, zoom), `distance` (32 px) |

@@ -15,6 +15,9 @@
 {gradient colors='#f97316, #db2777', angle=90, animate} ... {/gradient}
 {wave height=0.25} ... {/wave}
 {highlighter color='gold', scroll} ... {/highlighter}
+{underline style='line', color='#e11d48', thickness=2, hover} ... {/underline}
+{strike style='line', scroll} ... {/strike}
+{encircle style='circle', thickness=2, hover} ... {/encircle}
 {countup to=1250, from=0, prefix='€', suffix='+', scroll/}
 {marquee duration=20, direction='left', gap=48, label='name'} ... {/marquee}
 {reveal motion='up', distance=32} ... {/reveal}
@@ -39,13 +42,15 @@ PAD;
     'caret'     => 'typewriter: <code>bar</code> or <code>none</code>.',
     'mono'      => 'Bare option, typewriter: monospaced letters, one step a letter exactly.',
     'colors'    => 'gradient, confetti: CSS colours between commas.',
-    'color'     => 'highlighter: the ink; spotlight: the light; spinner: the spinner.',
+    'color'     => 'highlighter, underline, strike, encircle: the ink; spotlight: the light; spinner: the spinner.',
+    'thickness' => 'underline, strike, encircle: the stroke in pixels, 1 to 12.',
+    'hover'     => 'Bare option, underline and encircle: drawn while the pointer is on it or the focus is in it.',
     'angle'     => 'gradient: the direction in degrees (90); tilt: how far it leans (8).',
     'animate'   => 'Bare option, gradient: the colours flow along the letters.',
     'height'    => 'wave: how far a letter rises, in em (0.25).',
     'from'      => 'countup: the number it starts at (0); <code>to</code> the one it ends at.',
     'prefix'    => 'countup: a text before the number, <code>suffix</code> one after it.',
-    'scroll'    => 'Bare option, countup and highlighter: counted or drawn as it scrolls into view.',
+    'scroll'    => 'Bare option, countup, highlighter, underline, strike and encircle: counted or drawn as it scrolls into view.',
     'direction' => 'marquee: <code>left</code> or <code>right</code>.',
     'gap'       => 'marquee: pixels between one round and the next (48).',
     'label'     => 'marquee: the name of the band for a screen reader; spinner and skeleton: what it says (<code>Loading</code>).',
@@ -53,7 +58,7 @@ PAD;
     'toward'    => 'tilt: the corner that comes toward the viewer - top-right, top-left, bottom-right, bottom-left.',
     'glare'     => 'Bare option, tilt: a sheen slides over the card as it leans.',
     'at'        => 'spotlight: where the light rests - top, center, a corner, or two percentages.',
-    'style'     => 'spinner: ring, dots, bars, pulse or orbit.',
+    'style'     => 'spinner: ring, dots, bars, pulse or orbit; underline: line, double, dashed or dotted; strike: line or double; encircle: circle or box.',
     'size'      => 'spinner: pixels (24); skeleton: the avatar\'s (48).',
     'shape'     => 'skeleton: text, block, avatar, card or media - the shape of what is still on its way.',
     'lines'     => 'skeleton: the lines of text (3, media 2).',

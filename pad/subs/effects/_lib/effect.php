@@ -43,7 +43,8 @@
   // padEffectWhat     the tag as written, for what a message says: {effect:x}, {x}, {effect 'x'}
   // padEffectBad      reports a mistake under the strict check
   // padEffectInt, padEffectNumber, padEffectChoice, padEffectFlag, padEffectText,
-  // padEffectColor, padEffectColors, padEffectRepeat - the options, checked
+  // padEffectColor, padEffectColors, padEffectRepeat, padEffectWhen, padEffectThickness - the
+  //                   options, checked
   // padEffectSource   the content of the pair, else the first parameter as markup
   // padEffectPlain    the characters of a rendered text, without its markup
   // padEffectLetters  a text cut into its letters - grapheme clusters - each escaped
@@ -456,6 +457,31 @@
     padEffectBad ( "needs its text - $example" );
 
     return '';
+
+  }
+
+  // When a drawn stroke - an underline, a strike, a ring - is drawn: as the page opens, as it
+  // scrolls into view (scroll) or, where the kind has it, while the pointer is on it or the
+  // focus in it (hover) - the class that says so, '' for the first. Both at once is a mistake.
+
+  function padEffectWhen ( $withHover = TRUE ) {
+
+    $scroll = padEffectFlag ( 'scroll' );
+    $hover  = ( $withHover and padEffectFlag ( 'hover' ) );
+
+    if ( $scroll and $hover )
+      padEffectBad ( 'is drawn on scroll or on hover, not both' );
+
+    return $hover ? 'pe-hover' : ( $scroll ? 'pe-scroll' : '' );
+
+  }
+
+  // A stroke's thickness: thickness= whole pixels from 1 to 12, NULL when not given - the
+  // kind's style then takes one from the size of the letters.
+
+  function padEffectThickness () {
+
+    return ( padTagParm ( 'thickness', NULL ) === NULL ) ? NULL : padEffectInt ( 'thickness', 2, 1, 12 ) . 'px';
 
   }
 
