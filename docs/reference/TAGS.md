@@ -1590,7 +1590,7 @@ check, and writes nothing.
 ### barcode
 A barcode as inline SVG, encoded on the server by the codes subsystem (`pad/subs/codes/`): a
 symbology is a file of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`, `code128`,
-`code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `bookland`, `qr`, `datamatrix`, `aztec` and `pdf417` - and `type=` names
+`code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `bookland`, `databar`, `qr`, `datamatrix`, `aztec` and `pdf417` - and `type=` names
 it. The barcode type writes a symbology by its name, `{barcode:upce '0425261'/}`, and so does
 the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequence has it.
 
@@ -1606,6 +1606,7 @@ the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequenc
 {aztec $ticket, size=150/}                         <!-- Aztec Code, a bullseye in the middle -->
 {pdf417 $boardingPass, columns=6/}                 <!-- PDF417, rows of codewords -->
 {bookland '978-0-306-40615-7', addon='51995'/}    <!-- a book's ISBN, its price in an add-on -->
+{databar '09501101530003'/}                        <!-- GS1 DataBar Omnidirectional -->
 ```
 
 | Option | Description |
@@ -1652,6 +1653,8 @@ modules high; a text beyond ASCII is marked as UTF-8 by its ECI.
 `bookland` is a book's ISBN-13 as an EAN-13, the ISBN above the bars; an ISBN-10 is made one
 after its check digit (modulo 11) was checked. An add-on (`addon=`) of 2 digits takes the sets of
 its value modulo 4, of 5 those of its check of weights 3 and 9, nine modules after the bars.
+`databar` is GS1 DataBar Omnidirectional (ISO/IEC 24724): a GTIN of 8, 12, 13 or 14 digits with
+its check digit, `(01)` in front or not, as the GTIN-14 in 96 modules, its checksum in the finders.
 
 ---
 

@@ -1623,9 +1623,10 @@ days its yearly decree moves around them; it knows the years since 2013.
 {pdf417 $boardingPass, columns=6, level=5/}     # PDF417, stacked rows; scale= module width, level= 0-8
 {bookland 'ISBN 0-306-40615-2', addon='51995'/} # a book's ISBN as an EAN-13, the price as an add-on
 {ean13 '977031784700', addon='07'/}             # addon= 2 or 5 digits on ean13, upca, upce and bookland
+{databar '09501101530003'/}                     # GS1 DataBar Omnidirectional, a GTIN in 96 modules
 ```
 The symbologies are the files of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`,
-`code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `bookland`, `qr`, `datamatrix`, `aztec` and `pdf417` - one
+`code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `bookland`, `databar`, `qr`, `datamatrix`, `aztec` and `pdf417` - one
 file a symbology, which encodes the text and draws it; a symbology is added by adding its file.
 Each is written three ways, the same code: `{barcode '...', type='upce'/}`, the barcode type
 `{barcode:upce '...'/}`, and bare, `{upce '...'/}`, when no tag, store, field or sequence has
@@ -1669,6 +1670,12 @@ and hyphens are allowed (`pad/subs/codes/_lib/isbn.php`). `addon=` puts an add-o
 `ean13`, `upca`, `upce` or `bookland` - two digits (a magazine's issue) or five (a book's price:
 5 and US dollars, 0 or 1 pounds, 90000 none) - in a small symbol nine modules on, its digits
 above it (`pad/subs/codes/_lib/addon.php`); an add-on of another length is an error.
+
+`databar` is GS1 DataBar Omnidirectional (ISO/IEC 24724), the small barcode of loose fruit,
+vegetables and coupons: a GTIN of 8, 12, 13 or 14 digits with its check digit, `(01)` in front or
+not, as the GTIN-14 in four characters of four bars and four spaces between two finder patterns
+that carry the checksum, 96 modules read from any direction, `(01)` and the digits under the bars
+(`pad/subs/codes/_lib/databar.php`). A wrong check digit or another length is an error.
 
 ### Icons
 ```
