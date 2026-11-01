@@ -10,11 +10,12 @@
   // is: the root mean square distance from the samples, as a share of the drawing's own size.
   // Where the spirograph rolls gears, this takes a curve apart. Draw a closed curve with the
   // pointer to take it apart instead; the arrow keys add and take away circles. shape= heart
-  // (unless given), star, square or trefoil; circles= how many are used (30, 1 to 1023, at
-  // most one fewer than the points); points= the samples (256, 16 to 1024); order= size, the
-  // largest circles first (unless given), or frequency, one turn, minus one, two, minus two
-  // ...; speed= how fast the pen goes round (3, 1 to 10). A drawing of your own stands
-  // between the tags as an SVG polyline's points, x,y pairs - y counted down - and is closed.
+  // (unless given), star, square or trefoil; circles= how many are used (30, or one fewer than
+  // fewer points; 1 to 1023, at most one fewer than the points); points= the samples (256, 16
+  // to 1024); order= size, the largest circles first (unless given), or frequency, one turn,
+  // minus one, two, minus two ...; speed= how fast the pen goes round (3, 1 to 10). A drawing
+  // of your own stands between the tags as an SVG polyline's points, x,y pairs - y counted
+  // down - and is closed.
   //
   //   {epicycles shape='square', circles=15/}
   //   {epicycles}
@@ -44,7 +45,7 @@
   }
 
   $padEpiPoints = padToyInt ( 'points', 256, 16, 1024 );
-  $padEpiCircles = padToyInt ( 'circles', 30, 1, 1023 );
+  $padEpiCircles = padToyInt ( 'circles', min ( 30, $padEpiPoints - 1 ), 1, 1023 );
 
   if ( $padEpiCircles >= $padEpiPoints ) {
     if ( $GLOBALS ['padCheckSyntax'] )
