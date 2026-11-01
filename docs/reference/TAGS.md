@@ -336,12 +336,14 @@ Site search without a search server: the rows of a source a query finds, ranked 
 **Behavior:** as a pair it hands over the rows found, the best first: the source's own fields
 with `$score` (BM25F, three decimals) and `$excerpt` added - HTML, the words around the first
 match with every matched word in a `<mark>`, escaped as `{excerpt}` escapes it; print it
-`{!excerpt}`. The handling options work on them, `first=10` for the ten best; nothing found is
-the `@else@`. As a single tag it answers an `<ol class="pad-search">`: the first field of
-`fields` as the title, a link when `link=` names a field with one, and the excerpt. The index
-is kept in `DATA/cache/search/<app>/` and made again when the source changed. A source that is
-not there, a language without a file, a `fields=` that is no list of fields or a `words=` that
-is no number is an error under the strict check. `padSearch ( $source, $q, $options )` gives
+`{!excerpt}`. The handling options work on them, `first=10` for the ten best - when they keep
+the first rows only (`first`, `page`, `rows`) the excerpts are made for those rows alone;
+nothing found is the `@else@`. As a single tag it answers an `<ol class="pad-search">` of the
+`first=` best, else of every hit: the first field of `fields` as the title, a link when
+`link=` names a field with one, and the excerpt. The index is kept in
+`DATA/cache/search/<app>/` and made again when the source changed. A source that is not there,
+a language without a file, a `fields=` that is no list of fields or a `words=` that is no
+number is an error under the strict check. `padSearch ( $source, $q, $options )` gives
 the same rows to a page's PHP.
 
 ---

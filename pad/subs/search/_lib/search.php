@@ -880,8 +880,9 @@
   // that answers them, keep the rows with the index, the fields when none are given ('' for
   // every field with text in a row - none is an error, no rows find nothing) ] - the sign
   // NULL for rows, signed here on the fields searched; the options
-  // are fields, lang, words (of the excerpt, 30) and excerpt (the field it is cut from, the
-  // last of fields). An error is answered as a string.
+  // are fields, lang, words (of the excerpt, 30), excerpt (the field it is cut from, the
+  // last of fields), first (the best rows only) and excerpts (an excerpt for the first rows
+  // only, the others ''). An error is answered as a string.
 
   function padSearchRun ( $source, $q, $options ) {
 
@@ -909,6 +910,12 @@
 
     if ( ! ctype_digit ( (string) $words ) or (int) $words < 1 )
       return "words= is the length of the excerpt, a number of words - not '" . padMakeSafe ( $words, 20 ) . "'";
+
+    $first    = $options ['first']    ?? NULL;
+    $excerpts = $options ['excerpts'] ?? NULL;
+
+    if ( $first !== NULL and ! ctype_digit ( (string) $first ) )
+      return "first is a number of rows, the best that come back - not '" . padMakeSafe ( $first, 20 ) . "'";
 
     $excerpt = (string) ( $options ['excerpt'] ?? end ( $fields ) [0] ?? '' );
 
@@ -951,16 +958,27 @@
     elseif ( is_callable ( $rows ) )
       $rows = $rows ();
 
+    // The rows found are cut to first before anything is made of them, and an excerpt is
+    // made for the first excerpts rows only - the rows a page can show: every hit had its
+    // excerpt made, and a search cost what its hits cost, not what the page showed.
+
+    if ( $first !== NULL )
+      $scores = array_slice ( $scores, 0, (int) $first, TRUE );
+
     $rows  = array_values ( (array) $rows );
     $found = [];
 
     foreach ( $scores as $doc => $score ) {
 
-      $row  = padSearchRow ( $rows [$doc] ?? [] );
-      $text = padSearchText ( padArrGet ( $row, $excerpt, '' ) );
+      $row = padSearchRow ( $rows [$doc] ?? [] );
 
-      $row ['score']   = round ( $score, 3 );
-      $row ['excerpt'] = padExcerpt ( $text, (int) $words, padSearchMatched ( $text, $language, $query ), FALSE, '…' );
+      $row ['score'] = round ( $score, 3 );
+
+      if ( $excerpts === NULL or count ( $found ) < $excerpts ) {
+        $text = padSearchText ( padArrGet ( $row, $excerpt, '' ) );
+        $row ['excerpt'] = padExcerpt ( $text, (int) $words, padSearchMatched ( $text, $language, $query ), FALSE, '…' );
+      } else
+        $row ['excerpt'] = '';
 
       $found [] = $row;
 
@@ -1019,6 +1037,34 @@
       return "there is nothing to search named '" . padMakeSafe ( $name, 40 ) . "' - no collection _content/" . padMakeSafe ( $name, 40 ) . "/, no data store, page array or _data file of the name";
 
     return [ "rows:$name", NULL, $rows, FALSE, '' ];
+
+  }
+
+  // How many of the rows found a page can show, for the handling options a {search} pair
+  // carries: when they keep the first rows only - first=, page= and rows= - the rows past
+  // the last page, or the first, are never shown and need no excerpt. NULL when an option
+  // can reorder or filter the rows - sort=, where=, last= ... - or a callback reads them.
+
+  function padSearchShown ( $options ) {
+
+    $keep = [ 'first', 'page', 'rows', 'orderly', 'duplicates', 'atLeastOnce', 'left', 'right', 'both', 'sum', 'avg', 'min', 'max' ];
+
+    foreach ( $options as $name => $value )
+      if ( $name === 'callback' or ( is_string ( $name ) and ! in_array ( $name, $keep, TRUE ) and padValidVar ( $name ) and padFileExists ( PAD . "handling/types/$name.php" ) ) )
+        return NULL;
+
+    $count = fn ( $value ) => ( $value === TRUE or ! ctype_digit ( (string) $value ) ) ? 1 : (int) $value;
+    $shown = NULL;
+
+    if ( isset ( $options ['first'] ) )
+      $shown = $count ( $options ['first'] );
+
+    if ( isset ( $options ['page'] ) or isset ( $options ['rows'] ) ) {
+      $page  = max ( 1, (int) ( $options ['page'] ?? 1 ) ) * (int) ( $options ['rows'] ?? 10 );
+      $shown = min ( $shown ?? $page, $page );
+    }
+
+    return $shown;
 
   }
 

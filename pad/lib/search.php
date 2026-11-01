@@ -12,11 +12,12 @@
   // excerpt HTML, the matches in <mark>). The options: fields (every field with text in a
   // row, title^2, body for a collection), lang (en, nl, de, fr, es - the locale's
   // language, else en), words (the excerpt's length, 30), excerpt (the field it is cut from,
-  // the last of fields) and name - what the index of rows is kept under in
-  // DATA/cache/search/<app>/, 'rows' unless given: rows of one name share one index, made
-  // again whenever the fields searched change. The query is what a visitor typed - a list of words, as
-  // ?q[]= makes one, is searched for its words. A wrong argument is reported with padError
-  // naming the function, which then answers no rows.
+  // the last of fields), first (the best rows only - an excerpt is made for those alone)
+  // and name - what the index of rows is kept under in DATA/cache/search/<app>/, 'rows'
+  // unless given: rows of one name share one index, made again whenever the fields
+  // searched change. The query is what a visitor typed - a list of words, as ?q[]= makes
+  // one, is searched for its words. A wrong argument is reported with padError naming the
+  // function, which then answers no rows.
 
   function padSearch ( $source, $query, $options = [] ) {
 
@@ -30,7 +31,7 @@
     // Each option is one value: a list met a (string) cast deeper down, and the request
     // ended in PHP's "Array to string conversion" instead of this function's report.
 
-    foreach ( [ 'name', 'fields', 'lang', 'words', 'excerpt' ] as $option )
+    foreach ( [ 'name', 'fields', 'lang', 'words', 'excerpt', 'first' ] as $option )
       if ( isset ( $options [$option] ) and ! is_scalar ( $options [$option] ) ) {
         padError ( "padSearch: the option $option is a value - not " . get_debug_type ( $options [$option] ) );
         return [];
@@ -42,6 +43,8 @@
       $source = padSearchSource ( $source );
     else
       $source = "the source is the name of a collection or data, or the rows - not " . get_debug_type ( $source );
+
+    unset ( $options ['excerpts'] );
 
     $found = is_string ( $source ) ? $source : padSearchRun ( $source, padSearchQueryText ( $query ), $options );
 
