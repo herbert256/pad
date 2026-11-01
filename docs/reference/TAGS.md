@@ -3425,7 +3425,7 @@ answers the bytes.
 A diagram from a few lines of text in the content, written the Mermaid way and laid out on
 the server as inline SVG by the diagram subsystem (`pad/subs/diagrams/`) - no JavaScript. A kind
 is a file of `pad/subs/diagrams/types/`: `flowchart` (the default), `sequence`, `state`, `class`,
-`er`, `mindmap`, `tree`, `journey`, `gitgraph`, `fishbone` and `railroad`.
+`er`, `mindmap`, `tree`, `journey`, `gitgraph`, `fishbone`, `railroad` and `packet`.
 
 ```html
 {diagram}
@@ -3496,16 +3496,23 @@ is a file of `pad/subs/diagrams/types/`: `flowchart` (the default), `sequence`, 
   list ::= '[' ( item ( ',' item )* )? ']'
   item ::= number | 'null'
 {/railroad}
+
+{packet}
+  title UDP header
+  0-15: "Source Port"
+  +16: "Destination Port"
+{/packet}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| `type` | The kind, a file of `pad/subs/diagrams/types/` - `flowchart` (default; `flow` and `graph` say so too). A first line written the Mermaid way names it as well: `sequenceDiagram`, `stateDiagram` / `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph` whatever the tag says, and a kind's name alone (`mindmap`, `journey`, `fishbone`, `railroad`, Mermaid's `ishikawa-beta`) where the tag names none |
+| `type` | The kind, a file of `pad/subs/diagrams/types/` - `flowchart` (default; `flow` and `graph` say so too). A first line written the Mermaid way names it as well: `sequenceDiagram`, `stateDiagram` / `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph` whatever the tag says, and a kind's name alone (`mindmap`, `journey`, `fishbone`, `railroad`, `packet`, Mermaid's `ishikawa-beta` and `packet-beta`) where the tag names none |
 | `direction` | flowchart, state, class, er and tree: `TB` (default), `BT`, `LR` or `RL` - else the lines say it: a first line `graph LR` / `flowchart LR` in a flowchart, a line `direction LR` in a state, class or entity-relationship diagram |
+| `bits` | packet: the bits in a row, `32` unless given, 4 to 64 |
 | `edges` | flowchart, state, class and er: `orthogonal` (default, rounded turns in channels of their own), `straight` or `curved` |
-| `title` | The accessible name, default the kind's (`Flowchart`, `Sequence diagram`, `State diagram`, `Class diagram`, `Entity-relationship diagram`, `Mind map`, `Tree`, `Commit graph`, `Fishbone diagram`, `Railroad diagram`; a journey's `title` line, else `User journey`) |
+| `title` | The accessible name, default the kind's (`Flowchart`, `Sequence diagram`, `State diagram`, `Class diagram`, `Entity-relationship diagram`, `Mind map`, `Tree`, `Commit graph`, `Fishbone diagram`, `Railroad diagram`; a journey's `title` line, else `User journey`; a packet's, else `Packet diagram`) |
 
 A kind reads only the options it draws with: `direction` on a sequence diagram is an option
 nothing reads, which the strict check reports.
@@ -3590,6 +3597,14 @@ bare they are those tags: the sequence diagram and the tree are `{diagram:sequen
   two meet; a rule wider than 640 wraps its sequence onto rows under each other. A text
   before the first rule, a rule named twice, a group or a quote never closed, an empty
   branch of a choice and an operator with nothing before it are errors that name the line.
+- **packet** - the fields of a packet header, a frame or a register by their bits, the
+  Mermaid way: `0-15: "Source Port"` (bits 0 to 15), `106: "URG"` (one bit), `+16: "Window"`
+  (the next 16 bits), `title text` a heading; in rows of `bits=` bits (32), bit 0 on the
+  left as the RFCs draw a header. A field running past its row goes on in the next, its name
+  in every piece; the first and the last bit stand over every piece, as many as fit; a name
+  too wide for its field wraps, or turns on its side in a narrow one, the row as high as it
+  asks. A field that does not start where the one before ended (a gap or an overlap), ends
+  before it starts, or a line of no field are errors; `bits` outside 4 to 64 is too.
 
 The content is read as it stands - the braces of `B{Paid?}` and `class A {` need no
 `{ignore}`. role="img" with a `<title>` and a `<desc>` that says every edge, message,
@@ -4806,7 +4821,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/subs/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |
 | `pdf` | Output | The rendered content sent as a PDF, written in plain PHP - fonts, tables, JPEG pictures |
-| `diagram` | Output | A flowchart, sequence, state, class, entity-relationship, mind map, tree, user journey, commit graph, fishbone or railroad diagram from Mermaid-style lines, laid out on the server as inline SVG |
+| `diagram` | Output | A flowchart, sequence, state, class, entity-relationship, mind map, tree, user journey, commit graph, fishbone, railroad or packet diagram from Mermaid-style lines, laid out on the server as inline SVG |
 | `map` | Output | A choropleth map of the world or a region as inline SVG, a colour step per value |
 | `timeline` | Output | Events on a time axis as inline SVG - cards above and below, spans as bars, or a vertical list |
 | `datatable` | Output | Rows as an accessible HTML table - aligned numbers, totals, sorting and paging links |

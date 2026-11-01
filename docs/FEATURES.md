@@ -1179,6 +1179,7 @@ reference lists them with the pages that play them.
 {gitgraph}...{/gitgraph}                       # commit, branch, checkout, merge, cherry-pick
 {fishbone}...{/fishbone}                       # the effect, then categories and causes indented under it
 {railroad}...{/railroad}                       # syntax diagrams of W3C EBNF: rule ::= 'a' ( b | c )* d?
+{packet}...{/packet}                           # header fields by their bits: 0-15: "Source Port", +16: "x"
 ```
 The kinds are the files of `pad/subs/diagrams/types/` - one file a kind, reading the options it
 draws with - and a kind is added by adding its file. Each is written three ways, the same
@@ -1186,7 +1187,7 @@ picture: `{diagram type='state'}`, the diagram type `{diagram:state}` and bare, 
 no tag, store, field or sequence has the name (the bare name comes last); `sequence` and `tree`
 are tags too, so those two are `{diagram:sequence}` and `{diagram:tree}`. A first line written
 the Mermaid way - `sequenceDiagram`, `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph`,
-or `mindmap`, `journey` and `ishikawa-beta` (the fishbone) in a `{diagram}` without `type=` - names the kind, so Mermaid text
+or `mindmap`, `journey`, `packet-beta` and `ishikawa-beta` (the fishbone) in a `{diagram}` without `type=` - names the kind, so Mermaid text
 pastes in as it is. The content is read as it stands, braces and all; the layout is
 deterministic (the same lines, the same picture); `role="img"` with a `<title>` and a `<desc>`
 that says every edge, relation or step in words; the colours are `--pad-diagram-*` custom

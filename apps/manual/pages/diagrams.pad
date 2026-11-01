@@ -93,6 +93,15 @@ grammar defines is a link to its own track.</p>
 
 {example 'fragments/diagrams_11'/}
 
+<h2>Packets</h2>
+
+<p>A packet diagram lays the fields of a header out by their bits, as the RFCs draw them:
+<code>0-15: "Source Port"</code> a field from bit 0 to bit 15, <code>+16: "Destination Port"</code>
+the next 16, in rows of 32 bits - <code>bits=</code> takes another width. The fields follow each
+other from bit 0, and the first and the last bit of each stand over it.</p>
+
+{example 'fragments/diagrams_12'/}
+
 <ul>
   <li>The SVG has <code>role="img"</code>, a <code>&lt;title&gt;</code> - <code>title=</code>, else
   the name of the kind - and a <code>&lt;desc&gt;</code> that says every edge, message, relation or
