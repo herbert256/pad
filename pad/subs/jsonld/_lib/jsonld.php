@@ -54,11 +54,12 @@
   //                 braces that stay text; an address that holds {search_term_string}
   //                 itself, from a PHP value, keeps it where it stands
   //
-  // An empty value - nothing, '', a list without anything in it - is no value, and the field
-  // is left out; 0 is a value. A required field without a value is an error under the strict
-  // check naming the field and the kind, and without it the object is left out - with it the
-  // whole script when it was the only one. A value that cannot be written as its field asks -
-  // a date that is none - is an error under the strict check, and left out without it.
+  // An empty value - nothing, '', a boolean, a list without anything in it - is no value, and
+  // the field is left out; 0 is a value, and a bare option, {jsonld:article headline/}, none.
+  // A required field without a value is an error under the strict check naming the field and
+  // the kind, and without it the object is left out - with it the whole script when it was
+  // the only one. A value that cannot be written as its field asks - a date that is none - is
+  // an error under the strict check, and left out without it.
   //
   // The JSON is encoded for the script element it stands in: JSON_HEX_TAG writes < and > as
   // \u003C and \u003E, so a value holding </script> or <!-- cannot end the element or change
@@ -166,7 +167,7 @@
 
   function padJsonLdEmpty ( $value ) {
 
-    if ( $value === NULL or $value === FALSE )
+    if ( $value === NULL or is_bool ( $value ) )
       return TRUE;
 
     if ( is_string ( $value ) )
