@@ -1240,9 +1240,9 @@ The answer of a language model, printed as text (`pad/subs/ai/`).
 **Parameters:** single, the prompt.
 
 **Options:** `provider` - a file of `pad/subs/ai/types/`: anthropic, bedrock, cloudflare, cohere,
-gemini, mistral, ollama, openai (`PAD_AI_PROVIDER`, else anthropic); `model` - the provider's
-default unless given; `system` - the system prompt; `tokens` - the most the answer may take;
-`ttl` - the seconds an answer is kept, 3600 unless given, 0 keeps nothing.
+gemini, lmstudio, mistral, ollama, openai (`PAD_AI_PROVIDER`, else anthropic); `model` - the
+provider's default unless given; `system` - the system prompt; `tokens` - the most the answer may
+take; `ttl` - the seconds an answer is kept, 3600 unless given, 0 keeps nothing.
 
 **Behavior:** as a pair the content renders first - the end walk - and what it rendered is the
 prompt, its fields read as the text they hold. The answer is escaped and its braces inert: a
@@ -1251,9 +1251,10 @@ model, system prompt, prompt and tokens - a failed answer never, and nothing whi
 are faked. The key is the provider's `padEnv` value - `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`,
 `MISTRAL_API_KEY`, `GEMINI_API_KEY`, `COHERE_API_KEY` (or `CO_API_KEY`), `CLOUDFLARE_API_TOKEN`
 (with `CLOUDFLARE_ACCOUNT_ID`), `AWS_BEARER_TOKEN_BEDROCK` (with `AWS_REGION`); Ollama needs none
-(`OLLAMA_HOST`). A missing key, an unknown provider, a wrong option or an error of the API is an
-error under the strict check; without it the tag answers nothing and the error is logged. From
-PHP: `padAi ( $prompt, $options )`, `padAiError ()`.
+(`OLLAMA_HOST`), LM Studio none unless it is set up to (`LM_API_TOKEN`). A missing key, an
+unknown provider, a wrong option or an error of the API is an error under the strict check;
+without it the tag answers nothing and the error is logged. From PHP:
+`padAi ( $prompt, $options )`, `padAiError ()`.
 
 ---
 

@@ -661,8 +661,8 @@ $summary = padAi ( "Summarise: $body", [ 'provider' => 'openai', 'tokens' => 300
 ```
 The content renders first and is the prompt; the answer is printed as text - a value, never
 template code. The providers are the files of `pad/subs/ai/types/` - anthropic
-(`claude-opus-5-5` by default), openai, mistral, gemini, cohere, cloudflare, bedrock and ollama
-(a local server, no key) - each its endpoint, headers, request and how the text and an error are taken out of the answer. The
+(`claude-opus-5-5` by default), openai, mistral, gemini, cohere, cloudflare, bedrock, ollama and
+lmstudio (local servers, no key) - each its endpoint, headers, request and how the text and an error are taken out of the answer. The
 key is `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `MISTRAL_API_KEY` or `GEMINI_API_KEY`
 (`OLLAMA_HOST` for Ollama), the provider `provider=` or `PAD_AI_PROVIDER`. Options `model=`,
 `system=`, `tokens=` (the most the answer takes - the handling option `max` is something else)
@@ -690,6 +690,12 @@ request signed with an access key (SigV4) is not made - `us.anthropic.claude-son
 are joined, a reasoning block is passed over, an answer a guardrail stopped or that was filtered
 is an error, and a failure is said by its kind (`ThrottlingException`, `ValidationException` ...)
 and message.
+
+`lmstudio` asks a model LM Studio runs on this machine through its native chat API,
+`http://127.0.0.1:1234/api/v1/chat` (`url=` names another) - `ibm/granite-4-micro` unless `model=`
+names another downloaded model. No key: the token of `LM_API_TOKEN` (or `key=`) is sent only when
+there is one, for a server set up to require it. The answer is the content of the message items
+of its output, a reasoning item passed over, and is asked with `store` off.
 
 ## Template features
 

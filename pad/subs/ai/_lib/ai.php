@@ -6,6 +6,8 @@
   //   name     its name in a message          key      the padEnv name of its API key, ''
   //                                                     - or a list of names, the first set
   //                                                     one read, the first named in a message
+  //   optional TRUE when the key is sent only when there is one - a local server that asks for
+  //            a token only when it is set up to
   //   model    the model unless model= says   tokens   the answer's limit unless tokens= says
   //   url      the endpoint, or a function of the request that makes it
   //   headers  function ( $ask ) - the headers: the key in the provider's own way
@@ -48,8 +50,11 @@
       foreach ( $key === NULL ? $names : [] as $name )
         if ( is_string ( $key = padEnv ( $name, '' ) ) and trim ( $key ) !== '' )
           break;
-      if ( ! is_string ( $key ) or trim ( $key ) === '' )
-        return padAiAuthor ( "$function: " . $kind ['name'] . ' needs an API key - set ' . $names [0] . " in the application's .env, or give the option key" );
+      if ( ! is_string ( $key ) or trim ( $key ) === '' ) {
+        if ( empty ( $kind ['optional'] ) )
+          return padAiAuthor ( "$function: " . $kind ['name'] . ' needs an API key - set ' . $names [0] . " in the application's .env, or give the option key" );
+        $key = '';
+      }
     }
 
     $tokens = $options ['tokens'] ?? $kind ['tokens'] ?? 4096;
