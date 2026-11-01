@@ -74,7 +74,8 @@
         'distribution/delivery' => [ 'Delivery times',         'Whole days are counted in bins of whole days.' ],
         'distribution/salaries' => [ 'Salary per team',        'boxplot: quartiles, median, whiskers and the outlier.' ],
         'distribution/reaction' => [ 'Reaction times, rested or not', 'density: a smooth curve per group over one axis, the medians dashed.' ],
-        'distribution/scores'   => [ 'Exam scores per class',  'violin: the shape of each class, quartiles and median inside - a split class shows its two humps.' ] ] ],
+        'distribution/scores'   => [ 'Exam scores per class',  'violin: the shape of each class, quartiles and median inside - a split class shows its two humps.' ],
+        'distribution/battery'  => [ 'Battery life per laptop', 'errorbar: the mean of ten runs and its 95% interval, as given - the laptop tested once stands alone.' ] ] ],
 
       'measure' => [ 'Bullet, rings & areas', 'Measures against goals', [
         'measure/kpis'      => [ 'A quarter against its targets', 'bullet: the value as a bar, the target a line, grey bands from poor to good.' ],
