@@ -312,6 +312,7 @@ with a reader, a writer or both - added by adding its file, its code in `_lib/`,
 | `geojson` | yes | yes | a feature a row: its properties, id, geometry, lat/lon of a Point - Points written from lat and lon |
 | `gpx` | yes | yes | waypoints, route and track points as rows: type, track, segment, point, name, lat, lon, ele, time, desc |
 | `xlsx` | yes | yes | one sheet: a bold frozen header, numbers, booleans and dates as such, text never a formula; read: the first sheet (`sheet=`) |
+| `jsonseq` | yes | yes | JSON text sequences (RFC 7464): an RS (0x1E), a JSON text and a line feed a record, as `jq --seq` writes them; a record that is no JSON or a number cut short passed over on the lenient walk, as the RFC recovers |
 | `vtt`, `srt` | yes | yes | WebVTT captions and SRT subtitles: a cue a row - id, start and end (`00:01:02.500`), startms and endms, text with its markup, plain without, voice (`<v Ann>`), settings; written in the order of their start, an end left out the next cue's start (chapters) - `?talk&padFormat=vtt` is the `src` of a `<track>` |
 | `rss`, `atom`, `jsonfeed` | - | yes | feeds of rows with title, link, date, summary, body, id - a Markdown collection's rows as they are |
 
@@ -321,7 +322,7 @@ with a reader, a writer or both - added by adding its file, its code in `_lib/`,
   [[stops]]
   name = "Gravensteen"
 {/data}
-{data 'agenda'}BEGIN:VCALENDAR ...{/data}   # known on sight: iCalendar, vCard, NDJSON, a pipe table, TSV, WebVTT, SRT
+{data 'agenda'}BEGIN:VCALENDAR ...{/data}   # known on sight: iCalendar, vCard, NDJSON, a pipe table, TSV, WebVTT, SRT, an RS
 {sales}...{/sales}                      # _data/sales.xlsx - a _data file by its extension
 {local:plan.toml}...{/local:plan.toml}  # {local:sales.xlsx sheet='Notes'}
 ```
@@ -338,7 +339,7 @@ $padFormatOptions = [ 'title' => 'Talks', 'name' => 'Talks' ];  // the writer's 
   `&padFormat=<format>` (or an extension, `md`) or an `Accept` header naming the format's media
   type that does not accept `text/html` - `text/calendar`, a feed reader's `application/rss+xml,
   */*;q=0.8`; Markdown, an agent's `text/markdown` asking for the page, only by `padFormat=`.
-  A table format - `ics`, `xlsx`, the feeds, `geojson`, `gpx`, `vcf`, `md`, `tsv`, `ndjson`, `vtt`, `srt` -
+  A table format - `ics`, `xlsx`, the feeds, `geojson`, `gpx`, `vcf`, `md`, `tsv`, `ndjson`, `jsonseq`, `vtt`, `srt` -
   answers the first exposed list, `toml`, `yaml` and `ini` the variables by name. The answer
   has the format's content type and, for a file, the page's name with the format's
   extension - `inline` (`events.ics`), an `attachment` for `xlsx` and `gpx`,
@@ -351,7 +352,7 @@ $padFormatOptions = [ 'title' => 'Talks', 'name' => 'Talks' ];  // the writer's 
 - A text a format cannot read is an error under the strict check naming the format and the
   line - `TOML error on line 3: the key 'name' is defined twice` - and no rows on the lenient
   walk; a cue a browser drops - a timing that is none, a block that is no cue - is passed over
-  there and the other cues are read.
+  there and the other cues are read, and so is a broken record of a JSON text sequence.
   The formats known on sight are known only where the text would have read as CSV, or
   as a JSON document that is none: TOML, INI, GeoJSON and GPX are named, or read by extension.
   A fetched body - `{curl}`, `data='https://...'` - is read in the format its media type names:
