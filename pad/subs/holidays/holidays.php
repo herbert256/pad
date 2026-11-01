@@ -67,6 +67,16 @@
       return [];
     }
 
+    // A span the wrong way round is a wrong span as the others are: it answered no rows
+    // without a word, and the single tag a table captioned with the dates reversed.
+
+    if ( $padHolidaysB < $padHolidaysA ) {
+      if ( $padCheckSyntax )
+        padError ( '{holidays}: to= ' . padHolidaysDate ( $padHolidaysB ) . ' comes before from= ' . padHolidaysDate ( $padHolidaysA )
+                   . ( $padHolidaysFrom === NULL ? ' - today, when from= is not given' : '' ) );
+      return [];
+    }
+
     $padHolidaysCaption = $padHolidaysRules ['name'] . ' ' . padHolidaysDate ( $padHolidaysA ) . ' - ' . padHolidaysDate ( $padHolidaysB );
 
   } else {

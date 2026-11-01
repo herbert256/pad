@@ -1607,7 +1607,7 @@ The public holidays of a country, from the rules of its file in `pad/subs/holida
 | first parameter | The country, its ISO 3166-1 alpha-2 code in any case - at, be, ca, ch, de, dk, es, fr, gb, ie, it, lu, nl, no, pl, se, us - with a region after it as ISO 3166-2 writes it, `'de-by'` |
 | `region` | The region apart: `{holidays 'de', region='by'}` - Germany's states, the United Kingdom's nations (`sct`, `nir`; `eng` and `wls` are the default), France's `57`, `67`, `68`, `971`-`976` |
 | `year` | The year, 1583 to 9999 - default this year (`padNow`) |
-| `from`, `to` | The days between two dates instead of a year - any date `padDateParse` reads, `today`, `+3 months`; one alone is a year from it (or from today) |
+| `from`, `to` | The days between two dates instead of a year - any date `padDateParse` reads, `today`, `+3 months`; one alone is a year from it (or from today); `to` before `from` is an error under the strict check |
 | `lang` | The language of `local` for a country of more than one - be `nl fr de`, lu `lb fr de`, ch `de fr it`, ca `en fr`; the first by default |
 
 **Behavior:** as a pair it hands over the rows, sorted by date: `$date` (YYYY-MM-DD), `$name`
