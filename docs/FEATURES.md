@@ -417,7 +417,8 @@ documentation, as RFC 5952 writes it), isbn (an ISBN-13 of 978 whose check digit
 point of the box south=, north=, west=, east=, across the 180th meridian when west= lies east
 of east=), mac (locally administered, so no maker's), name, number, paragraph,
 phone, postcode, price, product (a look, a material and a thing made of it, Rustic Oak Stool),
-sentence, slug (lower-case words and dashes), street, time, title (a
+sentence, slug (lower-case words and dashes), street, time, timezone (a zone of the IANA
+database, never one kept only as a link), title (a
 heading of words= words), url, username, uuid, word - each named by
 `padFake ( 'email' )` and in a template:
 ```
