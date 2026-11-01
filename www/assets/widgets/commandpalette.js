@@ -25,7 +25,12 @@
       item.tabIndex = -1;
     });
     Array.prototype.forEach.call(at.list.children, function (child) {
-      if (!child.matches(ITEM)) child.setAttribute('aria-hidden', 'true');
+      if (child.matches(ITEM)) return;
+      var inside = child.querySelectorAll(ITEM);
+      if (!inside.length) { child.setAttribute('aria-hidden', 'true'); return; }
+      Array.prototype.forEach.call(inside, function (item) {
+        for (var up = item.parentElement; up && up !== at.list; up = up.parentElement) up.setAttribute('role', 'none');
+      });
     });
     search(dialog);
     return at;
