@@ -33,6 +33,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Queues, schedule and HTTP fakes](#queues-schedule-and-http-fakes) | `padQueue`, `padQueueWork`, `padCronMatch`, `padCurlFake`, ... | - |
 | [Maintenance and assets](#maintenance-and-assets) | `padMaintenanceDown`, `padAsset`, ... | - |
 | [OAuth, notifications and language models](#oauth-notifications-and-language-models) | `padOAuthStart`, `padOAuthUser`, `padNotify`, `padWebPushKeys`, `padAi`, ... | social_login, notifications, language_models |
+| [Patterns](#patterns) | `padPattern`, `padPatternKinds` | - |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1030,6 +1031,15 @@ naming the variable to set.
 | `padNotifyChannels ()` | The channels - the files of `pad/subs/channels/types/` |
 | `padAi ( $prompt, $options = [] )` | The answer of a language model as text, '' when there is none; options `provider`, `model`, `system`, `tokens`, `ttl` (3600), `key`, `url` |
 | `padAiError ()`, `padAiProviders ()` | Why the last `padAi` answered ''; the providers - the files of `pad/subs/ai/types/` |
+
+## Patterns
+
+`pad/lib/pattern.php`, the subsystem in `pad/subs/patterns/`.
+
+| Function | Answers |
+|----------|---------|
+| `padPattern ( $kind, $options = [] )` | The SVG of a pattern - `padPattern ( 'topography', [ 'seed' => 7, 'width' => 960 ] )` - or with `'as' => 'url'` its CSS `url('data:image/svg+xml,...')`: the bytes `{pattern}` writes for the same options. The options are those of the tag (seed, colors as a list or a text, size, width, height, opacity, as, title and the kind's own); an unknown kind answers `''`, a wrong option is reported with `padError` and drawn as its default |
+| `padPatternKinds ()` | The patterns, the files of `pad/subs/patterns/types/`, sorted |
 
 ## Engine functions
 

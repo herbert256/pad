@@ -25,6 +25,7 @@
     'input'   => [ 'inputs',   TRUE,  'input'          ],
     'icon'    => [ 'icons',    FALSE, 'icon'           ],
     'fake'    => [ 'fakes',    FALSE, 'fake kind'      ],
+    'pattern' => [ 'patterns', FALSE, 'pattern'        ],
   ];
 
   // The kinds of the subsystem in pad/subs/<directory>/: the names of the files of its types/,

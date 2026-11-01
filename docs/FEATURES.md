@@ -59,6 +59,7 @@ applications show them working.
   - [Syntax highlighting](#syntax-highlighting)
   - [QR codes and barcodes](#qr-codes-and-barcodes)
   - [Icons](#icons)
+  - [Patterns](#patterns)
   - [Showcase tags](#showcase-tags)
   - [Live Regions (interactivity without app JavaScript)](#live-regions-interactivity-without-app-javascript)
 - [Development](#development)
@@ -922,6 +923,35 @@ there are the icons there are, so an icon is added by adding its file, and `padI
 lists them for a page's PHP. A name that is no icon is an error naming the icons close to it.
 Code: the icon subsystem in `pad/subs/icons/` - `icon.php` the body both forms run, `_lib/icon.php`
 the drawing, `types/` the icons; `pad/types/icon.php` the icon type.
+
+### Patterns
+```
+{pattern 'topography', seed=7, width=960, height=320/}   # contour lines of a landscape the seed makes up
+{pattern 'dots', size=24, colors='#fdfbf7, #e0c9a6'/}     # the background first, then the inks
+{pattern:voronoi seed=3, title='Shards of colour'/}       # the pattern: type; title= makes it an image
+<div style="background-image:{pattern 'waves', as='url'/}">...</div>   # url('data:image/svg+xml,...')
+```
+```php
+$hero = padPattern ( 'circles', [ 'seed' => 4, 'width' => 1200, 'height' => 400 ] );   // the same bytes in PHP
+```
+Seeded SVG backgrounds and generative art drawn on the server: stripes, dots, grid, checks,
+hexagons, triangles (a low-poly mosaic), waves, chevron, topography (value noise traced by
+marching squares), truchet, voronoi, circles (circle packing), isometric (tumbling blocks), blobs,
+grain (the browser's feTurbulence) and mesh (a soft gradient). Every pattern takes `seed=`,
+`colors=` (a list, the background first), `size=` (the motif in pixels), `width=` and `height=`
+(480 by 240; the SVG covers its box), `opacity=`, `title=` and `as='url'`; stripes `angle=` and
+topography `levels=` besides. The same options give the same bytes on every request and every
+machine - the random numbers are PAD's own seeded sequence (`padFake`'s, put back afterwards) and
+every number is written to a fixed precision - so stored answers hold a pattern; without `seed=`
+the seed is 1. A pattern is decoration (`aria-hidden`) unless `title=` names it, and draws no
+motion. The patterns are the files of `pad/subs/patterns/types/` - each answers its default size
+and colours, its own options and the function that draws it - and a pattern is added by adding
+its file; their names are never reached bare, as dots, grid and waves are names of fields and
+pages. An unknown pattern, a colour that is none and a number outside its bounds are errors
+under the strict check. Code: the pattern subsystem in `pad/subs/patterns/` - `pattern.php` the
+body both forms run, `_lib/` the drawing and its helpers, `types/` the patterns;
+`pad/types/pattern.php` the pattern type, `pad/lib/pattern.php` `padPattern`. The `patterns`
+application shows every pattern with a seed to change by link.
 
 ### Showcase tags
 ```

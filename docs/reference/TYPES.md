@@ -72,6 +72,8 @@ Items 21 to 28 are the subsystems of `padSubsystems` (`PAD/lib/subsystem.php`), 
 order. The icons (`PAD/subs/icons/types/`) and the fake kinds (`PAD/subs/fakes/types/`) are never reached
 bare - their names, home or email, are those of fields and pages - only as `{icon:star/}` and
 `{fake:email/}`.
+The patterns (`PAD/subs/patterns/types/`) are never reached bare either - dots, grid and waves are
+names of fields and pages - only as `{pattern:dots/}`.
 
 A field or array that exists only as a request value - a GET, POST or cookie value the page's PHP
 (its configuration, `_inits.php`, the page, `_exits.php`) does not name, held by no row - comes
@@ -574,6 +576,25 @@ as the `{icon}` tag draws the icon its parameter names.
 the files there are the icons, and an icon is added by adding its file. The type is only ever
 written with its prefix - an icon's name alone is no tag, the names being those of fields and
 pages as well.
+
+## Pattern Types
+
+### pattern
+
+A seeded SVG background or piece of generative art, the kind the tag names - the pattern
+subsystem in `PAD/subs/patterns/` draws it, as the `{pattern}` tag draws the kind its parameter
+names, the same bytes for the same options.
+
+```
+{pattern:topography seed=7, levels=16/}
+{pattern:dots size=24, as='url'/}
+```
+
+**Resolution:** a PHP file `PAD/subs/patterns/types/<name>.php` (`padPatternKinds ()` in
+`PAD/lib/pattern.php`) that answers its default size and colours, its own options and the
+function that draws it: the files there are the patterns, and a pattern is added by adding its
+file. The type is only ever written with its prefix - a pattern's name alone (dots, grid, waves)
+is no tag, the names being those of fields and pages as well.
 ## Toy Types
 
 ### toy
@@ -777,6 +798,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `toy` | PAD/subs/toys/types/ | Toys |
 | `widget` | PAD/subs/widgets/types/ | Widgets |
 | `input` | PAD/subs/inputs/types/ | Rich form fields |
+| `pattern` | PAD/subs/patterns/types/ | Seeded SVG patterns |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -819,6 +841,7 @@ types/
 ├── make.php        → Sequence make
 ├── pad.php         → PAD tag
 ├── parm.php        → Tag parameter
+├── pattern.php     → Pattern
 ├── php.php         → PHP function
 ├── property.php    → Tag property
 ├── pull.php        → Sequence pull

@@ -27,6 +27,7 @@
       'icon'     => [ 'Icons',             'An icon of {icon} each, an outline on a 24 grid',    'single', ' size=24/}',                                  'icon'    ],
       'fake'     => [ 'Fake kinds',        'A kind of {fake} each, the same for the same seed',  'both',   '/}',                                           'fake'    ],
       'sequence' => [ 'Sequence types',    'A sequence of {sequence} each, its terms a loop',    'both',   " rows=10}{\$%s} {/sequence:%s}",              'sequence' ],
+      'pattern'  => [ 'Patterns',          'A pattern of {pattern} each, seeded SVG art',        'single', ' seed=7/}',                                   'pattern' ],
     ];
 
   }
@@ -250,6 +251,10 @@
       case 'fake':
         return $example ( "Three fake values", 'The same on every request.', "<ul>\n  <li>{fake:$kind/}</li>\n  <li>{fake:$kind/}</li>\n  <li>{fake:$kind/}</li>\n</ul>" );
 
+      case 'pattern':
+        $line = preg_match ( "/^\\s*(\\{pattern '$kind'[^\\n]*\\/\\})\\s*$/m", tagsKindText ( $type, $kind ) [2], $m ) ? $m [1] : "{pattern:$kind seed=7/}";
+        return $example ( "A $kind pattern", 'The example its file gives.', $line );
+
       case 'sequence':
         $parm = tagsKindSequenceParm ( $kind );
         return $example ( 'The first ten terms', $parm ? 'With the parameter the type takes.' : '', "{sequence:$kind$parm rows=10}{\$$kind} {/sequence:$kind}" );
@@ -348,6 +353,7 @@
       'input'    => [ "{input:$kind 'name'/}" ],
       'icon'     => [ "{icon:$kind/}", "{icon '$kind'/}" ],
       'fake'     => [ "{fake:$kind/}", "{fake '$kind'/}" ],
+      'pattern'  => [ "{pattern:$kind .../}", "{pattern '$kind', .../}" ],
       'sequence' => [ "{sequence:$kind}...{/sequence:$kind}", "sequence:$kind(8) in an expression, the eighth term" ] ] [$type];
 
     if ( tagsKindBare ( $type, $kind ) )

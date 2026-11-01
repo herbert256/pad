@@ -701,6 +701,7 @@ Resolve naming conflicts with explicit prefixes:
 | `widget:` | Widget | `{widget:modal 'terms'}...{/widget:modal}`, as `{widget 'modal', 'terms'}` or bare `{modal 'terms'}` - a widget is a file of `pad/subs/widgets/types/` |
 | `barcode:` | Barcode symbology | `{barcode:ean13 '400638133393'/}`, as `{barcode '...', type='ean13'/}` - a symbology is a file of `pad/subs/codes/types/` |
 | `icon:` | Icon | `{icon:star size=20/}`, as `{icon 'star', size=20/}` - an icon is a file of `pad/subs/icons/types/`; never bare |
+| `pattern:` | Pattern | `{pattern:topography seed=7/}`, as `{pattern 'topography', seed=7/}` - a pattern is a file of `pad/subs/patterns/types/`; never bare |
 | `embed:` | Embed provider | `{embed:youtube 'id'/}`, as `{embed 'https://youtu.be/id'/}` - a provider is a file of `pad/subs/embeds/types/` |
 | `fake:` | Fake kind | `{fake:email/}`, as `{fake 'email'/}` - a kind is a file of `pad/subs/fakes/types/`; never bare |
 | `input:` | Rich form field | `{input:slider 'volume'/}`, as bare `{slider 'volume'/}` - a kind is a file of `pad/subs/inputs/types/` |
@@ -803,6 +804,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Syntax highlighting](docs/FEATURES.md#syntax-highlighting) | `{highlight 'php'}`, `{source}` |
 | [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{qr}`, `{barcode type='upce'}`, `{barcode:ean13 '...'/}`, bare `{itf14 '...'/}`, `{datamatrix '...'/}` - a symbology per file of `pad/subs/codes/types/` |
 | [Icons](docs/FEATURES.md#icons) | `{icon 'star'/}`, `{icon:star/}` - an icon per file of `pad/subs/icons/types/` (an SVG each) |
+| [Patterns](docs/FEATURES.md#patterns) | `{pattern 'topography', seed=7/}`, `{pattern:dots as='url'/}`, `padPattern ()` - seeded SVG backgrounds, the same bytes for the same seed, a kind per file of `pad/subs/patterns/types/` |
 | [Showcase tags](docs/FEATURES.md#showcase-tags) | `{avatar}`, `{progress}`, `{rating}`, `{icon}`, `{datatable}`, `{toc}`, `{diagram}`, `{map}`, `{pdf}` ... |
 | [Settings](docs/FEATURES.md#configuration-settings) | every `$pad*` setting - defaults and comments in `pad/config/config.php` |
 | [Designer preview](docs/FEATURES.md#designer-preview-with-sample-data) | `?page&padSample`, `_samples/`, `pad sample` |
@@ -1164,6 +1166,7 @@ the `claude` line of `./ci.sh`.
 | `edit` | Standard | A browser editor for every application, behind a login, this machine only by default - file tree with new, copy, rename, delete, upload and trash; Monaco with PAD colouring, completion, hover, go-to-definition and PAD's own checks, PHP completion; preview, history, search, git, a terminal, an Xdebug step debugger; the framework's own pad/ in the tree too |
 | `games` | Standard | Every game of the games subsystem to play - a card per game, a page per game with the template that plays it, all read from `pad/subs/games/types/` |
 | `toys` | Standard | Every toy of the toys subsystem to play with - a card per toy, a page per toy that runs it beside its template, read from `pad/subs/toys/types/` |
+| `patterns` | Standard | Every pattern of the patterns subsystem - a card per pattern, a page per pattern drawn beside its template with a seed to change by link, its own example and as a background, read from `pad/subs/patterns/types/` |
 | `inputs` | Standard | Every rich form field of `pad/subs/inputs/` to try - a page per kind in a form that posts back with what the page received, one form with them all checked in the browser too |
 | `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |
 | `hello` | Minimal | Hello World example demonstrating page pairing |

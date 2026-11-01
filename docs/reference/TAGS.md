@@ -2841,6 +2841,57 @@ written instead. The colour behind a picture still loading is `--pad-img-placeho
 
 ---
 
+### pattern
+A seeded SVG background or piece of generative art, drawn on the server: every pattern is a
+file of `pad/subs/patterns/types/`, and the files there are the patterns there are
+(`padPatternKinds()`); the subsystem is `pad/subs/patterns/`.
+
+```html
+{pattern 'topography', seed=7, width=960, height=320/}
+{pattern 'dots', size=24, colors='#fdfbf7, #e0c9a6'/}
+{pattern:voronoi seed=3, title='Shards of colour'/}
+<div style="background-image:{pattern 'waves', as='url'/}">...</div>
+```
+
+A pattern is written two ways, the same pattern each time: the tag, `{pattern 'dots'/}`, and the
+pattern: type, `{pattern:dots/}` - never bare, as its names (dots, grid, waves) are those of fields
+and pages. `padPattern ( 'dots', [ 'size' => 24 ] )` draws the same in a page's PHP.
+
+| Pattern | Draws | Its own options |
+|---------|-------|-----------------|
+| `stripes` | Diagonal stripes, a band of each ink | `angle` (45) |
+| `dots` | Polka dots in staggered rows | |
+| `grid` | Graph paper, a bolder line every fifth | |
+| `checks` | A checkerboard | |
+| `hexagons` | A honeycomb, each cell an ink the seed picks | |
+| `triangles` | A low-poly mosaic, the inks running corner to corner | |
+| `waves` | Rows of wavy lines, slanted by the seed | |
+| `chevron` | Bold zigzag bands | |
+| `topography` | Contour lines of a landscape the seed makes up - value noise traced by marching squares | `levels` (12) |
+| `truchet` | Smith's Truchet tiles, quarter circles turned by the seed | |
+| `voronoi` | A Voronoi diagram of scattered points | |
+| `circles` | Circle packing, the large circles first | |
+| `isometric` | Tumbling blocks, three shades of a cube | |
+| `blobs` | Soft organic shapes | |
+| `grain` | Film grain - the browser's feTurbulence, seeded | |
+| `mesh` | A soft mesh gradient of glowing inks | |
+
+**Every pattern:** `seed=` - a number or a word, 1 when left out - makes the picture: the same
+seed the same bytes on every request and every machine (PAD's own sequence, the one of
+`padFake`, put back afterwards, and every number written to a fixed precision); a tile repeated
+does not change with it. `colors=` is a list, the background first and the inks after it - hex, a
+name, `rgb()`, `hsl()` and their like, `none` for no background. `size=` is the motif's size in
+pixels, each kind with its own default and bounds; `width=` (480) and `height=` (240) the picture's,
+which covers its box (`preserveAspectRatio="xMidYMid slice"`); `opacity=` how strongly the motif
+shows (1). `as='url'` writes `url('data:image/svg+xml,...')` for a style attribute - quotes and the
+characters a URL or HTML would read escaped. A pattern is decoration, `aria-hidden`, unless
+`title=` names it: then it is `role="img"` with a `<title>`. Its ids are its own on the page. An
+unknown pattern, a colour that is none, a number outside its bounds, an `as` other than `svg` or
+`url`, an option the kind does not take and content between its tags are errors under the strict
+check.
+
+---
+
 ### video
 A YouTube or Vimeo video as its poster with a play button; the player's iframe is loaded
 only when the button is pressed (`subs/embeds/_lib/video.php`) - nothing of the video site runs before the
@@ -3997,6 +4048,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `chess` | Output | A chess position from FEN as inline SVG - pieces, coordinates, marked squares, arrows |
 | `game` | Output | A little game played in the browser - 18 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
 | `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
+| `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |

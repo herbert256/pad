@@ -21,6 +21,7 @@ This directory contains PAD applications and examples.
 | [edit](edit/README.md) | Standard | A browser editor for every application, behind a login - file management, PAD and PHP colouring, completion and checks, preview, history, a terminal, a step debugger |
 | [games](games/README.md) | Standard | Every game of the games subsystem to play - a card per game, a page per game with the template that plays it, read from `pad/subs/games/types/` |
 | [toys](toys/README.md) | Standard | Every toy of the toys subsystem to play with - a card per toy, a page per toy with the template that shows it, read from `pad/subs/toys/types/` |
+| [patterns](patterns/README.md) | Standard | Every pattern of the patterns subsystem - a card per pattern, a page per pattern beside its template with a seed to change by link, read from `pad/subs/patterns/types/` |
 | [examples](examples/README.md) | Standard | Search the harvested examples and view one with its sources beside the rendered result |
 | [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |
 | [inputs](inputs/README.md) | Standard | Every rich form field of the inputs subsystem to try - a card per kind, a page per kind in a form that posts back with what the page received, one form with them all checked in the browser too, read from `pad/subs/inputs/types/` |

@@ -87,6 +87,8 @@
                       "{icon:star size=24/}\n{icon 'star', size=24/}" ],
       'fake'     => [ 'A fake kind, a file of pad/subs/fakes/types/ - the same values for the same seed, never bare.', 'subsystems',
                       "{fake:email/}\n{fake 'email'/}\n{fake 'name, email', rows=3}...{/fake}" ],
+      'pattern'  => [ 'A pattern, a file of pad/subs/patterns/types/ - a seeded SVG background, never bare.', 'subsystems',
+                      "{pattern:topography seed=7/}\n{pattern 'topography', seed=7/}" ],
 
     ];
 
