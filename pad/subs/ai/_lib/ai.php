@@ -91,7 +91,12 @@
 
     if ( $text === '' ) {
 
-      $said = trim ( (string) ( ( $kind ['error'] ) ( $answer, $status ) ) );
+      // What the provider said, as text - a server behind url= may answer a message that is a
+      // list or an object (a validation error's location and text): its JSON then.
+
+      $said = ( $kind ['error'] ) ( $answer, $status );
+      $said = is_scalar ( $said ) ? trim ( (string) $said )
+                                  : ( $said === NULL ? '' : (string) json_encode ( $said, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR ) );
 
       if ( $said === '' )
         $said = isset ( $out ['ERROR'] ) ? 'no answer' : ( ( $status >= 200 and $status <= 299 ) ? 'an answer without text' : "HTTP $status" );
