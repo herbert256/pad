@@ -1397,6 +1397,7 @@ with `client` the browser draws the same SVG from the rows the server hands it.
 {chart 'multiples', data='climate', by='city', label='month', value='temperature'/}
 {chart 'candlestick', data='share', label='day', volume='volume'/}
 {chart 'dual', data='results', label='month', value='revenue', line='margin'/}
+{chart 'dumbbell', data='scores', label='team', from='before', to='after', names='2025, 2026', ranked/}
 {chart 'spiral', data='sales', label='month', value='amount', turn='year'/}
 {chart 'rose', data='deaths', label='month', value='disease, wounds, other'/}
 {chart 'radialbar', data='funds', label='class', value='raised', to=5000/}
@@ -1452,6 +1453,7 @@ pages that draw it.
 | `multiples` | Small multiples: a small line over a wash per group of `by`, all on one scale that takes in zero and the same x positions, in a grid of `columns` (default: the count that gives the best panel shape); the ticks left of the first column, the first and last label under the bottom row | `by`, `label`, `value`, `columns` |
 | `candlestick` | A candle per row (`label` the day): the body from `open` to `close`, the wick from `low` to `high` - green when it closed at or above its open, red when lower; `volume` adds light bars in the lower fifth on a scale of their own; the price axis needs no zero | `label`, `open`, `high`, `low`, `close`, `volume` |
 | `dual` | Two measures on two axes: `value` as bars on the left axis, `line` as a line with ringed points on the right one, each axis's ticks in its series' colour and the right ticks on the left's grid lines when their zeros can line up; a legend names both | `label`, `value`, `line` |
+| `dumbbell` | Two values per row joined by a line: a row per category (`label`), a dot at `from` in the first colour and one at `to` in the second, a legend naming the two ends - `names` (`'2025, 2026'`), else the fields; all rows on one horizontal scale of round numbers, no zero needed - a dot is read by its place - and the zero line drawn stronger when zero lies inside, so negative values read as any other; `ranked` orders the rows by their change, the largest rise first; a row with one end draws that dot alone, a row with neither is left out; the `<desc>` and the line's tooltip say both values and the signed change (+3, -2). A `from` or `to` that no row has is an error | `label`, `from`, `to`, `names`, `ranked` |
 | `spiral` | A long series wound clockwise from twelve o'clock along an Archimedean spiral, `period` rows (12) to a turn; each row a segment of the band in seven steps of one hue, the scale below; the `label`s of the first turn around the outside, `turn` names each turn where it begins | `label`, `value`, `period`, `turn` |
 | `rose` | Nightingale's polar area chart: a wedge per row of one angle, the first centred on twelve o'clock, its area its value (radius by the square root); several `value` fields lie outward as rings, a colour each with a legend; names around the circle, rings of round numbers | `label`, `value` |
 | `radialbar` | A ring per row, the first outside, an arc from twelve o'clock over three quarters of the circle as far as its value against `to` - else round numbers past the highest value - on a light track of its colour; the name at the start of the track, the value at the end of the arc | `label`, `value`, `to` |
@@ -4772,7 +4774,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `tidy` | Output | Format HTML |
 | `spaceless` | Output | Remove whitespace between HTML tags |
 | `markdown` | Output | Markdown written as HTML, raw HTML escaped |
-| `chart` | Output | A chart as inline SVG - 45 kinds, the files of `pad/subs/charts/types/`, from bar and line to candlestick, chord and org chart |
+| `chart` | Output | A chart as inline SVG - 46 kinds, the files of `pad/subs/charts/types/`, from bar and line to candlestick, chord and org chart |
 | `sparkline` | Output | Word-sized line chart as inline SVG |
 | `qr` | Output | QR code as inline SVG |
 | `barcode` | Output | EAN-13, EAN-8, UPC-A or Code 128 barcode as inline SVG |

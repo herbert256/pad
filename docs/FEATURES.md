@@ -950,6 +950,7 @@ query and the ranking, `_lib/snowball.php` the stemmers' runtime, `types/` the l
 {chart 'funnel', data='shop', label='step', value='visitors'/}       # pyramid: one field a triangle, two back to back
 {chart 'waffle', data='energy', cells=100/}                          # also marimekko, parliament, venn (sets=), rose, radialbar
 {chart 'bullet', data='kpis', value='actual', target='goal', bands='50, 75'/}   # also rings, proportional
+{chart 'dumbbell', data='scores', label='team', from='before', to='after', ranked/}  # two dots a row joined; names='2025, 2026'
 {chart 'violin', data='scores', label='class', value='score'/}       # also density, parallel (value= the axes), spiral (period=)
 {chart 'chord', data='migration', source='from', target='to', value='people'/}  # also arc
 {chart 'orgchart', data='staff', id='id', parent='boss', label='name', sub='role'/}  # pack: the treemap's options

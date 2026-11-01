@@ -44,6 +44,7 @@
   }
 
   $exampleCount = count ( $flat );
+  $kindCount    = count ( padChartTypes () );
   $title        = $isExample ? $exampleTitle : 'Every chart, drawn on the server';
 
   if ( $isExample ) {

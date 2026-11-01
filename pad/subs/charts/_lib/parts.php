@@ -81,6 +81,20 @@
 
   }
 
+  // Whether a field is one of some row's, with a value or without one: a field option that
+  // names a field no row has is misspelt, where a row without a value in it has one left out
+  // (dumbbell, errorbar).
+
+  function padChartFieldSomewhere ( $rows, $field ) {
+
+    foreach ( (array) $rows as $row )
+      if ( array_key_exists ( $field, padChartRow ( $row ) ) )
+        return TRUE;
+
+    return FALSE;
+
+  }
+
   // A field of a row as text: a scalar, a date object of the page's PHP as its moment with
   // its offset - its event was left out without a word - else ''.
 

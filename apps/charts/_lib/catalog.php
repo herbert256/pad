@@ -28,7 +28,8 @@
         'bars/profit'    => [ 'Profit and loss',          'Negative values hang below the baseline.' ],
         'bars/languages' => [ 'The most spoken languages', 'hbar lays the bars down - the data XML, between the tags.' ],
         'bars/survey'    => [ 'A survey, answer by answer', 'Horizontal and stacked: every answer a part of the bar.' ],
-        'bars/waterfall' => [ 'From revenue to profit',   'waterfall: each step floats from where the one before ended.' ] ] ],
+        'bars/waterfall' => [ 'From revenue to profit',   'waterfall: each step floats from where the one before ended.' ],
+        'bars/promoters' => [ 'Net promoter score, a year apart', 'dumbbell: two dots per product joined by a line, ranked from the largest rise down.' ] ] ],
 
       'funnel' => [ 'Funnel & pyramid', 'Steps that narrow', [
         'funnel/shop'       => [ 'A web shop funnel',    'From visit to payment - the share of the first step and of the step before.' ],

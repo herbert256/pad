@@ -836,6 +836,15 @@
     return field;
   };
 
+  // padChartFieldSomewhere: whether a field is one of some row's, with a value or without one.
+
+  C.padChartFieldSomewhere = function (rows, field) {
+    var key = C.key(field);
+    return C.values(rows).some(function (row) {
+      return C.keys(C.padChartRow(row)).some(function (k) { return k === key; });
+    });
+  };
+
   C.padChartText = function (row, field) {
     var value = (field !== '') ? C.get(row, field, '') : '';
     return C.isScalar(value) ? C.str(value) : '';
@@ -991,6 +1000,7 @@
     column:       function () { return C.padChartPlain('bar', C.padChartGather(), ...C.padChartSize(600, 300)); },
     density:      function () { return C.padChartDensity('density', C.padChartGather(), ...C.padChartSize(600, 300)); },
     donut:        function () { return C.padChartPlain('donut', C.padChartGather(), ...C.padChartSize(480, 280)); },
+    dumbbell:     function () { return C.padChartDumbbell(C.padChartGather(), ...C.padChartSize(600, 300)); },
     dual:         function () { return C.padChartDual(C.padChartGather(), ...C.padChartSize(600, 300)); },
     funnel:       function () { return C.padChartFunnel('funnel', C.padChartGather(), ...C.padChartSize(600, 300)); },
     gantt:        function () { return C.padChartGantt(C.padChartGather(), ...C.padChartSize(600, 300)); },
