@@ -1738,7 +1738,8 @@ marching squares), truchet, voronoi, circles (circle packing), isometric (tumbli
 grain (the browser's feTurbulence), mesh (a soft gradient), herringbone (parquet blocks),
 brick (a wall in any bond, mottled by the seed),
 scales (fish scales or the waves of seigaiha),
-and houndstooth (the woven broken check).
+houndstooth (the woven broken check),
+and tartan (a sett the seed makes up).
 Every pattern takes `seed=`,
 `colors=` (a list, the background first), `size=` (the motif in pixels), `width=` and `height=`
 (480 by 240; the SVG covers its box), `opacity=`, `title=` and `as='url'`, and its own besides: stripes `angle=`,
