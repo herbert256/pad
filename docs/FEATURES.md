@@ -1743,7 +1743,8 @@ tartan (a sett the seed makes up),
 guilloche (engraved waves interlacing),
 flowfield (evenly spaced streamlines),
 maze (a perfect maze),
-and terrazzo (stone chips).
+terrazzo (stone chips),
+and constellation (stars joined by lines).
 Every pattern takes `seed=`,
 `colors=` (a list, the background first), `size=` (the motif in pixels), `width=` and `height=`
 (480 by 240; the SVG covers its box), `opacity=`, `title=` and `as='url'`, and its own besides: stripes `angle=`,

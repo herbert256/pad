@@ -3302,6 +3302,7 @@ and pages. `padPattern ( 'dots', [ 'size' => 24 ] )` draws the same in a page's 
 | `flowfield` | Evenly spaced streamlines of a current the seed makes up | |
 | `maze` | A perfect maze dug by the recursive backtracker, entered top left and left bottom right | |
 | `terrazzo` | Chips of stone in the seed's inks, large ones first, none touching | |
+| `constellation` | Scattered stars, each joined to the stars near it by lines fainter with distance | |
 
 **Every pattern:** `seed=` - a number or a word, 1 when left out - makes the picture: the same
 seed the same bytes on every request and every machine (PAD's own sequence, the one of
@@ -3319,7 +3320,8 @@ hexagons, truchet, chevron and waves 50,000 at most, voronoi 10,000 cells,
 guilloche 2,000 lines,
 flowfield 20,000 squares of its size,
 maze 40,000 squares,
-terrazzo 5,000 squares of its size - and topography (its
+terrazzo 5,000 squares of its size,
+constellation 10,000 stars - and topography (its
 grid times its levels, 1,500,000 at most) have a budget for the size, the picture and the levels
 together: past it the pattern is not drawn. An unknown pattern, a colour that is none, a number
 outside its bounds, an `as` other than `svg` or `url`, an option the kind does not take, content
