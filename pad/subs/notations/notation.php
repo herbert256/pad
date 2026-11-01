@@ -46,6 +46,14 @@
 
   $padNotationText = $padNotationGiven ? padParmText ( (string) $padParm ) : padChartDedent ( $padNotationSource );
 
+  // A byte that is no UTF-8 - a visitor's request value, a page saved in Latin-1 - is the
+  // replacement character U+FFFD, which no notation has a sign for: named under the strict
+  // check, left out of the drawing without it. The kinds split their text as UTF-8, and a
+  // split of a text that is none answered FALSE - a TypeError of count() in braille, a
+  // foreach() warning in morse, semaphore and signals.
+
+  $padNotationText = padNotationScrub ( $padNotationText );
+
   if ( padFileExists ( PAD . "subs/notations/_lib/$padNotationKind.php" ) )
     include_once PAD . "subs/notations/_lib/$padNotationKind.php";
 

@@ -26,6 +26,7 @@
   // padNotationAttr    a text escaped for an attribute or an element's content
   // padNotationId      a deterministic id of a drawing on the page
   // padNotationStyle   the style of a kind, once per page, with its colours
+  // padNotationScrub   a text as valid UTF-8, a byte that is none U+FFFD
   // padNotationNum     a number as an SVG coordinate: at most two decimals, no trailing zeros
 
   function padNotationTypes () {
@@ -169,6 +170,25 @@
   function padNotationWrap ( $html ) {
 
     return ( $html === '' ) ? '' : "<pad-notation>$html</pad-notation>";
+
+  }
+
+  // A text as valid UTF-8: every byte that is none the replacement character U+FFFD.
+
+  function padNotationScrub ( $text ) {
+
+    if ( mb_check_encoding ( $text, 'UTF-8' ) )
+      return $text;
+
+    $keep = mb_substitute_character ();
+
+    mb_substitute_character ( 0xFFFD );
+
+    $text = mb_scrub ( $text, 'UTF-8' );
+
+    mb_substitute_character ( $keep );
+
+    return $text;
 
   }
 
