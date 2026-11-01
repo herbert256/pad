@@ -3860,9 +3860,12 @@ A slot of a part the section has not is an error under the strict check.
 **Items.** A section that lists things takes its items from the rows `data=` names - a store, the
 page's array, a field holding a list, a `_data` file - by their fields, a row's other fields left
 alone; then from `{section:item}` pairs or single tags inside it, a loop's too: the item's first
-value fills its first field, its options the others, its content the content field. An option
-the section has no field for is reported, and so is an item outside a list section, a list
-section without items, and items in a section that lists nothing.
+value fills its first field, its options the others, its content the content field. The
+handling options - `sort=`, `first=`, `where=` ... - work on the rows of `data=`, as on any data
+tag's. A list section whose `data=` finds no rows and that writes no items of its own is a miss:
+its `@else@` shows, and a single tag writes nothing. An option the section has no field for is
+reported, and so is an item outside a list section, a list section given neither `data=` nor
+items, and items in a section that lists nothing.
 
 **Forms.** The newsletter and the contact form post back to the page as `{form 'newsletter'}`
 does: the session's CSRF token when they post here, the hidden `padForm` field with their name.
@@ -3892,7 +3895,7 @@ theme sets them on `.pad-section`.
 | `second`, `secondLink` | hero, cta | A quieter second button |
 | `image`, `alt` | hero | A picture beside the words - a slot `image` of markup in its place |
 | `note` | hero, cta, pricing, newsletter, footer | The small print |
-| `data` | the list sections | The items from rows |
+| `data` | the list sections | The items from rows - the handling options on them; none is a miss, `@else@` shows |
 | `columns` | features, pricing, testimonials, stats, steps, team, gallery | The cards side by side at the widest, 1 to 6 |
 | `open`, `single` | faq | The question open at first by its number, bare every one; one open at a time |
 | `form`, `thanks` | newsletter, contact | The form's name (`newsletter`; contact: bare for a message form, or its name); the thanks |

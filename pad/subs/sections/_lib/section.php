@@ -111,14 +111,15 @@
   // taken out of the content and put back between markers, so they render with the rest.
   // $content is the level's content, the template between the tags.
 
-  function padSectionOpen ( $kind, &$content, $pair ) {
+  function padSectionOpen ( $kind, &$content, $pair, $rows ) {
 
     global $pad, $padLevelId;
 
     static $opened = 0;
 
     $store = &padSectionStore ();
-    $state = [ 'kind' => $kind, 'rows' => padSectionRows ( $kind ), 'items' => [], 'fills' => [], 'seal' => '' ];
+    $state = [ 'kind' => $kind, 'rows' => $rows, 'items' => [], 'fills' => [], 'seal' => '',
+               'written' => $pair and padSectionWritesItems ( $content ) ];
 
     if ( $pair and is_string ( $content ) ) {
 
@@ -189,6 +190,39 @@
 
   }
 
+  // Whether the template between a section's tags writes items - a {section:item} or a
+  // {section 'item'}, in a loop or not - whatever they render to.
+
+  function padSectionWritesItems ( $content ) {
+
+    return is_string ( $content ) and preg_match ( '/\{~?\s*section(?:\s*:\s*item\b|\s+[\'"]item[\'"])/i', $content );
+
+  }
+
+  // Whether a kind lists items - its file reads them (padSectionItems).
+
+  function padSectionLists ( $kind ) {
+
+    return str_contains ( (string) padFileGet ( PAD . "subs/sections/types/$kind.php" ), 'padSectionItems (' );
+
+  }
+
+  // Whether the section has a handling option - sort=, first=, where= ... - which works on
+  // the rows of data= (section.php), as on any data tag's.
+
+  function padSectionHandles () {
+
+    global $pad, $padParms;
+
+    foreach ( $padParms [$pad] ?? [] as $one )
+      if ( $one ['padPrmKind'] == 'option' and is_string ( $one ['padPrmName'] ) and padFileExists ( PAD . "handling/types/{$one ['padPrmName']}.php" )
+           and ! in_array ( $one ['padPrmName'], [ 'negative', 'orderly', 'duplicates', 'atLeastOnce', 'left', 'right', 'both', 'sum', 'avg', 'min', 'max' ] ) )
+        return TRUE;
+
+    return FALSE;
+
+  }
+
   // The section a {section:item} belongs to: the level of the nearest section below it, or
   // FALSE outside one.
 
@@ -249,7 +283,7 @@
 
     $store = &padSectionStore ();
     $key   = $padLevelId [$pad] ?? 0;
-    $state = $store [$key] ?? [ 'kind' => $kind, 'rows' => NULL, 'items' => [], 'fills' => [], 'seal' => '' ];
+    $state = $store [$key] ?? [ 'kind' => $kind, 'rows' => NULL, 'items' => [], 'fills' => [], 'seal' => '', 'written' => FALSE ];
 
     unset ( $store [$key] );
 
@@ -257,7 +291,7 @@
 
     $before        = $padSectionNow ?? NULL;
     $padSectionNow = [ 'kind'  => $kind,  'fills' => $fills, 'body'  => $body, 'rows' => $state ['rows'],
-                       'items' => $state ['items'], 'parts' => NULL, 'held' => [], 'listed' => FALSE ];
+                       'items' => $state ['items'], 'written' => $state ['written'], 'parts' => NULL, 'held' => [], 'listed' => FALSE ];
 
     $html = padSectionKind ( $kind );
 
@@ -680,7 +714,11 @@
 
     }
 
-    if ( ! $items and $padCheckSyntax )
+    // A section that has no items because its data= found no rows, or the items written
+    // between its tags rendered none, is built without its list; one given neither is a
+    // mistake of the template.
+
+    if ( ! $items and $padCheckSyntax and $padSectionNow ['rows'] === NULL and ! ( $padSectionNow ['written'] ?? FALSE ) )
       padError ( "the " . padSectionWhat () . " has no $what - data='rows' or {section:item} pairs between its tags" );
 
     return $items;

@@ -1,0 +1,5 @@
+{data 'rows'}[{"title":"B one","text":"x"},{"title":"A two","text":"y"},{"title":"C three","text":"z"}]{/data}
+{section:steps data='rows', first=2 | php:preg_replace('#^.*?<ol[^>]*>|</ol>.*$|<p class="ps-item-text">[^<]*</p>|<li class="ps-step"><h3 class="ps-item-title">#s', '', @) | php:str_replace('</h3></li>', ';', @)/}
+{section:steps data='rows', sort='title', first=2 | php:preg_replace('#^.*?<ol[^>]*>|</ol>.*$|<p class="ps-item-text">[^<]*</p>|<li class="ps-step"><h3 class="ps-item-title">#s', '', @) | php:str_replace('</h3></li>', ';', @)/}
+{section:steps data='rows', where="$title ne 'A two'" | php:preg_replace('#^.*?<ol[^>]*>|</ol>.*$|<p class="ps-item-text">[^<]*</p>|<li class="ps-step"><h3 class="ps-item-title">#s', '', @) | php:str_replace('</h3></li>', ';', @)/}
+{section:faq data='rows', where="$title eq 'none'"}@else@no row passed{/section:faq}

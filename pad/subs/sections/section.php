@@ -59,7 +59,34 @@
     if ( $padInfoXref ?? FALSE )
       padInfoXref ( 'section', $padSectionKind );
 
-    padSectionOpen ( $padSectionKind, $padContent, $padPair [$pad] );
+    // The rows data= names, NULL without it. The handling options - sort=, first=, where= ...
+    // - work on them, as on any data tag's rows, where they ran after the tag on its one
+    // default occurrence: first= was passed over, and a sort= or a where= stopped the page on
+    // a field no row had. They run here, so the level does not run them again.
+
+    $padSectionRows = padSectionRows ( $padSectionKind );
+
+    if ( $padSectionRows !== NULL and padSectionHandles () ) {
+      $padData [$pad] = padData ( $padSectionRows );
+      include PAD . 'handling/handling.php';
+      $padSectionRows     = $padElse [$pad] ? [] : $padData [$pad];
+      $padData [$pad]     = padDefaultData ();
+      $padHandDone [$pad] = TRUE;
+    }
+
+    // A list section whose data= found no rows - a query that found none, a where= that let
+    // none through - and that writes no items of its own is a miss, so its @else@ shows, as a
+    // chart without points does: it stopped the page under the strict check, which is for a
+    // template that gives no items at all. Its options are read: a miss uses none of them.
+
+    if ( $padSectionRows !== NULL and ! count ( $padSectionRows ) and padSectionLists ( $padSectionKind )
+         and ! ( $padPair [$pad] and padSectionWritesItems ( $padContent ) ) ) {
+      foreach ( array_keys ( $padPrm [$pad] ?? [] ) as $padSectionParm )
+        padDone ( $padSectionParm );
+      return FALSE;
+    }
+
+    padSectionOpen ( $padSectionKind, $padContent, $padPair [$pad], $padSectionRows );
 
     if ( $padPair [$pad] ) {
       $padWalk [$pad] = 'end';

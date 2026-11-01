@@ -1386,8 +1386,10 @@ and for the text under the heading the rest of the content. A list section takes
 the rows `data=` names (a store, the page's array, a `_data` file) and from `{section:item}`
 pairs inside it, also ones a loop makes: the item's first value is its name - a plan, a
 question, a person - its options its fields and its content its text, a plan's features a line
-each; an option the section has no field for, a slot of a part it has not and an item outside a
-list section are reported under the strict check. The newsletter and the contact form post back
+each. The handling options - `sort=`, `first=`, `where=` - work on the rows of `data=`, and a list
+section whose `data=` finds none, with no items of its own, is a miss - its `@else@` shows; an
+option the section has no field for, a slot of a part it has not, an item outside a list
+section and a list section given neither `data=` nor items are reported under the strict check. The newsletter and the contact form post back
 as `{form 'newsletter'}` does - the session's token and the form's name - so the page's PHP asks
 `padPosted ( 'newsletter' )` and checks the post with `padValidate`; the fields refill and show
 the messages, and once the post came back right the section says `thanks=` in the form's place.
