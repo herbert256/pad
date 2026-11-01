@@ -1538,6 +1538,7 @@ A month as a calendar, with its events (`tags/_lib/calendar.php`).
 | `link` | A field with a link for the event - http(s), a page or an anchor; never `javascript:` or `data:` |
 | `query` | The request value the links to the months around set, default `month` |
 | `sunday` | Weeks start on Sunday instead of Monday |
+| `holidays` | A country's public holidays marked - `'nl'`, or with its region `'de-by'` (see `{holidays}`): the day's class gets `holiday` (`observance` for a day that is no day off) and its name stands under the number - the local name when the request's locale speaks the country's language; the pair form's days get `$holiday`, the name or `''` |
 
 **Behavior:** as a single tag it answers a table - the month in its caption between links to
 the month before and after (keeping the other request values, as `{pager}` does; none when the
@@ -1549,6 +1550,36 @@ every day is a row too: `$date`, `$day`, `$weekday`, `$month`, `$other` (outside
 month), `$today`, `$weekend`, `$count`, `$class` (`other today weekend events`, as they
 apply) and `events`, the data rows of that date. A store named `events` hides the day's
 field of that name - `{level:events}` reaches it then.
+
+---
+
+### holidays
+The public holidays of a country, from the rules of its file in `pad/subs/holidays/types/`.
+
+```html
+{holidays 'nl', year=2026}{$date} {$name} ({$local}){/holidays}
+{holidays 'de-by', year=2026/}                             <!-- a table -->
+{holidays 'gb-sct', from='today', to='+6 months', where='$type eq "public"'}...{/holidays}
+```
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The country, its ISO 3166-1 alpha-2 code in any case - at, be, ca, ch, de, dk, es, fr, gb, ie, it, lu, nl, no, pl, se, us - with a region after it as ISO 3166-2 writes it, `'de-by'` |
+| `region` | The region apart: `{holidays 'de', region='by'}` - Germany's states, the United Kingdom's nations (`sct`, `nir`; `eng` and `wls` are the default), France's `57`, `67`, `68`, `971`-`976` |
+| `year` | The year, 1583 to 9999 - default this year (`padNow`) |
+| `from`, `to` | The days between two dates instead of a year - any date `padDateParse` reads, `today`, `+3 months`; one alone is a year from it (or from today) |
+| `lang` | The language of `local` for a country of more than one - be `nl fr de`, lu `lb fr de`, ch `de fr it`, ca `en fr`; the first by default |
+
+**Behavior:** as a pair it hands over the rows, sorted by date: `$date` (YYYY-MM-DD), `$name`
+(English), `$local`, `$type` (`public`, a day off; `observance`, a national day that is none),
+`$region` (the region of a regional holiday, else `''`) and `$substitute` (TRUE for the day
+that makes up for one on a weekend - the United Kingdom's next free weekday, the United
+States' Friday before or Monday after); the handling options work on them, an empty year is
+the `@else@`. As a single tag it answers a table: the date in the request's locale, the
+English name with the local one beside it, an observance marked "(no day off)". A country
+without a file, a region it has not, a year out of range or a `lang` it has no names in is an
+error under the strict check. The helpers `padHolidays`, `padIsHoliday`, `padWorkdays` and
+`padAddWorkdays` give the same to a page's PHP.
 
 ---
 
@@ -4144,6 +4175,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `qr` | Output | QR code as inline SVG |
 | `barcode` | Output | EAN-13, EAN-8, UPC-A or Code 128 barcode as inline SVG |
 | `calendar` | Output | A month as a table with its events, or its weeks and days as rows |
+| `holidays` | Output | The public holidays of a country as rows or a table |
 | `highlight` | Output | Source code coloured on the server - nine languages |
 | `ignore` | Output | Escape content |
 | `reactData` | Output | React mount point with provider data |

@@ -10,6 +10,7 @@
   //                    own: date, day, weekday, month, other, today, weekend, count, events
   //                    and class; the events are the data rows of that date
   // padCalendarHtml    those weeks as a table with the month and its neighbours above
+  // padCalendarHolidays the public holidays of holidays= around the month, by date
   //
   // The month is the first parameter, else the request value named by query= (month), else
   // the month of today - padNow, so padNowFreeze holds it still. A week starts on Monday,
@@ -20,7 +21,7 @@
 
   include_once PAD . 'subs/charts/_lib/chart.php';
 
-  function padCalendarWeeks ( $month, $rows, $dField, $sunday ) {
+  function padCalendarWeeks ( $month, $rows, $dField, $sunday, $holidays = [] ) {
 
     $utc    = new DateTimeZone ( 'UTC' );
     $first  = new DateTimeImmutable ( "$month-01", $utc );
@@ -48,7 +49,9 @@
       $other   = $day->format ( 'Y-m' ) != $month;
       $weekend = $day->format ( 'N' ) >= 6;
       $list    = $events [$date] ?? [];
-      $class   = trim ( ( $other ? ' other' : '' ) . ( $date == $today ? ' today' : '' ) . ( $weekend ? ' weekend' : '' ) . ( $list ? ' events' : '' ) );
+      $holiday = $holidays [$date] ?? NULL;
+      $class   = trim ( ( $other ? ' other' : '' ) . ( $date == $today ? ' today' : '' ) . ( $weekend ? ' weekend' : '' ) . ( $list ? ' events' : '' )
+                        . ( $holiday ? ' ' . $holiday ['class'] : '' ) );
 
       $weeks [ count ( $weeks ) - 1 ] ['days'] [] = [
         'date'    => $date,
@@ -60,6 +63,7 @@
         'weekend' => $weekend,
         'count'   => count ( $list ),
         'events'  => $list,
+        'holiday' => $holiday ['name'] ?? '',
         'class'   => $class
       ];
 
@@ -119,7 +123,13 @@
     $prev    = $first->modify ( '-1 month' )->format ( 'Y-m' );
     $next    = $first->modify ( '+1 month' )->format ( 'Y-m' );
 
-    $html = padCalendarStyle () . '<table class="pad-calendar">'
+    $marks = FALSE;
+
+    foreach ( $weeks as $week )
+      foreach ( $week ['days'] as $day )
+        $marks = $marks || ( $day ['holiday'] ?? '' ) !== '';
+
+    $html = padCalendarStyle () . ( $marks ? padCalendarHolidayStyle () : '' ) . '<table class="pad-calendar">'
           . '<caption>'
           . ( ( $links and padCalendarMonth ( $prev ) !== NULL ) ? '<a class="pad-calendar-prev" href="' . $h ( padPagerHref ( $query, $prev ) ) . '" rel="prev" aria-label="' . $h ( $catalog ['calendar.previous'] ?? 'Previous month' ) . '">‹</a> ' : '' )
           . '<span>' . $h ( padCalendarWord ( $first, 'LLLL uuuu', 'F Y' ) ) . '</span>'
@@ -138,7 +148,8 @@
       foreach ( $week ['days'] as $day ) {
 
         $html .= '<td' . ( $day ['class'] !== '' ? ' class="' . $h ( $day ['class'] ) . '"' : '' ) . ( $day ['today'] ? ' aria-current="date"' : '' ) . '>'
-               . '<time datetime="' . $day ['date'] . '">' . $day ['day'] . '</time>';
+               . '<time datetime="' . $day ['date'] . '">' . $day ['day'] . '</time>'
+               . ( ( $day ['holiday'] ?? '' ) !== '' ? '<small class="pad-calendar-holiday">' . $h ( $day ['holiday'] ) . '</small>' : '' );
 
         if ( $day ['events'] ) {
           $html .= '<ul>';
@@ -159,6 +170,67 @@
     }
 
     return "$html</tbody></table>";
+
+  }
+
+  // The holidays of holidays= - 'nl', 'de-by' - on the days a grid of the month shows, the
+  // week before and after it too, as [ date => [ name, class ] ]: the names of a day of two
+  // holidays joined, class holiday when one of them is a public holiday, else observance.
+  // The name is the local one when the request's locale is in a language of the country
+  // (padLocale nl_NL and the Netherlands: Koningsdag), else the English one. A country
+  // without a file, or a region it does not have, is an error under the strict check.
+
+  function padCalendarHolidays ( $place, $month ) {
+
+    if ( trim ( $place ) === '' )
+      return [];
+
+    include_once PAD . 'subs/holidays/_lib/holidays.php';
+
+    $where = padHolidaysPlace ( $place );
+
+    if ( is_string ( $where ) ) {
+      if ( $GLOBALS ['padCheckSyntax'] )
+        padError ( "the calendar's holidays= - $where" );
+      return [];
+    }
+
+    [ $y, $m ] = array_map ( 'intval', explode ( '-', $month ) );
+
+    $lang  = strtolower ( substr ( padLocaleOf ( '' ), 0, 2 ) );
+    $local = in_array ( $lang, padHolidaysCountry ( $where [0] ) ['langs'], TRUE );
+    $days  = [];
+
+    $from = max ( padHolidaysDay ( padHolidaysFirst, 1, 1 ), padHolidaysDay ( $y, $m, 1 ) - 7 );
+    $to   = min ( padHolidaysDay ( padHolidaysLast, 12, 31 ), padHolidaysDay ( $y, $m + 1, 1 ) + 6 );
+
+    foreach ( padHolidaysRange ( $where [0], $where [1], $from, $to, $lang ) as $row ) {
+      $day   = $days [ $row ['date'] ] ?? [ 'names' => [], 'class' => 'observance' ];
+      $day ['names'] [] = $local ? $row ['local'] : $row ['name'];
+      if ( $row ['type'] == 'public' )
+        $day ['class'] = 'holiday';
+      $days [ $row ['date'] ] = $day;
+    }
+
+    foreach ( $days as $date => $day )
+      $days [$date] = [ 'name' => implode ( ', ', $day ['names'] ), 'class' => $day ['class'] ];
+
+    return $days;
+
+  }
+
+  // The look of the holidays, once per page and only on a page whose calendar marks them:
+  // the calendar's own style stays as it was for every other.
+
+  function padCalendarHolidayStyle () {
+
+    if ( ! padWidgetOnce ( 'style:calendar-holidays' ) )
+      return '';
+
+    return '<style' . padStyleNonce () . '>'
+         . ':where(.pad-calendar td.holiday){background:rgba(214,90,42,.09)}'
+         . ':where(.pad-calendar .pad-calendar-holiday){display:block;font-size:11px;line-height:1.25;opacity:.75;overflow:hidden;text-overflow:ellipsis}'
+         . '</style>';
 
   }
 

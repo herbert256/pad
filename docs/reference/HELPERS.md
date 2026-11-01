@@ -34,6 +34,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Maintenance and assets](#maintenance-and-assets) | `padMaintenanceDown`, `padAsset`, ... | - |
 | [OAuth, notifications and language models](#oauth-notifications-and-language-models) | `padOAuthStart`, `padOAuthUser`, `padNotify`, `padWebPushKeys`, `padAi`, ... | social_login, notifications, language_models |
 | [Patterns](#patterns) | `padPattern`, `padPatternKinds` | - |
+| [Public holidays](#public-holidays) | `padHolidays`, `padIsHoliday`, `padWorkdays`, `padAddWorkdays` | holidays |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1040,6 +1041,22 @@ naming the variable to set.
 |----------|---------|
 | `padPattern ( $kind, $options = [] )` | The SVG of a pattern - `padPattern ( 'topography', [ 'seed' => 7, 'width' => 960 ] )` - or with `'as' => 'url'` its CSS `url('data:image/svg+xml,...')`: the bytes `{pattern}` writes for the same options. The options are those of the tag (seed, colors as a list or a text, size, width, height, opacity, as, title and the kind's own); an unknown kind answers `''`, a wrong option is reported with `padError` and drawn as its default |
 | `padPatternKinds ()` | The patterns, the files of `pad/subs/patterns/types/`, sorted |
+
+## Public holidays
+
+`pad/lib/holidays.php` - the entries of the holidays subsystem, `pad/subs/holidays/`. A country
+is its ISO 3166-1 alpha-2 code, a file of `pad/subs/holidays/types/` - at, be, ca, ch, de, dk,
+es, fr, gb, ie, it, lu, nl, no, pl, se, us - with a region after it as ISO 3166-2 writes it,
+`'de-by'`. A date is text, a timestamp or a date object, read in the application's zone
+(`padDateParse`); the years are 1583 to 9999. A wrong argument is a `padError` naming the
+function, which then answers an empty value of its kind.
+
+| Function | Answers |
+|----------|---------|
+| `padHolidays ( $country, $year = NULL, $region = '' )` | The rows of a year (this year by default), sorted by date: `date`, `name` (English), `local`, `type` (`public` or `observance` - no day off), `region` (of a regional holiday, else `''`), `substitute` (TRUE for a day that makes up for one on a weekend) |
+| `padIsHoliday ( $date, $country )` | Whether the date is a public holiday there - an observance is not |
+| `padWorkdays ( $from, $to, $country )` | The Mondays to Fridays from one date to the other that are no public holiday, both ends counted - negative when `$to` comes first |
+| `padAddWorkdays ( $date, $n, $country )` | The date `$n` workdays later - earlier for a negative `$n` - as `YYYY-MM-DD`; the start does not count, `0` is the date itself |
 
 ## Engine functions
 

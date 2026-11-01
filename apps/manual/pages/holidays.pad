@@ -1,0 +1,73 @@
+{meta title='Public holidays'/}
+
+<p>The public holidays of seventeen countries, computed from rules - no service to ask, no
+table of dates to keep up to date. A country is a file of <code>pad/subs/holidays/types/</code>,
+named by its two-letter ISO code: at, be, ca, ch, de, dk, es, fr, gb, ie, it, lu, nl, no, pl,
+se and us. {tag 'holidays'/} lists the holidays of a year; four helpers answer a page's PHP;
+{tag 'calendar'/} marks them in a month.</p>
+
+{example 'fragments/holidays_1'/}
+
+<ul>
+  <li>Every row has <code>date</code>, <code>name</code> (English), <code>local</code> (the
+  country's own language), <code>type</code>, <code>region</code> and
+  <code>substitute</code>.</li>
+  <li><code>type</code> is <code>public</code> for a day off and <code>observance</code> for a
+  national day that is none: Good Friday in the Netherlands, and Liberation Day there in the
+  years that do not divide by five - a day off for the civil service only in 2025, 2030 ...</li>
+  <li>King's Day is the 27th of April, or the 26th when the 27th is a Sunday (2025).</li>
+  <li><code>where</code>, <code>sort</code>, <code>first</code> and the other handling options
+  work on the rows; <code>lang='fr'</code> picks the language of <code>local</code> for a
+  country of more than one - Belgium, Luxembourg, Switzerland, Canada.</li>
+</ul>
+
+<h2>A region, a table</h2>
+
+<p>A region follows its country as ISO 3166-2 writes it: <code>de-by</code> is Bavaria, with
+Epiphany, Corpus Christi and All Saints' Day added - their <code>region</code> is
+<code>by</code>. Germany's sixteen states, Scotland and Northern Ireland
+(<code>gb-sct</code>, <code>gb-nir</code>), Alsace-Moselle and France's overseas departments
+have holidays of their own. Written as a single tag, the holidays are a table.</p>
+
+{example 'fragments/holidays_2'/}
+
+<h2>Holidays on a weekend</h2>
+
+<p>In the United Kingdom a bank holiday on a Saturday or Sunday gets the next weekday that is
+no holiday yet: Christmas 2021 on a Saturday was made up for on Monday the 27th, Boxing Day on
+the Sunday on Tuesday the 28th. In the United States a federal holiday on a Saturday is
+observed on the Friday before, on a Sunday on the Monday after - New Year's Day 2022 on Friday
+31 December 2021. Such a day is a row of its own with <code>substitute</code> TRUE.
+<code>from</code> and <code>to</code> ask for the days between two dates instead of a
+year.</p>
+
+{example 'fragments/holidays_3'/}
+
+<h2>Workdays in PHP</h2>
+
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
+  <tr><th>function</th><th>what it answers</th></tr>
+  <tr><td><code>padHolidays ( $country, $year, $region = '' )</code></td><td>the rows of a year, as {tag 'holidays'/} hands them over</td></tr>
+  <tr><td><code>padIsHoliday ( $date, $country )</code></td><td>whether the date is a public holiday there</td></tr>
+  <tr><td><code>padWorkdays ( $from, $to, $country )</code></td><td>the weekdays from one date to the other that are no public holiday, both counted</td></tr>
+  <tr><td><code>padAddWorkdays ( $date, $n, $country )</code></td><td>the date <code>$n</code> workdays later - or earlier, for a negative <code>$n</code></td></tr>
+</table>
+
+{example 'fragments/holidays_4'/}
+
+<ul>
+  <li>A country takes its region the same way: <code>'de-by'</code>, <code>'gb-sct'</code>.</li>
+  <li>An observance counts as a workday; a holiday on a weekend counts once - the weekend
+  already is no workday - and its substitute day is a day off.</li>
+  <li>A country without a file, a region it does not have or a year before 1583 is an error
+  that names what there is.</li>
+</ul>
+
+<h2>In the calendar</h2>
+
+<p><code>holidays=</code> on {tag 'calendar'/} marks the days of a country: the cell gets the
+class <code>holiday</code> - <code>observance</code> for a day that is no day off - and the
+name stands under the number, in the country's language when the request's locale is in
+it.</p>
+
+{example 'fragments/holidays_5'/}

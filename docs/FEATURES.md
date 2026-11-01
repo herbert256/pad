@@ -56,6 +56,7 @@ applications show them working.
   - [Toys](#toys)
   - [Widgets](#widgets)
   - [Month calendar](#month-calendar)
+  - [Public holidays](#public-holidays)
   - [Syntax highlighting](#syntax-highlighting)
   - [QR codes and barcodes](#qr-codes-and-barcodes)
   - [Icons](#icons)
@@ -872,10 +873,43 @@ page lists every widget with its options, the manual has a widgets page.
 ### Month calendar
 ```
 {calendar data='agenda', title='what'/}         # this month (or ?month=2026-11), events, links ‹ ›
+{calendar holidays='de-by'/}                   # the public holidays of a country marked and named - see Public holidays
 {calendar '2026-10', data='agenda'}            # as a pair: weeks as rows, days inside, events per day
   <tr>{days}<td class="{$class}">{$day}{events}<b>{$what}</b>{/events}</td>{/days}</tr>
 {/calendar}
 ```
+
+### Public holidays
+```
+{holidays 'nl', year=2026}{$date} {$name} ({$local}){/holidays}   # the rows: date, name, local, type, region, substitute
+{holidays 'de-by', year=2026/}                                    # a table; a region by its ISO 3166-2 code - Bavaria
+{holidays 'gb', from='today', to='+3 months'}...{/holidays}       # the days between two dates instead of a year
+{holidays 'be', year=2026, lang='fr', where='$type eq "public"'}...{/holidays}   # names in French; observances out
+{calendar '2026-04', holidays='nl'/}                              # the month with its holidays marked and named
+```
+```php
+padHolidays ( 'nl', 2026 );                         // the rows of a year, region as a third argument or 'de-by'
+padIsHoliday ( '2026-04-27', 'nl' );                // TRUE - King's Day; an observance is no holiday here
+padWorkdays ( '2026-04-01', '2026-04-30', 'nl' );   // 20 - weekdays that are no public holiday, both ends counted
+padAddWorkdays ( '2026-04-24', 1, 'nl' );           // '2026-04-28' - the Monday is King's Day; 0 is the date itself
+```
+The countries are the files of `pad/subs/holidays/types/`, named by their ISO 3166-1 alpha-2
+code - at, be, ca, ch, de, dk, es, fr, gb, ie, it, lu, nl, no, pl, se, us - and a country is
+added by adding its file. Each holds its national public holidays as rules, not dates: a fixed
+date, days from Easter Sunday (the Gregorian computus), the nth or last weekday of a month, the
+weekday on or after a date, the years a holiday is held, the years it moved, a move off a
+Sunday (Koningsdag to the 26th) and substitute days - the next free weekday in the United
+Kingdom, Friday or Monday in the United States, where an observed day can fall in the year
+before. A row's `type` is `public` (a day off) or `observance` (a national day that is none -
+Good Friday in the Netherlands, Liberation Day there in the years that do not divide by five);
+`region` names the region of a regional holiday; `name` is English, `local` the country's own
+language (`lang=` picks one of a country of more: be, lu, ch, ca). Regions: Germany's sixteen
+states (`de-by`), the United Kingdom's nations (`gb-sct`, `gb-nir`; England and Wales without),
+France's Alsace-Moselle and overseas departments (`fr-57`, `fr-974`); the header of every file
+says what it leaves out. A workday is a Monday to Friday that is no public holiday. The
+arithmetic is integer days, from 1583 to 9999 - no clock, no zone, no service. Code: the
+holidays subsystem in `pad/subs/holidays/` - `holidays.php` the body of `{holidays}`,
+`_lib/holidays.php` the rules, `types/` the countries; `pad/lib/holidays.php` the helpers.
 
 ### Syntax highlighting
 ```

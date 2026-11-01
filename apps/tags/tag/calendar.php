@@ -7,6 +7,7 @@
   $tagSyntax  = <<<'PAD'
 {calendar/}
 {calendar '2026-10', data='name', date='field', title='field', link='field', query='month', sunday/}
+{calendar '2026-10', holidays='nl'/}
 {calendar '2026-10', data='name'} ... {days} ... {events} ... {/events} ... {/days} ... {/calendar}
 PAD;
 
@@ -19,8 +20,9 @@ PAD;
     'title'  => 'The field with an event\'s text - by default the first other text field.',
     'link'   => 'A field with a link for the event - http(s), a page or an anchor; never <code>javascript:</code> or <code>data:</code>.',
     'query'  => 'The request value the links to the months around set, and that picks the month when no parameter is given; default <code>month</code>.',
-    'sunday' => 'Bare option: the weeks start on Sunday instead of Monday.' ];
+    'sunday' => 'Bare option: the weeks start on Sunday instead of Monday.',
+    'holidays' => 'A country\'s public holidays marked and named in the month - <code>\'nl\'</code>, or with its region <code>\'de-by\'</code>; see <code>{holidays}</code>.' ];
 
-  $tagSee     = [ 'chart', 'timeline', 'pager' ];
+  $tagSee     = [ 'chart', 'timeline', 'pager', 'holidays' ];
 
 ?>

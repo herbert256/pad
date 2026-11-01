@@ -6,12 +6,17 @@
   // array or a _data file, as for {chart} - date= names their date field and title= their
   // text, else the first field that reads as a date and the first other text; link= names a
   // field with a link for the event. sunday starts the weeks on Sunday instead of Monday.
+  // holidays= marks the public holidays of a country, 'nl' or with its region 'de-by' (the
+  // holidays subsystem, subs/holidays/): the day gets the class holiday - observance for a
+  // day that is no day off - and the holiday's name under its number, in the language of
+  // the request's locale when the country speaks it, else in English.
   //
   // Written as a single tag it answers a table: the month - with links to its neighbours
   // when no parameter fixes it, or the parameter holds the month the request asked for - a
   // column per weekday, a cell per day with its events. Written as a pair it hands the
   // weeks over as rows instead - week, and days: date, day, weekday, month, other, today,
-  // weekend, count, events and class - for markup of the template's own.
+  // weekend, count, events, holiday (its name, or '') and class - for markup of the
+  // template's own.
 
   $padCalendarQuery = trim ( (string) padTagParm ( 'query', 'month' ) );
   $padCalendarAsked = padCalendarMonth ( $_GET [$padCalendarQuery] ?? '' );
@@ -49,7 +54,9 @@
   $padCalendarTitle = padChartPick ( 'title', $padCalendarTexts, $padCalendarUsed );
   $padCalendarLink  = (string) padTagParm ( 'link' );
 
-  $padCalendarWeeks = padCalendarWeeks ( $padCalendarMonth, $padCalendarRows, $padCalendarDate, (bool) padTagParm ( 'sunday', FALSE ) );
+  $padCalendarHolidays = padCalendarHolidays ( padUnprotect ( (string) padTagParm ( 'holidays' ) ), $padCalendarMonth );
+
+  $padCalendarWeeks = padCalendarWeeks ( $padCalendarMonth, $padCalendarRows, $padCalendarDate, (bool) padTagParm ( 'sunday', FALSE ), $padCalendarHolidays );
 
   if ( $padPair [$pad] )
     return $padCalendarWeeks;

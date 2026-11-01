@@ -19,6 +19,7 @@
       'Data'                   => [ 'data_handling', 'grouping', 'pager', 'lookup', 'database', 'padSelect', 'sqlite',
                                     'collections', 'remote_data', 'parallel_fetching', 'data_answers' ],
       'PHP helpers'            => [ 'arrays', 'strings', 'values', 'numbers', 'requests_and_sessions',
+                                    'holidays',
                                     'environment_and_cache', 'dates_and_logging', 'hashing_and_encryption' ],
       'Output'                 => [ 'html_helpers', 'markdown', 'showing_code', 'charts', 'diagrams', 'games', 'toys', 'widgets', 'codes', 'icons', 'locale',
                                     'fragment_cache', 'flush', 'live', 'server_sent_events' ],

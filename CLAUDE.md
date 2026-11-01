@@ -801,6 +801,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Maps](docs/FEATURES.md#maps) | `{map 'eu', data=, key=, value=/}` - a view per file of `pad/subs/maps/types/` |
 | [Embeds](docs/FEATURES.md#embeds) | `{embed 'url'/}`, `{youtube 'id'/}`, `{openstreetmap 'lat,lon'/}` - click to load, a provider per file of `pad/subs/embeds/types/`; `padEmbedSources ()` |
 | [Month calendar](docs/FEATURES.md#month-calendar) | `{calendar}` |
+| [Public holidays](docs/FEATURES.md#public-holidays) | `{holidays 'nl', year=2026}`, `{calendar holidays='de-by'/}`, `padHolidays`, `padIsHoliday`, `padWorkdays`, `padAddWorkdays` - a country per file of `pad/subs/holidays/types/` |
 | [Syntax highlighting](docs/FEATURES.md#syntax-highlighting) | `{highlight 'php'}`, `{source}` |
 | [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{qr}`, `{barcode type='upce'}`, `{barcode:ean13 '...'/}`, bare `{itf14 '...'/}`, `{datamatrix '...'/}` - a symbology per file of `pad/subs/codes/types/` |
 | [Icons](docs/FEATURES.md#icons) | `{icon 'star'/}`, `{icon:star/}` - an icon per file of `pad/subs/icons/types/` (an SVG each) |
@@ -982,6 +983,7 @@ if ( ! padRateLimit ( 'login:' . $_SERVER ['REMOTE_ADDR'], 5, 60 ) ) padAbort ( 
 | Cache and rate limits | `lib/remember.php` | `padCacheGet`, `padCachePut`, `padCacheHas`, `padCacheIncrement`, `padCacheForget`, `padCacheFlush`, `padRemember` (files under `DATA/cache/app/<app>/`), `padRateLimit`, `padRateLimitRemaining`, `padRateLimitAvailableIn`, `padRateLimitClear` |
 | Dates and logging | `lib/date.php`, `lib/log.php` | `padNow`, `padToday`, `padNowFreeze`, `padDateParse`, `padAgo` (pipe `ago`), `padLog` (PSR-3 levels, `DATA/logs/<app>/<date>.log`) |
 | Hashing and encryption | `lib/crypt.php` | `padHash`, `padHashCheck`, `padHashNeedsRehash`, `padEncrypt`, `padDecrypt` (sodium, key `$padAppKey` or `DATA/keys/<app>.key`), `padSignedUrl`, `padSignatureValid` |
+| Public holidays | `lib/holidays.php` | `padHolidays`, `padIsHoliday`, `padWorkdays`, `padAddWorkdays` - the rules in `pad/subs/holidays/` |
 
 A wrong argument (an unknown operator, a negative length) is reported with `padError` naming
 the function; the function then answers an empty value of its kind.
