@@ -4096,7 +4096,7 @@ themes there are, and the subsystem is `pad/subs/themes/`.
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The theme: light, dark, paper, terminal, newspaper, contrast, sepia, ocean, forest, mono |
+| first parameter | The theme: light, dark, paper, terminal, newspaper, contrast, contrast-dark, sepia, ocean, forest, mono |
 
 **Behavior:** single, the tag writes the theme's `<style>` where it stands, with the request's
 nonce, on `:root:root:root` - outweighing the frame's light and dark rules - and a page that
@@ -4104,7 +4104,7 @@ has one gets no theme from `$padTheme` or a visitor's choice on its way out. As 
 the theme's background and text, its style once per page. `$padTheme = 'paper'` puts every page
 of an application in a theme, `{themes/}` lets the visitor choose (kept in a cookie of the
 application, winning over the setting), `$padTheme = FALSE` turns both off. Every theme's text reaches WCAG AA on its
-backgrounds, contrast's AAA. A name that is no theme, no name and content on the single form are
+backgrounds, contrast's and contrast-dark's AAA. A name that is no theme, no name and content on the single form are
 strict errors.
 
 ---

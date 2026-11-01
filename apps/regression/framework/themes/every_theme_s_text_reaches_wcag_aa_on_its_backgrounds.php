@@ -4,7 +4,8 @@
   // its backgrounds - the pairs padThemePairs names: the text, the soft and dim greys and the
   // links on the page and on a panel, a button's text on the accent, the side's texts on the
   // side and the menu, the status colours on theirs - the pair it is, and what that reaches:
-  // AA is 4.5 to 1, AAA 7 to 1, which the contrast theme has to reach.
+  // AA is 4.5 to 1, AAA 7 to 1, which a theme that declares 'needs' => 7 - contrast,
+  // contrast-dark - has to reach (padThemeNeeds).
 
   include_once PAD . 'subs/themes/_lib/theme.php';
 

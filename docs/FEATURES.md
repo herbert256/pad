@@ -1820,14 +1820,15 @@ to that palette, take it too. The frame's files are not changed: a theme is a `<
 them, on `:root:root:root`, which outweighs the frame's own light and dark rules wherever it
 stands, with the request's nonce. A theme may set the font (`--sans`: paper and newspaper a serif, terminal a
 monospace), the sections' hero background (`--pad-section-hero`) and rules of its own - the
-contrast theme underlines its links and rings the focus thick. The themes are the files of
-`pad/subs/themes/types/` - light, dark, paper, terminal, newspaper, contrast, sepia, ocean, forest,
-mono - a theme is added by adding its file. Every theme's text reaches WCAG AA on each of its
+contrast themes underline their links and ring the focus thick. The themes are the files of
+`pad/subs/themes/types/` - light, dark, paper, terminal, newspaper, contrast, contrast-dark, sepia, ocean, forest,
+mono - a theme is added by adding its file, which sets every one of the 24 colours (the framework case
+`themes/every_theme_sets_every_colour_of_the_frame` holds it). Every theme's text reaches WCAG AA on each of its
 backgrounds (4.5 to 1: the text, the soft and dim greys and the links on the page and on a panel,
 a button's text on the accent, the side's texts on the side and the menu, the status colours on
-theirs), contrast's AAA (7 to 1); the framework case `themes/every_theme_s_text_reaches_wcag_aa_on_its_backgrounds`
+theirs), a theme whose file declares `'needs' => 7` AAA (7 to 1) - contrast and contrast-dark; the framework case `themes/every_theme_s_text_reaches_wcag_aa_on_its_backgrounds`
 holds the lowest ratio of each - light 4.57, sepia 5.01, forest 5.17, paper 5.36, dark 5.54,
-newspaper 5.97, mono 6.00, terminal 6.01, ocean 6.22, contrast 7.41 - and the sections
+newspaper 5.97, mono 6.00, terminal 6.01, ocean 6.22, contrast 7.41, contrast-dark 8.98 - and the sections
 application lists every pair of every theme. The light and dark themes are the frame's own
 colours, with the four that fall short of AA in its set - the dim grey on the page (4.47), the
 side's headings (3.07 light, 4.09 dark), a link on the accent's tint (4.48) - darkened or

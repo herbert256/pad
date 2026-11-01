@@ -6,6 +6,7 @@
 
   return [ 'name'   => 'Contrast',
            'scheme' => 'light',
+           'needs'  => 7,
            'colors' => [ 'bg' => '#ffffff', 'panel' => '#ffffff', 'text' => '#000000', 'soft' => '#1a1a1a', 'dim' => '#3b3b3b', 'line' => '#595959',
                          'accent' => '#0000b8', 'accent-text' => '#ffffff', 'accent-soft' => '#e8e8ff', 'head' => '#f0f0f0', 'code' => '#f0f0f0', 'side' => '#ffffff',
                          'side-text' => '#000000', 'side-dim' => '#3b3b3b', 'side-hover' => '#e8e8e8', 'side-line' => '#000000', 'side-strong' => '#000000', 'menu' => '#ffffff',

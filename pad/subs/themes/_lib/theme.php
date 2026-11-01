@@ -32,7 +32,8 @@
   // Every theme's text and its backgrounds - the text, the soft and dim greys and the links
   // on the page and on a panel, a button's text on the accent, the side's texts on the side
   // and the menu, the status colours on theirs - contrast 4.5 to 1 at least, WCAG AA, and
-  // contrast's 7 to 1, AAA (padThemeContrasts; the framework case themes/ holds them).
+  // a theme that declares 'needs' => 7 - contrast, contrast-dark - 7 to 1, AAA (padThemeNeeds,
+  // padThemeContrasts; the framework case themes/ holds them).
   //
   // Included on use: by {theme}, {themes} and exits/output.php when a theme is asked for.
 
@@ -62,7 +63,8 @@
   }
 
   // The pairs of a theme's colours that are text on a background - [ text, background ] - and
-  // what each ratio has to reach: 4.5 (WCAG AA for text), 7 for the contrast theme (AAA).
+  // what each ratio has to reach: 4.5 (WCAG AA for text), or what the theme's file declares
+  // as its 'needs' - 7 for contrast and contrast-dark (AAA).
 
   function padThemePairs () {
 
@@ -77,7 +79,7 @@
 
   function padThemeNeeds ( $name ) {
 
-    return ( $name == 'contrast' ) ? 7 : 4.5;
+    return padThemeData ( $name ) ['needs'] ?? 4.5;
 
   }
 

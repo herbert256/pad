@@ -18,6 +18,7 @@
   $examples = sectionsExamples ( $group, $kind );
 
   $contrasts = ( $group == 'theme' ) ? sectionsContrasts ( $kind ) : [];
+  $aaa       = ( $group == 'theme' and padThemeNeeds ( $kind ) >= 7 );
   $colors    = ( $group == 'palette' ) ? implode ( ' ', padPalette ( $kind ) ) : '';
 
 ?>
