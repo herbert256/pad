@@ -377,7 +377,22 @@
     while ( $window > 60 and $window - $period >= $period )
       $window -= $period;
 
-    $step   = 26;
+    // The throws written under their beats - a beat's, or a pair's for a synchronous pattern -
+    // in 13 px monospace, some 7.8 px a character: a beat is as wide as two labels side by
+    // side ask, 4 px apart, so a multiplex - [33][33], ([22x],[22x]) - is not written into
+    // the one beside it; 26 px at least.
+
+    $texts = [];
+
+    for ( $at = 0; $at < $period; $at += $sync ? 2 : 1 )
+      $texts [] = padSiteswapText ( $sync, $sync ? [ $pattern [$at], $pattern [ $at + 1 ] ] : [ $pattern [$at] ] );
+
+    $wide = 0;
+
+    foreach ( $texts as $i => $text )
+      $wide = max ( $wide, ( strlen ( $text ) + strlen ( $texts [ ( $i + 1 ) % count ( $texts ) ] ) ) * 3.9 + 4 );
+
+    $step   = max ( 26, (int) ceil ( $wide / ( $sync ? 2 : 1 ) ) );
     $left   = 30;
     $rails  = [ 0 => 20 + min ( 60, 6 + 4 * $high ), 1 => 0 ];
     $rails [1] = $rails [0] + 50;
@@ -434,10 +449,10 @@
 
       if ( ! $sync )
         $labels .= '<text class="pss-label' . ( $at == 0 ? ' pss-first' : '' ) . '" x="' . $num ( $x ( $beat ) ) . '" y="' . ( $height - 8 ) . '" text-anchor="middle">'
-                 . ( count ( $throws ) > 1 ? '[' . implode ( '', array_column ( $throws, 3 ) ) . ']' : ( $throws ? $throws [0] [3] : '0' ) ) . '</text>';
+                 . $texts [$at] . '</text>';
       elseif ( $beat % 2 == 0 )
         $labels .= '<text class="pss-label' . ( $at == 0 ? ' pss-first' : '' ) . '" x="' . $num ( $x ( $beat ) + $step / 2 ) . '" y="' . ( $height - 8 ) . '" text-anchor="middle">'
-                 . padNotationAttr ( padSiteswapText ( TRUE, [ $pattern [$at], $pattern [ $at + 1 ] ] ) ) . '</text>';
+                 . padNotationAttr ( $texts [ $at / 2 ] ) . '</text>';
 
     }
 

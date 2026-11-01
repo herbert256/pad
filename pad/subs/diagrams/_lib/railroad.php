@@ -27,6 +27,12 @@
 
   const PAD_RAIL_ARC = 10;
 
+  // How deep the parts of a rule may nest - groups in groups, an optional part of an optional
+  // part: laying a rule out, drawing it and saying it go down it a call a level, and a rule
+  // some thousands deep took the stack.
+
+  const PAD_RAIL_DEEPEST = 200;
+
   function padDiagramRailroad ( $source, $title ) {
 
     global $padCheckSyntax;
@@ -142,13 +148,13 @@
       $tree = $rule ['tree'];
       $at   = $places [$k];
 
-      list ( $draw, $exitY ) = padDiagramRailDraw ( $tree, 28, $at, $links );
-
       $svg .= '<g id="' . $links [ $rule ['name'] ] . '" class="pc-mark"><title>' . padDiagramEsc ( $desc [$k] ) . '</title>'
             . '<text class="pd-rr-name" x="12" y="' . padChartXY ( $at - $tree ['up'] - 10 ) . '">' . padDiagramEsc ( $rule ['name'] ) . '</text>'
-            . '<path class="pd-rr-line" d="M12,' . padChartXY ( $at - 8 ) . 'V' . padChartXY ( $at + 8 ) . 'M12,' . padChartXY ( $at ) . 'H28"/>'
-            . $draw
-            . '<path class="pd-rr-line" d="M' . padChartXY ( 28 + $tree ['w'] ) . ',' . padChartXY ( $exitY ) . 'H' . padChartXY ( 28 + $tree ['w'] + 16 )
+            . '<path class="pd-rr-line" d="M12,' . padChartXY ( $at - 8 ) . 'V' . padChartXY ( $at + 8 ) . 'M12,' . padChartXY ( $at ) . 'H28"/>';
+
+      $exitY = padDiagramRailDraw ( $tree, 28, $at, $links, $svg );
+
+      $svg .= '<path class="pd-rr-line" d="M' . padChartXY ( 28 + $tree ['w'] ) . ',' . padChartXY ( $exitY ) . 'H' . padChartXY ( 28 + $tree ['w'] + 16 )
             . 'M' . padChartXY ( 28 + $tree ['w'] + 16 ) . ',' . padChartXY ( $exitY - 8 ) . 'V' . padChartXY ( $exitY + 8 )
             . 'M' . padChartXY ( 28 + $tree ['w'] + 21 ) . ',' . padChartXY ( $exitY - 8 ) . 'V' . padChartXY ( $exitY + 8 ) . '"/>'
             . '</g>';
@@ -250,12 +256,15 @@
 
   }
 
-  // The tokens of one rule as its tree. Throws what it cannot read, naming the rule.
+  // The tokens of one rule as its tree. Throws what it cannot read, naming the rule, and a
+  // rule nested more than PAD_RAIL_DEEPEST deep: its groups as it is read, its tree after.
 
   function padDiagramRailParse ( $tokens, $name, $line ) {
 
-    $at   = 0;
-    $fail = function ( $why ) use ( $name, $line ) {
+    $at    = 0;
+    $level = 0;
+    $deep  = 'its parts are nested more than ' . PAD_RAIL_DEEPEST . ' deep - draw it in parts';
+    $fail  = function ( $why ) use ( $name, $line ) {
       throw new RuntimeException ( "the rule '" . padMakeSafe ( $name, 40 ) . "' on line $line - $why" );
     };
 
@@ -303,7 +312,7 @@
       return [ 'seq', $flat ];
     };
 
-    $primary = function () use ( &$alt, &$at, $tokens, $peek, $fail ) {
+    $primary = function () use ( &$alt, &$at, &$level, $tokens, $peek, $fail, $deep ) {
       $token = $tokens [$at] ?? [ 'end', '', 0 ];
       switch ( $token [0] ) {
         case 'name':  $at++; return [ 'nt', $token [1] ];
@@ -311,12 +320,15 @@
         case 'term':  $at++; return $token [1] === '' ? [ 'skip' ] : [ 'term', $token [1] ];
         case '(':
           $at++;
+          if ( ++$level > PAD_RAIL_DEEPEST )
+            $fail ( $deep );
           if ( $peek () == ')' )
             $fail ( 'a group ( ) is empty' );
           $inner = $alt ();
           if ( $peek () != ')' )
             $fail ( 'a ( is never closed with )' );
           $at++;
+          $level--;
           return $inner;
       }
       $fail ( $token [0] == 'end' ? 'it ends where a part should follow' : "a $token[1] follows nothing it could apply to" );
@@ -347,6 +359,28 @@
 
     if ( $peek () == ')' )
       $fail ( 'a ) closes nothing' );
+
+    // The depth of the tree, walked without a call a level: an operator wraps the part before
+    // it as a group does, so 'x' with 200 ? after it is as deep as 200 groups.
+
+    $stack = [ [ $tree, 1 ] ];
+
+    while ( $stack ) {
+      list ( $one, $depth ) = array_pop ( $stack );
+      if ( $depth > PAD_RAIL_DEEPEST )
+        $fail ( $deep );
+      switch ( $one [0] ) {
+        case 'seq':
+        case 'alt':    $parts = $one [1]; break;
+        case 'opt':
+        case 'star':
+        case 'plus':   $parts = [ $one [1] ]; break;
+        case 'except': $parts = [ $one [1], $one [2] ]; break;
+        default:       $parts = [];
+      }
+      foreach ( $parts as $part )
+        $stack [] = [ $part, $depth + 1 ];
+    }
 
     return $tree;
 
@@ -487,11 +521,13 @@
 
   }
 
-  // A part drawn with its entry at x, y: [ svg, the y of its exit ] - its exit is at x + w,
-  // on the track it came in on, but for the rows of a wrapped rule, which leave on the last.
-  // $links are the ids of the rules, by name, for the boxes of the names to point to.
+  // A part drawn with its entry at x, y, its SVG added to $svg: answers the y of its exit -
+  // its exit is at x + w, on the track it came in on, but for the rows of a wrapped rule,
+  // which leave on the last. $links are the ids of the rules, by name, for the boxes of the
+  // names to point to. Every part adds to the one $svg, so no part's drawing is copied again
+  // by each part round it.
 
-  function padDiagramRailDraw ( $tree, $x, $y, $links ) {
+  function padDiagramRailDraw ( $tree, $x, $y, $links, &$svg ) {
 
     $r  = PAD_RAIL_ARC;
     $P  = fn ( $v ) => padChartXY ( $v );
@@ -508,27 +544,26 @@
                . '<text class="' . $class . '-text" x="' . $P ( $x + $tree ['w'] / 2 ) . '" y="' . $P ( $y + 4 ) . '" text-anchor="middle">' . padDiagramEsc ( $tree [1] ) . '</text>';
         if ( $tree [0] == 'nt' and isset ( $links [ $tree [1] ] ) )
           $box = '<a href="#' . $links [ $tree [1] ] . '">' . $box . '</a>';
-        return [ $box, $y ];
+        $svg .= $box;
+        return $y;
 
       case 'skip':
-        return [ '', $y ];
+        return $y;
 
       case 'seq':
-        $svg = '';
-        $at  = $x;
+        $at = $x;
         foreach ( $tree [1] as $i => $one ) {
           if ( $i ) {
             $svg .= $H ( $at, $at + 12, $y );
             $at  += 12;
           }
-          $svg .= padDiagramRailDraw ( $one, $at, $y, $links ) [0];
-          $at  += $one ['w'];
+          padDiagramRailDraw ( $one, $at, $y, $links, $svg );
+          $at += $one ['w'];
         }
-        return [ $svg, $y ];
+        return $y;
 
       case 'alt':
         $inner = $tree ['w'] - 4 * $r;
-        $svg   = '';
         foreach ( $tree [1] as $i => $one ) {
           $by   = $y + $tree ['ys'] [$i];
           $from = $x + 2 * $r + ( $inner - $one ['w'] ) / 2;
@@ -538,38 +573,39 @@
                   . "a$r,$r 0 0 0 $r,-$r" . 'V' . $P ( $y + $r ) . "a$r,$r 0 0 1 $r,-$r" . '"/>';
           else
             $svg .= $H ( $x, $from, $y ) . $H ( $from + $one ['w'], $x + $tree ['w'], $y );
-          $svg .= padDiagramRailDraw ( $one, $from, $by, $links ) [0];
+          padDiagramRailDraw ( $one, $from, $by, $links, $svg );
         }
-        return [ $svg, $y ];
+        return $y;
 
       case 'opt':
         $one  = $tree [1];
         $top  = $y - $tree ['over'];
-        $svg  = '<path class="pd-rr-line" d="M' . $P ( $x ) . ',' . $P ( $y ) . "a$r,$r 0 0 0 $r,-$r" . 'V' . $P ( $top + $r ) . "a$r,$r 0 0 1 $r,-$r"
+        $svg .= '<path class="pd-rr-line" d="M' . $P ( $x ) . ',' . $P ( $y ) . "a$r,$r 0 0 0 $r,-$r" . 'V' . $P ( $top + $r ) . "a$r,$r 0 0 1 $r,-$r"
               . 'H' . $P ( $x + $tree ['w'] - 2 * $r ) . "a$r,$r 0 0 1 $r,$r" . 'V' . $P ( $y - $r ) . "a$r,$r 0 0 0 $r,$r" . '"/>'
               . $H ( $x, $x + 2 * $r, $y ) . $H ( $x + 2 * $r + $one ['w'], $x + $tree ['w'], $y );
-        return [ $svg . padDiagramRailDraw ( $one, $x + 2 * $r, $y, $links ) [0], $y ];
+        padDiagramRailDraw ( $one, $x + 2 * $r, $y, $links, $svg );
+        return $y;
 
       case 'plus':
         $one   = $tree [1];
         $low   = $y + $tree ['under'];
         $mid   = $x + $tree ['w'] / 2;
-        $svg   = '<path class="pd-rr-line" d="M' . $P ( $x + $tree ['w'] - $r ) . ',' . $P ( $y ) . "a$r,$r 0 0 1 $r,$r" . 'V' . $P ( $low - $r ) . "a$r,$r 0 0 1 -$r,$r"
+        $svg  .= '<path class="pd-rr-line" d="M' . $P ( $x + $tree ['w'] - $r ) . ',' . $P ( $y ) . "a$r,$r 0 0 1 $r,$r" . 'V' . $P ( $low - $r ) . "a$r,$r 0 0 1 -$r,$r"
                . 'H' . $P ( $x + $r ) . "a$r,$r 0 0 1 -$r,-$r" . 'V' . $P ( $y + $r ) . "a$r,$r 0 0 1 $r,-$r" . '"/>'
                . '<path class="pd-rr-arrow" d="M' . $P ( $mid + 3 ) . ',' . $P ( $low - 4 ) . 'L' . $P ( $mid - 3 ) . ',' . $P ( $low ) . 'L' . $P ( $mid + 3 ) . ',' . $P ( $low + 4 ) . '"/>'
                . $H ( $x, $x + $r, $y ) . $H ( $x + $r + $one ['w'], $x + $tree ['w'], $y );
-        return [ $svg . padDiagramRailDraw ( $one, $x + $r, $y, $links ) [0], $y ];
+        padDiagramRailDraw ( $one, $x + $r, $y, $links, $svg );
+        return $y;
 
       case 'except':
         $one  = $tree [1];
         $from = $x + ( $tree ['w'] - $one ['w'] ) / 2;
-        $svg  = $H ( $x, $from, $y ) . $H ( $from + $one ['w'], $x + $tree ['w'], $y )
-              . padDiagramRailDraw ( $one, $from, $y, $links ) [0]
-              . '<text class="pd-rr-note" x="' . $P ( $x + $tree ['w'] / 2 ) . '" y="' . $P ( $y + $one ['down'] + 14 ) . '" text-anchor="middle">' . padDiagramEsc ( $tree ['note'] ) . '</text>';
-        return [ $svg, $y ];
+        $svg .= $H ( $x, $from, $y ) . $H ( $from + $one ['w'], $x + $tree ['w'], $y );
+        padDiagramRailDraw ( $one, $from, $y, $links, $svg );
+        $svg .= '<text class="pd-rr-note" x="' . $P ( $x + $tree ['w'] / 2 ) . '" y="' . $P ( $y + $one ['down'] + 14 ) . '" text-anchor="middle">' . padDiagramEsc ( $tree ['note'] ) . '</text>';
+        return $y;
 
       case 'stack':
-        $svg  = '';
         $last = count ( $tree [1] ) - 1;
         $end  = $x + $tree ['w'] - 2 * $r;
         foreach ( $tree [1] as $i => $one ) {
@@ -577,7 +613,7 @@
           $start = $i ? $x + 2 * $r : $x;
           if ( ! $i )
             $svg .= $H ( $x, $x + 2 * $r, $ry );
-          $svg .= padDiagramRailDraw ( $one, $x + 2 * $r, $ry, $links ) [0];
+          padDiagramRailDraw ( $one, $x + 2 * $r, $ry, $links, $svg );
           if ( $i < $last ) {
             $next = $y + $tree ['ys'] [$i + 1];
             $back = $ry + max ( 2 * $r, $one ['down'] + 10 );
@@ -586,11 +622,11 @@
           } else
             $svg .= $H ( $x + 2 * $r + $one ['w'], $x + $tree ['w'], $ry );
         }
-        return [ $svg, $y + $tree ['ys'] [$last] ];
+        return $y + $tree ['ys'] [$last];
 
     }
 
-    return [ '', $y ];
+    return $y;
 
   }
 
