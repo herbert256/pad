@@ -667,12 +667,14 @@ checker:
   {taginput 'topics', label='Topics', suggestions='pad, php'/}   # posts 'pad, php'
   {combobox 'city', label='City'}Rome
     Oslo{/combobox}                                        # options=, data=, or a line each
+  {multiselect 'tags', label='Tags', options='pad, php, maps', rules='required|in:pad,php,maps'/}   # posts the list tags[]
   {signature 'signed', label='Signature'/}                 # posts a PNG data URL
   {dropzone 'cv', label='Your CV', accept='.pdf', limit='2M'/}   # padUpload takes it
 {/form}
 ```
 The kinds are the files of `pad/subs/inputs/types/` - colorpicker, combobox, datepicker, dropzone,
-mdeditor (Markdown with a live preview), newpassword (strength meter, show/hide; `known` for a
+mdeditor (Markdown with a live preview), multiselect (chips and a filtered list over a select of
+many), newpassword (strength meter, show/hide; `known` for a
 login), otp (a box per character), signature, slider, stars, stepper, taginput, timepicker and
 toggle (a switch posting `on=`/`off=`) - their script and style in `www/assets/inputs/`. Each
 is a field of its `{form}` as `{input}` is: named by its first parameter, labelled by `label=`,
@@ -683,6 +685,15 @@ posts without any script - a range, a date, a radio group, a text field holding 
 and its script, once a page with the CSP nonce, makes more of it; a field a fragment brings later
 is enhanced too. The bare name comes after every other kind of tag: on a page with an array
 holding a key `slider`, write `input:slider`.
+
+A multiselect holds a list: `{multiselect 'tags'}` posts `tags[]` - the page's PHP gets
+`$_POST ['tags']` as an array - and that is the name its rules, `padValidate` and the
+browser's checker know it by (`required` asks for a choice, `in:` holds every one to the list;
+its messages say Tags). Its choices are `options=`, `data=` with `field=`, or a line each between
+its tags, as a combobox's; `value=` - a list or a comma text - the choices made before a post.
+After a post of its form it shows the list posted: nothing chosen when the post left the field
+out, as the browser posts a select with no choice - never `value=` again - and a posted value
+that is no choice is not shown, nor added as an option.
 
 ### Layouts (extends / block / parent)
 ```

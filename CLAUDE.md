@@ -788,7 +788,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Page links](docs/FEATURES.md#page-links-pager-tag) | `page=`, `rows=`, `{pager 'products'}` |
 | [Recursive trees](docs/FEATURES.md#recursive-trees) | `{tree}`, `{branch}`, `{recurse}` |
 | [Form rules](docs/FEATURES.md#form-rules-on-the-fields-and-in-the-browser) | `rules='required\|email'` on a field, `client`, `{validator}` |
-| [Rich form fields](docs/FEATURES.md#rich-form-fields) | `{slider 'v'/}`, `{input:datepicker 'd'/}`, `{stars}`, `{taginput}`, `{signature}` ... - native fields made more of, a kind per file of `pad/subs/inputs/types/` |
+| [Rich form fields](docs/FEATURES.md#rich-form-fields) | `{slider 'v'/}`, `{input:datepicker 'd'/}`, `{stars}`, `{taginput}`, `{multiselect 'tags'/}` (posts the list `tags[]`), `{signature}` ... - native fields made more of, a kind per file of `pad/subs/inputs/types/` |
 | [Layouts](docs/FEATURES.md#layouts-extends--block--parent) | `{extends}`, `{block 'title'}`, `{parent}` |
 | [Components](docs/FEATURES.md#components-slots--parms) | `{slot}`, `{parms}` in a `_tags/x.pad` |
 | [Tags defined in the template](docs/FEATURES.md#tags-defined-in-the-template-define--macro) | `{define}`, `{macro}` |
