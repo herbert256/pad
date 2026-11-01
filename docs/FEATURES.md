@@ -415,7 +415,8 @@ passes the check), ip (the documentation ranges), ipv6 (of 2001:db8::/32, kept f
 documentation, as RFC 5952 writes it), isbn (an ISBN-13 of 978 whose check digit holds), job, lastname, latitude and longitude (a
 point of the box south=, north=, west=, east=, across the 180th meridian when west= lies east
 of east=), mac (locally administered, so no maker's), name, number, paragraph,
-phone, postcode, price, sentence, slug (lower-case words and dashes), street, time, title (a
+phone, postcode, price, product (a look, a material and a thing made of it, Rustic Oak Stool),
+sentence, slug (lower-case words and dashes), street, time, title (a
 heading of words= words), url, username, uuid, word - each named by
 `padFake ( 'email' )` and in a template:
 ```

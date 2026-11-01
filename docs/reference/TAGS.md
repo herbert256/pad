@@ -2612,7 +2612,7 @@ of `lib/fake.php`'s sequence.
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The kind, a file of `pad/subs/fakes/types/` - address, boolean, city, colour, company, country, date, decimal, ean, email, firstname, iban, ip, ipv6, isbn, job, lastname, latitude, longitude, mac, name, number, paragraph, phone, postcode, price, sentence, slug, street, time, title, url, username, uuid, word - or several, `'name, email'`, a field each under its kind's name or as `'field:kind'` says. The fake type names one: `{fake:email/}` |
+| first parameter | The kind, a file of `pad/subs/fakes/types/` - address, boolean, city, colour, company, country, date, decimal, ean, email, firstname, iban, ip, ipv6, isbn, job, lastname, latitude, longitude, mac, name, number, paragraph, phone, postcode, price, product, sentence, slug, street, time, title, url, username, uuid, word - or several, `'name, email'`, a field each under its kind's name or as `'field:kind'` says. The fake type names one: `{fake:email/}` |
 | `rows` | So many rows of the kinds, the level's data - iterated by the pair's content, kept by `toData=` |
 | `seed` | Values of their own seed: the rows `padFakeRows ( kinds, rows, seed )` gives |
 | `from`, `to` | number (0, 100), decimal (0, 1), price (1, 100): the range; date: two moments padDateParse reads (`-1 year`, `now`); time: two clock times (`08:00`, `18:00`) |
