@@ -365,6 +365,7 @@
       'applemusic'      => [ 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', 'Abbey Road - The Beatles' ],
       'applepodcasts'   => [ 'https://podcasts.apple.com/us/podcast/the-daily/id1200361736', 'The Daily' ],
       'figma'           => [ 'https://www.figma.com/design/nrPSsILSYjesyc5UHjYYa4/Embed-Kit-2.0-examples', 'Embed Kit 2.0 examples' ],
+      'loom'            => [ 'https://www.loom.com/share/fa3c0bc94e904ab6b0746f844ca7a385', 'Follow a Loom product demo' ],
       'videofile'       => [ 'https://example.org/clips/sunrise.webm',                 'A sunrise' ],
       'audio'           => [ 'https://example.org/sounds/bell.mp3',                    'A bell' ],
       'pdffile'         => [ 'https://www.example.org/docs/plan.pdf',                  'The floor plan' ] ];

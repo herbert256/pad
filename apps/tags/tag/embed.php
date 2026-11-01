@@ -26,7 +26,7 @@ PAD;
     'poster'    => 'A picture of <code>www/&lt;application&gt;/</code> (versioned as <code>{asset}</code>) in place of the drawn poster.',
     'thumbnail' => 'Bare option: the provider\'s own picture as the poster, where it has one at a known address (YouTube) - an image asked of the provider before the click.',
     'ratio'     => 'The proportion, <code>16:9</code> unless the provider has another (SoundCloud and Spotify 2:1, a PDF 4:5, a short 9:16, Apple Music and Apple Podcasts 4:3 - a song or an episode 5:2).',
-    'at'        => 'YouTube, Vimeo, PeerTube, Dailymotion: the moment to start at - <code>90</code>, <code>1m30s</code> or <code>1:30</code>.',
+    'at'        => 'YouTube, Vimeo, PeerTube, Dailymotion, Loom: the moment to start at - <code>90</code>, <code>1m30s</code> or <code>1:30</code>.',
     'lat'       => 'OpenStreetMap: the latitude of the place, beside <code>lon</code> - or the place as the first parameter, <code>\'52.37,4.89\'</code>.',
     'lon'       => 'OpenStreetMap: the longitude of the place.',
     'zoom'      => 'OpenStreetMap: 1 (the world) to 19 (a street), default 13.',
