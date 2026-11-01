@@ -51,6 +51,12 @@
   const PAD_ABC_BEAM     = 5;     // the thickness of a beam
   const PAD_ABC_BEAM_GAP = 7.5;   // the distance from one beam to the next
 
+  // How many slurs may be open at once. A slur is drawn over the notes it binds, lifted to
+  // clear each of them, so slurs nested a thousand deep took time with the square of their
+  // number; music nests two or three. A slur opened past this is a problem and left out.
+
+  const PAD_ABC_SLURS = 8;
+
   const PAD_ABC_LETTERS = 'CDEFGAB';
 
   // The keys: the fifths of a tonic in a major key (F has one flat, G one sharp), what a mode
@@ -272,7 +278,7 @@
         $music = TRUE;
 
       $state ??= [ 'unit' => $unit ?? padAbcDefaultUnit ( $tune ['meter'] ), 'key' => $tune ['key'], 'meter' => $tune ['meter'],
-                   'bar' => [], 'tied' => [], 'tuplet' => NULL, 'broken' => NULL, 'tuplets' => 0 ];
+                   'bar' => [], 'tied' => [], 'tuplet' => NULL, 'broken' => NULL, 'tuplets' => 0, 'slurs' => 0, 'skipped' => 0 ];
 
       // A field between the lines of music: K:, M: and L: change what follows, the others
       // - lyrics, parts, voices, notes - are left out.
@@ -459,15 +465,28 @@
 
         }
 
-        $wait ['slur']++;
+        // A slur inside PAD_ABC_SLURS open ones is left out, and the ) that closes it too.
+
+        if ( $st ['slurs'] >= PAD_ABC_SLURS ) {
+          $problems [] = 'has slurs nested deeper than ' . PAD_ABC_SLURS;
+          $st ['skipped']++;
+        } else {
+          $st ['slurs']++;
+          $wait ['slur']++;
+        }
+
         $i++;
         continue;
 
       }
 
       if ( $c == ')' ) {
-        if ( $last !== NULL )
+        if ( $st ['skipped'] > 0 )
+          $st ['skipped']--;
+        elseif ( $last !== NULL ) {
           $items [$last] ['slurEnd']++;
+          $st ['slurs'] = max ( 0, $st ['slurs'] - 1 );
+        }
         $i++;
         continue;
       }
@@ -606,9 +625,10 @@
         }
 
         $inner = substr ( $text, $i + 1, $close - $i - 1 );
-        $heads = [];
-        $first = NULL;
-        $j     = 0;
+        $heads  = [];
+        $first  = NULL;
+        $j      = 0;
+        $unread = FALSE;
 
         while ( $j < strlen ( $inner ) ) {
 
@@ -626,9 +646,17 @@
             $j += strlen ( $m [0] );
 
           } else {
-            if ( ! ctype_space ( $inner [$j] ) )
+
+            // A chord is named once, whatever it holds that is no note: named for every such
+            // character, it was cut short as often - time with the square of its length.
+
+            if ( ! ctype_space ( $inner [$j] ) and ! $unread ) {
               $problems [] = "has a chord '[" . padAbcShow ( $inner ) . "]' it cannot read";
+              $unread = TRUE;
+            }
+
             $j++;
+
           }
 
         }
@@ -2136,6 +2164,7 @@
 
     $open  = [];
     $notes = array_keys ( array_filter ( $items, fn ( $item ) => $item ['kind'] == 'note' or $item ['kind'] == 'rest' ) );
+    $keys  = array_keys ( $geo );
 
     foreach ( $carry ['slurs'] as $over )
       $open [] = [ NULL, $over ];
@@ -2144,7 +2173,7 @@
 
       for ( $n = 0; $n < $items [$k] ['slurEnd'] and $open; $n++ ) {
         list ( $from, $over ) = array_pop ( $open );
-        padAbcSlur ( $d, $xs, $geo, $from, $k, $over, $prefix, $right );
+        padAbcSlur ( $d, $xs, $geo, $keys, $from, $k, $over, $prefix, $right );
       }
 
       for ( $n = 0; $n < $items [$k] ['slur']; $n++ )
@@ -2155,18 +2184,21 @@
     $carry ['slurs'] = [];
 
     foreach ( $open as list ( $from, $over ) )
-      $carry ['slurs'] [] = padAbcSlur ( $d, $xs, $geo, $from, NULL, $over, $prefix, $right );
+      $carry ['slurs'] [] = padAbcSlur ( $d, $xs, $geo, $keys, $from, NULL, $over, $prefix, $right );
 
   }
 
   // One slur from the note $from to the note $to - NULL for the start or end of the line -
   // over the notes or under them as $over says, or as its notes decide when it is NULL. It
-  // answers the side it took.
+  // answers the side it took. $keys are the keys of $geo, in order: the notes the slur spans
+  // are found by halving them, where every key was tried for every slur - a line of slurs
+  // took time with the square of its length.
 
-  function padAbcSlur ( &$d, $xs, $geo, $from, $to, $over, $prefix, $right ) {
+  function padAbcSlur ( &$d, $xs, $geo, $keys, $from, $to, $over, $prefix, $right ) {
 
-    $keys = array_keys ( $geo );
-    $span = array_values ( array_filter ( $keys, fn ( $k ) => ( $from === NULL or $k >= $from ) and ( $to === NULL or $k <= $to ) ) );
+    $first = ( $from === NULL ) ? 0 : padAbcFirstKey ( $keys, $from );
+    $after = ( $to === NULL ) ? count ( $keys ) : padAbcFirstKey ( $keys, $to + 1 );
+    $span  = array_slice ( $keys, $first, max ( 0, $after - $first ) );
 
     if ( ! $span )
       return (bool) $over;
@@ -2218,16 +2250,39 @@
 
   }
 
+  // Where the first key of a sorted list that is $key or more stands: the count when none is.
+
+  function padAbcFirstKey ( $keys, $key ) {
+
+    $low  = 0;
+    $high = count ( $keys );
+
+    while ( $low < $high ) {
+      $middle = ( $low + $high ) >> 1;
+      if ( $keys [$middle] < $key )
+        $low = $middle + 1;
+      else
+        $high = $middle;
+    }
+
+    return $low;
+
+  }
+
   // The tuplets: the number over a beamed group that is the tuplet, else a bracket with the
   // number in the middle over its notes.
 
   function padAbcTuplets ( &$d, $items, $xs, &$geo ) {
 
-    $sets = [];
+    $sets  = [];
+    $sizes = [];
 
-    foreach ( $items as $k => $item )
+    foreach ( $items as $k => $item ) {
       if ( ( $item ['tuplet'] ?? NULL ) and isset ( $geo [$k] ) )
         $sets [ $item ['tuplet'] ['id'] ] [] = $k;
+      if ( ( $item ['group'] ?? NULL ) !== NULL )
+        $sizes [ $item ['group'] ] = ( $sizes [ $item ['group'] ] ?? 0 ) + 1;
+    }
 
     foreach ( $sets as $set ) {
 
@@ -2240,10 +2295,11 @@
         if ( ( $items [$k] ['group'] ?? NULL ) !== $group )
           $beamed = FALSE;
 
-      if ( $beamed ) {
-        $count = count ( array_filter ( $items, fn ( $item ) => ( $item ['group'] ?? NULL ) === $group ) );
-        $beamed = ( $count == count ( $set ) );
-      }
+      // A beamed group that is the tuplet and nothing more - its size counted once for the
+      // line, where every item of the line was counted for every tuplet.
+
+      if ( $beamed )
+        $beamed = ( ( $sizes [$group] ?? 0 ) == count ( $set ) );
 
       if ( $beamed ) {
         $a  = $geo [ $set [0] ];
