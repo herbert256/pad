@@ -1727,6 +1727,8 @@ there are the icons there are, so an icon is added by adding its file, and `padI
 lists them for a page's PHP. A name that is no icon is an error naming the icons close to it.
 The buttons of a text editor are there too - `bold`, `italic`, `underline`, `strikethrough`,
 `list-ordered`, `quote` - each alone in its button, so each with `label=`.
+`grip` marks a drag handle and `split-pane` a divider that resizes: a picture only, so the part
+still needs a button or keys that do the same.
 A new file keeps the set's svg element and holds only path, circle, rect and ellipse elements
 with their geometry - no fill, colour, style, script or link - which a framework case checks for
 every icon (`tags/every_icon_file_is_lines_on_the_grid_and_nothing_else`).
