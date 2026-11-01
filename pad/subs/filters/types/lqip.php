@@ -5,10 +5,11 @@
   //
   //   {img 'photos/harbour.jpg', width=400, filter='lqip', alt='The harbour'/}
   //
-  // The 1x picture, the filters before it applied, made small - each pixel the average of
-  // what it covers - and blurred once by GD's Gaussian blur, a few hundred bytes in the page,
-  // drawn over the whole box (background-size: cover). A picture with transparent parts is
-  // laid on white first, as a JPEG thumbnail is: they were black.
+  // The 1x picture as shown - every image filter of the list applied, wherever the placeholder
+  // stands in it - made small, each pixel the average of what it covers, and blurred once by
+  // GD's Gaussian blur: a few hundred bytes in the page, drawn over the whole box
+  // (background-size: cover). A picture with transparent parts is laid on white first, as a
+  // JPEG thumbnail is: they were black.
 
   return [
 

@@ -5,8 +5,9 @@
   //
   //   {img 'photos/harbour.jpg', width=400, filter='dominant', alt='The harbour'/}
   //
-  // Every pixel of the 1x picture, the filters before it applied, is counted in a box of 16
-  // steps of red, green and blue; the colour is the average of the pixels of the fullest box
+  // Every pixel of the 1x picture as shown - every image filter of the list applied, wherever
+  // the placeholder stands in it: what is behind the picture is the colour of the picture in
+  // front - is counted in a box of 16 steps of red, green and blue; the colour is the average of the pixels of the fullest box
   // - of two equally full, the one of less red, then less green, then less blue. A pixel
   // counts by its opacity: a transparent one not at all, where it counted as black and a logo
   // on a transparent ground got a black placeholder.

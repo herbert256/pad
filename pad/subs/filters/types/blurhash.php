@@ -6,12 +6,13 @@
   //
   //   {img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}
   //
-  // The hash is of the 1x picture, the filters before it applied, made at most 64 pixels on its
-  // longer side first - each pixel the average of what it covers, as a picture's hash is
-  // usually made; the decoded PNG is 32 pixels on its longer side, drawn over the whole box
-  // (background-size: cover). The encoder and decoder are the reference algorithm
-  // (_lib/blurhash.php). A BlurHash has no transparency: a picture with transparent parts is
-  // laid on white first, as a JPEG thumbnail is - they were read as black.
+  // The hash is of the 1x picture as shown - every image filter of the list applied, wherever
+  // the placeholder stands in it - made at most 64 pixels on its longer side first, each pixel
+  // the average of what it covers, as a picture's hash is usually made; the decoded PNG is 32
+  // pixels on its longer side, drawn over the whole box (background-size: cover). The encoder
+  // and decoder are the reference algorithm (_lib/blurhash.php). A BlurHash has no
+  // transparency: a picture with transparent parts is laid on white first, as a JPEG
+  // thumbnail is - they were read as black.
 
   return [
 

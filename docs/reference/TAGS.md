@@ -3098,7 +3098,9 @@ its name, with the density of that thumbnail - a blur of 6 CSS pixels is another
 than at 1x - the same picture and options, the same file, its bytes the same on every run. A pixel
 filter (pixelate and the dithers) is made at 1x alone and drawn `image-rendering: pixelated`; a
 filter of flat colours is a PNG unless `format=` says otherwise. halftone's dots, ascii's text and
-the placeholders are kept in `_thumbs/` as well, beside the thumbnails, made once. BlurHash is the
+the placeholders are kept in `_thumbs/` as well, beside the thumbnails, made once. A placeholder
+is made of the 1x picture as shown - every image filter of the list applied, wherever the
+placeholder stands in it: `'invert, dominant'` and `'dominant, invert'` are one. BlurHash is the
 reference algorithm, its hash made of the 1x picture at most 64 pixels on its longer side. A
 picture with transparent parts keeps them through blur, its colours weighed by their opacity;
 dominant counts a pixel by its opacity, and lqip and blurhash lay the picture on white. A filter
