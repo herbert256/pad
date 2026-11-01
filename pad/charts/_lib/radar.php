@@ -96,7 +96,14 @@
     $r  = max ( 20, min ( ( $width - 2 * min ( $labelW, $width * 0.25 ) ) / 2 - 12, ( $height - $legendH - 40 ) / 2 ) );
     $cx = $width / 2;
     $cy = $legendH + 20 + $r;
-    $pt = fn ( $i, $v ) => [ $cx + $v / $scale * $r * sin ( 2 * M_PI * $i / $n ), $cy - $v / $scale * $r * cos ( 2 * M_PI * $i / $n ) ];
+    // The spokes' sines and cosines rounded to ten decimals: C libraries - and the browser's
+    // JavaScript, which draws the chart with client - differ in their last bit for some angles,
+    // cos(2pi/3) among them, and a point on the edge of a tenth of a pixel came out 0.1 off.
+
+    $sin = fn ( $i ) => round ( sin ( 2 * M_PI * $i / $n ), 10 );
+    $cos = fn ( $i ) => round ( cos ( 2 * M_PI * $i / $n ), 10 );
+
+    $pt = fn ( $i, $v ) => [ $cx + $v / $scale * $r * $sin ( $i ), $cy - $v / $scale * $r * $cos ( $i ) ];
 
     // The rings at the ticks, the spokes, and the measures named past their spokes.
 
@@ -116,8 +123,8 @@
     foreach ( $fields as $i => $field ) {
       list ( $x, $y ) = $pt ( $i, $scale );
       $svg .= '<line class="pc-grid" x1="' . padChartXY ( $cx ) . '" y1="' . padChartXY ( $cy ) . '" x2="' . padChartXY ( $x ) . '" y2="' . padChartXY ( $y ) . '"/>';
-      $s      = sin ( 2 * M_PI * $i / $n );
-      $c      = cos ( 2 * M_PI * $i / $n );
+      $s      = $sin ( $i );
+      $c      = $cos ( $i );
       $anchor = ( $s > 0.2 ) ? 'start' : ( $s < -0.2 ? 'end' : 'middle' );
       $room   = ( $anchor == 'middle' ) ? $width : ( $anchor == 'start' ? $width - $x - 10 : $x - 10 );
       $svg   .= '<text x="' . padChartXY ( $x + 8 * $s ) . '" y="' . padChartXY ( $y - 8 * $c + 4 + ( $c < -0.5 ? 6 : 0 ) ) . "\" text-anchor=\"$anchor\">"

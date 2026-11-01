@@ -88,9 +88,14 @@
     $index = array_keys ( $nodes );
     $pos   = [];
 
+    // The start on a circle, its sines and cosines rounded to ten decimals: C libraries - and the
+    // browser's JavaScript, which draws the chart with client - differ in their last bit for
+    // some angles, and three hundred rounds of the forces grew that into half a pixel, so the
+    // same network came out another picture on another machine.
+
     foreach ( $index as $i => $node ) {
       $a = 2 * M_PI * $i / $n;
-      $pos [$i] = [ sin ( $a ), -cos ( $a ) ];
+      $pos [$i] = [ round ( sin ( $a ), 10 ), - round ( cos ( $a ), 10 ) ];
     }
 
     $pairs = [];
