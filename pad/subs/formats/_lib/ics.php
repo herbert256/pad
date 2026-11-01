@@ -228,10 +228,8 @@
       if ( ( $status = padFormatPick ( $row, [ 'status' ] ) ) !== '' )
         $out .= padLinesFold ( 'STATUS:' . strtoupper ( padLinesEscape ( $status ) ) );
 
-      if ( ( $categories = padFormatPick ( $row, [ 'categories', 'tags' ] ) ) !== '' or is_array ( $row ['tags'] ?? NULL ) ) {
-        $list = is_array ( $row ['categories'] ?? $row ['tags'] ?? NULL ) ? ( $row ['categories'] ?? $row ['tags'] ) : explode ( ',', $categories );
-        $out .= padLinesFold ( 'CATEGORIES:' . implode ( ',', array_map ( fn ( $one ) => padLinesEscape ( trim ( (string) $one ) ), $list ) ) );
-      }
+      if ( $list = padIcsCategories ( $row ) )
+        $out .= padLinesFold ( 'CATEGORIES:' . implode ( ',', array_map ( 'padLinesEscape', $list ) ) );
 
       if ( ( $rrule = padFormatPick ( $row, [ 'rrule' ] ) ) !== '' )
         $out .= padLinesFold ( 'RRULE:' . preg_replace ( '/[\r\n]/', '', $rrule ) );
@@ -241,6 +239,29 @@
     }
 
     return $out . padLinesFold ( 'END:VCALENDAR' );
+
+  }
+
+  // The categories of a row: its categories - a list, or a text of commas - else its tags,
+  // the first that holds one; a member that is no plain value is left out, and so is an
+  // empty one. An empty categories, as the reader makes for an event without them, leaves
+  // the tags to be written.
+
+  function padIcsCategories ( $row ) {
+
+    foreach ( [ 'categories', 'tags' ] as $field ) {
+
+      $value = $row [$field] ?? NULL;
+      $list  = is_array ( $value ) ? $value : explode ( ',', padFormatPick ( $row, [ $field ] ) );
+      $list  = array_map ( fn ( $one ) => ( is_array ( $one ) or ( is_object ( $one ) and ! $one instanceof Stringable ) ) ? '' : trim ( padFormatCell ( $one ) ), $list );
+      $list  = array_values ( array_filter ( $list, fn ( $one ) => $one !== '' ) );
+
+      if ( $list )
+        return $list;
+
+    }
+
+    return [];
 
   }
 
