@@ -29,6 +29,15 @@
   // to right; IFERROR and IFNA catch them. The values are Excel's - #DIV/0!, #N/A, #NAME?,
   // #NULL!, #NUM!, #REF!, #VALUE! - and #ERROR! for a formula that cannot be read at all,
   // which Excel would refuse to take: Google Sheets calls it that.
+  //
+  // There is no array evaluation: an operator, or a function that wants one value, takes the
+  // one cell of a range Excel's implicit intersection gives. A function whose file says
+  // 'arrays' - SUMPRODUCT - takes its arguments as arrays, and in them Excel computes an
+  // operator or a function on every cell of a range: (A1:A9="x")*B1:B9. That is an error of
+  // the formula where the parser sees it - an operator on a range of more than one cell - and
+  // #VALUE! for the whole call wherever the evaluation meets it, never the number of one cell.
+
+  class padFormulaNoArrays extends Exception {}
 
   const padFormulaErrorCodes = [ '#NULL!', '#DIV/0!', '#VALUE!', '#REF!', '#NAME?', '#NUM!', '#N/A' ];
 
@@ -526,7 +535,42 @@
       return [ 'v', padFormulaError ( '#N/A' ) ];
     }
 
+    if ( isset ( $type ['arrays'] ) and ( $range = padFormulaArrayOperand ( [ 'f', $name, $args ], FALSE ) ) !== NULL ) {
+      if ( $state ['check'] )
+        padFormulaThrow ( strtoupper ( $name ) . " takes ranges as they are - an operator on the range $range asks for"
+                        . ' array evaluation, which the formulas do not have; SUMIFS and COUNTIFS add up and count with criteria', $text, $token [2] );
+      return [ 'v', padFormulaError ( '#VALUE!' ) ];
+    }
+
     return [ 'f', $name, $args ];
+
+  }
+
+  // The first range of more than one cell an operator stands on in a tree, as text - A1:A9 -
+  // or NULL: in the arguments of a function that takes arrays it asks for array evaluation.
+
+  function padFormulaArrayOperand ( $node, $operand ) {
+
+    switch ( $node [0] ) {
+
+      case 'r':
+        if ( $operand and ( $node [1] != $node [3] or $node [2] != $node [4] ) )
+          return padFormulaCellName ( $node [1], $node [2] ) . ':' . padFormulaCellName ( $node [3], $node [4] );
+        return NULL;
+
+      case 'o': return padFormulaArrayOperand ( $node [2], TRUE ) ?? padFormulaArrayOperand ( $node [3], TRUE );
+      case 'u': return padFormulaArrayOperand ( $node [2], TRUE );
+      case '%': return padFormulaArrayOperand ( $node [1], TRUE );
+
+      case 'f':
+        foreach ( $node [2] as $arg )
+          if ( ( $range = padFormulaArrayOperand ( $arg, FALSE ) ) !== NULL )
+            return $range;
+        return NULL;
+
+    }
+
+    return NULL;
 
   }
 
@@ -623,8 +667,19 @@
 
       case 'f':
         $args = [];
-        foreach ( $node [2] as $arg )
-          $args [] = padFormulaEval ( $arg, $env );
+        if ( isset ( padFormulaType ( $node [1] ) ['arrays'] ) and empty ( $env ['arrays'] ) ) {
+          $env ['arrays'] = TRUE;
+          try {
+            foreach ( $node [2] as $arg )
+              $args [] = padFormulaEval ( $arg, $env );
+          } catch ( padFormulaNoArrays $stop ) {
+            return padFormulaError ( '#VALUE!' );
+          } finally {
+            $env ['arrays'] = FALSE;
+          }
+        } else
+          foreach ( $node [2] as $arg )
+            $args [] = padFormulaEval ( $arg, $env );
         // A function that still divides by 0 on some number - PHP throws where a spreadsheet
         // answers an error value - answers #NUM!: a visitor's input ends no request.
         try {
@@ -663,7 +718,9 @@
 
   // The one value a range stands for where an operator wants one: the cell of a range of
   // one, else the cell of the range in the formula's own row (a column) or column (a row) -
-  // Excel's implicit intersection - else #VALUE!.
+  // Excel's implicit intersection - else #VALUE!. In the arguments of a function that takes
+  // arrays Excel would take every cell: the call stops there, and answers #VALUE! - an error
+  // value here would be caught by an IFERROR in it and turned into a number.
 
   function padFormulaScalar ( $value, $env ) {
 
@@ -672,6 +729,9 @@
 
     if ( $value ['w'] == 1 and $value ['h'] == 1 )
       return padFormulaCell ( $value, 0, 0 );
+
+    if ( ! empty ( $env ['arrays'] ) )
+      throw new padFormulaNoArrays;
 
     $at = $env ['at'] ?? NULL;
 
