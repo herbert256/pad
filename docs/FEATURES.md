@@ -1199,12 +1199,13 @@ the drawing in the browser; `pad/types/chart.php` the chart type.
 
 ### Games
 ```
-{game 'memory', pairs=6/}                      # 19 little games, played in the browser
+{game 'memory', pairs=6/}                      # 20 little games, played in the browser
 {game:tictactoe opens='computer'/}             # the game: type - or bare, {tictactoe/}
 {sudoku givens=26, seed=7/}                    # a new puzzle with one solution; seed= the same one
 {sudoku '53..7....6..195....98...', paper/}    # print: drawn to print, solve: solved, no script
 {hangman data='words'/}                        # the words of a store, else between the tags
 {dotsandboxes height=5, width=5, two/}         # dots and boxes, two players - or the computer
+{mancala level='hard', opens='computer'/}      # oware; the computer looks ahead as far as level=
 {crossword}                                    # a line per word, WORD: clue - laid out on the
   ECHO: Writes a value without the sanitize    #   server, typed into in the page
   PIPE: The | that hands a value to a function
@@ -1215,7 +1216,7 @@ the drawing in the browser; `pad/types/chart.php` the chart type.
 ```
 The games are the files of `pad/subs/games/types/` - `<game>.php` checks the options and writes the
 board; `www/assets/games/<game>.js` plays it, `<game>.css` there draws it - and the files there
-are the games there are: bullscows, crossword, dotsandboxes, fifteen, gomoku (five in a row), hangman, hanoi, maze, memory, nim,
+are the games there are: bullscows, crossword, dotsandboxes, fifteen, gomoku (five in a row), hangman, hanoi, mancala (oware), maze, memory, nim,
 nonogram, pegsolitaire, quiz, reversi, scramble, snake, sudoku, tictactoe, wordsearch. The
 script of every game and a small runtime (`www/assets/games/game.js`: a seeded random number,
 the status line, the buttons) are written once per page with the CSP nonce; a game a fragment
