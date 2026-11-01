@@ -15,7 +15,8 @@
   // selector that outweighs the frame's own light and dark rules wherever it stands in the
   // page, with color-scheme, so every part that follows the scheme with light-dark() - the
   // charts, the widgets, the toys - follows the theme. A theme may set the page's font
-  // (--sans), the hero background of the sections (--pad-section-hero) and rules of its
+  // (--sans), the hero background of the sections (--pad-section-hero), declarations of the
+  // body's own (body - blueprint's grid), which the box of a pair gets too, and rules of its
   // own - underlined links. The sections and the effects read their colours from the same palette, so
   // a theme colours them too. The frame's files are not touched: the theme is a <style> on
   // top of them.
@@ -98,8 +99,8 @@
   }
 
   // The CSS of a theme: the frame's properties and the palette's, the scheme, the body's
-  // colours - a page without the frame gets them too - its font, its sections' hero and its
-  // own rules. $inside: the theme on the elements
+  // colours - a page without the frame gets them too - its font and the body's own
+  // declarations, its sections' hero and its own rules. $inside: the theme on the elements
   // of the class pad-theme-<name> alone - the box of a {theme 'x'}...{/theme} pair, which
   // gets the background, the text colour and a little room - and not on the page.
 
@@ -136,7 +137,8 @@
       $vars .= "--sans:{$theme ['sans']};";
 
     $root = $inside ? ".pad-theme-$name" : ':root:root:root';
-    $body = 'background-color:var(--bg);color:var(--text)' . ( isset ( $theme ['sans'] ) ? ';font-family:var(--sans)' : '' );
+    $body = 'background-color:var(--bg);color:var(--text)' . ( isset ( $theme ['sans'] ) ? ';font-family:var(--sans)' : '' )
+          . ( isset ( $theme ['body'] ) ? ";{$theme ['body']}" : '' );
 
     $css = $inside ? "$root{{$vars}color-scheme:{$theme ['scheme']};$body;padding:16px 20px;border-radius:10px}"
                    : "$root{{$vars}color-scheme:{$theme ['scheme']}}$root body{{$body}}";
