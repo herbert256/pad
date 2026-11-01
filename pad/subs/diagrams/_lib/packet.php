@@ -34,11 +34,30 @@
 
   }
 
-  // The accessible name a packet has without title=: its title line, else Packet diagram.
+  // The accessible name a packet has without title=: the heading its title line draws - the
+  // last, without its comment - else Packet diagram.
 
   function padDiagramPacketTitle ( $source ) {
 
-    return preg_match ( '/^\s*title\s+(.+?)\s*$/im', (string) $source, $m ) ? padDiagramFlat ( $m [1] ) : 'Packet diagram';
+    $title = 'Packet diagram';
+
+    foreach ( preg_split ( '/\r?\n/', padUnprotectQuotes ( (string) $source ) ) as $line )
+      if ( preg_match ( '/^title\s+(.+)$/i', padDiagramPacketLine ( $line ), $m ) )
+        $title = padDiagramFlat ( $m [1] );
+
+    return $title;
+
+  }
+
+  // A line without its comment: a line that starts with %%, or %% after a space outside the
+  // quotes and what follows it - a name "50 %% off" keeps its %%.
+
+  function padDiagramPacketLine ( $line ) {
+
+    if ( preg_match ( '/^\s*%%/', $line ) )
+      return '';
+
+    return trim ( preg_replace ( '/^((?:[^"]|"[^"]*")*?)\s%%.*$/s', '$1', $line ) ?? $line );
 
   }
 
@@ -53,7 +72,7 @@
 
     foreach ( preg_split ( '/\r?\n/', padUnprotectQuotes ( (string) $source ) ) as $number => $line ) {
 
-      $line = preg_match ( '/^\s*%%/', $line ) ? '' : trim ( preg_replace ( '/\s%%.*$/', '', $line ) );
+      $line = padDiagramPacketLine ( $line );
 
       if ( $line === '' )
         continue;
