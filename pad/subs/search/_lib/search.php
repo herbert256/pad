@@ -234,7 +234,9 @@
   // and the places of the term there, "p,p,p;" in the same order, read apart only for the
   // terms a query has; the length of every field of every document as 32-bit numbers one
   // after the other (len); the average length per field; and the words met, by their
-  // unaccented form, to the term each stands for - what a prefix is looked up in. Nested
+  // unaccented forms (padSearchSurface), to the terms they stand for, space between - what
+  // a prefix is looked up in; one term per form kept the last, and résumé and resume, one
+  // form, lost a term to resu*. Nested
   // arrays per term, document, field and place took some 185 bytes for every word of the
   // source, and the index of a few thousand rows ran out of PHP's memory on every request
   // that read it.
@@ -262,7 +264,8 @@
             continue;
           $len [$f]++;
           $at [$term] [] = $place;
-          $words [ padSearchFold ( $word ) ] = $term;
+          foreach ( padSearchSurface ( $word ) as $surface )
+            $words [$surface] [$term] = TRUE;
         }
 
         // Appended in place: a string built again for every document of a term made the
@@ -294,6 +297,9 @@
       $terms [$term] = "$list|" . $places [$term];
       unset ( $docs [$term], $places [$term] );
     }
+
+    foreach ( $words as $word => $set )
+      $words [$word] = implode ( ' ', array_keys ( $set ) );
 
     return [ 'form' => padSearchForm, 'lang' => $language ['code'], 'fields' => array_column ( $fields, 0 ), 'n' => $doc,
              'avg' => array_map ( fn ( $sum ) => $doc ? $sum / $doc : 0, $sums ), 'len' => $lens, 'terms' => $terms, 'words' => $words ];
@@ -603,11 +609,30 @@
 
     $terms = [];
 
-    foreach ( padSearchPart ( $index, 'w', crc32 ( mb_substr ( $prefix, 0, 1 ) ) & ( $index ['shards'] - 1 ) ) as $word => $term )
+    foreach ( padSearchPart ( $index, 'w', crc32 ( mb_substr ( $prefix, 0, 1 ) ) & ( $index ['shards'] - 1 ) ) as $word => $set )
       if ( str_starts_with ( (string) $word, $prefix ) )
-        $terms [$term] = TRUE;
+        foreach ( explode ( ' ', (string) $set ) as $term )
+          $terms [$term] = TRUE;
 
     return array_keys ( $terms );
+
+  }
+
+  // The forms a prefix finds a word by, without accents: the word, and of a word with an
+  // apostrophe its longest part too - université of l'université, as the excerpt marks
+  // it. The word alone was kept, and univ* missed l'université.
+
+  function padSearchSurface ( $word ) {
+
+    $surface = [ padSearchFold ( $word ) ];
+
+    if ( str_contains ( $word, "'" ) ) {
+      $parts = explode ( "'", $word );
+      usort ( $parts, fn ( $a, $b ) => mb_strlen ( $b ) <=> mb_strlen ( $a ) );
+      $surface [] = padSearchFold ( $parts [0] );
+    }
+
+    return $surface;
 
   }
 

@@ -769,7 +769,8 @@ when it changed in the second before), a hash of the fields searched of any othe
 column the search does not read changes nothing - and the code of the search, its stemmers
 and stop words. The
 query: words (a row with any of them is found), `"a phrase"` (required, its words in order -
-`"word"` makes one word required), `prefix*`, `-word` and `-"a phrase"` (left out). Words are
+`"word"` makes one word required), `prefix*` (any word beginning so, with or without its
+accents - `univ*` finds `l'université`), `-word` and `-"a phrase"` (left out). Words are
 Unicode letters and digits in lower case, stop words dropped, stemmed by the language's
 Snowball stemmer and written without accents, so `baking` finds `baked` and `cafe` finds
 `Café`; the ranking is BM25F - `fields='title^2, body'` weighs a field, k1 1.2, b 0.75. A row
