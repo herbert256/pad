@@ -77,7 +77,8 @@ bare - their names, home or email, are those of fields and pages - only as `{ico
 (`PAD/subs/sounds/types/`), the printables (`PAD/subs/printables/types/`) and the sections
 (`PAD/subs/sections/types/`) - dots, grid, click, error, labels, letter, hero, team and footer are
 the names of fields and pages too - only as `{pattern:dots/}`, `{sound:click/}`,
-`{printable:labels}` and `{section:hero}`.
+`{printable:labels}` and `{section:hero}`. Nor are the JSON-LD kinds (`PAD/subs/jsonld/types/`) -
+article, event, person and product are the names of fields and pages - only as `{jsonld:article/}`.
 
 A field or array that exists only as a request value - a GET, POST or cookie value the page's PHP
 (its configuration, `_inits.php`, the page, `_exits.php`) does not name, held by no row - comes
@@ -771,6 +772,28 @@ reveal on scroll, a loader, confetti ... - of the kind the tag names: the effect
 by `PAD/subs/effects/effect.php`: the files of `types/` are the effects, and an effect is added by
 adding its files. Bare, an effect comes after every other kind of tag and after the subsystems
 before it in `padSubsystems`, so a store, a field or an array of the name wins.
+
+---
+
+## JSON-LD Types
+
+### jsonld
+
+The structured data of a page - a Schema.org object of the kind the tag names, written as one
+`<script type="application/ld+json">`: the JSON-LD subsystem in `PAD/subs/jsonld/` builds it from
+the fields the kind maps, as the `{jsonld}` tag builds the kind its first parameter names.
+
+```
+{jsonld:article headline=$title, author=$author, published=$date/}
+{jsonld:faq data='questions'/}
+{jsonld:breadcrumb/}
+```
+
+**Resolution:** a PHP file `PAD/subs/jsonld/types/<name>.php` that answers its Schema.org type and
+how each of its fields maps onto it (`padJsonLdKinds()` in `PAD/lib/jsonld.php`): the files there
+are the kinds, and a kind is added by adding its file. Never bare: `{article/}` is no JSON-LD
+block - article, event, person and product are the names of fields and pages.
+`{jsonld:recipe/}` is "there is no JSON-LD kind named 'recipe'" under the strict check.
 
 ---
 

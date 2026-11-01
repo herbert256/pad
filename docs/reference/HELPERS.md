@@ -41,6 +41,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Printables](#printables) | `padPrintableKinds`, `padPrintableKind` | - |
 | [Spreadsheet formulas](#spreadsheet-formulas) | `padFormula`, `padSheet` | - |
 | [Colours](#colours) | `padPalette` | - |
+| [Structured data (JSON-LD)](#structured-data-json-ld) | `padJsonLd`, `padJsonLdKinds` | - |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1138,6 +1139,22 @@ values, and a formula that is no text, are reported with `padError`.
 ```php
 $colors = padPalette ( 'viridis', 5 );   // [ '#440154', '#3b528b', '#21918d', '#5dc863', '#fde725' ]
 $series = padPalette ( 'okabe-ito', 3 ); // [ '#e69f00', '#56b4e9', '#009e73' ]
+```
+
+## Structured data (JSON-LD)
+
+`pad/lib/jsonld.php` - the kinds of `pad/subs/jsonld/types/` that `{jsonld}` writes, the mapping
+in `pad/subs/jsonld/_lib/`, included when it runs.
+
+| Function | Answers |
+|----------|---------|
+| `padJsonLd ( $kind, $data = [], $id = NULL )` | The Schema.org object `{jsonld}` writes for the same kind and rows, as a plain PHP array with its `@context` - no HTML: json_encode it, put it in an API answer. `$data` is one row of fields or a list of rows (a `@graph` for a kind of one object, the items of faq and breadcrumb; none for breadcrumb is the page's trail); only the fields the kind maps are taken, by their PAD name or the Schema.org property, the rest of a row left behind. `$id` is the `@id`. Addresses absolute, dates ISO 8601, as the tag writes them. An unknown kind, data that is no row, a missing required field or a value it cannot write is reported with `padError`, and `[]` comes back for a kind or an object that is not there |
+| `padJsonLdKinds ()` | The kinds, the files of `pad/subs/jsonld/types/`, sorted |
+
+```php
+$ld = padJsonLd ( 'product', [ 'name' => 'Kettle', 'price' => '39.95', 'currency' => 'EUR', 'cost' => '11.00' ] );
+// [ '@context' => 'https://schema.org', '@type' => 'Product', 'name' => 'Kettle',
+//   'offers' => [ '@type' => 'Offer', 'price' => '39.95', 'priceCurrency' => 'EUR' ] ] - no cost
 ```
 
 ## Engine functions

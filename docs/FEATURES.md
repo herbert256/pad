@@ -14,6 +14,7 @@ applications show them working.
   - [Server-sent events](#server-sent-events)
   - [Vite builds](#vite-builds)
   - [Sitemap from the file tree](#sitemap-from-the-file-tree)
+  - [Structured data (JSON-LD)](#structured-data-json-ld)
   - [JSON and CSV from the same page](#json-and-csv-from-the-same-page)
   - [Data formats](#data-formats)
   - [Maintenance mode](#maintenance-mode)
@@ -137,6 +138,72 @@ the islands PAD writes as before - no Babel in the browser.
 `$padSitemap = TRUE`, `?sitemap.xml` answers the sitemap XML and `?robots.txt` points to it.
 Left out: `_` entries, directories with a `_guard.php`, bracketed routes, action pages (no
 template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip` names.
+
+### Structured data (JSON-LD)
+```
+{jsonld:article headline=$title, author=$author, published=$date, image='cover.jpg'/}
+{jsonld 'article', data='post', url=$padGoExt/}           # a row, an option winning over its field
+{jsonld:faq data='questions'/}                            # rows of question and answer
+{jsonld:breadcrumb/}                                      # the trail {breadcrumb/} shows for the page
+{jsonld:product data='product', availability='InStock'/}  # an Offer of price, currency, availability
+{jsonld:website name='Shop', search='?search&q='/}        # a SearchAction ending in {search_term_string}
+```
+```php
+$data = padJsonLd ( 'event', $concert );                  // the same object as a plain array
+```
+One `<script type="application/ld+json">` holding a Schema.org object - what search engines read
+for a rich result - from ordinary PAD data, explicitly mapped. Eight kinds, each a file of
+`pad/subs/jsonld/types/` whose header lists its fields, a PAD name and the Schema.org property it
+fills: `article` (headline required, description, image, url, author, published, modified,
+publisher, logo), `breadcrumb` (rows of name and url - the rows `{breadcrumb data=}` takes,
+label and link too - or without `data=` the page's trail as the breadcrumb widget shows it,
+`home=` its first step), `event` (name and starts required, ends, place and address as its
+Place, description, image, url, and price, currency, availability and tickets as an Offer - not
+`start=`/`end=`, which are the handling options), `faq` (rows of question and answer),
+`organization` (name required, url, logo, description, profiles as sameAs, and phone, email
+and contact as a ContactPoint), `person` (name required, url, image, job, description,
+profiles), `product` (name required, description, image, url, sku, brand, price, currency,
+availability) and `website` (name, url - the application's own address when left out -
+description, search). A row's field or an option of the Schema.org name, `datePublished`,
+counts as its PAD name. `id=` is the `@id`.
+
+The fields come from the row or rows `data=` names - a `{data}` store, the page's array, a
+field holding a list or a `_data` file (a store holds rows, so a single row in a `{data}` block
+is a list of one) - and from options of their names, which win over the row's. A row is never
+written whole: only what the kind maps, so a password, a cost price or an e-mail address of the
+row never reaches the page. Several rows of a kind of one object make a `@graph`; the handling
+options (`where=`, `sort=`, `first=`) work on the rows, and a `data=` without rows answers
+nothing, its `@else@` shown. An empty field is left out, `0` is a value.
+
+Values are written as Schema.org wants them. An address is made absolute: one of http or https
+stands, `//host/x` takes the page's scheme, `/x` is on this host, and `?page`, `#part` or a
+relative path are relative to the application's address (`http://host/pad/shop/`), where an
+`<img src>` of its pages finds its file; `javascript:`, `data:` or any other scheme is left out.
+A date passes as it is when it is ISO 8601 (`2026-11-20`, `2026-11-20T19:30:00+01:00`); another
+text that PHP's `date_parse` reads in full is written so (`20 November 2026 19:30` is
+`2026-11-20T19:30:00`, with its offset when it names a zone, none invented), a date object with
+its offset and an integer as a Unix time in UTC; a relative date - tomorrow - is none, as its
+value would change by the day. A price is a number with a dot, kept as written (`"39.95"`), a
+currency three letters of ISO 4217, an availability one of Schema.org's (`InStock`, `in stock`
+or its address). `search=` is the search address up to the term, written as the urlTemplate
+with `{search_term_string}` after it - braces that stay text, as every value's do; an address
+from PHP that holds `{search_term_string}` keeps it where it stands.
+
+The JSON is encoded for its element: `JSON_HEX_TAG` writes `<` and `>` as `\u003C` and
+`\u003E`, so a `</script>` or `<!--` in a value cannot end the element, slashes and Unicode stay
+as they are, and every value is taken out of PAD's stand-ins first, so none comes back a live
+quote inside a JSON string. No CSP nonce is written: a script of a type other than JavaScript is
+a data block, which the browser never runs, and `script-src` governs only scripts that run. The
+block stands where the tag stands - in the head or the body, both read by search engines.
+
+A missing required field, a date that is none, a price with a comma, a currency or an
+availability that is none, a price without its currency, an option the kind does not take and
+content between the tags are errors under the strict check, naming the field and the kind; the
+lenient walk leaves the object out (its `@else@` shows) - or, for a value it cannot write, the
+field. The kinds are never reached bare: article, event and person are names of fields and
+pages. Code: `pad/subs/jsonld/` - `jsonld.php` the body both forms run, `_lib/jsonld.php` the
+mapping, `types/` the kinds; `pad/types/jsonld.php` the type, `pad/tags/jsonld.php` the tag,
+`pad/lib/jsonld.php` `padJsonLd`.
 
 ### JSON and CSV from the same page
 

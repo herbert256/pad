@@ -626,6 +626,52 @@ runs a count of the same query, only when it is there.
 
 ---
 
+### jsonld
+The structured data of a page for search engines: one `<script type="application/ld+json">`
+holding a Schema.org object, built from the fields a kind maps by name - every kind is a file of
+`pad/subs/jsonld/types/`, and the files there are the kinds there are (`padJsonLdKinds()`); the
+subsystem is `pad/subs/jsonld/`.
+
+```html
+{jsonld 'article', headline=$title, author=$author, published=$date/}
+{jsonld:article data='post', url=$padGoExt/}
+{jsonld:faq data='questions'/}
+{jsonld:breadcrumb/}
+{jsonld:website name='Shop', search='?search&q='/}
+```
+
+A block is written two ways, the same block each time: the tag, `{jsonld 'article', .../}`, and the
+jsonld: type, `{jsonld:article .../}` - never bare, as its names (article, event, person) are those
+of fields and pages. `padJsonLd ( 'article', $post )` answers the same object as a PHP array.
+
+| Kind | Schema.org | Its fields (required in bold) |
+|------|------------|-------------------------------|
+| `article` | Article | **headline**, description, image, url, author, published, modified, publisher, logo |
+| `breadcrumb` | BreadcrumbList | rows of **name** (or label, text) and url (or link, href); without `data=` the page's trail, `home=` its first step |
+| `event` | Event | **name**, **starts**, ends, place, address, description, image, url, price, currency, availability, tickets |
+| `faq` | FAQPage | rows of **question** and **answer** |
+| `organization` | Organization | **name**, url, logo, description, profiles, phone, email, contact |
+| `person` | Person | **name**, url, image, job, description, profiles |
+| `product` | Product | **name**, description, image, url, sku, brand, price, currency, availability |
+| `website` | WebSite | name, url (the application's address), description, search |
+
+**Options:** `data=` the row or rows - a store, the page's array, a field holding a list or a
+`_data` file; several rows of a kind of one object make a `@graph`, the handling options work on
+them, and no rows answer nothing, the `@else@` shown. `id=` the `@id`. The fields of the kind,
+by their PAD name or the Schema.org property (`datePublished`), win over the row's - and a row is
+never written whole, only what its kind maps. An empty field is left out. Addresses are made
+absolute (relative to the application's address; another scheme than http and https left out),
+dates written as ISO 8601 (passed as they are, or from what `date_parse` reads in full; a
+relative date is none), a price is a number with a dot, a currency three letters, an
+availability a word of Schema.org; `search=` is the search address up to the term, written with
+`{search_term_string}` after it. The JSON is written with `JSON_HEX_TAG` - a `</script>` in a
+value cannot end the element - and needs no CSP nonce, a data block not being run. A missing
+required field, a value it cannot write, a price without its currency, an option the kind does
+not take and content between its tags are errors under the strict check; the lenient walk leaves
+the object, or the field, out.
+
+---
+
 ## Web Application Tags
 
 ### csrf
@@ -4635,6 +4681,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `redirect` | Navigation | HTTP redirect |
 | `restart` | Navigation | Restart processing |
 | `pager` | Navigation | Page links for a tag with the page option |
+| `jsonld` | Navigation | The structured data of a page - a Schema.org object of `pad/subs/jsonld/types/` as JSON-LD: article, breadcrumb, event, faq, organization, person, product, website - its fields mapped by name |
 | `csrf` | Web | Hidden CSRF token field of the session |
 | `extends` | Layout | Frame the page with a layout |
 | `block` | Layout | A named region of a layout or wrapper, and its override |
@@ -4789,6 +4836,7 @@ Resolve naming conflicts with explicit prefixes:
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
 | `section:` | Section kind | `{section:hero title='...'}...{/section:hero}`, as `{section 'hero', ...}` - a kind is a file of `pad/subs/sections/types/`; never bare |
 | `effect:` | Effect kind | `{effect:typewriter}Hi{/effect:typewriter}`, as `{effect 'typewriter'}` or bare `{typewriter}` - a kind is a file of `pad/subs/effects/types/` |
+| `jsonld:` | JSON-LD kind | `{jsonld:article headline=$title/}`, as `{jsonld 'article', data='post'/}` - a kind is a file of `pad/subs/jsonld/types/`; never bare |
 
 ---
 
