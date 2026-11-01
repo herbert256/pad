@@ -53,7 +53,10 @@
   // The record keeps the token endpoint and the issuer the login went to, and the way back
   // must resolve to the same: handled with other options - another base=, issuer= or
   // tenant= - it would send the code, the verifier and the client secret to another instance
-  // and log its user in (RFC 9207's mix-up).
+  // and log its user in (RFC 9207's mix-up). It keeps the claims the id_token must carry as
+  // well - Slack's team - which the way back checks beside its own, whatever options it is
+  // handled with: an application that picks the workspace at the start alone keeps it, where
+  // a way back without team= took a token of any workspace.
   //
   // The id_token of OpenID Connect is checked for its issuer, its audience (and azp when it
   // names several), its expiry and the nonce kept. Its signature is not checked: the token
@@ -197,6 +200,7 @@
                 'nonce'    => ( $provider ['oidc'] and $provider ['nonce'] !== FALSE ) ? padCryptB64 ( random_bytes ( 16 ) ) : '',
                 'token'    => $provider ['token'],
                 'issuer'   => $provider ['issuer'],
+                'claims'   => (array) $provider ['claims'],
                 'time'     => time () ];
 
     $state  = padCryptB64 ( random_bytes ( 24 ) );
@@ -395,7 +399,7 @@
     $claims = [];
 
     if ( $provider ['oidc'] ) {
-      $claims = padOAuthIdToken ( $provider, $token ['id_token'] ?? NULL, $record ['nonce'] ?? '' );
+      $claims = padOAuthIdToken ( $provider, $token ['id_token'] ?? NULL, $record ['nonce'] ?? '', (array) ( $record ['claims'] ?? [] ) );
       if ( is_string ( $claims ) )
         return padOAuthFail ( "the id_token of $name $claims" );
     }
@@ -554,7 +558,7 @@
   // The checks of OpenID Connect Core 3.1.3.7 an application relies on - the claims, or what
   // is wrong with the token as text.
 
-  function padOAuthIdToken ( $provider, $jwt, $nonce ) {
+  function padOAuthIdToken ( $provider, $jwt, $nonce, $kept = [] ) {
 
     include_once PAD . 'subs/oauth/_lib/jwt.php';
 
@@ -587,9 +591,13 @@
     if ( $nonce !== '' and ! hash_equals ( $nonce, is_string ( $claims ['nonce'] ?? NULL ) ? $claims ['nonce'] : '' ) )
       return 'does not carry the nonce of this login';
 
-    foreach ( (array) $provider ['claims'] as $claim => $value )
-      if ( strtolower ( (string) ( $claims [$claim] ?? '' ) ) !== strtolower ( (string) $value ) )
-        return "has another $claim";
+    // The claims of the provider as the way back has it and those the login's record kept
+    // from its start, both.
+
+    foreach ( [ (array) $provider ['claims'], (array) $kept ] as $wanted )
+      foreach ( $wanted as $claim => $value )
+        if ( strtolower ( (string) ( $claims [$claim] ?? '' ) ) !== strtolower ( (string) $value ) )
+          return "has another $claim";
 
     return $claims;
 

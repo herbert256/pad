@@ -588,7 +588,8 @@ its client secret, an ES256 JWT, with openssl - or options of the same names; a 
 a strict error naming the variable. The redirect address is the page itself unless `redirect=`
 names another. A state works once, for ten minutes, twenty logins at once, and only with the
 token endpoint and issuer it was started at - a way back handled with another `base=`, `issuer=`
-or `tenant=` is refused before the code goes anywhere; OpenID Connect's
+or `tenant=` is refused before the code goes anywhere, and Slack's `team=` of the start holds on
+the way back whatever its options; OpenID Connect's
 id_token is checked for its issuer, audience, expiry and nonce - its signature is not: it comes
 straight from the token endpoint over TLS, which OpenID Connect Core 3.1.3.7 lets stand for it,
 so an issuer, a `base=` and every endpoint a discovery document names must be https (http on
