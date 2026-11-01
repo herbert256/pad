@@ -1,53 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PAD playground</title>
-  <link rel="stylesheet" href="{asset 'playground.css'/}">
-</head>
-<body>
+{common:padFrame fill}
 
-  <header class="top">
-    {common:padBrand/}
-    <h1>Type a template, see the result</h1>
-  </header>
+  {slot 'head'}{asset 'playground.css', tag/}{/slot}
 
-  <form method="post" action="?render" target="playOut" id="playForm" data-monaco="{$editorMonaco}" data-names="{^editorNames}">
-    <div class="panes">
-      <div class="pane">
-        <label for="source">Template</label>
-        <textarea id="source" name="source" spellcheck="false" rows="14">{$sampleSource}</textarea>
-        <div class="dataHead">
-          <label for="data" data-mode="data">Data - JSON, YAML, XML or CSV, recognised on sight: each key a variable, a list the variable rows</label>
-          <label for="php" data-mode="php" hidden>Data - PHP code, as a page's .php: the variables it sets are the template's</label>
-          <button type="button" id="dataSwitch" hidden>Switch to PHP</button>
-        </div>
-        <input type="hidden" id="mode" name="mode" value="data">
-        <textarea id="data" name="data" data-mode="data" spellcheck="false" rows="10" placeholder="No data - the template has only what it sets itself">{$sampleData}</textarea>
-        <textarea id="php" name="php" data-mode="php" spellcheck="false" rows="10" placeholder="No PHP - the template has only what it sets itself" hidden>{$samplePhp}</textarea>
-        <p>
-          <button type="submit">Render</button>
-          <button type="submit" formaction="?render&amp;view=source">Show the HTML</button>
-          <a id="toOther" class="toOther" href="{$padRoot}live/" title="The same template, data and PHP in the live application, which runs them as a page of this server">{icon 'zap', size=14/}Open in live</a>
-          <span class="hint">Ctrl+Enter renders; the address bar always links to what is typed here.</span>
-        </p>
-      </div>
-      <div class="pane">
-        <span class="caption">Output</span>
-        <iframe id="playOut" name="playOut" title="Output" sandbox="allow-scripts"></iframe>
-      </div>
+  {slot 'tools'}
+    <span class="playTools">
+      <button type="submit" form="playForm" class="playRun">Render</button>
+      <button type="submit" form="playForm" formaction="?render&amp;view=source">Show the HTML</button>
+      <a id="toOther" class="toOther" href="{$padRoot}live/" title="The same template, data and PHP in the live application, which runs them as a page of this server">{icon 'zap', size=14/}Open in live</a>
+    </span>
+  {/slot}
+
+{/common:padFrame}
+
+<form method="post" action="?render" target="playOut" id="playForm" class="play" data-monaco="{$editorMonaco}" data-names="{^editorNames}">
+  <div class="pane">
+    <label for="source">Template</label>
+    <textarea id="source" name="source" spellcheck="false" rows="14">{$sampleSource}</textarea>
+    <div class="dataHead">
+      <label for="data" data-mode="data">Data - JSON, YAML, XML or CSV, recognised on sight: each key a variable, a list the variable rows</label>
+      <label for="php" data-mode="php" hidden>Data - PHP code, as a page's .php: the variables it sets are the template's</label>
+      <button type="button" id="dataSwitch" hidden>Switch to PHP</button>
     </div>
-  </form>
-
+    <input type="hidden" id="mode" name="mode" value="data">
+    <textarea id="data" name="data" data-mode="data" spellcheck="false" rows="10" placeholder="No data - the template has only what it sets itself">{$sampleData}</textarea>
+    <textarea id="php" name="php" data-mode="php" spellcheck="false" rows="10" placeholder="No PHP - the template has only what it sets itself" hidden>{$samplePhp}</textarea>
+    <p class="hint">Ctrl+Enter renders; the address bar always links to what is typed here.</p>
+  </div>
+  <div class="pane">
+    <span class="caption">Output</span>
+    <iframe id="playOut" name="playOut" title="Output" sandbox="allow-scripts"></iframe>
+  </div>
   <p class="limits">This machine only. A template here may not call PHP functions, sees no
   request values and no database, and gets five seconds, 64 KB of source and 256 KB of output.
   PHP code in the data pane runs as written, with all of PHP's reach. The output's scripts
   run in a sandbox of their own: they cannot reach this page, its cookies or this site's
   storage. Errors show as PAD reports them.</p>
+</form>
 
-  {if $editorPadMode}<script src="{$editorPadMode}"></script>{/if}
-  <script src="{asset 'playground.js'/}"></script>
+{if $editorPadMode}<script src="{$editorPadMode}"></script>{/if}
+<script src="{asset 'playground.js'/}"></script>
 
-</body>
-</html>
+{common:padFrameEnd/}

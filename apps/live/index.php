@@ -7,6 +7,14 @@
   // frame there: the page is a real request, answered as any page is - its PHP, request
   // values, sessions, forms that post back, scripts. www/live/live.js keeps the boxes in the
   // URL hash, so a link carries the example, and runs on load and on Ctrl+Enter.
+  //
+  // The editor stands in the frame every PAD application shares, which it fills - the brand
+  // and the menu on the side, the title, the buttons, the theme switcher and the light/dark
+  // switch in the bar. This page opens the frame itself, not an _inits.pad: that would wrap
+  // the pages saved here too, ?page/<id>, which are the visitor's own and answer as they are.
+
+  $title     = 'Type a page, run it on this server';
+  $frameMenu = [ [ 'link' => '?index', 'label' => 'Live', 'icon' => 'zap', 'current' => TRUE ] ];
 
   include_once COMMON . '_lib/playground.php';
 

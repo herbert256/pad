@@ -1,19 +1,33 @@
-:root { color-scheme: light dark; --line: #8884; --muted: #888; }
-body { font: 15px/1.45 system-ui, sans-serif; margin: 0 auto; padding: 16px; max-width: 1200px; }
-.top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; margin: 0 0 12px; padding: 0 0 12px; border-bottom: 1px solid var(--line); }
-h1 { font-size: 1.1em; font-weight: 500; color: var(--muted); margin: 0; }
-.panes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 800px) { .panes { grid-template-columns: 1fr; } }
-.pane { display: flex; flex-direction: column; min-width: 0; }
-label, .caption { font-weight: 600; margin: 8px 0 4px; }
-textarea { font: 13px/1.4 ui-monospace, Menlo, monospace; padding: 8px; border: 1px solid var(--line); border-radius: 6px; resize: vertical; tab-size: 2; }
-iframe { flex: 1; min-height: 420px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
-button { padding: 6px 14px; border-radius: 6px; border: 1px solid var(--line); cursor: pointer; }
-.hint, .limits { color: var(--muted); font-size: 13px; }
+/* The playground in the frame every PAD application shares (www/_common/pad.css), which it
+   fills - {common:padFrame fill}: the boxes on the left, the output on the right, the limits
+   under both and the buttons in the frame's bar. The colours are the frame's, so light, dark
+   and every theme reach the page; the output frame stays white, as the page it shows would be
+   on its own. The template and the data box share the height of the column in the proportion
+   of their rows, which playground.js keeps in --rows as it fits them to what they hold. */
+
+.play { height: 100%; margin: 0; padding: 14px 28px 12px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: 8px 16px; }
+.play .pane { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.play label, .play .caption { font-weight: 600; margin: 0 0 4px; }
+.play textarea, .play .editorBox { flex: var(--rows, 10) 1 0; min-height: 60px; border: 1px solid var(--line); border-radius: 6px; }
+.play textarea { font: 13px/1.4 var(--mono); padding: 8px; resize: none; tab-size: 2; background: var(--panel); color: var(--text); }
+.play .editorBox { overflow: hidden; }
+.play [hidden] { display: none; }
+.play iframe { flex: 1 1 auto; min-height: 0; width: 100%; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+.play button, .playTools button { font: inherit; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--text); cursor: pointer; white-space: nowrap; }
+.play button:hover, .playTools button:hover { border-color: var(--accent); }
+.playTools { display: inline-flex; align-items: center; gap: 8px; }
+.playTools .playRun { background: var(--accent); border-color: var(--accent); color: var(--accent-text); font-weight: 600; }
 .dataHead { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 8px 0 4px; }
 .dataHead label { margin: 0; }
 .dataHead button { padding: 3px 10px; font-size: 13px; flex: none; }
-.editorBox { height: calc(var(--rows, 10) * 18.2px + 18px); min-height: 80px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; resize: vertical; }
-.editorBox[hidden] { display: none; }
-.toOther { display: inline-flex; align-items: center; gap: 4px; margin: 0 6px; font-size: 14px; vertical-align: middle; }
+.hint, .limits { color: var(--dim); font-size: 12.5px; margin: 6px 0 0; }
+.limits { grid-column: 1 / -1; margin: 0; }
+.toOther { white-space: nowrap; }
 .toOther svg { flex: none; }
+
+@media (max-width: 800px) {
+  .play { overflow: auto; grid-template-columns: minmax(0, 1fr); grid-template-rows: none; align-content: start; }
+  .play .pane { min-height: auto; }
+  .play textarea, .play .editorBox { flex: none; height: calc(var(--rows, 10) * 18.2px + 18px); }
+  .play iframe { flex: none; height: 420px; }
+}

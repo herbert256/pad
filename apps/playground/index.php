@@ -10,6 +10,14 @@
   // this site's cookies or storage, or open or move a window.
   // www/playground/playground.js keeps the panes in the URL hash, so a link carries the
   // example, switches the data pane, and renders on load and on Ctrl+Enter.
+  //
+  // The page stands in the frame every PAD application shares, which it fills - the brand and
+  // the menu on the side, the title, the buttons, the theme switcher and the light/dark
+  // switch in the bar. This page opens the frame itself, not an _inits.pad: that would wrap
+  // ?render, whose answer is the output frame's page alone.
+
+  $title     = 'Type a template, see the result';
+  $frameMenu = [ [ 'link' => '?index', 'label' => 'Playground', 'icon' => 'play', 'current' => TRUE ] ];
 
   include_once COMMON . '_lib/playground.php';
 

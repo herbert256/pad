@@ -1,8 +1,9 @@
 <?php
 
-  // _inits.pad writes the whole HTML page itself, so _common's page frame stays off - with
-  // it on, the demo's page was a second document inside _common's body and its own title
-  // was dropped.
+  // The document around every page is the frame every PAD application shares - the brand top
+  // left, the menu, the bar with the title and the theme switcher - opened in _inits.pad with
+  // the common: prefix ({common:padFrame}), so _common itself stays off: the demo shows
+  // what an application has of its own, without _common's tags and library.
 
   $padCommon = FALSE;
 

@@ -34,18 +34,23 @@ demo/
 ├── calendar.php / .pad       # Calendar
 ├── highlight.php / .pad      # Syntax highlighting
 ├── _config/config.php        # Switches _common off, CSRF protection on
-├── _inits.php / .pad         # Global layout wrapper
+├── _inits.php / .pad         # The shared frame around every page, its menu and title
 ├── _include/todo.pad         # Todo list snippet
 ├── _tags/clock.php           # Custom clock tag
-└── _data/navigate.json       # Navigation menu data
+└── _data/navigate.json       # The menu: a page, its text and its icon each
 ```
+
+The pages stand in the frame every PAD application shares - `{common:padFrame}` in
+`_inits.pad`: the brand top left with the menu of the examples under it, the bar with the
+page's title, the theme switcher and the light/dark switch. `www/demo/style.css` styles the
+content of the pages in the frame's colours, so they follow light, dark and every theme.
 
 ## Features Demonstrated
 
 - **Page pairing**: `.php` data files paired with `.pad` templates
-- **Global wrapper**: `_inits.pad` provides consistent layout with `@page@` placeholder
+- **Global wrapper**: `_inits.pad` opens the shared frame of the PAD applications around the `@page@` placeholder
 - **Custom tags**: `_tags/clock.php` shows how to create application-specific tags
-- **Data files**: `_data/navigate.json` demonstrates JSON data integration
+- **Data files**: `_data/navigate.json` holds the menu, which `_inits.php` hands to the frame as `$frameMenu`
 - **Form handling**: Contact form shows POST processing
 - **Flash messages**: the guestbook and contact thanks travel as `padFlash()` messages over
   the redirect and show through `{flash}`

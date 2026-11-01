@@ -9,10 +9,12 @@ that post back and scripts all work as they do in an application.
 ## Usage
 
 Open `http://localhost/pad/live/`. It looks like the [playground](../playground/README.md):
-the template on the left, under it the data - a text in any format PAD reads, JSON, YAML,
+the frame every PAD application shares, filling the window - the brand and the menu on the
+side, the bar with the title, **Run**, **Open in the playground**, the theme switcher and the
+light/dark switch - and in it the template on the left, under it the data - a text in any format PAD reads, JSON, YAML,
 XML, CSV, recognised on sight, a record's keys the page's variables and a list the variable
 `rows` - or, with **Switch to PHP**, PHP code written as a page's `.php`. The boxes are
-editors with PAD's colours when Monaco loads (`$liveMonaco`).
+editors with PAD's colours when Monaco loads (`$liveMonaco`), light or dark with the frame.
 
 **Run** (or Ctrl+Enter) saves the template with its data or PHP as a page of this server and
 shows it on the right as the server answers it - a request of its own, `?page/<id>`, which
@@ -23,7 +25,7 @@ scripts all work, and its PHP may call any function a page's PHP may.
 
 The address bar holds the boxes in its `#s=` hash, as the playground's does, so copying it
 shares the page; one opened from such a link fills the boxes and waits for **Run**. **Open in
-the playground**, beside **Run**, is such a link: the boxes as they stand, in the playground,
+the playground**, beside **Run** in the bar, is such a link: the boxes as they stand, in the playground,
 waiting there for **Render** - and the playground's **Open in live** brings them back. Every
 example of the other applications has such a link, the ⚡ icon at its top right beside the
 playground's ▶ - and some have only that one: an example that needs what only a page of this
@@ -52,7 +54,7 @@ The live application runs the code it is given, as a page of this server, so:
 
 | File | Description |
 |------|-------------|
-| `index.php` / `index.pad` | The editor: template, data or PHP, the page |
+| `index.php` / `index.pad` | The editor: template, data or PHP, the page - in the shared frame, which this page opens itself (`{common:padFrame fill}`), so the saved pages answer as they are, without it |
 | `save.php` | Saves the posted page under `DATA/live/` and sends the frame to `?page/<id>` |
 | `page/_inits.php` | The PHP of a saved page: its PHP code, or its data text read as PAD reads data |
 | `_lib/live.php` | Where the pages are kept, their id, the sweep, the data reader |
@@ -60,4 +62,4 @@ The live application runs the code it is given, as a page of this server, so:
 | `_config/config.php` | CSRF tokens; `$liveMonaco`, where Monaco comes from |
 | `www/live/index.php` | The entry point: hands a saved page's template to the engine (`$padPageSource`) |
 | `www/live/live.js` | The editors, the switch, the boxes in the URL hash and in the link to the playground, Run on Ctrl+Enter, open alone |
-| `www/live/live.css` | The two-pane layout |
+| `www/live/live.css` | The two-pane layout filling the frame, in the frame's colours |

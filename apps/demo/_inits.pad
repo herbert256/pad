@@ -1,32 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-  <head>
-    <title>PAD Demo - {$title}</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-
-  <body>
-    <div class="container">
-
-      <header class="bar">
-        {common:padBrand/}
-        <nav class="menu">
-          {navigate}
-            <a href="?{$page}"{if $padPage == $page} class="active"{/if}>{$text}</a>
-          {/navigate}
-        </nav>
-      </header>
-
-      <h1>{$title}</h1>
-
-      @page@
-
-      <div class="footer">
-        &copy; 2025 PAD Demo Application. Powered by PAD - PHP Application Driver.
-      </div>
-
-    </div>
-  </body>
-
-</html>
+{common:padFrame}
+  {slot 'head'}{asset 'style.css', tag/}{/slot}
+{/common:padFrame}
+@page@
+{common:padFrameEnd/}

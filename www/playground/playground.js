@@ -72,7 +72,8 @@
   // one box does not fit while the other has rows to spare, the one that needs them takes
   // them - a long template above a few lines of data, or the other way round - keeping a
   // line to spare in each; when neither fits both keep their own rows. Fitted again on every
-  // change and on the switch; an editor's box takes its height from --rows (CSS, .editorBox).
+  // change and on the switch; a box - the text field or the editor over it - takes its share
+  // of the column's height from --rows (playground.css), the page filling the window.
 
   var rows  = { source: source.rows, data: data.rows };
   var total = rows.source + rows.data;
@@ -80,8 +81,8 @@
   var least = 5;
 
   function rowsOf(area, count) {
-    if (area.rows === count) return;
     area.rows = count;
+    area.style.setProperty('--rows', count);
     if (area.host) area.host.style.setProperty('--rows', count);
   }
 
@@ -202,9 +203,15 @@
       settings: function () { return {}; }
     });
 
-    var dark  = window.matchMedia('(prefers-color-scheme: dark)');
-    var theme = function () { return dark.matches ? 'pad-dark' : 'pad-light'; };
-    dark.addEventListener('change', function () { monaco.editor.setTheme(theme()); });
+    // The editors are light or dark with the frame: the colour scheme of the page, which the
+    // system sets, or the frame's switch (a padtheme event, www/_common/pad.js), or a theme
+    // chosen in the bar - each of them sets it on the page's root.
+
+    var dark   = window.matchMedia('(prefers-color-scheme: dark)');
+    var theme  = function () { return /dark/.test(getComputedStyle(document.documentElement).colorScheme) ? 'pad-dark' : 'pad-light'; };
+    var follow = function () { monaco.editor.setTheme(theme()); };
+    dark.addEventListener('change', follow);
+    document.addEventListener('padtheme', follow);
 
     // An editor takes the place of a text field: the field is hidden for good, the editor's
     // box takes over its data-mode - the switch shows and hides the box - and every change
