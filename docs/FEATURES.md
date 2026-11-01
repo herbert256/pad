@@ -772,8 +772,9 @@ Snowball stemmer and written without accents, so `baking` finds `baked` and `caf
 found is the source's row with `score` (three decimals) and `excerpt` added: the words around
 the first match, every matched word in a `<mark>` (`padExcerpt`, the function of `{excerpt}`;
 `words=` its length, `excerpt=` its field) - HTML, so print it `{!excerpt}`. A collection is
-searched in `title^2, body` by default, other rows in their text fields; a field's HTML is read
-as its text. The languages are the files of `pad/subs/search/types/` - `en` (Porter2), `nl`
+searched in `title^2, body` by default, other rows in their text fields; a field that is HTML -
+an end tag, a comment, a `<br>` or `<img>`, a quoted attribute - is read as its text, a `<` in
+plain text stays, and an entity is the character it stands for. The languages are the files of `pad/subs/search/types/` - `en` (Porter2), `nl`
 (Kraaij-Pohlmann), `de`, `fr`, `es`, each with Snowball's stop words and its stemmer written
 after the Snowball 3 source and matching Snowball's own test vocabularies word for word -
 `lang=` picks one, the locale's language else English; a language is added by adding its file.

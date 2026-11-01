@@ -37,7 +37,7 @@
 
   // Raised when the index's form changes: every kept index is then made again.
 
-  const padSearchForm = 1;
+  const padSearchForm = 2;
 
   function padSearchLanguage ( $lang ) {
 
@@ -180,7 +180,12 @@
 
   // The text of a field: a list's items one after the other, HTML without its tags, its
   // scripts and styles - a block tag parts two words, as for an excerpt - and its entities
-  // read.
+  // read, in plain text too: &amp; is no word amp.
+  //
+  // A field is HTML when it holds what only HTML holds - an end tag, a comment, a void
+  // element (<br>, <img src=...>) or a start tag with a quoted attribute. Any "<word" with a
+  // ">" further on was taken for HTML, and plain text lost what stood between: a<b and b>c
+  // was indexed and excerpted as ac, "fits <i think> 15 inch" without "i think".
 
   function padSearchText ( $value ) {
 
@@ -192,10 +197,18 @@
 
     $text = padUnprotect ( (string) $value );
 
-    if ( preg_match ( '#</?[a-z][a-z0-9]*[\s>/]#i', $text ) )
-      $text = html_entity_decode ( strip_tags ( preg_replace ( '#<(?=/?(?:p|div|li|h[1-6]|br|hr|tr|td|th|dt|dd|ul|ol|dl|table|caption|pre|blockquote|section|article|aside|header|footer|nav|main|figure|figcaption|address|details|summary)\b)#i', ' <', padExcerptCode ( $text ) ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+    if ( padSearchHtml ( $text ) )
+      $text = strip_tags ( preg_replace ( '#<(?=/?(?:p|div|li|h[1-6]|br|hr|tr|td|th|dt|dd|ul|ol|dl|table|caption|pre|blockquote|section|article|aside|header|footer|nav|main|figure|figcaption|address|details|summary)\b)#i', ' <', padExcerptCode ( $text ) ) );
 
-    return $text;
+    return str_contains ( $text, '&' ) ? html_entity_decode ( $text, ENT_QUOTES | ENT_HTML5, 'UTF-8' ) : $text;
+
+  }
+
+  function padSearchHtml ( $text ) {
+
+    return str_contains ( $text, '<' )
+       and preg_match ( '#</[a-z][a-z0-9-]*\s*>|<!--|<(?:area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)\b[^<>]*>'
+                      . '|<[a-z][a-z0-9-]*\s[^<>]*?[a-z_:][a-z0-9_:.-]*\s*=\s*(?:"[^"<>]*"|\'[^\'<>]*\')[^<>]*>#i', $text );
 
   }
 
