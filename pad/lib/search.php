@@ -14,7 +14,7 @@
   // language, else en), words (the excerpt's length, 30), excerpt (the field it is cut from,
   // the last of fields) and name - what the index of rows is kept under in
   // DATA/cache/search/<app>/, 'rows' unless given: rows of one name share one index, made
-  // again whenever they change. The query is what a visitor typed - a list of words, as
+  // again whenever the fields searched change. The query is what a visitor typed - a list of words, as
   // ?q[]= makes one, is searched for its words. A wrong argument is reported with padError
   // naming the function, which then answers no rows.
 
@@ -37,7 +37,7 @@
       }
 
     if ( is_array ( $source ) )
-      $source = [ 'rows:' . ( $options ['name'] ?? 'rows' ), padSearchSign ( $source ), $source, FALSE ];
+      $source = [ 'rows:' . ( $options ['name'] ?? 'rows' ), NULL, $source, FALSE ];
     elseif ( is_string ( $source ) )
       $source = padSearchSource ( $source );
     else

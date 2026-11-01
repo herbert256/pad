@@ -3,8 +3,10 @@
   // Site search without a search server - the search subsystem behind {search} and padSearch
   // (lib/search.php). A source - a Markdown collection, a data store, a page's rows, a _data
   // file, a db() result - is made into an inverted index the first time it is searched and
-  // kept in DATA/cache/search/<app>/; the index is made again when the source changed: the
-  // names, times and sizes of a collection's files, a hash of the rows of any other source.
+  // kept in DATA/cache/search/<app>/; the index is made again when what it is made of
+  // changed: the names, times and sizes of a collection's files (what a file holds too when
+  // it changed in the last second), a hash of the fields searched of any other source's
+  // rows, and the code that makes an index (padSearchStamp).
   //
   // A language is a file of subs/search/types/ - en, nl, de, fr, es - with its stop words and
   // its Snowball stemmer; a language is added by adding its file. A text is split into words
@@ -31,7 +33,8 @@
   // padSearchScores    the documents a query finds, with their scores, best first
   // padSearchRun       all of it: a source and a query to the rows found, each with its score
   //                    and an excerpt with the matches marked (padExcerpt, tags/_lib/excerpt.php)
-  // padSearchSource    the source {search 'name'} names; padSearchSign the sign of rows
+  // padSearchSource    the source {search 'name'} names; padSearchSign the sign of rows,
+  //                    padSearchStamp the sign of the code that makes an index
   // padSearchList      the hits as the list the single {search/} writes
 
   include_once PAD . 'subs/search/_lib/snowball.php';
@@ -310,7 +313,7 @@
 
   // The index of a source, kept in DATA/cache/search/<app>/<key>/<sign>/ - the key made of
   // the source's name, the fields and the language, the sign of what the source is now (the
-  // files of a collection, a hash of the rows) and of the index's form. An index kept for
+  // files of a collection, a hash of the rows) and of the code. An index kept for
   // another sign is made again by $make, which answers [ rows, index ], and the one it
   // replaces is swept. A request reads what a query needs and no more: head.json (the
   // number of documents, the fields, their average lengths, how the terms and words are
@@ -327,7 +330,7 @@
     static $read = [];
 
     $key = 'cache/search/' . $GLOBALS ['padApp'] . '/' . md5 ( "$name\n" . json_encode ( $fields ) . "\n" . $language ['code'] ) . '/';
-    $dir = $key . md5 ( padSearchForm . "\n$sign" ) . '/';
+    $dir = $key . md5 ( $sign ) . '/';
 
     if ( ! $again and isset ( $read [$dir] ) )
       return $read [$dir];
@@ -825,7 +828,8 @@
   // score (BM25F, three decimals) and excerpt (HTML: the words around the first match, every
   // match in a <mark>) added, the best first. $source is [ name, sign, rows or a function
   // that answers them, keep the rows with the index, the fields when none are given ('' for
-  // every field with text in a row - none is an error, no rows find nothing) ]; the options
+  // every field with text in a row - none is an error, no rows find nothing) ] - the sign
+  // NULL for rows, signed here on the fields searched; the options
   // are fields, lang, words (of the excerpt, 30) and excerpt (the field it is cut from, the
   // last of fields). An error is answered as a string.
 
@@ -857,6 +861,16 @@
       return "words= is the length of the excerpt, a number of words - not '" . padMakeSafe ( $words, 20 ) . "'";
 
     $excerpt = (string) ( $options ['excerpt'] ?? end ( $fields ) [0] ?? '' );
+
+    // Rows are signed here, on the fields the index is made of; a collection by its files.
+
+    if ( $sign === NULL ) {
+      if ( is_callable ( $rows ) )
+        $rows = $rows ();
+      $sign = padSearchSign ( $rows, $fields );
+    }
+
+    $sign = padSearchStamp ( $language, $keepRows ) . "\n$sign";
 
     $make = function () use ( &$rows, $fields, $language ) {
       if ( is_callable ( $rows ) )
@@ -908,8 +922,9 @@
 
   // The source of {search 'name'}: the Markdown collection of the name (_content/<name>/),
   // else a {data} store, a page's array, a field or a _data file of the name - as data=
-  // finds one for {chart}. [ name, sign, rows, keep the rows, the fields when none are
-  // given ] - or an error message. A collection is searched in title^2, body by default.
+  // finds one for {chart}. [ name, sign (NULL for rows: padSearchRun signs them on the
+  // fields searched), rows, keep the rows, the fields when none are given ] - or an error
+  // message. A collection is searched in title^2, body by default.
 
   function padSearchSource ( $name ) {
 
@@ -925,9 +940,16 @@
       $files = glob ( $dir . '*.md' ) ?: [];
       sort ( $files );
 
+      // A file changed in the second it was signed in - or the one before - is signed by
+      // what it holds as well: a time to the second and a size alone kept an index of a file
+      // edited to the same size within that second, and the rows kept with it, for good.
+
       $sign = [];
-      foreach ( $files as $file )
-        $sign [] = basename ( $file ) . ' ' . @filemtime ( $file ) . ' ' . @filesize ( $file );
+      $now  = time ();
+      foreach ( $files as $file ) {
+        $time    = (int) @filemtime ( $file );
+        $sign [] = basename ( $file ) . ' ' . $time . ' ' . @filesize ( $file ) . ( $time >= $now - 1 ? ' ' . @md5_file ( $file ) : '' );
+      }
 
       return [ "collection:$dir", md5 ( implode ( "\n", $sign ) ), fn () => padCollection ( $name ), TRUE, 'title^2, body' ];
 
@@ -946,7 +968,7 @@
     if ( ! is_array ( $rows ) )
       return "there is nothing to search named '" . padMakeSafe ( $name, 40 ) . "' - no collection _content/" . padMakeSafe ( $name, 40 ) . "/, no data store, page array or _data file of the name";
 
-    return [ "rows:$name", padSearchSign ( $rows ), $rows, FALSE, '' ];
+    return [ "rows:$name", NULL, $rows, FALSE, '' ];
 
   }
 
@@ -984,11 +1006,51 @@
 
   }
 
-  // The sign of rows: a hash of them, as JSON - every value, in its order.
+  // The sign of rows: a hash of the values of the fields searched, row by row - what the
+  // index is made of. Every column signed them, and a column the search never reads - the
+  // stock of a product, a count of views - made and wrote the whole index again whenever it
+  // changed.
 
-  function padSearchSign ( $rows ) {
+  function padSearchSign ( $rows, $fields ) {
 
-    return md5 ( (string) json_encode ( $rows, JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_INVALID_UTF8_SUBSTITUTE ) );
+    $values = [];
+
+    foreach ( (array) $rows as $row ) {
+      $row = padSearchRow ( $row );
+      $one = [];
+      foreach ( $fields as [ $field ] )
+        $one [] = padArrGet ( $row, $field, '' );
+      $values [] = $one;
+    }
+
+    return md5 ( (string) json_encode ( $values, JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_INVALID_UTF8_SUBSTITUTE ) );
+
+  }
+
+  // The code an index is made with - this library, the stemmers' runtime, the language's
+  // file, and for a collection the reader of its files and padMarkdown - as a hash, part of
+  // the sign of every index kept: a stemmer or a stop word changed, or how a text is split
+  // into words, and the indexes kept are made again. Only padSearchForm said so, and it was
+  // raised for a change of the index's form alone.
+
+  function padSearchStamp ( $language, $collection ) {
+
+    static $stamps = [];
+
+    $key = $language ['code'] . ( $collection ? ':collection' : '' );
+
+    if ( ! isset ( $stamps [$key] ) ) {
+
+      $files = [ 'subs/search/_lib/search.php', 'subs/search/_lib/snowball.php', 'subs/search/types/' . $language ['code'] . '.php', 'tags/_lib/excerpt.php' ];
+
+      if ( $collection )
+        array_push ( $files, 'lib/collection.php', 'lib/markdown.php', 'tags/_lib/markdown.php' );
+
+      $stamps [$key] = md5 ( padSearchForm . implode ( '', array_map ( fn ( $file ) => (string) @md5_file ( PAD . $file ), $files ) ) );
+
+    }
+
+    return $stamps [$key];
 
   }
 

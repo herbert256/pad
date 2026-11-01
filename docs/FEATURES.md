@@ -763,8 +763,11 @@ Site search without a search server. The source is a Markdown collection (`_cont
 read by `padCollection`), else a `{data}` store, a page's array - a `db()` result - or a
 `_data` file of the name; `padSearch` takes the rows themselves too. The first search makes an
 inverted index of it, kept in `DATA/cache/search/<app>/` in parts - a search reads those of
-its words, so a large source costs a request little memory - and made again when the source
-changed: the names, times and sizes of a collection's files, a hash of any other rows. The
+its words, so a large source costs a request little memory - and made again when what it is
+made of changed: the names, times and sizes of a collection's files (and what a file holds,
+when it changed in the second before), a hash of the fields searched of any other rows - a
+column the search does not read changes nothing - and the code of the search, its stemmers
+and stop words. The
 query: words (a row with any of them is found), `"a phrase"` (required, its words in order -
 `"word"` makes one word required), `prefix*`, `-word` and `-"a phrase"` (left out). Words are
 Unicode letters and digits in lower case, stop words dropped, stemmed by the language's
