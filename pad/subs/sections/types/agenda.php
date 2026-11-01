@@ -78,14 +78,29 @@
         padError ( "$padSecWhat has no end '" . padMakeSafe ( $padSecRaw ( $padSecItem, 'to' ), 20 ) . "' - 10:15, or 2026-11-05T10:15 with its day" );
     }
 
-    if ( $padSecTo !== NULL and ( $padSecTo [1] === '' or $padSecTo [1] === $padSecFrom [1] ) and $padSecTo [0] <= $padSecFrom [0] ) {
-      if ( $GLOBALS ['padCheckSyntax'] )
-        padError ( "$padSecWhat ends at {$padSecTo [2]}, not after it starts at {$padSecFrom [2]}" );
-      $padSecTo = NULL;
-    }
-
     $padSecDay = $padSecRaw ( $padSecItem, 'day' );
     $padSecDay = ( $padSecDay === '' ) ? $padSecFrom [1] : $padSecDay;
+
+    // The end against the start as whole moments: each time on the date it carries, else
+    // the start on the session's day when that is a date, else on the end's date, and the
+    // end on the start's - so a time with a date and one without, or two dates, are
+    // compared as well.
+
+    if ( $padSecTo !== NULL ) {
+
+      $padSecStart = ( $padSecFrom [1] !== '' ) ? $padSecFrom [1] : ( preg_match ( '/^\d{4}-\d{2}-\d{2}$/D', $padSecDay ) ? $padSecDay : '' );
+      $padSecEnd   = ( $padSecTo [1] !== '' ) ? $padSecTo [1] : $padSecStart;
+      $padSecStart = ( $padSecStart !== '' ) ? $padSecStart : $padSecEnd;
+
+      if ( [ $padSecEnd, $padSecTo [0] ] <= [ $padSecStart, $padSecFrom [0] ] ) {
+        $padSecApart = ( $padSecStart !== $padSecEnd );
+        if ( $GLOBALS ['padCheckSyntax'] )
+          padError ( "$padSecWhat ends at " . ( $padSecApart ? "$padSecEnd " : '' ) . "{$padSecTo [2]}, not after it starts at "
+                     . ( $padSecApart ? "$padSecStart " : '' ) . "{$padSecFrom [2]}" );
+        $padSecTo = NULL;
+      }
+
+    }
 
     if ( $padSecDay === '' )
       $padSecDayless++;

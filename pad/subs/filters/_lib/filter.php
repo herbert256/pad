@@ -18,6 +18,7 @@
   //            'lossless' => TRUE,                 PNG unless format= says otherwise
   //            'loops'    => TRUE,                 it reads every pixel in PHP
   //            'count'    => [ 'dots', 50000, function ( $o, $w, $h ) { ... }, 'a larger cell=' ],
+  //            'version'  => 2,                    its drawing changed: a new name for its files
   //            'apply'    => function ( $image, $o, $scale ) { ... return $image; } ];
   //
   // image - a GD picture in, a GD picture out: grayscale, sepia, duotone, posterize, pixelate,
@@ -258,12 +259,15 @@
 
   }
 
+  // The version of a filter whose drawing changed is part of it, so a picture the earlier
+  // drawing kept in _thumbs/ under the same name is not shown for the new one.
+
   function padFilterKey ( $chain ) {
 
     $key = [];
 
-    foreach ( $chain as list ( $name, , $options ) )
-      $key [] = [ $name, $options ];
+    foreach ( $chain as list ( $name, $spec, $options ) )
+      $key [] = isset ( $spec ['version'] ) ? [ $name, $options, $spec ['version'] ] : [ $name, $options ];
 
     return $key;
 

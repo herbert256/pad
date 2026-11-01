@@ -375,36 +375,27 @@
         $object ['@id'] = $id;
     }
 
-    $ok = padJsonLdFill ( $object, $spec ['fields'], $spec ['objects'], $values, "the JSON-LD $kind", TRUE, $report );
+    $written = [];
 
-    // A field that needs others - a price its currency, a salary its currency and its period - is judged on what
-    // was written (a need given but dropped as no valid value does not count) and on what was given (a need
-    // whose path another field's value fills - per inside salary - counts only when it was given itself).
+    $ok = padJsonLdFill ( $object, $spec ['fields'], $spec ['objects'], $values, "the JSON-LD $kind", TRUE, $report, $written );
+
+    // A field that needs others - a price its currency, a salary its currency and its period - is judged on the
+    // fields written, never on their paths: a need given but dropped as no valid value does not count (its own
+    // error said why), nor does the path of a need another field's value fills - per inside salary. A need given
+    // a value that writes nothing - countries beside a remote that is no - is named as a need not given is.
 
     foreach ( $spec ['needs'] as $field => $needs )
       foreach ( (array) $needs as $need )
-        if ( padJsonLdWritten ( $object, $spec ['fields'] [$field] ['path'] )
-             and ( ! padJsonLdWritten ( $object, $spec ['fields'] [$need] ['path'] ) or ! isset ( $values [$need] ) ) ) {
-          if ( ! isset ( $values [$need] ) )
+        if ( ( $written [$field] ?? FALSE ) and ! ( $written [$need] ?? FALSE ) ) {
+          if ( ( $written [$need] ?? NULL ) === FALSE )
+            $report ( "the JSON-LD $kind has a $field and a $need of '" . padMakeSafe ( padJsonLdScalar ( $values [$need] ?? $spec ['fields'] [$need] ['default'] ), 40 )
+                      . "', which writes no {$spec ['fields'] [$need] ['path']} - a $field is no use without it" );
+          elseif ( ! isset ( $values [$need] ) )
             $report ( "the JSON-LD $kind has a $field and no $need - give it as $need= or as a field $need of the row" );
           $ok = FALSE;
         }
 
     return $ok ? $object : FALSE;
-
-  }
-
-  // Whether the object holds a value on a field's path - offers.price.
-
-  function padJsonLdWritten ( $object, $path ) {
-
-    foreach ( explode ( '.', $path ) as $step )
-      if ( is_array ( $object ) and array_key_exists ( $step, $object ) )
-        $object = $object [$step];
-      else
-        return FALSE;
-
-    return TRUE;
 
   }
 
@@ -428,16 +419,28 @@
   // Writes the fields with a value into the object, in the order the kind lists them, each
   // object on its path made with its @type first. FALSE when a required field has no value -
   // the others are written all the same, so every error of the object is named. $options
-  // says the fields could have been options of the tag, as an item's cannot.
+  // says the fields could have been options of the tag, as an item's cannot; $written gets
+  // TRUE for the name of every field written, and FALSE for one given a value that writes
+  // nothing without being an error - a flag that is no.
 
-  function padJsonLdFill ( &$object, $fields, $objects, $values, $what, $options, $report ) {
+  function padJsonLdFill ( &$object, $fields, $objects, $values, $what, $options, $report, &$written = [] ) {
 
-    $ok = TRUE;
+    $ok   = TRUE;
+    $said = FALSE;
+    $tell = function ( $message ) use ( $report, &$said ) {
+      $said = TRUE;
+      $report ( $message );
+    };
 
     foreach ( $fields as $name => $field ) {
 
       $value = $values [$name] ?? $field ['default'];
-      $value = ( padJsonLdEmpty ( $value ) and ! padJsonLdFlagged ( $value, $field ) ) ? NULL : padJsonLdValue ( $value, $field ['how'], $name, $what, $report );
+      $said  = FALSE;
+
+      if ( padJsonLdEmpty ( $value ) and ! padJsonLdFlagged ( $value, $field ) )
+        $value = NULL;
+      elseif ( ( $value = padJsonLdValue ( $value, $field ['how'], $name, $what, $tell ) ) === NULL and ! $said )
+        $written [$name] = FALSE;
 
       if ( $value === NULL ) {
         if ( $field ['required'] ) {
@@ -464,6 +467,8 @@
       $at [$last] = $value;
 
       unset ( $at );
+
+      $written [$name] = TRUE;
 
     }
 

@@ -26,7 +26,7 @@
   // padTabsAdd     an item handed to its owner
   // padTabsTake    the owner's items, the collection closed
   // padTabsItems   the items checked: a label where the owner needs one, nothing else in
-  //                between them, at least one
+  //                between them, at least one - or none, for an owner that allows it
   // padTabsPick    which item an active= or open= names - a number from 1, or a label
   // padTabs        the markup of a tab set
 
@@ -96,13 +96,18 @@
   }
 
   // What the owner rendered itself is only the room between its items: text there never
-  // shows, and the strict check says so.
+  // shows, and the strict check says so. An owner that may have no item - a {sortable},
+  // whose items a loop over the application's rows makes - asks with $none: without an
+  // item it gets none and shows what its content rendered, nothing or the loop's @else@.
 
-  function padTabsItems ( $kind, $rest ) {
+  function padTabsItems ( $kind, $rest, $none = FALSE ) {
 
     global $padCheckSyntax;
 
     $items = padTabsTake ();
+
+    if ( ! $items and $none )
+      return [];
 
     if ( $padCheckSyntax and trim ( $rest ) !== '' )
       padError ( "what stands between the {tab}s of a {" . $kind . "} never renders - put it inside a {tab}" );

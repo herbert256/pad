@@ -30,13 +30,22 @@
 
   }
 
-  $padSortItems = padTabsItems ( 'sortable', $padContent );
+  $padSortItems = padTabsItems ( 'sortable', $padContent, TRUE );
   $padSortLabel = padWidgetText ( 'label', '' );
 
   if ( $padSortLabel === '' )
     $padSortLabel = ucfirst ( strtolower ( padStrHeadline ( (string) $padParm ) ) );
 
-  if ( ! $padSortItems or ! padSortableKeys ( $padSortItems ) ) {
+  // A list with no item yet - the loop that makes the items found no row, an ordinary state
+  // of a to-do list or a playlist - is no list: the sortable shows what its content
+  // rendered, nothing or the loop's @else@,
+  // {tasks}{tab $id}{$title}{/tab}@else@<p>Nothing to sort</p>{/tasks}. Its label= is read
+  // all the same, so the strict check finds no option that nothing reads.
+
+  if ( ! $padSortItems )
+    return TRUE;
+
+  if ( ! padSortableKeys ( $padSortItems ) ) {
 
     $padContent = implode ( '', array_column ( $padSortItems, 'content' ) );
 

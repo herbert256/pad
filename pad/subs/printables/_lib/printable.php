@@ -409,10 +409,13 @@
             : 'left:' . $mm ( $x1 ) . ';top:' . $mm ( min ( $y1, $y2 ) ) . ';width:0;height:' . $mm ( abs ( $y2 - $y1 ) ) . ";border-left:$border";
 
       // A line drawn exactly is drawn by the sheet's SVG (padPrintableExact): here it is the
-      // PDF's alone, hidden on the screen and on paper.
+      // PDF's alone, hidden on the screen and on paper - and nothing for a line of screen,
+      // which the PDF leaves out: a line of dots of screen was drawn in the PDF and hidden on
+      // the screen, the opposite.
 
       if ( $o ['exact'] or $o ['dots'] )
-        return padProtect ( "<div class=\"pp-line pp-pdf\" data-pdf-line=\"" . padPrintableMms ( $x1, $y1, $x2, $y2 ) . "\" data-pdf-style=\"$pdf\" aria-hidden=\"true\"></div>" );
+        return $o ['screen'] ? ''
+             : padProtect ( "<div class=\"pp-line pp-pdf\" data-pdf-line=\"" . padPrintableMms ( $x1, $y1, $x2, $y2 ) . "\" data-pdf-style=\"$pdf\" aria-hidden=\"true\"></div>" );
 
       $attrs = $where ?: 'data-pdf-line="' . padPrintableMms ( $x1, $y1, $x2, $y2 ) . "\" data-pdf-style=\"$pdf\"";
 
@@ -433,11 +436,14 @@
   // of no length every dots= mm with round caps. The lines stay in the markup for the PDF
   // (padPrintablePrim), hidden; the SVG is no part of the PDF. It stands where the first of
   // its lines stands, over what comes before it - a rectangle's fill - as the PDF draws the
-  // lines over the rectangles: [ the SVG, the place of its first line ].
+  // lines over the rectangles: [ the SVG, the place of its first line ]. A line of dots the
+  // screen alone shows - or one drawn exactly by its own option - is drawn in an SVG of its
+  // own, pp-screen, which paper leaves out as the PDF does; the other lines of screen, the
+  // guides of a kind drawn exactly, stay borders (padPrintablePrim).
 
   function padPrintableExact ( $plan, &$prims ) {
 
-    $paths = [];
+    $paths = [ 0 => [], 1 => [] ];
     $first = NULL;
 
     foreach ( $prims as $k => $prim ) {
@@ -447,7 +453,7 @@
 
       $o = ( $prim [5] ?? [] ) + [ 'stroke' => '#000000', 'width' => 0.5, 'dash' => FALSE, 'dots' => 0, 'exact' => FALSE, 'screen' => FALSE ];
 
-      if ( ! ( $o ['exact'] or $o ['dots'] or ( $plan ['exact'] ?? FALSE ) ) or $o ['screen'] )
+      if ( ! ( $o ['exact'] or $o ['dots'] or ( ! $o ['screen'] and ( $plan ['exact'] ?? FALSE ) ) ) )
         continue;
 
       $wide = $o ['width'] * 25.4 / 72;
@@ -464,20 +470,26 @@
         $y2 += ( $y2 - $y1 ) / $long * $o ['dots'] / 2;
       }
 
-      $paths [$look] = ( $paths [$look] ?? '' ) . 'M' . padPrintableMm ( $x1 ) . ' ' . padPrintableMm ( $y1 )
-                     . ( $y1 == $y2 ? 'H' . padPrintableMm ( $x2 ) : ( $x1 == $x2 ? 'V' . padPrintableMm ( $y2 ) : 'L' . padPrintableMm ( $x2 ) . ' ' . padPrintableMm ( $y2 ) ) );
+      $set = $o ['screen'] ? 1 : 0;
+
+      $paths [$set] [$look] = ( $paths [$set] [$look] ?? '' ) . 'M' . padPrintableMm ( $x1 ) . ' ' . padPrintableMm ( $y1 )
+                            . ( $y1 == $y2 ? 'H' . padPrintableMm ( $x2 ) : ( $x1 == $x2 ? 'V' . padPrintableMm ( $y2 ) : 'L' . padPrintableMm ( $x2 ) . ' ' . padPrintableMm ( $y2 ) ) );
 
       $prims [$k] [5] ['exact'] = TRUE;
       $first ??= $k;
 
     }
 
-    if ( ! $paths )
-      return [ '', NULL ];
+    $svg = '';
 
-    return [ padProtect ( '<svg class="pp-lines" data-pdf-skip aria-hidden="true" focusable="false" viewBox="0 0 ' . padPrintableMms ( ...$plan ['paper'] ) . '" fill="none">'
-                        . implode ( '', array_map ( fn ( $look, $d ) => "<path $look d=\"$d\"/>", array_keys ( $paths ), $paths ) )
-                        . '</svg>' ), $first ];
+    foreach ( $paths as $screen => $looks )
+      if ( $looks )
+        $svg .= '<svg class="pp-lines' . ( $screen ? ' pp-screen' : '' ) . '" data-pdf-skip aria-hidden="true" focusable="false" viewBox="0 0 '
+              . padPrintableMms ( ...$plan ['paper'] ) . '" fill="none">'
+              . implode ( '', array_map ( fn ( $look, $d ) => "<path $look d=\"$d\"/>", array_keys ( $looks ), $looks ) )
+              . '</svg>';
+
+    return ( $svg === '' ) ? [ '', NULL ] : [ padProtect ( $svg ), $first ];
 
   }
 

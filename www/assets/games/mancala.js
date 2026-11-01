@@ -179,7 +179,7 @@ PadGames.register('mancala', function (k, cfg) {
     if (busy || k.over()) return;
     if ((!cfg.two && turn !== 0) || side(h) !== turn || !pits[h]) return;
     if (legal({ pits: pits, store: store }, turn).indexOf(h) < 0)
-      return k.status(who(1 - turn) + (cfg.two || turn ? ' has' : ' have') + ' no seeds - sow from a house whose seeds reach ' + (cfg.two || turn ? 'that side.' : 'your side.'));
+      return k.status(who(1 - turn) + ' has no seeds - sow from a house whose seeds reach ' + (cfg.two ? 'that side.' : 'its side.'));
     play(h, after);
   }
 

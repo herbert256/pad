@@ -21,9 +21,10 @@
   // UTF-8, 927 26 - without it a reader takes the bytes as code page 437. The error correction
   // is Reed-Solomon over GF(929) with the generator of the roots 3^1 to 3^k, k = 2^(level+1):
   // level 0 to 8, by default the standard's recommendation for the data's size - 2 up to 40
-  // data codewords, 3 up to 160, 4 up to 320, 5 beyond. The columns (1 to 30) make the symbol
-  // about three times as wide as high unless columns= says how many; rows 3 to 90, each three
-  // modules high, a quiet zone of two modules on either side.
+  // data codewords, 3 up to 160, 4 up to 320, 5 up to 863 - and beyond it the largest level
+  // that leaves room for them: 4 up to 896, 3 up to 912, down to 0. The columns (1 to 30)
+  // make the symbol about three times as wide as high unless columns= says how many; rows 3
+  // to 90, each three modules high, a quiet zone of two modules on either side.
   //
   // The codeword patterns - the three clusters of 929 bar and space patterns of the standard's
   // table, cluster 0, 3 and 6 - are taken from pdf417gen 0.8.1 (https://github.com/ihabunek/pdf417-py,
@@ -98,8 +99,14 @@
     $data  = padPdf417Words ( $text );
     $count = count ( $data ) + 1;
 
-    if ( $level === NULL )
+    // The standard's recommendation ends at 863 data codewords, the most level 5 leaves room
+    // for: beyond it the default is the largest level that still fits.
+
+    if ( $level === NULL ) {
       $level = $count <= 40 ? 2 : ( $count <= 160 ? 3 : ( $count <= 320 ? 4 : 5 ) );
+      while ( $level > 0 and $count + ( 2 << $level ) > 928 )
+        $level--;
+    }
 
     $ecc = 2 << $level;
 
@@ -250,7 +257,9 @@
 
   // Text compaction: the values of the characters in their submode, a latch or a shift where
   // the submode changes, two values to a codeword - 30 times the first and the second - the
-  // last filled with the punctuation shift. Answers the submode it ends in.
+  // last filled with a 29: the punctuation shift in alpha, lower and mixed, which a shifted
+  // byte (913) after it takes away, but the latch to alpha in punctuation, so the text after
+  // that byte goes on in alpha. Answers the submode it ends in.
 
   function padPdf417Text ( $text, $sub, &$words ) {
 
@@ -299,8 +308,11 @@
 
     }
 
-    if ( count ( $values ) % 2 )
+    if ( count ( $values ) % 2 ) {
       $values [] = 29;
+      if ( $sub == 'punct' )
+        $sub = 'alpha';
+    }
 
     for ( $k = 0; $k < count ( $values ); $k += 2 )
       $words [] = 30 * $values [$k] + $values [$k + 1];

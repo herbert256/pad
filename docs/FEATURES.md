@@ -198,7 +198,7 @@ company required, expires (validThrough), employment (one or more of FULL_TIME, 
 CONTRACTOR, TEMPORARY, INTERN, VOLUNTEER, PER_DIEM and OTHER, `full time` too), companyurl and
 logo of the hiring Organization, street, city, region, postcode and country of its place - the
 country needed with any of them - remote (yes writes jobLocationType TELECOMMUTE) with countries
-(applicantLocationRequirements, a Country each), and salary (an amount or a range, `3200-3800`),
+(applicantLocationRequirements, a Country each - an error beside a remote that is no), and salary (an amount or a range, `3200-3800`),
 currency and per (HOUR, DAY, WEEK, MONTH or YEAR) as a MonetaryAmount - a salary needs both;
 not `min=`/`max=`, which are options of every tag. `software`: a SoftwareApplication - type
 (MobileApplication, WebApplication), name and price required (`0` for one that is free), description,
@@ -312,7 +312,7 @@ with a reader, a writer or both - added by adding its file, its code in `_lib/`,
 | `geojson` | yes | yes | a feature a row: its properties, id, geometry, lat/lon of a Point - Points written from lat and lon |
 | `gpx` | yes | yes | waypoints, route and track points as rows: type, track, segment, point, name, lat, lon, ele, time, desc |
 | `xlsx` | yes | yes | one sheet: a bold frozen header, numbers, booleans and dates as such, text never a formula; read: the first sheet (`sheet=`) |
-| `kml` | yes | yes | KML 2.2 placemarks as rows - their ExtendedData, id, name, description, folder, address, style, time, and the geometry as `geojson` has it; written in folders by `folder`, Points from lat and lon; a DOCTYPE refused, a NetworkLink never fetched |
+| `kml` | yes | yes | KML 2.2 placemarks as rows - their ExtendedData, id, name, description, folder (`A / B`, a / inside a name read as ∕), address, style, time, and the geometry as `geojson` has it; written in folders by `folder`, Points from lat and lon; a DOCTYPE refused, a NetworkLink never fetched |
 | `jsonseq` | yes | yes | JSON text sequences (RFC 7464): an RS (0x1E), a JSON text and a line feed a record, as `jq --seq` writes them; a record that is no JSON or a number cut short passed over on the lenient walk, as the RFC recovers |
 | `vtt`, `srt` | yes | yes | WebVTT captions and SRT subtitles: a cue a row - id, start and end (`00:01:02.500`), startms and endms, text with its markup, plain without, voice (`<v Ann>`), settings; written in the order of their start, an end left out the next cue's start (chapters) - `?talk&padFormat=vtt` is the `src` of a `<track>` |
 | `rss`, `atom`, `jsonfeed` | - | yes | feeds of rows with title, link, date, summary, body, id - a Markdown collection's rows as they are |
@@ -588,7 +588,8 @@ its client secret, an ES256 JWT, with openssl - or options of the same names; a 
 a strict error naming the variable. The redirect address is the page itself unless `redirect=`
 names another. A state works once, for ten minutes, twenty logins at once, and only with the
 token endpoint and issuer it was started at - a way back handled with another `base=`, `issuer=`
-or `tenant=` is refused before the code goes anywhere; OpenID Connect's
+or `tenant=` is refused before the code goes anywhere, and Slack's `team=` of the start holds on
+the way back whatever its options; OpenID Connect's
 id_token is checked for its issuer, audience, expiry and nonce - its signature is not: it comes
 straight from the token endpoint over TLS, which OpenID Connect Core 3.1.3.7 lets stand for it,
 so an issuer, a `base=` and every endpoint a discovery document names must be https (http on
@@ -630,7 +631,9 @@ gateway - is the options' or `padEnv`'s alone, never the row's, and absolute htt
 fields are checked, and a push endpoint must be on a browser's push service (FCM, Mozilla's,
 WNS, Apple's - `WEBPUSH_SERVICES` names more): a value that is none is not sent to. The Telegram
 token and the webhooks' addresses are credentials: the dumps, the error report and
-`_events/curl.php` see them redacted, as a header's. With
+`_events/curl.php` see them redacted, as a header's - Zapier's, Make's and n8n's catch hooks by
+their form, the webhook channel's of any other service from its path on once it was used, a
+setting marked `secret` by its value, and `WEBHOOK_URL` by its name. With
 `[ 'queue' => TRUE ]` (or a queue's name) every channel is a job of its own, `@notify`, rendered
 and sent by `pad work` - a failing channel is retried alone; the job keeps of the recipient what
 `padLogin` keeps of a row, its password hash, tokens and secrets left out. A channel that does not deliver is
@@ -645,7 +648,8 @@ gone. A channel is added by adding its file: its settings and a `send` function.
   no markdown - and the url a click opens, the option `priority` (0 to 10).
 - mattermost - a message through a Mattermost incoming webhook, `MATTERMOST_WEBHOOK_URL` (its id
   redacted in the reports, as Slack's): Mattermost's markdown as written, every mention switched
-  off - a zero-width space after the @ that starts a word - so a value pings nobody.
+  off - a zero-width space after every @ (and `&#64;`, `&commat;`) no letter or digit stands
+  before, `x.@channel` too, as Mattermost's parser reads the parts of a word - so a value pings nobody.
 - twilio - a text message through Twilio's Messages API: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`
   (or with `TWILIO_API_KEY` that key's secret), `TWILIO_FROM` - a number, a short code, a sender id
   or a Messaging Service (`MG...`); the row's `phone` in E.164, the text cut at 1600 characters.
@@ -1536,7 +1540,9 @@ A wall calendar (`calendar`) is a month to a sheet: the month over a grid of its
 write in for every day - `year=` its twelve months, `month='2026-09'` from that month on and
 `months=` how many (1 with `month=`), `sunday` the weeks from Sunday, `weeks` the ISO 8601 week
 numbers before them, `holidays=` a country of the holidays subsystem (`'nl'`, `'de-by'`) its public
-holidays red with their names and its observances grey, `color=`, `paper=` and `landscape` - the
+holidays red with their names and its observances grey (a month `year=` or `month=` fixes in a
+year the country's file does not know an error under the strict check, as for `{calendar}`; this
+year, unfixed, with only the days inside those years marked), `color=`, `paper=` and `landscape` - the
 month, the weekdays and the names of the holidays in the language of the page's locale, as
 `{calendar}` writes them; the content between the tags stands over every month, a row of the data
 a month, the rows taken in turn.
@@ -1638,6 +1644,8 @@ holidays subsystem in `pad/subs/holidays/` - `holidays.php` the body of `{holida
 A file may name the years its rules are known for, `years`: a year outside them is an error of
 `{holidays}` and of the calendar's `holidays=` under the strict check, and of the helpers -
 New Zealand's are 2010 to 2052, the years of its published dates and of the Matariki schedule.
+The calendar marks no day outside them: a month the visitor asked for - the request value its
+links set - is no error there and shows only the days inside those years.
 New Zealand (`nz`) adds the anniversary day of a province by the ISO 3166-2 code of the region
 of its name (`nz-auk`, `nz-can` - Christchurch Show Day, `nz-cit`), and observes Waitangi Day
 and Anzac Day on a weekend on the following Monday, Christmas and New Year on the next free
@@ -1735,10 +1743,12 @@ UTF-8 by its ECI (`pad/subs/codes/_lib/aztec.php`).
 shipping documents: rows of codewords between start and stop patterns, a row indicator at both
 ends, the text in numeric (13 digits or more), text and byte compaction, a text beyond ASCII
 marked as UTF-8 by its ECI (`pad/subs/codes/_lib/pdf417.php`). `level=` is the error correction,
-0 to 8 - by default the standard's recommendation for the size of the data - `columns=` the data
+0 to 8 - by default the standard's recommendation for the size of the data, and past its 863
+codewords the largest level that still holds them - `columns=` the data
 columns, 1 to 30 - by default those that make it about three times as wide as high - and
 `scale=` the width of a module in pixels, a row three modules high. A text of more than 928
-codewords, or of more than 90 rows in the columns asked, is an error under the strict check.
+codewords, or of more than 90 rows in the columns asked, is an error under the strict check; a
+`level=` too high for the text names the level that holds it.
 
 `bookland` is the barcode of a book: its ISBN-13 as an EAN-13, the ISBN written above the bars
 with the hyphens it was given; an ISBN-10 is made the ISBN-13 (978 in front, the EAN check digit

@@ -25,7 +25,9 @@
   $padGraphBox    = padPrintableBox ( [ 'pad' => 0, 'size' => 10, 'align' => 'left', 'valign' => 'bottom' ] );
 
   // The squares that fit inside the margins, across and down - with and without the line on
-  // top, which takes 12 mm of the room: none is an error under the strict check.
+  // top, which takes 12 mm of the room: none is an error under the strict check, for a sheet
+  // with its line too - where only the room without it was checked, and a sheet with a line
+  // left its grid out without a word.
 
   $padGraphFit = function ( $head ) use ( $padGraphPaper, $padGraphMargin, $padGraphStep ) {
 
@@ -36,12 +38,20 @@
 
   };
 
+  $padGraphRoom = function ( $head ) use ( $padGraphPaper, $padGraphMargin, $padGraphStep, $padGraphName ) {
+
+    if ( $GLOBALS ['padCheckSyntax'] )
+      padError ( 'the ' . padPrintableWhat () . ' has no room for a square of ' . padPrintableMm ( $padGraphStep ) . ' mm inside its margin of '
+                 . padPrintableMm ( $padGraphMargin [0] ) . ' by ' . padPrintableMm ( $padGraphMargin [1] ) . ' mm'
+                 . ( $head ? ' under the ' . padPrintableMm ( $head ) . ' mm of the line over the grid' : '' ) . " on $padGraphName, "
+                 . padPrintableMm ( $padGraphPaper [0] ) . ' by ' . padPrintableMm ( $padGraphPaper [1] ) . ' mm' );
+
+  };
+
   list ( $padGraphAcross, $padGraphDown ) = $padGraphFit ( 0 );
 
-  if ( ( $padGraphAcross < 1 or $padGraphDown < 1 ) and $GLOBALS ['padCheckSyntax'] )
-    padError ( 'the ' . padPrintableWhat () . ' has no room for a square of ' . padPrintableMm ( $padGraphStep ) . ' mm inside its margin of '
-               . padPrintableMm ( $padGraphMargin [0] ) . ' by ' . padPrintableMm ( $padGraphMargin [1] ) . " mm on $padGraphName, "
-               . padPrintableMm ( $padGraphPaper [0] ) . ' by ' . padPrintableMm ( $padGraphPaper [1] ) . ' mm' );
+  if ( $padGraphAcross < 1 or $padGraphDown < 1 )
+    $padGraphRoom ( 0 );
 
   return padPrintablePlan ( [
 
@@ -50,7 +60,7 @@
     'paperName' => $padGraphName,
     'exact'     => TRUE,
 
-    'item' => function ( $cell, $parts ) use ( $padGraphGrid, $padGraphPaper, $padGraphStep, $padGraphMajor, $padGraphColor, $padGraphMargin, $padGraphBox, $padGraphFit ) {
+    'item' => function ( $cell, $parts ) use ( $padGraphGrid, $padGraphPaper, $padGraphStep, $padGraphMajor, $padGraphColor, $padGraphMargin, $padGraphBox, $padGraphFit, $padGraphRoom ) {
 
       $text = $parts [''] ?? '';
       $head = ( $text !== '' ) ? 12 : 0;
@@ -70,8 +80,10 @@
       if ( $text !== '' )
         $draw [] = [ 'box', $x0, round ( $y0 - $head + 1, 3 ), $wide, 9, $text, $padGraphBox ];
 
-      if ( $across < 1 or $down < 1 )
+      if ( $across < 1 or $down < 1 ) {
+        $padGraphRoom ( $head );
         return $draw;
+      }
 
       if ( $padGraphGrid == 'squares' )
         for ( $i = 0; $i <= $across; $i++ )

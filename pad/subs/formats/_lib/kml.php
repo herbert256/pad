@@ -10,7 +10,8 @@
   //   id           the Placemark's id, when it has one
   //   name, description, folder
   //                its name, its description - the balloon's HTML, as KML has it - and the
-  //                names of the folders it stands in, a / between them ('' for none)
+  //                names of the folders it stands in, a / between them ('' for none) - a /
+  //                inside a name written ∕ (U+2215), which the writer writes as / again
   //   address, style, time, begin, end
   //                its address, its styleUrl (#red-pin), the when of its TimeStamp and the
   //                begin and end of its TimeSpan - each only when it has one
@@ -36,15 +37,13 @@
   // Data of its ExtendedData - an empty name, description or other field of the placemark's
   // own none - and a Point of lat and lon (ele its altitude), or the geometry and coordinates
   // the reader gives; a row without either has no geometry, as in GeoJSON, and one whose
-  // geometry has no positions none either, an error under the strict check. The rows of a
+  // geometry has no positions - or one the reader refuses, past the poles or the date line -
+  // none either, an error under the strict check. The rows of a
   // folder= - a / between nested ones - go in their Folder, which stands where its first row
   // stands. An id that is an XML name is the Placemark's id, any other a Data. The elements
   // stand in the order the KML 2.2 schema has them.
 
   function padKmlRead ( $text ) {
-
-    if ( preg_match ( '/<!DOCTYPE/i', $text, $m, PREG_OFFSET_CAPTURE ) )
-      padFormatFail ( padFormatLineAt ( $text, $m [0] [1] ), 'a KML document has no DOCTYPE - its entities are never read' );
 
     $dom    = new DOMDocument ();
     $errors = libxml_use_internal_errors ( TRUE );
@@ -62,6 +61,12 @@
 
     $root = $dom->documentElement;
 
+    // A DOCTYPE is refused as the document holds one, in whatever encoding libxml read it - before a
+    // text of it is read, so its entities never are - where a <!DOCTYPE of a CDATA or a comment is text.
+
+    if ( $dom->doctype )
+      padFormatFail ( padKmlDoctypeLine ( $text, $root ), 'a KML document has no DOCTYPE - its entities are never read' );
+
     if ( $root->localName != 'kml' )
       padFormatFail ( $root->getLineNo (), "a KML document is a <kml> element, not <{$root->localName}>" );
 
@@ -70,6 +75,24 @@
     padKmlFeatures ( $root, [], $rows );
 
     return $rows;
+
+  }
+
+  // The line of the DOCTYPE of a document that has one: behind the declaration, the comments
+  // and the processing instructions of its prolog, in the text made UTF-8 when it is UTF-16 -
+  // the root's line for a text in another encoding.
+
+  function padKmlDoctypeLine ( $text, $root ) {
+
+    if ( preg_match ( '/^(?:\xFE\xFF|\x00<)/', $text ) )
+      $text = mb_convert_encoding ( $text, 'UTF-8', 'UTF-16BE' );
+    elseif ( preg_match ( '/^(?:\xFF\xFE|<\x00)/', $text ) )
+      $text = mb_convert_encoding ( $text, 'UTF-8', 'UTF-16LE' );
+
+    if ( preg_match ( '/^(?:\xEF\xBB\xBF)?(?:\s|<\?.*?\?>|<!--.*?-->)*<!DOCTYPE/s', $text, $m ) )
+      return 1 + substr_count ( $m [0], "\n" );
+
+    return $root->getLineNo ();
 
   }
 
@@ -130,7 +153,7 @@
 
     $row ['name']        = padKmlText ( $placemark, 'name' );
     $row ['description'] = padKmlText ( $placemark, 'description' );
-    $row ['folder']      = implode ( ' / ', $folders );
+    $row ['folder']      = implode ( ' / ', str_replace ( '/', "\u{2215}", $folders ) );
 
     if ( padKmlChild ( $placemark, 'address' ) )
       $row ['address'] = padKmlText ( $placemark, 'address' );
@@ -277,8 +300,9 @@
 
   }
 
-  // The folders are a tree, a / between the names of a folder= path, each standing where its
-  // first row stands: rows read from KML are written back in their order and folders.
+  // The folders are a tree, a / between the names of a folder= path - a ∕ inside a name, the
+  // reader's / of one, written / - each standing where its first row stands: rows read from
+  // KML are written back in their order and folders.
 
   function padKmlWrite ( $rows, $options ) {
 
@@ -287,6 +311,7 @@
     foreach ( $rows as $index => $row ) {
       $node = &$tree;
       foreach ( preg_split ( '#\s*/\s*#', trim ( padFormatPick ( $row, [ 'folder' ] ) ), -1, PREG_SPLIT_NO_EMPTY ) as $name ) {
+        $name = str_replace ( "\u{2215}", '/', $name );
         if ( ! isset ( $node ['folders'] [$name] ) ) {
           $node ['folders'] [$name] = [ 'items' => [], 'folders' => [] ];
           $node ['items'] [] = [ 'folder', $name ];
@@ -386,9 +411,13 @@
 
   }
 
-  // A date of KML: the day, or the moment - in UTC, or local as it is written without a zone.
+  // A date of KML: the year (1997) or the month (1997-07) as written - KML's dateTime takes
+  // both - the day, or the moment - in UTC, or local as it is written without a zone.
 
   function padKmlWhen ( $value ) {
+
+    if ( is_string ( $value ) and preg_match ( '/^\d{4}(-(0[1-9]|1[0-2]))?$/D', trim ( $value ) ) )
+      return trim ( $value );
 
     if ( $value === NULL or ! ( $date = padFormatDate ( $value ) ) )
       return '';
@@ -422,7 +451,8 @@
       return NULL;
 
     if ( ! padKmlValid ( $geometry ) ) {
-      padFormatSkip ( 'row ' . ( $index + 1 ) . ' has a geometry that is none - lat and lon, or a GeoJSON geometry and its coordinates' );
+      padFormatSkip ( 'row ' . ( $index + 1 ) . ' has a geometry that is none - lat and lon, or a GeoJSON geometry and its coordinates,'
+                      . ' a longitude of -180 to 180 and a latitude of -90 to 90' );
       return NULL;
     }
 
@@ -430,10 +460,15 @@
 
   }
 
+  // A geometry the reader takes again: a position a longitude of -180 to 180 and a latitude
+  // of -90 to 90 - its altitude a number too - as padKmlPosition has it.
+
   function padKmlValid ( $geometry, $depth = 0 ) {
 
     $position = fn ( $p ) => is_array ( $p ) and array_is_list ( $p ) and count ( $p ) >= 2 and count ( $p ) <= 3
-                             and count ( array_filter ( $p, fn ( $n ) => is_int ( $n ) or is_float ( $n ) or ( is_string ( $n ) and is_numeric ( $n ) ) ) ) == count ( $p );
+                             and count ( array_filter ( $p, fn ( $n ) => ( is_int ( $n ) or is_float ( $n ) or ( is_string ( $n ) and is_numeric ( $n ) ) )
+                                                                        and is_finite ( (float) $n ) ) ) == count ( $p )
+                             and abs ( (float) $p [0] ) <= 180 and abs ( (float) $p [1] ) <= 90;
     $list     = fn ( $l, $test, $min ) => is_array ( $l ) and array_is_list ( $l ) and count ( $l ) >= $min and count ( array_filter ( $l, $test ) ) == count ( $l );
     $line     = fn ( $l ) => $list ( $l, $position, 2 );
     $polygon  = fn ( $l ) => $list ( $l, fn ( $r ) => $list ( $r, $position, 3 ), 1 );

@@ -1629,7 +1629,7 @@ the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequenc
 | `check` | Bare, `code39`: the check symbol of modulo 43; `itf`: the check digit of weights 3 and 1. `msi`: `mod10` (default), `mod1010` or `none` |
 | `size` | `qr`, `datamatrix` and `aztec`: the width and height in pixels, default 160 - in place of `height`, `scale` and `plain` |
 | `ecc` | `aztec`: the error correction in percent of the codewords, 3 more always added - 23 unless given, 5 to 90 |
-| `level` | `qr`: the error correction, as `{qr}` takes it; `pdf417`: 0 to 8, by default the standard's recommendation for the size of the data |
+| `level` | `qr`: the error correction, as `{qr}` takes it; `pdf417`: 0 to 8, by default the standard's recommendation for the size of the data - past its 863 codewords the largest level that holds them |
 | `columns` | `pdf417`: the data columns, 1 to 30 - by default about three times as wide as high |
 | `addon` | `ean13`, `upca`, `upce` and `bookland`: the 2 or 5 digits of an add-on, a small symbol right of the bars |
 | `gs1` | Bare, `datamatrix`: GS1 DataMatrix - the text GS1 element strings as `gs1128` takes them, FNC1 first and as the separator |
@@ -2719,9 +2719,10 @@ answer the value and read their options with `padFakeOpt`; a kind is added by ad
 A kind there is none of, a field that is no plain name, `rows` that are no number from 0 to
 10000 and an option no kind of the tag reads are errors; `{fake:zebra/}` is "there is no fake
 kind named 'zebra'". Fake kinds are never reached bare: their names are those of fields.
-A latitude beyond a pole, a longitude beyond the 180th meridian and `decimals` that are no
-whole number from 0 to 10 are errors under the strict check; the lenient walk leaves the value
-out.
+A latitude or longitude rounded to its `decimals` stays in its box; a latitude beyond a pole,
+a longitude beyond the 180th meridian, a box without a value of that many places (52.3 to 52.4
+with `decimals=0`) and `decimals` that are no whole number from 0 to 10 are errors under the
+strict check; the lenient walk leaves the value out.
 
 ### widget
 An interactive part of the page that works without JavaScript and gets better with it - tabs,
@@ -3289,7 +3290,8 @@ window, and the context menu key or Shift+F10 at the focused element; the menu i
 `menuitem`s then, the focus on the first, the arrow keys, Home and End move between them, a
 letter to the next item starting with it, Enter or a click runs one and closes the menu, Escape
 and Tab close it and the focus goes back where it was. A disabled item - `<button disabled>`,
-`<a aria-disabled="true">` - is drawn faint and skipped. A right click with Shift, or in a
+`<a aria-disabled="true">` - is drawn faint and skipped, and such a link loses its `href`, so it
+leads nowhere without a script too. A right click with Shift, or in a
 field, a text area or an editable part, keeps the browser's own menu; of menus whose parts lie
 in each other the innermost opens. The menu's wrapper takes no room (`display: contents`), so
 the button stands in the line - a block, a list item or a table cell holds it, as a `<div>`
@@ -3323,13 +3325,13 @@ choose, Enter runs the chosen one: the WAI-ARIA combobox pattern with a list box
 | Option | Description |
 |--------|-------------|
 | first parameter | The text of the button and the name of the dialog - `Commands` when not given |
-| `data` | The commands from rows of a store, the page's array or a `_data` file: a row's `label` (or `text`, `name`), `link` (or `href`, `url`), `group` - a heading over the rows of one group - and `keywords`, words that find it too |
+| `data` | The commands from rows of a store, the page's array or a `_data` file: a row's `label` (or `text`, `name`), `link` (or `href`, `url`), `group` - a heading over the rows of one group, a rule before a row of none that follows a group - and `keywords`, words that find it too |
 | `key` | The letter of the shortcut with Ctrl, ⌘ on a Mac - `k` when not given; one of b d e f g h i j k l m o p r s u: a, c, v, x, y and z are the keys of editing text, n, q, t and w the browser keeps |
 | `placeholder` | The hint in the search box, `Type a command` |
 | `empty` | What shows when nothing is found, `No command found` |
 
 **Behavior:** the commands are what renders between the tags - links, buttons, a line of text
-(`<p>`) heading a group, a rule (`<hr>`) - after the rows of `data=`; a link of a row of another
+(`<p>`) heading a group, a rule (`<hr>`) ending one - after the rows of `data=`; a link of a row of another
 scheme than http, https and mailto, and a row without a label or a link, are left out, and a
 label is text. The dialog is a modal `<dialog>` opened as `{modal}` opens its own: by the
 button's invoker commands, a small script where the browser has none, and with scripting off a
@@ -3386,8 +3388,9 @@ if ( padPosted ( 'ranking' ) ) {
 **Behavior:** every item is posted with its place under its key, from 1, the same with a script
 and without one. Without scripting each item shows a number field, its place, which the visitor
 changes by hand: the list is sorted by those numbers and items of one number keep the order they
-had - 0 puts an item first, the number of another item puts it just before that one - as
-`asort` sorts them. What comes back is a proposal: the application checks that its keys are the
+had, as `asort` sorts them - an item given the number of another lands beside it on the side it
+came from, after it when moved up and before it when moved down; 0 puts an item first, a number
+past the last puts it last. What comes back is a proposal: the application checks that its keys are the
 ones it wrote and keeps the order itself, the form's CSRF token guarding the post. A form that
 comes back - a field elsewhere in it failed its rules - shows the items in the order posted,
 when the post names every item once. With scripting a small script, once per page with the CSP
@@ -3403,7 +3406,10 @@ the others move round it, so it keeps the focus and a drag its pointer. After a 
 `pad-sortable` event bubbles from the list, the keys in their new order in its `detail`, and each
 number field whose place changed sends `change`. Printed, the controls go. The colours are
 `--pad-sortable-accent`, `-text`, `-muted`, `-line`, `-surface` and `-hover` on `.pad-sortable`,
-taken from the page's palette where it has one, with `light-dark()` defaults. A sortable without
+taken from the page's palette where it has one, with `light-dark()` defaults. A sortable with no
+item - the loop that makes them found no row - is no list and no error: it shows what its
+content rendered, nothing or the loop's `@else@` -
+`{tasks}{tab $id}{$title}{/tab}@else@<p>Nothing to sort</p>{/tasks}`. A sortable without
 a valid name, an item without a key or with one that is no key, and two items of one key are
 errors under the strict check; the lenient walk shows the items as they are, without the list.
 
@@ -3492,7 +3498,8 @@ edges reads every pixel in PHP, within the same 2 megapixels; its strength is a 
 gradient's length - a hard step from black to white the full line colour on the pixels either
 side of it, a picture of one colour no line at all, the border read again - and a transparent
 pixel reads as the pixel it borders while the opacity has edges of its own: the outline of a shape
-on a transparent ground, drawn on its own pixels, the ground left transparent.
+on a transparent ground, drawn on its own pixels, the ground left transparent. The 2x picture reads
+its neighbours a CSS pixel away, so its lines are as strong and as wide as those of the 1x picture.
 threshold reads every pixel in PHP too; its cut is `threshold` x 255 / 100 of the luminance - at 50
 a pixel of 128 and more is paper, at 0 every pixel, at 100 white alone - and every pixel keeps its
 opacity.
@@ -4559,7 +4566,8 @@ themes there are, and the subsystem is `pad/subs/themes/`.
 **Behavior:** single, the tag writes the theme's `<style>` where it stands, with the request's
 nonce, on `:root:root:root` - outweighing the frame's light and dark rules - and a page that
 has one gets no theme from `$padTheme` or a visitor's choice on its way out. As a pair the theme colours its content alone, a box with
-the theme's background and text, its style once per page. `$padTheme = 'paper'` puts every page
+the theme's background and text, its style once per page - the theme's rules for the page's
+body, blueprint's capital headings, readable's paragraphs of 70 letters, reach what the box holds. `$padTheme = 'paper'` puts every page
 of an application in a theme, `{themes/}` lets the visitor choose (kept in a cookie of the
 application, winning over the setting), `$padTheme = FALSE` turns both off. Every theme's text reaches WCAG AA on its
 backgrounds, contrast's and contrast-dark's AAA. A name that is no theme, no name and content on the single form are

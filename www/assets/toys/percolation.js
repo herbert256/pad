@@ -82,27 +82,33 @@ PadToys.register('percolation', function (k, cfg) {
     if (!front.length) {
       flowing = false;
       k.pause();
-      if (!quiet) k.status(through() ? 'The water got through in ' + flowSteps + ' steps' : 'The water stopped ' + (deepest + 1) + ' rows down, after ' + flowSteps + ' steps');
+      if (!quiet) k.status(through() ? 'The water got through in ' + plural(flowSteps, 'step') : 'The water stopped ' + plural(deepest + 1, 'row') + ' down, after ' + plural(flowSteps, 'step'));
     }
   }
-  function flood(quiet) { pour(); while (front.length) seep(quiet); }
+  function flood(quiet) { pour(); if (!front.length && !quiet) nowhere(); while (front.length) seep(quiet); }
   function through() { for (var x = N - L; x < N; x++) if (wet[x]) return true; return false; }
+  // No open site in the top row: there is no water to pour, so a toy playing pauses and
+  // says so - where it would play on with nothing to seep.
+  function nowhere() { k.pause(); k.status('No site of the top row is open - the water goes nowhere'); }
+  function plural(n, one) { return n + ' ' + one + (n === 1 ? '' : 's'); }
 
   // The grid at the chance p: a site is open while its own number is below p, so a larger p
   // opens more of the same sites. A site you opened or closed keeps it.
   function apply(restart) {
     for (var i = 0; i < N; i++) open[i] = rnd[i] < p ? 1 : 0;
     clusters();
-    if (restart && k.playing && !k.held && mode === 'flow') pour();
+    if (restart && k.playing && !k.held && mode === 'flow') { pour(); if (!flowing) nowhere(); }
     else flood();
   }
   function fresh() { for (var i = 0; i < N; i++) rnd[i] = k.rand(); apply(true); }
 
   // The experiment: an empty grid opened a site at a time in a random order, the sites
   // joined in a union-find with a site above the top row and one below the bottom, until
-  // those two are one - the share open then is noted, and a new trial begins.
+  // those two are one - the share open then is noted, and the next site opened begins a new
+  // trial, so a trial that got through is counted once.
   function find(i) { while (parent[i] !== i) { parent[i] = parent[parent[i]]; i = parent[i]; } return i; }
   function union(a, b) { a = find(a); b = find(b); if (a !== b) parent[a] = b; }
+  function done() { return find(TOP) === find(BOTTOM); }
   function trial() {
     open.fill(0);
     wet.fill(0);
@@ -112,17 +118,23 @@ PadToys.register('percolation', function (k, cfg) {
     opened = 0;
   }
   function openOne() {
+    if (done()) trial();
     var i = order[opened++];
     open[i] = 1;
     if (i < L) union(i, TOP);
     if (i >= N - L) union(i, BOTTOM);
     each(i, function (q) { if (open[q]) union(i, q); });
-    if (find(TOP) !== find(BOTTOM)) return false;
+    if (!done()) return false;
     trials.push(opened / N);
     return true;
   }
   function wetNow() { var top = find(TOP); for (var i = 0; i < N; i++) wet[i] = open[i] && find(i) === top ? 1 : 0; }
   function runTrials(n) { for (var t = 0; t < n; t++) { trial(); while (!openOne()); } wetNow(); }
+  function gotThrough() {
+    wetNow();
+    drawChart();
+    k.status('Trial ' + trials.length + ' got through with ' + Math.round(100 * opened / N) + '% open');
+  }
 
   function mean() { var s = 0; trials.forEach(function (v) { s += v; }); return s / trials.length; }
   function stderr() {
@@ -150,12 +162,12 @@ PadToys.register('percolation', function (k, cfg) {
       sizes.forEach(function (s) { if (s > big) big = s; });
       k.info('Chance ' + fixed(p, 3) + ' · ' + share + ' · ' + sizes.length.toLocaleString('en') + ' clusters, the largest ' + big.toLocaleString('en') + ' sites · ' + (spanning ? 'a cluster spans the grid' : 'no cluster spans the grid') + ' · ' + nb + ' neighbours');
     } else
-      k.info('Trial ' + (rest > 0 ? trials.length + ' got through' : trials.length + 1) + ': ' + n.toLocaleString('en') + ' of ' + N.toLocaleString('en') + ' open · ' + trials.length + (trials.length === 1 ? ' trial' : ' trials') + (trials.length ? ', mean ' + fixed(mean(), 4) + (trials.length > 1 ? ' ± ' + fixed(stderr(), 4) : '') : '') + ' · endless grid ' + PC[nb].toFixed(4));
+      k.info('Trial ' + (done() ? trials.length + ' got through' : trials.length + 1) + ': ' + n.toLocaleString('en') + ' of ' + N.toLocaleString('en') + ' open · ' + trials.length + (trials.length === 1 ? ' trial' : ' trials') + (trials.length ? ', mean ' + fixed(mean(), 4) + (trials.length > 1 ? ' ± ' + fixed(stderr(), 4) : '') : '') + ' · endless grid ' + PC[nb].toFixed(4));
     var now = Date.now(), what = mode + p + colour + nb + trials.length;
     if (now - said > 1000 || what !== told || !k.playing || k.held) {
       said = now;
       told = what;
-      k.describe(canvas, 'Site percolation on a ' + L + ' by ' + L + ' grid, ' + nb + ' neighbours: ' + share + (mode === 'flow' ? ' at the chance ' + fixed(p, 3) + ', ' + (spanning ? 'a cluster spans it from top to bottom' : 'no cluster spans it') : ' in trial ' + (trials.length + 1) + ' of the experiment'));
+      k.describe(canvas, 'Site percolation on a ' + L + ' by ' + L + ' grid, ' + nb + ' neighbours: ' + share + (mode === 'flow' ? ' at the chance ' + fixed(p, 3) + ', ' + (spanning ? 'a cluster spans it from top to bottom' : 'no cluster spans it') : ' in trial ' + (done() ? trials.length : trials.length + 1) + ' of the experiment'));
       describeChart();
     }
   }
@@ -237,9 +249,7 @@ PadToys.register('percolation', function (k, cfg) {
       }
       if (got) {
         acc = 0;
-        wetNow();
-        drawChart();
-        k.status('Trial ' + trials.length + ' got through with ' + Math.round(100 * opened / N) + '% open');
+        gotThrough();
         rest = speed >= 9 ? 0.15 : 0.6;
       } else wetNow();
     }
@@ -293,12 +303,18 @@ PadToys.register('percolation', function (k, cfg) {
     draw();
     k.status('Site ' + (cursor.x + 1) + ', ' + (cursor.y + 1) + (open[i] ? ' opened' : ' closed'));
   }
+  // The chance makes the grid of flow; an experiment's trial opens its own sites in a random
+  // order, so there the chance is only kept for flow, the trial and its sites left alone.
+  function chance() {
+    if (mode === 'flow') apply(true);
+    else k.status('The chance is for flow - the experiment opens its sites in a random order');
+    draw();
+    drawChart();
+  }
   function setP(v) {
     p = Math.max(0, Math.min(1, Math.round(v * 1000) / 1000));
     pIn.set(p);
-    apply(true);
-    draw();
-    drawChart();
+    chance();
   }
   function setMode(v) {
     mode = v;
@@ -321,14 +337,14 @@ PadToys.register('percolation', function (k, cfg) {
     ArrowUp: moveCursor(0, -1), ArrowDown: moveCursor(0, 1), ArrowLeft: moveCursor(-1, 0), ArrowRight: moveCursor(1, 0), Enter: toggleCursor,
     PageUp: function () { setP(p + 0.01); }, PageDown: function () { setP(p - 0.01); },
     r: newGrid, m: function () { setMode(mode === 'flow' ? 'experiment' : 'flow'); },
-    s: function () { k.pause(); if (mode === 'flow') { if (!flowing) pour(); seep(); } else if (openOne()) { wetNow(); drawChart(); trial(); } else wetNow(); draw(); }
+    s: function () { k.pause(); if (mode === 'flow') { if (!flowing) pour(); if (flowing) seep(); else nowhere(); } else { rest = 0; if (openOne()) gotThrough(); else wetNow(); } draw(); }
   });
   canvas.addEventListener('blur', function () { if (keyboard) draw(); });
 
   // Play pours the water again, or lets it seep on from where a pause held it; it pauses by
   // itself when the water goes no further.
   k.onPlay = function () {
-    if (mode === 'flow') { if (!flowing) pour(); k.status('The water seeps down from the top row'); }
+    if (mode === 'flow') { if (!flowing) pour(); if (flowing) k.status('The water seeps down from the top row'); else nowhere(); }
     else k.status('Opening sites until the water gets through');
   };
   k.onPause = function () { if (mode !== 'flow' || flowing) k.status('Paused'); };
@@ -339,7 +355,7 @@ PadToys.register('percolation', function (k, cfg) {
   k.button('New grid', newGrid, 'New random numbers, or the trials again (R)');
   var modeIn = k.select('Mode', [['flow', 'Flow'], ['experiment', 'Experiment']], mode, setMode).querySelector('select');
   k.row();
-  var pIn = k.slider('Chance', 0, 1, 0.001, p, function (v) { p = v; apply(true); draw(); drawChart(); }, function (v) { return v.toFixed(3); });
+  var pIn = k.slider('Chance', 0, 1, 0.001, p, function (v) { p = v; chance(); }, function (v) { return v.toFixed(3); });
   k.select('Neighbours', [['4', '4, beside'], ['8', '8, corners too']], String(nb), function (v) { nb = +v; trials = []; if (mode === 'flow') apply(true); else trial(); draw(); drawChart(); });
   k.select('Colour', [['flow', 'The water'], ['clusters', 'Clusters']], colour, function (v) { colour = v; draw(); });
   k.slider('Speed', 1, 10, 1, speed, function (v) { speed = v; });
@@ -351,5 +367,5 @@ PadToys.register('percolation', function (k, cfg) {
   if (mode === 'experiment') trial();
   draw();
   drawChart();
-  k.begin(mode === 'flow' ? 'The water seeps down from the top row' : 'Opening sites until the water gets through');
+  k.begin();
 });

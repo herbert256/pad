@@ -137,7 +137,7 @@
       $ai = trim ( substr ( $text, $at + 1, $end - $at - 1 ) );
 
       if ( ! isset ( $ais [$ai] ) )
-        return "($ai) is no GS1 application identifier"
+        return '(' . padMakeSafe ( $ai, 10 ) . ') is no GS1 application identifier'
              . ( preg_match ( '/^\d{2,4}$/', $ai ) ? ' PAD knows - the AIs of the GS1 General Specifications, section 3.2' : '' );
 
       $next  = strpos ( $text, $open, $end + 1 );

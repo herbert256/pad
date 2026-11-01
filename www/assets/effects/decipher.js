@@ -33,6 +33,15 @@
     return Array.from(text);
   }
 
+  // The text a reader sees, as the server counts it: the <style> an effect or a widget inside
+  // writes, and a <script>, are no part of it.
+
+  function plain(node) {
+    var copy = node.cloneNode(true);
+    Array.prototype.forEach.call(copy.querySelectorAll('style, script'), function (one) { one.remove(); });
+    return copy.textContent;
+  }
+
   function run(el) {
 
     if (!el || el.padDecipherRunning || (still && still.matches)) return;
@@ -42,7 +51,7 @@
 
     var cfg   = config(el);
     var set   = signs[cfg.glyphs] || signs.symbols;
-    var parts = letters(text.textContent.replace(/\s+/g, ' ').trim());
+    var parts = letters(plain(text).replace(/\s+/g, ' ').trim());
     var time  = Math.max(200, Math.min(10000, (+cfg.duration || 1.2) * 1000));
     var layer = document.createElement('span');
 

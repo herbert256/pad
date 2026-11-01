@@ -13,12 +13,14 @@
   // padNotify made it, ISO 8601 in UTC - and data: the name, the title, the @webhook@ section
   // or the plain text as text and html, the url, the recipient's id and email and the values
   // padNotify was handed. A 2xx is delivered; 410, the spec's word for an endpoint that wants
-  // nothing more, is said so.
+  // nothing more, is said so. The address is a credential - a catch hook of Zapier or n8n
+  // runs for anyone holding it, the signature unchecked - so the reports and _events/curl.php
+  // see it redacted, whatever its service (secret: by value, from its path on).
 
   $padWebhookSecret = '(?:whsec_)?(?:(?:[A-Za-z0-9+\/]{4}){8,20}(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?|(?:[A-Za-z0-9+\/]{4}){21}(?:[A-Za-z0-9+\/]{2}==)?)';
 
   return [
-    'settings' => [ 'url'    => [ 'env' => 'WEBHOOK_URL', 'address' => TRUE ],
+    'settings' => [ 'url'    => [ 'env' => 'WEBHOOK_URL', 'address' => TRUE, 'secret' => TRUE ],
                     'secret' => [ 'env' => 'WEBHOOK_SECRET', 'pattern' => "/^$padWebhookSecret( $padWebhookSecret)*$/D", 'secret' => TRUE,
                                   'is' => 'Standard Webhooks secret - whsec_ and the base64 of 24 to 64 bytes, several split by spaces' ] ],
     'send'     => function ( $message, $settings, $recipient ) {

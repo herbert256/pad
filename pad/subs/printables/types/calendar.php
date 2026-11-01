@@ -61,7 +61,11 @@
   // The holidays of holidays=, as the holidays subsystem has them (subs/holidays/): a day of
   // more than one gets their names together, and is public when one of them is. The names are
   // the local ones when the page's locale is in a language of the country - Koningsdag - as
-  // {calendar} has them, else the English ones.
+  // {calendar} has them, else the English ones. A month year= or month= fixes in a year the
+  // country's file does not know (New Zealand's after 2052) is an error under the strict
+  // check, as for {calendar} and {holidays}; this year, which the template does not fix, is
+  // shown with only the days inside those years marked - where the rules' rows were marked
+  // without a word, New Zealand's 2060 with King's Birthday and no Matariki.
 
   $padCalHolidays = [];
   $padCalPlace    = padPrintableText ( 'holidays', '' );
@@ -80,10 +84,23 @@
       $padCalLang  = strtolower ( substr ( padLocaleOf ( '' ), 0, 2 ) );
       $padCalLocal = in_array ( $padCalLang, padHolidaysCountry ( $padCalWhere [0] ) ['langs'], TRUE );
       $padCalEnd   = end ( $padCalMonths ) [1]->modify ( 'last day of this month' );
-      $padCalFrom  = max ( padHolidaysDay ( padHolidaysFirst, 1, 1 ), padHolidaysDay ( ...array_map ( 'intval', explode ( '-', $padCalMonths [0] [1]->format ( 'Y-n-j' ) ) ) ) - 7 );
-      $padCalTo    = min ( padHolidaysDay ( padHolidaysLast, 12, 31 ), padHolidaysDay ( ...array_map ( 'intval', explode ( '-', $padCalEnd->format ( 'Y-n-j' ) ) ) ) + 7 );
+      $padCalStart = padHolidaysDay ( ...array_map ( 'intval', explode ( '-', $padCalMonths [0] [1]->format ( 'Y-n-j' ) ) ) );
+      $padCalLast  = padHolidaysDay ( ...array_map ( 'intval', explode ( '-', $padCalEnd->format ( 'Y-n-j' ) ) ) );
+      $padCalFrom  = max ( padHolidaysDay ( padHolidaysFirst, 1, 1 ), $padCalStart - 7 );
+      $padCalTo    = min ( padHolidaysDay ( padHolidaysLast, 12, 31 ), $padCalLast + 7 );
+      $padCalKnown = padHolidaysKnown ( $padCalWhere [0], $padCalStart, $padCalLast );
+      $padCalFixed = ( $padCalYear !== NULL or $padCalMonth !== NULL );
 
-      foreach ( padHolidaysRange ( $padCalWhere [0], $padCalWhere [1], $padCalFrom, $padCalTo, $padCalLang ) as $padCalRow ) {
+      if ( $padCalKnown !== '' and $padCalFixed and $GLOBALS ['padCheckSyntax'] )
+        padError ( 'the ' . padPrintableWhat () . "'s holidays= - $padCalKnown" );
+
+      if ( $padCalKnown !== '' and ! $padCalFixed ) {
+        [ $padCalA, $padCalB ] = padHolidaysCountry ( $padCalWhere [0] ) ['years'];
+        $padCalFrom = max ( $padCalFrom, padHolidaysDay ( $padCalA, 1, 1 ) );
+        $padCalTo   = min ( $padCalTo,   padHolidaysDay ( $padCalB, 12, 31 ) );
+      }
+
+      foreach ( ( $padCalFrom <= $padCalTo ) ? padHolidaysRange ( $padCalWhere [0], $padCalWhere [1], $padCalFrom, $padCalTo, $padCalLang ) : [] as $padCalRow ) {
         $padCalDay = $padCalHolidays [ $padCalRow ['date'] ] ?? [ 'names' => [], 'public' => FALSE ];
         $padCalDay ['names'] [] = $padCalLocal ? $padCalRow ['local'] : $padCalRow ['name'];
         $padCalDay ['public']   = $padCalDay ['public'] || $padCalRow ['type'] == 'public';

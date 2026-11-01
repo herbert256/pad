@@ -10,11 +10,12 @@
   // is: the root mean square distance from the samples, as a share of the drawing's own size.
   // Where the spirograph rolls gears, this takes a curve apart. Draw a closed curve with the
   // pointer to take it apart instead; the arrow keys add and take away circles. shape= heart
-  // (unless given), star, square or trefoil; circles= how many are used (30, 1 to 1023, at
-  // most one fewer than the points); points= the samples (256, 16 to 1024); order= size, the
-  // largest circles first (unless given), or frequency, one turn, minus one, two, minus two
-  // ...; speed= how fast the pen goes round (3, 1 to 10). A drawing of your own stands
-  // between the tags as an SVG polyline's points, x,y pairs - y counted down - and is closed.
+  // (unless given), star, square or trefoil; circles= how many are used (30, or one fewer than
+  // fewer points; 1 to 1023, at most one fewer than the points); points= the samples (256, 16
+  // to 1024); order= size, the largest circles first (unless given), or frequency, one turn,
+  // minus one, two, minus two ...; speed= how fast the pen goes round (3, 1 to 10). A drawing
+  // of your own stands between the tags as an SVG polyline's points, x,y pairs - y counted
+  // down - and is closed.
   //
   //   {epicycles shape='square', circles=15/}
   //   {epicycles}
@@ -22,19 +23,24 @@
   //   {/epicycles}
 
   // A drawing of your own: x,y pairs between spaces or new lines, as in the points of
-  // an SVG polyline - three of them or more, at most 2000.
+  // an SVG polyline - three of them or more, at most 2000, not all on one place. A number
+  // of more digits than a double holds is refused as well: it would be INF, which no JSON
+  // can carry.
 
   $padEpiOwn = [];
 
   foreach ( padToyLines () as $padEpiLine )
     foreach ( preg_split ( '/\s+/', trim ( $padEpiLine ) ) as $padEpiPair ) {
-      if ( ! preg_match ( '/^(-?(?:\d+\.?\d*|\.\d+)),(-?(?:\d+\.?\d*|\.\d+))$/D', $padEpiPair, $padEpiMatch ) ) {
+      $padEpiPoint = preg_match ( '/^(-?(?:\d+\.?\d*|\.\d+)),(-?(?:\d+\.?\d*|\.\d+))$/D', $padEpiPair, $padEpiMatch )
+                   ? [ $padEpiMatch [1] + 0, $padEpiMatch [2] + 0 ] : NULL;
+      if ( ! $padEpiPoint or ! is_finite ( $padEpiPoint [0] ) or ! is_finite ( $padEpiPoint [1] ) ) {
         if ( $GLOBALS ['padCheckSyntax'] )
-          padError ( "the " . padToyWhat () . " has a point '" . padMakeSafe ( $padEpiPair, 30 ) . "' - two numbers x,y, as in the points of an SVG polyline" );
+          padError ( "the " . padToyWhat () . " has a point '" . padMakeSafe ( $padEpiPair, 30 ) . "' - "
+                   . ( $padEpiPoint ? 'a number too large' : 'two numbers x,y, as in the points of an SVG polyline' ) );
         $padEpiOwn = [];
         break 2;
       }
-      $padEpiOwn [] = [ $padEpiMatch [1] + 0, $padEpiMatch [2] + 0 ];
+      $padEpiOwn [] = $padEpiPoint;
     }
 
   if ( padToySource () !== '' and ( count ( $padEpiOwn ) < 3 or count ( $padEpiOwn ) > 2000 ) ) {
@@ -43,8 +49,14 @@
     $padEpiOwn = [];
   }
 
+  if ( $padEpiOwn and ! array_filter ( $padEpiOwn, fn ( $padEpiP ) => $padEpiP != $padEpiOwn [0] ) ) {
+    if ( $GLOBALS ['padCheckSyntax'] )
+      padError ( "the " . padToyWhat () . " drawing of your own has no length - its points all stand on one place" );
+    $padEpiOwn = [];
+  }
+
   $padEpiPoints = padToyInt ( 'points', 256, 16, 1024 );
-  $padEpiCircles = padToyInt ( 'circles', 30, 1, 1023 );
+  $padEpiCircles = padToyInt ( 'circles', min ( 30, $padEpiPoints - 1 ), 1, 1023 );
 
   if ( $padEpiCircles >= $padEpiPoints ) {
     if ( $GLOBALS ['padCheckSyntax'] )

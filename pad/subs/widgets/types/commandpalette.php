@@ -13,16 +13,24 @@
   // subs/widgets/_lib/commandpalette.php.
   //
   // The pair's content is template, rendered first: like {live}, the pair asks for the end
-  // walk and puts what rendered in the list.
+  // walk and puts what rendered in the list. The rows of data= are read before it renders,
+  // and kept for the end walk: reading them gives the level its one default occurrence back,
+  // which read at the end came after the content had rendered once for every row.
 
   if ( $padPair [$pad] and $padWalk [$pad] == 'start' ) {
+    $padCmdKept [ $padLevelId [$pad] ] = padCommandpaletteRows ();
     $padWalk [$pad] = 'end';
     return TRUE;
   }
 
+  if ( $padPair [$pad] ) {
+    $padCmdRows = $padCmdKept [ $padLevelId [$pad] ] ?? NULL;
+    unset ( $padCmdKept [ $padLevelId [$pad] ] );
+  } else
+    $padCmdRows = padCommandpaletteRows ();
+
   $padCmdLabel = is_string ( $padParm ) ? trim ( padParmText ( $padParm ) ) : '';
   $padCmdLabel = ( $padCmdLabel !== '' ) ? $padCmdLabel : 'Commands';
-  $padCmdRows  = padCommandpaletteRows ();
   $padCmdItems = trim ( ( $padCmdRows ?? '' ) . ( $padPair [$pad] ? $padContent : '' ) );
   $padCmdKey   = padWidgetChoice ( 'commandpalette', 'key', 'k', str_split ( 'bdefghijklmoprsu' ) );
   $padCmdHint  = padWidgetText ( 'placeholder', 'Type a command' ) ?: 'Type a command';
