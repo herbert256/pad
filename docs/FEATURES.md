@@ -303,7 +303,10 @@ effects, notations, printables, sounds, the charts drawn in the browser ... - ar
 server as they are. A page links each one the first time a tag needs it - `<link
 rel="stylesheet" href="/pad/assets/widgets/tabs.css?v=<hash>">`, `<script
 src="/pad/assets/games/game.js?v=<hash>">` without async or defer, so it runs where it stands -
-so the browser keeps them from page to page and a changed file is a new address. The colours
+so the browser keeps them from page to page and a changed file is a new address; the version
+is kept between requests with the file's inode, times and size (`DATA/cache/assets/`), so a
+page that links a file makes one stat of it, the file read and hashed again only when it
+changed. The colours
 a tag makes from its roles stay a small `<style>`. The style sheets of a whole page are moved
 into its `<head>` before tidy reads it (a bare template's go at its start); a fragment, a live
 region's answer and a `{shadow}` root keep theirs where they stand, and a `{live}` answer runs

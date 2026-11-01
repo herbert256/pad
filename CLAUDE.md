@@ -1050,8 +1050,10 @@ drawn in [docs/PAD.md](docs/PAD.md#processing-pipeline).
   second, the text of an engine or application file (`padFileGet`) for the request while
   its time and size stand; the @else@ pair scan runs only when an `@else@` is there.
   Between requests only directory listings are kept (`lib/dirs.php`: `padDirList`,
-  `padDirRaw` - `DATA/cache/dirs/`, checked against the directory's inode and times) -
-  the template is still rescanned each pass (no AST)
+  `padDirRaw` - `DATA/cache/dirs/`, checked against the directory's inode and times) and
+  the versions of the files of `www/assets/` a page links (`padWidgetHash`, lib/widget.php -
+  `DATA/cache/assets/hashes.json`, checked against the file's inode, times and size: one stat
+  a linked file) - the template is still rescanned each pass (no AST)
 - **`$GLOBALS` as a whole is a copy**: since PHP 8.1 `array_key_exists ( $x, $GLOBALS )`,
   `foreach ( $GLOBALS ...)` and any function handed `$GLOBALS` copy the symbol table - some
   450 globals in a page run. A hot path tests `isset ( $GLOBALS [$x] )` first and sifts the

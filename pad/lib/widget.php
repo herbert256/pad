@@ -43,8 +43,12 @@
   // padWidgetFile    a file of www/assets/ - 'widgets/tabs.css' - as padWidgetStyle,
   //                  padWidgetScript and padWidgetSheet take it: the file to link, or its text
   //                  as the subsystem sends it written in; '' when it is not there or empty
+  // padWidgetStat    the stat of a file of www/assets/, FALSE when it is no file there
   // padWidgetFileText  the text of a file of www/assets/, kept while its time and size stand
   // padWidgetUrl     the address of a file of www/assets/, with its version
+  // padWidgetHash    that version, kept between requests with the file's inode, times and
+  //                  size in DATA/cache/assets/ - as lib/dirs.php keeps the listings - so a
+  //                  page that links a file costs one stat of it
   // padWidgetHead    the style sheets of www/assets/ a page links, moved into its <head>
   // padWidgetWhole   whether the output is a whole page, not a part of one
   //
@@ -196,7 +200,7 @@
            ? ' nonce="' . htmlspecialchars ( padNonce (), ENT_QUOTES ) . '"' : '';
 
     if ( is_array ( $script ) )
-      return padProtect ( '<script src="' . htmlspecialchars ( padWidgetUrl ( $script ['padWidgetFile'] ), ENT_QUOTES ) . "\"$nonce></script>" );
+      return padProtect ( '<script src="' . htmlspecialchars ( $script ['url'], ENT_QUOTES ) . "\"$nonce></script>" );
 
     return padProtect ( "<script$nonce>$script</script>" );
 
@@ -208,7 +212,7 @@
   function padWidgetSheet ( $css ) {
 
     if ( is_array ( $css ) )
-      return padProtect ( '<link rel="stylesheet" href="' . htmlspecialchars ( padWidgetUrl ( $css ['padWidgetFile'] ), ENT_QUOTES ) . '"'
+      return padProtect ( '<link rel="stylesheet" href="' . htmlspecialchars ( $css ['url'], ENT_QUOTES ) . '"'
                           . padStyleNonce () . '>' );
 
     if ( (string) $css === '' )
@@ -257,17 +261,21 @@
   //   raw    the file as it stands
   //
   // Linked or written in, a file that is not there or is empty is '', which a caller with an
-  // optional file - the style of a kind that has none - tests for.
+  // optional file - the style of a kind that has none - tests for. Linked, the file is not
+  // read: its stat says it is there and not empty, and the hash in its address is kept with
+  // that stat between requests (padWidgetHash) - one stat a file a request.
 
   function padWidgetFile ( $path, $how = 'line' ) {
+
+    if ( padWidgetLinked () ) {
+      $stat = padWidgetStat ( $path );
+      return ( $stat and $stat ['size'] > 0 ) ? [ 'padWidgetFile' => $path, 'url' => padWidgetUrl ( $path, $stat ) ] : '';
+    }
 
     $text = padWidgetFileText ( $path );
 
     if ( $text === '' )
       return '';
-
-    if ( padWidgetLinked () )
-      return [ 'padWidgetFile' => $path ];
 
     if ( $how == 'raw' )
       return $text;
@@ -290,44 +298,126 @@
 
   }
 
-  // The text of a file of www/assets/ - a name below it, never climbing out - read once while
-  // its time and size stand: a queue worker renders mail after mail in one process.
+  // The stat of a file of www/assets/ - a name below it, never climbing out - FALSE when it is
+  // no file there.
+
+  function padWidgetStat ( $path ) {
+
+    if ( ! preg_match ( '#^[a-z0-9_-]+/[a-z0-9_.-]+$#iD', $path ) or str_contains ( $path, '..' ) )
+      return FALSE;
+
+    $stat = @stat ( padWidgetDir () . $path );
+
+    return ( $stat and ( $stat ['mode'] & 0170000 ) == 0100000 ) ? $stat : FALSE;
+
+  }
+
+  // The text of a file of www/assets/, read once while its time and size stand: a queue worker
+  // renders mail after mail in one process.
 
   function padWidgetFileText ( $path ) {
 
     static $memo = [];
 
-    if ( ! preg_match ( '#^[a-z0-9_-]+/[a-z0-9_.-]+$#iD', $path ) or str_contains ( $path, '..' ) )
-      return '';
+    $stat = padWidgetStat ( $path );
 
-    $file = padWidgetDir () . $path;
-    $stat = @stat ( $file );
-
-    if ( ! $stat or ( $stat ['mode'] & 0170000 ) != 0100000 )
+    if ( ! $stat )
       return '';
 
     $key = "$path|{$stat ['mtime']}|{$stat ['size']}";
 
-    return $memo [$key] ??= (string) @file_get_contents ( $file );
+    return $memo [$key] ??= (string) @file_get_contents ( padWidgetDir () . $path );
 
   }
 
   // The address of a file of www/assets/ - /<mount>/assets/widgets/tabs.css?v=3f9a1c02be -
   // with ten hex digits of a hash of its contents, as padAsset gives a file of an
-  // application's own.
+  // application's own. $stat is the file's, when the caller has it.
 
-  function padWidgetUrl ( $path ) {
+  function padWidgetUrl ( $path, $stat = NULL ) {
 
     global $padRoot;
 
-    static $memo = [];
+    $stat ??= padWidgetStat ( $path );
+    $hash   = $stat ? padWidgetHash ( $path, $stat ) : '';
 
-    $text = padWidgetFileText ( $path );
+    return ( $padRoot ?? '/' ) . "assets/$path" . ( ( $hash !== '' ) ? "?v=$hash" : '' );
 
-    if ( ( $memo [$path] [0] ?? NULL ) !== $text )
-      $memo [$path] = [ $text, substr ( hash ( in_array ( 'xxh128', hash_algos (), TRUE ) ? 'xxh128' : 'sha256', $text ), 0, 10 ) ];
+  }
 
-    return ( $padRoot ?? '/' ) . "assets/$path?v=" . $memo [$path] [1];
+  // The hash of a file of www/assets/, kept between requests as lib/dirs.php keeps the listing
+  // of a directory: with the file's inode, its times and its size, and made again - the file
+  // read and hashed - when one of them changed; the change time moves on too when a tool that
+  // copies a tree (rsync, tar) sets the modification time back. A file changed within the last
+  // two seconds is not kept: a time has whole seconds, and a second change in that second, of
+  // the same size, would have left them all the same.
+  //
+  // The hashes stand in DATA/cache/assets/hashes.json, read once for the request and written
+  // again, once at its end, only when one in it changed: written at each change, the first
+  // page after a deploy that changed every file wrote it once a file, 75 ms for all 226.
+  // Without a writable DATA every request reads and hashes the files it links, as before.
+
+  function padWidgetHash ( $path, $stat ) {
+
+    static $write = FALSE;
+
+    $store = & padWidgetHashes ();
+    $now   = [ $stat ['ino'], $stat ['mtime'], $stat ['ctime'], $stat ['size'] ];
+    $kept  = $store [$path] ?? NULL;
+
+    if ( is_array ( $kept ) and count ( $kept ) == 5 and array_slice ( $kept, 0, 4 ) === $now and is_string ( $kept [4] ) )
+      return $kept [4];
+
+    $hash = substr ( hash ( in_array ( 'xxh128', hash_algos (), TRUE ) ? 'xxh128' : 'sha256', padWidgetFileText ( $path ) ), 0, 10 );
+
+    if ( time () - max ( $stat ['mtime'], $stat ['ctime'] ) >= 2 ) {
+      $store [$path] = [ $now [0], $now [1], $now [2], $now [3], $hash ];
+      if ( ! $write )
+        register_shutdown_function ( 'padWidgetHashesKeep' );
+      $write = TRUE;
+    }
+
+    return $hash;
+
+  }
+
+  function & padWidgetHashes () {
+
+    static $store = NULL;
+
+    if ( $store === NULL ) {
+      $store = json_decode ( (string) @file_get_contents ( DATA . 'cache/assets/hashes.json' ), TRUE );
+      if ( ! is_array ( $store ) )
+        $store = [];
+    }
+
+    return $store;
+
+  }
+
+  // At the end of the request - of the process, for a queue worker - what is written is what
+  // is read by every request: a file that is gone goes out of it.
+
+  function padWidgetHashesKeep () {
+
+    $store = & padWidgetHashes ();
+
+    foreach ( $store as $path => $unused )
+      if ( ! is_file ( padWidgetDir () . $path ) )
+        unset ( $store [$path] );
+
+    $file = DATA . 'cache/assets/hashes.json';
+    $json = json_encode ( $store, JSON_UNESCAPED_SLASHES );
+
+    if ( $json === FALSE or ! ( is_dir ( DATA . 'cache/assets' ) or @mkdir ( DATA . 'cache/assets', 0777, TRUE ) ) )
+      return;
+
+    $tmp = $file . '.' . getmypid () . '.' . bin2hex ( random_bytes ( 4 ) );
+
+    if ( @file_put_contents ( $tmp, $json ) === strlen ( $json ) and @rename ( $tmp, $file ) )
+      return;
+
+    @unlink ( $tmp );
 
   }
 

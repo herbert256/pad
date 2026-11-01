@@ -633,7 +633,7 @@
     $add     = "PadSound.add($json, " . json_encode ( PAD_SOUND_EVENTS ) . ');';
 
     if ( is_array ( $runtime ) )
-      return padProtect ( '<script src="' . htmlspecialchars ( padWidgetUrl ( $runtime ['padWidgetFile'] ), ENT_QUOTES ) . "\"$nonce></script>"
+      return padProtect ( '<script src="' . htmlspecialchars ( $runtime ['url'], ENT_QUOTES ) . "\"$nonce></script>"
                           . "<script$nonce>$add</script>" );
 
     return padProtect ( "<script$nonce>$runtime\n$add</script>" );
