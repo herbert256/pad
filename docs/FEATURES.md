@@ -745,6 +745,7 @@ Some rules look at another field of the post:
 {input 'code', rules='required_with:phone,fax'/}                # required when one of them is filled
 {input 'phone', rules='required_without:email'/}                # required when one of them is empty
 {input 'end', type='date', rules='after:start'/}                # or before:end, after:2026-01-01
+{input 'leave', type='date', rules='after_or_equal:arrive'/}    # the same day too - or before_or_equal:
 {input 'password', rules='different:current_password'/}         # not the other's text - the mirror of same:
 ```
 The other field is found where PHP files the post, by the browser's checker too (`user[kind]`,
@@ -766,6 +767,10 @@ digits, a dash, a digit - is a date written in the rule, whatever field the post
 name, and one the calendar lacks (`after:2026-02-30`) is the author's error. The messages:
 "Address is required when Delivery is ship", "... unless Delivery is collect", "... when
 Phone or Fax is filled in", "... when Email is empty", "End must be a date after Start".
+`after_or_equal:`/`before_or_equal:` read the moments as `after:`/`before:` do and take the
+same moment too - a stay that leaves on the day it arrives - a day being its first moment, so
+`2026-01-01T00:00` is on or after `2026-01-01` and `before_or_equal:2026-12-31` refuses
+`2026-12-31T10:00`: "Leave must be a date on or after Arrive".
 `different:` finds and trims the other field as `same:` does and passes where `same:` fails -
 an other field that is left out, empty or a list holds no text the value could be:
 "Password must be different from Current password".
@@ -773,7 +778,7 @@ an other field that is left out, empty or a list holds no text the value could b
 `client` on the form checks the same rules in the browser too, with the same messages, before
 the form leaves (the runtime `www/assets/rules/validate.js` with every rule's script, written
 once a page). A field whose rules look at another - `same:`, `different:`, the `required_*` rules, `before:`,
-`after:` with a field - is checked again when that one changes, if it shows a message or was
+`after:` and their `_or_equal` with a field - is checked again when that one changes, if it shows a message or was
 checked or left before: "is required when Delivery is ship" goes when delivery becomes
 collect, and comes on an address already left when it becomes ship. The rules name those
 fields themselves (`fields` in their files); `padValidateClient` hands them on as the field's

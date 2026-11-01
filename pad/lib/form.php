@@ -1595,4 +1595,16 @@
 
   }
 
+  // after_or_equal and before_or_equal - whether the field's moment is the other's: the date
+  // of the rule or the value of the other field, read as padRuleWhen reads it. Either rule
+  // passes where after or before does, or where this holds.
+
+  function padRuleWhenSame ( $value, $arg, $data ) {
+
+    $mine = padRuleMoment ( $value );
+
+    return $mine !== NULL and $mine === padRuleMoment ( padRuleDateArg ( $arg ) ? trim ( $arg ) : padRuleSibling ( $data, $arg ) );
+
+  }
+
 ?>

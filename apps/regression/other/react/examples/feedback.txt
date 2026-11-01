@@ -167,6 +167,10 @@
     if (other === null) return true;
     return side < 0 ? mine < other : mine > other;
   }
+  function whenSame(value, arg, values) {
+    var mine = moment(value);
+    return mine !== null && mine === moment(dateArg(arg) ? trim(String(arg)) : sibling(values, arg));
+  }
   (function () {
 addRule('accepted', {
   check: function (value) { return ['1', 'on', 'yes', 'true'].indexOf(value.toLowerCase()) >= 0; }
@@ -175,6 +179,11 @@ addRule('accepted', {
 (function () {
 addRule('after', {
   check: function (value, arg, values) { return when(value, arg, values, 1); }
+});
+})();
+(function () {
+addRule('after_or_equal', {
+  check: function (value, arg, values) { return when(value, arg, values, 1) || whenSame(value, arg, values); }
 });
 })();
 (function () {
@@ -190,6 +199,11 @@ addRule('alphanum', {
 (function () {
 addRule('before', {
   check: function (value, arg, values) { return when(value, arg, values, -1); }
+});
+})();
+(function () {
+addRule('before_or_equal', {
+  check: function (value, arg, values) { return when(value, arg, values, -1) || whenSame(value, arg, values); }
 });
 })();
 (function () {

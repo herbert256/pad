@@ -283,6 +283,46 @@
       [ 'quantity', 'multiple_of:6|max:24',              [ 'quantity' => '24' ] ],
       [ 'quantity', 'required|multiple_of:6',            [ 'quantity' => '' ] ],
       [ 'packs[]',  'multiple_of:6',                     [ 'packs[]' => [ '6' ] ] ]
+    ],
+
+    'after_or_equal' => [
+      [ 'end',      'after_or_equal:start',              [ 'start' => '2026-01-01', 'end' => '2026-01-02' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'start' => '2026-01-01', 'end' => '2026-01-01' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'start' => '2026-01-02', 'end' => '2026-01-01' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'start' => '2026-01-01', 'end' => '2026-01-01T00:00' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'start' => '2026-01-01T09:00', 'end' => '2026-01-01' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'start' => '2026-01-01T09:00', 'end' => '2026-01-01T09:00:00' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'start' => '2026-01-01', 'end' => '2026-02-30' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'start' => '2026-01-01', 'end' => 'today' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'start' => '', 'end' => '2026-01-01' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'end' => '2026-01-01' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'start' => 'someday', 'end' => '2026-01-01' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'start' => '2026-01-01', 'end' => '' ] ],
+      [ 'end',      'after_or_equal:start',              [ 'start' => ' 2026-01-01 ', 'end' => '2026-01-01' ] ],
+      [ 'end',      'after_or_equal:start[]',            [ 'start[]' => [ '2026-01-01' ], 'end' => '2026-01-01' ] ],
+      [ 'end',      'after_or_equal:trip[start]',        [ 'trip[start]' => '2026-06-01', 'end' => '2026-06-01' ] ],
+      [ 'end',      'after_or_equal:trip[start]',        [ 'trip[start]' => '2026-06-01', 'end' => '2026-05-31' ] ],
+      [ 'end',      'after_or_equal:2026-01-01',         [ 'end' => '2026-01-01' ] ],
+      [ 'end',      'after_or_equal:2026-01-01',         [ 'end' => '2025-12-31T23:59:59' ] ],
+      [ 'end',      'after_or_equal:2026-01-01T12:00',   [ 'end' => '2026-01-01T12:00' ] ],
+      [ 'end',      'required|after_or_equal:start',     [ 'start' => '2026-01-01', 'end' => '' ] ],
+      [ 'ends[]',   'after_or_equal:start',              [ 'start' => '2026-01-01', 'ends[]' => [ '2026-01-01' ] ] ]
+    ],
+
+    'before_or_equal' => [
+      [ 'start',    'before_or_equal:end',               [ 'start' => '2026-01-01', 'end' => '2026-01-02' ] ],
+      [ 'start',    'before_or_equal:end',               [ 'start' => '2026-01-01', 'end' => '2026-01-01' ] ],
+      [ 'start',    'before_or_equal:end',               [ 'start' => '2026-01-02', 'end' => '2026-01-01' ] ],
+      [ 'start',    'before_or_equal:end',               [ 'start' => '2026-01-01T00:00:00', 'end' => '2026-01-01' ] ],
+      [ 'start',    'before_or_equal:end',               [ 'start' => '2026-01-01T00:00:01', 'end' => '2026-01-01' ] ],
+      [ 'start',    'before_or_equal:end',               [ 'start' => '2026-13-01', 'end' => '2026-12-01' ] ],
+      [ 'start',    'before_or_equal:end',               [ 'start' => '2026-01-01', 'end' => '' ] ],
+      [ 'start',    'before_or_equal:end',               [ 'start' => '2026-01-01', 'end' => '2026-02-30' ] ],
+      [ 'start',    'before_or_equal:2026-12-31',        [ 'start' => '2026-12-31' ] ],
+      [ 'start',    'before_or_equal:2026-12-31',        [ 'start' => '2027-01-01' ] ],
+      [ 'start',    'before_or_equal:2026-12-31',        [ 'start' => '2026-12-31T10:00' ] ],
+      [ 'start',    'before_or_equal:2026-12-31',        [ 'start' => '2026-12-31', '2026-12-31' => '2000-01-01' ] ],
+      [ 'start',    'before_or_equal:end_date',          [ 'start' => '2026-03-01', 'end_date' => '2026-02-01' ] ]
     ]
 
   ];

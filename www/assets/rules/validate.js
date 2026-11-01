@@ -266,6 +266,13 @@
     return side < 0 ? mine < other : mine > other;
   }
 
+  // after_or_equal and before_or_equal (padRuleWhenSame): whether the field's moment is the
+  // other's, the date of the rule or the other field's.
+  function whenSame(value, arg, values) {
+    var mine = moment(value);
+    return mine !== null && mine === moment(dateArg(arg) ? trim(String(arg)) : sibling(values, arg));
+  }
+
   /*rules*/
 
   function rule(name, arg, value, values, number) {
