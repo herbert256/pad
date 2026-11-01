@@ -233,6 +233,12 @@
   // row hold the same number of workdays - the rest day by day; then each holiday on a workday
   // that was passed asks for one workday more, and those are walked the same way, so a count
   // of a billion workdays takes a few steps. A date before 0 or past 9999-12-31 is #NUM!.
+  //
+  // The holidays - sorted, as padFormulaHolidays gives them - are those on a workday past the
+  // start, nearest first, and $next the first not passed yet: each is looked at once. Every
+  // holiday was compared after every round, and holidays on the workdays right after the
+  // start, each round passing as many as it stepped, made a time quadratic in them -
+  // WORKDAY(45306,1,...) of 4000 such holidays 187 ms where NETWORKDAYS took 6.
 
   function padFormulaWorkday ( $start, $days, $weekend, $holidays ) {
 
@@ -243,11 +249,12 @@
     $left = abs ( $days );
     $week = count ( array_filter ( $weekend, fn ( $off ) => ! $off ) );
     $at   = $start;
-    $off  = array_values ( array_filter ( $holidays, fn ( $holiday ) => ! $weekend [ padFormulaWeekday ( $holiday ) ] ) );
+    $off  = array_values ( array_filter ( $step > 0 ? $holidays : array_reverse ( $holidays ),
+              fn ( $holiday ) => $step * ( $holiday - $start ) > 0 and ! $weekend [ padFormulaWeekday ( $holiday ) ] ) );
+    $next = 0;
 
     while ( $left > 0 ) {
 
-      $from  = $at;
       $weeks = intdiv ( $left - 1, $week );
       $at   += $step * 7 * $weeks;
       $left -= $weeks * $week;
@@ -264,9 +271,10 @@
       if ( $at < 0 or $at > padFormulaLastSerial )
         return padFormulaError ( '#NUM!' );
 
-      foreach ( $off as $holiday )
-        if ( $step > 0 ? ( $holiday > $from and $holiday <= $at ) : ( $holiday < $from and $holiday >= $at ) )
-          $left++;
+      while ( isset ( $off [$next] ) and $step * ( $at - $off [$next] ) >= 0 ) {
+        $left++;
+        $next++;
+      }
 
     }
 
