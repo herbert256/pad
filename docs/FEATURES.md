@@ -393,8 +393,13 @@ endpoints, the scopes, PKCE, the settings it needs and how its answer maps to th
 user: `provider`, `id` (`github:583231` - never the same for two providers, nor for two
 instances of one: a GitLab or Forgejo of one's own and every OpenID issuer have their address
 in it, `gitlab@git.example.org:42`, `oidc@sso.example.com/realms/main:<sub>`), `sub` (the
-provider's own id), `name`, `email`, `avatar`, `username`; GitHub's private address comes from
-`/user/emails`, Apple's name from the first login's post. The settings are `padEnv` values -
+provider's own id), `name`, `email`, `email_verified`, `avatar`, `username`; GitHub's private
+address comes from `/user/emails`, Apple's name from the first login's post. `email` is a
+contact, not an identity: `email_verified` is TRUE only when the provider vouches for the
+address - Google's, Apple's and an OpenID provider's `email_verified`, Discord's `verified`,
+GitLab's `confirmed_at`, GitHub's and Forgejo's `/user/emails`, Microsoft's optional claim
+`xms_edov` (its email is the email claim alone, never `preferred_username`) - so an application
+links a login to an existing account by its address only when it is TRUE. The settings are `padEnv` values -
 `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GITLAB_URL`, `MICROSOFT_TENANT`, `OIDC_ISSUER`;
 Apple takes `APPLE_CLIENT_ID`, `APPLE_TEAM_ID`, `APPLE_KEY_ID` and `APPLE_PRIVATE_KEY` and makes
 its client secret, an ES256 JWT, with openssl - or options of the same names; a missing one is

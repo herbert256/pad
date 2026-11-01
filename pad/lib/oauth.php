@@ -31,7 +31,10 @@
   // provider in front, so two providers never give one id; for an instance other than the
   // provider's default its address too - gitlab@git.example.org:42, every OpenID issuer's
   // oidc@sso.example.com/realms/main:<sub> - as a sub is unique within its instance alone),
-  // sub (583231), name, email, avatar and username - '' where the provider has none. The code is in
+  // sub (583231), name, email, email_verified, avatar and username - '' where the provider has
+  // none. The email is a contact: email_verified is TRUE only when the provider vouches that
+  // the address is the account's - an application links a login to an existing account by
+  // its address only then, else anyone who typed that address at the provider gets the account. The code is in
   // subs/oauth/_lib/oauth.php, read the first time one of these runs.
   //
   // A provider's client id and secret come from padEnv - GITHUB_CLIENT_ID and

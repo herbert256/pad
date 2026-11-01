@@ -1028,7 +1028,7 @@ naming the variable to set.
 |----------|---------|
 | `padOAuthStart ( $provider, $options = [] )` | Sends the visitor to the provider's authorize page - state, PKCE S256 and (OpenID Connect) a nonce kept in the session; options `client_id`, `client_secret`, `scopes`, `redirect`, `params` and the provider's own (`base`, `tenant`, `issuer`, `env`) |
 | `padOAuthUrl ( $provider, $options = [] )` | That address, the login kept, without going there |
-| `padOAuthUser ( $provider, $options = [] )` | On the way back: the state checked, the code exchanged, the id_token checked, the user fetched - `[ provider, id, sub, name, email, avatar, username ]` for `padLogin`, or FALSE |
+| `padOAuthUser ( $provider, $options = [] )` | On the way back: the state checked, the code exchanged, the id_token checked, the user fetched - `[ provider, id, sub, name, email, email_verified, avatar, username ]` for `padLogin`, or FALSE; link an existing account by `email` only when `email_verified` is TRUE |
 | `padOAuthError ()`, `padOAuthToken ()` | Why the last call answered FALSE; the token endpoint's answer of the last login |
 | `padOAuthKinds ()` | The providers - the files of `pad/subs/oauth/types/` |
 | `padNotify ( $to, $name, $data = [], $channels = NULL, $options = [] )` | Renders `_notifications/<name>.pad` per channel and sends it - TRUE when every channel delivered (or was queued, with `[ 'queue' => TRUE ]`); without channels, those with a section in the template |

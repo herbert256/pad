@@ -6,7 +6,10 @@
   // personal accounts), organizations, consumers, or a tenant's own id or domain. The
   // id_token's issuer names the tenant of the account, so it is checked against
   // login.microsoftonline.com/<its tid>/v2.0 - and against the tenant given, when that is an
-  // id. The user is Graph's OIDC userinfo with the id_token's claims under it.
+  // id. The user is Graph's OIDC userinfo with the id_token's claims under it. Its email is
+  // the email claim alone, which Microsoft does not verify - preferred_username, which any
+  // tenant can set to any address, is the username - and it counts as verified only with the
+  // optional claim xms_edov (the domain's owner verified) set up for the app.
 
   $tenant = trim ( (string) ( $options ['tenant'] ?? padEnv ( 'MICROSOFT_TENANT', 'common' ) ) );
   $tenant = preg_match ( '/^[A-Za-z0-9.-]+$/D', $tenant ) ? $tenant : 'common';
@@ -24,7 +27,8 @@
     'scopes'    => 'openid email profile',
     'pkce'      => TRUE,
     'needs'     => [ 'client_id' => 'MICROSOFT_CLIENT_ID', 'client_secret' => 'MICROSOFT_CLIENT_SECRET' ],
-    'user'      => [ 'id' => 'sub', 'name' => 'name|preferred_username', 'email' => 'email|preferred_username', 'avatar' => '', 'username' => 'preferred_username' ],
+    'user'      => [ 'id' => 'sub', 'name' => 'name|preferred_username', 'email' => 'email', 'verified' => 'email_verified|xms_edov', 'avatar' => '',
+                     'username' => 'preferred_username' ],
   ];
 
 ?>

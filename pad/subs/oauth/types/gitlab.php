@@ -3,7 +3,7 @@
   // gitlab - Log in with GitLab: an application of gitlab.com, or of a GitLab of your own
   // with its address in the option base or GITLAB_URL; its id and secret in
   // GITLAB_CLIENT_ID and GITLAB_CLIENT_SECRET. The user is GET /api/v4/user (scope
-  // read_user).
+  // read_user), the address verified when its confirmed_at says when.
 
   $base = rtrim ( (string) ( $options ['base'] ?? padEnv ( 'GITLAB_URL', 'https://gitlab.com' ) ), '/' );
 
@@ -20,6 +20,7 @@
     'pkce'      => TRUE,
     'needs'     => [ 'client_id' => 'GITLAB_CLIENT_ID', 'client_secret' => 'GITLAB_CLIENT_SECRET' ],
     'user'      => [ 'id' => 'id', 'name' => 'name|username', 'email' => 'email', 'avatar' => 'avatar_url', 'username' => 'username' ],
+    'more'      => fn ( $user, $answer ) => [ 'email_verified' => is_string ( $answer ['confirmed_at'] ?? NULL ) and trim ( $answer ['confirmed_at'] ) !== '' ] + $user,
   ];
 
 ?>

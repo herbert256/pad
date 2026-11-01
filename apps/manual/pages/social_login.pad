@@ -34,7 +34,7 @@ name.</p>
 an array with its endpoints, its scopes, whether it takes PKCE, the settings it needs and how its
 answer becomes the user: <code>provider</code>, <code>id</code> (<code>github:583231</code>, never the
 same for two providers - nor for two instances of one: a GitLab of one's own has its address in
-it, <code>gitlab@git.example.org:42</code>, and so has every OpenID issuer), <code>sub</code>, <code>name</code>, <code>email</code>, <code>avatar</code>
+it, <code>gitlab@git.example.org:42</code>, and so has every OpenID issuer), <code>sub</code>, <code>name</code>, <code>email</code>, <code>email_verified</code>, <code>avatar</code>
 and <code>username</code>. A provider is added by adding its file.</p>
 
 <ul>
@@ -44,6 +44,13 @@ and <code>username</code>. A provider is added by adding its file.</p>
       <code>OIDC_ISSUER</code>. A missing one is an error under the strict check that names it.</li>
   <li>GitHub keeps an address private by answering null; it is then taken from
       <code>/user/emails</code> - the primary one, verified.</li>
+  <li>The <code>email</code> is a way to reach the person, not who they are: a provider may hold
+      an address its user typed and never proved. <code>email_verified</code> is TRUE only when
+      the provider vouches for it - Google's, Apple's and an OpenID provider's
+      <code>email_verified</code>, Discord's <code>verified</code>, GitLab's
+      <code>confirmed_at</code>, GitHub's and Forgejo's verified addresses, Microsoft's optional
+      claim <code>xms_edov</code>. Link a login to an account that exists already by its address
+      only when it is TRUE; else the address is anyone's to claim.</li>
   <li>Apple wants a client secret made for every exchange: an ES256 JWT signed with the key of
       the developer account (<code>APPLE_TEAM_ID</code>, <code>APPLE_KEY_ID</code>,
       <code>APPLE_PRIVATE_KEY</code>). It sends the name once, with the first login.</li>

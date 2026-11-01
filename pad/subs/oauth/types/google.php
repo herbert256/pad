@@ -16,7 +16,7 @@
     'scopes'    => 'openid email profile',
     'pkce'      => TRUE,
     'needs'     => [ 'client_id' => 'GOOGLE_CLIENT_ID', 'client_secret' => 'GOOGLE_CLIENT_SECRET' ],
-    'user'      => [ 'id' => 'sub', 'name' => 'name|given_name', 'email' => 'email', 'avatar' => 'picture', 'username' => '' ],
+    'user'      => [ 'id' => 'sub', 'name' => 'name|given_name', 'email' => 'email', 'verified' => 'email_verified', 'avatar' => 'picture', 'username' => '' ],
   ];
 
 ?>

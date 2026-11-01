@@ -24,9 +24,12 @@
   //   secret     a function making the client secret from the settings (Apple's JWT)
   //   headers    more headers for the provider's API
   //   user       the normalised user's fields - id, name, email, avatar, username - as a
-  //              path in the provider's answer each, alternatives split by |
+  //              path in the provider's answer each, alternatives split by |; verified the
+  //              path of the provider's word that the address is the account's own (TRUE or
+  //              'true' - the first of the paths the answer holds decides)
   //   more       a function that completes the user - function ( $user, $answer, $get,
-  //              $callback ): GitHub's private address, Apple's first-login name
+  //              $callback ): GitHub's private address, Apple's first-login name; an
+  //              email_verified it answers counts as the verified path's
   //
   // The state (24 random bytes), the PKCE verifier and the nonce are kept in the session
   // under padOAuth/<application>/<state>, at most five logins at once - two tabs - and ten
@@ -368,8 +371,17 @@
 
     if ( is_callable ( $provider ['more'] ) ) {
       $more = ( $provider ['more'] ) ( $user, $answer, $get, $callback );
-      $user = is_array ( $more ) ? array_map ( fn ( $value ) => is_scalar ( $value ) ? trim ( (string) $value ) : '', $more ) + $user : $user;
+      if ( is_array ( $more ) ) {
+        $verified = array_key_exists ( 'email_verified', $more ) ? padOAuthYes ( $more ['email_verified'] ) : $user ['email_verified'];
+        $user     = array_map ( fn ( $value ) => is_scalar ( $value ) ? trim ( (string) $value ) : '', $more ) + $user;
+        $user ['email_verified'] = $verified;
+      }
     }
+
+    // The address is a contact; that the provider vouches for it - email_verified - is what
+    // makes it the account's, the one thing an application may link an existing account by.
+
+    $user ['email_verified'] = ( $user ['email'] !== '' and $user ['email_verified'] === TRUE );
 
     if ( $user ['sub'] === '' )
       return padOAuthFail ( "the user $name gave has no id" );
@@ -377,9 +389,9 @@
     $user ['provider'] = $kind;
     $user ['id']       = padOAuthId ( $kind, (string) $provider ['instance'], $user ['sub'] );
 
-    return [ 'provider' => $user ['provider'], 'id'     => $user ['id'],     'sub'      => $user ['sub'],
-             'name'     => $user ['name'],     'email'  => $user ['email'],  'avatar'   => $user ['avatar'],
-             'username' => $user ['username'] ];
+    return [ 'provider' => $user ['provider'], 'id'       => $user ['id'],       'sub'            => $user ['sub'],
+             'name'     => $user ['name'],     'email'    => $user ['email'],    'email_verified' => $user ['email_verified'],
+             'avatar'   => $user ['avatar'],   'username' => $user ['username'] ];
 
   }
 
@@ -433,7 +445,47 @@
 
     }
 
+    $verified = NULL;
+
+    foreach ( explode ( '|', (string) ( $map ['verified'] ?? '' ) ) as $path ) {
+
+      $here = ( $path === '' ) ? NULL : $answer;
+
+      foreach ( ( $path === '' ) ? [] : explode ( '.', $path ) as $step )
+        $here = is_array ( $here ) ? ( $here [$step] ?? NULL ) : NULL;
+
+      if ( $here !== NULL ) {
+        $verified = $here;
+        break;
+      }
+
+    }
+
+    $user ['email_verified'] = padOAuthYes ( $verified );
+
     return $user;
+
+  }
+
+  // A provider's yes: TRUE, or the text 'true' Apple sends - nothing else.
+
+  function padOAuthYes ( $value ) {
+
+    return $value === TRUE or ( is_string ( $value ) and strtolower ( trim ( $value ) ) === 'true' );
+
+  }
+
+  // Whether a list of addresses as GitHub's and Forgejo's /user/emails give it - email,
+  // verified, primary - has this address verified.
+
+  function padOAuthListed ( $emails, $email ) {
+
+    foreach ( is_array ( $emails ) ? $emails : [] as $one )
+      if ( is_array ( $one ) and ( $one ['verified'] ?? NULL ) === TRUE and is_string ( $one ['email'] ?? NULL )
+           and $email !== '' and strcasecmp ( $one ['email'], $email ) == 0 )
+        return TRUE;
+
+    return FALSE;
 
   }
 

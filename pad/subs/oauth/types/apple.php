@@ -34,7 +34,7 @@
                           [ 'iss' => (string) $settings ['team_id'], 'iat' => time (), 'exp' => time () + 3600,
                             'aud' => 'https://appleid.apple.com', 'sub' => (string) $settings ['client_id'] ], $pem );
     },
-    'user'      => [ 'id' => 'sub', 'name' => '', 'email' => 'email', 'avatar' => '', 'username' => '' ],
+    'user'      => [ 'id' => 'sub', 'name' => '', 'email' => 'email', 'verified' => 'email_verified', 'avatar' => '', 'username' => '' ],
     'more'      => function ( $user, $answer, $get, $callback ) {
       $first = json_decode ( (string) ( $callback ['user'] ?? '' ), TRUE );
       $name  = is_array ( $first ['name'] ?? NULL ) ? trim ( ( $first ['name'] ['firstName'] ?? '' ) . ' ' . ( $first ['name'] ['lastName'] ?? '' ) ) : '';

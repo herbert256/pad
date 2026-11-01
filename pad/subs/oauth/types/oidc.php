@@ -18,7 +18,8 @@
     'scopes'    => 'openid email profile',
     'pkce'      => TRUE,
     'needs'     => [ 'issuer' => "{$env}_ISSUER", 'client_id' => "{$env}_CLIENT_ID", 'client_secret' => "{$env}_CLIENT_SECRET" ],
-    'user'      => [ 'id' => 'sub', 'name' => 'name|preferred_username', 'email' => 'email', 'avatar' => 'picture', 'username' => 'preferred_username' ],
+    'user'      => [ 'id' => 'sub', 'name' => 'name|preferred_username', 'email' => 'email', 'verified' => 'email_verified', 'avatar' => 'picture',
+                     'username' => 'preferred_username' ],
   ];
 
 ?>
