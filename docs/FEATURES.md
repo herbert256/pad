@@ -1735,10 +1735,12 @@ UTF-8 by its ECI (`pad/subs/codes/_lib/aztec.php`).
 shipping documents: rows of codewords between start and stop patterns, a row indicator at both
 ends, the text in numeric (13 digits or more), text and byte compaction, a text beyond ASCII
 marked as UTF-8 by its ECI (`pad/subs/codes/_lib/pdf417.php`). `level=` is the error correction,
-0 to 8 - by default the standard's recommendation for the size of the data - `columns=` the data
+0 to 8 - by default the standard's recommendation for the size of the data, and past its 863
+codewords the largest level that still holds them - `columns=` the data
 columns, 1 to 30 - by default those that make it about three times as wide as high - and
 `scale=` the width of a module in pixels, a row three modules high. A text of more than 928
-codewords, or of more than 90 rows in the columns asked, is an error under the strict check.
+codewords, or of more than 90 rows in the columns asked, is an error under the strict check; a
+`level=` too high for the text names the level that holds it.
 
 `bookland` is the barcode of a book: its ISBN-13 as an EAN-13, the ISBN written above the bars
 with the hyphens it was given; an ISBN-10 is made the ISBN-13 (978 in front, the EAN check digit

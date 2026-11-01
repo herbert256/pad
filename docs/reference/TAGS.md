@@ -1629,7 +1629,7 @@ the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequenc
 | `check` | Bare, `code39`: the check symbol of modulo 43; `itf`: the check digit of weights 3 and 1. `msi`: `mod10` (default), `mod1010` or `none` |
 | `size` | `qr`, `datamatrix` and `aztec`: the width and height in pixels, default 160 - in place of `height`, `scale` and `plain` |
 | `ecc` | `aztec`: the error correction in percent of the codewords, 3 more always added - 23 unless given, 5 to 90 |
-| `level` | `qr`: the error correction, as `{qr}` takes it; `pdf417`: 0 to 8, by default the standard's recommendation for the size of the data |
+| `level` | `qr`: the error correction, as `{qr}` takes it; `pdf417`: 0 to 8, by default the standard's recommendation for the size of the data - past its 863 codewords the largest level that holds them |
 | `columns` | `pdf417`: the data columns, 1 to 30 - by default about three times as wide as high |
 | `addon` | `ean13`, `upca`, `upce` and `bookland`: the 2 or 5 digits of an add-on, a small symbol right of the bars |
 | `gs1` | Bare, `datamatrix`: GS1 DataMatrix - the text GS1 element strings as `gs1128` takes them, FNC1 first and as the separator |
