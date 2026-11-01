@@ -932,9 +932,10 @@ with it the last day's field takes no day before the first (its `min` follows it
 
 A treepicker posts the value of one item of a hierarchy. Its items are the paths of `options=`
 (`'Europe > France > Paris, Asia > Japan'`, a step the paths share one item), the rows of
-`data=` - flat, each naming its `parent=` field (empty for a root), or nested, the children in
-`children=`; the value `key=` (`id`), the text `field=` (name, label or title) - or a line each
-between its tags, a child indented under its parent; a text is its own value. `leaves` lets only
+`data=` - flat, each naming its `parent=` field (empty for a root, or 0 when no row is 0), or
+nested, the children in `children=`; the value `key=` (`id`), the text `field=` (name, label or
+title) - or a line each between its tags, a child indented under its parent; a text is its own
+value. `leaves` lets only
 an item without children be chosen. A value names one item: a second one, a row under a parent
 that is none and a cycle of parents are errors under the strict check, left out by the lenient
 walk. Without the script the items are nested radio buttons; with it a button showing the path
