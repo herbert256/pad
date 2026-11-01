@@ -645,7 +645,8 @@ gone. A channel is added by adding its file: its settings and a `send` function.
   no markdown - and the url a click opens, the option `priority` (0 to 10).
 - mattermost - a message through a Mattermost incoming webhook, `MATTERMOST_WEBHOOK_URL` (its id
   redacted in the reports, as Slack's): Mattermost's markdown as written, every mention switched
-  off - a zero-width space after the @ that starts a word - so a value pings nobody.
+  off - a zero-width space after every @ (and `&#64;`, `&commat;`) no letter or digit stands
+  before, `x.@channel` too, as Mattermost's parser reads the parts of a word - so a value pings nobody.
 - twilio - a text message through Twilio's Messages API: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`
   (or with `TWILIO_API_KEY` that key's secret), `TWILIO_FROM` - a number, a short code, a sender id
   or a Messaging Service (`MG...`); the row's `phone` in E.164, the text cut at 1600 characters.
