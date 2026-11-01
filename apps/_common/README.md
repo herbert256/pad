@@ -24,11 +24,11 @@ Its files for the browser are in `www/_common/`: `pad.css` and `pad.js`, the fra
 
 - **The brand of the PAD applications**: every PAD application shows the same corner top left,
   `{common:padBrand/}` - the `{}` logo, a link to the PAD home, and the application's name,
-  the pull-down of the applications - in the frame or in a bar of its own
-- **The frame of the PAD applications**: every application that uses `_common` - and admin,
-  edit and tags, which reach it with the `common:` prefix - looks the same: a side with the
-  brand on top, the application's own menu under it, and a bar with the page's title and the
-  light/dark switch above the page - the side light or dark with the page
+  the pull-down of the applications - written by the frame
+- **The frame of the PAD applications**: every PAD application - with `_common` on, or
+  reaching it with the `common:` prefix - looks the same: a side with the brand on top, the
+  application's own menu under it, and a bar with the page's title, the theme switcher
+  (`{themes/}`) and the light/dark switch above the page - the side light or dark with the page
 - **Title extraction**: `_inits.php` derives the page's title from its name, for the bar
 - **Shared libraries**: Common functions available across applications
 - **Reusable tags and snippets**: `{example}`, `{demo}`, `{table}`, `{block}`, `{lines}` ...
@@ -44,7 +44,7 @@ below the page:
 {common:padFrame}
   {slot 'head'}{asset 'admin.css', tag/}{/slot}    in <head>
   {slot 'title'}...{/slot}                          the bar's left half, in place of the title
-  {slot 'tools'}...{/slot}                          the bar's right half, before the switch
+  {slot 'tools'}...{/slot}                          the bar's right half, before the switches
   {slot 'side'}...{/slot}                           the side's room under the menu
   {slot 'foot'}...{/slot}                           the bottom of the side
 {/common:padFrame}
@@ -55,7 +55,9 @@ below the page:
 Its `_inits.php` gives the menu as `$frameMenu` - rows of `head` (a heading) or `link`,
 `label`, `icon` (a name of the `{icon}` tag) and `current` - and the title is `$title`, left
 out of the bar with `$skipTitle`. `{common:padFrame fill}` is for a page that fills the
-window, the editor. The list of applications in the pull-down of the brand is
+window, the editor. The theme switcher stands in every bar, unless `$padTheme = FALSE`; its
+post is answered before the application runs (`pad/inits/themes.php`). Offline (`pad pack`)
+the frame writes `pad.css` and `pad.js` into the page. The list of applications in the pull-down of the brand is
 `_data/padApps.php`.
 
 ## The brand

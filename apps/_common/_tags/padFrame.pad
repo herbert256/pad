@@ -4,10 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{if $frameTitle ne ''}{$frameTitle} · {/if}PAD {$frameName}</title>
+  {if $frameOffline}
+  {!frameStyle}
+  {else}
   <link rel="stylesheet" href="{$frameCss}">
   <link rel="stylesheet" href="{$frameBrandCss}">
   <script src="{$frameJs}"></script>
   <script src="{$frameBrandJs}" defer></script>
+  {/if}
   {slot 'head'}{/slot}
 </head>
 <body class="frame {$frameClass}{if $frameFill} frame-fill{/if}">
@@ -40,6 +44,7 @@
       {slot 'title'}{if $frameTitle ne ''}<h1>{$frameTitle}</h1>{/if}{/slot}
       <div class="frame-tools">
         {slot 'tools'}{/slot}
+        {if $frameThemes}{themes/}{/if}
         <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark">{icon 'sun', size=18/}{icon 'moon', size=18/}</button>
       </div>
     </header>

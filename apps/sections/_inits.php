@@ -3,7 +3,7 @@
   // The menu of the frame every PAD application shares (_common/_tags/padFrame.pad): the landing
   // page, then a page for each group - sections, effects, themes, palettes - with every one of
   // its kinds under it, as the engine has them (_lib/sections.php). The theme switcher stands in
-  // the frame's bar ({themes/}, the 'tools' slot), so the choice is at hand on every page.
+  // the frame's bar, as in every application of the frame, so the choice is at hand on every page.
 
   $frameMenu = [ [ 'link' => '?index', 'label' => 'Landing page', 'icon' => 'home', 'current' => $padPage == 'index' ] ];
 

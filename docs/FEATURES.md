@@ -1492,19 +1492,22 @@ newspaper 5.97, mono 6.00, terminal 6.01, ocean 6.22, contrast 7.41 - and the se
 application lists every pair of every theme. The light and dark themes are the frame's own
 colours, with the four that fall short of AA in its set - the dim grey on the page (4.47), the
 side's headings (3.07 light, 4.09 dark), a link on the accent's tint (4.48) - darkened or
-lightened to it. Which theme a page gets: the visitor's choice from `{themes/}` - posted back to
-the page and kept in a cookie of its own, `padTheme` (SameSite=Lax, a year), on the directory of
-the application it was made in, checked against the themes on every read, never in the session,
-Default taking it away; a post from another site (`Sec-Fetch-Site: cross-site`) changes nothing -
-on the pages of that application that are built on the frame (they link `_common/pad.css`), or
-on all of them when the application sets a `$padTheme`; else `$padTheme`. A page with a design
-of its own is never coloured by a visitor's choice, and `$padTheme = FALSE` turns both off. That theme's
+lightened to it. Which theme a page gets: the visitor's choice from `{themes/}` - in the bar of
+the frame every PAD application shares - posted back to the page and taken before the
+application runs (`pad/inits/themes.php`, a 303 back to the page), kept in a cookie of its own,
+`padTheme` (SameSite=Lax, a year), on the directory the PAD applications are served under
+(`$padRoot`), checked against the themes on every read, never in the session, Default taking it
+away; a post from another site (`Sec-Fetch-Site: cross-site`) changes nothing - on the pages
+built on the frame (they link `_common/pad.css`) of every application, or on all pages of an
+application that sets a `$padTheme`; else `$padTheme`. A page with a design of its own is never
+coloured by a visitor's choice, and `$padTheme = FALSE` turns both off. That theme's
 `<style>` goes into the page's `<head>` on the way out (`exits/output.php`) - before `</head>`,
 in a page without one before its `<body>` or after its doctype - after the page cache, so a
 cached page is served in the theme of whoever asks, and the ETag is made from what goes out;
 never into an include request, a `{live}` region's or a fragment's answer, a page that is no
 HTML, or a page with a `{theme 'x'/}` of its own, which is in that theme. The switcher is a
-`<select>` and a button - no script: the page changes when the visitor says so (WCAG 3.2.2) - and
+`<select>` alone - its label there for a screen reader - that applies a theme the moment it is
+chosen, a small script posting the form; without JavaScript a button does it - and it
 writes no token of its own, so showing it or choosing starts no session; with `$padCsrf` on it carries the
 session's token as every form then does. Code: `pad/subs/themes/` - `_lib/theme.php`
 (`padThemeCss`, `padThemeChosen`, `padThemeAdd`, `padThemeContrasts`), `theme.php` and
@@ -1758,10 +1761,10 @@ missing answers; `./ci.sh` runs `pad test --all` and fails on a failing test.
 Every PAD application shows the same brand top left - `{common:padBrand/}`
 (`_common/_tags/padBrand.pad` + `.php`): the `{}` logo, a link to the PAD home, and beside it
 `PAD <app>`, the pull-down of every PAD application, grouped as `_common/_data/padApps.php`
-lists them (the name and a line about each), the one shown marked. An application with a bar
-of its own puts the tag in it - charts, htmx, kanban ... - which links `www/_common/brand.css`
-and `brand.js` itself; the brand's colours follow the page's `color-scheme`, and its name the
-colour of the bar. Offline (`pad pack`, `padWasm()`) the logo is no link, the name links the
+lists them (the name and a line about each), the one shown marked. The frame below writes it;
+an application with a bar of its own would put the tag in it, which links
+`www/_common/brand.css` and `brand.js` itself; the brand's colours follow the page's
+`color-scheme`, and its name the colour of the bar. Offline (`pad pack`, `padWasm()`) the logo is no link, the name links the
 application's home and the stylesheet is written into the page.
 
 Every example an application shows - a template beside its result - has two little icons at
@@ -1789,12 +1792,16 @@ and endpoints of their own - and padSelect's, on a database of its own, have non
 offline (`padWasm()`) there is no icon. Both editors fill their boxes from the link and wait
 for Render or Run.
 
-Every application that uses `_common` - and admin, edit and tags, which have it off and reach
-it with the `common:` prefix - shares one frame from `_common`, which has no wrapper of its own
+Every PAD application - the ones that use `_common`, and the ones that have it off and reach it
+with the `common:` prefix - shares one frame from `_common`, which has no wrapper of its own
 (no `_common/_inits.pad`): a side with the brand on top - `{common:padBrand frame/}`, its links
-in the frame's `<head>` - the application's menu under it, and a bar with the title and the
-light/dark switch above the page; side and page are light or dark together, the choice kept
-for all of them (`www/_common/pad.js`). Their `_inits.pad`:
+in the frame's `<head>` - the application's menu under it, and a bar above the page with the
+title, the theme switcher (`{themes/}`, left out with `$padTheme = FALSE`) and the light/dark
+switch; side and page are light or dark together, the choice kept for all of them
+(`www/_common/pad.js`), and in the theme the visitor chose, kept in the session. The
+switcher's post is answered before the application runs (`pad/inits/themes.php`) - a 303 back
+to the page - so no page's own PHP sees it. Left out on purpose: cli (a console), nono (plain
+PHP), test (a scratch application) and the regression applications. Their `_inits.pad`:
 
 ```
 {common:padFrame}                                  # _common/_tags/padFrame.pad + .php
@@ -1806,7 +1813,8 @@ for all of them (`www/_common/pad.js`). Their `_inits.pad`:
 
 `$frameMenu` (rows of `head`, or `link`, `label`, `icon`, `current`) from `_inits.php` is the
 menu, `$title` the bar's title (`$skipTitle` leaves it out); `{common:padFrame fill}` for a
-page that fills the window. The stylesheet is `www/_common/pad.css`: the
+page that fills the window. Offline (`pad pack`, `padWasm()`) the frame writes its stylesheet
+and script into the page. The stylesheet is `www/_common/pad.css`: the
 `--frame-*` properties are the frame's own, `--bg`, `--text`, `--accent` ... the palette the
 pages use - the old pages' `bgcolor=`, `<font color>` and `highlight_string` colours read in
 dark too.

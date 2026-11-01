@@ -35,6 +35,14 @@
   // and pad.js - and the brand's brand.css and brand.js - with a version from their contents
   // as {asset} writes it.
   //
+  // The theme switcher - {themes/}, the themes of pad/subs/themes/ - stands in the bar of
+  // every page, after the tools slot and before the light/dark switch, so the visitor's
+  // choice is at hand in every application; $padTheme = FALSE, which turns the themes off,
+  // takes it out of the bar.
+  //
+  // Offline - an application packed by pad pack (padWasm) - there is no www/_common to link:
+  // the stylesheet and the script are written into the page, as the brand writes its own.
+  //
   // The brand top left - the {} logo, a link to the PAD home, and the application's name,
   // the pull-down of the PAD applications - is the one every application shows, the tag
   // padBrand; the frame writes it with the option frame and links its stylesheet and script
@@ -48,6 +56,9 @@
 
   $frameClass = 'app-' . str_replace ( '/', '-', $padApp );
   $frameFill  = padTagParm ( 'fill' ) ? 1 : 0;
+
+  $frameThemes  = ( ( $GLOBALS ['padTheme'] ?? NULL ) !== FALSE ) ? 1 : 0;
+  $frameOffline = padWasm () ? 1 : 0;
 
   $frameTitle = ( isset ( $skipTitle ) or ! isset ( $title ) or ! is_scalar ( $title ) )
               ? '' : ucfirst ( str_replace ( '_', ' ', (string) $title ) );
@@ -82,7 +93,16 @@
     ${$frameVar} = "{$padRoot}_common/$frameFile$frameHash";
   }
 
-  unset ( $frameEntries, $frameRows, $frameRow, $frameVar, $frameFile, $frameAt, $frameAlgo, $frameHash );
+  // Offline: pad.css and pad.js themselves, for a <style> and a <script> of the page.
+
+  $frameStyle = '';
+
+  if ( $frameOffline )
+    foreach ( [ 'pad.css' => 'style', 'pad.js' => 'script' ] as $frameFile => $frameElement )
+      if ( is_file ( dirname ( APPS ) . "/www/_common/$frameFile" ) )
+        $frameStyle .= "<$frameElement>" . file_get_contents ( dirname ( APPS ) . "/www/_common/$frameFile" ) . "</$frameElement>";
+
+  unset ( $frameElement, $frameEntries, $frameRows, $frameRow, $frameVar, $frameFile, $frameAt, $frameAlgo, $frameHash );
 
   return TRUE;
 

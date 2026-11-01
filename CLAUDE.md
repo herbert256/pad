@@ -824,7 +824,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Expression errors](docs/FEATURES.md#expression-errors) | what the strict check says about a malformed expression |
 | [Errors in the template](docs/FEATURES.md#errors-point-into-the-template) | file, line, column and excerpt in every error report |
 | [Application tests](docs/FEATURES.md#application-tests) | `_tests/name.pad` + `name.txt`, `{assert}`, `pad test` |
-| [The frame of the PAD apps](docs/FEATURES.md#the-frame-of-the-pad-applications) | `{common:padFrame}`, `$frameMenu`, `www/_common/pad.css`; the brand top left of every app `{common:padBrand/}`; the playground and live icons top right of every example, `padPlayLink ()` |
+| [The frame of the PAD apps](docs/FEATURES.md#the-frame-of-the-pad-applications) | `{common:padFrame}`, `$frameMenu`, `www/_common/pad.css`, the theme switcher in its bar; the brand top left of every app `{common:padBrand/}`; the playground and live icons top right of every example, `padPlayLink ()` |
 | [Common patterns](docs/FEATURES.md#common-patterns) | zebra rows, comma lists, first/last wrappers, counters |
 | [Sections](docs/FEATURES.md#sections) | `{section:hero title=}`, `{section:pricing data=/}`, `{section:item 'Pro', price=}`, `{slot 'eyebrow'}` - landing-page blocks in pure CSS, a kind per file of `pad/subs/sections/types/` |
 | [Effects](docs/FEATURES.md#effects) | `{typewriter}`, `{highlighter}`, `{countup to=/}`, `{reveal}`, `{marquee}`, `{spinner/}`, `{confetti/}` - CSS first, still under reduced motion, a kind per file of `pad/subs/effects/types/` |
@@ -962,11 +962,11 @@ Wrap all pages with a common layout:
 
 The `@page@` placeholder is replaced with each page's content.
 
-The PAD applications that use `_common` share one frame - `{common:padFrame}` in their
-`_inits.pad`, `$frameMenu`, `www/_common/pad.css` - and every PAD application, framed or with
-a bar of its own, shows the same brand top left, `{common:padBrand/}`: the `{}` logo linking
-the PAD home and the application's name as the pull-down of the applications
-(`_common/_data/padApps.php`): see
+Every PAD application shares one frame - `{common:padFrame}` in its `_inits.pad`,
+`$frameMenu`, `www/_common/pad.css` - with the same brand top left, `{common:padBrand frame/}`:
+the `{}` logo linking the PAD home and the application's name as the pull-down of the
+applications (`_common/_data/padApps.php`), and the same bar: the page's title, the theme
+switcher `{themes/}` and the light/dark switch: see
 [The frame of the PAD applications](docs/FEATURES.md#the-frame-of-the-pad-applications).
 
 ---
@@ -1173,8 +1173,8 @@ the `claude` line of `./ci.sh`.
 | `admin` | Standard | The web PAD console, the successor of `apps`: every application with its pages, parts and settings, files, search, the pad command (lint, test, migrate, queue, schedule ...) with a history, maintenance, queues, schedules, logs, error dumps, the mail outbox, DATA/ storage, PHP, the PAD settings, git and its own users - behind a login, this machine only |
 | `alpine` | Standard | PAD + Alpine: state from PHP with `x-data="{^field}"`, components in `www/` with `Alpine.data`, live search over `$padExpose`, one set of rules for both sides, a list kept in the session, server-sent events |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
-| `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family (every kind of `pad/subs/charts/types/`), every example a page of three cells: the data, the tag, the chart |
-| `showcase` | Standard | A showcase of the tags that draw, format and interact - a pulldown per group, a section per tag, every example its template beside the result |
+| `charts` | Standard | A showcase of the `{chart}` tag - a menu heading per chart family (every kind of `pad/subs/charts/types/`), every example a page of three cells: the data, the tag, the chart |
+| `showcase` | Standard | A showcase of the tags that draw, format and interact - a menu heading per group, a section per tag, every example its template beside the result |
 | `tags` | Standard | A page per tag, named with its type prefix - every built-in tag, `{pad:if}`, every kind of the subsystems, `{chart:pie}`, and every sequence type, `{sequence:fibonacci}` - one line, syntax with the tag's own options, a longer description and live examples - with indexes by name, group, form and option, a cheat sheet and a search |
 | `types` | Standard | A page per type of tag - the prefix of `{pad:if}`, `{chart:pie}`, `{field:name}` - with what it reaches and its tags linked into the tags app, its place in the order a bare name is tried in, its section of TYPES.md and live examples; indexes by name, order and group, a cheat sheet and a search |
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |
