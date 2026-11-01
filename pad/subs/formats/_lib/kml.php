@@ -408,9 +408,13 @@
 
   }
 
-  // A date of KML: the day, or the moment - in UTC, or local as it is written without a zone.
+  // A date of KML: the year (1997) or the month (1997-07) as written - KML's dateTime takes
+  // both - the day, or the moment - in UTC, or local as it is written without a zone.
 
   function padKmlWhen ( $value ) {
+
+    if ( is_string ( $value ) and preg_match ( '/^\d{4}(-(0[1-9]|1[0-2]))?$/D', trim ( $value ) ) )
+      return trim ( $value );
 
     if ( $value === NULL or ! ( $date = padFormatDate ( $value ) ) )
       return '';
