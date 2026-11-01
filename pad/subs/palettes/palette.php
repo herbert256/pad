@@ -4,7 +4,7 @@
   // each with its hex value written on it in black or white, whichever reads better
   // (padPaletteInk). The palette is a file of subs/palettes/types/ (padPaletteTypes,
   // _lib/palette.php); steps= is how many colours, a whole number from 1 to 256 - without it
-  // a categorical palette shows its own colours, a sequential or diverging one nine; title=
+  // a categorical palette shows its own colours, a cyclic one twelve, the others nine; title=
   // names the row for a screen reader, else the palette's name and the count do. The row is a
   // list - role="list", a swatch an item - so a screen reader counts the colours and reads
   // their values.

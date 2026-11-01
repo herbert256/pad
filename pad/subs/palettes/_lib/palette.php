@@ -30,10 +30,11 @@
   // colours, give or take a rounding - and one step is the middle. A cyclic palette is
   // sampled evenly round its circle from its first colour on, its last step short of the
   // first again - twelve steps are the twelve months, none of them twice, where sampled to
-  // its end its last colour would be its first once more - and one step is its first. A
-  // categorical palette gives its colours in its order, and past its last starts again: an
-  // eighth of a palette of seven is its first. Without steps, a categorical palette gives
-  // all its colours, a cyclic one twelve, the others nine.
+  // its end its last colour would be its first once more - and one step is its first; its
+  // colours are as many even steps of the circle, so four steps are its quarters and 256 of
+  // romaO its table (padPaletteRound). A categorical palette gives its colours in its order,
+  // and past its last starts again: an eighth of a palette of seven is its first. Without
+  // steps, a categorical palette gives all its colours, a cyclic one twelve, the others nine.
   //
   // Included on use - by {palette}, by a chart given palette= and by padPalette (lib/palette.php).
 
@@ -96,7 +97,7 @@
 
     if ( $data ['type'] == 'cyclic' ) {
       for ( $i = 0; $i < $steps; $i++ )
-        $list [] = padPaletteAt ( $colors, $i / $steps );
+        $list [] = padPaletteRound ( $colors, $i / $steps );
       return $list;
     }
 
@@ -122,9 +123,32 @@
     if ( $i >= $last )
       return $colors [$last];
 
-    $f = $at - $i;
-    $a = padPaletteRgb ( $colors [$i] );
-    $b = padPaletteRgb ( $colors [ $i + 1 ] );
+    return padPaletteMix ( $colors [$i], $colors [ $i + 1 ], $at - $i );
+
+  }
+
+  // The colour at $t round the circle of a cyclic palette, from 0 its first colour once round
+  // to 1 its first again: its colours are as many even steps of the circle, its last one step
+  // short of its first, so $t is at entry $t times their count, and past its last colour the
+  // last and the first are mixed - where the table was read as closed, its last colour at 1,
+  // and romaO's quarters fell between two of its colours.
+
+  function padPaletteRound ( $colors, $t ) {
+
+    $count = count ( $colors );
+    $at    = ( $t - floor ( $t ) ) * $count;
+    $i     = (int) floor ( $at );
+
+    return padPaletteMix ( $colors [ $i % $count ], $colors [ ( $i + 1 ) % $count ], $at - $i );
+
+  }
+
+  // Two colours mixed in sRGB, $f of the way from the first to the second, each channel rounded.
+
+  function padPaletteMix ( $one, $two, $f ) {
+
+    $a = padPaletteRgb ( $one );
+    $b = padPaletteRgb ( $two );
 
     return sprintf ( '#%02x%02x%02x', (int) round ( $a [0] + ( $b [0] - $a [0] ) * $f ),
                                      (int) round ( $a [1] + ( $b [1] - $a [1] ) * $f ),
@@ -188,11 +212,13 @@
     $slots = [];
     $style = '';
 
+    $at = ( $data ['type'] == 'cyclic' ) ? 'padPaletteRound' : 'padPaletteAt';
+
     if ( $data ['type'] == 'categorical' )
       $slots = padPaletteColors ( $name, $n );
     else
       for ( $i = 0; $i < $n; $i++ )
-        $slots [] = padPaletteAt ( $data ['colors'], ( $i + 0.5 ) / $n );
+        $slots [] = $at ( $data ['colors'], ( $i + 0.5 ) / $n );
 
     foreach ( $slots as $i => $color )
       $style .= '--pad-chart-' . ( $i ? $i + 1 : 'series' ) . ":$color;";
@@ -205,11 +231,11 @@
 
     if ( $data ['type'] != 'categorical' )
       for ( $step = 0; $step <= 6; $step++ )
-        $style .= "--pad-chart-heat-$step:" . padPaletteAt ( $data ['colors'], $step / $round ) . ';';
+        $style .= "--pad-chart-heat-$step:" . $at ( $data ['colors'], $step / $round ) . ';';
 
     if ( $data ['type'] != 'categorical' )
       for ( $step = 0; $step <= 6; $step++ )
-        $style .= "--pad-chart-heat-ink-$step:" . padPaletteInk ( padPaletteAt ( $data ['colors'], $step / $round ) ) . ';';
+        $style .= "--pad-chart-heat-ink-$step:" . padPaletteInk ( $at ( $data ['colors'], $step / $round ) ) . ';';
 
     return rtrim ( $style, ';' );
 
