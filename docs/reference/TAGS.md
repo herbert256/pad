@@ -2489,6 +2489,7 @@ from a page's own script.
 | `powerup` | A fast run of square notes up two octaves |
 | `shaker` | A shaker moved forth and back: two soft swells of bright noise |
 | `snare` | A snare drum: highpassed noise over a falling tone |
+| `sparkle` | A little magic: high bell tones of E major tumbling over each other |
 | `success` | A rising major arpeggio |
 | `tick` | The tick of a clock, a high wooden tap |
 | `warning` | Two tones taking turns, a small siren |
