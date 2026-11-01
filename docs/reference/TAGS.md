@@ -4564,7 +4564,8 @@ themes there are, and the subsystem is `pad/subs/themes/`.
 **Behavior:** single, the tag writes the theme's `<style>` where it stands, with the request's
 nonce, on `:root:root:root` - outweighing the frame's light and dark rules - and a page that
 has one gets no theme from `$padTheme` or a visitor's choice on its way out. As a pair the theme colours its content alone, a box with
-the theme's background and text, its style once per page. `$padTheme = 'paper'` puts every page
+the theme's background and text, its style once per page - the theme's rules for the page's
+body, blueprint's capital headings, readable's paragraphs of 70 letters, reach what the box holds. `$padTheme = 'paper'` puts every page
 of an application in a theme, `{themes/}` lets the visitor choose (kept in a cookie of the
 application, winning over the setting), `$padTheme = FALSE` turns both off. Every theme's text reaches WCAG AA on its
 backgrounds, contrast's and contrast-dark's AAA. A name that is no theme, no name and content on the single form are

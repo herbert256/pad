@@ -17,7 +17,8 @@
   // charts, the widgets, the toys - follows the theme. A theme may set the page's font
   // (--sans), the hero background of the sections (--pad-section-hero), declarations of the
   // body's own (body - blueprint's grid, readable's spacing), which the box of a pair gets too, and rules of its
-  // own - underlined links. The sections and the effects read their colours from the same palette, so
+  // own - underlined links - those for the frame's body (.frame-body) on what the box holds as
+  // well. The sections and the effects read their colours from the same palette, so
   // a theme colours them too. The frame's files are not touched: the theme is a <style> on
   // top of them.
   //
@@ -146,7 +147,16 @@
     if ( isset ( $theme ['hero'] ) )
       $css .= "$root .pad-section{--pad-section-hero:{$theme ['hero']}}";
 
-    return $css . str_replace ( ':root:root:root', $root, $theme ['css'] ?? '' );
+    // The theme's own rules for the frame's body - blueprint's capitals on a heading,
+    // readable's paragraphs of 70 letters - go on what the box holds: the frame is around the
+    // box, never in it, and .pad-theme-blueprint .frame-body h3 met no heading of the box.
+
+    $own = $theme ['css'] ?? '';
+
+    if ( $inside )
+      $own = str_replace ( ':root:root:root .frame-body ', "$root ", $own );
+
+    return $css . str_replace ( ':root:root:root', $root, $own );
 
   }
 
