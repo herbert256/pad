@@ -1211,7 +1211,8 @@ shown, not run. See also the `markdown` pipe in FUNCTIONS.md.
 ---
 
 ### chart
-Draw a chart as inline SVG - no JavaScript, so it works in print and caches like any output.
+Draw a chart as inline SVG - no JavaScript, so it works in print and caches like any output;
+with `client` the browser draws the same SVG from the rows the server hands it.
 
 ```html
 {chart 'bar', data='sales', label='month', value='amount'/}
@@ -1343,6 +1344,7 @@ is one that nothing reads under the strict check. The handling options (`row`, `
 | `label` | The field for the category axis - by default the first other field, else the row number |
 | `title` | The accessible name; by default made from value and label |
 | `width`, `height` | The size, default 600 x 300 (pie, donut, sunburst, rose, radialbar, rings, parliament, venn, waffle 480 x 280; sankey, network, treemap, radar, chord, pack, orgchart, parallel, multiples 600 x 400; gauge 320 x 200; calendar 720 x 150; spiral 480 x 420); `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
+| `client` | Drawn in the browser: the server writes the rows and the options as JSON and a script draws the same SVG there (`pad/charts/client/`) - no SVG drawn on the server |
 
 **Accessibility:** `role="img"`, labelled by a `<title>` and a `<desc>` that lists the values;
 each bar, point, slice, cell, flow and node has its own `<title>`, the tooltip on hover - a

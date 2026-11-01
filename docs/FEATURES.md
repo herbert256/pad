@@ -594,7 +594,20 @@ through; `padCollection('blog')` gives the rows to PHP.
   month,amount                                               #   JSON, YAML, XML or CSV, told
   Jan,12400                                                  #   apart on sight (type= names it)
 {/chart}
+{chart 'bar', data='sales', label='month', value='amount', client/}   # drawn in the browser
 ```
+With `client` the browser draws the chart: the server gathers the rows - the handling options
+applied - and the tag's options, writes them into the page as JSON in a span, and a script
+draws the SVG in its place (`PadChart.mount`; `PadChart.mountAll ( element )` for a part of a
+page that came in later). The scripts are `pad/charts/client/` - `core.js`, written once a page,
+and a file per family, the PHP of `_lib/` written again in JavaScript a function for a function,
+so the chart is the same SVG, character for character (ids aside), as the server draws:
+`apps/regression/pages/charts/_client.mjs` holds every example of the charts application to
+that, the `./ci.sh` line `charts`. The server marks the chart's options read, so the strict
+check reports no misspelt option of a client chart; what the kind reports as a mistake the
+browser writes in the chart's place. calendar and gantt read the date forms their comments
+name in the browser - ISO dates and times, timestamps, YYYYMMDD, week and ordinal dates - not
+every phrase `strtotime` reads.
 `role="img"` with `<title>`/`<desc>`; colours are `--pad-chart-*` custom properties on
 `.pad-chart`, following the page's `color-scheme`. A field option left out takes the first
 field that fits; the chart's options keep clear of the handling options (`row`, `group`).
@@ -607,7 +620,8 @@ name comes last, after every other kind of tag). `{sparkline .../}` is the spark
 `{chart:calendar .../}` and `{chart:pack .../}` (or `{chart 'pack', .../}`).
 Code: the chart subsystem in `pad/charts/` - `chart.php` the body every form runs,
 `_lib/` the drawing (`chart.php` bar, line and sparkline, the files beside it the other
-kinds), `types/` the kinds; `pad/types/chart.php` the chart type.
+kinds, `client.php` the hand-over to the browser), `types/` the kinds, `client/` the drawing
+in the browser; `pad/types/chart.php` the chart type.
 
 ### Games
 ```

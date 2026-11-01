@@ -1,7 +1,9 @@
 <?php
 
   // The chart subsystem: inline SVG charts, written by the server - no JavaScript, so a chart
-  // works in an e-mail and in print, and caches like any other output.
+  // works in an e-mail and in print, and caches like any other output. With the option client
+  // the browser draws the same SVG instead, from the rows and options the server hands it
+  // (client.php, and charts/client/ the drawing written again in JavaScript).
   //
   //   {chart 'bar', data='sales', label='month', value='amount'/}
   //   {chart:line data='visits', value='count', title='Visits per day'/}
@@ -515,22 +517,43 @@
 
   // The opening of one chart's SVG: the svg element named by $title, a <desc> of the
   // entries in $desc - the first 60 - and the style; $hash is the data the id is made
-  // from, and the id comes back beside the text for the parts that refer to it. The ids are made from the chart itself, so two charts on a
-  // page do not share a title: a count per request gave a chart served from the fragment
-  // cache and a chart rendered next to it the same pad-chart-1, and so did the charts of
-  // two nested passes - two {example}s - each counting from one again. The same chart
-  // drawn twice in a request is told apart by a number behind the second, kept in a
-  // static for the nested passes.
+  // from (padChartId), and the id comes back beside the text for the parts that refer to
+  // it. The ids are made from the chart itself, so two charts on a page do not share a
+  // title: a count per request gave a chart served from the fragment cache and a chart
+  // rendered next to it the same pad-chart-1, and so did the charts of two nested passes -
+  // two {example}s - each counting from one again. The same chart drawn twice in a request
+  // is told apart by a number behind the second, kept in a static for the nested passes.
 
   function padChartOpen ( $kind, $hash, $desc, $title, $width, $height, $more = TRUE ) {
+
+    $id    = padChartId ( $kind, $hash, $title, $width, $height );
+    $count = count ( $desc );
+
+    if ( $count > 60 )
+      $desc = array_merge ( array_slice ( $desc, 0, 60 ), [ 'and ' . ( $count - 60 ) . ' more' ] );
+
+    $svg = '<svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-' . $kind . '" role="img"'
+         . " aria-labelledby=\"$id-title $id-desc\" width=\"$width\" height=\"$height\" viewBox=\"0 0 $width $height\">"
+         . "<title id=\"$id-title\">" . padChartAttr ( $title ) . '</title>'
+         . "<desc id=\"$id-desc\">" . padChartAttr ( implode ( '; ', $desc ) ) . '</desc>'
+         . padChartStyle ( $more, $kind );
+
+    return [ $id, $svg ];
+
+  }
+
+  // The id of a chart, made from what it draws - and, for a chart drawn in the browser
+  // (client.php), from its rows and its options.
+  //
+  // Inside a {cache} section that is rendering to be kept, the section's key is part of the
+  // id too: kept, the chart came back on a later request beside the same chart drawn then,
+  // and the two had one id - as padWidgetId has it for the widgets.
+
+  function padChartId ( $kind, $hash, $title, $width, $height ) {
 
     global $pad, $padFragment;
 
     static $drawn = [];
-
-    // Inside a {cache} section that is rendering to be kept, the section's key is part of the
-    // id too: kept, the chart came back on a later request beside the same chart drawn then,
-    // and the two had one id - as padWidgetId has it for the widgets.
 
     $seed = [ $kind, $hash, $title, $width, $height ];
 
@@ -547,18 +570,7 @@
     if ( $drawn [$id] > 1 )
       $id .= '-' . $drawn [$id];
 
-    $count = count ( $desc );
-
-    if ( $count > 60 )
-      $desc = array_merge ( array_slice ( $desc, 0, 60 ), [ 'and ' . ( $count - 60 ) . ' more' ] );
-
-    $svg = '<svg xmlns="http://www.w3.org/2000/svg" class="pad-chart pad-chart-' . $kind . '" role="img"'
-         . " aria-labelledby=\"$id-title $id-desc\" width=\"$width\" height=\"$height\" viewBox=\"0 0 $width $height\">"
-         . "<title id=\"$id-title\">" . padChartAttr ( $title ) . '</title>'
-         . "<desc id=\"$id-desc\">" . padChartAttr ( implode ( '; ', $desc ) ) . '</desc>'
-         . padChartStyle ( $more, $kind );
-
-    return [ $id, $svg ];
+    return $id;
 
   }
 

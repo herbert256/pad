@@ -56,7 +56,14 @@
   // A chart without points answers FALSE, a miss, so its @else@ shows: the '' it drew
   // was a value like any other - a hit - and "No sales yet" never appeared.
 
-  $padChartSvg = padChartTag ( $padChartKind, $padChartSource, $padChartRows );
+  // client: the browser draws it - the server hands it the rows and the options
+  // (charts/_lib/client.php).
+
+  $padChartClient = padTagParm ( 'client', FALSE );
+  $padChartClient = ( $padChartClient !== FALSE and $padChartClient !== '' and $padChartClient !== 0 and $padChartClient !== '0' );
+
+  $padChartSvg = $padChartClient ? padChartClient ( $padChartKind, $padChartSource, $padChartRows )
+                                 : padChartTag    ( $padChartKind, $padChartSource, $padChartRows );
 
   return ( $padChartSvg === '' ) ? FALSE : $padChartSvg;
 

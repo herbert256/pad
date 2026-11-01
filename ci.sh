@@ -69,7 +69,7 @@ if [ -z "$CI_SUITES" ]; then
   ( php "$padHome/editors/generate.php" --check > "$tooling/editors" 2>&1; echo $? > "$tooling/editors.rc" ) &
 
   if command -v node > /dev/null 2>&1; then
-    for tool in lsp:editors/lsp/test.js mcp:editors/mcp/test.js claude:editors/claude/test.js treesitter:editors/tree-sitter-pad/test/check.js validate:apps/regression/pages/forms/_parity.js wasm:wasm/verify-app.mjs; do
+    for tool in lsp:editors/lsp/test.js mcp:editors/mcp/test.js claude:editors/claude/test.js treesitter:editors/tree-sitter-pad/test/check.js validate:apps/regression/pages/forms/_parity.js charts:apps/regression/pages/charts/_client.mjs wasm:wasm/verify-app.mjs; do
       name="${tool%%:*}"
       args=""
       [ "$name" = wasm ] && args="--brief"
@@ -176,11 +176,14 @@ fi
 # check proves the committed parser is generated from grammar.js and the queries name only
 # what the parser has, and runs the corpus when the tree-sitter CLI is installed. The validate
 # line runs the browser's checker of padValidate's rules (pad/rules/assets/) over the cases
-# of the Pages suite's forms/client_parity and holds it to the server's verdicts. They need
-# node - a machine without it cannot run the tooling either, and says so instead of failing.
+# of the Pages suite's forms/client_parity and holds it to the server's verdicts. The charts
+# line draws every example page of the charts application with PHP and with the browser's
+# JavaScript (pad/charts/client/, the client option) and holds the two SVGs to being the same.
+# They need node - a machine without it cannot run the tooling either, and says so instead of
+# failing.
 
 if [ -z "$CI_SUITES" ]; then
-  for tool in lsp mcp claude treesitter validate; do
+  for tool in lsp mcp claude treesitter validate charts; do
     if ! command -v node > /dev/null 2>&1; then
       printf '%-12s %s\n' "$tool" "skipped - node is not installed"
     elif [ "$(cat "$tooling/$tool.rc")" = 0 ]; then

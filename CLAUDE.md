@@ -788,7 +788,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Translations, locale formatting](docs/FEATURES.md#translations-and-locale-formatting) | `{trans}`, `_lang/`, `\| currency`, `\| localDate` |
 | [Markdown](docs/FEATURES.md#markdown) | `{markdown}`, `\| markdown` |
 | [Markdown collections](docs/FEATURES.md#markdown-collections) | `{collection 'blog'}`, `_content/` |
-| [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/charts/types/`; `{sparkline/}` |
+| [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/charts/types/`; `{sparkline/}`; `client` draws it in the browser (`pad/charts/client/`) |
 | [Games](docs/FEATURES.md#games) | `{game 'memory'/}`, `{game:sudoku/}`, `{crossword}...{/crossword}` - 18 games played in the browser, a game per file of `pad/games/types/` |
 | [Toys](docs/FEATURES.md#toys) | `{toy 'life'/}`, `{toy:mandelbrot/}`, bare `{boids/}` - live simulations in the browser, a toy per file of `pad/toys/types/` |
 | [Widgets](docs/FEATURES.md#widgets) | `{tabs}`, `{modal 'x'}`, `{toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{tooltip}`, `{wizard}`, `{lightbox}`, `{drawer}`, `{breadcrumb/}` - work without JavaScript, a widget per file of `pad/widgets/types/` |
