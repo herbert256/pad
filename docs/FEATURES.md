@@ -565,7 +565,8 @@ $problem = padOAuthError ();                    // a no at the provider, a stale
 ```
 The providers are the files of `pad/subs/oauth/types/` - apple, bitbucket (Bitbucket Cloud: its
 consumer's permissions set at Bitbucket, the key and secret sent as HTTP Basic), discord, forgejo (Codeberg, or
-`base=`), github, gitlab (`base=` for one's own), google, microsoft (`tenant=`), oidc (any OpenID
+`base=`), github, gitlab (`base=` for one's own), google, linkedin (OpenID Connect without a nonce or
+PKCE, as LinkedIn documents it, either of its two issuers), microsoft (`tenant=`), oidc (any OpenID
 provider, its endpoints from `<issuer>/.well-known/openid-configuration`) - each an array: the
 endpoints, the scopes, PKCE, the settings it needs and how its answer maps to the user. The
 user: `provider`, `id` (`github:583231` - never the same for two providers, nor for two
@@ -574,7 +575,7 @@ in it, `gitlab@git.example.org:42`, `oidc@sso.example.com/realms/main:<sub>`), `
 provider's own id), `name`, `email`, `email_verified`, `avatar`, `username`; GitHub's private
 address comes from `/user/emails`, Apple's name from the first login's post. `email` is a
 contact, not an identity: `email_verified` is TRUE only when the provider vouches for the
-address - Google's, Apple's and an OpenID provider's `email_verified`, Discord's `verified`,
+address - Google's, Apple's, LinkedIn's and an OpenID provider's `email_verified`, Discord's `verified`,
 GitLab's `confirmed_at`, GitHub's and Forgejo's `/user/emails`, Bitbucket's confirmed addresses of
 `/2.0/user/emails`, Microsoft's optional claim
 `xms_edov` (its email is the email claim alone, never `preferred_username`) - so an application

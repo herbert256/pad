@@ -17,6 +17,8 @@
   //              {tid} in it stands for the token's own tid claim
   //   claims     claims the id_token must carry with these values
   //   oidc       an OpenID Connect provider: a nonce, and the id_token checked
+  //   nonce      FALSE for an OpenID provider whose documentation has no nonce (LinkedIn's):
+  //              its id_token is checked without one - the state still binds the login
   //   scopes     the scopes asked for unless the options name others
   //   pkce       whether the PKCE challenge goes along
   //   post       the provider posts its answer back (response_mode form_post)
@@ -86,7 +88,7 @@
     $provider = padOAuthInclude ( PAD . "subs/oauth/types/$kind.php", $options );
 
     $provider += [ 'name' => $kind, 'icon' => '', 'authorize' => '', 'token' => '', 'userinfo' => '', 'discovery' => FALSE, 'instance' => '',
-                   'issuer' => '', 'claims' => [], 'oidc' => FALSE, 'scopes' => '', 'pkce' => TRUE, 'post' => FALSE,
+                   'issuer' => '', 'claims' => [], 'oidc' => FALSE, 'nonce' => TRUE, 'scopes' => '', 'pkce' => TRUE, 'post' => FALSE,
                    'params' => [], 'needs' => [], 'auth' => 'post', 'secret' => NULL, 'headers' => [], 'user' => [], 'more' => NULL ];
 
     $provider ['kind'] = $kind;
@@ -192,7 +194,7 @@
                 'app'      => (string) ( $GLOBALS ['padApp'] ?? '' ),
                 'redirect' => $redirect,
                 'verifier' => $provider ['pkce'] ? padCryptB64 ( random_bytes ( 32 ) ) : '',
-                'nonce'    => $provider ['oidc'] ? padCryptB64 ( random_bytes ( 16 ) ) : '',
+                'nonce'    => ( $provider ['oidc'] and $provider ['nonce'] !== FALSE ) ? padCryptB64 ( random_bytes ( 16 ) ) : '',
                 'token'    => $provider ['token'],
                 'issuer'   => $provider ['issuer'],
                 'time'     => time () ];
