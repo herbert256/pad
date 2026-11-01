@@ -2057,7 +2057,8 @@ Colour scales for charts and anything else. The palettes are the files of
 `pad/subs/palettes/types/` - each its name, its type and its colours - and a palette is added by
 adding its file. Sequential: viridis, magma, plasma, inferno and cividis, perceptually uniform,
 from matplotlib's published 256-colour tables (`_cm_listed.py`), and ColorBrewer's blues, greens,
-oranges and greys of nine classes, and batlow, Fabio Crameri's, its lightness rising all the way;
+oranges and greys of nine classes, and batlow, Fabio Crameri's, its lightness rising all the way,
+and turbo, Google's smooth rainbow (Apache-2.0), a hue a value, not for grey print nor colour-blind eyes;
 diverging: ColorBrewer's rdbu, brbg and piyg of eleven, and Crameri's vik;
 categorical, told apart by colour-blind eyes: okabe-ito (Okabe and Ito's eight, black put last,
 where it vanishes on a dark surface) and Paul Tol's bright, muted and vibrant (from his
