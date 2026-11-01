@@ -1499,7 +1499,7 @@ padWorkdays ( '2026-04-01', '2026-04-30', 'nl' );   // 20 - weekdays that are no
 padAddWorkdays ( '2026-04-24', 1, 'nl' );           // '2026-04-28' - the Monday is King's Day; 0 is the date itself
 ```
 The countries are the files of `pad/subs/holidays/types/`, named by their ISO 3166-1 alpha-2
-code - at, be, ca, ch, de, dk, es, fi, fr, gb, ie, it, lu, nl, no, nz, pl, se, us -
+code - at, be, ca, ch, de, dk, es, fi, fr, gb, ie, it, lu, nl, no, nz, pl, pt, se, us -
 and a country is
 added by adding its file. Each holds its national public holidays as rules, not dates: a fixed
 date, days from Easter Sunday (the Gregorian computus), the nth or last weekday of a month, the
@@ -1527,6 +1527,9 @@ weekday.
 Finland (`fi`, names in Finnish and Swedish, `lang='sv'`) holds Midsummer Day and All Saints'
 Day on their Saturdays, Midsummer Eve and Christmas Eve as observances, Åland (`fi-01`) its
 Autonomy Day as one; it knows the years since 1992.
+Portugal (`pt`) leaves out the four holidays it did not hold from 2013 to 2015 and has Carnival
+as an observance; the Azores (`pt-20`) add Whit Monday, Madeira (`pt-30`) 1 July, 26 December
+and, since 2025, 2 April; it knows the years since 2010.
 
 ### Syntax highlighting
 ```
