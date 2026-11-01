@@ -54,9 +54,13 @@
     $text = (string) $text;
 
     // A text as padData takes one (padDataText) - the indent its lines share and a byte order
-    // mark taken off - so a helper's text and a {data} content read alike.
+    // mark taken off - so a helper's text and a {data} content read alike; a raw format's
+    // without touching what is data in it (padFormatRawText), the bytes of a binary one as
+    // they are.
 
-    if ( ! ( $def ['binary'] ?? FALSE ) )
+    if ( $def ['raw'] ?? FALSE )
+      $text = padFormatRawText ( str_replace ( [ '&open;', '&close;' ], [ '{', '}' ], $text ) );
+    elseif ( ! ( $def ['binary'] ?? FALSE ) )
       $text = padDataText ( str_replace ( [ '&open;', '&close;' ], [ '{', '}' ], $text ) );
 
     padFormatUse ( $found );
@@ -70,6 +74,39 @@
     }
 
     return is_array ( $rows ) ? $rows : [];
+
+  }
+
+  // The text of a raw format - TSV, whose tabs are cells: the blank lines around it and a
+  // byte order mark taken off, and the indent of spaces its lines share - a {data} content
+  // written indented in its template - but never a tab, nor any white space inside a line.
+  // padDataText trimmed the first line's leading tab, an empty first cell, and cut a tab
+  // all lines open with as indent, the first column of each.
+
+  function padFormatRawText ( $text ) {
+
+    $lines = explode ( "\n", $text );
+
+    while ( $lines and trim ( $lines [0] ) === '' )
+      array_shift ( $lines );
+
+    while ( $lines and trim ( end ( $lines ) ) === '' )
+      array_pop ( $lines );
+
+    if ( $lines and str_starts_with ( $lines [0], "\xEF\xBB\xBF" ) )
+      $lines [0] = substr ( $lines [0], 3 );
+
+    $cut = NULL;
+
+    foreach ( $lines as $line )
+      if ( trim ( $line ) !== '' )
+        $cut = min ( $cut ?? PHP_INT_MAX, strspn ( $line, ' ' ) );
+
+    if ( $cut )
+      foreach ( $lines as $at => $line )
+        $lines [$at] = substr ( $line, min ( $cut, strspn ( $line, ' ' ) ) );
+
+    return implode ( "\n", $lines );
 
   }
 

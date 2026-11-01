@@ -43,6 +43,9 @@
   //              after the page; '' or left out sends none (a feed)
   //   binary     TRUE for a format of bytes (xlsx): read from a file as it is, never run as
   //              PAD first or trimmed
+  //   raw        TRUE for a format whose white space is data (tsv, where a leading tab is an
+  //              empty cell): its text is not trimmed and only an indent of spaces is cut
+  //              (padFormatRawText), where any other text is taken as padDataText takes it
   //   options    the options of its reader a tag that reads its file gives -
   //              {local:sales.xlsx sheet='Notes'}
 

@@ -1,0 +1,8 @@
+{data 'cross', format='tsv'}
+  	Q1	Q2
+  North	1	2
+  South	3	4
+{/data}
+[{cross}{$Q1}+{$Q2} {/cross}] {echo $tsvRead/} | {echo $tsvXlsx/}
+{data 'book', $tsvBook, format='xlsx'/}
+{book}{$a}{$b}{/book}

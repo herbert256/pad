@@ -174,7 +174,7 @@ with a reader, a writer or both - added by adding its file, its code in `_lib/`,
 | `xml` | yes | - | rows have no one XML of their own: `?page&padFormat=xml` stays 406 |
 | `toml` | yes | yes | TOML 1.0: tables, arrays of tables, inline tables, dotted keys, every string, number and date |
 | `ini` | yes | yes | `[sections]`, `; comments`, quoted values, `key[]` lists, `key[name]` records |
-| `tsv`, `ndjson`, `markdown` | yes | yes | tab separated (`\t \n \\` escapes, a formula cell written with a `'` as in CSV), a JSON value a line, a GFM pipe table (the first of a text; written lined up) |
+| `tsv`, `ndjson`, `markdown` | yes | yes | tab separated (`\t \n \\` escapes, a leading tab an empty cell, a formula cell written with a `'` as in CSV), a JSON value a line, a GFM pipe table (the first of a text; written lined up) |
 | `ics` | yes | yes | iCalendar: the VEVENTs as rows - uid, summary, start, end, allday, timezone, location, description, url, status, categories, rrule |
 | `vcf` | yes | yes | vCard 4.0 (3.0 read too): name, the parts of N, org, title, email(s), phone(s), url, address, birthday, note, uid |
 | `geojson` | yes | yes | a feature a row: its properties, id, geometry, lat/lon of a Point - Points written from lat and lon |

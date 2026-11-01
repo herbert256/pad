@@ -115,9 +115,15 @@
 
       }
 
-      if ( $padDataFormat !== '' )
-        $data = padFormatRead ( $padDataFormat, $data );
-      else
+      // A format whose white space is data (raw, a TSV's leading tab an empty cell) or that
+      // is bytes (binary, an xlsx) is handed the input as it came, its reader taking it as
+      // it must: trimmed here, the TSV lost its first cell and the zip its closing nulls -
+      // "the zip cannot be opened".
+
+      if ( $padDataFormat !== '' ) {
+        $padDataDef = padFormatDef ( $padDataFormat );
+        $data       = padFormatRead ( $padDataFormat, ( is_string ( $input ) and ( ( $padDataDef ['raw'] ?? FALSE ) or ( $padDataDef ['binary'] ?? FALSE ) ) ) ? $input : $data );
+      } else
         $data = include PAD . "data/$type.php";
 
       // A reader that could not parse its input answers FALSE through padError. Under the
