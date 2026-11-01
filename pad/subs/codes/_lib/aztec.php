@@ -113,6 +113,10 @@
 
     $cost = array_fill ( 0, $length + 1, array_fill ( 0, 5, INF ) );
     $how  = [];
+    $runs = [ $length => 0 ];
+
+    for ( $i = $length - 1; $i >= 0; $i-- )
+      $runs [$i] = $any ( $bytes [$i] ) ? 0 : 1 + $runs [$i + 1];
 
     for ( $mode = 0; $mode < 5; $mode++ )
       $cost [$length] [$mode] = 0;
@@ -122,11 +126,9 @@
       $byte  = $bytes [$i];
       $steps = array_fill ( 0, 5, [] );
 
-      if ( ! $any ( $byte ) ) {
+      if ( $runs [$i] ) {
 
-        $run = 1;
-        while ( $i + $run < $length and ! $any ( $bytes [$i + $run] ) )
-          $run++;
+        $run = $runs [$i];
 
         foreach ( [ PAD_AZTEC_U, PAD_AZTEC_L, PAD_AZTEC_M ] as $mode )
           $steps [$mode] [] = [ padAztecBinaryBits ( $run ), [ [ 'binary', $i, $run ] ], $i + $run, $mode ];
