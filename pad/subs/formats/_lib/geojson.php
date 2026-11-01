@@ -48,6 +48,9 @@
 
       $geometry = $feature ['geometry'] ?? NULL;
 
+      if ( is_array ( $geometry ) and ! is_string ( $geometry ['type'] ?? '' ) )
+        padFormatFail ( padGeoJsonLine ( $text, '"geometry"', $index + 1 ), 'feature ' . ( $index + 1 ) . ' has a geometry whose type is no text' );
+
       $row ['geometry'] = is_array ( $geometry ) ? (string) ( $geometry ['type'] ?? '' ) : '';
       $row ['lat']      = '';
       $row ['lon']      = '';

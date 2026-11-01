@@ -65,11 +65,19 @@
 
     padFormatUse ( $found );
 
+    // A fault of the text no reader foresaw - a TypeError, a ValueError, PHP's stack at its
+    // end - is the format's error as well: the text is a visitor's often, and what it holds
+    // ends in the format's error, never a PHP error.
+
     try {
       $rows = $def ['read'] ( $text, $options );
     } catch ( PadFormatError $e ) {
       if ( $padCheckSyntax )
         padError ( padFormatMessage ( $found, $e->getMessage (), $e->getCode () ) );
+      return [];
+    } catch ( Error $e ) {
+      if ( $padCheckSyntax )
+        padError ( padFormatMessage ( $found, 'the text cannot be read - ' . $e->getMessage (), 0 ) );
       return [];
     }
 

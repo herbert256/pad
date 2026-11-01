@@ -33,6 +33,8 @@
         if ( ! preg_match ( '/^\[\s*([^\]]*?)\s*\]\s*([;#].*)?$/D', $line, $m ) or $m [1] === '' )
           padFormatFail ( $at + 1, 'a section is named between [ and ]' );
         $section = $m [1];
+        if ( isset ( $data [$section] ) and ! is_array ( $data [$section] ) )
+          padFormatFail ( $at + 1, "the section [$section] is named like the key $section above it - its keys would have no record to go in" );
         $data [$section] ??= [];
         continue;
       }

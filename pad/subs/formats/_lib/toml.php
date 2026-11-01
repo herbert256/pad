@@ -32,7 +32,7 @@
         if ( ! mb_check_encoding ( $line, 'UTF-8' ) )
           padFormatFail ( $at + 1, 'the text is not UTF-8' );
 
-    $s = [ 't' => $text, 'p' => 0, 'n' => strlen ( $text ) ];
+    $s = [ 't' => $text, 'p' => 0, 'n' => strlen ( $text ), 'd' => 0 ];
 
     $root    = [];
     $kinds   = [];
@@ -597,9 +597,21 @@
 
   }
 
+  // Arrays and inline tables nest at most 512 deep, as a JSON document does: deeper, the
+  // reader recursed until PHP's stack ran out - 200000 brackets in a 400 KB text.
+
+  function padTomlDeeper ( &$s ) {
+
+    if ( ++$s ['d'] > 512 )
+      padTomlFail ( $s, 'arrays and inline tables nest at most 512 deep' );
+
+  }
+
   // [ values ] over as many lines as it likes, with comments between, a comma after the last.
 
   function padTomlArray ( &$s ) {
+
+    padTomlDeeper ( $s );
 
     $s ['p']++;
     $list = [];
@@ -610,6 +622,7 @@
 
       if ( ( $s ['t'] [ $s ['p'] ] ?? '' ) == ']' ) {
         $s ['p']++;
+        $s ['d']--;
         return $list;
       }
 
@@ -623,6 +636,7 @@
         $s ['p']++;
       elseif ( $c == ']' ) {
         $s ['p']++;
+        $s ['d']--;
         return $list;
       } else
         padTomlFail ( $s, $c === '' ? 'an array is not closed with ]' : 'the values of an array are separated by commas' );
@@ -636,6 +650,8 @@
 
   function padTomlInline ( &$s ) {
 
+    padTomlDeeper ( $s );
+
     $s ['p']++;
 
     $table = [];
@@ -645,6 +661,7 @@
 
     if ( ( $s ['t'] [ $s ['p'] ] ?? '' ) == '}' ) {
       $s ['p']++;
+      $s ['d']--;
       return $table;
     }
 
@@ -658,6 +675,7 @@
 
       if ( $c == '}' ) {
         $s ['p']++;
+        $s ['d']--;
         return $table;
       }
 
