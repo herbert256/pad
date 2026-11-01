@@ -10,8 +10,8 @@ This directory contains PAD applications and examples.
 | [admin](admin/README.md) | Standard | The web console of the installation: applications, files, search, the pad command, maintenance, queues, schedules, logs, error dumps, mail outbox, storage, PHP, settings, git and users - behind a login, this machine only |
 | [alpine](alpine/README.md) | Standard | PAD + Alpine: state from PHP with `x-data="{^field}"`, components with `Alpine.data`, live search, one set of rules for both sides, a list in the session, server-sent events |
 | [apps](apps/README.md) | Standard | Lists all PAD applications with descriptions from README files |
-| [charts](charts/README.md) | Standard | A showcase of the {chart} tag - a pulldown per chart family, every example with its data, its tag and the chart side by side |
-| [showcase](showcase/README.md) | Standard | A showcase of the tags that draw, format and interact - a pulldown per group, every example its template beside the result |
+| [charts](charts/README.md) | Standard | A showcase of the {chart} tag - a menu heading per chart family, every example with its data, its tag and the chart side by side |
+| [showcase](showcase/README.md) | Standard | A showcase of the tags that draw, format and interact - a menu heading per group, every example its template beside the result |
 | [tags](tags/README.md) | Standard | A page per built-in tag - its one line, syntax, own options, description and live examples - with indexes by name, group, form and option, a cheat sheet and a search |
 | [classicModels](classicModels/README.md) | Standard | PAD Select over the Classic Models sample database |
 | [padSelect](padSelect/README.md) | Standard | A showcase of PAD Select over a music catalogue - every example its declarations, template, result and the SQL PAD sent |

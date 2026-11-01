@@ -1,6 +1,6 @@
 <?php
 
-  // The showcase: the chart families, each a pulldown of the menu and a section of the
+  // The showcase: the chart families, each a heading of the menu and a section of the
   // home page, and their examples. An example is a page of its own - family/name.pad holds
   // the {chart} tag, and its data is the paired family/name.php, the _data file the tag
   // names, or the content of a {chart}...{/chart} pair - so what the cells show is the
@@ -15,7 +15,7 @@
         'line/temperatures' => [ 'Temperatures in three cities', 'A list of fields in value= draws a line each, named at its end.' ],
         'line/shares'       => [ 'A share price over a year', 'Twelve months of a stock, from a YAML file.' ] ] ],
 
-      'area' => [ 'Area & stream', 'Amounts adding up over time', 'Area', [
+      'area' => [ 'Area & stream', 'Amounts adding up over time', [
         'area/energy'  => [ 'Electricity by source',       'stacked lays the areas on top of each other, the top edge the total.' ],
         'area/devices' => [ 'Visits by device',            'percent stacks every year to 100% - the shift from desktop to mobile.' ],
         'area/music'   => [ 'Two years of listening',      'stream: the genres swell and shrink around a wandering middle, in smooth curves.' ],
@@ -30,24 +30,24 @@
         'bars/survey'    => [ 'A survey, answer by answer', 'Horizontal and stacked: every answer a part of the bar.' ],
         'bars/waterfall' => [ 'From revenue to profit',   'waterfall: each step floats from where the one before ended.' ] ] ],
 
-      'funnel' => [ 'Funnel & pyramid', 'Steps that narrow', 'Funnel', [
+      'funnel' => [ 'Funnel & pyramid', 'Steps that narrow', [
         'funnel/shop'       => [ 'A web shop funnel',    'From visit to payment - the share of the first step and of the step before.' ],
         'funnel/population' => [ 'A population pyramid', 'Two fields back to back: men left, women right, by age group.' ],
         'funnel/food'       => [ 'A food pyramid',       'One field: a triangle in layers, each layer\'s area its share.' ] ] ],
 
-      'pie' => [ 'Pie & donut', 'Parts of a whole', 'Pie', [
+      'pie' => [ 'Pie & donut', 'Parts of a whole', [
         'pie/browsers' => [ 'Browser market share', 'Slices clockwise from twelve o\'clock, the share in the legend.' ],
         'pie/budget'   => [ 'A monthly budget',     'A donut shows the total in its middle.' ],
         'pie/fruit'    => [ 'Eleven kinds of fruit', 'Past eight slices the smallest are folded into a grey Other.' ] ] ],
 
-      'parts' => [ 'Waffle, marimekko & more', 'More ways to part a whole', 'Parts', [
+      'parts' => [ 'Waffle, marimekko & more', 'More ways to part a whole', [
         'parts/energy'    => [ 'Where a home\'s energy goes',    'waffle: 100 squares shared out by the largest remainder.' ],
         'parts/market'    => [ 'Phones by region and brand',     'marimekko: each column as wide as its region, the brands to 100% inside.' ],
         'parts/house'     => [ 'A house of 150 seats',           'parliament: a dot per seat, the parties from left to right.' ],
         'parts/languages' => [ 'Languages 1,000 students speak', 'venn: three sets, every region with its own count.' ],
         'parts/pets'      => [ 'Cats, dogs or both',             'venn: two circles whose overlap has the area of the homes with both.' ] ] ],
 
-      'scatter' => [ 'Scatter & bubble', 'How two numbers relate', 'Scatter', [
+      'scatter' => [ 'Scatter & bubble', 'How two numbers relate', [
         'scatter/athletes'  => [ 'Height against weight', 'A dot per row, and trend draws the least-squares line.' ],
         'scatter/flowers'   => [ 'Three kinds of flowers', 'color= colours the dots by a field.' ],
         'scatter/countries' => [ 'Income, life and people', 'A bubble\'s area is its size= - here the population.' ] ] ],
@@ -57,25 +57,25 @@
         'heatmap/rainfall' => [ 'Rainfall per month',      'Cities against months, the value in every cell that has room.' ],
         'heatmap/commits'  => [ 'A year of commits',       'calendar: a square per day, a column per week, the months above.' ] ] ],
 
-      'gauge' => [ 'Gauge & radar', 'Measures at a glance', 'Gauge', [
+      'gauge' => [ 'Gauge & radar', 'Measures at a glance', [
         'gauge/disk'     => [ 'Disk in use',             'One number on a half ring, coloured bands and a target.' ],
         'gauge/servers'  => [ 'Three servers',           'A gauge per row - the value and label of each from the data.' ],
         'radar/phones'   => [ 'Three phones compared',   'radar: a spoke per measure, a polygon per phone.' ],
         'radar/players'  => [ 'Two midfielders',         'Six skills from a YAML file, on a scale of 0 to 100.' ] ] ],
 
-      'radial' => [ 'Rose & radial bars', 'Values around a centre', 'Radial', [
+      'radial' => [ 'Rose & radial bars', 'Values around a centre', [
         'radial/nightingale' => [ 'Nightingale\'s rose',   'Deaths in the Crimean war by month - each wedge\'s area its value, three causes as rings.' ],
         'radial/wind'        => [ 'A wind rose',           'Sixteen compass points, north on top - one field, one colour.' ],
         'radial/funds'       => [ 'Raised towards a goal', 'radialbar: a ring per class, the arc its share of to=.' ] ] ],
 
-      'distribution' => [ 'Distributions', 'How values spread', 'Spread', [
+      'distribution' => [ 'Distributions', 'How values spread', [
         'distribution/heights'  => [ 'Heights of 400 adults',  'histogram: two bell curves together give two humps.' ],
         'distribution/delivery' => [ 'Delivery times',         'Whole days are counted in bins of whole days.' ],
         'distribution/salaries' => [ 'Salary per team',        'boxplot: quartiles, median, whiskers and the outlier.' ],
         'distribution/reaction' => [ 'Reaction times, rested or not', 'density: a smooth curve per group over one axis, the medians dashed.' ],
         'distribution/scores'   => [ 'Exam scores per class',  'violin: the shape of each class, quartiles and median inside - a split class shows its two humps.' ] ] ],
 
-      'measure' => [ 'Bullet, rings & areas', 'Measures against goals', 'Measure', [
+      'measure' => [ 'Bullet, rings & areas', 'Measures against goals', [
         'measure/kpis'      => [ 'A quarter against its targets', 'bullet: the value as a bar, the target a line, grey bands from poor to good.' ],
         'measure/activity'  => [ 'Today\'s activity',             'rings: a progress ring per goal, a goal from a field of each row.' ],
         'measure/projects'  => [ 'Five projects, per cent done',  'Rings against the default goal of 100, the share in the legend.' ],
@@ -104,12 +104,12 @@
         'network/flights' => [ 'Flights between hubs', 'layout=\'radial\' sets the nodes on a circle.' ],
         'network/modules' => [ 'Who imports whom',     'arrows show the direction, value= the weight of a link.' ] ] ],
 
-      'relations' => [ 'Chord, arc & parallel', 'Flows, links and many measures', 'Relations', [
+      'relations' => [ 'Chord, arc & parallel', 'Flows, links and many measures', [
         'relations/migration' => [ 'Moving between regions',        'chord: an arc per region, a ribbon per move as wide as the people moving.' ],
         'relations/coauthors' => [ 'Papers written together',       'arc: the authors on a line, a half circle per pair, thicker for more papers.' ],
         'relations/cars'      => [ 'Thirty-two cars, six measures', 'parallel: an axis per measure, a line per car, coloured by origin.' ] ] ],
 
-      'hierarchy' => [ 'Trees & packs', 'Parts of a hierarchy', 'Trees', [
+      'hierarchy' => [ 'Trees & packs', 'Parts of a hierarchy', [
         'hierarchy/company' => [ 'A company budget',   'levels= nests the posts in their departments.' ],
         'hierarchy/disk'    => [ 'What fills the disk', 'A flat treemap: one level, one colour.' ],
         'hierarchy/world'   => [ 'The world\'s people', 'A sunburst: continents inside, regions around them.' ],

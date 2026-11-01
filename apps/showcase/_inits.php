@@ -1,8 +1,10 @@
 <?php
 
-  // Every page: the menu, a pulldown per group of tags. An example page also gets what its
-  // cells show - its data source, its template and, through @page@, the result - read from
-  // the page's own files, so a cell can never drift from what draws it. The {meta} line
+  // Every page: the menu of the frame every PAD application shares
+  // (_common/_tags/padFrame.pad) - the home page, then a heading per group of tags with a link
+  // per example under it - and the title in the frame's bar. An example page also gets what
+  // its cells show - its data source, its template and, through @page@, the result - read
+  // from the page's own files, so a cell can never drift from what draws it. The {meta} line
   // that names the example is left out of the template cell: it belongs to the showcase.
   //
   // The home page draws every example through {page}, which runs this file again for each:
@@ -13,16 +15,17 @@
 
   $showcaseFrame = $padPage;
   $catalog       = showcaseCatalog ();
-  $families      = [];
   $sections      = [];
   $flat          = [];
   $isExample     = FALSE;
   $tagCount      = 0;
 
-  foreach ( showcaseGroups () as $group => $tagline ) {
+  $frameMenu = [ [ 'link' => '?index', 'label' => 'All tags', 'icon' => 'grid', 'current' => $padPage == 'index' ] ];
 
-    $rows   = [];
-    $active = FALSE;
+  foreach ( showcaseGroups () as $group ) {
+
+    if ( $catalog [$group] )
+      $frameMenu [] = [ 'head' => $group ];
 
     foreach ( $catalog [$group] as $tag => list ( $label, $about, $examples ) ) {
 
@@ -31,12 +34,11 @@
 
       foreach ( $examples as $page => list ( $oneTitle, $oneText ) ) {
 
-        $rows  [] = [ 'page' => $page, 'title' => $oneTitle, 'text' => $oneText, 'active' => $page == $padPage ];
-        $cards [] = [ 'page' => $page, 'title' => $oneTitle, 'text' => $oneText ];
-        $flat  [] = [ $page, $oneTitle, $label ];
+        $cards     [] = [ 'page' => $page, 'title' => $oneTitle, 'text' => $oneText ];
+        $flat      [] = [ $page, $oneTitle, $label ];
+        $frameMenu [] = [ 'link' => "?$page", 'label' => $oneTitle, 'icon' => '', 'current' => $page == $padPage ];
 
         if ( $page == $padPage ) {
-          $active       = TRUE;
           $isExample    = TRUE;
           $familyLabel  = $label;
           $exampleTitle = $oneTitle;
@@ -49,14 +51,10 @@
 
     }
 
-    if ( $rows )
-      $families [] = [ 'family' => $group, 'label' => $group, 'short' => $group, 'tagline' => $tagline,
-                       'active' => $active, 'examples' => $rows, 'count' => count ( $rows ) ];
-
   }
 
   $exampleCount = count ( $flat );
-  $pageTitle    = $isExample ? $exampleTitle : 'Tags that draw, format and interact';
+  $title        = $isExample ? $exampleTitle : 'Tags that draw, format and interact';
 
   if ( $isExample ) {
 

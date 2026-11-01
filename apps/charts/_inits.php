@@ -1,8 +1,10 @@
 <?php
 
-  // Every page: the menu, a pulldown per chart family. An example page also gets what its
-  // three cells show - its data source, its template and, through @page@, the chart - read
-  // from the page's own files, so a cell can never drift from what draws the chart.
+  // Every page: the menu of the frame every PAD application shares
+  // (_common/_tags/padFrame.pad) - the home page, then a heading per chart family with a link
+  // per example under it - and the title in the frame's bar. An example page also gets what
+  // its three cells show - its data source, its template and, through @page@, the chart -
+  // read from the page's own files, so a cell can never drift from what draws the chart.
   //
   // The home page draws every example through {page}, which runs this file again for each:
   // only the first run - the page that was asked for - sets the frame.
@@ -12,39 +14,37 @@
 
   $chartsFrame = $padPage;
   $catalog     = chartsCatalog ();
-  $families  = [];
-  $flat      = [];
-  $isExample = FALSE;
+  $families    = [];
+  $flat        = [];
+  $isExample   = FALSE;
+
+  $frameMenu = [ [ 'link' => '?index', 'label' => 'All charts', 'icon' => 'bar-chart', 'current' => $padPage == 'index' ] ];
 
   foreach ( $catalog as $family => $entry ) {
 
-    list ( $label, $tagline ) = $entry;
+    list ( $label, $tagline, $examples ) = $entry;
 
-    $examples = end ( $entry );
-    $short    = is_string ( $entry [2] ) ? $entry [2] : $label;
-
-    $rows = [];
+    $rows         = [];
+    $frameMenu [] = [ 'head' => $label ];
 
     foreach ( $examples as $page => list ( $oneTitle, $oneText ) ) {
-      $rows [] = [ 'page' => $page, 'title' => $oneTitle, 'text' => $oneText, 'active' => $page == $padPage ];
-      $flat [] = [ $page, $oneTitle, $label ];
+      $rows      [] = [ 'page' => $page, 'title' => $oneTitle, 'text' => $oneText ];
+      $flat      [] = [ $page, $oneTitle, $label ];
+      $frameMenu [] = [ 'link' => "?$page", 'label' => $oneTitle, 'icon' => '', 'current' => $page == $padPage ];
     }
 
-    $families [] = [ 'family' => $family, 'label' => $label, 'short' => $short, 'tagline' => $tagline,
-                     'active' => isset ( $examples [$padPage] ), 'examples' => $rows,
-                     'count'  => count ( $rows ) ];
+    $families [] = [ 'family' => $family, 'label' => $label, 'tagline' => $tagline, 'examples' => $rows ];
 
     if ( isset ( $examples [$padPage] ) ) {
       $isExample    = TRUE;
       $familyLabel  = $label;
-      $familyLine   = $tagline;
       list ( $exampleTitle, $exampleText ) = $examples [$padPage];
     }
 
   }
 
   $exampleCount = count ( $flat );
-  $pageTitle    = $isExample ? $exampleTitle : 'Every chart, drawn on the server';
+  $title        = $isExample ? $exampleTitle : 'Every chart, drawn on the server';
 
   if ( $isExample ) {
 
