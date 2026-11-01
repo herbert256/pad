@@ -661,7 +661,7 @@ $summary = padAi ( "Summarise: $body", [ 'provider' => 'openai', 'tokens' => 300
 ```
 The content renders first and is the prompt; the answer is printed as text - a value, never
 template code. The providers are the files of `pad/subs/ai/types/` - anthropic
-(`claude-opus-5-5` by default), openai, mistral, gemini and ollama (a local server, no key) - each
+(`claude-opus-5-5` by default), openai, mistral, gemini, cohere and ollama (a local server, no key) - each
 its endpoint, headers, request and how the text and an error are taken out of the answer. The
 key is `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `MISTRAL_API_KEY` or `GEMINI_API_KEY`
 (`OLLAMA_HOST` for Ollama), the provider `provider=` or `PAD_AI_PROVIDER`. Options `model=`,
@@ -670,6 +670,11 @@ and `ttl=` (seconds an answer is kept, 3600 by default, keyed on the provider, m
 prompt and prompt; 0 keeps nothing). A missing key or an error of the API is an error under the
 strict check; without it the tag answers nothing, the error is logged (`padLog`) and
 `padAiError ()` says it. Tests answer the providers with `padCurlFake`, and keep nothing.
+
+`cohere` asks Cohere's Chat API v2 - `command-a-plus-05-2026` unless `model=` names another, the
+key `COHERE_API_KEY` or `CO_API_KEY` (the name Cohere's SDKs read): the text blocks of its answer
+are joined, a thinking block is passed over, and an answer that ended in `ERROR` or `TIMEOUT` is
+an error, its partial text never printed.
 
 ## Template features
 

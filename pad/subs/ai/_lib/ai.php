@@ -4,6 +4,8 @@
   // provider is a file of subs/ai/types/, answering an array:
   //
   //   name     its name in a message          key      the padEnv name of its API key, ''
+  //                                                     - or a list of names, the first set
+  //                                                     one read, the first named in a message
   //   model    the model unless model= says   tokens   the answer's limit unless tokens= says
   //   url      the endpoint, or a function of the request that makes it
   //   headers  function ( $ask ) - the headers: the key in the provider's own way
@@ -34,10 +36,15 @@
 
     $key = '';
 
-    if ( ( $kind ['key'] ?? '' ) !== '' ) {
-      $key = $options ['key'] ?? padEnv ( $kind ['key'], '' );
+    $names = array_values ( array_filter ( (array) ( $kind ['key'] ?? '' ), fn ( $name ) => is_string ( $name ) and $name !== '' ) );
+
+    if ( $names ) {
+      $key = $options ['key'] ?? NULL;
+      foreach ( $key === NULL ? $names : [] as $name )
+        if ( is_string ( $key = padEnv ( $name, '' ) ) and trim ( $key ) !== '' )
+          break;
       if ( ! is_string ( $key ) or trim ( $key ) === '' )
-        return padAiAuthor ( "$function: " . $kind ['name'] . ' needs an API key - set ' . $kind ['key'] . " in the application's .env, or give the option key" );
+        return padAiAuthor ( "$function: " . $kind ['name'] . ' needs an API key - set ' . $names [0] . " in the application's .env, or give the option key" );
     }
 
     $tokens = $options ['tokens'] ?? $kind ['tokens'] ?? 4096;

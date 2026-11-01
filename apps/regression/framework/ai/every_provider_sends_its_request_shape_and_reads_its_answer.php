@@ -8,7 +8,9 @@
   padCurlFake ( [
     'https://api.anthropic.com/v1/messages' => [ 'data' => [ 'type' => 'message', 'stop_reason' => 'end_turn',
                                                               'content' => [ [ 'type' => 'thinking', 'thinking' => '' ], [ 'type' => 'text', 'text' => 'Paris.' ] ] ] ],
-    'https://api.openai.com/v1/chat/completions' => [ 'data' => [ 'choices' => [ [ 'message' => [ 'role' => 'assistant', 'content' => 'Paris.' ] ] ] ] ],
+    'https://api.cohere.com/v2/chat' => [ 'data' => [ 'id' => 'c1', 'finish_reason' => 'COMPLETE',
+                                                       'message' => [ 'role' => 'assistant', 'content' => [ [ 'type' => 'text', 'text' => 'Paris.' ] ] ] ] ],
+    'https://api.openai.com/v1/chat/completions' =>[ 'data' => [ 'choices' => [ [ 'message' => [ 'role' => 'assistant', 'content' => 'Paris.' ] ] ] ] ],
     'https://api.mistral.ai/v1/chat/completions' => [ 'data' => [ 'choices' => [ [ 'message' => [ 'content' => [ [ 'type' => 'text', 'text' => 'Par' ], [ 'type' => 'text', 'text' => 'is.' ] ] ] ] ] ] ],
     'https://generativelanguage.googleapis.com/*' => [ 'data' => [ 'candidates' => [ [ 'content' => [ 'parts' => [ [ 'text' => 'hmm', 'thought' => TRUE ], [ 'text' => 'Paris.' ] ] ] ] ] ] ],
     'http://127.0.0.1:11434/api/chat' => [ 'data' => [ 'message' => [ 'role' => 'assistant', 'content' => 'Paris.' ] ] ],

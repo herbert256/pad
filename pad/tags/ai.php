@@ -8,7 +8,7 @@
   //
   // The answer is a value, never template code: escaped for HTML and its braces inert, so an
   // answer of {php:getcwd} prints those characters. provider= is a file of subs/ai/types/ -
-  // anthropic, gemini, mistral, ollama, openai; model= its model, system= the system prompt,
+  // anthropic, cohere, gemini, mistral, ollama, openai; model= its model, system= the system prompt,
   // tokens= the most the answer may take (the handling option max is something else), ttl=
   // the seconds the answer is kept - 3600 unless given, 0 keeps nothing.
   //
