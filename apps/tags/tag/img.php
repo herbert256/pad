@@ -25,11 +25,11 @@ PAD;
     'filter'  => 'A comma list of the filters of <code>pad/subs/filters/types/</code>, applied in the order written: '
                . implode ( ', ', array_map ( fn ( $filter ) => "<code>$filter</code>", padKinds ( 'filters' ) ) )
                . '. halftone and ascii write the picture as SVG dots or text; blurhash, thumbhash, dominant and lqip are placeholders behind the picture while it loads.',
-    'colors'     => 'duotone, dither, atkinson, bayer, halftone: two hex colours, the dark one first - <code>colors=\'#123, #fc6\'</code>.',
+    'colors'     => 'duotone, dither, atkinson, bayer, halftone: two hex colours, the dark one first - <code>colors=\'#123, #fc6\'</code>; edges: the ground, then the lines.',
     'levels'     => 'posterize: the steps of a channel (4); dither, atkinson, bayer: the greys (2).',
     'cell'       => 'pixelate: the block in pixels (8); halftone: the distance of the dots (8).',
     'radius'     => 'blur: in CSS pixels (6).',
-    'amount'     => 'sepia (100), sharpen (50) and vignette (50), in percent.',
+    'amount'     => 'sepia (100), sharpen (50), vignette (50) and edges (100), in percent.',
     'columns'    => 'ascii: the characters across (64).',
     'chars'      => 'ascii: the characters from light to dark (<code>\' .:-=+*#%@\'</code>).',
     'components' => 'blurhash: the terms across and down, <code>\'4,3\'</code>.' ];

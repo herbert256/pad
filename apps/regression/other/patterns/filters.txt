@@ -109,6 +109,15 @@ what stands behind it while it loads is what you see.</p>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;duotone&#039;</span>, <span class="hl-opt">colors</span>=<span class="hl-str">&#039;#123, #fc6&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
 </section>
 
+<section class="patterns-filter" id="edges">
+  <h2>edges</h2>
+  <p>The outlines of the picture: Sobel&#039;s operator, how fast its brightness changes across and down every pixel, drawn from the first of colors= where nothing changes to the second where the change is strongest - white lines on black, or &#039;#fbfaf7, #1d1d1b&#039; for a drawing in ink on paper; amount= percent (100) makes the lines stronger or fainter.</p>
+  <div class="patterns-play">
+    <img class="pad-img" src="/pad/patterns/_thumbs/e766658214ef3183.png" srcset="/pad/patterns/_thumbs/e766658214ef3183.png 1x, /pad/patterns/_thumbs/e570ea79f676f82a.png 2x" width="360" height="240" alt="Rows of tulips running to a windmill" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;edges&#039;</span>, <span class="hl-opt">colors</span>=<span class="hl-str">&#039;#fbfaf7, #1d1d1b&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
 <section class="patterns-filter" id="grayscale">
   <h2>grayscale</h2>
   <p>The picture in shades of grey, each pixel its luminance: 0.299 of its red, 0.587 of its green and 0.114 of its blue, the weights of television (GD&#039;s grayscale filter).</p>

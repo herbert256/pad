@@ -3244,6 +3244,7 @@ files of its `types/` the filters there are, written in the order they apply:
 | `sharpen` | Crisper edges, the picture plus its Laplacian | `amount` (50) |
 | `vignette` | Darker corners | `amount` (50) |
 | `invert` | The negative | |
+| `edges` | The outlines: Sobel's operator on the luminance, from the ground to the lines; a PNG | `colors` ('#000000, #ffffff' - the ground first), `amount` (100) |
 | `dither` | Floyd and Steinberg's error diffusion to ink and paper; 1x, a PNG | `levels` (2), `colors` ('#000000, #ffffff') |
 | `atkinson` | Atkinson's dither, three quarters of the error carried on | as dither |
 | `bayer` | Ordered dithering by Bayer's map of 8 by 8 | as dither |
@@ -3275,6 +3276,11 @@ budget are errors under the strict check.
 ThumbHash is the reference implementation (MIT), its hash made of the 1x picture at most 100
 pixels on its longer side, the same bytes as the reference's JavaScript for the same pixels; it
 holds the opacity, so a picture with transparent parts gets a placeholder transparent there.
+edges reads every pixel in PHP, within the same 2 megapixels; its strength is a quarter of the
+gradient's length - a hard step from black to white the full line colour on the pixels either
+side of it, a picture of one colour no line at all, the border read again - and a transparent
+pixel reads as the pixel it borders while the opacity has edges of its own: the outline of a shape
+on a transparent ground, drawn on its own pixels, the ground left transparent.
 
 **Behavior:** writes `<img class="pad-img">` with its `width` and `height` (no layout shift),
 `loading="lazy"`, `decoding="async"` and a `srcset` whose second picture is twice the size -

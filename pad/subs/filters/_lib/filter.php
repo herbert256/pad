@@ -21,7 +21,7 @@
   //            'apply'    => function ( $image, $o, $scale ) { ... return $image; } ];
   //
   // image - a GD picture in, a GD picture out: grayscale, sepia, duotone, posterize, pixelate,
-  //   blur, sharpen, vignette, invert and the three dithers. They work on the thumbnail after
+  //   blur, sharpen, vignette, invert, edges and the three dithers. They work on the thumbnail after
   //   it was resized - the 1x and the 2x picture alike, $scale the 2x one's density, so a blur
   //   of 6 pixels is 6 CSS pixels on both - and the thumbnail's file name holds them and their
   //   options. A filter whose look is the picture's own pixels - pixelate and the dithers - is
@@ -40,7 +40,7 @@
   // costs little, a loop of PHP over the pixels a microsecond a pixel and more - a dither of a
   // camera's 12 megapixels took 15 seconds and 209 MB, past max_execution_time and a stock
   // memory_limit at the 64, so the file was never written and every view began it again. A
-  // filter that loops ('loops': sepia, duotone, posterize, vignette, the dithers, dominant)
+  // filter that loops ('loops': sepia, duotone, posterize, vignette, edges, the dithers, dominant)
   // works on 2 megapixels at most - a 1x picture larger is an error under the strict check
   // and the filter left out without it, a 2x picture is made only at the density those 2
   // megapixels reach - and a filter that writes a count of things ('count': halftone's dots,
@@ -187,8 +187,9 @@
   }
 
   // An option by its rule: [ 'number', default, least, most ] - [ ..., 'whole' ] for a whole
-  // number - [ 'colors', default list ], [ 'text', default, longest ] or [ 'pair', default
-  // pair, least, most ] - two whole numbers, '4,3'. NULL, not given: the default.
+  // number - [ 'colors', default list ] ( [ ..., [ order, example, example ] ] when the dark one
+  // does not come first), [ 'text', default, longest ] or [ 'pair', default pair, least, most ]
+  // - two whole numbers, '4,3'. NULL, not given: the default.
 
   function padFilterOption ( $filter, $option, $rule, $value ) {
 
@@ -220,16 +221,20 @@
           return $fail ( ( $whole ? 'a whole number' : 'a number' ) . " from {$rule [2]} to {$rule [3]}" );
         return $whole ? (int) $value : $value + 0;
 
+      // [ 'colors', default list, order ] - the order the colours go in, said by the message:
+      // the dark one first unless the filter says otherwise.
+
       case 'colors':
-        $list = is_array ( $value ) ? $value : explode ( ',', (string) $value );
-        $out  = [];
+        $order = $rule [2] ?? [ 'the dark one first', '#123, #fc6', '#112233, #ffcc66' ];
+        $list  = is_array ( $value ) ? $value : explode ( ',', (string) $value );
+        $out   = [];
         foreach ( $list as $one )
           if ( ! is_string ( $one ) or ! preg_match ( '/^#([0-9a-f]{3}|[0-9a-f]{6})$/iD', trim ( $one ) ) )
-            return $fail ( 'hex colours, the dark one first - \'#123, #fc6\' or \'#112233, #ffcc66\'' );
+            return $fail ( "hex colours, {$order [0]} - '{$order [1]}' or '{$order [2]}'" );
           else
             $out [] = strtolower ( trim ( $one ) );
         if ( count ( $out ) != count ( $default ) )
-          return $fail ( count ( $default ) . ' hex colours, the dark one first - \'#123, #fc6\'' );
+          return $fail ( count ( $default ) . " hex colours, {$order [0]} - '{$order [1]}'" );
         return $out;
 
       // A list given to a text or a pair is no text: the message, not PHP's "Array to string

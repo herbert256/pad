@@ -1820,6 +1820,7 @@ application shows every pattern with a seed to change by link.
 {img 'photos/harbour.jpg', width=400, filter='ascii', columns=80, alt='The harbour'/}   # text in a <pre role="img">
 {img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}            # a placeholder behind it
 {img 'logos/shop.png', width=200, filter='thumbhash', alt='The shop'/}                  # ThumbHash: its shape, transparency kept
+{img 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour'/}   # Sobel: ink on paper
 ```
 `filter=` on `{img}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
 is a file of its `types/` - no tag of its own, a word of `filter=` as a validation rule is a word of
@@ -1846,6 +1847,12 @@ thumbhash is a placeholder as well: Evan Wallace's ThumbHash (`_lib/thumbhash.ph
 implementation's encode and decode, MIT) in `data-thumbhash`, base64, and decoded to a PNG of at most
 32 pixels behind the `<img>` - more detail than a BlurHash in some 25 bytes, the picture's proportion
 held in the hash and its transparency kept, where blurhash and lqip lay it on white.
+edges draws the outlines - Sobel's operator on the luminance, the border read again, the strength a
+quarter of the gradient's length times `amount=` percent (100) - from the first of `colors=` (the
+ground, `#000000`) to the second (the lines, `#ffffff`): `'#fbfaf7, #1d1d1b'` is a drawing in ink. A
+transparent pixel reads as the one it borders and the opacity has its own edges, so a logo gets its
+outline and its ground stays transparent; a PNG unless `format=` says otherwise, within the budget
+of the filters that read every pixel.
 
 ### Notations
 ```
