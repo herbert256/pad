@@ -38,7 +38,7 @@
   // filter= - a comma list of the filters of the filter subsystem (subs/filters/), applied in
   // the order written: those that change the picture work on each thumbnail after it was
   // resized and are part of its name; halftone and ascii write the picture as SVG dots or as
-  // text in place of the <img>; the placeholders - blurhash, dominant, lqip - stand behind
+  // text in place of the <img>; the placeholders - blurhash, thumbhash, dominant, lqip - stand behind
   // the <img> while it loads. What a filter makes besides a thumbnail - the dots, the text,
   // the placeholder - is kept in _thumbs/ too, under a name of its own from the same hash. A
   // picture without filter= is written as it always was, to the byte.

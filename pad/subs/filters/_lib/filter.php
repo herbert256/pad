@@ -32,7 +32,7 @@
   //   ascii as text in a <pre>. 'make' turns the filtered 1x picture into what is kept in
   //   _thumbs/ beside the thumbnails (an .svg, a .txt), 'show' writes that with the alt text
   //   as the element's name - made once, shown on every request.
-  // placeholder - what the page shows while the lazy <img> loads: blurhash, dominant, lqip.
+  // placeholder - what the page shows while the lazy <img> loads: blurhash, thumbhash, dominant, lqip.
   //   'hold' answers the img's style and attributes from the filtered 1x picture, kept in
   //   _thumbs/ as a .json.
   //

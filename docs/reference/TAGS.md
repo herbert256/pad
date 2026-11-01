@@ -3252,6 +3252,7 @@ files of its `types/` the filters there are, written in the order they apply:
 | `blurhash` | A placeholder: Wolt's BlurHash in `data-blurhash`, decoded to a small PNG behind the picture | `components` ('4,3') |
 | `dominant` | A placeholder: the dominant colour behind the picture, and in `data-color` | |
 | `lqip` | A placeholder: a tiny blurred PNG behind the picture | |
+| `thumbhash` | A placeholder: Evan Wallace's ThumbHash in `data-thumbhash` (base64), decoded to a small PNG behind the picture - its proportion and transparency kept | |
 
 The filters that change the picture work on each thumbnail after it was resized and are part of
 its name, with the density of that thumbnail - a blur of 6 CSS pixels is another picture at 2x
@@ -3271,6 +3272,9 @@ filter, an option out of its bounds - or a fraction for `levels`, `columns` and 
 `cell`, which are counts - a filter after halftone or ascii, a placeholder beside them,
 two pictures behind one `<img>`, an option no filter of the list reads and a filter past its
 budget are errors under the strict check.
+ThumbHash is the reference implementation (MIT), its hash made of the 1x picture at most 100
+pixels on its longer side, the same bytes as the reference's JavaScript for the same pixels; it
+holds the opacity, so a picture with transparent parts gets a placeholder transparent there.
 
 **Behavior:** writes `<img class="pad-img">` with its `width` and `height` (no layout shift),
 `loading="lazy"`, `decoding="async"` and a `srcset` whose second picture is twice the size -

@@ -1819,6 +1819,7 @@ application shows every pattern with a seed to change by link.
 {img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour'/}    # SVG dots for the <img>
 {img 'photos/harbour.jpg', width=400, filter='ascii', columns=80, alt='The harbour'/}   # text in a <pre role="img">
 {img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}            # a placeholder behind it
+{img 'logos/shop.png', width=200, filter='thumbhash', alt='The shop'/}                  # ThumbHash: its shape, transparency kept
 ```
 `filter=` on `{img}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
 is a file of its `types/` - no tag of its own, a word of `filter=` as a validation rule is a word of
@@ -1841,6 +1842,10 @@ unknown filter, an option out of its bounds, a filter that cannot follow the one
 past its budget are errors under the strict check, left out without it. Code: `pad/subs/filters/` - `_lib/filter.php` the chain and its options, `_lib/dither.php`,
 `_lib/blurhash.php`, `types/` the filters - and `pad/tags/_lib/img.php`, which applies them. The
 `patterns` application shows every filter on the same picture.
+thumbhash is a placeholder as well: Evan Wallace's ThumbHash (`_lib/thumbhash.php`, the reference
+implementation's encode and decode, MIT) in `data-thumbhash`, base64, and decoded to a PNG of at most
+32 pixels behind the `<img>` - more detail than a BlurHash in some 25 bytes, the picture's proportion
+held in the hash and its transparency kept, where blurhash and lqip lay it on white.
 
 ### Notations
 ```

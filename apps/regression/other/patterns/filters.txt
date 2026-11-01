@@ -2,7 +2,7 @@
 <code>pad/subs/filters/types/</code> in the engine, named in <code>filter=</code>, a comma list applied
 in the order written. The picture is made once with GD and kept in <code>_thumbs/</code> like any
 thumbnail, the filter and its options part of its name. halftone and ascii write the picture another
-way; blurhash, dominant and lqip are placeholders - shown here with the picture made transparent, so
+way; blurhash, thumbhash, dominant and lqip are placeholders - shown here with the picture made transparent, so
 what stands behind it while it loads is what you see.</p>
 
 
@@ -179,6 +179,15 @@ what stands behind it while it loads is what you see.</p>
     <img class="pad-img" src="/pad/patterns/_thumbs/b6cb8d682682c00b.jpg" srcset="/pad/patterns/_thumbs/b6cb8d682682c00b.jpg 1x, /pad/patterns/_thumbs/41a61323c8c25487.jpg 2x" width="360" height="240" alt="Rows of tulips running to a windmill" loading="lazy" decoding="async">
   </div>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;sharpen&#039;</span>, <span class="hl-opt">amount</span>=<span class="hl-num">80</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
+<section class="patterns-filter" id="thumbhash">
+  <h2>thumbhash</h2>
+  <p>A placeholder: Evan Wallace&#039;s ThumbHash of the picture in data-thumbhash, and the hash decoded again as a small PNG behind the &lt;img&gt; - more of the picture than a BlurHash in fewer bytes, its proportion and its transparency kept.</p>
+  <div class="patterns-play patterns-behind">
+    <img class="pad-img" src="/pad/patterns/_thumbs/a2db89be5a7a3a94.jpg" srcset="/pad/patterns/_thumbs/a2db89be5a7a3a94.jpg 1x, /pad/patterns/_thumbs/be52d76d145f7891.jpg 2x" width="360" height="240" alt="Rows of tulips running to a windmill" data-thumbhash="aEgKTZaYd4ePhXd3eGiYc6aQdQaI" style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAXCAIAAADlZ9q2AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEAklEQVRIx1WVUc5lxQ2Eq8ruMwESBXaYbWYt2UCQECIwCfd02648nDv/gFSv1uey3dX8xz//BVAIOuWlWeqFTpyYrb7Zt+t2H7gBg6RCkdQCchDtOKM92s5Ctq6Ji7EYixLz0xWECMnxVgc7rTDVQAFNtOwGTAoKREIJZCAwMaMYpcNIa1ELcTGSCubfvl0EiRAyvORLs1iJgjf6Ql/ojT50AcafAUDEiE2MPGEEuEYXYkFJifn9Xx8HEUh5hVPOp3NvzEZv9MZ8HREUUEIJBhwYqZnNbg3CSGhZC0pQyL9/AwAC4i3GQAMUcGEO5kZvTP0JEAl+ATTRZBNNTwximKM0AxTz27wJCRGcgNMOQ5MSIAwxwOgPDoSItwkkLAynuAu7eY+2oxAPwCTy6l8JiRHIwJX4FL7Dl7wwYWvMsccwQIBmmAIEE21U8268Cq/Ca3zPFNjsIUA6+ftPBMkAFnEBF31xLs7CCRzxkNv6MiIJCkZSaWY7irzJF/ACX8N7dBANzdtB//ZvQkYYSawH4LnUCxXYnMPZnrIbNEwgiYQXlI0oa5sv8EW+wE0dqxhDGUL2f34kaISdwLKXfWmWKlHhzdmY4znjBm2RkYhkLMcaZDnO8B69zBu6ocNoPBdFJH/7CZAtO+wcL85yr6nAkQ/ndu+ZY/fQIJGBWfSyLzMLeawN3dDNOIjD6K8O1uszTJp0aFKT6mTF0z42fNt7vNs1tkVMQAu+4MtczSzmZmzFRhxk8bnUAOj8rg4MWphmFzvYwQpveXNu6x7d3bunGmPREYiFuJCX42qtZh7kQW5mcZo5sjWgkN9TAGDCgIExelBwjQt93Kdrd++a05ghJgLZWOMchyfcdAmHLKo1HbZggQTyh7hgGIDpIUhANm3MoMfdqHG3p+0H4Ali0SlnTGhCrRiNZQcQZJChx4EuDCx4YNB+BL/fF8uocc/MjPvhM+kUspzhDEcjBk/WJRVEiiEqkN91wpiGP1R0wcUpT6Hb1eqO6XEPTMkJvBmBlFOOQAajuYZpwAQEI/NlDKbtwhz4AJs+9LZvzO24HRu9/RFHkqMnZ9KPOtGJSUzyiRFCAAEh+9ftsRsufwBwiENvYBv38G7tRrWr4ZJaMVzNGtaw+q02n8wyMUIJwfz9588fDvwAjljEEQ6w4e3Z7VNzyl10W41oZvfVvIa7H+nYZRbxlC8hmP/9+bPHbvvABR+y9NYhD33sMz7lanTBJfZET3Ze7avn7vnU85f2GRSuIkpfAf/75bMNl11wAfUAQm8MWfAZn0a1p+giO9Szek7N6TztanejjTGG1wgtXEIw9+tjB3ABh2ypQv0wHoDfC/gCQDwFTTRQYENDjQId7FA8X0bw/18KrALXDnrYAAAAAElFTkSuQmCC);background-size:cover" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;thumbhash&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
 </section>
 
 <section class="patterns-filter" id="vignette">

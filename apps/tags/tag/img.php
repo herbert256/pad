@@ -24,7 +24,7 @@ PAD;
     'alt'     => 'Required: the text for whoever cannot see the picture. <code>alt=\'\'</code> marks it as decoration.',
     'filter'  => 'A comma list of the filters of <code>pad/subs/filters/types/</code>, applied in the order written: '
                . implode ( ', ', array_map ( fn ( $filter ) => "<code>$filter</code>", padKinds ( 'filters' ) ) )
-               . '. halftone and ascii write the picture as SVG dots or text; blurhash, dominant and lqip are placeholders behind the picture while it loads.',
+               . '. halftone and ascii write the picture as SVG dots or text; blurhash, thumbhash, dominant and lqip are placeholders behind the picture while it loads.',
     'colors'     => 'duotone, dither, atkinson, bayer, halftone: two hex colours, the dark one first - <code>colors=\'#123, #fc6\'</code>.',
     'levels'     => 'posterize: the steps of a channel (4); dither, atkinson, bayer: the greys (2).',
     'cell'       => 'pixelate: the block in pixels (8); halftone: the distance of the dots (8).',
