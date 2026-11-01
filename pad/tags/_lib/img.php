@@ -69,7 +69,10 @@
 
     list ( $path, $name, $type, $sw, $sh, $turn ) = $source;
 
-    $fit = strtolower ( (string) ( $opts ['fit'] ?? 'cover' ) );
+    // A list given to an option of one word is named as 'array' by the option's own message -
+    // cast to a text it was PHP's "Array to string conversion", also in the lenient walk.
+
+    $fit = strtolower ( padImgWord ( $opts ['fit'] ?? 'cover' ) );
 
     if ( ! in_array ( $fit, [ 'cover', 'contain' ], TRUE ) ) {
       if ( $padCheckSyntax )
@@ -84,11 +87,18 @@
 
     // The filters, without those past their budget at this size (padFilterBudget).
 
-    $chain = [];
+    $chain  = [];
+    $filter = $opts ['filter'] ?? '';
 
-    if ( trim ( (string) ( $opts ['filter'] ?? '' ) ) !== '' ) {
+    if ( ! is_scalar ( $filter ) ) {
+      if ( $padCheckSyntax )
+        padError ( "the img tag's filter= is a list - the filters are one text, apart by commas: filter='grayscale, dither'" );
+      $filter = '';
+    }
+
+    if ( trim ( (string) $filter ) !== '' ) {
       include_once PAD . 'subs/filters/_lib/filter.php';
-      $chain = padFilterBudget ( padFilterChain ( $opts ['filter'] ), $w1, $h1 );
+      $chain = padFilterBudget ( padFilterChain ( $filter ), $w1, $h1 );
     }
 
     $images = array_values ( array_filter ( $chain, fn ( $one ) => $one [1] ['form'] == 'image' ) );
@@ -100,7 +110,7 @@
     // A filter of flat colours is a PNG unless format= says otherwise: JPEG smeared the edges
     // of a dither or a posterized area.
 
-    $format = strtolower ( (string) ( $opts ['format'] ?? '' ) );
+    $format = strtolower ( padImgWord ( $opts ['format'] ?? '' ) );
 
     if ( $format === '' and array_filter ( $images, fn ( $one ) => $one [1] ['lossless'] ?? FALSE ) )
       $format = 'png';
@@ -199,6 +209,14 @@
          . '@supports (color:light-dark(#000,#fff)){:where(.pad-img){--pad-img-placeholder:light-dark(#ecebe7,#2a2a28)}}'
          . '.pad-img{max-width:100%;height:auto;background:var(--pad-img-placeholder);vertical-align:middle}'
          . '</style>';
+
+  }
+
+  // An option of one word as a text - 'array' for a list, which no option takes.
+
+  function padImgWord ( $value ) {
+
+    return is_scalar ( $value ) ? (string) $value : 'array';
 
   }
 

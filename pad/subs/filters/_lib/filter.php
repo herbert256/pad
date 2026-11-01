@@ -228,14 +228,17 @@
           return $fail ( count ( $default ) . ' hex colours, the dark one first - \'#123, #fc6\'' );
         return $out;
 
+      // A list given to a text or a pair is no text: the message, not PHP's "Array to string
+      // conversion" of the cast.
+
       case 'text':
-        $value = padParmText ( (string) $value );
+        $value = is_scalar ( $value ) ? padParmText ( (string) $value ) : '';
         if ( $value === '' or mb_strlen ( $value ) < 2 or mb_strlen ( $value ) > $rule [2] )
           return $fail ( "from 2 to {$rule [2]} characters, the lightest first" );
         return $value;
 
       case 'pair':
-        if ( ! preg_match ( '/^\s*(\d+)\s*,\s*(\d+)\s*$/', (string) $value, $match )
+        if ( ! is_scalar ( $value ) or ! preg_match ( '/^\s*(\d+)\s*,\s*(\d+)\s*$/', (string) $value, $match )
              or $match [1] < $rule [2] or $match [1] > $rule [3] or $match [2] < $rule [2] or $match [2] > $rule [3] )
           return $fail ( "two whole numbers from {$rule [2]} to {$rule [3]}, across and down - '4,3'" );
         return [ (int) $match [1], (int) $match [2] ];
