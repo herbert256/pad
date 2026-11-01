@@ -15,7 +15,9 @@ PadInputs.register('rangeslider', function (frame, cfg, kit) {
   var unit = cfg.unit || '';
   var ends = [from, to];
   var outs = ends.map(function (range) {
-    return range.id ? frame.querySelector('output[for="' + (window.CSS && CSS.escape ? CSS.escape(range.id) : range.id) + '"]') : null;
+    var out = range.id ? frame.querySelector('output[for="' + (window.CSS && CSS.escape ? CSS.escape(range.id) : range.id) + '"]') : null;
+    if (out) out.hidden = false;
+    return out;
   });
 
   var rail = kit.el('div', 'pi-range-rail');
@@ -75,7 +77,18 @@ PadInputs.register('rangeslider', function (frame, cfg, kit) {
     event.preventDefault();
   });
 
-  if (from.form) from.form.addEventListener('reset', function () { setTimeout(sync, 0); });
+  // Two ends that come crossed - refilled from a post made without the script - are put in
+  // order: the first step of the upper end jumped it onto the lower.
+  function order() {
+    if (parseFloat(from.value) > parseFloat(to.value)) {
+      var lower = to.value;
+      to.value = from.value;
+      from.value = lower;
+    }
+    sync();
+  }
 
-  sync();
+  if (from.form) from.form.addEventListener('reset', function () { setTimeout(order, 0); });
+
+  order();
 });

@@ -41,10 +41,12 @@ PadInputs.register('otp', function (frame, cfg, kit) {
     group.appendChild(box);
   }
 
-  // The first box is the field the label and the messages point at.
+  // The first box is the field the label and the messages point at, marked invalid with
+  // them - the browser's checker clears it there (data-pad-shows); the style marks the
+  // other boxes with it.
   whole.removeAttribute('id');
   boxes[0].id = id;
-  if (invalid) boxes.forEach(function (box) { box.setAttribute('aria-invalid', invalid); });
+  if (invalid) boxes[0].setAttribute('aria-invalid', invalid);
   if (described) boxes[0].setAttribute('aria-describedby', described);
   whole.removeAttribute('aria-invalid');
   whole.removeAttribute('aria-describedby');

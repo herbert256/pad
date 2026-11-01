@@ -802,8 +802,9 @@ twice - as written, each trimmed, an item left blank no value (three fields of `
 of them empty, pass) - "Guests must not hold the same value twice"; a field of one value holds
 its value once. `min_items:n` and `max_items:n` count the values of a list - two or three
 toppings ticked, `required|min_items:2|max_items:3` - the items left blank not counted, a field
-of one value holding one, an empty list judged by `required` alone (as `min:` leaves an empty
-text): "Toppings must hold at least 2 values". Their argument is a whole number from 1.
+of one value holding one, an empty list - or one whose items are all left blank - judged by
+`required` alone (as `min:` leaves an empty text), so `min_items:2` alone asks for two guests or
+none: "Toppings must hold at least 2 values". Their argument is a whole number from 1.
 
 Some rules look at another field of the post:
 ```
@@ -824,7 +825,8 @@ not ticked - is read where the page reads it, from the query string of the addre
 posts to (`?checkout&delivery=collect`), by the checker too, and is empty when that has none
 either. `required_if`/`required_unless`
 compare as written, case and all, and a list meets the value when one of its items does;
-filled is what `required` passes (`0` is filled, blanks are not, a list with an item is). The
+filled is what `required` passes (`0` is filled, blanks are not, a list with an item filled in
+is - three boxes of `guests[]` left blank are not). The
 four judge an empty field, and require a list as `required` does. `before`/`after` read ISO
 8601 alone - the day `2026-11-01` (its first moment) or the day with a time `2026-11-01T14:30`
 (`:15` seconds and `:15.25` a fraction of one too, as a field with a step under a second posts
@@ -920,7 +922,10 @@ that is no choice is not shown, nor added as an option. A hidden `padLists[]` be
 naming the list, tells that post from any other request - a click in a `{live}` region, a post
 of another form of the page, a link with a value to the page of a GET form - which shows
 `value=`, as every other field does; a disabled multiselect, which the browser leaves out of
-the post, keeps `value=` after a post of its form too.
+the post, keeps `value=` after a post of its form too. A segmented and a treepicker, radio
+groups the browser leaves out of a post without a choice, write the same `padLists[]` beside
+their radios: their form sent without a choice shows none, a pager link of a GET form
+(`?shop&page=2`) shows `value=`, and so does a disabled one after a post.
 
 A range is two fields: `{rangeslider 'price'}` posts `price_from` and `price_to`, `{daterange 'stay'}`
 `stay_from` and `stay_to` - `names=` two
@@ -933,9 +938,10 @@ with it the last day's field takes no day before the first (its `min` follows it
 
 A treepicker posts the value of one item of a hierarchy. Its items are the paths of `options=`
 (`'Europe > France > Paris, Asia > Japan'`, a step the paths share one item), the rows of
-`data=` - flat, each naming its `parent=` field (empty for a root), or nested, the children in
-`children=`; the value `key=` (`id`), the text `field=` (name, label or title) - or a line each
-between its tags, a child indented under its parent; a text is its own value. `leaves` lets only
+`data=` - flat, each naming its `parent=` field (empty for a root, or 0 when no row is 0), or
+nested, the children in `children=`; the value `key=` (`id`), the text `field=` (name, label or
+title) - or a line each between its tags, a child indented under its parent; a text is its own
+value. `leaves` lets only
 an item without children be chosen. A value names one item: a second one, a row under a parent
 that is none and a cycle of parents are errors under the strict check, left out by the lenient
 walk. Without the script the items are nested radio buttons; with it a button showing the path

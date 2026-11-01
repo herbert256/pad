@@ -146,11 +146,14 @@
 
   }
 
-  // Filled as required judges it: a text that is not empty once trimmed, a list with an item.
+  // Filled as required judges it: a text that is not empty once trimmed, a list with an item
+  // filled in (padRuleItems) - three fields of guests[] left blank are as empty as no box
+  // ticked, where a list of blank items was filled and passed required, required_with:phones[]
+  // requiring the code of a phone nobody typed.
 
   function padRuleFilled ( $value ) {
 
-    return is_array ( $value ) ? count ( $value ) > 0 : trim ( (string) $value ) !== '';
+    return is_array ( $value ) ? padRuleItems ( $value ) > 0 : trim ( (string) $value ) !== '';
 
   }
 
@@ -367,7 +370,8 @@
   // The rules of a field are a string split on | or an array of them; a rule takes its
   // argument after a colon. A field that is empty is checked by the rules that say so -
   // required, accepted, required_if, required_unless, required_with and required_without,
-  // 'empty' in their files - and any other rule speaks about a value that is there. The
+  // 'empty' in their files - and any other rule speaks about a value that is there; a list
+  // whose items are all left blank is as empty as one with none (padRuleItems). The
   // first rule a field fails gives its message, which $messages can replace per field
   // ('email') or per field and rule ('email.required'); :label is the field's name made
   // readable, :n the rule's argument.
@@ -414,7 +418,7 @@
         $value = ( $value instanceof Traversable ) ? iterator_to_array ( $value ) : get_object_vars ( $value );
 
       $number = padValidateNumber ( $list );
-      $empty  = ( $value === '' or $value === NULL or $value === [] );
+      $empty  = ( $value === '' or $value === NULL or ( is_array ( $value ) and ! padRuleItems ( $value ) ) );
 
       foreach ( $list as $rule )
         if ( ! padRule ( padValidateParts ( $rule ) [0] ) )
@@ -1631,7 +1635,8 @@
 
   // min_items and max_items - the values of a list that are filled in: an item that is a
   // text empty once trimmed - one of three fields of guests[] left blank - is none, any other
-  // item counts. The browser counts alike (validate.js, counted).
+  // item counts; a list with none is empty, and fails required. The browser counts alike
+  // (validate.js, counted).
 
   function padRuleItems ( $list ) {
 

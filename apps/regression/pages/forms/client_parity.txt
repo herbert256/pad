@@ -4964,6 +4964,170 @@
             }
         },
         {
+            "field": "age",
+            "data": {
+                "age": " 9"
+            },
+            "server": "Age must be at least 5",
+            "client": {
+                "age": {
+                    "label": "Age",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min",
+                            "5",
+                            ":label must be at least :n",
+                            "5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "age",
+            "data": {
+                "age": "﻿3"
+            },
+            "server": "Age must be between 1 and 5",
+            "client": {
+                "age": {
+                    "label": "Age",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "between",
+                            "1,5",
+                            ":label must be between :n",
+                            "1 and 5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "age",
+            "data": {
+                "age": "\u20289"
+            },
+            "server": "Age must be a whole number",
+            "client": {
+                "age": {
+                    "label": "Age",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "max",
+                            "5",
+                            ":label must be at most :n",
+                            "5"
+                        ],
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "",
+                    " "
+                ]
+            },
+            "server": "Guests is required",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "",
+                    "ada"
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "colors[]",
+            "data": {
+                "colors[]": [
+                    ""
+                ]
+            },
+            "server": "",
+            "client": {
+                "colors[]": {
+                    "label": "Colors",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "in",
+                            "red,green",
+                            ":label must be one of :n",
+                            "red, green"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
             "field": "again",
             "data": {
                 "again": "p1",
@@ -5767,6 +5931,36 @@
             }
         },
         {
+            "field": "gifts[]",
+            "data": {
+                "delivery": "ship",
+                "gifts[]": [
+                    "",
+                    " "
+                ]
+            },
+            "server": "Gifts is required when Delivery is ship",
+            "client": {
+                "gifts[]": {
+                    "label": "Gifts",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_if",
+                            "delivery,ship",
+                            ":label is required when :n",
+                            "Delivery is ship"
+                        ]
+                    ],
+                    "watch": [
+                        "delivery"
+                    ]
+                }
+            }
+        },
+        {
             "field": "address",
             "data": {
                 "delivery": "collect",
@@ -6560,6 +6754,66 @@
             }
         },
         {
+            "field": "code",
+            "data": {
+                "phones[]": [
+                    "",
+                    " "
+                ],
+                "code": ""
+            },
+            "server": "",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_with",
+                            "phones[]",
+                            ":label is required when :n is filled in",
+                            "Phones"
+                        ]
+                    ],
+                    "watch": [
+                        "phones[]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "phones[]": [
+                    "",
+                    "0612"
+                ],
+                "code": ""
+            },
+            "server": "Code is required when Phones is filled in",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_with",
+                            "phones[]",
+                            ":label is required when :n is filled in",
+                            "Phones"
+                        ]
+                    ],
+                    "watch": [
+                        "phones[]"
+                    ]
+                }
+            }
+        },
+        {
             "field": "phone",
             "data": {
                 "email": "",
@@ -6917,6 +7171,66 @@
             "data": {
                 "email": "",
                 "phones[]": []
+            },
+            "server": "Phones is required when Email is empty",
+            "client": {
+                "phones[]": {
+                    "label": "Phones",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_without",
+                            "email",
+                            ":label is required when :n is empty",
+                            "Email"
+                        ]
+                    ],
+                    "watch": [
+                        "email"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "phone",
+            "data": {
+                "emails[]": [
+                    "",
+                    " "
+                ],
+                "phone": ""
+            },
+            "server": "Phone is required when Emails is empty",
+            "client": {
+                "phone": {
+                    "label": "Phone",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required_without",
+                            "emails[]",
+                            ":label is required when :n is empty",
+                            "Emails"
+                        ]
+                    ],
+                    "watch": [
+                        "emails[]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "phones[]",
+            "data": {
+                "email": "",
+                "phones[]": [
+                    "",
+                    ""
+                ]
             },
             "server": "Phones is required when Email is empty",
             "client": {
@@ -12965,6 +13279,122 @@
             }
         },
         {
+            "field": "amount",
+            "data": {
+                "amount": " 9"
+            },
+            "server": "Amount must be greater than 5",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "5",
+                            ":label must be greater than :n",
+                            "5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "\u20289"
+            },
+            "server": "Amount must be greater than 5",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "5",
+                            ":label must be greater than :n",
+                            "5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "﻿9"
+            },
+            "server": "Amount must be greater than 5",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "5",
+                            ":label must be greater than :n",
+                            "5"
+                        ],
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "\f9"
+            },
+            "server": "",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "5",
+                            ":label must be greater than :n",
+                            "5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
             "field": "max_price",
             "data": {
                 "min_price": "10",
@@ -13715,6 +14145,35 @@
             }
         },
         {
+            "field": "share",
+            "data": {
+                "share": " 9"
+            },
+            "server": "Share must be a number",
+            "client": {
+                "share": {
+                    "label": "Share",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "lte",
+                            "5",
+                            ":label must be at most :n",
+                            "5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
             "field": "toppings[]",
             "data": {
                 "toppings[]": [
@@ -13800,7 +14259,7 @@
                     ""
                 ]
             },
-            "server": "Toppings must hold at least 2 values",
+            "server": "",
             "client": {
                 "toppings[]": {
                     "label": "Toppings",
@@ -13955,7 +14414,7 @@
                     " "
                 ]
             },
-            "server": "Toppings must hold at least 1 value",
+            "server": "",
             "client": {
                 "toppings[]": {
                     "label": "Toppings",
@@ -14093,6 +14552,132 @@
                     "list": false,
                     "single": ":label must be a single value",
                     "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "server": "Guests is required",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "min_items",
+                            "1",
+                            ":label must hold at least :n value",
+                            "1"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "ada",
+                    "",
+                    ""
+                ]
+            },
+            "server": "Guests must hold at least 2 values",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests[]",
+            "data": {
+                "guests[]": [
+                    "ada",
+                    "bob",
+                    ""
+                ]
+            },
+            "server": "",
+            "client": {
+                "guests[]": {
+                    "label": "Guests",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
                         [
                             "min_items",
                             "2",
@@ -15010,7 +15595,7 @@
                 "emails[0]": "",
                 "phone": ""
             },
-            "server": "",
+            "server": "Phone is required when Emails is empty",
             "client": {
                 "phone": {
                     "label": "Phone",
@@ -15486,6 +16071,143 @@
                             "same",
                             "pass",
                             ":label must be the same as :n",
+                            "Pass"
+                        ]
+                    ],
+                    "watch": [
+                        "pass"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "first.name": "Ada",
+                "again": "Ada"
+            },
+            "server": "Again must be different from First name",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "different",
+                            "first_name",
+                            ":label must be different from :n",
+                            "First name"
+                        ]
+                    ],
+                    "watch": [
+                        "first_name"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "first.name": "Ada",
+                "again": "Eve"
+            },
+            "server": "",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "different",
+                            "first_name",
+                            ":label must be different from :n",
+                            "First name"
+                        ]
+                    ],
+                    "watch": [
+                        "first_name"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "emails[]": [
+                    "a@b.c"
+                ],
+                "again": "a@b.c"
+            },
+            "server": "Again must be different from Emails[0]",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "different",
+                            "emails[0]",
+                            ":label must be different from :n",
+                            "Emails[0]"
+                        ]
+                    ],
+                    "watch": [
+                        "emails[0]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "other.x": "pw",
+                "again": "pw"
+            },
+            "server": "Again must be different from Other x",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "different",
+                            "other_x",
+                            ":label must be different from :n",
+                            "Other x"
+                        ]
+                    ],
+                    "watch": [
+                        "other_x"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "again",
+            "data": {
+                "pass[0]": "pw",
+                "again": "pw"
+            },
+            "server": "",
+            "client": {
+                "again": {
+                    "label": "Again",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "different",
+                            "pass",
+                            ":label must be different from :n",
                             "Pass"
                         ]
                     ],

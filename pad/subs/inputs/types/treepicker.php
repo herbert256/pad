@@ -10,16 +10,16 @@
   // choosing, Escape closing. It posts the value of the item chosen. The items are the paths
   // of options= - 'Europe > France > Paris, Asia > Japan', each step an item under the one
   // before it, its text its value - or the rows of the store data= names - flat, each naming
-  // its parent= field (parent unless given, empty for a root), or nested, its children in
-  // the field children= - the value of a row its key= field, its id unless given, the text
-  // its field=, else its name, label or title; or the lines between the tags, a line indented
-  // deeper than the one before it its child, its text its value. A value names one item: a
-  // second one, a row under a parent that is none and a cycle of parents are named under the
-  // strict check, and left out without it. leaves lets only an item without children be
-  // chosen; value= the item chosen before a post, placeholder= what the button says before a
-  // choice. After a post it shows the item posted - none when the form came back without
-  // one, and a posted value that is no item is not shown: rules='required|in:...' holds it
-  // to the items.
+  // its parent= field (parent unless given, empty for a root - or 0 when no row is 0), or
+  // nested, its children in the field children= - the value of a row its key= field, its id
+  // unless given, the text its field=, else its name, label or title; or the lines between
+  // the tags, a line indented deeper than the one before it its child, its text its value. A
+  // value names one item: a second one, a row under a parent that is none and a cycle of
+  // parents are named under the strict check, and left out without it. leaves lets only an
+  // item without children be chosen; value= the item chosen before a post, placeholder= what
+  // the button says before a choice. After a post it shows the item posted - none when the
+  // form came back without one, and a posted value that is no item is not shown:
+  // rules='required|in:...' holds it to the items.
 
   include_once PAD . 'subs/inputs/_lib/tree.php';
 
@@ -44,12 +44,10 @@
     padError ( "the " . padInputWhat () . " has no items - options='Europe > France, Asia > Japan', data= or a line each between its tags, a child indented under its parent" );
 
   // A form that came back without the field had nothing chosen in it - a radio group with no
-  // choice is left out of the post - so value= does not come back in its place.
+  // choice is left out of the post, its padLists[] says it was there - so value= does not
+  // come back in its place (_lib/input.php padInputChoiceValue).
 
-  $padInputNow ['value'] = padInputValue ( '' );
-
-  if ( ( $padInputSource = padFormSource () ) !== NULL and ! padFormFind ( $padInputSource, padInputName () ) [0] )
-    $padInputNow ['value'] = '';
+  $padInputNow ['value'] = padInputChoiceValue ( '' );
 
   return padInputField ( function ( $head, $rest, $label, $error, $id, $worded ) use ( $padInputNodes, $padInputLeaves, $padInputChoose ) {
 
@@ -73,7 +71,8 @@
              "<legend id=\"$legend\">$text</legend>"
            . '<div class="pi-anchor"><button type="button" class="pi-button pi-tree-open" aria-haspopup="tree" aria-expanded="false" hidden>'
            . '<span class="pi-tree-path">' . padInputEscape ( $path ? implode ( ' › ', $path ) : $choose ) . '</span></button></div>'
-           . "<ul class=\"pi-tree-list\">$list</ul>",
+           . "<ul class=\"pi-tree-list\">$list</ul>"
+           . padInputSentField ( padInputName (), isset ( $padInputNow ['attrs'] ['disabled'] ) ),
              $error, [ 'choose' => $choose, 'leaves' => $padInputLeaves ], 'fieldset' );
 
   } );

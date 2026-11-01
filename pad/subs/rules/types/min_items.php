@@ -3,9 +3,9 @@
   // min_items:n - a list (a field named toppings[]) of at least n values: two toppings or
   // more, min_items:2. The values counted are those filled in - an item left blank, one of
   // three fields of guests[] left empty, is none (padRuleItems) - and a field of one value
-  // holds one. An empty list is judged by required alone, as min: leaves an empty text:
-  // required|min_items:2. Its argument is a whole number from 1 - min_items:two is the
-  // author's error.
+  // holds one. An empty list - its items all left blank too - is judged by required alone,
+  // as min: leaves an empty text: required|min_items:2, or min_items:2 alone for two guests
+  // or none. Its argument is a whole number from 1 - min_items:two is the author's error.
 
   return [
     'check'    => fn ( $value, $arg ) => 1 >= (int) trim ( $arg ),

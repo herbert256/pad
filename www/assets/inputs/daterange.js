@@ -272,16 +272,28 @@ PadInputs.register('daterange', function (frame, cfg, kit) {
     if (button && !button.disabled) take(+button.getAttribute('data-day'));
   });
 
+  // The pointer previews the range where it moves. A redraw under a pointer at rest - a day
+  // taken with a click, a step of the arrow keys - brings the browser's pointerover for the
+  // new day under it, at the place of the last one: no move, so it changes nothing. The
+  // focus stays in the grid when it was there: the redraw takes the focused day away.
+  var pointerX = null, pointerY = null;
+  function still(event) {
+    var same = event.clientX === pointerX && event.clientY === pointerY;
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    return same;
+  }
+  opener.addEventListener('click', still);
+  tbody.addEventListener('pointermove', still);
   tbody.addEventListener('pointerover', function (event) {
+    if (still(event)) return;
     var button = event.target.closest('.pi-cal-day');
     if (!button || picking !== 'to') return;
     var day = +button.getAttribute('data-day');
     if (day === hover) return;
     hover = day;
     focus = day;
-    draw(false);
-    var again = tbody.querySelector('[data-day="' + day + '"]');
-    if (again && document.activeElement && tbody.contains(document.activeElement)) again.focus();
+    draw(tbody.contains(document.activeElement));
   });
 
   tbody.addEventListener('keydown', function (event) {

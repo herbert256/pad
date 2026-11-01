@@ -213,6 +213,12 @@
     [ 'line',     'regex:/^[.]+$/',           [ 'line' => "a\rb" ] ],
     [ 'amount',   'numeric',                  [ 'amount' => "1\f" ] ],
     [ 'amount',   'numeric',                  [ 'amount' => "\f 1" ] ],
+    [ 'age',      'min:5|numeric',            [ 'age' => "\u{A0}9" ] ],
+    [ 'age',      'between:1,5|numeric',      [ 'age' => "\u{FEFF}3" ] ],
+    [ 'age',      'max:5|integer',            [ 'age' => "\u{2028}9" ] ],
+    [ 'guests[]', 'required',                 [ 'guests[]' => [ '', ' ' ] ] ],
+    [ 'guests[]', 'required',                 [ 'guests[]' => [ '', 'ada' ] ] ],
+    [ 'colors[]', 'in:red,green',             [ 'colors[]' => [ '' ] ] ],
     [ 'again',    'same:password[]',          [ 'again' => 'p1', 'password[]' => [ 'p1' ] ] ],
   ];
 
@@ -246,7 +252,12 @@
     [ 'again',    'same:first_name',                    [ 'first.name' => 'Ada', 'again' => 'Ada' ] ],
     [ 'again',    'same:first_name',                    [ 'first.name' => 'Ada', 'again' => 'Eve' ] ],
     [ 'again',    'same:user[pass]',                    [ 'user[pass]' => 'pw', 'again' => 'pw' ] ],
-    [ 'again',    'same:pass',                          [ 'pass[0]' => 'pw', 'again' => 'pw' ] ]
+    [ 'again',    'same:pass',                          [ 'pass[0]' => 'pw', 'again' => 'pw' ] ],
+    [ 'again',    'different:first_name',               [ 'first.name' => 'Ada', 'again' => 'Ada' ] ],
+    [ 'again',    'different:first_name',               [ 'first.name' => 'Ada', 'again' => 'Eve' ] ],
+    [ 'again',    'different:emails[0]',                [ 'emails[]' => [ 'a@b.c' ], 'again' => 'a@b.c' ] ],
+    [ 'again',    'different:other_x',                  [ 'other.x' => 'pw', 'again' => 'pw' ] ],
+    [ 'again',    'different:pass',                     [ 'pass[0]' => 'pw', 'again' => 'pw' ] ]
   ];
 
   $parity = [];

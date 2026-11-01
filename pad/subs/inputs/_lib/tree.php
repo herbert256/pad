@@ -11,13 +11,20 @@
   // given, empty for a root - or nested, its children a list in the field children=. The
   // value of a row is its key= field, its id unless given, else its text; the text its field=,
   // else the first of name, label, title and text it has, else its value. A row that is a
-  // text is a root of that text.
+  // text is a root of that text. A parent 0 that is no row's value is a root too, the default
+  // of a table's parent_id NOT NULL DEFAULT 0, whose every row was refused as under a parent
+  // that is none.
 
   function padInputTreeRows ( $rows, $key, $parent, $field, $kids ) {
 
     $flat = [];
 
     padInputTreeFlat ( $flat, (array) $rows, NULL, $key, $parent, $field, $kids );
+
+    if ( ! in_array ( '0', array_column ( $flat, 0 ), TRUE ) )
+      foreach ( $flat as $at => [ , , $up ] )
+        if ( $up === '0' )
+          $flat [$at] [2] = NULL;
 
     return padInputTreeBuild ( $flat );
 
