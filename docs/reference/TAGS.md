@@ -2417,6 +2417,7 @@ are written, so they may hold braces; an L-system's first value names one of its
 | `flowfield` | Particles drifting on a noise field, painting the flow; the pointer stirs | `particles` (1500), `scale` (4), `speed` (3), `fade` (3) |
 | `galton` | Galton's board, the balls piling into a bell curve | `levels` (12), `balls` (500), `bias` (50) |
 | `harmonograph` | Damped pendulums drawing their figure | `frequencies` ('2, 3, 3, 2.01'), `damping` (3), `rotary` |
+| `ising` | The Ising model of a magnet - domains, the critical point; Onsager's exact values beside the measured ones | `temperature` (2.27), `field` (0), `size` (128), `algorithm` (metropolis, clusters), `initial` (random, up), `speed` (20) |
 | `kaleidoscope` | Drawing mirrored round the circle; a pen wanders when nobody draws | `mirrors` (8), `brush` (3), `colour` (rainbow, ink, palette) |
 | `life` | Conway's Game of Life; draw cells, step, patterns | `width` (64), `height` (40), `speed` (10), `pattern`, `rule` ('B3/S23'), `wrap`, the pattern |
 | `lsystem` | Plants and fractal curves from rewriting rules; drag to bend the angle, wind sways a plant | the system (plant), `iterations`, `angle`, the rules |
