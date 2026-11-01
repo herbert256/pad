@@ -8,7 +8,9 @@
   // so, not while an arrow key walks the list (WCAG 3.2.2), and it works without JavaScript.
   // label= is the select's label ('Theme'), button= the button's text ('Apply'). The form
   // writes no token of its own, so showing it starts no session - padThemeSwitch says why;
-  // with $padCsrf on it carries the session's token as every form then does.
+  // with $padCsrf on it carries the session's token as every form then does. It stays on one
+  // line; in the frame's bar of a narrow window its label is there for a screen reader alone,
+  // where label, list and button stood above each other and ran out of the bar.
 
   include_once PAD . 'subs/themes/_lib/theme.php';
 
@@ -30,7 +32,8 @@
 
   $padThemesStyle = padWidgetOnce ( 'style:themes' )
     ? '<style' . padStyleNonce () . '>'
-      . '.pad-themes{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0}'
+      . '.pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}'
+      . '@media (max-width:800px){.frame-top .pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}'
       . '.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}'
       . '.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}'
       . '</style>'
