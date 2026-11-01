@@ -404,7 +404,9 @@ links a login to an existing account by its address only when it is TRUE. The se
 Apple takes `APPLE_CLIENT_ID`, `APPLE_TEAM_ID`, `APPLE_KEY_ID` and `APPLE_PRIVATE_KEY` and makes
 its client secret, an ES256 JWT, with openssl - or options of the same names; a missing one is
 a strict error naming the variable. The redirect address is the page itself unless `redirect=`
-names another. A state works once, for ten minutes, five logins at once; OpenID Connect's
+names another. A state works once, for ten minutes, five logins at once, and only with the
+token endpoint and issuer it was started at - a way back handled with another `base=`, `issuer=`
+or `tenant=` is refused before the code goes anywhere; OpenID Connect's
 id_token is checked for its issuer, audience, expiry and nonce - its signature is not: it comes
 straight from the token endpoint over TLS, which OpenID Connect Core 3.1.3.7 lets stand for it.
 `padOAuthUrl` gives the address without going there; `padOAuthToken ()` the token answer, for

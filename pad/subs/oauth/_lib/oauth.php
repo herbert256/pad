@@ -36,7 +36,10 @@
   // minutes long; the answer that brings the state takes its record out, so a state works
   // once. For a provider that posts its answer back - Apple - the record goes into a sealed
   // cookie as well (padEncrypt, SameSite=None, Secure, HttpOnly), as a post from another
-  // site brings no SameSite=Lax session cookie.
+  // site brings no SameSite=Lax session cookie. The record keeps the token endpoint and the
+  // issuer the login went to, and the way back must resolve to the same: handled with other
+  // options - another base=, issuer= or tenant= - it would send the code, the verifier and
+  // the client secret to another instance and log its user in (RFC 9207's mix-up).
   //
   // The id_token of OpenID Connect is checked for its issuer, its audience (and azp when it
   // names several), its expiry and the nonce kept. Its signature is not checked: the token
@@ -156,6 +159,8 @@
                 'redirect' => $redirect,
                 'verifier' => $provider ['pkce'] ? padCryptB64 ( random_bytes ( 32 ) ) : '',
                 'nonce'    => $provider ['oidc'] ? padCryptB64 ( random_bytes ( 16 ) ) : '',
+                'token'    => $provider ['token'],
+                'issuer'   => $provider ['issuer'],
                 'time'     => time () ];
 
     $state  = padCryptB64 ( random_bytes ( 24 ) );
@@ -296,6 +301,9 @@
 
     if ( $record === NULL )
       return padOAuthFail ( "the answer from $name does not match a login started here - its state is unknown, used or over ten minutes old; start the login again" );
+
+    if ( ( $record ['token'] ?? NULL ) !== $provider ['token'] or ( $record ['issuer'] ?? NULL ) !== $provider ['issuer'] )
+      return padOAuthFail ( "the answer from $name belongs to a login started at another address of it - the way back is handled with other options than the start; start the login again" );
 
     $code = is_string ( $callback ['code'] ?? NULL ) ? $callback ['code'] : '';
 
