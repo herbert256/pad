@@ -22,8 +22,15 @@
   $typeComment    = preg_replace ( '/\s+/', ' ', $typeInfo ['comment'] );
   $typeExamples   = typesExamples ( $typeName );
 
-  foreach ( $typeExamples as $i => $one )
+  // Each example that runs gets the icon that takes it to the playground, at the right of its
+  // result's head (_common/_lib/playground.php).
+
+  include_once COMMON . '_lib/playground.php';
+
+  foreach ( $typeExamples as $i => $one ) {
     $typeExamples [$i] ['number'] = $i + 1;
+    $typeExamples [$i] ['play']   = $one ['run'] ? padPlayPage ( APP, $one ['page'], TRUE ) : '';
+  }
 
   $typeMembers     = array_map ( fn ( $one ) => [ 'key' => $one [0], 'link' => $one [1] ], typesMembers ( $typeName ) );
   $typeMemberCount = count ( $typeMembers );

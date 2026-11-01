@@ -18,7 +18,7 @@ pad pack notes,ledger,kanban  # several, with a launcher</code></pre>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -45,7 +45,7 @@ pad pack notes,ledger,kanban  # several, with a launcher</code></pre>
           </tr>
         
         <tr>
-          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">diagram </font><font color="red">direction=<font color="black">'</font>TB<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>How a packed application answers<font color="black">'</font></font>}</b><br>  P([A page, its fetch, its EventSource]) --&gt; W[The service worker - or, from the disk, the page around the frame]<br>  W --&gt; R[The runtime: pad-app.js]<br>  R --&gt;|a www file| B[(The bundle)]<br>  R --&gt;|a page| H[PHP as WebAssembly, the PAD engine]<br>  H --&gt; S[(SQLite under DATA)]<br>  S -.-&gt;|after each request| I[(IndexedDB)]<br><b>{/<font color="blue">diagram</font><font color="red"></font>}</b></code></pre></td>
+          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=f773147615"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiI8IS0tIFBBRDogVkVSVElDQUwgLS0+XG57ZGlhZ3JhbSBkaXJlY3Rpb249J1RCJywgdGl0bGU9J0hvdyBhIHBhY2tlZCBhcHBsaWNhdGlvbiBhbnN3ZXJzJ31cbiAgUChbQSBwYWdlLCBpdHMgZmV0Y2gsIGl0cyBFdmVudFNvdXJjZV0pIC0tPiBXW1RoZSBzZXJ2aWNlIHdvcmtlciAtIG9yLCBmcm9tIHRoZSBkaXNrLCB0aGUgcGFnZSBhcm91bmQgdGhlIGZyYW1lXVxuICBXIC0tPiBSW1RoZSBydW50aW1lOiBwYWQtYXBwLmpzXVxuICBSIC0tPnxhIHd3dyBmaWxlfCBCWyhUaGUgYnVuZGxlKV1cbiAgUiAtLT58YSBwYWdlfCBIW1BIUCBhcyBXZWJBc3NlbWJseSwgdGhlIFBBRCBlbmdpbmVdXG4gIEggLS0+IFNbKFNRTGl0ZSB1bmRlciBEQVRBKV1cbiAgUyAtLi0+fGFmdGVyIGVhY2ggcmVxdWVzdHwgSVsoSW5kZXhlZERCKV1cbnsvZGlhZ3JhbX1cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue">diagram </font><font color="red">direction=<font color="black">'</font>TB<font color="black">'</font><font color="black">,</font> title=<font color="black">'</font>How a packed application answers<font color="black">'</font></font>}</b><br>  P([A page, its fetch, its EventSource]) --&gt; W[The service worker - or, from the disk, the page around the frame]<br>  W --&gt; R[The runtime: pad-app.js]<br>  R --&gt;|a www file| B[(The bundle)]<br>  R --&gt;|a page| H[PHP as WebAssembly, the PAD engine]<br>  H --&gt; S[(SQLite under DATA)]<br>  S -.-&gt;|after each request| I[(IndexedDB)]<br><b>{/<font color="blue">diagram</font><font color="red"></font>}</b></code></pre></td>
         </tr>
       
 
@@ -149,7 +149,7 @@ that should behave differently in the browser asks <code>padWasm()</code>:</p>
 
 
    
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   
 
   
@@ -176,7 +176,7 @@ that should behave differently in the browser asks <code>padWasm()</code>:</p>
           </tr>
         
         <tr>
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;This page runs <b>{<font color="green"><font color="red">$</font>where</font>}</b>: a message written here is <b>{<font color="green"><font color="red">$</font>mail</font>}</b>.&lt;/p&gt;</code></pre></td>
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiI8IS0tIFBBRDogVkVSVElDQUwgLS0+XG48cD5UaGlzIHBhZ2UgcnVucyB7JHdoZXJlfTogYSBtZXNzYWdlIHdyaXR0ZW4gaGVyZSBpcyB7JG1haWx9LjwvcD5cbiIsImRhdGEiOiIiLCJtb2RlIjoicGhwIiwicGhwIjoiPD9waHBcblxuICAvLyBwYWRXYXNtKCkgaXMgVFJVRSBvbiBQSFAgY29tcGlsZWQgdG8gV2ViQXNzZW1ibHkgLSBpblxuICAvLyBhIGJyb3dzZXIsIGFuIGFwcGxpY2F0aW9uIHBhY2tlZCBieSBwYWQgcGFjayAtIGFuZFxuICAvLyBGQUxTRSBvbiBhIHNlcnZlci5cblxuICAkd2hlcmUgPSBwYWRXYXNtICgpID8gJ2luIHRoaXMgYnJvd3NlcicgOiAnb24gdGhlIHNlcnZlcic7XG5cbiAgJG1haWwgID0gcGFkV2FzbSAoKSA/ICdrZXB0IHVudGlsIHRoZSBhcHBsaWNhdGlvbiBpcyBvbmxpbmUnXG4gICAgICAgICAgICAgICAgICAgICAgOiAnc2VudCBhdCBvbmNlJztcblxuPz5cbiJ9" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;This page runs <b>{<font color="green"><font color="red">$</font>where</font>}</b>: a message written here is <b>{<font color="green"><font color="red">$</font>mail</font>}</b>.&lt;/p&gt;</code></pre></td>
         </tr>
       
 

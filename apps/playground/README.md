@@ -24,6 +24,12 @@ colours of the format the data text reads as (JSON, YAML, XML, plain for CSV), c
 is typed, and PHP's for the PHP code. Without Monaco - no internet, `$playMonaco = ''` - the
 boxes are plain text fields.
 
+The examples of the other applications - the manual's and the sequence application's
+`{example}`s and `{demo}` tables, showcase, charts, tags, types, games, toys, inputs, examples
+- have a little icon at their top right that opens them here, in such a link: the template in
+the template box, and its PHP or its data
+([The frame of the PAD applications](../../docs/FEATURES.md#the-frame-of-the-pad-applications)).
+
 **Render** (or Ctrl+Enter) renders it, **Show the HTML** shows the HTML it produced. The
 address bar always holds the panes and which data is used in its `#s=` hash, so copying it
 shares the example. An example opened from such a link fills the panes but does not run until

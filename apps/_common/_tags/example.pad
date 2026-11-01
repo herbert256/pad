@@ -13,7 +13,7 @@
 @else@
 
   {if ! #skipOpen} 
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
   {/if}
 
   {case $exampleLayout}
@@ -52,7 +52,7 @@
 
         <tr>
           {if ! #skipPad}
-            <td style="vertical-align:top">{!exampleSrcPad} </td>
+            <td style="vertical-align:top">{!examplePlay}{!exampleSrcPad} </td>
           {/if}
           {if ! #skipResult}
             <td style="vertical-align:top">{examplePage/}</td>
@@ -88,7 +88,7 @@
           <td style="vertical-align:top">{!exampleSrcPhp} </td>
         {/if}
         {if ! #skipPad}
-          <td style="vertical-align:top">{!exampleSrcPad}</td>
+          <td style="vertical-align:top">{!examplePlay}{!exampleSrcPad}</td>
         {/if}
         {if ! #skipResult}
           <td style="vertical-align:top">{examplePage/}</td>
@@ -119,7 +119,7 @@
           </tr>
         {/if}
         <tr>
-          <td style="vertical-align:top">{!exampleSrcPad}</td>
+          <td style="vertical-align:top">{!examplePlay}{!exampleSrcPad}</td>
         </tr>
       {/if}
 

@@ -13,4 +13,11 @@
   $template = toysTemplate ( $toy );
   $source   = padHighlightTokens ( $template, 'pad' );
 
+  // The icon at the top right of the template that takes it to the playground
+  // (_common/_lib/playground.php).
+
+  include_once COMMON . '_lib/playground.php';
+
+  $play     = padPlayLink ( "$template\n" );
+
 ?>

@@ -1,0 +1,22 @@
+/* PAD - the icon at the top right of an example that takes it to the playground
+   (apps/_common/_lib/playground.php, padPlayLink). A static file: PAD never parses it.
+
+   The icon stands at the top right of the nearest positioned box - an example's box is
+   position: relative, the class pad-play-box gives it - or, inline, floats at the right of
+   the box it stands in. It takes the colour of the text around it, faint until pointed at. */
+
+.pad-play-box { position: relative; }
+
+.pad-play {
+  position: absolute; top: 3px; right: 3px; z-index: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 5px;
+  color: inherit; opacity: .65; text-decoration: none; line-height: 0;
+}
+
+.pad-play.pad-play-inline { position: static; float: right; margin: 0 0 4px 8px; }
+
+.pad-play:hover, .pad-play:focus-visible { opacity: 1; background: rgba(128, 128, 128, .18); }
+.pad-play:focus-visible { outline: 2px solid currentColor; outline-offset: 1px; }
+
+.pad-play svg { display: block; }

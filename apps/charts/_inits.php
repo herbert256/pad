@@ -83,6 +83,16 @@
     $dataHtml  = padHighlightTokens ( $dataSource, $dataLang );
     $dataLines = substr_count ( $dataSource, "\n" ) + 1;
 
+    // The icon at the top right of the example that takes it to the playground
+    // (_common/_lib/playground.php): the template, with the paired PHP in the PHP box or the
+    // _data file it names in the data box, under that name.
+
+    include_once COMMON . '_lib/playground.php';
+
+    $playLink = padPlayLink ( "$tagSource\n",
+                              ( $dataFile !== '' and $dataLang != 'php' ) ? padPlayData ( $found [1], APP . $dataFile ) : '',
+                              ( $dataLang == 'php' ) ? "$dataSource\n" : '', TRUE );
+
     // The neighbours, for the pager under the cells.
 
     $here = array_search ( $padPage, array_column ( $flat, 0 ) );

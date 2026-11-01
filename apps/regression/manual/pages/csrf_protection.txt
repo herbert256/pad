@@ -26,7 +26,7 @@ script that sends it in an \<code\>X\-CSRF\-Token\<\/code\> header\:\<\/p\>
 
 
    
-    \<table border\="1" cellpadding\="10" cellspacing\="0"\>
+    \<table border\="1" cellpadding\="10" cellspacing\="0" class\="pad\-play\-box"\>
   
 
   
@@ -53,13 +53,13 @@ script that sends it in an \<code\>X\-CSRF\-Token\<\/code\> header\:\<\/p\>
 
       \<tr\>
         
-          \<td style\="vertical\-align\:top"\> \<\/td\>
+          \<td style\="vertical\-align\:top"\>(?:(?:\<link [^>]*\>)?\<a class\="pad\-play[^"]*"[^>]*\>[\s\S]*?\<\/a\>)? \<\/td\>
         
         
-          \<td style\="vertical\-align\:top"\>\<pre\>\<code style\="color\: \#000000"\>&lt;form method\="post"&gt;\<br\>  \<b\>\{\<font color\="blue"\>csrf\<\/font\>\<font color\="red"\>\<\/font\>\/\}\<\/b\>\<br\>  &lt;input type\="text" name\="note"&gt;\<br\>  &lt;button&gt;Send&lt;\/button&gt;\<br\>&lt;\/form&gt;\<\/code\>\<\/pre\>\<\/td\>
+          \<td style\="vertical\-align\:top"\>(?:(?:\<link [^>]*\>)?\<a class\="pad\-play[^"]*"[^>]*\>[\s\S]*?\<\/a\>)?\<pre\>\<code style\="color\: \#000000"\>&lt;form method\="post"&gt;\<br\>  \<b\>\{\<font color\="blue"\>csrf\<\/font\>\<font color\="red"\>\<\/font\>\/\}\<\/b\>\<br\>  &lt;input type\="text" name\="note"&gt;\<br\>  &lt;button&gt;Send&lt;\/button&gt;\<br\>&lt;\/form&gt;\<\/code\>\<\/pre\>\<\/td\>
         
         
-          \<td style\="vertical\-align\:top"\>
+          \<td style\="vertical\-align\:top"\>(?:(?:\<link [^>]*\>)?\<a class\="pad\-play[^"]*"[^>]*\>[\s\S]*?\<\/a\>)?
   \<form method\="post"\>
   \<input type\="hidden" name\="padCsrfToken" value\="[0-9a-f]{64}"\>
   \<input type\="text" name\="note"\>

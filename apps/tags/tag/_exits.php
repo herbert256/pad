@@ -44,6 +44,11 @@
 
   $tagExampleRows = [];
 
+  // Each example that runs gets the icon that takes it to the playground, at the right of its
+  // result's head (_common/_lib/playground.php).
+
+  include_once COMMON . '_lib/playground.php';
+
   if ( $tagInfo ['type'] == 'pad' )
 
     foreach ( tagsExamples ( $tagName ) as $i => $example ) {
@@ -59,7 +64,8 @@
         'phpHtml' => $php ? tagsSource ( $php, 'php' ) : '',
         'source'  => '',
         'app'     => '',
-        'open'    => '?' . $example ['page'] ];
+        'open'    => '?' . $example ['page'],
+        'play'    => $example ['run'] ? padPlayPage ( APP, $example ['page'], TRUE ) : '' ];
 
     }
 
@@ -87,7 +93,9 @@
       'padHtml' => $padHtml,
       'php'     => $php,
       'phpHtml' => $php ? padHighlightTokens ( trim ( padFileGet ( $root . $php ) ), 'php' ) : '',
-      'open'    => $open ] ];
+      'open'    => $open,
+      'play'    => ( $example ['page'] !== '' ) ? padPlayPage ( $root, $example ['page'], TRUE )
+                                                 : padPlayLink ( $example ['source'] . "\n", '', '', TRUE ) ] ];
 
   }
 

@@ -88,6 +88,16 @@
     $oneCell   = $dataFile === '';
     $dataHtml  = padHighlightTokens ( $dataSource, $dataLang );
 
+    // The icon at the top right of the example that takes it to the playground
+    // (_common/_lib/playground.php): the template, with the paired PHP in the PHP box or the
+    // _data file it names in the data box, under that name.
+
+    include_once COMMON . '_lib/playground.php';
+
+    $playLink = padPlayLink ( "$tagSource\n",
+                              ( $dataFile !== '' and $dataLang != 'php' ) ? padPlayData ( $found [1], APP . $dataFile ) : '',
+                              ( $dataLang == 'php' ) ? "$dataSource\n" : '', TRUE );
+
     $here = array_search ( $padPage, array_column ( $flat, 0 ) );
     list ( $prevPage, $prevTitle ) = $flat [ ( $here + $exampleCount - 1 ) % $exampleCount ];
     list ( $nextPage, $nextTitle ) = $flat [ ( $here + 1 ) % $exampleCount ];

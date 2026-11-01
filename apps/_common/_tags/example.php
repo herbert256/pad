@@ -52,6 +52,16 @@
     if ( ! padFileGet ( $examplePad ) ) $padPrm [$pad] ['skipPad'] = TRUE;
   }
 
+  // The icon that takes the example to the playground (_lib/playground.php): its template and
+  // its PHP, at the top right of its table - or, in a table an example before it opened,
+  // at the right of its own cell. Only where the template is shown.
+
+  $examplePlay = '';
+
+  if ( ! padTagParm ( 'skipPad' ) and ! $exampleOnlyResult and ! padTagParm ( 'onlyResult' ) and file_exists ( $examplePad ) )
+    $examplePlay = padPlayLink ( padFileGet ( $examplePad ), '', file_exists ( $examplePhp ) ? padFileGet ( $examplePhp ) : '',
+                                 (bool) padTagParm ( 'skipOpen' ) );
+
   return TRUE;
 
 ?>

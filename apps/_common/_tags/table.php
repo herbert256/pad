@@ -38,4 +38,14 @@
 
   $padContent = str_replace ( '@ROWSPAN@', $padDemoCount [$pad] , $padContent);
 
+  // The demos of a table are one example - each runs after the ones above it, with what they
+  // left - so the icon at the table's top right takes all of them to the playground, with
+  // the page's PHP when the table shows it (_lib/playground.php).
+
+  $tablePlay = ( $tablePAD !== '' )
+             ? padPlayLink ( trim ( $tablePAD ) . "\n", '', padTagParm ( 'withPHP' ) ? (string) padFileGet ( APP . "$padPage.php" ) : '' )
+             : '';
+
+  $padContent = str_replace ( '@PLAY@', $tablePlay, $padContent );
+
 ?>

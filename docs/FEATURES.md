@@ -1074,6 +1074,22 @@ and `brand.js` itself; the brand's colours follow the page's `color-scheme`, and
 colour of the bar. Offline (`pad pack`, `padWasm()`) the logo is no link, the name links the
 application's home and the stylesheet is written into the page.
 
+Every example an application shows - a template beside its result - has a little icon at its
+top right that takes it to the [playground](../apps/playground/README.md): the template in
+the template box, its PHP in the PHP box or its data in the data box. The `{example}` and
+`{table}`/`{demo}` tags of `_common` write it, and so do the applications with examples of
+their own - showcase, charts, tags, types, games, toys, inputs, examples - through
+`_common/_lib/playground.php`: `padPlayLink ( $template, $data, $php )` the icon,
+`padPlayPage ( $root, $page )` the one for a page of an application (its `{meta}` line left
+out, its paired PHP or else the `_data` file its template names with `data='...'`, under that
+name), `padPlayData ( $name, $file )` such a `_data` file as data, with
+`www/_common/play.css`. A `{table}` of demos is one example, every row of it; the icon stands
+at the top right of the nearest `position: relative` box (the class `pad-play-box`). An
+application whose examples need its own database sets `$playExamples = FALSE` (classicModels);
+the examples of htmx, react, alpine, islands and webcomponents - pages with scripts and
+endpoints of their own - and padSelect's have none, and offline (`padWasm()`) there is no
+icon. The playground fills its boxes from the link and waits for Render.
+
 Every application that uses `_common` - and admin, edit and tags, which have it off and reach
 it with the `common:` prefix - shares one frame from `_common`, which has no wrapper of its own
 (no `_common/_inits.pad`): a side with the brand on top - `{common:padBrand frame/}`, its links

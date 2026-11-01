@@ -16,7 +16,7 @@
         </div>
         {if $run}
         <div class="cell">
-          <div class="cell-head"><span>Result</span>{if $open}<a class="cell-file" href="{$open}">open alone</a>{/if}</div>
+          <div class="cell-head"><span>Result</span><span>{if $open}<a class="cell-file" href="{$open}">open alone</a>{/if}{!play}</span></div>
           <div class="result">{if $page}{page $page, app=$app/}{else}{echo $source | code/}{/if}</div>
         </div>
         {/if}
