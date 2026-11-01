@@ -621,7 +621,20 @@
     if ( $basic )
       $input ['headers'] ['Authorization'] = 'Basic ' . base64_encode ( urlencode ( $basic [0] ) . ':' . urlencode ( $basic [1] ) );
 
-    $out  = padCurl ( $input );
+    // $padCurlLast is left as it was: the dumps and the error report list it, and the token
+    // answer - access, refresh and id token - is a credential, kept in padOAuthStore alone.
+
+    $last = $GLOBALS ['padCurlLast'] ?? NULL;
+
+    try {
+      $out = padCurl ( $input );
+    } finally {
+      if ( $last === NULL )
+        unset ( $GLOBALS ['padCurlLast'] );
+      else
+        $GLOBALS ['padCurlLast'] = $last;
+    }
+
     $data = (string) ( $out ['data'] ?? '' );
     $json = json_decode ( $data, TRUE );
 
