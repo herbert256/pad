@@ -2060,12 +2060,12 @@ from matplotlib's published 256-colour tables (`_cm_listed.py`), and ColorBrewer
 oranges and greys of nine classes and its multi-hue ylgnbu and ylorrd, and batlow, Fabio Crameri's, its lightness rising all the way,
 and turbo, Google's smooth rainbow (Apache-2.0), a hue a value, not for grey print nor colour-blind eyes;
 diverging: ColorBrewer's rdbu, brbg, piyg, rdylbu and puor of eleven, and Crameri's vik;
-categorical, told apart by colour-blind eyes: okabe-ito (Okabe and Ito's eight, black put last,
-where it vanishes on a dark surface) and Paul Tol's bright, muted and vibrant (from his
-`tol_colors` package), and ColorBrewer's pastel (Pastel1), dark2 (Dark2, deep colours for thin
-lines) and paired (Paired, six pairs of a light and a dark) and PAD's own earth, and for many
-categories glasbey, 32 colours each as far from those before it as Glasbey's method makes them
-(colorcet's, CC BY 4.0), past eight more for a map than a chart; cyclic, for what
+categorical: okabe-ito (Okabe and Ito's eight, black put last, where it vanishes on a dark
+surface) and Paul Tol's bright, muted and vibrant (from his `tol_colors` package), told apart by
+colour-blind eyes, ColorBrewer's pastel (Pastel1), dark2 (Dark2, deep colours for thin lines)
+and paired (Paired, six pairs of a light and a dark), PAD's own earth, and for many categories
+glasbey, 32 colours each as far from those before it as Glasbey's method makes them (colorcet's,
+CC BY 4.0), past eight more for a map than a chart; cyclic, for what
 goes round - an angle, a direction, the hour, the month - whose colours run once round a circle,
 the last next to the first: romaO. Crameri's are the 256-colour tables of his Scientific colour
 maps 8.0.1 (MIT licence), made for colour-blind eyes. `steps=` samples a
