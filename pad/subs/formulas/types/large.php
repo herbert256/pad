@@ -14,7 +14,7 @@
       $k       = padFormulaArgNumber ( $args [1], $env );
       if ( $error = padFormulaFirstError ( $numbers, $k ) )
         return $error;
-      $k = (int) ceil ( padFormulaRound15 ( $k ) );
+      $k = padFormulaInt ( ceil ( padFormulaRound15 ( $k ) ) );
       if ( $k < 1 or $k > count ( $numbers ) )
         return padFormulaError ( '#NUM!' );
       rsort ( $numbers );

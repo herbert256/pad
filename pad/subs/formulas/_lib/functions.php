@@ -293,7 +293,21 @@
 
     $number = padFormulaArgNumber ( $value, $env );
 
-    return padFormulaIsError ( $number ) ? $number : (int) ( $number < 0 ? ceil ( padFormulaRound15 ( $number ) ) : floor ( padFormulaRound15 ( $number ) ) );
+    return padFormulaIsError ( $number ) ? $number : padFormulaInt ( $number < 0 ? ceil ( padFormulaRound15 ( $number ) ) : floor ( padFormulaRound15 ( $number ) ) );
+
+  }
+
+  // A whole number as an int, 2^53 at most either way - past it no float holds every whole
+  // number - so a count past the end of whatever a function counts is one, and the function
+  // answers what it answers for such a count: LEFT("abc",1E300) the text, CHOOSE #VALUE!,
+  // INDEX #REF!, DATE and LARGE #NUM!. Cast as it was, 1E300 is no int, and PHP's warning
+  // ended the request.
+
+  const padFormulaMaxWhole = 9007199254740992;
+
+  function padFormulaInt ( $number ) {
+
+    return (int) max ( -padFormulaMaxWhole, min ( padFormulaMaxWhole, $number ) );
 
   }
 
