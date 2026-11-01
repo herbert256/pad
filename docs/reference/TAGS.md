@@ -3386,8 +3386,9 @@ if ( padPosted ( 'ranking' ) ) {
 **Behavior:** every item is posted with its place under its key, from 1, the same with a script
 and without one. Without scripting each item shows a number field, its place, which the visitor
 changes by hand: the list is sorted by those numbers and items of one number keep the order they
-had - 0 puts an item first, the number of another item puts it just before that one - as
-`asort` sorts them. What comes back is a proposal: the application checks that its keys are the
+had, as `asort` sorts them - an item given the number of another lands beside it on the side it
+came from, after it when moved up and before it when moved down; 0 puts an item first, a number
+past the last puts it last. What comes back is a proposal: the application checks that its keys are the
 ones it wrote and keeps the order itself, the form's CSRF token guarding the post. A form that
 comes back - a field elsewhere in it failed its rules - shows the items in the order posted,
 when the post names every item once. With scripting a small script, once per page with the CSP
