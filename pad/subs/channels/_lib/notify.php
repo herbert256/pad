@@ -8,7 +8,9 @@
   //             field (alternatives split by |), 'default' => the value when neither has one,
   //             'address' => TRUE for an address a request goes to, 'pattern' => the regular
   //             expression a value must match and 'is' => what that is, in a message,
-  //             'secret' => TRUE for a token that message never shows ]; a
+  //             'secret' => TRUE for a credential - a token that message never shows, the
+  //             webhook's address - which the reports redact by value from then on
+  //             (padRedactKeep, error/claude.php; an address from its path on) ]; a
   //             setting without a default is required. Looked for in the options first
   //             ([ 'slack' => [ 'url' => ... ] ]), then in the recipient, then in the
   //             environment. An address - a webhook, a homeserver, a gateway - is never read
@@ -305,6 +307,9 @@
         $bad [] = "the $setting of the $channel channel ($from) is no "
                   . ( empty ( $spec ['address'] ) ? ( $spec ['is'] ?? $setting ) . ( empty ( $spec ['secret'] ) ? ': ' . padNotifyShow ( $value ) : '' )
                                                   : 'absolute http or https address' );
+
+      if ( ! empty ( $spec ['secret'] ) and is_string ( $value ) and function_exists ( 'padRedactKeep' ) )
+        padRedactKeep ( $value, ! empty ( $spec ['address'] ) );
 
       $settings [$setting] = $value;
 

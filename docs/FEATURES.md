@@ -631,7 +631,9 @@ gateway - is the options' or `padEnv`'s alone, never the row's, and absolute htt
 fields are checked, and a push endpoint must be on a browser's push service (FCM, Mozilla's,
 WNS, Apple's - `WEBPUSH_SERVICES` names more): a value that is none is not sent to. The Telegram
 token and the webhooks' addresses are credentials: the dumps, the error report and
-`_events/curl.php` see them redacted, as a header's. With
+`_events/curl.php` see them redacted, as a header's - Zapier's, Make's and n8n's catch hooks by
+their form, the webhook channel's of any other service from its path on once it was used, a
+setting marked `secret` by its value, and `WEBHOOK_URL` by its name. With
 `[ 'queue' => TRUE ]` (or a queue's name) every channel is a job of its own, `@notify`, rendered
 and sent by `pad work` - a failing channel is retried alone; the job keeps of the recipient what
 `padLogin` keeps of a row, its password hash, tokens and secrets left out. A channel that does not deliver is

@@ -154,7 +154,8 @@
   // the underscore, and so did the USERPWD of a fetch with a login and a passphrase. The
   // password words count anywhere in the name: a hash kept as password_hash, passwordHash
   // or pass_hash - the column of every users table - showed in clear in {debug}, the
-  // toolbar and the reports, the word counting only at the end.
+  // toolbar and the reports, the word counting only at the end. A webhook's address is its
+  // credential: WEBHOOK_URL, SLACK_WEBHOOK_URL - the environment's - and webhookUrl.
 
   function padRedactName ( $name ) {
 
@@ -162,7 +163,7 @@
 
     $name = is_scalar ( $name ) ? (string) $name : '';
 
-    return $memo [$name] ??= (bool) preg_match ( '/pass(word|wd|phrase|code)|pass(_?hash|$)|pwd|secret|token|authorization|auth_pw|api_?key|app_?key|private_?key|^(http_|set_)?cookies?$|^phpsessid$|^padsesid$/i',
+    return $memo [$name] ??= (bool) preg_match ( '/pass(word|wd|phrase|code)|pass(_?hash|$)|pwd|secret|token|authorization|auth_pw|api_?key|app_?key|private_?key|webhook_?url|^(http_|set_)?cookies?$|^phpsessid$|^padsesid$/i',
                                                  str_replace ( '-', '_', $name ) );
 
   }
@@ -267,11 +268,18 @@
   // credential, and a signature in a query - sig=, a Teams workflow's and Azure's SAS. The
   // address keeps its service and its path up to the secret. For padRedactText and for the
   // address padCurlEvent hands to _events/curl.php. A Mattermost server's incoming webhook,
-  // on any host, is /hooks/ and the 26 letters and digits of its id.
+  // on any host, is /hooks/ and the 26 letters and digits of its id; the catch hooks the
+  // webhook channel names run for anyone holding their address: Zapier's
+  // (hooks.zapier.com/hooks/catch/), Make's (hook.<zone>.make.com/) and n8n's, on any host
+  // (/webhook/, /webhook-test/, /webhook-waiting/). The address of a service of the
+  // application's own goes by value: the ones padRedactKeep holds.
 
   function padRedactAddress ( $text ) {
 
-    if ( ! preg_match ( '~telegram\.org/|hooks\.slack\.com/|discord(?:app)?\.com/|webhook\.office\.com/|sig=|/hooks/[a-z0-9]{26}~i', $text ) )
+    if ( $kept = padRedactKeep () )
+      $text = str_replace ( $kept, '*** redacted ***', $text );
+
+    if ( ! preg_match ( '~telegram\.org/|hooks\.slack\.com/|discord(?:app)?\.com/|webhook\.office\.com/|sig=|/hooks/[a-z0-9]{26}|zapier\.com/|make(?:\.celonis)?\.com/|integromat\.com/|/webhook(?:-test|-waiting)?/~i', $text ) )
       return $text;
 
     return preg_replace ( [ '~(\bapi\.telegram\.org/(?:file/)?bot)\d++:[A-Za-z0-9_-]++~i',
@@ -279,8 +287,37 @@
                             '~(\b(?:(?:canary|ptb)\.)?discord(?:app)?\.com/api(?:/v\d++)?/webhooks/)[A-Za-z0-9/_-]++~i',
                             '~(\.webhook\.office\.com/webhookb2/)[A-Za-z0-9@/_-]++~i',
                             '~(://[^\s"\'<>]*?[?&](?:amp;)?sig=)[^&\s"\'<>#]++~i',
-                            '~(://[^\s"\'<>?#]*?/hooks/)[a-z0-9]{26}(?![A-Za-z0-9])~' ],
+                            '~(://[^\s"\'<>?#]*?/hooks/)[a-z0-9]{26}(?![A-Za-z0-9])~',
+                            '~(\bhooks\.zapier\.com/hooks/(?:catch/|standard/)?)[A-Za-z0-9/_-]++~i',
+                            '~(\bhook\.(?:[a-z0-9-]++\.)?(?:make(?:\.celonis)?|integromat)\.com/)[A-Za-z0-9/_-]++~i',
+                            '~(://[^\s"\'<>?#]*?/webhook(?:-test|-waiting)?/)[^\s"\'<>?#]++~i' ],
                           '$1*** redacted ***', $text ) ?? $text;
+
+  }
+
+  // The values a part of the engine names a credential for the rest of the request, redacted
+  // wherever they stand (padRedactValues, padRedactAddress): a setting a channel marks secret
+  // (subs/channels) - a token, or the address of the webhook channel, any service's, whose
+  // path is all the credential there is. An address is kept from its path on, the host still
+  // shown - whole when its path is shorter than eight characters: redacted by value, a short
+  // one would take every like piece of text out of the report. Handed a value, it keeps it;
+  // the answer is the list.
+
+  function padRedactKeep ( $value = NULL, $address = FALSE ) {
+
+    static $kept = [];
+
+    if ( is_string ( $value ) ) {
+
+      if ( $address and preg_match ( '~^[a-z][a-z0-9+.-]*+://[^/?#]*+/?(.*)$~isD', $value, $match ) and strlen ( $match [1] ) >= 8 )
+        $value = $match [1];
+
+      if ( strlen ( $value ) >= 8 and ! in_array ( $value, $kept, TRUE ) )
+        $kept [] = $value;
+
+    }
+
+    return $kept;
 
   }
 
@@ -294,7 +331,7 @@
 
     global $padSesID;
 
-    $values = [ $GLOBALS ['padCsrfIssued'] ?? '', $_SESSION ['padCsrf'] ?? '', $GLOBALS ['padAppKey'] ?? '' ];
+    $values = array_merge ( [ $GLOBALS ['padCsrfIssued'] ?? '', $_SESSION ['padCsrf'] ?? '', $GLOBALS ['padAppKey'] ?? '' ], padRedactKeep () );
 
     if ( session_status () === PHP_SESSION_ACTIVE and ini_get ( 'session.use_strict_mode' ) )
       $values [] = session_id ();
