@@ -45,7 +45,12 @@
         if ( $rows and ! padChartFieldSomewhere ( $rows, $field ) )
           padError ( "the dumbbell chart's $option='" . padMakeSafe ( $field, 30 ) . "' is no field of its rows" );
 
-    $ends = padChartFields ( padTagParm ( 'names' ) );
+    // names= as text, 'before, after', or as PAD's own list, ['2025', '2026'] - which ended
+    // the page with "Array to string conversion", in the lenient walk too.
+
+    $ends = padTagParm ( 'names' );
+    $ends = is_array ( $ends ) ? array_values ( array_filter ( array_map ( fn ( $end ) => trim ( (string) $end ), array_filter ( $ends, 'is_scalar' ) ), 'strlen' ) )
+                               : padChartFields ( $ends );
 
     if ( $ends and count ( $ends ) != 2 ) {
       if ( $padCheckSyntax )

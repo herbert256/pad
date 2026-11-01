@@ -25,8 +25,8 @@
 
     list ( $numbers, $names ) = padChartGuess ( $rows, TRUE );
 
-    $low   = (string) padTagParm ( 'low',  'low'  );
-    $high  = (string) padTagParm ( 'high', 'high' );
+    $low   = padChartErrorbarBound ( 'low'  );
+    $high  = padChartErrorbarBound ( 'high' );
     $used  = [ $low, $high ];
     $label = padChartPick ( 'label', $names,   $used );
     $value = padChartPick ( 'value', $numbers, $used );
@@ -189,6 +189,27 @@
     }
 
     return "$svg</svg>";
+
+  }
+
+  // The field a bound names, low= or high=, else the field of the bound's own name. One that
+  // is no text - a list, a bare flag - is a mistake the strict check names, and without the
+  // check the field of the bound's own name is read: a list ended the page with "Array to
+  // string conversion", in the lenient walk too.
+
+  function padChartErrorbarBound ( $bound ) {
+
+    global $padCheckSyntax;
+
+    $field = padTagParm ( $bound, $bound );
+
+    if ( is_scalar ( $field ) and ! is_bool ( $field ) )
+      return (string) $field;
+
+    if ( $padCheckSyntax )
+      padError ( "the errorbar chart's $bound= names the field of its bound - $bound='field'" );
+
+    return $bound;
 
   }
 

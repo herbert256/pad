@@ -9,8 +9,8 @@
   C.padChartErrorbar = function (rows, width, height) {
 
     var guess = C.padChartGuess(rows, true);
-    var low   = C.str(C.padTagParm('low',  'low'));
-    var high  = C.str(C.padTagParm('high', 'high'));
+    var low   = C.padChartErrorbarBound('low');
+    var high  = C.padChartErrorbarBound('high');
     var used  = [low, high];
     var label = C.padChartPick('label', guess[1], used);
     var value = C.padChartPick('value', guess[0], used);
@@ -166,6 +166,19 @@
     });
 
     return svg + '</svg>';
+
+  };
+
+  C.padChartErrorbarBound = function (bound) {
+
+    var field = C.padTagParm(bound, bound);
+
+    if (typeof field === 'string' || typeof field === 'number')
+      return C.str(field);
+
+    C.padError("the errorbar chart's " + bound + "= names the field of its bound - " + bound + "='field'");
+
+    return bound;
 
   };
 

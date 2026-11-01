@@ -26,7 +26,10 @@
           C.padError("the dumbbell chart's " + pair[0] + "='" + C.padMakeSafe(pair[1], 30) + "' is no field of its rows");
       });
 
-    var ends = C.padChartFields(C.padTagParm('names'));
+    var ends = C.padTagParm('names');
+    ends = (ends instanceof Map || Array.isArray(ends))
+         ? C.values(ends).filter(C.isScalar).map(function (end) { return C.trim(C.str(end)); }).filter(function (end) { return end !== ''; })
+         : C.padChartFields(ends);
 
     if (ends.length && ends.length !== 2) {
       C.padError("a dumbbell chart names its two ends - names='before, after', it has " + ends.length);
