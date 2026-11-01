@@ -2488,6 +2488,7 @@ from a page's own script.
 | `success` | A rising major arpeggio |
 | `tick` | The tick of a clock, a high wooden tap |
 | `warning` | Two tones taking turns, a small siren |
+| `waterdrop` | A drop falling into water: a sine leaping up and ringing, a smaller drop after it |
 | `whoosh` | Noise through a bandpass sweeping up - air rushing past |
 | `woodblock` | The hollow knock of a wood block, its two modes and the stick |
 
