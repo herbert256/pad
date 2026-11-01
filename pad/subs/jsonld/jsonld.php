@@ -78,7 +78,7 @@
   }
 
   $padJsonLdObject = padJsonLdMake ( $padJsonLdKind, $padJsonLdRows, padJsonLdOptions ( padJsonLdSpec ( $padJsonLdKind ) ),
-                                     padJsonLdText ( padTagParm ( 'id', NULL ), TRUE ),
+                                     padJsonLdOption ( 'id', padTagParm ( 'id', NULL ) ),
                                      fn ( $message ) => $GLOBALS ['padCheckSyntax'] ? padError ( $message ) : NULL );
 
   return ( $padJsonLdObject === FALSE ) ? FALSE : padJsonLdScript ( $padJsonLdObject );

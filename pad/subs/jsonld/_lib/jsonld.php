@@ -125,8 +125,7 @@
 
   // The fields given beside the rows - as options of the tag - read with padTagParm, every
   // name of each, so an option the kind does not take is left unread for the strict check to
-  // name. A value is read as the characters it holds (padParmText): a field inside a quoted
-  // option arrives escaped by its sanitize step.
+  // name. A value is read as the characters it holds (padJsonLdOption).
 
   function padJsonLdOptions ( $spec ) {
 
@@ -136,10 +135,30 @@
       foreach ( $field ['names'] as $one ) {
         $value = padTagParm ( $one, NULL );
         if ( ! padJsonLdEmpty ( $value ) and ! isset ( $given [$name] ) )
-          $given [$name] = padJsonLdText ( $value, TRUE );
+          $given [$name] = padJsonLdOption ( $one, $value );
       }
 
     return $given;
+
+  }
+
+  // An option's value as the characters it holds. A quoted text - headline='{$title}' -
+  // holds its fields escaped by their sanitize step, and is read out of that escaping
+  // (padParmText); an expression - headline=$title - hands over the value itself, which is
+  // read as a row's field is, so the same field writes the same JSON from an option and from
+  // a row: decoded as well, an article about &lt;b&gt; became one about <b>.
+
+  function padJsonLdOption ( $name, $value ) {
+
+    global $pad, $padParms;
+
+    $quoted = FALSE;
+
+    foreach ( $padParms [$pad] ?? [] as $one )
+      if ( $one ['padPrmKind'] == 'option' and $one ['padPrmName'] === $name )
+        $quoted = (bool) preg_match ( '/^\s*[^=]+=\s*(\'(?:[^\'\\\\]|\\\\.)*\'|"(?:[^"\\\\]|\\\\.)*")\s*$/sD', $one ['padPrmOrg'] );
+
+    return padJsonLdText ( $value, $quoted );
 
   }
 
