@@ -1,3 +1,13 @@
-{common:padFrame/}
+{common:padFrame}
+  {slot 'head'}{asset 'home.css', tag/}{/slot}
+  {slot 'side'}
+    <nav class="frame-nav home-apps" aria-label="Applications">
+      {homeMenu}
+        <div class="frame-head">{$head}</div>
+        {homeApps}<a href="{$href}"{if $current} aria-current="page"{/if}>{icon $icon, size=16/}<span><b>{$name}</b><small>{$about}</small></span></a>{/homeApps}
+      {/homeMenu}
+    </nav>
+  {/slot}
+{/common:padFrame}
 @page@
 {common:padFrameEnd/}
