@@ -550,16 +550,21 @@
 
       // A moment is in the bar that the bar lines between the first moment and it count to:
       // a bar line before the first note opens the first bar, one after the last closes the
-      // last; the bars of the next part count on.
+      // last; the bars of the next part count on. The moments come in column order and the
+      // bar lines are sorted, so the count is a pointer that only moves forward.
 
-      $bars   = array_keys ( $bars );
       $start  = $moments ? $moments [0] [0] [0] : 0;
+      $bars   = array_values ( array_filter ( array_keys ( $bars ), fn ( $column ) => $column > $start ) );
+      $passed = 0;
       $number = 0;
       $words  = [];
 
       foreach ( $moments as $moment ) {
 
-        $in = 1 + count ( array_filter ( $bars, fn ( $column ) => $column > $start and $column < $moment [0] [0] ) );
+        while ( isset ( $bars [$passed] ) and $bars [$passed] < $moment [0] [0] )
+          $passed++;
+
+        $in = 1 + $passed;
 
         if ( $in != $number and $words ) {
           $said [] = 'Bar ' . ( $bar + $number ) . ': ' . implode ( '; ', $words ) . '.';
