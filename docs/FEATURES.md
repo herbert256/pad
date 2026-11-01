@@ -1869,11 +1869,12 @@ list itself is `$_POST ['tags']`.
 {section:downloads}{section:item 'app.zip', link='/app.zip', size=2457600, checksum='sha256:<64 hex>'/}{/section:downloads}
 {section:agenda timezone='CET'}{section:item 'Keynote', from='09:00', to='10:00', track='Hall'/}{/section:agenda}
 {section:blog title='From the blog', data='posts'/}       # a card each, its title the one link
+{section:highlights}{section:item 'Fast', image='fast.png', alt='...'}Pages in ms.{/section:item}{/section:highlights}
 ```
 The blocks a landing page is built of, in HTML and CSS alone - the questions are `<details>`, the
 forms post back without a script: hero, features, pricing (a featured plan with its badge),
 testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, footer, comparison
-(a table of plans), changelog, downloads, agenda and blog, and
+(a table of plans), changelog, downloads, agenda, blog and highlights, and
 `item`, the item of the sections that list things. A part of a section comes three ways, the
 first that has one winning: a `{slot 'name'}` pair directly in its content - template, rendered
 where the section stands, in the scope of the loop around it - an option of the part's name,
@@ -1907,6 +1908,8 @@ and track, those that start together side by side, a break (`pause`) quieter; `t
 clock under the heading, `tracks=` names the tracks and their order.
 A blog card's title is its one link, stretched over the card for the pointer, with its date, tag,
 author and picture.
+Highlights set a picture beside the words of each, the sides changing row by row (`flip` starts with
+the picture left).
 Every section is a size container - its layout follows the room it has (`@container`), not the
 window; the colours are `--pad-section-bg`, `-panel`, `-text`, `-soft`, `-dim`, `-line`,
 `-accent`, `-accent-text`, `-accent-soft` on `.pad-section`, their defaults the frame's palette

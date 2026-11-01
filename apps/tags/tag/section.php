@@ -24,6 +24,7 @@
 {section:downloads} {section:item 'file', link='?file', size=2457600, checksum='sha256:...'/} ... {/section:downloads}
 {section:agenda timezone='CET'} {section:item 'title', from='09:00', to='10:00', track='name'/} ... {/section:agenda}
 {section:blog data='posts'/}
+{section:highlights} {section:item 'title', image='picture.jpg', alt='text'} text {/section:item} ... {/section:highlights}
 {section:hero} {slot 'eyebrow'} ... {/slot} {slot 'actions'} ... {/slot} {/section:hero}
 PAD;
 
@@ -41,7 +42,7 @@ PAD;
     'second'     => 'hero, cta: a quieter second button, with <code>secondLink</code>.',
     'image'      => 'hero: a picture beside the words, <code>alt</code> its text - a <code>{slot \'image\'}</code> of markup in its place.',
     'note'       => 'hero, cta, pricing, newsletter: the small print; footer: the line under it all.',
-    'data'       => 'A list section - features, pricing, testimonials, faq, stats, steps, team, logos, gallery, footer, comparison, changelog, downloads, agenda, blog: its items from the rows of a store, the page\'s array or a <code>_data</code> file, by their fields.',
+    'data'       => 'A list section - features, pricing, testimonials, faq, stats, steps, team, logos, gallery, footer, comparison, changelog, downloads, agenda, blog, highlights: its items from the rows of a store, the page\'s array or a <code>_data</code> file, by their fields.',
     'columns'    => 'The cards side by side at the widest, 1 to 6 - fewer as the section narrows.',
     'open'       => 'faq: the question open at first, by its number; bare, every question. <code>single</code> keeps one open at a time.',
     'form'       => 'newsletter: the form\'s name (<code>newsletter</code>); contact: bare for a message form, or its name. <code>thanks</code> is what shows once it came back right.',

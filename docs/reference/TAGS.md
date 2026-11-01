@@ -4016,11 +4016,11 @@ a `data` name that names nothing and no value at all are strict errors.
 ### section
 A block of a landing page - a hero, the features, the prices, what customers say, the questions, a
 call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact details,
-a gallery, the footer, a comparison table, a changelog, the downloads, an agenda or the latest
-articles - in HTML and CSS alone. Every section is a file of `pad/subs/sections/types/`, its style
-in `www/assets/sections/` (`section.css`, shared, and a sheet per kind, each written once per page
-with the CSP nonce); the files of `types/` are the sections there are, and the subsystem is
-`pad/subs/sections/`.
+a gallery, the footer, a comparison table, a changelog, the downloads, an agenda, the latest
+articles or highlights beside their pictures - in HTML and CSS alone. Every section is a file of
+`pad/subs/sections/types/`, its style in `www/assets/sections/` (`section.css`, shared, and a sheet
+per kind, each written once per page with the CSP nonce); the files of `types/` are the sections
+there are, and the subsystem is `pad/subs/sections/`.
 
 ```html
 {section 'hero', 'Pages that drive themselves', button='Start', link='?start', second='Read more', secondLink='?docs'}
@@ -4116,7 +4116,7 @@ theme sets them on `.pad-section`.
 | Option | On | Meaning |
 |--------|----|---------|
 | `title` | every section | The heading - also the first value; a slot `title` of markup wins |
-| `eyebrow` | hero, features, pricing, testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, comparison, changelog, downloads, agenda, blog | The small line above the heading |
+| `eyebrow` | hero, features, pricing, testimonials, faq, cta, stats, steps, team, logos, newsletter, contact, gallery, comparison, changelog, downloads, agenda, blog, highlights | The small line above the heading |
 | `text` | every section | The line under the heading; the content wins over it, a slot `text` over both |
 | `level` | every section | The heading's level, 1 to 6 (2); an item's heading one more |
 | `tone` | every section | `plain`, `soft` or `accent` - the background (cta: accent, newsletter: soft) |
@@ -4138,6 +4138,7 @@ theme sets them on `.pad-section`.
 | `included`, `excluded`, `unknown` | comparison | The words a check, a dash and a question mark are read as (Included, Not included, Unknown) |
 | `timezone` | agenda | The clock the times are on, said under the heading - CET, Europe/Amsterdam |
 | `tracks` | agenda | The tracks, in their order - a session in another track is reported |
+| `flip` | highlights | The zigzag starts with the picture on the left |
 
 | Section | Shows | Parts | An item's fields - its first value first, its content last |
 |---------|-------|-------|-----------------------------------------------------------|
@@ -4160,6 +4161,7 @@ theme sets them on `.pad-section`.
 | `downloads` | A row per file - platform, version, size, date, checksum - and its button | eyebrow, title, text, note | name, link, platform, version, size, date, checksum (`sha256:<hex>`), button, featured, text |
 | `agenda` | The sessions by day, time and track, those at one time side by side | eyebrow, title, text | title, from, to (`09:30`, `2026-11-05T09:30`), day, track, speaker, link, pause, text |
 | `blog` | A card per article, its title the one link, its picture on top | eyebrow, title, text | title, link, date, tag, author, image, alt, text |
+| `highlights` | A picture beside the words, the sides changing row by row | eyebrow, title, text | title, eyebrow, image, alt, link, button, text (or a picture of markup) |
 | `item` | One item of the list section around it | - | - |
 
 ---
