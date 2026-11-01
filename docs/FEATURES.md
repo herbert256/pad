@@ -390,7 +390,9 @@ The providers are the files of `pad/subs/oauth/types/` - apple, discord, forgejo
 `base=`), github, gitlab (`base=` for one's own), google, microsoft (`tenant=`), oidc (any OpenID
 provider, its endpoints from `<issuer>/.well-known/openid-configuration`) - each an array: the
 endpoints, the scopes, PKCE, the settings it needs and how its answer maps to the user. The
-user: `provider`, `id` (`github:583231` - never the same for two providers), `sub` (the
+user: `provider`, `id` (`github:583231` - never the same for two providers, nor for two
+instances of one: a GitLab or Forgejo of one's own and every OpenID issuer have their address
+in it, `gitlab@git.example.org:42`, `oidc@sso.example.com/realms/main:<sub>`), `sub` (the
 provider's own id), `name`, `email`, `avatar`, `username`; GitHub's private address comes from
 `/user/emails`, Apple's name from the first login's post. The settings are `padEnv` values -
 `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GITLAB_URL`, `MICROSOFT_TENANT`, `OIDC_ISSUER`;

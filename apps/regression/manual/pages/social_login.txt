@@ -150,7 +150,8 @@ name.</p>
 <p>Every provider is a file of <code>pad/subs/oauth/types/</code> - apple, discord, forgejo, github, gitlab, google, microsoft, oidc -
 an array with its endpoints, its scopes, whether it takes PKCE, the settings it needs and how its
 answer becomes the user: <code>provider</code>, <code>id</code> (<code>github:583231</code>, never the
-same for two providers), <code>sub</code>, <code>name</code>, <code>email</code>, <code>avatar</code>
+same for two providers - nor for two instances of one: a GitLab of one's own has its address in
+it, <code>gitlab@git.example.org:42</code>, and so has every OpenID issuer), <code>sub</code>, <code>name</code>, <code>email</code>, <code>avatar</code>
 and <code>username</code>. A provider is added by adding its file.</p>
 
 <ul>

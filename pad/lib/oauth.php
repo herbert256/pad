@@ -28,8 +28,10 @@
   // padOAuthKinds   the providers there are
   //
   // The user: provider (github), id (github:583231 - the provider's own id with the
-  // provider in front, so two providers never give one id), sub (583231), name, email,
-  // avatar and username - '' where the provider has none. The code is in
+  // provider in front, so two providers never give one id; for an instance other than the
+  // provider's default its address too - gitlab@git.example.org:42, every OpenID issuer's
+  // oidc@sso.example.com/realms/main:<sub> - as a sub is unique within its instance alone),
+  // sub (583231), name, email, avatar and username - '' where the provider has none. The code is in
   // subs/oauth/_lib/oauth.php, read the first time one of these runs.
   //
   // A provider's client id and secret come from padEnv - GITHUB_CLIENT_ID and

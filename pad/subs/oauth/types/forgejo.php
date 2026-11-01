@@ -6,8 +6,11 @@
 
   $base = rtrim ( (string) ( $options ['base'] ?? padEnv ( 'FORGEJO_URL', 'https://codeberg.org' ) ), '/' );
 
+  // Every forge counts its users from 1: the address of one other than Codeberg goes into the id.
+
   return [
-    'name'      => ( $base === 'https://codeberg.org' ) ? 'Codeberg' : 'Forgejo',
+    'name'      => ( strtolower ( $base ) === 'https://codeberg.org' ) ? 'Codeberg' : 'Forgejo',
+    'instance'  => ( strtolower ( $base ) === 'https://codeberg.org' ) ? '' : $base,
     'icon'      => 'forgejo',
     'authorize' => "$base/login/oauth/authorize",
     'token'     => "$base/login/oauth/access_token",

@@ -7,8 +7,11 @@
 
   $base = rtrim ( (string) ( $options ['base'] ?? padEnv ( 'GITLAB_URL', 'https://gitlab.com' ) ), '/' );
 
+  // A GitLab of one's own counts its users as gitlab.com does: its address goes into the id.
+
   return [
     'name'      => 'GitLab',
+    'instance'  => ( strtolower ( $base ) === 'https://gitlab.com' ) ? '' : $base,
     'icon'      => 'gitlab',
     'authorize' => "$base/oauth/authorize",
     'token'     => "$base/oauth/token",

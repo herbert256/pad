@@ -10,6 +10,9 @@
   //   authorize  the authorize endpoint, token the token endpoint, userinfo the user's
   //              endpoint ('' - the id_token's claims are the user, as Apple's)
   //   discovery  TRUE: the three come from <issuer>/.well-known/openid-configuration
+  //   instance   the address of the provider's instance when it is not its default one - a
+  //              GitLab of one's own - '' for the default: it goes into the user's id, as a
+  //              sub is unique within its instance alone; a discovery provider's is its issuer
   //   issuer     the id_token's iss; {tid} in it stands for the token's own tid claim
   //   claims     claims the id_token must carry with these values
   //   oidc       an OpenID Connect provider: a nonce, and the id_token checked
@@ -61,7 +64,7 @@
 
     $provider = padOAuthInclude ( PAD . "subs/oauth/types/$kind.php", $options );
 
-    $provider += [ 'name' => $kind, 'icon' => '', 'authorize' => '', 'token' => '', 'userinfo' => '', 'discovery' => FALSE,
+    $provider += [ 'name' => $kind, 'icon' => '', 'authorize' => '', 'token' => '', 'userinfo' => '', 'discovery' => FALSE, 'instance' => '',
                    'issuer' => '', 'claims' => [], 'oidc' => FALSE, 'scopes' => '', 'pkce' => TRUE, 'post' => FALSE,
                    'params' => [], 'needs' => [], 'secret' => NULL, 'headers' => [], 'user' => [], 'more' => NULL ];
 
@@ -97,6 +100,7 @@
         return NULL;
 
       $provider ['issuer']    = $doc ['issuer'];
+      $provider ['instance']  = $doc ['issuer'];
       $provider ['authorize'] = (string) ( $doc ['authorization_endpoint'] ?? '' );
       $provider ['token']     = (string) ( $doc ['token_endpoint'] ?? '' );
       $provider ['userinfo']  = (string) ( $doc ['userinfo_endpoint'] ?? '' );
@@ -371,11 +375,32 @@
       return padOAuthFail ( "the user $name gave has no id" );
 
     $user ['provider'] = $kind;
-    $user ['id']       = $kind . ':' . $user ['sub'];
+    $user ['id']       = padOAuthId ( $kind, (string) $provider ['instance'], $user ['sub'] );
 
     return [ 'provider' => $user ['provider'], 'id'     => $user ['id'],     'sub'      => $user ['sub'],
              'name'     => $user ['name'],     'email'  => $user ['email'],  'avatar'   => $user ['avatar'],
              'username' => $user ['username'] ];
+
+  }
+
+  // The user's id: the kind and the sub for the provider's default instance - github:583231 -
+  // else the kind, the instance's address and the sub - gitlab@git.example.org:42 - as a sub
+  // is unique within its instance alone (OpenID Connect Core 2: within the issuer), and a
+  // GitLab of one's own counts its users from 1 as gitlab.com does. The address without its
+  // https://, its scheme and host in lower case, a : and a % in it written %3A and %25: the
+  // first : after the kind ends the instance, so no two instances and subs read alike.
+
+  function padOAuthId ( $kind, $instance, $sub ) {
+
+    $instance = rtrim ( $instance, '/' );
+
+    if ( $instance === '' )
+      return "$kind:$sub";
+
+    $instance = preg_replace_callback ( '~^[a-z][a-z0-9+.-]*://[^/?#]*~i', fn ( $match ) => strtolower ( $match [0] ), $instance );
+    $instance = preg_replace ( '~^https://~', '', $instance );
+
+    return $kind . '@' . strtr ( $instance, [ '%' => '%25', ':' => '%3A' ] ) . ':' . $sub;
 
   }
 
