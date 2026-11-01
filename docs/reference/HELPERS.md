@@ -1136,7 +1136,7 @@ values, and a formula that is no text, are reported with `padError`.
 
 | Function | Answers |
 |----------|---------|
-| `padPalette ( $name, $steps = NULL )` | The colours of a palette of `pad/subs/palettes/types/`, `'#rrggbb'` each: a sequential or diverging one (viridis, blues, rdbu ...) sampled evenly from its first colour to its last in `$steps` steps, one step its middle; a cyclic one (romao) evenly round its circle, never its first colour twice, one step its first; a categorical one (okabe-ito, tol-bright ...) its colours in order, starting again past its last; without `$steps` a categorical palette's own colours, twelve of a cyclic one, nine of the others. A name that is no palette, or steps that are no whole number from 1 to 256, is reported and answers `[]` |
+| `padPalette ( $name, $steps = NULL )` | The colours of a palette of `pad/subs/palettes/types/`, `'#rrggbb'` each: a sequential or diverging one (viridis, blues, rdbu ...) sampled evenly from its first colour to its last in `$steps` steps, one step its middle; a cyclic one (romao) evenly round its circle, never its first colour twice, one step its first; a categorical one (okabe-ito, tol-bright ...) its colours in order, starting again past its last; without `$steps` a categorical palette's own colours, twelve of a cyclic one, nine of the others. The name is read in any case, as `{palette}` and `palette=` read it - `romaO` is romao. A name that is no palette, or steps that are no whole number from 1 to 256, is reported and answers `[]` |
 
 ```php
 $colors = padPalette ( 'viridis', 5 );   // [ '#440154', '#3b528b', '#21918d', '#5dc863', '#fde725' ]
