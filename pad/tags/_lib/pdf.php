@@ -1986,12 +1986,17 @@
   // a group with a transform. The viewBox is read as viewbox: the HTML parser writes every
   // attribute name in lower case.
 
+  // A number past the range of a float - width="1e400" is INF - is no number of it: the
+  // scale was INF times 0, and the content stream held nan where a reader wants a number.
+
   function padPdfSvg ( &$doc, $svg, $ctx ) {
 
-    $view = preg_split ( '/[\s,]+/', trim ( $svg->getAttribute ( 'viewbox' ) ) );
-    $view = ( count ( $view ) == 4 and count ( array_filter ( $view, 'is_numeric' ) ) == 4 ) ? array_map ( 'floatval', $view ) : NULL;
+    $real = fn ( $attr ) => is_numeric ( $attr ) and is_finite ( (float) $attr );
 
-    $px = fn ( $attr, $other ) => ( is_numeric ( $attr ) and (float) $attr > 0 ) ? (float) $attr : $other;
+    $view = preg_split ( '/[\s,]+/', trim ( $svg->getAttribute ( 'viewbox' ) ) );
+    $view = ( count ( $view ) == 4 and count ( array_filter ( $view, $real ) ) == 4 ) ? array_map ( 'floatval', $view ) : NULL;
+
+    $px = fn ( $attr, $other ) => ( $real ( $attr ) and (float) $attr > 0 ) ? (float) $attr : $other;
 
     $pw = $px ( preg_replace ( '/px$/', '', $svg->getAttribute ( 'width' ) ), $view [2] ?? 0 );
     $ph = $px ( preg_replace ( '/px$/', '', $svg->getAttribute ( 'height' ) ), $view [3] ?? 0 );
@@ -2008,6 +2013,9 @@
     $scale = min ( 1, $room / $w, $tall / $h );
     $w    *= $scale;
     $h    *= $scale;
+
+    if ( ! ( $w > 0 ) or ! ( $h > 0 ) or ! is_finite ( $w / $view [2] ) or ! is_finite ( $h / $view [3] ) )
+      return;
 
     padPdfMarkerLine ( $doc );
     padPdfSpace ( $doc, 2 );
@@ -2028,11 +2036,22 @@
 
   }
 
+  // A shape at a place past the range of a float is left out, and a text size or a stroke
+  // is held to 1000 points.
+
   function padPdfSvgDraw ( &$doc, $node, $map, $ctx ) {
 
     list ( $x0, $y0, $sx, $sy, $vx, $vy ) = $map;
 
-    $at = fn ( $x, $y ) => padPdfN ( $x0 + ( $x - $vx ) * $sx ) . ' ' . padPdfN ( $y0 - ( $y - $vy ) * $sy );
+    $out = FALSE;
+
+    $at = function ( $x, $y ) use ( $x0, $y0, $sx, $sy, $vx, $vy, &$out ) {
+      $px = $x0 + ( $x - $vx ) * $sx;
+      $py = $y0 - ( $y - $vy ) * $sy;
+      if ( ! is_finite ( $px ) or ! is_finite ( $py ) )
+        $out = TRUE;
+      return padPdfN ( $px ) . ' ' . padPdfN ( $py );
+    };
 
     foreach ( $node->childNodes as $el ) {
 
@@ -2044,7 +2063,8 @@
       $fill  = ( strtolower ( $fill ) == 'currentcolor' ) ? $ctx ['color'] : padPdfRgb ( $fill );
       $paint = ( $fill !== NULL ? "$fill rg " : '' );
       $line  = padPdfRgb ( $el->getAttribute ( 'stroke' ) );
-      $line  = ( $line !== NULL ) ? "$line RG " . padPdfN ( max ( 0.05, (float) ( $el->getAttribute ( 'stroke-width' ) ?: 1 ) * $sx ) ) . ' w ' : '';
+      $line  = ( $line !== NULL ) ? "$line RG " . padPdfN ( min ( 1000, max ( 0.05, (float) ( $el->getAttribute ( 'stroke-width' ) ?: 1 ) * $sx ) ) ) . ' w ' : '';
+      $out   = FALSE;
       $how   = ( $fill !== NULL and $line ) ? 'B' : ( $fill !== NULL ? 'f' : ( $line ? 'S' : '' ) );
 
       if ( $name == 'g' and ! $el->hasAttribute ( 'transform' ) )
@@ -2058,10 +2078,12 @@
         $rw   = $size ( $el->getAttribute ( 'width' ),  padPdfSvgWhole ( $el, 2 ) );
         $rh   = $size ( $el->getAttribute ( 'height' ), padPdfSvgWhole ( $el, 3 ) );
 
-        if ( $rw > 0 and $rh > 0 )
-          padPdfOps ( $doc, "q $paint$line" . $at ( $rx, $ry + $rh ) . ' ' . padPdfN ( $rw * $sx ) . ' ' . padPdfN ( $rh * $sy ) . " re $how Q" );
+        $place = $at ( $rx, $ry + $rh );
 
-      } elseif ( $name == 'path' and $how and ( $ops = padPdfSvgPath ( $el->getAttribute ( 'd' ), $at ) ) !== '' )
+        if ( $rw > 0 and $rh > 0 and ! $out and is_finite ( $rw * $sx ) and is_finite ( $rh * $sy ) )
+          padPdfOps ( $doc, "q $paint$line$place " . padPdfN ( $rw * $sx ) . ' ' . padPdfN ( $rh * $sy ) . " re $how Q" );
+
+      } elseif ( $name == 'path' and $how and ( $ops = padPdfSvgPath ( $el->getAttribute ( 'd' ), $at ) ) !== '' and ! $out )
 
         padPdfOps ( $doc, "q $paint$line$ops $how Q" );
 
@@ -2075,12 +2097,15 @@
         $style = $ctx;
         $style ['bold'] = $style ['italic'] = $style ['under'] = FALSE;
         $style ['mono'] = (bool) preg_match ( '/mono|courier|consolas|menlo/i', $el->getAttribute ( 'font-family' ) );
-        $style ['size'] = max ( 1, (float) ( $el->getAttribute ( 'font-size' ) ?: 12 ) * $sy );
+        $style ['size'] = min ( 1000, max ( 1, (float) ( $el->getAttribute ( 'font-size' ) ?: 12 ) * $sy ) );
 
         $wide   = padPdfWidth ( $doc, $text, $style );
         $anchor = $el->getAttribute ( 'text-anchor' );
         $tx     = $x0 + ( (float) $el->getAttribute ( 'x' ) - $vx ) * $sx - ( $anchor == 'middle' ? $wide / 2 : ( $anchor == 'end' ? $wide : 0 ) );
         $ty     = $y0 - ( (float) $el->getAttribute ( 'y' ) - $vy ) * $sy;
+
+        if ( ! is_finite ( $tx ) or ! is_finite ( $ty ) )
+          continue;
 
         padPdfOps ( $doc, "BT $fill rg /" . padPdfFont ( $doc, $style ) . ' ' . padPdfN ( $style ['size'] ) . ' Tf '
                         . padPdfN ( $tx ) . ' ' . padPdfN ( $ty ) . ' Td (' . padPdfString ( $text ) . ') Tj ET' );
