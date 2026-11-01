@@ -3168,10 +3168,13 @@ pixels, each kind with its own default and bounds; `width=` (480) and `height=` 
 which covers its box (`preserveAspectRatio="xMidYMid slice"`); `opacity=` how strongly the motif
 shows (1). `as='url'` writes `url('data:image/svg+xml,...')` for a style attribute - quotes and the
 characters a URL or HTML would read escaped. A pattern is decoration, `aria-hidden`, unless
-`title=` names it: then it is `role="img"` with a `<title>`. Its ids are its own on the page. An
-unknown pattern, a colour that is none, a number outside its bounds, an `as` other than `svg` or
-`url`, an option the kind does not take and content between its tags are errors under the strict
-check.
+`title=` names it: then it is `role="img"` with a `<title>`. Its ids are its own on the page. A
+pattern is drawn on every request, so the kinds that draw a shape per place - triangles,
+hexagons, truchet, chevron and waves 50,000 at most, voronoi 10,000 cells - and topography (its
+grid times its levels, 1,500,000 at most) have a budget for the size, the picture and the levels
+together: past it the pattern is not drawn. An unknown pattern, a colour that is none, a number
+outside its bounds, an `as` other than `svg` or `url`, an option the kind does not take, content
+between its tags and a pattern past its budget are errors under the strict check.
 
 ---
 

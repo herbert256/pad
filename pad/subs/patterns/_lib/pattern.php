@@ -8,11 +8,21 @@
   //            'colors'  => [ '#f6f1e7', '#b8a283' ],  background first, then the inks
   //            'opacity' => 1,                         the default opacity, when not 1
   //            'options' => [ 'levels' => [ 12, 2, 60 ] ],   its own: default, least, most
+  //            'count'   => [ 'triangles', 50000, function ( $p ) { ... }, 'a larger size' ],
   //            'draw'    => function ( $p ) { ... return [ $defs, $body ]; } ];
   //
   // $p holds w and h, the size, bg and ink (the colours), id (the prefix of the ids the
   // drawing defines) and the kind's own options; the drawing reads its random numbers from
   // padPatternRand and writes its numbers with padPatternNum.
+  //
+  // The budget: a kind that draws a shape per place of the picture - triangles, hexagons,
+  // truchet, chevron, waves, voronoi - or traces a grid - topography - answers in 'count' what
+  // it draws, the most it draws, how many it would for these options and what to change. Each
+  // number between its bounds is not enough: a topography of 4000 by 4000 at size 20 and 60
+  // levels took 26 seconds, 415 MB and wrote 107 MB of SVG, and triangles of 6 on 4000 by 4000
+  // 25 MB - on every view, as a pattern is drawn on every request. Past its count a pattern is
+  // an error under the strict check (padPattern: always) and is not drawn - '' - without it:
+  // no single value is the one to put back to its default.
   //
   // padPatternMake     the SVG of a pattern, or its url() - '' for a kind that is not there
   // padPatternOptions  the options a kind takes: the common ones and its own
@@ -124,6 +134,15 @@
 
     if ( ! $p ['ink'] )
       $p ['ink'] = [ $p ['bg'] ];
+
+    if ( isset ( $spec ['count'] ) ) {
+      list ( $what, $most, $count, $fix ) = $spec ['count'];
+      $n = $count ( $p );
+      if ( $n > $most ) {
+        $fail ( "$name would draw " . number_format ( $n ) . " $what on $width x $height at size $size - " . number_format ( $most ) . " at most: $fix" );
+        return '';
+      }
+    }
 
     $p ['id'] = ( $as == 'url' ) ? 'p' : padWidgetId ( 'pattern', [ $kind, $seed, $width, $height, $size, $colors, $opacity, $p ] );
 

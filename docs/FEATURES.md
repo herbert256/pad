@@ -1240,8 +1240,10 @@ the seed is 1. A pattern is decoration (`aria-hidden`) unless `title=` names it,
 motion. The patterns are the files of `pad/subs/patterns/types/` - each answers its default size
 and colours, its own options and the function that draws it - and a pattern is added by adding
 its file; their names are never reached bare, as dots, grid and waves are names of fields and
-pages. An unknown pattern, a colour that is none and a number outside its bounds are errors
-under the strict check. Code: the pattern subsystem in `pad/subs/patterns/` - `pattern.php` the
+pages. A pattern is drawn on every request, so a kind that draws a shape per place, and topography
+its grid times its levels, has a budget for the size, the picture and the levels together - past
+it the pattern is not drawn. An unknown pattern, a colour that is none, a number outside its bounds
+and a pattern past its budget are errors under the strict check. Code: the pattern subsystem in `pad/subs/patterns/` - `pattern.php` the
 body both forms run, `_lib/` the drawing and its helpers, `types/` the patterns;
 `pad/types/pattern.php` the pattern type, `pad/lib/pattern.php` `padPattern`. The `patterns`
 application shows every pattern with a seed to change by link.

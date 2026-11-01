@@ -1045,7 +1045,7 @@ naming the variable to set.
 
 | Function | Answers |
 |----------|---------|
-| `padPattern ( $kind, $options = [] )` | The SVG of a pattern - `padPattern ( 'topography', [ 'seed' => 7, 'width' => 960 ] )` - or with `'as' => 'url'` its CSS `url('data:image/svg+xml,...')`: the bytes `{pattern}` writes for the same options. The options are those of the tag (seed, colors as a list or a text, size, width, height, opacity, as, title and the kind's own); an unknown kind answers `''`, a wrong option is reported with `padError` and drawn as its default |
+| `padPattern ( $kind, $options = [] )` | The SVG of a pattern - `padPattern ( 'topography', [ 'seed' => 7, 'width' => 960 ] )` - or with `'as' => 'url'` its CSS `url('data:image/svg+xml,...')`: the bytes `{pattern}` writes for the same options. The options are those of the tag (seed, colors as a list or a text, size, width, height, opacity, as, title and the kind's own); an unknown kind answers `''`, a wrong option is reported with `padError` and drawn as its default, a pattern past its budget (the shapes of its size on its picture, topography's grid times its levels) reported and answered `''` |
 | `padPatternKinds ()` | The patterns, the files of `pad/subs/patterns/types/`, sorted |
 
 ## Public holidays

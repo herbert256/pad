@@ -14,6 +14,12 @@
     'size'    => [ 70, 16, 1000 ],
     'colors'  => [ '#ffffff', '#e63946', '#f1faee', '#a8dadc', '#457b9d', '#1d3557' ],
 
+    // A cell is cut by up to 24 neighbours, some 30 microseconds: 10,000 cells, a third of a
+    // second.
+
+    'count'   => [ 'cells', 10000, fn ( $p ) => max ( 1, (int) round ( $p ['w'] / $p ['size'] ) ) * max ( 1, (int) round ( $p ['h'] / $p ['size'] ) ),
+                   'a larger size or a smaller width and height' ],
+
     'draw'    => function ( $p ) {
 
       include_once PAD . 'subs/patterns/_lib/voronoi.php';

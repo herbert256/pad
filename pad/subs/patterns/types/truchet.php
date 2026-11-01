@@ -10,6 +10,8 @@
 
     'size'    => [ 28, 6, 400 ],
     'colors'  => [ '#f7f4ee', '#3d405b' ],
+    'count'   => [ 'tiles', 50000, fn ( $p ) => (int) ceil ( $p ['w'] / $p ['size'] ) * (int) ceil ( $p ['h'] / $p ['size'] ),
+                   'a larger size or a smaller width and height' ],
 
     'draw'    => function ( $p ) {
 

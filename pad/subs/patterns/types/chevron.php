@@ -9,6 +9,8 @@
 
     'size'    => [ 24, 4, 300 ],
     'colors'  => [ '#fbf7f0', '#e07a5f', '#f2cc8f' ],
+    'count'   => [ 'zigzags', 50000, fn ( $p ) => ( (int) ceil ( $p ['h'] / $p ['size'] ) + 2 ) * (int) ceil ( ( $p ['w'] + 2 * $p ['size'] ) / $p ['size'] ),
+                   'a larger size or a smaller width and height' ],
 
     'draw'    => function ( $p ) {
 

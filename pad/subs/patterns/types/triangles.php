@@ -10,6 +10,8 @@
 
     'size'    => [ 40, 6, 400 ],
     'colors'  => [ '#ffffff', '#d6eef0', '#a8dadc', '#7fb3c9', '#457b9d', '#2b5a83', '#1d3557' ],
+    'count'   => [ 'triangles', 50000, fn ( $p ) => (int) ceil ( $p ['h'] / ( $p ['size'] * sqrt ( 3 ) / 2 ) ) * ( (int) ceil ( 2 * $p ['w'] / $p ['size'] ) + 1 ),
+                   'a larger size or a smaller width and height' ],
 
     'draw'    => function ( $p ) {
 

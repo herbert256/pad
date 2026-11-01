@@ -10,6 +10,8 @@
 
     'size'    => [ 18, 4, 300 ],
     'colors'  => [ '#f8f6f1', '#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51' ],
+    'count'   => [ 'hexagons', 50000, fn ( $p ) => ( (int) ceil ( $p ['w'] / ( 1.5 * $p ['size'] ) ) + 2 ) * ( (int) ceil ( $p ['h'] / ( sqrt ( 3 ) * $p ['size'] ) ) + 3 ),
+                   'a larger size or a smaller width and height' ],
 
     'draw'    => function ( $p ) {
 

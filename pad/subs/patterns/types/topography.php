@@ -21,6 +21,14 @@
     'colors'  => [ '#f6f1e7', '#c4b294', '#8c7356' ],
     'options' => [ 'levels' => [ 12, 2, 60 ] ],
 
+    // The work is the cells of the grid times the levels traced through them: 1,500,000 at
+    // most, some half a second - the grid is a twelfth of the size apart, 3 pixels at the least, so
+    // past a size of 144 only fewer levels or a smaller picture make it less.
+
+    'count'   => [ 'cells of its grid times its levels', 1500000,
+                   fn ( $p ) => (int) ceil ( $p ['w'] / max ( 3, min ( 12, $p ['size'] / 12 ) ) ) * (int) ceil ( $p ['h'] / max ( 3, min ( 12, $p ['size'] / 12 ) ) ) * (int) $p ['levels'],
+                   'a larger size, fewer levels or a smaller width and height' ],
+
     'draw'    => function ( $p ) {
 
       include_once PAD . 'subs/patterns/_lib/topography.php';

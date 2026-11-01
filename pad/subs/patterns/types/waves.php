@@ -9,6 +9,8 @@
 
     'size'    => [ 18, 4, 200 ],
     'colors'  => [ '#f2f7fb', '#9cc3dd', '#5b9bc4' ],
+    'count'   => [ 'waves', 50000, fn ( $p ) => ( (int) ceil ( $p ['h'] / $p ['size'] ) + 2 ) * (int) ceil ( ( $p ['w'] + 6 * $p ['size'] ) / ( 2 * $p ['size'] ) ),
+                   'a larger size or a smaller width and height' ],
 
     'draw'    => function ( $p ) {
 
