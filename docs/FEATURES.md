@@ -1258,6 +1258,7 @@ and its WAV.
 {printable:graphpaper grid='dots', major=2, copies=10}Name ________{/printable:graphpaper}   # squares, dots or lines, drawn exactly
 {printable:calendar year=2027, holidays='nl', weeks, data='photos'}<h2>{$caption}</h2>{/printable:calendar}   # a month a sheet
 {printable:foldcard data='guests'}<header>...</header><aside>...</aside>Dear {$name}<footer>...</footer>{/printable:foldcard}
+{printable:staffpaper grand, rastral=2}<b>Sonatina</b>{/printable:staffpaper}   # music paper, empty staves
 ```
 Pages made for paper. A kind is a file of `pad/subs/printables/types/` - labels (sheet grids named
 by their paper and their grid: a4-3x8, a4-3x7, a4-2x7, a4-2x8, a4-2x4, a4-4x10, a4-5x13,
@@ -1311,6 +1312,14 @@ of the sheet; its `<aside>` the inside left and the rest of the item the inside 
 on the upper half so that folded they read the right way up. `paper=` a4, a3 or letter,
 `landscape` for a card on its side, `padding=` (8 mm) keeps the text off the folds; the folds and
 the names of the panels are on the screen alone, `folds` prints the folds as light lines.
+
+Staff paper (`staffpaper`) is music paper: empty staves over the width of the sheet, no clef and
+no bar, as many as fit with room to write between them - twelve on A4 - spread from the top
+margin to the bottom one. `rastral=` the size of a staff as engravers number them (Gould, *Behind
+Bars*): 0 9.2 mm, 1 7.9, 2 7.4, 3 7.0 (the default), 4 6.5, 5 6.0, 6 5.5, 7 4.8, 8 3.7; `lines=`
+5 (6 for guitar tablature, 1 for percussion); `staves=` how many; `grand` pairs them for the piano,
+joined at their start; `margin=`, `color=`, `paper=` and `landscape`. Its lines are drawn exactly,
+as graph paper's are; the content between the tags is a line over the staves.
 
 ### Widgets
 ```

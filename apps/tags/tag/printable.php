@@ -44,7 +44,9 @@ PAD;
     'month'     => 'calendar: the month it starts with, <code>2026-09</code>; <code>months</code> how many, 1 to 60.',
     'sunday'    => 'calendar: bare option, the weeks from Sunday instead of Monday; <code>weeks</code> their ISO 8601 numbers before them.',
     'holidays'  => 'calendar: the public holidays of a country of the holidays subsystem marked, <code>nl</code>, <code>de-by</code>.',
-    'folds'     => 'foldcard: bare option, the folds printed as light lines, where the screen alone shows them.' ];
+    'folds'     => 'foldcard: bare option, the folds printed as light lines, where the screen alone shows them.',
+    'rastral'   => 'staffpaper: the size of a staff as engravers number them, 0 (9.2 mm) to 8 (3.7 mm), 3 (7.0 mm) the default.',
+    'staves'    => 'staffpaper: how many staves; <code>lines</code> the lines of a staff, 5, 6 for tablature; <code>grand</code> pairs them for the piano.' ];
 
   $tagSee     = [ 'pdf', 'barcode', 'qr', 'fake' ];
 
