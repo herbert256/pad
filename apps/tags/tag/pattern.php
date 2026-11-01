@@ -20,7 +20,7 @@ PAD;
             . '. The pattern: type names it as well - <code>{pattern:topography/}</code>; a pattern is never reached bare.' ];
 
   $tagOptions = [
-    'seed'    => 'A number or a word: what the pattern picks at random, the same for the same seed (1 when left out). A tile repeated - stripes, dots, grid, checks, chevron, isometric, herringbone, scales, a brick wall of one ink - does not change with it.',
+    'seed'    => 'A number or a word: what the pattern picks at random, the same for the same seed (1 when left out). A tile repeated - stripes, dots, grid, checks, chevron, isometric, herringbone, scales, houndstooth, a brick wall of one ink - does not change with it.',
     'colors'  => 'A list of colours, the background first and the inks after it: <code>colors=\'#fff, #1d3557, #e63946\'</code> - hex, a name, or <code>rgb()</code>, <code>hsl()</code> and their like; <code>none</code> leaves the background out. Each kind has its own palette.',
     'size'    => 'The size of the motif in pixels - a stripe, a dot\'s tile, a hexagon\'s radius, a hill of the topography, the largest circle; each kind its own default and bounds.',
     'width'   => 'The width of the picture in pixels (480); the SVG covers its box when it is made larger or smaller, <code>preserveAspectRatio="xMidYMid slice"</code>.',

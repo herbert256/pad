@@ -1737,7 +1737,8 @@ hexagons, triangles (a low-poly mosaic), waves, chevron, topography (value noise
 marching squares), truchet, voronoi, circles (circle packing), isometric (tumbling blocks), blobs,
 grain (the browser's feTurbulence), mesh (a soft gradient), herringbone (parquet blocks),
 brick (a wall in any bond, mottled by the seed),
-and scales (fish scales or the waves of seigaiha).
+scales (fish scales or the waves of seigaiha),
+and houndstooth (the woven broken check).
 Every pattern takes `seed=`,
 `colors=` (a list, the background first), `size=` (the motif in pixels), `width=` and `height=`
 (480 by 240; the SVG covers its box), `opacity=`, `title=` and `as='url'`, and its own besides: stripes `angle=`,

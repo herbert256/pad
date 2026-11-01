@@ -3296,6 +3296,7 @@ and pages. `padPattern ( 'dots', [ 'size' => 24 ] )` draws the same in a page's 
 | `herringbone` | Parquet blocks in a herringbone, those lying in one ink and those standing in the next | `ratio` (3, a whole number), `angle` (45) |
 | `brick` | A brick wall in courses, the joints in the background; with several inks each brick's ink the seed's | `ratio` (3), `offset` (0.5 - in twelfths), `joint` (2) |
 | `scales` | Overlapping scales row over row, circles in each - fish scales, or with more rings seigaiha | `rings` (3) |
+| `houndstooth` | The broken check, woven of four threads of each colour in a two-over-two twill | |
 
 **Every pattern:** `seed=` - a number or a word, 1 when left out - makes the picture: the same
 seed the same bytes on every request and every machine (PAD's own sequence, the one of
