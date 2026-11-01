@@ -683,7 +683,10 @@ once a page). A field whose rules look at another - `same:`, the `required_*` ru
 checked or left before: "is required when Delivery is ship" goes when delivery becomes
 collect, and comes on an address already left when it becomes ship. The rules name those
 fields themselves (`fields` in their files); `padValidateClient` hands them on as the field's
-`watch`. For a form a component draws,
+`watch`. A message the server wrote beside a field not touched since is one such rule's and
+follows the other field too, or it speaks about the value the field still holds - one the
+page's PHP added, one of a regex only PCRE reads - and stays, unless the checker has a message
+of its own for the field. For a form a component draws,
 keep the rules in PHP - `padValidate ( $rules )` checks the post, `padValidateClient ( $rules )`
 exports them for `padValidate.check ( rules, values )` in the browser, `{validator}` brings the
 checker:

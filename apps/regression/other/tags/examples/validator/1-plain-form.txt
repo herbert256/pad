@@ -9,6 +9,7 @@
   if (window.padValidate) return;
   var rules = {};
   var empties = {"accepted":true,"required":true,"required_if":true,"required_unless":true,"required_with":true,"required_without":true};
+  var lookers = {"after":true,"before":true,"required_if":true,"required_unless":true,"required_with":true,"required_without":true,"same":true};
   function addRule(name, spec) {
     rules[name] = spec;
   }
@@ -517,10 +518,14 @@ addRule('uuid', {
     var id = control.getAttribute && control.getAttribute('data-pad-shows');
     return (id && document.getElementById(id)) || control;
   }
+  function errorId(name, controls) {
+    var last = controls[controls.length - 1];
+    return idOf(name, box(last) ? controls[0] : last) + '-error';
+  }
   function show(form, name, text, controls) {
     var last = controls[controls.length - 1];
     if (!last) return;
-    var id = idOf(name, box(last) ? controls[0] : last) + '-error';
+    var id = errorId(name, controls);
     var span = document.getElementById(id);
     controls.map(shownBy).forEach(function (control) {
       if (text) {
@@ -605,9 +610,22 @@ addRule('uuid', {
     Object.keys(rules).forEach(function (one) {
       if (one === name || !(rules[one].watch || []).some(function (other) { return bare(other) === bare(name); })) return;
       controls = controls || controlsBy(form);
-      if (!seen[one] && !showing(controls[one] || [])) return;
-      judge(form, rules, values = values || valuesOf(form, rules), controls, one);
+      var mine = controls[one] || [];
+      if (!seen[one] && !showing(mine)) return;
+      values = values || valuesOf(form, rules);
+      var label = labelOf(form, mine[mine.length - 1]) || rules[one].label;
+      var problem = field(rules[one], values[one], values, label);
+      if (!seen[one] && !problem && !follows(rules[one], said(one, mine), label)) return;
+      show(form, one, problem, mine);
+      seen[one] = true;
     });
+  }
+  function said(name, controls) {
+    var span = controls.length ? document.getElementById(errorId(name, controls)) : null;
+    return span ? span.textContent : '';
+  }
+  function follows(spec, text, label) {
+    return spec.rules.some(function (one) { return lookers[one[0]] && message(one[2], label, one[3]) === text; });
   }
   document.addEventListener('submit', function (event) {
     var form = event.target;

@@ -83,10 +83,13 @@ for (const one of cases) {
 // it listens to. The same steps a visitor takes in headless Chrome hold alike there:
 // _chrome.mjs, run by hand, drives them and the cases above through a real page.
 
-// The world of one form: fields is [ name, value ] each; count says how often the checker
-// read the rules, made the values (FormData) and walked the form's controls.
-function world(template, fields) {
-  const found = render('forms/client_parity_watch', template).match(/data-pad-rules="([^"]*)"/);
+// The world of one form: fields is [ name, value ] each; server the messages the server wrote
+// beside them, by name; count says how often the checker read the rules, made the values
+// (FormData) and walked the form's controls.
+const rendered = {};
+
+function world(template, fields, server) {
+  const found = (rendered[template] = rendered[template] || render('forms/client_parity_watch', template)).match(/data-pad-rules="([^"]*)"/);
   if (!found) return null;
   const listeners = {};
   const byId = {};
@@ -108,6 +111,11 @@ function world(template, fields) {
       getAttribute(one) { return one in attrs ? attrs[one] : null; }, setAttribute(one, to) { attrs[one] = String(to); },
       removeAttribute(one) { delete attrs[one]; }, insertAdjacentElement(where, span) { byId[span.id] = span; } });
   });
+  Object.keys(server || {}).forEach(name => {
+    byId[name + '-error'] = { id: name + '-error', textContent: server[name], remove() { delete byId[this.id]; } };
+    controls[name].setAttribute('aria-invalid', 'true');
+    controls[name].setAttribute('aria-describedby', name + '-error');
+  });
   class PageData {
     constructor() { count.values++; this.entries = elements.map(one => [one.name, one.value]); }
     getAll(name) { return this.entries.filter(one => one[0] === name).map(one => one[1]); }
@@ -125,8 +133,10 @@ function world(template, fields) {
 
 const watching = [];
 
-const trip = world("{form 'trip', client}{input 'delivery'/}{input 'address', rules='required_if:delivery,ship'/}" +
-                   "{input 'password'/}{input 'confirm', rules='same:password'/}{input 'start'/}{input 'end', rules='after:start'/}{/form}",
+const tripForm = "{form 'trip', client}{input 'delivery'/}{input 'address', rules='required_if:delivery,ship'/}" +
+                 "{input 'password'/}{input 'confirm', rules='same:password'/}{input 'start'/}{input 'end', rules='after:start'/}{/form}";
+
+const trip = world(tripForm,
                    [['delivery', 'ship'], ['address', ''], ['password', 'secret'], ['confirm', 'secret'], ['start', '2026-05-01'], ['end', '']]);
 
 if (!trip) watching.push('{form ..., client} wrote no data-pad-rules');
@@ -167,6 +177,37 @@ else {
   fire('change', 'delivery', 'collect');
   expect('the other changed after the form was sent', 'address', '');
 }
+
+// The page of a failed post: a message the server wrote beside a field the visitor has not
+// touched since speaks about the value the field still holds. The message of a rule that
+// looks at the field that changed follows it; one the page's PHP added - or one of a rule
+// the checker leaves to the server - stays, unless the checker has a message of its own.
+const posted = (server, steps) => {
+  const back = world(tripForm, [['delivery', 'ship'], ['address', ''], ['password', 'secret'], ['confirm', 'secret'], ['start', '2026-05-01'], ['end', '2026-06-01']], server);
+  if (!back) return watching.push('{form ..., client} wrote no data-pad-rules');
+  steps(back, (step, name, text) => {
+    const got = back.shown(name);
+    const invalid = back.controls[name].getAttribute('aria-invalid') === 'true';
+    if (got !== text || invalid !== (text !== ''))
+      watching.push(`watcher on a failed post, ${step}: ${name} shows ${JSON.stringify(got)}${invalid ? ' (aria-invalid)' : ''}, not ${JSON.stringify(text)}`);
+  });
+};
+
+posted({ end: 'End is fully booked' }, ({ fire }, expect) => {
+  fire('input', 'start', '2026-03-02');
+  expect("the start moved, the page's own message of an end not touched", 'end', 'End is fully booked');
+  fire('input', 'start', '2026-07-01');
+  expect('the start moved past the end, the checker has a message of its own', 'end', 'End must be a date after Start');
+  fire('input', 'start', '2026-03-02');
+  expect('the start moved back, the message the checker gave goes', 'end', '');
+});
+
+posted({ address: 'Address is required when Delivery is ship', end: 'End must be a date after Start' }, ({ fire }, expect) => {
+  fire('change', 'delivery', 'collect');
+  expect("the other changed away from the value, the server's message of that rule follows it", 'address', '');
+  fire('input', 'start', '2026-03-02');
+  expect("the start moved before the end, the server's message of after:start follows it", 'end', '');
+});
 
 // A keystroke in a field that many fields watch reads the rules, the values and the controls
 // once for all of them: read again for each, it took time growing with the square of their

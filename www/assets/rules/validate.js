@@ -34,8 +34,10 @@
 
   var rules = {};
 
-  // The rules that judge an empty field, from their PHP files - written in by the server.
+  // The rules that judge an empty field, and those that look at other fields of the post,
+  // from their PHP files ('empty', 'fields') - written in by the server.
   var empties = /*empties*/{};
+  var lookers = /*lookers*/{};
 
   function addRule(name, spec) {
     rules[name] = spec;
@@ -300,12 +302,17 @@
     return (id && document.getElementById(id)) || control;
   }
 
-  // The error of a group of boxes goes by the id of its first box, as {input} writes it; the
-  // error of a rich field after its frame, as the server writes it.
+  // The error of a group of boxes goes by the id of its first box, as {input} writes it.
+  function errorId(name, controls) {
+    var last = controls[controls.length - 1];
+    return idOf(name, box(last) ? controls[0] : last) + '-error';
+  }
+
+  // The error of a rich field goes after its frame, as the server writes it.
   function show(form, name, text, controls) {
     var last = controls[controls.length - 1];
     if (!last) return;
-    var id = idOf(name, box(last) ? controls[0] : last) + '-error';
+    var id = errorId(name, controls);
     var span = document.getElementById(id);
     controls.map(shownBy).forEach(function (control) {
       if (text) {
@@ -407,14 +414,39 @@
   // delivery became collect, and "must be the same as Password" after the password was
   // typed again to match. kinds and kinds[] are one name here, as sibling reads them. The
   // rules, the values and the controls are read once for all the fields checked again.
+  //
+  // A message the server wrote on a field not checked or left since speaks about the value
+  // the field still holds, which a change of another field does not change: it stays unless
+  // the checker has a message of its own for the field, or it is the message of one of the
+  // field's rules that look at other fields, which follows them (follows). A message the
+  // page's PHP added - End is fully booked - or one of a rule the checker leaves to the
+  // server - a regex only PCRE reads - went when the start was moved, and the field had not
+  // been touched.
   function recheck(form, name) {
     var rules = rulesOf(form), seen = marks(form), values = null, controls = null;
     Object.keys(rules).forEach(function (one) {
       if (one === name || !(rules[one].watch || []).some(function (other) { return bare(other) === bare(name); })) return;
       controls = controls || controlsBy(form);
-      if (!seen[one] && !showing(controls[one] || [])) return;
-      judge(form, rules, values = values || valuesOf(form, rules), controls, one);
+      var mine = controls[one] || [];
+      if (!seen[one] && !showing(mine)) return;
+      values = values || valuesOf(form, rules);
+      var label = labelOf(form, mine[mine.length - 1]) || rules[one].label;
+      var problem = field(rules[one], values[one], values, label);
+      if (!seen[one] && !problem && !follows(rules[one], said(one, mine), label)) return;
+      show(form, one, problem, mine);
+      seen[one] = true;
     });
+  }
+
+  // The message shown beside a field, '' when there is none.
+  function said(name, controls) {
+    var span = controls.length ? document.getElementById(errorId(name, controls)) : null;
+    return span ? span.textContent : '';
+  }
+
+  // Whether a message is the one a rule of the field that looks at other fields gives.
+  function follows(spec, text, label) {
+    return spec.rules.some(function (one) { return lookers[one[0]] && message(one[2], label, one[3]) === text; });
   }
 
   // Captured on the document, so a form that fails stops here - before a live region, htmx

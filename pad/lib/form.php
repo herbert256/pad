@@ -1271,8 +1271,9 @@
 
   // The checker's code: the runtime, www/assets/rules/validate.js, with the script of every rule
   // of subs/rules/types/ that has one - www/assets/rules/<rule>.js - where its /*rules*/ stands, and
-  // the rules that judge an empty field, read from their PHP files, where /*empties*/ does:
-  // what the browser does is what the directory says, as padValidate's is. Each rule's script
+  // the rules that judge an empty field and those that look at other fields, read from their
+  // PHP files, where /*empties*/ and /*lookers*/ do: what the browser does is what the
+  // directory says, as padValidate's is. Each rule's script
   // runs in a function of its own, inside the runtime's: it reads the runtime's helpers -
   // trim, toNumber, ipv4 - and its own stay its own, where a function of a rule named like
   // one of the runtime's would have replaced it. The comment lines and blank lines stay in
@@ -1287,16 +1288,19 @@
 
     $rules   = '';
     $empties = [];
+    $lookers = [];
 
     foreach ( padRuleTypes () as $name ) {
       if ( padRule ( $name ) ['empty'] ?? FALSE )
         $empties [$name] = TRUE;
+      if ( isset ( padRule ( $name ) ['fields'] ) )
+        $lookers [$name] = TRUE;
       if ( ( $script = padWidgetFileText ( "rules/$name.js" ) ) !== '' )
         $rules .= "(function () {\n$script})();\n";
     }
 
     $code = strtr ( padWidgetFileText ( 'rules/validate.js' ),
-                    [ '/*empties*/{}' => json_encode ( (object) $empties ), '/*rules*/' => $rules ] );
+                    [ '/*empties*/{}' => json_encode ( (object) $empties ), '/*lookers*/{}' => json_encode ( (object) $lookers ), '/*rules*/' => $rules ] );
 
     return $code = preg_replace ( '~^[ \t]*(//[^\n]*)?\n~m', '', $code );
 
