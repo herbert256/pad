@@ -328,7 +328,7 @@ Site search without a search server: the rows of a source a query finds, ranked 
 | first parameter | The source: a Markdown collection `_content/<name>/`, else a `{data}` store, a page's array (a `db()` result) or a `_data` file of the name |
 | `q` | The query: words (any), `"a phrase"` (required, in order), `prefix*`, `-word` and `-"a phrase"` (left out) |
 | `fields` | The fields searched, each with its boost: `'title^2, body'` - a collection's default; other rows every field that holds text in any row (none is an error under the strict check) |
-| `lang` | The language of the stop words and the stemmer - `en`, `nl`, `de`, `fr`, `es`, `it`, `pt`, `sv`, `da`, `no` (`nb` and `nn` are `no`), the files of `pad/subs/search/types/`; default the locale's language, else `en` |
+| `lang` | The language of the stop words and the stemmer - `en`, `nl`, `de`, `fr`, `es`, `it`, `pt`, `sv`, `da`, `no` (`nb` and `nn` are `no`), `ru`, the files of `pad/subs/search/types/`; default the locale's language, else `en` |
 | `words` | The length of the excerpt in words, default 30 |
 | `excerpt` | The field the excerpt is cut from, default the last of `fields` |
 | `link` | The single tag's list: a field with the link of a hit - http(s), a page or an anchor; never `javascript:` |

@@ -6,7 +6,7 @@
   // _data file of the name. q= is the query - words, "a phrase", prefix*, -left out;
   // fields= the fields searched with their boosts ('title^2, body'; a collection's title^2,
   // body, else every text field); lang= the language of its stop words and stemmer (en, nl,
-  // de, fr, es, it, pt, sv, da, no - nb and nn are no - the locale's language, else en);
+  // de, fr, es, it, pt, sv, da, no, ru - nb and nn are no - the locale's language, else en);
   // words= the length of the excerpt (30) and excerpt= the field it is cut from (the last of
   // fields).
   //

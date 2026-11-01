@@ -8,8 +8,8 @@
   // it changed in the last second), a hash of the fields searched of any other source's
   // rows, and the code that makes an index (padSearchStamp).
   //
-  // A language is a file of subs/search/types/ - en, nl, de, fr, es, it, pt, sv, da, no -
-  // with its stop words and its Snowball stemmer; a language is added by adding its file. A text is split into words
+  // A language is a file of subs/search/types/ - en, nl, de, fr, es, it, pt, sv, da, no and
+  // ru - with its stop words and its Snowball stemmer; a language is added by adding its file. A text is split into words
   // by Unicode letters and digits (an apostrophe inside a word stays: l'homme, don't), each
   // word in lower case; a stop word counts for the positions only, every other word is
   // stemmed and then written without its accents - café, cafe and cafés are one term - and a
@@ -135,8 +135,8 @@
 
   }
 
-  // A word without its accents and marks: é is e, ß ss, æ ae, ø o, ł l - a fixed table, so
-  // the index is the same with and without the intl extension.
+  // A word without its accents and marks: é is e, ß ss, æ ae, ø o, ł l, ё е - a fixed table,
+  // so the index is the same with and without the intl extension.
 
   function padSearchFold ( $text ) {
 
@@ -150,7 +150,7 @@
                   'z' => 'źżž' ] as $plain => $marked )
         foreach ( mb_str_split ( $marked ) as $char )
           $map [$char] = $plain;
-      $map += [ 'ß' => 'ss', 'æ' => 'ae', 'œ' => 'oe', 'þ' => 'th', 'ĳ' => 'ij' ];
+      $map += [ 'ß' => 'ss', 'æ' => 'ae', 'œ' => 'oe', 'þ' => 'th', 'ĳ' => 'ij', 'ё' => 'е' ];
     }
 
     return strtr ( preg_replace ( '/\p{M}+/u', '', $text ), $map );
@@ -185,6 +185,10 @@
   // stem alone, accents dropped after, found no word typed without them. A word with a
   // term of a query's word is found - sécurité by securite, securite by sécurité. A number
   // is as it is. The terms of a request are kept: a word met again is not stemmed again.
+  //
+  // A language's letters are read as others before a stop word is looked up: Snowball's
+  // Russian stop words are written with е for ё, as its stemmer reads a word, so её and ещё
+  // are stop words as ее and еще are.
 
   function padSearchTerms ( $word, $language ) {
 
@@ -195,7 +199,7 @@
     if ( isset ( $memo [$key] [$word] ) )
       return $memo [$key] [$word];
 
-    if ( isset ( $language ['stop'] [$word] ) )
+    if ( isset ( $language ['stop'] [ isset ( $language ['letters'] ) ? strtr ( $word, $language ['letters'] ) : $word ] ) )
       $terms = [];
     elseif ( preg_match ( '/\p{N}/u', $word ) )
       $terms = [ padSearchFold ( $word ) ];

@@ -1099,7 +1099,7 @@ searched in `title^2, body` by default, other rows in their text fields; a field
 an end tag, a comment, a `<br>` or `<img>`, a quoted attribute - is read as its text, a `<` in
 plain text stays, and an entity is the character it stands for. The languages are the files of `pad/subs/search/types/` - `en` (Porter2), `nl`
 (Kraaij-Pohlmann), `de`, `fr`, `es`, `it`, `pt`, `sv`, `da`, `no` (Bokmål and Nynorsk, `nb` and `nn`
-as well), each with Snowball's stop words and its stemmer written
+as well), `ru` (`ё` read as `е`), each with Snowball's stop words and its stemmer written
 after the Snowball 3 source and matching Snowball's own test vocabularies word for word -
 `lang=` picks one, the locale's language else English; a language is added by adding its file.
 A name that is a collection is the collection: name a page's array otherwise. No exec, no

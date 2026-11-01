@@ -1,0 +1,9 @@
+{meta title='In Russian', about='lang=\'ru\' - Snowball\'s Russian stop words and stemmer: a word is found in another form, and ё is read as е, so ёлка finds елка.'/}
+{data 'stranitsy'}
+[ { "t": "Новые книги" }, { "t": "Книга о море" },
+  { "t": "Ёлки в лесу" }, { "t": "Новогодняя елка" } ]
+{/data}
+<ul>
+  <li>книга: {search 'stranitsy', q='книга', lang='ru'}{$t}; {/search}</li>
+  <li>ёлка: {search 'stranitsy', q='ёлка', lang='ru'}{$t}; {/search}</li>
+</ul>
