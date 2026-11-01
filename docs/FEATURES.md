@@ -1001,7 +1001,7 @@ show them.
 {sound:chime/}                                  # a button that plays the chime - named Chime, its recipe's title
 {sound 'pop', button='Pop!', volume=60/}        # the tag; button= the label, volume= 0 to 100
 {sound:success on='click', target='#save'/}     # no button: played when an element the selector finds is clicked
-{sound:tick on='hover', target='nav a'/}        # on= click, pointerdown, hover, focus, change, input, submit
+{sound:tick on='hover', target='nav a'/}        # on= click, pointerdown, hover, focus - change, input, submit with target=
 <button data-pad-sound="coin">Coin</button>     # any element, once a sound has put the script on the page
 {sound:bell download/}                          # with a link to the sound as a WAV file
 {toast 'Saved', tone='success', sound='success'/}   # a toast that sounds as it shows

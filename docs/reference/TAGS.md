@@ -2326,8 +2326,9 @@ A sound is written two ways, the same sound each time: the tag, `{sound 'chime'/
 type, `{sound:chime/}`; never bare. Without `target=` it writes a button that plays the sound,
 named after the recipe's title or by `button=`; with `target=` - a CSS selector - it writes no
 button but plays the sound when an element the selector finds has the event `on=` names: `click`
-(the default), `pointerdown`, `hover`, `focus`, `change`, `input` or `submit`; both together
-write the button and bind the selector. `volume=` plays it softer, 0 to 100. `download` adds a
+(the default), `pointerdown`, `hover`, `focus`, `change`, `input` or `submit` - the last three
+with `target=` alone, as a button is never changed, typed in or submitted; both together write
+the button and bind the selector. `volume=` plays it softer, 0 to 100. `download` adds a
 link to the sound as a WAV file - `download='text'` its text - the page asked again with
 `&padSound=<kind>`, which answers the WAV in place of the page; without script the button is
 hidden and a link to the same WAV stands in its place. Once a sound has written the script, any
@@ -2363,8 +2364,9 @@ a rest) with `step`, `to` and `glide` for a sweep or `bend` in semitones for eve
 recipe `title`, `level` (the peak it is scaled to, 0.8) and `seed` (its noise). The server settles
 it and both renderings read the settled recipe with the same arithmetic - the browser's script
 and `padSoundWav ()` - so the WAV is what the page plays: 16-bit mono PCM at 22050 Hz, the same
-bytes every time. An unknown sound, an `on=` that is none of its words, a `volume=` out of 0 to
-100 and a toast's `sound=` that is no sound are errors under the strict check.
+bytes every time. An unknown sound, an `on=` that is none of its words, `change`, `input` or
+`submit` without `target=`, a `volume=` out of 0 to 100 and a toast's `sound=` that is no sound
+are errors under the strict check.
 
 ---
 

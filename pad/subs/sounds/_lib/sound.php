@@ -478,10 +478,24 @@
 
   function padSoundTag ( $kind ) {
 
+    global $padCheckSyntax;
+
     $recipe = padSoundRecipe ( $kind );
     $target = padSoundText ( 'target' );
     $button = padTagParm ( 'button', NULL );
     $on     = padSoundChoice ( 'on', 'click', array_keys ( PAD_SOUND_EVENTS ) );
+
+    // Without target= the sound is a button of its own, which only click, pointerdown, hover
+    // and focus reach: it is never submitted - the form is - nor changed nor typed in, and
+    // a button that played on those never played. Named under the strict check, a click
+    // otherwise.
+
+    if ( $target === '' and in_array ( $on, [ 'change', 'input', 'submit' ], TRUE ) ) {
+      if ( $padCheckSyntax )
+        padError ( "the {sound} plays on '$on' only with target= - a button of its own is never submitted, changed nor typed in: target='"
+                   . ( $on == 'submit' ? 'form' : 'input' ) . "'" );
+      $on = 'click';
+    }
     $volume = padSoundVolume ();
     $file   = padTagParm ( 'download', FALSE );
     $html   = '';
