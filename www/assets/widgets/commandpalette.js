@@ -47,7 +47,7 @@
     var at = parts(dialog), words = fold(at.input.value).split(/\s+/).filter(Boolean), shown = 0, heading = null, kept = false;
     Array.prototype.forEach.call(at.list.children, function (child) {
       if (child.matches('p')) { if (heading) heading.hidden = !kept; heading = child; kept = false; return; }
-      if (child.matches('hr')) { child.hidden = words.length > 0; return; }
+      if (child.matches('hr')) { child.hidden = words.length > 0; if (heading) heading.hidden = !kept; heading = null; kept = false; return; }
       var inside = child.matches(ITEM) ? [child] : Array.prototype.slice.call(child.querySelectorAll(ITEM));
       var any = false;
       inside.forEach(function (item) {

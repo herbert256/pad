@@ -18,10 +18,11 @@
   // and with scripting off a link to the dialog's id that the CSS shows as an overlay
   // (:target) - the whole list then, links to follow, and no search box, which only a
   // script can make work. The commands are what renders between the tags - links, buttons,
-  // a line of text (<p>) heading a group, a rule (<hr>) - and with data= rows of a store,
-  // the page's array or a _data file: a row's label (or text, name), its link (or href,
-  // url), its group, a heading over the rows of one group, and its keywords, words that find
-  // it too. A link of a row of another scheme than http, https and mailto is left out.
+  // a line of text (<p>) heading a group, a rule (<hr>) ending one - and with data= rows of
+  // a store, the page's array or a _data file: a row's label (or text, name), its link (or
+  // href, url), its group, a heading over the rows of one group, a rule before a row of
+  // none after a group, and its keywords, words that find it too. A link of a row of another
+  // scheme than http, https and mailto is left out, as a row without a label or a link is.
   //
   // A small script, once per page with the CSP nonce, makes the search - the WAI-ARIA
   // combobox pattern with a list box: the box is a combobox, the list a listbox of options,
@@ -67,7 +68,10 @@
   }
 
   // The rows of data= as the commands they are: a link each, a heading where the group
-  // changes. NULL without data=.
+  // changes, a rule where a row of no group follows a group - the end of that group, for
+  // the eye and for the search, which keeps a heading over its own commands alone. A row
+  // that is a list without a label, text or name is left out, as one without a link is: its
+  // first field, a link or an id, is no label. NULL without data=.
 
   function padCommandpaletteRows () {
 
@@ -87,7 +91,7 @@
       if ( ! is_array ( $row ) )
         $row = [ 'label' => $row ];
 
-      $label = $row ['label'] ?? $row ['text'] ?? $row ['name'] ?? reset ( $row );
+      $label = $row ['label'] ?? $row ['text'] ?? $row ['name'] ?? '';
       $link  = $row ['link']  ?? $row ['href'] ?? $row ['url']  ?? '';
       $in    = $row ['group'] ?? '';
       $words = $row ['keywords'] ?? '';
@@ -100,9 +104,11 @@
       if ( $href === '' )
         continue;
 
-      if ( is_scalar ( $in ) and trim ( (string) $in ) !== '' and trim ( (string) $in ) !== $group ) {
-        $group = trim ( (string) $in );
-        $out  .= '<p>' . padWidgetAttr ( $group ) . '</p>';
+      $in = is_scalar ( $in ) ? trim ( (string) $in ) : '';
+
+      if ( $in !== $group ) {
+        $out  .= ( $in !== '' ) ? '<p>' . padWidgetAttr ( $in ) . '</p>' : '<hr>';
+        $group = $in;
       }
 
       $more = ( is_scalar ( $words ) and trim ( (string) $words ) !== '' )
