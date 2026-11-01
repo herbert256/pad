@@ -26,7 +26,7 @@
   //                     the lines of a pair, or of the page's path
   // padBreadcrumbPath   the steps of the page's path
   // padBreadcrumb       the trail
-  // padBreadcrumbStyle  the CSS, assets/breadcrumb.css, once per page
+  // padBreadcrumbStyle  the CSS, www/assets/widgets/breadcrumb.css, once per page
 
   function padBreadcrumbItems ( $pair, $source ) {
 

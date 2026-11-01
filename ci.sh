@@ -175,10 +175,10 @@ fi
 # Claude Code plugin, whose launcher must start those two from a project. The Tree-sitter
 # check proves the committed parser is generated from grammar.js and the queries name only
 # what the parser has, and runs the corpus when the tree-sitter CLI is installed. The validate
-# line runs the browser's checker of padValidate's rules (pad/subs/rules/assets/) over the cases
+# line runs the browser's checker of padValidate's rules (www/assets/rules/) over the cases
 # of the Pages suite's forms/client_parity and holds it to the server's verdicts. The charts
 # line draws every example page of the charts application with PHP and with the browser's
-# JavaScript (pad/subs/charts/client/, the client option) and holds the two SVGs to being the same.
+# JavaScript (www/assets/charts/, the client option) and holds the two SVGs to being the same.
 # They need node - a machine without it cannot run the tooling either, and says so instead of
 # failing.
 

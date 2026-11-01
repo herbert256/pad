@@ -1,34 +1,7 @@
 <div style="width:100%; max-width:520px; padding-top:40px">
   <h2>Pick a plan</h2>
   <ul>
-    <li>The <span class="pad-tooltip pad-tooltip-top"><span class="pad-tooltip-trigger" tabindex="0" aria-describedby="pad-tooltip-fadd3c9b">Starter plan</span><span class="pad-tooltip-tip" role="tooltip" id="pad-tooltip-fadd3c9b">Billed every month, cancel any time</span></span><style>:where(.pad-tooltip){--pad-tooltip-accent:#2a78d6;--pad-tooltip-muted:#62615c;--pad-tooltip-surface:#1f1f1d;--pad-tooltip-on:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-tooltip){--pad-tooltip-accent:light-dark(#2a78d6,#5598e7);--pad-tooltip-muted:light-dark(#62615c,#a9a8a0);--pad-tooltip-surface:light-dark(#1f1f1d,#ecebe6);--pad-tooltip-on:light-dark(#ffffff,#1f1f1d);}}.pad-tooltip{position:relative;display:inline-block}.pad-tooltip-trigger{border-bottom:1px dotted currentColor;cursor:help}.pad-tooltip-trigger:focus-visible{outline:2px solid var(--pad-tooltip-accent);outline-offset:2px;border-radius:3px}.pad-tooltip-info{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:1.25em;height:1.25em;margin:0 .1em;padding:0;border:1.5px solid var(--pad-tooltip-muted);border-radius:50%;background:transparent;color:var(--pad-tooltip-muted);font:italic 700 .8em/1 Georgia,serif;vertical-align:.1em}.pad-tooltip-info:hover{border-color:var(--pad-tooltip-accent);color:var(--pad-tooltip-accent)}.pad-tooltip-tip{position:absolute;z-index:2147481000;left:50%;bottom:calc(100% + 8px);box-sizing:border-box;width:max-content;max-width:min(18rem,80vw);padding:.4em .65em;border-radius:6px;background:var(--pad-tooltip-surface);color:var(--pad-tooltip-on);font-size:.85rem;font-weight:400;font-style:normal;line-height:1.35;text-align:left;white-space:normal;transform:translateX(calc(-50% + var(--pad-tooltip-shift,0px)));visibility:hidden;opacity:0;transition:opacity .12s,visibility .12s}.pad-tooltip-tip::before{content:"";position:absolute;left:0;right:0;top:100%;height:10px}.pad-tooltip-tip::after{content:"";position:absolute;left:calc(50% - 5px - var(--pad-tooltip-shift,0px));top:100%;border:5px solid transparent;border-top-color:var(--pad-tooltip-surface)}.pad-tooltip-bottom>.pad-tooltip-tip{top:calc(100% + 8px);bottom:auto}.pad-tooltip-bottom>.pad-tooltip-tip::before{top:auto;bottom:100%}.pad-tooltip-bottom>.pad-tooltip-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--pad-tooltip-surface)}.pad-tooltip:hover>.pad-tooltip-tip,.pad-tooltip:focus-within>.pad-tooltip-tip{visibility:visible;opacity:1}.pad-tooltip.is-dismissed>.pad-tooltip-tip{visibility:hidden;opacity:0}@media (prefers-reduced-motion:reduce){.pad-tooltip-tip{transition:none}}@media print{.pad-tooltip-tip{display:none}}</style><script>(function () {
-  if (window.padTooltipReady) return;
-  window.padTooltipReady = true;
-  function fit(e) {
-    var tooltip = e.target.closest && e.target.closest('.pad-tooltip');
-    var tip = tooltip && tooltip.querySelector(':scope > .pad-tooltip-tip');
-    if (!tip) return;
-    tip.style.setProperty('--pad-tooltip-shift', '0px');
-    var box = tip.getBoundingClientRect(), room = document.documentElement.clientWidth, shift = 0;
-    if (box.left < 8) shift = 8 - box.left;
-    else if (box.right > room - 8) shift = room - 8 - box.right;
-    tip.style.setProperty('--pad-tooltip-shift', Math.round(shift) + 'px');
-  }
-  document.addEventListener('mouseover', fit);
-  document.addEventListener('focusin', fit);
-  document.addEventListener('keydown', function (e) {
-    if (e.key !== 'Escape') return;
-    document.querySelectorAll('.pad-tooltip:hover, .pad-tooltip:focus-within').forEach(function (tooltip) {
-      tooltip.classList.add('is-dismissed');
-    });
-  });
-  function again(e) {
-    var tooltip = e.target.closest && e.target.closest('.pad-tooltip.is-dismissed');
-    if (tooltip && !tooltip.contains(e.relatedTarget)) tooltip.classList.remove('is-dismissed');
-  }
-  document.addEventListener('mouseout', again);
-  document.addEventListener('focusout', again);
-})();</script>: € 9 a month</li>
+    <li>The <span class="pad-tooltip pad-tooltip-top"><span class="pad-tooltip-trigger" tabindex="0" aria-describedby="pad-tooltip-fadd3c9b">Starter plan</span><span class="pad-tooltip-tip" role="tooltip" id="pad-tooltip-fadd3c9b">Billed every month, cancel any time</span></span><style>:where(.pad-tooltip){--pad-tooltip-accent:#2a78d6;--pad-tooltip-muted:#62615c;--pad-tooltip-surface:#1f1f1d;--pad-tooltip-on:#ffffff;}@supports (color:light-dark(#000,#fff)){:where(.pad-tooltip){--pad-tooltip-accent:light-dark(#2a78d6,#5598e7);--pad-tooltip-muted:light-dark(#62615c,#a9a8a0);--pad-tooltip-surface:light-dark(#1f1f1d,#ecebe6);--pad-tooltip-on:light-dark(#ffffff,#1f1f1d);}}</style><link rel="stylesheet" href="/pad/assets/widgets/tooltip.css?v=8d9323eebc"><script src="/pad/assets/widgets/tooltip.js?v=04d7568f06"></script>: € 9 a month</li>
     <li>The <span class="pad-tooltip pad-tooltip-top"><span class="pad-tooltip-trigger" tabindex="0" aria-describedby="pad-tooltip-b243d81f">Team plan</span><span class="pad-tooltip-tip" role="tooltip" id="pad-tooltip-b243d81f">Billed once a year - two months free</span></span>: € 290 a year</li>
   </ul>
   <div>Prices include VAT <span class="pad-tooltip pad-tooltip-top"><button type="button" class="pad-tooltip-trigger pad-tooltip-info" aria-describedby="pad-tooltip-f373f31b" aria-label="More information"><span aria-hidden="true">i</span></button><span class="pad-tooltip-tip" role="tooltip" id="pad-tooltip-f373f31b">Value added tax: 21% on most goods, 9% on food and books</span></span> and

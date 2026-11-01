@@ -11,7 +11,7 @@
   //   {/combobox}
   //
   // A kind is a file of subs/inputs/types/ - <kind>.php writes the field - and the files there are
-  // the kinds there are (padInputTypes); subs/inputs/assets/ holds its script, <kind>.js, and its
+  // the kinds there are (padInputTypes); www/assets/inputs/ holds its script, <kind>.js, and its
   // style, <kind>.css, beside the runtime's input.js and input.css. subs/inputs/input.php is the
   // body the input: type runs (types/input.php); a kind's file runs in padInputTag.
   //
@@ -29,7 +29,7 @@
   // radio group, a file field, a text field holding a comma list or the code - and the kind's
   // script makes more of it where it runs: a calendar over the date, chips over the comma
   // list, a box per character over the code, a canvas over the hidden value of a signature.
-  // The script of the inputs - assets/input.js, the runtime - and each kind's are written
+  // The script of the inputs - www/assets/inputs/input.js, the runtime - and each kind's are written
   // once per page with the CSP nonce, as the interactive tags write theirs (lib/widget.php);
   // a field a fragment or a live region brings later is enhanced too.
   //
@@ -409,7 +409,7 @@
 
   }
 
-  // The look of the inputs - assets/input.css, with the colours every kind draws in as
+  // The look of the inputs - www/assets/inputs/input.css, with the colours every kind draws in as
   // custom properties with light and dark defaults - and the look and the script of the kind,
   // once per page each, the scripts with the CSP nonce.
 
@@ -422,18 +422,18 @@
                'fair'   => [ '#c98a12', '#e0a83a' ], 'bad'    => [ '#d43c3b', '#ef6b6a' ],
                'star'   => [ '#e8a317', '#f2b84b' ], 'knob'   => [ '#ffffff', '#e8e7e2' ] ];
 
-    $out = padWidgetStyle ( 'input', $roles, padFileGet ( PAD . 'subs/inputs/assets/input.css' ) );
+    $out = padWidgetStyle ( 'input', $roles, padWidgetFile ( 'inputs/input.css', 'raw' ) );
 
-    if ( padWidgetOnce ( "style:input-$kind" ) and ( $css = padFileGet ( PAD . "subs/inputs/assets/$kind.css" ) ) !== '' )
-      $out .= padProtect ( '<style' . padStyleNonce () . '>' . $css . '</style>' );
+    if ( padWidgetOnce ( "style:input-$kind" ) )
+      $out .= padWidgetSheet ( padWidgetFile ( "inputs/$kind.css", 'raw' ) );
 
     // A kind that needs no script - a switch is a checkbox the style draws - has no .js file
     // and gets none.
 
-    $script = padFileGet ( PAD . "subs/inputs/assets/$kind.js" );
+    $script = padWidgetFile ( "inputs/$kind.js", 'raw' );
 
     return $out
-         . padWidgetScript ( 'input', padFileGet ( PAD . 'subs/inputs/assets/input.js' ) )
+         . padWidgetScript ( 'input', padWidgetFile ( 'inputs/input.js', 'raw' ) )
          . ( $script !== '' ? padWidgetScript ( "input-$kind", $script ) : '' );
 
   }

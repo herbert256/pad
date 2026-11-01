@@ -10,7 +10,7 @@
   // are (padKinds ( 'effects' ), lib/subsystem.php). A pair's content is template, rendered
   // first: like {live}, the pair asks for the end walk and the kind wraps what rendered; a
   // single tag works on its first parameter, or on nothing - a spinner, confetti. The
-  // functions are subs/effects/_lib/effect.php, the looks subs/effects/assets/.
+  // functions are subs/effects/_lib/effect.php, the looks www/assets/effects/.
 
   include_once PAD . 'subs/effects/_lib/effect.php';
 

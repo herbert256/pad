@@ -5,7 +5,7 @@
    data-config, kit the helpers below. The server wrote a native control that a form posts
    as it is; a kind's script makes more of it and keeps the posted control's value true -
    and says so with the input and change events a typed value sends, which the browser's
-   checker of the rules (pad/subs/rules/assets/validate.js) listens to. */
+   checker of the rules (www/assets/rules/validate.js) listens to. */
 
 (function () {
   'use strict';

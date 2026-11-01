@@ -297,6 +297,26 @@ contents>` of `www/<app>/charts.css` - safe behind a far-future cache header; `{
 .mjs), with the nonce when `$padCsp` asks for one. A missing file is the plain address and a
 strict error; a name never leaves `www/<app>/`.
 
+The subsystems' own style sheets and scripts - the widgets, games, toys, inputs, sections,
+effects, notations, printables, sounds, the charts drawn in the browser ... - are files of
+`www/assets/<sub>/` (`widgets/tabs.css`, `games/memory.js`, `charts/core.js`), served by the web
+server as they are. A page links each one the first time a tag needs it - `<link
+rel="stylesheet" href="/pad/assets/widgets/tabs.css?v=<hash>">`, `<script
+src="/pad/assets/games/game.js?v=<hash>">` without async or defer, so it runs where it stands -
+so the browser keeps them from page to page and a changed file is a new address. The colours
+a tag makes from its roles stay a small `<style>`. The style sheets of a whole page are moved
+into its `<head>` before tidy reads it (a bare template's go at its start); a fragment, a live
+region's answer and a `{shadow}` root keep theirs where they stand, and a `{live}` answer runs
+its scripts in order, one of `www/assets/` loaded before the next. With `$padCsp` naming a
+nonce the links and scripts carry it. The text is written into the page instead - a `<style>`
+and a `<script>`, as before the files were linked - in a mail, a notification, an offline
+application (`pad pack`, which carries `www/assets/`), a static copy (`pad export`), every
+output that is not the web's - the command line's (`pad render`) among them - and everywhere
+with `$padAssetLinks = FALSE`. The browser's
+checker of the form rules stays written in: it is made of the files of `www/assets/rules/` and
+the rules' PHP, no file a page could link. With the version in every address a server may send
+`www/assets/` with a Cache-Control of a year.
+
 ### Migrations and seeders
 
 `_migrations/` holds the application's schema as changes, run in name order:
@@ -547,7 +567,7 @@ a snippet, custom tag, `{page}` or layout, from a variable, in an `action=`/GET 
 file field are errors.
 
 The rules are the files of `pad/subs/rules/types/` - `<rule>.php` answers its check, its message and
-whether an empty field or a list is judged, `pad/subs/rules/assets/<rule>.js` is its check in the
+whether an empty field or a list is judged, `www/assets/rules/<rule>.js` is its check in the
 browser - and the files there are the rules there are: besides `required`, `email`, `url`,
 `numeric`, `integer`, `min:n`, `max:n`, `in:a,b`, `regex:/x/`, `same:field`, `accepted` and
 `date` they are `between:a,b` (a length, or a value with `numeric`), `digits` and `digits:n`,
@@ -557,7 +577,7 @@ browser - and the files there are the rules there are: besides `required`, `emai
 `digits:four`, `between:9,1` - is an error, as a pattern PCRE cannot read is.
 
 `client` on the form checks the same rules in the browser too, with the same messages, before
-the form leaves (the runtime `pad/subs/rules/assets/validate.js` with every rule's script, written
+the form leaves (the runtime `www/assets/rules/validate.js` with every rule's script, written
 once a page). For a form a component draws,
 keep the rules in PHP - `padValidate ( $rules )` checks the post, `padValidateClient ( $rules )`
 exports them for `padValidate.check ( rules, values )` in the browser, `{validator}` brings the
@@ -584,7 +604,7 @@ checker:
 The kinds are the files of `pad/subs/inputs/types/` - colorpicker, combobox, datepicker, dropzone,
 mdeditor (Markdown with a live preview), newpassword (strength meter, show/hide; `known` for a
 login), otp (a box per character), signature, slider, stars, stepper, taginput, timepicker and
-toggle (a switch posting `on=`/`off=`) - their script and style in `pad/subs/inputs/assets/`. Each
+toggle (a switch posting `on=`/`off=`) - their script and style in `www/assets/inputs/`. Each
 is a field of its `{form}` as `{input}` is: named by its first parameter, labelled by `label=`,
 refilled from a post of its own form, the message of `padValidate` or of its `rules=` (read
 from the template before the PHP runs, `client` too) after its frame in the words of its label,
@@ -832,7 +852,7 @@ query and the ranking, `_lib/snowball.php` the stemmers' runtime, `types/` the l
 With `client` the browser draws the chart: the server gathers the rows - the handling options
 applied - and the tag's options, writes them into the page as JSON in a span, and a script
 draws the SVG in its place (`PadChart.mount`; `PadChart.mountAll ( element )` for a part of a
-page that came in later). The scripts are `pad/subs/charts/client/` - `core.js`, written once a page,
+page that came in later). The scripts are `www/assets/charts/` - `core.js`, written once a page,
 and a file per family, the PHP of `_lib/` written again in JavaScript a function for a function,
 so the chart is the same SVG, character for character (ids aside), as the server draws:
 `apps/regression/pages/charts/_client.mjs` holds every example of the charts application to
@@ -872,10 +892,10 @@ in the browser; `pad/types/chart.php` the chart type.
 {/quiz}
 ```
 The games are the files of `pad/subs/games/types/` - `<game>.php` checks the options and writes the
-board; `pad/subs/games/assets/<game>.js` plays it, `<game>.css` there draws it - and the files there
+board; `www/assets/games/<game>.js` plays it, `<game>.css` there draws it - and the files there
 are the games there are: bullscows, crossword, fifteen, gomoku (five in a row), hangman, hanoi, maze, memory, nim,
 nonogram, pegsolitaire, quiz, reversi, scramble, snake, sudoku, tictactoe, wordsearch. The
-script of every game and a small runtime (`pad/subs/games/assets/game.js`: a seeded random number,
+script of every game and a small runtime (`www/assets/games/game.js`: a seeded random number,
 the status line, the buttons) are written once per page with the CSP nonce; a game a fragment
 or a live region brings later starts too. A finished game carries `data-result="won"` or
 `"lost"` and sends `pad-game-end`. The `games` application plays every one of them, the
@@ -1017,13 +1037,13 @@ Security Policy needs: `$padCsp = "...; frame-src " . implode ( ' ', padEmbedSou
 {/lsystem}
 ```
 The toys are the files of `pad/subs/toys/types/` - `<toy>.php` checks the options and hands them on;
-`pad/subs/toys/assets/<toy>.js` runs it, `<toy>.css` there styles it when it needs to - and the files
+`www/assets/toys/<toy>.js` runs it, `<toy>.css` there styles it when it needs to - and the files
 there are the toys there are (`padToyTypes()`): the Game of Life, Langton's ant, an elementary
 cellular automaton, the Mandelbrot set, sorting algorithms, a double pendulum, boids, fireworks,
 falling sand, a harmonograph, a spirograph, three clocks, a starfield, a flow field, L-systems, a
 ripple tank, orbits, a Galton board and a kaleidoscope. Every toy can be touched - draw, drag,
 click - and has labelled controls, a status line and a canvas with `role="img"` and a label. The
-runtime (`pad/subs/toys/assets/toy.js`: a seeded random number, the palette resolved for the canvas, the
+runtime (`www/assets/toys/toy.js`: a seeded random number, the palette resolved for the canvas, the
 pointer, the controls, the animation loop) and every toy's script are written once per page with
 the CSP nonce; a toy holds while the page is hidden or it is scrolled away, and waits for Play under
 `prefers-reduced-motion` - a drawing toy shows its figure finished. The root carries
@@ -1049,7 +1069,7 @@ lowpass, highpass or bandpass - whose cutoff may sweep too. The sounds: bell, ch
 error, hihat, jump, kick, laser, notify, pop, powerup, snare, success, tick, warning, whoosh; a
 sound is added by adding its file. The server settles the recipe - every note to its Hz, every
 default filled in - and both renderings read that one definition with the same arithmetic: the
-browser's script (`pad/subs/sounds/assets/sound.js`, written once per page with the CSP nonce,
+browser's script (`www/assets/sounds/sound.js`, written once per page with the CSP nonce,
 every recipe with it) renders the samples and plays them through WebAudio, and `padSoundWav (
 'chime' )` renders them on the server as a 16-bit mono WAV at 22050 Hz - the same samples, the
 noise from a seeded generator, so the same bytes every time. The page asked again with
@@ -1123,7 +1143,7 @@ beside what it prints, with the PDF.
 ```
 The widgets are the files of `pad/subs/widgets/types/` - each the tag code of one widget, its
 functions in `pad/subs/widgets/_lib/<widget>.php`, its style and script in
-`pad/subs/widgets/assets/<widget>.css` and `.js` - and the files there are the widgets there are.
+`www/assets/widgets/<widget>.css` and `.js` - and the files there are the widgets there are.
 Each is written three ways, the same widget: `{widget 'modal', 'terms'}` (the tag's second
 parameter is the widget's first), the widget type `{widget:modal 'terms'}`, and bare,
 `{modal 'terms'}`. The bare name comes after every other kind of tag, so a store, a field or
@@ -1415,7 +1435,7 @@ without it, so a theme colours the sections without a word; `--pad-section-hero`
 (center, left) on every section, `level=` its heading's level (2), `id=` an anchor. A section is
 written `{section:hero}` or `{section 'hero'}` - never bare: hero, team, stats and footer are the
 names of fields and pages. The kinds are the files of `pad/subs/sections/types/`, the style
-`pad/subs/sections/assets/` - `section.css` shared and a sheet per kind, each written once per
+`www/assets/sections/` - `section.css` shared and a sheet per kind, each written once per
 page with the CSP nonce; `pad/subs/sections/section.php` the body every form runs,
 `_lib/section.php` the parts, items and forms; `pad/types/section.php` the section type. The
 `sections` application shows every one beside its template.
@@ -1435,7 +1455,7 @@ page with the CSP nonce; `pad/subs/sections/section.php` the body every form run
 {confetti}<button type="button">Celebrate</button>{/confetti}  # the one with a script; single: bursts in view
 ```
 Motion and decoration on a text or a block, CSS first: confetti is the only effect with a script,
-`pad/subs/effects/assets/confetti.js`; the rest is CSS, a stylesheet per kind written once per page
+`www/assets/effects/confetti.js`; the rest is CSS, a stylesheet per kind written once per page
 with the CSP nonce, after the base every effect shares. Every animation stands inside
 `@media (prefers-reduced-motion: no-preference)`, so a visitor who asks for less motion gets the
 content still and whole - typed out, counted, revealed, marked - and confetti does not burst.
@@ -1545,7 +1565,7 @@ over the slots the chart uses - the middles of so many equal parts, so three ser
 are purple, teal and green, never three purples, and neither pale end is a slot - and its whole
 length on the ramp. No colour stands in a style attribute, which a CSP nonce drops. A chart drawn
 in the browser (`client`) gets the same: the server hands it the class and the rules for each
-number of slots and `pad/subs/charts/client/palette.js` puts on the ones its
+number of slots and `www/assets/charts/palette.js` puts on the ones its
 drawing needs - the same SVG, character for character, which the `charts` line of `./ci.sh` holds
 by drawing every example of the charts application once more in a palette, the palettes in turn.
 Without `palette=` a chart is drawn as before, byte for byte. Code: `pad/subs/palettes/`

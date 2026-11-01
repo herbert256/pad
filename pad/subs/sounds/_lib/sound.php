@@ -35,7 +35,7 @@
   // One recipe, two renderings that are the same: the server reads the recipe and settles
   // it - every note to its Hz, every default filled in (padSoundRecipe) - and both renderers
   // take that settled recipe, sample for sample the same arithmetic: padSoundRender here, for
-  // padSoundWav's WAV file, and assets/sound.js in the browser, which plays the samples it
+  // padSoundWav's WAV file, and www/assets/sounds/sound.js in the browser, which plays the samples it
   // made through WebAudio - an AudioBuffer at 22050 samples a second, one buffer per sound,
   // made on its first play. So the WAV file is what the page plays, and the stored answers
   // can hold its md5. The noise comes from a seeded xorshift, so it is the same on every
@@ -211,7 +211,7 @@
   }
 
   // ------------------------------------------------------------------------------------
-  // The rendering - assets/sound.js does the same, step for step: change one, change both.
+  // The rendering - www/assets/sounds/sound.js does the same, step for step: change one, change both.
   // ------------------------------------------------------------------------------------
 
   // The settled recipe as samples: every voice into its own buffer, filtered, added to the
@@ -604,7 +604,7 @@
   // The script and the style, once per page.
   // ------------------------------------------------------------------------------------
 
-  // The runtime, assets/sound.js, and every recipe there is, settled - so a data-pad-sound
+  // The runtime, www/assets/sounds/sound.js, and every recipe there is, settled - so a data-pad-sound
   // of any kind plays once a {sound} or a toast with a sound has written the script.
 
   function padSoundScript () {
@@ -626,8 +626,17 @@
     $nonce = ( is_string ( $padCsp ?? NULL ) and str_contains ( $padCsp, "'nonce'" ) )
            ? ' nonce="' . htmlspecialchars ( padNonce (), ENT_QUOTES ) . '"' : '';
 
-    return padProtect ( "<script$nonce>" . rtrim ( (string) padFileGet ( PAD . 'subs/sounds/assets/sound.js' ), "\r\n" )
-                        . "\nPadSound.add($json, " . json_encode ( PAD_SOUND_EVENTS ) . ');</script>' );
+    // Linked, the runtime is a <script src> of www/assets/sounds/ and the recipes a line of
+    // their own behind it; written in, one script holds both.
+
+    $runtime = padWidgetFile ( 'sounds/sound.js' );
+    $add     = "PadSound.add($json, " . json_encode ( PAD_SOUND_EVENTS ) . ');';
+
+    if ( is_array ( $runtime ) )
+      return padProtect ( '<script src="' . htmlspecialchars ( padWidgetUrl ( $runtime ['padWidgetFile'] ), ENT_QUOTES ) . "\"$nonce></script>"
+                          . "<script$nonce>$add</script>" );
+
+    return padProtect ( "<script$nonce>$runtime\n$add</script>" );
 
   }
 
@@ -638,7 +647,7 @@
         'line'   => [ '#cfcec8', '#4a4a46' ],
         'face'   => [ '#ffffff', '#242422' ],
         'accent' => [ '#2a78d6', '#5598e7' ] ],
-      preg_replace ( '/\R[ \t]*/', '', trim ( (string) padFileGet ( PAD . 'subs/sounds/assets/sound.css' ) ) ) );
+      padWidgetFile ( 'sounds/sound.css' ) );
 
   }
 

@@ -2,7 +2,7 @@
 
   // The {oauth 'github'/} button: a link styled as a button, Log in with <the provider's name>,
   // with the provider's icon when subs/icons/ has one of its name - else the log-in icon. Its
-  // style is subs/oauth/assets/oauth.css, written once per page (padWidgetStyle), its colours
+  // style is www/assets/oauth/oauth.css, written once per page (padWidgetStyle), its colours
   // --pad-oauth-* custom properties with light-dark() defaults. Only the provider's name and
   // icon are read here: no setting, no request - the button renders without credentials, and
   // padOAuthStart on the page it links to names what is missing.
@@ -25,7 +25,7 @@
 
   function padOAuthStyle () {
 
-    $rules = preg_replace ( '/\R[ \t]*/', '', trim ( (string) padFileGet ( PAD . 'subs/oauth/assets/oauth.css' ) ) );
+    $rules = padWidgetFile ( 'oauth/oauth.css' );
 
     return padWidgetStyle ( 'oauth', [ 'back'  => [ '#ffffff', '#1f2328' ],
                                        'text'  => [ '#1f2328', '#f0f3f6' ],

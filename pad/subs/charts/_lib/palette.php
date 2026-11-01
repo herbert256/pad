@@ -19,7 +19,7 @@
   // class. The colours stood in a style attribute of the svg, which the style-src nonce the
   // engine supports drops - a nonce covers no attribute - and a chart in a palette was drawn
   // in the default colours under it. A chart drawn in the browser gets the same: the server
-  // hands it the class and the rules for each number of slots, and client/palette.js puts on
+  // hands it the class and the rules for each number of slots, and www/assets/charts/palette.js puts on
   // the ones the drawing needs - the same SVG, character for character. Without palette=
   // nothing of this runs and a chart is drawn as before.
   //

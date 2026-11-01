@@ -12,12 +12,12 @@
   //
   // A game is a file of subs/games/types/ - <game>.php checks what the game is given and writes
   // its board - and the files there are the games there are (padGameTypes, lib/game.php);
-  // subs/games/assets/ holds its script, <game>.js, which plays it, and its style, <game>.css. subs/games/game.php is the body the {game} tag and the
+  // www/assets/games/ holds its script, <game>.js, which plays it, and its style, <game>.css. subs/games/game.php is the body the {game} tag and the
   // game: type both run; a game's file runs in padGameTag and answers padGame ( ... ), the
   // frame every game shares: its name, a status line its script writes to, the board, a bar
   // for its buttons, and its configuration as JSON for the script.
   //
-  // The script of the games - assets/game.js, the runtime: a seeded random number,
+  // The script of the games - www/assets/games/game.js, the runtime: a seeded random number,
   // the status, the buttons, the end of a game - and the script of each kind are written once
   // per page with the CSP nonce, as the interactive tags write theirs (lib/widget.php). A
   // game's script finds every board of its kind on the page, the ones a fragment or a live
@@ -258,13 +258,13 @@
                       . '<div class="pg-bar"></div>'
                       . '<noscript><p class="pg-noscript">This game is played in the browser and needs JavaScript.</p></noscript>'
                       . '</section>' )
-         . padWidgetScript ( 'game', padFileGet ( PAD . 'subs/games/assets/game.js' ) )
-         . padWidgetScript ( "game-$kind", padFileGet ( PAD . "subs/games/assets/$kind.js" ) );
+         . padWidgetScript ( 'game', padWidgetFile ( 'games/game.js', 'raw' ) )
+         . padWidgetScript ( "game-$kind", padWidgetFile ( "games/$kind.js", 'raw' ) );
 
   }
 
-  // The look of the games - assets/game.css, with the colours every game draws in
-  // as custom properties with light and dark defaults - and the look of the kind, assets/<game>.css,
+  // The look of the games - www/assets/games/game.css, with the colours every game draws in
+  // as custom properties with light and dark defaults - and the look of the kind, www/assets/games/<game>.css,
   // once per page each.
 
   function padGameStyle ( $kind ) {
@@ -276,10 +276,10 @@
                'good'    => [ '#1a8a5a', '#3fbf86' ], 'bad'     => [ '#d43c3b', '#ef6b6a' ],
                'mark'    => [ '#fff1b8', '#4a4320' ] ];
 
-    $css = padWidgetStyle ( 'game', $roles, padFileGet ( PAD . 'subs/games/assets/game.css' ) );
+    $css = padWidgetStyle ( 'game', $roles, padWidgetFile ( 'games/game.css', 'raw' ) );
 
     if ( padWidgetOnce ( "style:game-$kind" ) )
-      $css .= padProtect ( '<style' . padStyleNonce () . '>' . padFileGet ( PAD . "subs/games/assets/$kind.css" ) . '</style>' );
+      $css .= padWidgetSheet ( padWidgetFile ( "games/$kind.css", 'raw' ) );
 
     return $css;
 

@@ -173,7 +173,7 @@
 
   function padSheetStyle () {
 
-    $css = preg_replace ( '/\R[ \t]*/', '', trim ( (string) padFileGet ( PAD . 'subs/formulas/assets/sheet.css' ) ) );
+    $css = padWidgetFile ( 'formulas/sheet.css' );
 
     return padWidgetStyle ( 'sheet', [
       'text'    => [ '#1f1f1d', '#ecebe6' ],

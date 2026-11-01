@@ -3,7 +3,7 @@
   // The body of a toy, whichever way it is written: {toy 'life', pattern='glider'/}, the toy:
   // type - {toy:life pattern='glider'/}, or a bare {life pattern='glider'/} when nothing else
   // has the name. The caller sets $padToyKind; a toy is a file of subs/toys/types/ - its script and
-  // its style are subs/toys/assets/<toy>.js and .css - and the files there are all the toys there
+  // its style are www/assets/toys/<toy>.js and .css - and the files there are all the toys there
   // are (padToyTypes, lib/toy.php).
   //
   // A toy runs in the browser: the server checks the options it is given and writes the

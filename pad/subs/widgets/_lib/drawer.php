@@ -28,8 +28,8 @@
   // 'g' and the panel of a drawer named 'g-open' - the button of one opened the other.
   //
   // padDrawer        the button, the links and the panel around the rendered content
-  // padDrawerStyle   the CSS, assets/drawer.css, once per page
-  // padDrawerScript  the fallback for a browser without invoker commands, assets/drawer.js,
+  // padDrawerStyle   the CSS, www/assets/widgets/drawer.css, once per page
+  // padDrawerScript  the fallback for a browser without invoker commands, www/assets/widgets/drawer.js,
   //                  once per page
 
   function padDrawer ( $name, $title, $button, $side, $content ) {

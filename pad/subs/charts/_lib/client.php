@@ -3,7 +3,7 @@
   // A chart drawn in the browser: {chart 'bar', data='sales', client/} - the client option of
   // every chart kind. The server gathers what the kind draws from - its rows, as padChartGather
   // gives them, after the handling options, and the tag's options - and writes them into the
-  // page as JSON; the SVG is drawn in the browser by subs/charts/client/, the PHP of this
+  // page as JSON; the SVG is drawn in the browser by www/assets/charts/, the PHP of this
   // directory written again in JavaScript, a file for a file and a function for a function,
   // so the chart comes out the same as the server draws it.
   //
@@ -19,7 +19,7 @@
   // chart without rows answers nothing, and its @else@ shows, as on the server; one whose
   // rows the browser finds no point in is left out there.
 
-  // The files of subs/charts/client/ a kind is drawn with, beside core.js.
+  // The files of www/assets/charts/ a kind is drawn with, beside core.js.
 
   const padChartClientFiles = [
     'arc'          => [ 'arc' ],                        'area'        => [ 'area' ],
@@ -83,7 +83,7 @@
     ];
 
     // A chart given palette= gets the class and the rules of each number of slots it may use
-    // (_lib/palette.php) and client/palette.js, which puts the ones it uses on the svg.
+    // (_lib/palette.php) and www/assets/charts/palette.js, which puts the ones it uses on the svg.
 
     if ( $palette !== '' )
       $spec ['palette'] = padChartPaletteStyles ( $palette );
@@ -142,12 +142,12 @@
 
   }
 
-  // A file of subs/charts/client/, as it stands - its comments and all, without the line break that
-  // ends it.
+  // A file of www/assets/charts/ (padWidgetFile): linked, or written in as it stands - its
+  // comments and all, without the line break that ends it.
 
   function padChartClientFile ( $name ) {
 
-    return rtrim ( (string) padFileGet ( PAD . "subs/charts/client/$name.js" ), "\r\n" );
+    return padWidgetFile ( "charts/$name.js" );
 
   }
 

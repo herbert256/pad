@@ -9,7 +9,7 @@
   // A notation is a file of subs/notations/types/, and the files there are all the notations
   // there are (padNotationTypes, subs/notations/_lib/notation.php). The file reads its options,
   // draws the text and answers the markup; its functions stand in subs/notations/_lib/<kind>.php,
-  // included the first time it runs, its style in subs/notations/assets/<kind>.css, written once
+  // included the first time it runs, its style in www/assets/notations/<kind>.css, written once
   // per page with the CSP nonce.
   //
   // The text is the kind's first parameter - {math 'a/b'/}, {chess $fen/} - as the characters it

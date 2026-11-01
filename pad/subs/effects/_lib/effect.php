@@ -9,7 +9,7 @@
   //
   // An effect is a file of subs/effects/types/ - <kind>.php reads its options and answers its
   // markup - and the files there are the effects there are (padKinds ( 'effects' ),
-  // lib/subsystem.php); subs/effects/assets/ holds the look of each, <kind>.css, beside the
+  // lib/subsystem.php); www/assets/effects/ holds the look of each, <kind>.css, beside the
   // base every effect shares, effect.css, and the one script, confetti.js. subs/effects/
   // effect.php is the body the {effect} tag, the effect: type and a bare name all run.
   //
@@ -391,29 +391,21 @@
 
     $css = padWidgetStyle ( 'effect', $roles, padEffectAsset ( 'effect.css' ) );
 
-    if ( padWidgetOnce ( "style:effect-$kind" ) and padFileExists ( PAD . "subs/effects/assets/$kind.css" ) )
-      $css .= padProtect ( '<style' . padStyleNonce () . '>' . padEffectAsset ( "$kind.css" ) . '</style>' );
+    if ( padWidgetOnce ( "style:effect-$kind" ) )
+      $css .= padWidgetSheet ( padEffectAsset ( "$kind.css" ) );
 
     return $css;
 
   }
 
-  // A file of subs/effects/assets/: a style sheet, written a rule a line, sent as one line - the
-  // line breaks and the indent after them taken out, as padWidgetAsset sends the widgets'
-  // style; a script as it stands, without the line break that ends it.
+  // A file of www/assets/effects/ (padWidgetFile): linked, or - written in - a style sheet,
+  // written a rule a line, sent as one line - the line breaks and the indent after them taken
+  // out, as padWidgetAsset sends the widgets' style; a script as it stands, without the line
+  // break that ends it.
 
   function padEffectAsset ( $file ) {
 
-    static $memo = [];
-
-    if ( isset ( $memo [$file] ) )
-      return $memo [$file];
-
-    $text = (string) padFileGet ( PAD . "subs/effects/assets/$file" );
-
-    return $memo [$file] = str_ends_with ( $file, '.css' )
-      ? preg_replace ( '/\R[ \t]*/', '', trim ( $text ) )
-      : rtrim ( $text, "\r\n" );
+    return padWidgetFile ( "effects/$file" );
 
   }
 
@@ -439,10 +431,19 @@
 
     $padEffectRules = [];
 
-    if ( $css === '' )
-      return $html;
+    // A <link> to a style sheet of www/assets/effects/ is no element of an svg - one inside
+    // it is never loaded - so it stands before the svg; in a whole page it goes into the
+    // <head> before tidy reads the line (padWidgetHead).
 
-    return $html . padProtect ( '<svg class="pad-effect-css" width="0" height="0" aria-hidden="true" focusable="false">' )
+    $links = '';
+
+    if ( str_contains ( $css, '<link ' ) )
+      $css = preg_replace_callback ( '#<link [^>]*>#', function ( $m ) use ( &$links ) { $links .= $m [0]; return ''; }, $css );
+
+    if ( $css === '' )
+      return $html . $links;
+
+    return $html . $links . padProtect ( '<svg class="pad-effect-css" width="0" height="0" aria-hidden="true" focusable="false">' )
                  . $css . padProtect ( '</svg>' );
 
   }

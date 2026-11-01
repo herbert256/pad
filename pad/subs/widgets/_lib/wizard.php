@@ -30,9 +30,9 @@
   // The items are collected the way {tabs} collects its tabs - subs/widgets/_lib/tabs.php.
   //
   // padWizard        the steps, the panels and their buttons
-  // padWizardStyle   the CSS, assets/wizard.css with the panels of twelve steps, once per
+  // padWizardStyle   the CSS, www/assets/widgets/wizard.css with the panels of twelve steps, once per
   //                  page; a wizard of more adds the rules of its further steps, each once
-  // padWizardScript  the script, assets/wizard.js, once per page
+  // padWizardScript  the script, www/assets/widgets/wizard.js, once per page
 
   include_once PAD . 'subs/widgets/_lib/tabs.php';
 

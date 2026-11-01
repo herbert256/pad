@@ -4,7 +4,7 @@
   // confetti from where it stands: the single tag bursts once, when it comes into view; the
   // pair every time something in it is clicked, its button - the content is shown and works as
   // it is. The one effect with a script, written once per page with the CSP nonce
-  // (assets/confetti.js); the pieces fly on a canvas over the window for three seconds, hidden
+  // (www/assets/effects/confetti.js); the pieces fly on a canvas over the window for three seconds, hidden
   // from a screen reader and taking no clicks. pieces= how many (120, 10 to 500), spread= the
   // angle they fly out in, in degrees (70, 10 to 360), colors= two to eight CSS colours (the
   // accent colours and an amber and a green when not given), seed= which pieces: the same seed

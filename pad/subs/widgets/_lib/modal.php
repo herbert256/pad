@@ -32,8 +32,8 @@
   // one id, and the link of 'terms' and the dialog of a modal named 'terms-open'.
   //
   // padModal        the button, the links and the dialog around the rendered content
-  // padModalStyle   the CSS, assets/modal.css, once per page
-  // padModalScript  the fallback for a browser without invoker commands, assets/modal.js,
+  // padModalStyle   the CSS, www/assets/widgets/modal.css, once per page
+  // padModalScript  the fallback for a browser without invoker commands, www/assets/widgets/modal.js,
   //                 once per page
 
   function padModal ( $name, $title, $button, $content ) {

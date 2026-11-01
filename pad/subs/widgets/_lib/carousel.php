@@ -66,7 +66,7 @@
 
   }
 
-  // The rules once per page - assets/carousel.css, which holds the marks of the dots for
+  // The rules once per page - www/assets/widgets/carousel.css, which holds the marks of the dots for
   // twelve slides a carousel; one of more adds the marks of its further slides, each once.
 
   function padCarouselStyle ( $count ) {

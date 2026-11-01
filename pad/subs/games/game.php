@@ -3,7 +3,7 @@
   // The body of a game, whichever way it is written: {game 'memory', pairs=6/}, the game: type -
   // {game:memory pairs=6/}, or a bare {memory pairs=6/} when nothing else has the name. The
   // caller sets $padGameKind; a game is a file of subs/games/types/ - its script and its style
-  // are subs/games/assets/<game>.js and .css - and the files there are all the games there are
+  // are www/assets/games/<game>.js and .css - and the files there are all the games there are
   // (padGameTypes, lib/game.php).
   //
   // A game is played in the browser: the server checks what it is given and writes the board,

@@ -25,8 +25,8 @@
   // The items are collected the way {tabs} collects its tabs - subs/widgets/_lib/tabs.php.
   //
   // padLightbox        the grid and the views
-  // padLightboxStyle   the CSS, assets/lightbox.css, once per page
-  // padLightboxScript  the script, assets/lightbox.js, once per page
+  // padLightboxStyle   the CSS, www/assets/widgets/lightbox.css, once per page
+  // padLightboxScript  the script, www/assets/widgets/lightbox.js, once per page
 
   include_once PAD . 'subs/widgets/_lib/tabs.php';
 

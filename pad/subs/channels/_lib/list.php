@@ -3,7 +3,7 @@
   // The single form of {notifications/}: the rows as a list - the title, the text when it says
   // more than the title, the time, the mark-read link - in a section a screen reader hears as
   // Notifications; "No new notifications." when there are none. Its style is
-  // subs/channels/assets/notifications.css, written once per page, the colours
+  // www/assets/channels/notifications.css, written once per page, the colours
   // --pad-notifications-* custom properties with light-dark() defaults. The html of a
   // notification is what its template rendered, the values in it escaped there.
 
@@ -40,8 +40,7 @@
 
   function padNotifyListStyle () {
 
-    $rules = preg_replace ( '/\R[ \t]*/', '', trim ( (string) padFileGet ( PAD . 'subs/channels/assets/notifications.css' ) ) )
-           . '.pad-notifications-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}';
+    $rules = padWidgetFile ( 'channels/notifications.css' );
 
     return padWidgetStyle ( 'notifications', [ 'line'  => [ '#e3e5e8', '#3a3f46' ],
                                                'text'  => [ '#30343a', '#d5d9de' ],

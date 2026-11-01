@@ -30,8 +30,8 @@
   // padToast         the dialog: the title, the text, the close button
   // padToastTimeout  the seconds of timeout=, 0 without it
   // padToastSound    the sound of sound=, '' without it
-  // padToastStyle    the CSS, assets/toast.css, once per page
-  // padToastScript   the script, assets/toast.js, once per page - the close button of a
+  // padToastStyle    the CSS, www/assets/widgets/toast.css, once per page
+  // padToastScript   the script, www/assets/widgets/toast.js, once per page - the close button of a
   //                  browser without invoker commands, Escape and timeout=
 
   function padToast ( $title, $text, $tone, $place, $timeout, $sound = '' ) {

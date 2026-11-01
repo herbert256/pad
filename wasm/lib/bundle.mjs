@@ -13,6 +13,9 @@
 //                       which padBrand writes into the page offline
 //   www/_common/pad.css, pad.js  the stylesheet and the script of the frame the applications
 //                       share, which padFrame writes into the page offline
+//   www/assets/         the style sheets and scripts of the subsystems - widgets, games,
+//                       inputs, the charts drawn in the browser - which a page has written in
+//                       offline, where online it links them (pad/lib/widget.php)
 //   www/<app>/          its stylesheets, scripts and pictures, without the PHP entry point
 //   runtime/            the PHP side of the runtime's database and storage tools
 //
@@ -62,6 +65,7 @@ export function collect(apps) {
     walk(join(home, 'www', app), APP_MAX, key => !key.endsWith('.php'));
   }
   walk(join(home, 'apps', '_common'), APP_MAX);
+  walk(join(home, 'www', 'assets'), APP_MAX);
   for (const file of ['brand.css', 'pad.css', 'pad.js'])
     if (existsSync(join(home, 'www', '_common', file)))
       add(`www/_common/${file}`, readFileSync(join(home, 'www', '_common', file)));

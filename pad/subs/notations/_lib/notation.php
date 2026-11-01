@@ -12,7 +12,7 @@
   // draws the text ($padNotationText) and answers the markup - and the files there are the
   // notations there are (padNotationTypes). Its functions stand in _lib/<kind>.php, included
   // when it is first drawn (subs/notations/notation.php, the body every form runs); its style
-  // in assets/<kind>.css, written with the first drawing of the kind on a page, with the CSP
+  // in www/assets/notations/<kind>.css, written with the first drawing of the kind on a page, with the CSP
   // nonce (padNotationStyle). Nothing a notation draws needs a script: every kind is markup -
   // MathML, HTML, inline SVG - drawn the same for the same text, so a page answers the same
   // bytes every time.
@@ -140,26 +140,23 @@
 
   }
 
-  // The style of a kind: the rules of assets/<kind>.css - a rule a line, sent as one line -
-  // after its colours, custom properties --pad-<class>-<role> with light-dark() defaults, once
-  // per page (padWidgetStyle, lib/widget.php).
+  // The style of a kind: the rules of www/assets/notations/<kind>.css - linked, or written in
+  // a rule a line sent as one line (padWidgetFile) - after its colours, custom properties
+  // --pad-<class>-<role> with light-dark() defaults, once per page (padWidgetStyle,
+  // lib/widget.php).
 
   function padNotationStyle ( $class, $roles, $kind = '' ) {
 
-    static $memo = [];
-
-    $kind = ( $kind !== '' ) ? $kind : $class;
-
-    if ( ! isset ( $memo [$kind] ) )
-      $memo [$kind] = preg_replace ( '/\R[ \t]*/', '', trim ( (string) padFileGet ( PAD . "subs/notations/assets/$kind.css" ) ) );
+    $kind  = ( $kind !== '' ) ? $kind : $class;
+    $rules = padWidgetFile ( "notations/$kind.css" );
 
     // A kind without colours of its own - the formulas take the colour of their text - has its
     // rules alone.
 
     if ( ! $roles )
-      return padWidgetOnce ( "style:$class" ) ? padProtect ( '<style' . padStyleNonce () . '>' . $memo [$kind] . '</style>' ) : '';
+      return padWidgetOnce ( "style:$class" ) ? padWidgetSheet ( $rules ) : '';
 
-    return padWidgetStyle ( $class, $roles, $memo [$kind] );
+    return padWidgetStyle ( $class, $roles, $rules );
 
   }
 

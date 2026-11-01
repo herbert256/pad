@@ -16,9 +16,15 @@
   // field's value), plus the form's fields - and puts what comes back into the region. The
   // scripts of what comes back run, as those of a page that arrives: put in by innerHTML
   // they never ran, and the script a widget brought with the answer - a toast's timeout, a
-  // carousel's buttons - did nothing on a page that had no such widget before. Under a
-  // Content-Security-Policy naming a nonce only a script carrying the answer's nonce runs,
-  // given the page's - the answer's own nonce is no nonce of the page.
+  // carousel's buttons - did nothing on a page that had no such widget before. They run in
+  // their order, as a page's do: a script of www/assets/ (lib/widget.php) is loaded and run
+  // before the next one - put in alone it ran whenever it arrived, after the line behind it
+  // that uses it. Under a Content-Security-Policy naming a nonce only a script carrying the
+  // answer's nonce runs, given the page's - the answer's own nonce is no nonce of the page -
+  // and a <style> or a style sheet the answer links takes the page's nonce the same way: the
+  // answer is read in a <template>, where nothing loads, and its sheets are given the page's
+  // nonce before they go into the region. Put in by innerHTML, the style of a widget that
+  // first arrived in an answer was refused, its nonce the answer's.
   //
   // On the server that post is an ordinary request of the same page: its PHP runs, reads the
   // event with padLiveEvent () and padLiveValue (), and keeps state where a page keeps it - in
@@ -150,17 +156,32 @@
   if (window.padLiveReady) return;
   window.padLiveReady = true;
   var nonce = document.currentScript ? document.currentScript.nonce : '';
-  function scripts(region, policy) {
+  function swap(region, html, policy) {
     var sent = /'nonce-([^']+)'/.exec(policy || '');
-    region.querySelectorAll('script').forEach(function (old) {
-      if (sent && old.nonce !== sent[1]) return;
+    var parts = document.createElement('template');
+    parts.innerHTML = html;
+    if (nonce) parts.content.querySelectorAll('style, link[rel="stylesheet"]').forEach(function (sheet) {
+      if (!sent || sheet.getAttribute('nonce') === sent[1]) sheet.setAttribute('nonce', nonce);
+    });
+    region.replaceChildren(parts.content);
+    scripts(region, sent);
+  }
+  function scripts(region, sent) {
+    var list = [].slice.call(region.querySelectorAll('script'));
+    (function next() {
+      var old = list.shift();
+      if (!old) return;
+      if (sent && old.nonce !== sent[1]) return next();
       var script = document.createElement('script');
       for (var i = 0; i < old.attributes.length; i++)
         if (old.attributes[i].name !== 'nonce') script.setAttribute(old.attributes[i].name, old.attributes[i].value);
       if (nonce) script.nonce = nonce;
       script.text = old.text;
+      if (!script.src) { old.parentNode.replaceChild(script, old); return next(); }
+      script.async = false;
+      script.onload = script.onerror = next;
       old.parentNode.replaceChild(script, old);
-    });
+    })();
   }
   function send(region, fields) {
     var body = new URLSearchParams();
@@ -176,7 +197,7 @@
           return [text, response.headers.get('Content-Security-Policy')];
         });
       })
-      .then(function (answer) { region.innerHTML = answer[0]; scripts(region, answer[1]); region.removeAttribute('data-pad-live-error'); })
+      .then(function (answer) { swap(region, answer[0], answer[1]); region.removeAttribute('data-pad-live-error'); })
       .catch(function (error) { region.setAttribute('data-pad-live-error', error.message); })
       .then(function () { region.removeAttribute('aria-busy'); });
   }

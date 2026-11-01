@@ -8,17 +8,32 @@
   if (window.padLiveReady) return;
   window.padLiveReady = true;
   var nonce = document.currentScript ? document.currentScript.nonce : '';
-  function scripts(region, policy) {
+  function swap(region, html, policy) {
     var sent = /'nonce-([^']+)'/.exec(policy || '');
-    region.querySelectorAll('script').forEach(function (old) {
-      if (sent && old.nonce !== sent[1]) return;
+    var parts = document.createElement('template');
+    parts.innerHTML = html;
+    if (nonce) parts.content.querySelectorAll('style, link[rel="stylesheet"]').forEach(function (sheet) {
+      if (!sent || sheet.getAttribute('nonce') === sent[1]) sheet.setAttribute('nonce', nonce);
+    });
+    region.replaceChildren(parts.content);
+    scripts(region, sent);
+  }
+  function scripts(region, sent) {
+    var list = [].slice.call(region.querySelectorAll('script'));
+    (function next() {
+      var old = list.shift();
+      if (!old) return;
+      if (sent && old.nonce !== sent[1]) return next();
       var script = document.createElement('script');
       for (var i = 0; i < old.attributes.length; i++)
         if (old.attributes[i].name !== 'nonce') script.setAttribute(old.attributes[i].name, old.attributes[i].value);
       if (nonce) script.nonce = nonce;
       script.text = old.text;
+      if (!script.src) { old.parentNode.replaceChild(script, old); return next(); }
+      script.async = false;
+      script.onload = script.onerror = next;
       old.parentNode.replaceChild(script, old);
-    });
+    })();
   }
   function send(region, fields) {
     var body = new URLSearchParams();
@@ -34,7 +49,7 @@
           return [text, response.headers.get('Content-Security-Policy')];
         });
       })
-      .then(function (answer) { region.innerHTML = answer[0]; scripts(region, answer[1]); region.removeAttribute('data-pad-live-error'); })
+      .then(function (answer) { swap(region, answer[0], answer[1]); region.removeAttribute('data-pad-live-error'); })
       .catch(function (error) { region.setAttribute('data-pad-live-error', error.message); })
       .then(function () { region.removeAttribute('aria-busy'); });
   }

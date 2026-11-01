@@ -2,7 +2,7 @@
 // a visitor sees what the server would say before the form leaves - and the server still
 // checks every post. PAD writes this file into the page as one inline script, once:
 // behind the first {form ..., client}, or where {validator} stands - with the script of
-// every rule, pad/subs/rules/assets/<rule>.js, where the rules stand below, and which rules
+// every rule, www/assets/rules/<rule>.js, where the rules stand below, and which rules
 // judge an empty field from the rules' own files (padValidateScript).
 //
 //   padValidate.check(rules, values)   { field: message } for the fields that broke a rule,

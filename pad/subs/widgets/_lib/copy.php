@@ -13,8 +13,8 @@
   // status region beside it. Scripting off, there is no button that would do nothing.
   //
   // padCopy        the box: the text, the button and its status
-  // padCopyStyle   the CSS, assets/copy.css, once per page
-  // padCopyScript  the script, assets/copy.js, once per page
+  // padCopyStyle   the CSS, www/assets/widgets/copy.css, once per page
+  // padCopyScript  the script, www/assets/widgets/copy.js, once per page
 
   function padCopy ( $html, $seed, $label ) {
 

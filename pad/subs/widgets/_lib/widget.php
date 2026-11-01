@@ -10,10 +10,10 @@
   // A widget is a file of subs/widgets/types/ - the tag code of the widget, which checks what it
   // is given and builds its markup - and the files there are the widgets there are
   // (padWidgetTypes, lib/widget.php). Its functions stand in _lib/<widget>.php, its style
-  // and script in assets/<widget>.css and .js. subs/widgets/widget.php is the body every form of
+  // and script in www/assets/widgets/<widget>.css and .js. subs/widgets/widget.php is the body every form of
   // a widget runs. What the widgets share with the other tags that draw - their ids, the
   // colours as custom properties, the style and the script once per page with the CSP
-  // nonce, the text of a file of assets/ (padWidgetAsset) - is lib/widget.php; what only
+  // nonce, the text of a file of www/assets/widgets/ (padWidgetAsset) - is lib/widget.php; what only
   // the widgets use is here.
   //
   // padWidgetText    a text option, read as the characters it holds

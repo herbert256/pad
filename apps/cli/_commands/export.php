@@ -12,7 +12,10 @@
   // static, so a link with them lands on the page as it renders without them. The assets
   // are what www/<app>/ holds beside the entry point - stylesheets, scripts, images, data
   // files - copied less the .php files, the _ and . names, and the directories that are
-  // applications of their own; _thumbs/, the thumbnails {img} made, goes along.
+  // applications of their own; _thumbs/, the thumbnails {img} made, goes along. The style
+  // sheets and scripts of the subsystems - www/assets/<sub>/, which a page of the server
+  // links - are written into each exported page instead ($padExportRun, pad/lib/widget.php):
+  // the copy stands on a host without them.
   //
   // A page that fails, or answers with nothing (a redirect), is reported and left out. Exit
   // status 1 when any page failed. PAD_HOST, when set, is the server the pages render

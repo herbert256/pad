@@ -1,6 +1,6 @@
 <?php
 
-  // The cases the browser's checker (pad/subs/rules/assets/) must judge as padValidate does:
+  // The cases the browser's checker (www/assets/rules/) must judge as padValidate does:
   // each a field, its rules and the posted values, with the message padValidate gives and
   // the rules as padValidateClient exports them. This page answers them as JSON - its data,
   // through $padExpose - and its answer pins the server's side; _parity.js, the parity line

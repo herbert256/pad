@@ -53,7 +53,7 @@
   // padPrintableCrop    the crop marks round a grid
   // padPrintable<Type>  an option read and checked: Number, Int, Choice, Flag, Text, Color,
   //                     Pair, Paper
-  // padPrintableStyle   the shared style, assets/printable.css, and the kind's, once a page
+  // padPrintableStyle   the shared style, www/assets/printables/printable.css, and the kind's, once a page
   // padPrintableScript  the Print button's script, once a page
 
   const PAD_PRINTABLE_PAPERS = [ 'a3' => [ 297, 420 ], 'a4' => [ 210, 297 ], 'a5' => [ 148, 210 ], 'a6' => [ 105, 148 ],
@@ -761,8 +761,8 @@
   // The style and the script.
   // ------------------------------------------------------------------------------------
 
-  // The style every printable shares - assets/printable.css: the desk, the sheets, the boxes,
-  // and how a page with printables prints - and the kind's own, assets/<kind>.css, once per
+  // The style every printable shares - www/assets/printables/printable.css: the desk, the sheets, the boxes,
+  // and how a page with printables prints - and the kind's own, www/assets/printables/<kind>.css, once per
   // page each.
 
   function padPrintableStyle ( $kind ) {
@@ -771,8 +771,8 @@
                                             'face' => [ '#ffffff', '#242422' ], 'text' => [ '#1f1f1d', '#ecebe6' ] ],
                             padPrintableAsset ( 'printable.css' ) );
 
-    if ( padWidgetOnce ( "style:printable-$kind" ) and padFileExists ( PAD . "subs/printables/assets/$kind.css" ) )
-      $css .= padProtect ( '<style' . padStyleNonce () . '>' . padPrintableAsset ( "$kind.css" ) . '</style>' );
+    if ( padWidgetOnce ( "style:printable-$kind" ) )
+      $css .= padWidgetSheet ( padPrintableAsset ( "$kind.css" ) );
 
     return $css;
 
@@ -784,13 +784,12 @@
 
   }
 
-  // A file of assets/, as the widgets read theirs: a style sheet a rule a line sent as one line.
+  // A file of www/assets/printables/, as the widgets have theirs (padWidgetFile): linked, or
+  // written in - a style sheet a rule a line sent as one line.
 
   function padPrintableAsset ( $file ) {
 
-    $text = (string) padFileGet ( PAD . "subs/printables/assets/$file" );
-
-    return str_ends_with ( $file, '.css' ) ? preg_replace ( '/\R[ \t]*/', '', trim ( $text ) ) : rtrim ( $text, "\r\n" );
+    return padWidgetFile ( "printables/$file" );
 
   }
 

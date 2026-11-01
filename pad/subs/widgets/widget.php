@@ -11,7 +11,7 @@
   // the widget asks for as a built-in tag's code is - most render their content first and
   // build their markup on the end walk. The functions of a widget stand in subs/widgets/_lib/
   // <widget>.php, included the first time it runs, as types/pad.php includes a built-in
-  // tag's tags/_lib/ file; its style and script stand in subs/widgets/assets/<widget>.css and
+  // tag's tags/_lib/ file; its style and script stand in www/assets/widgets/<widget>.css and
   // .js, written once per page (lib/widget.php: padWidgetStyle, padWidgetScript).
 
   include_once PAD . 'subs/widgets/_lib/widget.php';

@@ -73,9 +73,7 @@
   $padPaletteStyle = '';
 
   if ( padWidgetOnce ( 'style:palette' ) )
-    $padPaletteStyle = '<style' . padStyleNonce () . '>'
-                     . preg_replace ( '/\R[ \t]*/', '', trim ( (string) padFileGet ( PAD . 'subs/palettes/assets/palette.css' ) ) )
-                     . '</style>';
+    $padPaletteStyle = padUnprotect ( padWidgetSheet ( padWidgetFile ( 'palettes/palette.css' ) ) );
 
   if ( $padPaletteRules !== '' )
     $padPaletteStyle .= '<style' . padStyleNonce () . ">$padPaletteRules</style>";

@@ -107,7 +107,7 @@ wherever their path points, are refused before any statement runs.
 | File | What it is |
 |------|------------|
 | `wasm/app.mjs` | The packer: collects the files (`wasm/lib/bundle.mjs`), bundles `@php-wasm/universal` and the PHP 8.4 loader into a classic script with esbuild, carries the binary gzipped and base64-encoded, writes the page, the worker, the manifest and the icons |
-| `wasm/lib/bundle.mjs` | What a pack carries: `pad/` (without the sequence subsystem's large tables), each application and its `www/` files (no PHP entry point, no `.env`, no `node_modules`), `apps/_common/`, the runtime's PHP |
+| `wasm/lib/bundle.mjs` | What a pack carries: `pad/` (without the sequence subsystem's large tables), each application and its `www/` files (no PHP entry point, no `.env`, no `node_modules`), `apps/_common/`, `www/assets/` (the subsystems' style sheets and scripts, written into the page offline), the runtime's PHP |
 | `wasm/app/pad-app.js` | The runtime, for the page, the worker and Node: requests, cookies, the stores of `DATA/`, the `_pad/` calls |
 | `wasm/app/index.html` | The page: from the disk PHP in the tab and the pages in a frame (each page a new frame, the script first in it routing the page's requests); over https the worker's installer; with several applications the launcher |
 | `wasm/app/sw.js` | The service worker: PHP for every tab, the pack cached for offline use, a page asked for while PHP starts answered with a short wait page |

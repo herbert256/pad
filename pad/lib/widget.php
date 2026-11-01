@@ -20,10 +20,33 @@
   // padWidgetColors  the custom properties of a class with their light-dark() defaults: a
   //                  page saying color-scheme: light dark gets the dark steps in dark mode,
   //                  a browser without light-dark() keeps the light ones
-  // padWidgetStyle   a <style> with those properties and the rules, once per page
-  // padWidgetScript  a <script> once per page, carrying the nonce when $padCsp names one
+  // padWidgetStyle   a <style> with those properties and the rules, once per page - the rules
+  //                  a file of www/assets/ (padWidgetFile) are a <link> behind it
+  // padWidgetScript  a <script> once per page, carrying the nonce when $padCsp names one - a
+  //                  file of www/assets/ is a <script src>
+  // padWidgetSheet   a style sheet as its element: a <link> to a file of www/assets/, a
+  //                  <style> of rules - the caller says once
   // padWidgetAttr    a text escaped for an attribute or an element's content
-  // padWidgetAsset   the style or the script of a widget, a file of subs/widgets/assets/
+  // padWidgetAsset   the style or the script of a widget, a file of www/assets/widgets/
+  //
+  // The style sheets and the scripts the subsystems keep in files stand in www/assets/<sub>/ -
+  // widgets/tabs.css, games/memory.js, charts/core.js - beside the entry points, served by the
+  // web server as they are, so a browser keeps them between pages:
+  //
+  // padWidgetLinked   whether this output links those files - a <link rel="stylesheet"> and a
+  //                  <script src>, the address with ?v= and a hash of the file's contents, so a
+  //                  changed file is a new address - or has their text written in: linked on
+  //                  a web page; written in when $padAssetLinks is off, in a mail or a
+  //                  notification (a mail client fetches no style sheet), offline (pad pack:
+  //                  no server behind the page), in a static copy (pad export) and in every
+  //                  output that is not the web's
+  // padWidgetFile    a file of www/assets/ - 'widgets/tabs.css' - as padWidgetStyle,
+  //                  padWidgetScript and padWidgetSheet take it: the file to link, or its text
+  //                  as the subsystem sends it written in; '' when it is not there or empty
+  // padWidgetFileText  the text of a file of www/assets/, kept while its time and size stand
+  // padWidgetUrl     the address of a file of www/assets/, with its version
+  // padWidgetHead    the style sheets of www/assets/ a page links, moved into its <head>
+  // padWidgetWhole   whether the output is a whole page, not a part of one
   //
   // What these write is protected (padProtect): their braces are CSS and JavaScript, never
   // tags of the page around them - a tag that hands its rendering back through $padContent
@@ -141,14 +164,26 @@
 
   }
 
+  // The colours stay a <style> of the page: they are made here, from the roles. The rules of
+  // a file of www/assets/ follow them as a <link>, which padWidgetHead moves into the <head>
+  // of the page with the other links.
+
   function padWidgetStyle ( $class, $roles, $rules ) {
 
     if ( ! padWidgetOnce ( "style:$class" ) )
       return '';
 
+    if ( is_array ( $rules ) )
+      return padProtect ( '<style' . padStyleNonce () . '>' . padWidgetColors ( $class, $roles ) . '</style>' )
+           . padWidgetSheet ( $rules );
+
     return padProtect ( '<style' . padStyleNonce () . '>' . padWidgetColors ( $class, $roles ) . $rules . '</style>' );
 
   }
+
+  // A script of www/assets/ is a <script src> without async or defer: it runs where it stands,
+  // before what follows it, as the script written in did - a kind's script after the runtime
+  // it extends, the inline line that mounts a chart after the code that draws it.
 
   function padWidgetScript ( $key, $script ) {
 
@@ -160,27 +195,208 @@
     $nonce = ( is_string ( $padCsp ?? NULL ) and str_contains ( $padCsp, "'nonce'" ) )
            ? ' nonce="' . htmlspecialchars ( padNonce (), ENT_QUOTES ) . '"' : '';
 
+    if ( is_array ( $script ) )
+      return padProtect ( '<script src="' . htmlspecialchars ( padWidgetUrl ( $script ['padWidgetFile'] ), ENT_QUOTES ) . "\"$nonce></script>" );
+
     return padProtect ( "<script$nonce>$script</script>" );
 
   }
 
-  // The text of a file of subs/widgets/assets/, kept for the request. A style sheet there is
-  // written a rule a line and sent as one line - the line breaks and the indent after them
-  // taken out, which a rule of these never holds - as the rules were sent when they stood in
-  // the PHP; a script is sent as it stands, without the line break that ends the file.
+  // A style sheet: a file of www/assets/ as a <link>, rules as a <style>, nothing for ''. The
+  // caller asks padWidgetOnce first.
+
+  function padWidgetSheet ( $css ) {
+
+    if ( is_array ( $css ) )
+      return padProtect ( '<link rel="stylesheet" href="' . htmlspecialchars ( padWidgetUrl ( $css ['padWidgetFile'] ), ENT_QUOTES ) . '"'
+                          . padStyleNonce () . '>' );
+
+    if ( (string) $css === '' )
+      return '';
+
+    return padProtect ( '<style' . padStyleNonce () . ">$css</style>" );
+
+  }
+
+  // A style sheet or a script of a widget, a file of www/assets/widgets/. Written in, a style
+  // sheet there is written a rule a line and sent as one line - the line breaks and the indent
+  // after them taken out, which a rule of these never holds - as the rules were sent when they
+  // stood in the PHP; a script is sent as it stands, without the line break that ends the file.
 
   function padWidgetAsset ( $file ) {
 
+    return padWidgetFile ( "widgets/$file" );
+
+  }
+
+  // ------------------------------------------------------------------------------------
+  // The files of www/assets/.
+  // ------------------------------------------------------------------------------------
+
+  // Linked, or written in. A {cache} section kept in a page links the files as the page
+  // does; a mail rendered during the request has them written in, the page around it links.
+
+  function padWidgetLinked () {
+
+    global $padAssetLinks, $padOnceScope, $padOutputType, $padExportRun;
+
+    return ( $padAssetLinks ?? TRUE )
+       and ( $padOutputType ?? 'web' ) === 'web'
+       and ! ( $padExportRun ?? FALSE )
+       and ! preg_match ( '/^(mail|notify)/', (string) ( $padOnceScope ?? '' ) )
+       and ! padWasm ();
+
+  }
+
+  // A file of www/assets/ as padWidgetStyle, padWidgetScript and padWidgetSheet take it.
+  // Written in, its text is sent as the subsystem sends it - $how:
+  //
+  //   line   a style sheet as one line, the line breaks and the indent after them taken out;
+  //          a script as it stands, without the line break that ends the file
+  //   bare   a style sheet as one line without its comments
+  //   raw    the file as it stands
+  //
+  // Linked or written in, a file that is not there or is empty is '', which a caller with an
+  // optional file - the style of a kind that has none - tests for.
+
+  function padWidgetFile ( $path, $how = 'line' ) {
+
+    $text = padWidgetFileText ( $path );
+
+    if ( $text === '' )
+      return '';
+
+    if ( padWidgetLinked () )
+      return [ 'padWidgetFile' => $path ];
+
+    if ( $how == 'raw' )
+      return $text;
+
+    if ( ! str_ends_with ( $path, '.css' ) )
+      return rtrim ( $text, "\r\n" );
+
+    if ( $how == 'bare' )
+      return trim ( preg_replace ( '/\R[ \t]*/', '', trim ( preg_replace ( '#/\*.*?\*/#s', '', $text ) ) ) );
+
+    return preg_replace ( '/\R[ \t]*/', '', trim ( $text ) );
+
+  }
+
+  // The directory: www/assets/ of the PAD home the engine stands in.
+
+  function padWidgetDir () {
+
+    return dirname ( PAD ) . '/www/assets/';
+
+  }
+
+  // The text of a file of www/assets/ - a name below it, never climbing out - read once while
+  // its time and size stand: a queue worker renders mail after mail in one process.
+
+  function padWidgetFileText ( $path ) {
+
     static $memo = [];
 
-    if ( isset ( $memo [$file] ) )
-      return $memo [$file];
+    if ( ! preg_match ( '#^[a-z0-9_-]+/[a-z0-9_.-]+$#iD', $path ) or str_contains ( $path, '..' ) )
+      return '';
 
-    $text = (string) padFileGet ( PAD . "subs/widgets/assets/$file" );
+    $file = padWidgetDir () . $path;
+    $stat = @stat ( $file );
 
-    return $memo [$file] = str_ends_with ( $file, '.css' )
-      ? preg_replace ( '/\R[ \t]*/', '', trim ( $text ) )
-      : rtrim ( $text, "\r\n" );
+    if ( ! $stat or ( $stat ['mode'] & 0170000 ) != 0100000 )
+      return '';
+
+    $key = "$path|{$stat ['mtime']}|{$stat ['size']}";
+
+    return $memo [$key] ??= (string) @file_get_contents ( $file );
+
+  }
+
+  // The address of a file of www/assets/ - /<mount>/assets/widgets/tabs.css?v=3f9a1c02be -
+  // with ten hex digits of a hash of its contents, as padAsset gives a file of an
+  // application's own.
+
+  function padWidgetUrl ( $path ) {
+
+    global $padRoot;
+
+    static $memo = [];
+
+    $text = padWidgetFileText ( $path );
+
+    if ( ( $memo [$path] [0] ?? NULL ) !== $text )
+      $memo [$path] = [ $text, substr ( hash ( in_array ( 'xxh128', hash_algos (), TRUE ) ? 'xxh128' : 'sha256', $text ), 0, 10 ) ];
+
+    return ( $padRoot ?? '/' ) . "assets/$path?v=" . $memo [$path] [1];
+
+  }
+
+  // The style sheets of www/assets/ a page links stand where the tags wrote them - in a
+  // fragment, a live region's answer, a kept {cache} section they must. In a whole page they
+  // are moved into its <head>, each once, as tidy moves a <style>: a <link> in a paragraph
+  // ended it under tidy, and one in the inline <svg> an effect keeps its style in was never
+  // loaded. A whole page without a <head> of its own - a bare template, which tidy makes a
+  // document of - has them at its start, where tidy puts them into the head it makes and a
+  // browser into the one it implies. A link inside a <template shadowrootmode> - a {shadow}
+  // root, whose style the page around it does not reach - stays.
+
+  function padWidgetHead ( $html ) {
+
+    global $padRoot;
+
+    $prefix = '<link rel="stylesheet" href="' . htmlspecialchars ( ( $padRoot ?? '/' ) . 'assets/', ENT_QUOTES );
+
+    if ( ! str_contains ( $html, $prefix ) )
+      return $html;
+
+    $at = stripos ( $html, '</head>' );
+
+    if ( $at === FALSE ) {
+      if ( ! padWidgetWhole () )
+        return $html;
+      $at = preg_match ( '#^\s*(?:<!DOCTYPE[^>]*>\s*)?(?:<html\b[^>]*>)?#i', $html, $m ) ? strlen ( $m [0] ) : 0;
+    }
+
+    $links = [];
+
+    $body = preg_replace_callback (
+      '#<template\b[^>]*\bshadowrootmode\b.*?</template>|' . preg_quote ( $prefix, '#' ) . '[^"]*"(?: nonce="[^"]*")?>#is',
+      function ( $m ) use ( &$links ) {
+        if ( strncasecmp ( $m [0], '<template', 9 ) == 0 )
+          return $m [0];
+        $links [$m [0]] = TRUE;
+        return '';
+      },
+      substr ( $html, $at ) );
+
+    if ( $body === NULL )
+      return $html;
+
+    $head = substr ( $html, 0, $at );
+
+    foreach ( array_keys ( $links ) as $link )
+      if ( ! str_contains ( $head, $link ) )
+        $head .= $link;
+
+    return $head . $body;
+
+  }
+
+  // Whether the output is a whole page - what tidy reads as one (exits/tidy.php): not a
+  // response fragment, a live region's answer, a page included without its wrappers, the
+  // rest of a page that flushed its head, nor an answer that is no HTML.
+
+  function padWidgetWhole () {
+
+    global $padFragmentSent, $padContentType;
+
+    if ( isset ( $_REQUEST ['padInclude'] ) or ( $padFragmentSent ?? FALSE ) or padLive () !== '' or isset ( $GLOBALS ['padFlushRaw'] ) )
+      return FALSE;
+
+    if ( function_exists ( 'padSelfSwitch' ) and ( padSelfSwitch ( 'padExamples' ) or padSelfSwitch ( 'padReference' ) ) )
+      return FALSE;
+
+    return str_starts_with ( strtolower ( trim ( $padContentType ?? 'text/html' ) ), 'text/html' );
 
   }
 

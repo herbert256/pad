@@ -25,8 +25,8 @@
   // buttons, a rule (<hr>) and a line of text (<p>) are drawn as a menu's.
   //
   // padDropdown        the button and the menu around the rendered content
-  // padDropdownStyle   the CSS, assets/dropdown.css, once per page
-  // padDropdownScript  the script, assets/dropdown.js, once per page
+  // padDropdownStyle   the CSS, www/assets/widgets/dropdown.css, once per page
+  // padDropdownScript  the script, www/assets/widgets/dropdown.js, once per page
 
   function padDropdown ( $label, $items, $align ) {
 

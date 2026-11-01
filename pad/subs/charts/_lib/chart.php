@@ -3,7 +3,7 @@
   // The chart subsystem: inline SVG charts, written by the server - no JavaScript, so a chart
   // works in an e-mail and in print, and caches like any other output. With the option client
   // the browser draws the same SVG instead, from the rows and options the server hands it
-  // (client.php, and subs/charts/client/ the drawing written again in JavaScript).
+  // (client.php, and www/assets/charts/ the drawing written again in JavaScript).
   //
   //   {chart 'bar', data='sales', label='month', value='amount'/}
   //   {chart:line data='visits', value='count', title='Visits per day'/}

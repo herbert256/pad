@@ -174,7 +174,7 @@
 
   }
 
-  // The rules once per page - assets/tabs.css, which holds the slots of twelve tabs a set; a
+  // The rules once per page - www/assets/widgets/tabs.css, which holds the slots of twelve tabs a set; a
   // set of more adds the rules of its further tabs, each once.
 
   function padTabsStyle ( $count ) {

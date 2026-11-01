@@ -25,6 +25,8 @@ Browser → www/demo/index.php → www/pad.php → pad/pad.php
 | `pad.php` | Centralized bootstrap: includes `home/home.php` for the machine-specific `$padHome`, then path setup, app detection, framework inclusion |
 | `index.php` | Root entry point (loads the `pad` app by default) |
 | `DATA` | Symlink to `../DATA` so runtime output (dumps, regression results) is browsable over HTTP (created by `pad/install/data.sh`; git-ignored) |
+| `_common/` | The stylesheet and the script of the frame every application shares (`pad.css`, `pad.js`) and of its brand |
+| `assets/` | The style sheets and scripts of the engine's subsystems, a directory each - `widgets/tabs.css`, `games/memory.js`, `charts/core.js` ... - which a page links with `?v=` and a hash of the contents (`pad/lib/widget.php`, `$padAssetLinks`); every address versioned, so a server may send them with a Cache-Control of a year |
 
 ## App Entry Points
 

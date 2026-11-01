@@ -1,4 +1,4 @@
-// The charts drawn in the browser (pad/subs/charts/client/, the client option) against the charts
+// The charts drawn in the browser (www/assets/charts/, the client option) against the charts
 // the server draws: every example page of the charts application rendered by PHP, and again
 // with client added to its chart tags, the JavaScript drawing those in Node - the two SVGs the
 // same, character for character, ids aside (the server makes a client chart's id from its rows
@@ -18,9 +18,9 @@ const dir  = join(HOME, 'apps/charts');
 const kindsWanted = (process.argv.find(a => a.startsWith('--kinds=')) || '').slice(8).split(',').filter(Boolean);
 const verbose = kindsWanted.length > 0;
 
-const files = readdirSync(join(HOME, 'pad/subs/charts/client')).filter(f => f.endsWith('.js'))
+const files = readdirSync(join(HOME, 'www/assets/charts')).filter(f => f.endsWith('.js'))
   .sort((a, b) => (a === 'core.js' ? -1 : b === 'core.js' ? 1 : a < b ? -1 : 1));
-for (const f of files) await import(join(HOME, 'pad/subs/charts/client', f));
+for (const f of files) await import(join(HOME, 'www/assets/charts', f));
 const C = globalThis.PadChart;
 
 const pages = [];

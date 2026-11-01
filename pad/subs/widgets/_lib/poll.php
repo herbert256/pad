@@ -23,7 +23,7 @@
   //                session for a visitor who has none
   // padPollPosted  the vote this request posts for the poll: the answer, '' when none
   // padPoll        the widget: the form, or the results, in its region
-  // padPollStyle   the CSS, assets/poll.css, once per page
+  // padPollStyle   the CSS, www/assets/widgets/poll.css, once per page
   //
   // The votes themselves - padPollFile, padPollCounts and padPollVote - are kept by
   // lib/poll.php, for a page's PHP as well as for the widget.

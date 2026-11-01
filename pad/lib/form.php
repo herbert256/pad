@@ -15,7 +15,7 @@
   // padFormError   the message padValidate left for a field, when its form came back
   // padValidateClient  rules as the browser's checker reads them - each with the message
   //                padValidate would give - for {form ..., client} and for a component that
-  //                checks with the same rules the page's PHP checks with (subs/rules/assets/)
+  //                checks with the same rules the page's PHP checks with (www/assets/rules/)
   // padFormRules   the rules the page's template gives the fields of its named forms, or
   //                of one of them
   //
@@ -43,7 +43,7 @@
   const padFormAt   = 'padFormAt';
 
   // The rules are the files of pad/subs/rules/types/ - <rule>.php the server's check, and
-  // pad/subs/rules/assets/<rule>.js the browser's - so a rule is added by adding its files, and
+  // www/assets/rules/<rule>.js the browser's - so a rule is added by adding its files, and
   // padValidate, the browser's checker, the messages that list the rules and the pages that
   // document them all read the directory (padRuleTypes). A rule's file answers what the rule
   // is, read once a request (padRule):
@@ -1076,7 +1076,9 @@
 
   // The checker itself as one inline script - once a page, behind the first {form ...,
   // client} or where {validator} stands. It is the engine's own script, so it carries this
-  // request's nonce when the Content-Security-Policy asks for one.
+  // request's nonce when the Content-Security-Policy asks for one. Its files stand in
+  // www/assets/rules/ with the other subsystems', but it is no file a page could link: it is
+  // made of them and of the rules' PHP files, below, so it is written in.
 
   function padValidateScript () {
 
@@ -1091,8 +1093,8 @@
 
   }
 
-  // The checker's code: the runtime, subs/rules/assets/validate.js, with the script of every rule
-  // of subs/rules/types/ that has one - subs/rules/assets/<rule>.js - where its /*rules*/ stands, and
+  // The checker's code: the runtime, www/assets/rules/validate.js, with the script of every rule
+  // of subs/rules/types/ that has one - www/assets/rules/<rule>.js - where its /*rules*/ stands, and
   // the rules that judge an empty field, read from their PHP files, where /*empties*/ does:
   // what the browser does is what the directory says, as padValidate's is. Each rule's script
   // runs in a function of its own, inside the runtime's: it reads the runtime's helpers -
@@ -1113,11 +1115,11 @@
     foreach ( padRuleTypes () as $name ) {
       if ( padRule ( $name ) ['empty'] ?? FALSE )
         $empties [$name] = TRUE;
-      if ( ( $script = padFileGet ( PAD . "subs/rules/assets/$name.js" ) ) !== '' )
+      if ( ( $script = padWidgetFileText ( "rules/$name.js" ) ) !== '' )
         $rules .= "(function () {\n$script})();\n";
     }
 
-    $code = strtr ( padFileGet ( PAD . 'subs/rules/assets/validate.js' ),
+    $code = strtr ( padWidgetFileText ( 'rules/validate.js' ),
                     [ '/*empties*/{}' => json_encode ( (object) $empties ), '/*rules*/' => $rules ] );
 
     return $code = preg_replace ( '~^[ \t]*(//[^\n]*)?\n~m', '', $code );

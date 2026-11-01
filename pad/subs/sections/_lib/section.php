@@ -18,8 +18,8 @@
   //   {section 'faq', title='Questions', data='questions'/}
   //
   // A section is a file of subs/sections/types/ - the markup of one kind - and the files there
-  // are the sections there are (padSectionTypes, padKinds). Its style is assets/section.css,
-  // shared, and assets/<kind>.css, each written once per page with the CSP nonce: pure CSS, no
+  // are the sections there are (padSectionTypes, padKinds). Its style is www/assets/sections/section.css,
+  // shared, and www/assets/sections/<kind>.css, each written once per page with the CSP nonce: pure CSS, no
   // script. The colours are the --pad-section-* custom properties, whose defaults are the
   // frame's palette (--bg, --text, --accent ... of www/_common/pad.css), so a page in the frame
   // and a theme colour the sections without a word; a page without the frame gets light and
@@ -1030,28 +1030,20 @@
 
     $css = padWidgetStyle ( 'section', $roles, padSectionAsset ( 'section.css' ) );
 
-    if ( padWidgetOnce ( "style:section-$kind" ) and padFileExists ( PAD . "subs/sections/assets/$kind.css" ) )
-      $css .= padProtect ( '<style' . padStyleNonce () . '>' . padSectionAsset ( "$kind.css" ) . '</style>' );
+    if ( padWidgetOnce ( "style:section-$kind" ) )
+      $css .= padWidgetSheet ( padSectionAsset ( "$kind.css" ) );
 
     return $css;
 
   }
 
-  // A style sheet of assets/, written a rule a line and sent as one line - the line breaks
-  // and the indent after them taken out, as padWidgetAsset sends the widgets' - its comments
-  // left out.
+  // A style sheet of www/assets/sections/ (padWidgetFile): linked, or - written in - a rule a
+  // line sent as one line, the line breaks and the indent after them taken out as
+  // padWidgetAsset sends the widgets', its comments left out.
 
   function padSectionAsset ( $file ) {
 
-    static $memo = [];
-
-    if ( isset ( $memo [$file] ) )
-      return $memo [$file];
-
-    $text = (string) padFileGet ( PAD . "subs/sections/assets/$file" );
-    $text = preg_replace ( '#/\*.*?\*/#s', '', $text );
-
-    return $memo [$file] = trim ( preg_replace ( '/\R[ \t]*/', '', trim ( $text ) ) );
+    return padWidgetFile ( "sections/$file", 'bare' );
 
   }
 

@@ -23,8 +23,8 @@
   // in tidy still ends at that <style>; a tip in a <div>, a list or a cell keeps its line.
   //
   // padTooltip        the trigger and its tip
-  // padTooltipStyle   the CSS, assets/tooltip.css, once per page
-  // padTooltipScript  the script, assets/tooltip.js, once per page
+  // padTooltipStyle   the CSS, www/assets/widgets/tooltip.css, once per page
+  // padTooltipScript  the script, www/assets/widgets/tooltip.js, once per page
 
   function padTooltip ( $tip, $trigger, $place ) {
 

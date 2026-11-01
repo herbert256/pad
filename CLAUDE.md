@@ -43,7 +43,8 @@ pad/
 ├── pad/      # PAD framework core (template engine, tag processors, expression evaluator);
 │             #   pad/subs/ the directory-driven subsystems - charts, games, toys, widgets, icons ...
 ├── apps/     # PAD applications (each subdirectory is a self-contained app)
-├── www/      # Web server entry points (PHP entry points for each app); www/_common/ the frame's CSS and JS
+├── www/      # Web server entry points (PHP entry points for each app); www/_common/ the frame's CSS and JS;
+│             #   www/assets/<sub>/ the subsystems' style sheets and scripts, linked with a ?v= hash
 ├── editors/  # Editor kits, the language server, the command-line renderer
 ├── docs/     # Documentation
 ├── wasm/     # PAD in the browser: wasm/build.php bundles the engine for www/wasm/ (PHP compiled to WebAssembly);
@@ -770,7 +771,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Health check](docs/FEATURES.md#health-check) | `$padHealth` → `?up`, `_health.php` |
 | [CORS](docs/FEATURES.md#cross-origin-requests-cors) | `$padCors` |
 | [Login, gates, feature flags](docs/FEATURES.md#logging-in-gates-and-feature-flags) | `padLogin`, `padAuthRequire`, `{auth}`, `{guest}`, `{can}`, `padGate`, `{feature}` |
-| [Asset versioning](docs/FEATURES.md#asset-versioning) | `{asset 'app.css', tag/}`, `padAsset ()` |
+| [Asset versioning](docs/FEATURES.md#asset-versioning) | `{asset 'app.css', tag/}`, `padAsset ()`; the subsystems' files in `www/assets/<sub>/`, linked by a page (`$padAssetLinks`), written into a mail, offline and a static copy |
 | [Fake data](docs/FEATURES.md#migrations-and-seeders) | `{fake 'email'/}`, `{fake 'name, email', rows=5, toData='people'/}`, `padFake ()`, `padFakeRows ()` - a kind per file of `pad/subs/fakes/types/` |
 | [Migrations and seeders](docs/FEATURES.md#migrations-and-seeders) | `_migrations/`, `_seeds/`, `pad migrate`, `padFactory`, `padFake*` |
 | [Queues and the scheduler](docs/FEATURES.md#queues-and-the-scheduler) | `padQueue ()`, `_jobs/`, `pad work`, `_schedule.php` |
@@ -800,7 +801,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Markdown](docs/FEATURES.md#markdown) | `{markdown}`, `\| markdown` |
 | [Markdown collections](docs/FEATURES.md#markdown-collections) | `{collection 'blog'}`, `_content/` |
 | [Site search](docs/FEATURES.md#site-search) | `{search 'blog', q=$q, fields='title^2, body'}...{/search}`, `padSearch ()` - BM25, phrases, prefixes, Snowball stemmers en, nl, de, fr, es: a language per file of `pad/subs/search/types/` |
-| [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/subs/charts/types/`; `{sparkline/}`; `client` draws it in the browser (`pad/subs/charts/client/`) |
+| [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/subs/charts/types/`; `{sparkline/}`; `client` draws it in the browser (`www/assets/charts/`) |
 | [Games](docs/FEATURES.md#games) | `{game 'memory'/}`, `{game:sudoku/}`, `{crossword}...{/crossword}` - 18 games played in the browser, a game per file of `pad/subs/games/types/` |
 | [Toys](docs/FEATURES.md#toys) | `{toy 'life'/}`, `{toy:mandelbrot/}`, bare `{boids/}` - live simulations in the browser, a toy per file of `pad/subs/toys/types/` |
 | [Printables](docs/FEATURES.md#printables) | `{printable:labels data='products', sheet='a4-3x8'}...{/printable:labels}`, badges, cards, tickets (`<aside>` the stub), certificate, envelope, letter and invoice (`<address>` in the window), indexcards, placecards - mm-based sheets that print alone, `pdf` for the same sheets from the PDF writer, a kind per file of `pad/subs/printables/types/` |
@@ -882,6 +883,7 @@ shows them in use. The ones met most:
 | `$padCache` | FALSE | the page cache |
 | `$padToolbar`, `$padReload`, `$padCheckOutput` | FALSE | debug toolbar, live reload, output check of local requests |
 | `$padCleanUrls` | FALSE | links written as `/myapp/products/42` |
+| `$padAssetLinks` | TRUE | the subsystems' style sheets and scripts linked from `www/assets/`, FALSE written into every page |
 
 ---
 

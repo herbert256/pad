@@ -14,13 +14,13 @@
   //
   // A toy is a file of subs/toys/types/ - <toy>.php checks the options the toy is given and hands
   // them on - and the files there are the toys there are (padToyTypes, lib/toy.php);
-  // subs/toys/assets/ holds its script, <toy>.js, which runs it, and its style, <toy>.css.
+  // www/assets/toys/ holds its script, <toy>.js, which runs it, and its style, <toy>.css.
   // subs/toys/toy.php is the body the {toy} tag and the toy: type both run; a toy's file runs in
   // padToyTag and answers padToy ( ... ), the frame every toy shares: its name, a status line
   // its script writes to, the stage it draws on, a line for its counters, a bar for its
   // controls, and its configuration as JSON for the script.
   //
-  // The script of the toys - assets/toy.js, the runtime: a seeded random number, the canvas
+  // The script of the toys - www/assets/toys/toy.js, the runtime: a seeded random number, the canvas
   // with its colours resolved for the page's scheme, the pointer, the controls, the animation
   // loop that pauses while the page is hidden or the toy is scrolled away and starts paused
   // when the visitor asks for reduced motion - and the script of each kind are written once
@@ -248,13 +248,13 @@
                       . '<div class="pt-bar"></div>'
                       . '<noscript><p class="pt-noscript">This toy runs in the browser and needs JavaScript.</p></noscript>'
                       . '</section>' )
-         . padWidgetScript ( 'toy', padFileGet ( PAD . 'subs/toys/assets/toy.js' ) )
-         . padWidgetScript ( "toy-$kind", padFileGet ( PAD . "subs/toys/assets/$kind.js" ) );
+         . padWidgetScript ( 'toy', padWidgetFile ( 'toys/toy.js', 'raw' ) )
+         . padWidgetScript ( "toy-$kind", padWidgetFile ( "toys/$kind.js", 'raw' ) );
 
   }
 
-  // The look of the toys - assets/toy.css, with the colours every toy draws in as custom
-  // properties with light and dark defaults - and the look of the kind, assets/<toy>.css,
+  // The look of the toys - www/assets/toys/toy.css, with the colours every toy draws in as custom
+  // properties with light and dark defaults - and the look of the kind, www/assets/toys/<toy>.css,
   // once per page each. canvas is what a toy draws on, following the page's scheme; night is
   // a sky, dark in both, for the toys that need one - fireworks, stars, planets - and glow
   // the light drawn on it.
@@ -269,10 +269,10 @@
                'bad'     => [ '#d43c3b', '#ef6b6a' ], 'mark'    => [ '#d99a00', '#f2c94c' ],
                'night'   => [ '#0b1020', '#05070d' ], 'glow'    => [ '#fbf7ea', '#fbf7ea' ] ];
 
-    $css = padWidgetStyle ( 'toy', $roles, padFileGet ( PAD . 'subs/toys/assets/toy.css' ) );
+    $css = padWidgetStyle ( 'toy', $roles, padWidgetFile ( 'toys/toy.css', 'raw' ) );
 
-    if ( padWidgetOnce ( "style:toy-$kind" ) and padFileExists ( PAD . "subs/toys/assets/$kind.css" ) )
-      $css .= padProtect ( '<style' . padStyleNonce () . '>' . padFileGet ( PAD . "subs/toys/assets/$kind.css" ) . '</style>' );
+    if ( padWidgetOnce ( "style:toy-$kind" ) )
+      $css .= padWidgetSheet ( padWidgetFile ( "toys/$kind.css", 'raw' ) );
 
     return $css;
 

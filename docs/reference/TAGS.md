@@ -708,7 +708,7 @@ braces writes them as `&open;` and `&close;`, and a backslash as `\\`: `rules='r
 messages stay with `padValidate`'s third argument.
 
 **In the browser too:** `client` on a named form whose fields have rules checks them in the
-browser as well - the same rules, the same messages (the rules' scripts in `pad/subs/rules/assets/`, written into the
+browser as well - the same rules, the same messages (the rules' scripts in `www/assets/rules/`, written into the
 page once, behind the first such form). The rules go in a `data-pad-rules` attribute, the
 `error=` text in `data-pad-error`, and the form gets `novalidate` - the browser's own checks
 would stop the send first, with messages of their own; a field is checked when it is left, again while it is typed
@@ -736,7 +736,7 @@ The browser's checker of `padValidate`'s rules, for a form a component draws.
 {validator/}
 ```
 
-**Behavior:** Writes the checker - `pad/subs/rules/assets/validate.js` with the script of every rule of `pad/subs/rules/types/` - as one inline script - once a page, also when a
+**Behavior:** Writes the checker - `www/assets/rules/validate.js` with the script of every rule of `pad/subs/rules/types/` - as one inline script - once a page, also when a
 `{form ..., client}` brought it already - carrying the request's nonce when `$padCsp` asks
 for one. The script defines `padValidate.check(rules, values)` (the message of every field
 that broke a rule), `padValidate.field(spec, value, values)` and `padValidate.form(form)`;
@@ -1456,7 +1456,7 @@ is one that nothing reads under the strict check. The handling options (`row`, `
 | `label` | The field for the category axis - by default the first other field, else the row number |
 | `title` | The accessible name; by default made from value and label |
 | `width`, `height` | The size, default 600 x 300 (pie, donut, sunburst, rose, radialbar, rings, parliament, venn, waffle 480 x 280; sankey, network, treemap, radar, chord, pack, orgchart, parallel, multiples 600 x 400; gauge 320 x 200; calendar 720 x 150; spiral 480 x 420); `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
-| `client` | Drawn in the browser: the server writes the rows and the options as JSON and a script draws the same SVG there (`pad/subs/charts/client/`) - no SVG drawn on the server |
+| `client` | Drawn in the browser: the server writes the rows and the options as JSON and a script draws the same SVG there (`www/assets/charts/`) - no SVG drawn on the server |
 
 **Accessibility:** `role="img"`, labelled by a `<title>` and a `<desc>` that lists the values;
 each bar, point, slice, cell, flow and node has its own `<title>`, the tooltip on hover - a
@@ -2120,7 +2120,7 @@ A missing address, an unknown default or fallback is an error under the strict c
 A text written in a notation, drawn on the server: a formula in AsciiMath, a chemical equation,
 a tune in ABC, a guitar chord, notes on a piano, braille, morse, semaphore, signal flags, a chess,
 go or draughts position. Every notation is a file of `pad/subs/notations/types/`, its functions
-in `pad/subs/notations/_lib/`, its style in `pad/subs/notations/assets/` - written once per page
+in `pad/subs/notations/_lib/`, its style in `www/assets/notations/` - written once per page
 with the CSP nonce - and the files of `types/` are the notations there are; the subsystem is
 `pad/subs/notations/`. Nothing needs a script: MathML, HTML or inline SVG, the same bytes for the
 same text.
@@ -2202,7 +2202,7 @@ options and the drawing are those of the chess notation.
 ### game
 A little game played in the browser: the server checks what the game is given and writes its
 board, the game's script - once per page, with the CSP nonce - plays it. Every game is a file of
-`pad/subs/games/types/`, its `.js` and `.css` in `pad/subs/games/assets/`, and the files of `types/` are
+`pad/subs/games/types/`, its `.js` and `.css` in `www/assets/games/`, and the files of `types/` are
 the games there are (`padGameTypes()`); the subsystem is `pad/subs/games/`.
 
 ```html
@@ -2267,7 +2267,7 @@ down, on the smallest grid; a word that fits nowhere is left out and named under
 A small live simulation or visual toy played in the browser: the server checks the options it is
 given and writes its frame, the toy's script - once per page, with the CSP nonce - runs it. Every
 toy is a file of `pad/subs/toys/types/`, its `.js` (and a `.css` when it needs one) in
-`pad/subs/toys/assets/`, and the files of `types/` are the toys there are (`padToyTypes()`); the
+`www/assets/toys/`, and the files of `types/` are the toys there are (`padToyTypes()`); the
 subsystem is `pad/subs/toys/`.
 
 ```html
@@ -2584,7 +2584,7 @@ An interactive part of the page that works without JavaScript and gets better wi
 an accordion, a carousel, a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a
 toast, a copy box, a poll, a breadcrumb. Every widget is a file of
 `pad/subs/widgets/types/` - its tag code - with its functions in `pad/subs/widgets/_lib/`, its style and
-script in `pad/subs/widgets/assets/`, and the files of `types/` are the widgets there are
+script in `www/assets/widgets/`, and the files of `types/` are the widgets there are
 (`padWidgetTypes()`); the subsystem is `pad/subs/widgets/`.
 
 ```html
@@ -3836,7 +3836,7 @@ a `data` name that names nothing and no value at all are strict errors.
 A block of a landing page - a hero, the features, the prices, what customers say, the questions,
 a call to action, the numbers, the steps, the team, the logos, a newsletter form, the contact
 details, a gallery or the footer - in HTML and CSS alone. Every section is a file of
-`pad/subs/sections/types/`, its style in `pad/subs/sections/assets/` (`section.css`, shared, and a
+`pad/subs/sections/types/`, its style in `www/assets/sections/` (`section.css`, shared, and a
 sheet per kind, each written once per page with the CSP nonce); the files of `types/` are the
 sections there are, and the subsystem is `pad/subs/sections/`.
 
@@ -3944,7 +3944,7 @@ theme sets them on `.pad-section`.
 
 ### effect
 Motion and decoration on a text or a block, CSS first: every effect is a file of
-`pad/subs/effects/types/`, its look `pad/subs/effects/assets/<kind>.css`, written once per page with
+`pad/subs/effects/types/`, its look `www/assets/effects/<kind>.css`, written once per page with
 the CSP nonce after the base every effect shares (`effect.css`); confetti alone has a script,
 `assets/confetti.js`, written the same way. The files of `types/` are the effects there are; the
 subsystem is `pad/subs/effects/`.

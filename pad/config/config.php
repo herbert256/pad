@@ -320,6 +320,18 @@
   $padTidy   = TRUE;
   $padMyTidy = FALSE;
 
+  // The style sheets and the scripts of the subsystems - the widgets, the games, the inputs,
+  // the charts drawn in the browser ... - are files of www/assets/<sub>/, which the web
+  // server serves as they are. A page links them, each address with ?v= and a hash of the
+  // file's contents (lib/widget.php), so a browser keeps them from page to page and a
+  // changed file is a new address; the style sheets go into the page's <head>. FALSE writes
+  // their text into every page instead, a <style> and a <script> - as a mail, an offline
+  // application (pad pack), a static copy (pad export) and every output that is not the
+  // web's always have them. With the version in every address a server may send
+  // www/assets/ with a Cache-Control of a year.
+
+  $padAssetLinks = TRUE;
+
   // The theme of every web page (subs/themes/): the name of a file of pad/subs/themes/types/ -
   // 'paper', 'dark', 'terminal' ... - whose colours replace the frame's, a <style> put in the
   // page's <head> on the way out (subs/themes/_lib/theme.php). '' is none. A visitor's choice

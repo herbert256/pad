@@ -79,6 +79,13 @@
 
   $padOutput = padTocFill ( $padOutput );
 
+  // The style sheets of www/assets/ a whole page links go into its <head>, before tidy reads
+  // the page (lib/widget.php padWidgetHead); a fragment, a live region's answer keeps them
+  // where they stand.
+
+  if ( $padOutputType == 'web' )
+    $padOutput = padWidgetHead ( $padOutput );
+
   // A page with a {pdf} answers the document of what it rendered instead (tags/_lib/pdf.php).
 
   if ( padPdfAsked () ) {
