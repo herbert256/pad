@@ -133,12 +133,17 @@
 
   }
 
+  // An author's mistake - a missing key, an unknown provider, a wrong option: an error under
+  // the strict check, else logged as an error of the API is, the page going on.
+
   function padAiAuthor ( $message ) {
 
     padAiStore ( 'error', $message );
 
     if ( $GLOBALS ['padCheckSyntax'] ?? FALSE )
       padError ( $message );
+    else
+      padLog ( '{message}', 'warning', [ 'message' => $message ] );
 
     return '';
 

@@ -22,7 +22,8 @@
   // the fetches (padCurlFake) nothing is read from or written to that cache.
   //
   // A missing key, an unknown provider or a wrong option is the author's: an error under the
-  // strict check, the variable to set named. An error of the API - a refused key, a model
+  // strict check, the variable to set named - without it logged (padLog, warning), padAi
+  // answering ''. An error of the API - a refused key, a model
   // that is not there, a limit, a refusal - is logged (padLog, warning) and is an error under
   // the strict check as well; without it padAi answers '' and the page goes on. The code is
   // subs/ai/_lib/ai.php, read the first time padAi runs.
