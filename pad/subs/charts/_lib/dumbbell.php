@@ -157,12 +157,18 @@
 
     // A row: its name, the line between the two ends - carrying the whole row as its
     // tooltip - and a ringed dot at each end, the to dot over the from dot where they meet.
+    // The names are thinned out when the rows stand closer than a line of text, as hbar's
+    // are - every row keeps its dots and their tooltips: forty rows wrote forty names 6px
+    // apart, one over the other.
+
+    $every = max ( 1, (int) ceil ( 13 / max ( 1, $band ) ) );
 
     foreach ( $bells as $i => list ( $name, $a, $b ) ) {
 
       $y = padChartXY ( $mid ( $i ) );
 
-      $svg .= '<text x="' . padChartXY ( $left - 12 ) . '" y="' . padChartXY ( $mid ( $i ) + 4 ) . '" text-anchor="end">' . padChartAttr ( padChartFit ( $name, $left - 24 ) ) . '</text>';
+      if ( $i % $every == 0 )
+        $svg .= '<text x="' . padChartXY ( $left - 12 ) . '" y="' . padChartXY ( $mid ( $i ) + 4 ) . '" text-anchor="end">' . padChartAttr ( padChartFit ( $name, $left - 24 ) ) . '</text>';
 
       if ( $a !== NULL and $b !== NULL )
         $svg .= '<line class="pc-edge" stroke-width="3" x1="' . padChartXY ( $x ( $a ) ) . '" x2="' . padChartXY ( $x ( $b ) ) . "\" y1=\"$y\" y2=\"$y\">"

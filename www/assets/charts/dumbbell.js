@@ -132,12 +132,15 @@
     if (low < 0 && high > 0)
       svg += '<line class="pc-axis" x1="' + C.padChartXY(x(0)) + '" x2="' + C.padChartXY(x(0)) + '" y1="' + C.padChartXY(top) + '" y2="' + floor + '"/>';
 
+    var every = Math.max(1, C.int(Math.ceil(13 / Math.max(1, band))));
+
     bells.forEach(function (bell, i) {
 
       var name = bell[0], a = bell[1], b = bell[2];
       var y = C.padChartXY(mid(i));
 
-      svg += '<text x="' + C.padChartXY(left - 12) + '" y="' + C.padChartXY(mid(i) + 4) + '" text-anchor="end">' + C.padChartAttr(C.padChartFit(name, left - 24)) + '</text>';
+      if (i % every === 0)
+        svg += '<text x="' + C.padChartXY(left - 12) + '" y="' + C.padChartXY(mid(i) + 4) + '" text-anchor="end">' + C.padChartAttr(C.padChartFit(name, left - 24)) + '</text>';
 
       if (a !== null && b !== null)
         svg += '<line class="pc-edge" stroke-width="3" x1="' + C.padChartXY(x(a)) + '" x2="' + C.padChartXY(x(b)) + '" y1="' + y + '" y2="' + y + '">'
