@@ -320,6 +320,15 @@
   $padTidy   = TRUE;
   $padMyTidy = FALSE;
 
+  // The theme of every web page (subs/themes/): the name of a file of pad/subs/themes/types/ -
+  // 'paper', 'dark', 'terminal' ... - whose colours replace the frame's, a <style> put in the
+  // page's <head> on the way out (subs/themes/_lib/theme.php). '' is none, and a visitor's
+  // choice from a {themes/} switcher, kept in the session, wins over the setting; FALSE turns
+  // themes off for the application, the visitor's choice too. {theme 'paper'/} in a template
+  // writes a theme into that page alone.
+
+  $padTheme = '';
+
   // The select subsystem (select/_lib/select.php, docs/DATABASE.md): $padSelect declares
   // the tables a template may use as tags - [ 'users' => [ 'key' => 'id' ] ], and virtual
   // tables with base=, where=, order= - and $padRelations their relations - $padRelations

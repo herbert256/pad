@@ -1,0 +1,21 @@
+<p><code>{theme 'paper'/}</code> puts the page in a theme: the colours of the frame the PAD
+applications share - its side, its bar and the palette the pages build on, <code>--bg</code>,
+<code>--text</code>, <code>--accent</code> and the rest - swapped for the theme's, with its
+<code>color-scheme</code>, so whatever follows the scheme - the charts, the widgets, the toys -
+follows the theme. A theme is a file of <code>pad/subs/themes/types/</code> - its name, light or
+dark, and its colours - and the files there are the themes there are; the subsystem is
+<code>pad/subs/themes/</code>.</p>
+
+<p>As a pair, <code>{theme 'terminal'}...{/theme}</code>, the theme colours its content alone, in
+a box with the theme's background and text: one theme beside another.</p>
+
+<p>For every page of an application, <code>$padTheme = 'paper'</code> in its
+<code>_config/config.php</code>; <code>{themes/}</code> lets the visitor choose, kept in the
+session, and that choice wins over the setting. <code>$padTheme = FALSE</code> turns themes off.
+The setting's or the visitor's theme goes into the page's <code>&lt;head&gt;</code> on its way out,
+after the page cache, so a cached page is served in the theme of whoever asks. Under a theme the
+frame's light/dark switch is hidden: the theme is the scheme.</p>
+
+<p>Every theme's text contrasts 4.5 to 1 or more with each of its backgrounds, WCAG AA, and the
+contrast theme's 7 to 1, AAA, its links underlined. The frame's own files are not changed: a theme
+is a <code>&lt;style&gt;</code> on top of them, with the request's nonce.</p>

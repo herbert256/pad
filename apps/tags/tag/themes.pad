@@ -1,0 +1,12 @@
+{ignore}
+<p><code>{themes/}</code> writes a switcher of the themes of <code>pad/subs/themes/types/</code>:
+a list of them, with Default first, and a button. The form posts the choice back to the page,
+which keeps it in the session - every page of the site is in that theme from then on, this one
+already. Default takes the choice away: the application's <code>$padTheme</code>, or the frame's
+own colours.</p>
+
+<p>No script: the page changes when the visitor presses the button, not while an arrow key walks
+the list, and it works without JavaScript. The form writes no token of its own, so showing it
+starts no session; with <code>$padCsrf</code> on it carries the session's token as every form
+then does. <code>$padTheme = FALSE</code> turns themes off, the visitor's choice too.</p>
+{/ignore}

@@ -72,6 +72,7 @@ applications show them working.
   - [Live Regions (interactivity without app JavaScript)](#live-regions-interactivity-without-app-javascript)
   - [Sections](#sections)
   - [Effects](#effects)
+  - [Themes](#themes)
 - [Development](#development)
   - [Configuration settings](#configuration-settings)
   - [Designer preview with sample data](#designer-preview-with-sample-data)
@@ -1410,6 +1411,49 @@ has none, the block stands there and the stroke or the count runs in time, as wi
 subsystem in `pad/subs/effects/` - `effect.php` the body every form runs, `_lib/effect.php` the
 options and the markup, `types/` the kinds, `assets/` their looks; `pad/types/effect.php` the
 effect type, `pad/tags/effect.php` the tag.
+
+### Themes
+```
+$padTheme = 'paper';               # _config/config.php: every page of the application in paper
+{theme 'terminal'/}                # this page in terminal - its <style>, where the tag stands
+{theme 'ocean'}...{/theme}         # a pair: its content alone, in a box of the theme
+{themes/}                          # a switcher - the visitor's choice, kept in the session
+{themes label='Colours', button='Use'/}
+```
+A theme swaps the colours of the frame the PAD applications share (`www/_common/pad.css`) for a
+set of its own: the `--frame-*` properties of the side, the bar and the menu and the palette the
+pages build on - `--bg`, `--panel`, `--text`, `--soft`, `--dim`, `--line`, `--accent`,
+`--accent-soft`, `--head`, `--code`, the `--ok`/`--warn`/`--bad` pairs - with its
+`color-scheme`, so every part that follows the scheme with `light-dark()` - the charts, the
+widgets, the toys - follows the theme, and the sections and the effects, whose colours fall back
+to that palette, take it too. The frame's files are not changed: a theme is a `<style>` on top of
+them, on `:root:root:root`, which outweighs the frame's own light and dark rules wherever it
+stands, with the request's nonce; under a theme the frame's light/dark switch is hidden - the
+theme is the scheme. A theme may set the font (`--sans`: paper and newspaper a serif, terminal a
+monospace), the sections' hero background (`--pad-section-hero`) and rules of its own - the
+contrast theme underlines its links and rings the focus thick. The themes are the files of
+`pad/subs/themes/types/` - light, dark, paper, terminal, newspaper, contrast, sepia, ocean, forest,
+mono - a theme is added by adding its file. Every theme's text reaches WCAG AA on each of its
+backgrounds (4.5 to 1: the text, the soft and dim greys and the links on the page and on a panel,
+a button's text on the accent, the side's texts on the side and the menu, the status colours on
+theirs), contrast's AAA (7 to 1); the framework case `themes/every_theme_s_text_reaches_wcag_aa_on_its_backgrounds`
+holds the lowest ratio of each - light 4.57, sepia 5.01, forest 5.17, paper 5.36, dark 5.54,
+newspaper 5.97, mono 6.00, terminal 6.01, ocean 6.22, contrast 7.41 - and the sections
+application lists every pair of every theme. The light and dark themes are the frame's own
+colours, with the four that fall short of AA in its set - the dim grey on the page (4.47), the
+side's headings (3.07 light, 4.09 dark), a link on the accent's tint (4.48) - darkened or
+lightened to it. Which theme a page gets: the visitor's choice from `{themes/}` - posted back to
+the page, kept in the session under `padTheme`, every PAD application on the host in it from then
+on, Default taking it away - else `$padTheme`; `$padTheme = FALSE` turns both off. That theme's
+`<style>` goes into the page's `<head>` on the way out (`exits/output.php`), after the page
+cache, so a cached page is served in the theme of whoever asks, and the ETag is made from what
+goes out; never into an include request, a `{live}` region's or a fragment's answer, or a page
+that is no HTML. `{theme 'x'/}` comes after the `<head>`'s, so it wins. The switcher is a
+`<select>` and a button - no script: the page changes when the visitor says so (WCAG 3.2.2) - and
+writes no token of its own, so showing it starts no session; with `$padCsrf` on it carries the
+session's token as every form then does. Code: `pad/subs/themes/` - `_lib/theme.php`
+(`padThemeCss`, `padThemeChosen`, `padThemeAdd`, `padThemeContrasts`), `theme.php` and
+`themes.php` the bodies of `{theme}` and `{themes}`.
 
 ## Development
 

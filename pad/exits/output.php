@@ -50,6 +50,14 @@
     padReloadAdd ();
   }
 
+  // The theme - $padTheme, or a visitor's choice kept in the session - goes into the <head>
+  // the same way, so a cached page is served in the theme of whoever asks (subs/themes/).
+
+  if ( $padTheme !== FALSE and ( $padTheme !== '' or padSessionExists () ) ) {
+    include_once PAD . 'subs/themes/_lib/theme.php';
+    padThemeAdd ();
+  }
+
   include PAD . "exits/output/$padOutputType.php";
 
   padExit ( $padStop );

@@ -3953,6 +3953,63 @@ light and dark defaults that fall back to the frame's `--accent`, `--text` and `
 
 ---
 
+### theme
+The page in a theme: the colours of the frame the PAD applications share swapped for a set of its
+own - the side, the bar, the menu and the palette the pages build on (`--bg`, `--text`,
+`--accent` ...) - with its `color-scheme`, so the charts, the widgets, the toys, the sections and
+the effects follow. Every theme is a file of `pad/subs/themes/types/`; the files there are the
+themes there are, and the subsystem is `pad/subs/themes/`.
+
+```html
+{theme 'paper'/}
+{theme 'terminal'}
+  <p>$ pad serve</p>
+{/theme}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The theme: light, dark, paper, terminal, newspaper, contrast, sepia, ocean, forest, mono |
+
+**Behavior:** single, the tag writes the theme's `<style>` where it stands, with the request's
+nonce, on `:root:root:root` - outweighing the frame's light and dark rules, and the theme the
+`<head>` got from `$padTheme` or a visitor's choice, which stand before it. Under a theme the
+frame's light/dark switch is hidden. As a pair the theme colours its content alone, a box with
+the theme's background and text, its style once per page. `$padTheme = 'paper'` puts every page
+of an application in a theme, `{themes/}` lets the visitor choose (kept in the session, winning
+over the setting), `$padTheme = FALSE` turns both off. Every theme's text reaches WCAG AA on its
+backgrounds, contrast's AAA. A name that is no theme, no name and content on the single form are
+strict errors.
+
+---
+
+### themes
+A switcher of the themes: a list of them, Default first, and a button - the choice posted back to
+the page and kept in the session, every page in that theme from then on.
+
+```html
+{themes/}
+{themes label='Colours', button='Use'/}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `label` | The label of the list (`Theme`) |
+| `button` | The text of the button (`Apply`) |
+
+**Behavior:** a form with a `<select>` and a button, no script - the page changes when the
+visitor presses the button, not while an arrow key walks the list (WCAG 3.2.2), and it works
+without JavaScript. The post of the form is taken where the switcher renders, before the page
+goes out, so the answer to it is in the new theme already; Default takes the choice away. The
+form writes no token of its own, so showing it starts no session; with `$padCsrf` on it carries
+the session's token as every form then does. Content is a strict error.
+
+---
+
 ## Layout Tags
 
 ### extends
@@ -4566,6 +4623,8 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `jsonview` | Output | A JSON value or PHP array as a foldable, coloured tree of details elements |
 | `section` | Output | A block of a landing page - the files of `pad/subs/sections/types/`: hero, features, pricing, faq, cta, footer ... - pure CSS, coloured by the theme; `{section:item}` an item of a list section |
 | `effect` | Output | Motion and decoration, CSS first - the files of `pad/subs/effects/types/`: typewriter, highlighter, countup, reveal, marquee, spinner, confetti ... - still under reduced motion |
+| `theme` | Output | The page in a theme of `pad/subs/themes/types/` - the frame's colours swapped; as a pair, its content alone |
+| `themes` | Output | A switcher of the themes, the visitor's choice kept in the session - a form, no script |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |
 | `dir` | Files | Directory listing |
