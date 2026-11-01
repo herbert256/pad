@@ -404,7 +404,7 @@ links a login to an existing account by its address only when it is TRUE. The se
 Apple takes `APPLE_CLIENT_ID`, `APPLE_TEAM_ID`, `APPLE_KEY_ID` and `APPLE_PRIVATE_KEY` and makes
 its client secret, an ES256 JWT, with openssl - or options of the same names; a missing one is
 a strict error naming the variable. The redirect address is the page itself unless `redirect=`
-names another. A state works once, for ten minutes, five logins at once, and only with the
+names another. A state works once, for ten minutes, twenty logins at once, and only with the
 token endpoint and issuer it was started at - a way back handled with another `base=`, `issuer=`
 or `tenant=` is refused before the code goes anywhere; OpenID Connect's
 id_token is checked for its issuer, audience, expiry and nonce - its signature is not: it comes
@@ -416,7 +416,8 @@ calls to the provider's API. `{oauth 'github'/}` is the button - its link `oauth
 unless `href=`, the provider's icon when `pad/subs/icons/` has one. Apple posts its answer back
 from its own site, which brings no `SameSite=Lax` session cookie, so its state also goes in a
 sealed cookie, `__Host-padOAuth` (https, no other subdomain can set it), spent once used like
-the session's; with `$padCsrf` on that post is refused - it carries no token.
+the session's, and holding the last Apple login started alone; with `$padCsrf` on that post is
+refused - it carries no token.
 
 ### Notifications on every channel
 

@@ -33,9 +33,10 @@
   //              email_verified it answers counts as the verified path's
   //
   // The state (24 random bytes), the PKCE verifier and the nonce are kept in the session
-  // under padOAuth/<application>/<state>, at most five logins at once - two tabs - and ten
-  // minutes long; the answer that brings the state takes its record out, so a state works
-  // once. For a provider that posts its answer back - Apple - the record goes into a sealed
+  // under padOAuth/<application>/<state>, at most twenty logins at once - a page of buttons
+  // written with padOAuthUrl, two tabs - the ones over their ten minutes dropped first; the
+  // answer that brings the state takes its record out, so a state works once. Apple's sealed
+  // cookie (below) holds the last login started with it alone. For a provider that posts its answer back - Apple - the record goes into a sealed
   // cookie as well (padEncrypt, SameSite=None, Secure, HttpOnly), as a post from another
   // site brings no SameSite=Lax session cookie: __Host-padOAuth, which a sibling subdomain or
   // a page over plain http cannot set, and a state taken by either road is marked spent for
@@ -59,6 +60,7 @@
 
   const padOAuthKeep   = 600;
   const padOAuthCookie = '__Host-padOAuth';
+  const padOAuthLogins = 20;
 
   // The provider of a kind, its settings read, or NULL - an unknown kind or a missing setting
   // is the author's: a padError under the strict check, and padOAuthError says it either way.
@@ -257,9 +259,14 @@
     $list = $_SESSION ['padOAuth'] [$app] ?? [];
     $list = is_array ( $list ) ? $list : [];
 
+    // The logins over their ten minutes go first, then the oldest beyond twenty: a page that
+    // writes a button per provider with padOAuthUrl keeps a login for each.
+
+    $list = array_filter ( $list, fn ( $one ) => is_array ( $one ) and (int) ( $one ['time'] ?? 0 ) >= time () - padOAuthKeep );
+
     $list [$state] = $record;
 
-    $_SESSION ['padOAuth'] [$app] = array_slice ( $list, -5, NULL, TRUE );
+    $_SESSION ['padOAuth'] [$app] = array_slice ( $list, - padOAuthLogins, NULL, TRUE );
 
     if ( $post and ! headers_sent () )
       setcookie ( padOAuthCookie, padEncrypt ( [ 'state' => $state ] + $record ),
