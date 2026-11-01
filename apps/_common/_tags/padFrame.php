@@ -1,9 +1,9 @@
 <?php
 
   // The frame the PAD applications share - every one that uses _common, and admin, edit and
-  // tags, which reach it with the common: prefix: a side with the logo and the application's
-  // name, its menu under it, and the bar with the page's title and the light/dark switch
-  // above the page.
+  // tags, which reach it with the common: prefix: a side with the brand every application
+  // shows - the logo and the application's name (padBrand) - its menu under it, and the bar
+  // with the page's title and the light/dark switch above the page.
   // _common has no wrapper of its own: each application's _inits.pad opens the frame with
   // this tag, the parts of its own as slots, and closes it after the page with the
   // padFrameEnd snippet:
@@ -32,43 +32,20 @@
   //
   // and the option fill - {common:padFrame fill} - for a page that fills the window
   // instead of scrolling: the editor. The stylesheet and the script are www/_common/pad.css
-  // and pad.js, with a version from their contents as {asset} writes it.
+  // and pad.js - and the brand's brand.css and brand.js - with a version from their contents
+  // as {asset} writes it.
   //
-  // Clicking the logo opens the menu of the applications: the family above, under it the
-  // other applications that belong with it.
+  // The brand top left - the {} logo, a link to the PAD home, and the application's name,
+  // the pull-down of the PAD applications - is the one every application shows, the tag
+  // padBrand; the frame writes it with the option frame and links its stylesheet and script
+  // here, in <head>. The application's name in <title> comes from the same list.
 
-  $frameFamily = [
-    'pad'             => [ 'home',       'home',         'What PAD is, Hello World' ],
-    'manual'          => [ 'manual',     'help',         'The manual, a page per subject' ],
-    'tags'            => [ 'tags',       'tag',          'Every tag by its prefix, with examples' ],
-    'types'           => [ 'types',      'layers',       'Every type of tag - the prefixes' ],
-    'reference'       => [ 'reference',  'list',         'Tags, functions and options, cross-referenced' ],
-    'sequence'        => [ 'sequence',   'bar-chart',    'The sequence subsystem' ],
-    'regression/main' => [ 'regression', 'check-circle', 'The regression suites' ],
-    'admin'           => [ 'admin',      'settings',     'The console of this installation' ],
-    'edit'            => [ 'edit',       'edit',         'The editor of the applications' ]
-  ];
+  $frameName = basename ( $padApp );
 
-  $frameOthers = [
-    'examples'      => [ 'examples',      'code',     'The examples of the manual and the suites' ],
-    'develop'       => [ 'develop',       'terminal', 'Builds and tools for PAD itself' ],
-    'apps'          => [ 'apps',          'grid',     'Every application of this installation' ],
-    'classicModels' => [ 'classicModels', 'database', 'PAD Select over the Classic Models database' ],
-    'padSelect'     => [ 'padSelect',     'filter',   'PAD Select, every option with its SQL' ],
-    'structure'     => [ 'structure',     'folder',   'The _xxx directories at every level' ]
-  ];
+  foreach ( include COMMON . '_data/padApps.php' as $frameEntries )
+    if ( isset ( $frameEntries [$padApp] ) )
+      $frameName = $frameEntries [$padApp] [0];
 
-  $frameApps = $frameMore = [];
-
-  foreach ( [ 'frameApps' => $frameFamily, 'frameMore' => $frameOthers ] as $frameList => $frameEntries )
-    foreach ( $frameEntries as $frameApp => [ $frameLabel, $frameIcon, $frameAbout ] )
-      ${$frameList} [] = [ 'name'    => $frameLabel,
-                           'href'    => "$padRoot$frameApp/",
-                           'icon'    => $frameIcon,
-                           'about'   => $frameAbout,
-                           'current' => ( $frameApp == $padApp ) ? 1 : 0 ];
-
-  $frameName  = $frameFamily [$padApp] [0] ?? $frameOthers [$padApp] [0] ?? basename ( $padApp );
   $frameClass = 'app-' . str_replace ( '/', '-', $padApp );
   $frameFill  = padTagParm ( 'fill' ) ? 1 : 0;
 
@@ -96,17 +73,16 @@
   // www/_common/ - the stylesheet and the script - with the version {asset} gives a file of
   // an application's own: ten hex digits of a hash of the contents.
 
-  $frameCss = $frameJs = '';
+  $frameCss = $frameJs = $frameBrandCss = $frameBrandJs = '';
 
-  foreach ( [ 'frameCss' => 'pad.css', 'frameJs' => 'pad.js' ] as $frameVar => $frameFile ) {
+  foreach ( [ 'frameCss' => 'pad.css', 'frameJs' => 'pad.js', 'frameBrandCss' => 'brand.css', 'frameBrandJs' => 'brand.js' ] as $frameVar => $frameFile ) {
     $frameAt     = dirname ( APPS ) . "/www/_common/$frameFile";
     $frameAlgo   = in_array ( 'xxh128', hash_algos (), TRUE ) ? 'xxh128' : 'sha256';
     $frameHash   = is_file ( $frameAt ) ? '?v=' . substr ( (string) hash_file ( $frameAlgo, $frameAt ), 0, 10 ) : '';
     ${$frameVar} = "{$padRoot}_common/$frameFile$frameHash";
   }
 
-  unset ( $frameFamily, $frameOthers, $frameList, $frameEntries, $frameApp, $frameLabel, $frameIcon,
-          $frameAbout, $frameRows, $frameRow, $frameVar, $frameFile, $frameAt, $frameAlgo, $frameHash );
+  unset ( $frameEntries, $frameRows, $frameRow, $frameVar, $frameFile, $frameAt, $frameAlgo, $frameHash );
 
   return TRUE;
 

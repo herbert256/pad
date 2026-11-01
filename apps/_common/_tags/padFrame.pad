@@ -5,21 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{if $frameTitle ne ''}{$frameTitle} · {/if}PAD {$frameName}</title>
   <link rel="stylesheet" href="{$frameCss}">
+  <link rel="stylesheet" href="{$frameBrandCss}">
   <script src="{$frameJs}"></script>
+  <script src="{$frameBrandJs}" defer></script>
   {slot 'head'}{/slot}
 </head>
 <body class="frame {$frameClass}{if $frameFill} frame-fill{/if}">
 
   <aside class="frame-side">
 
-    <details class="frame-brand">
-      <summary title="The PAD applications"><span class="frame-logo" aria-hidden="true">&#123;&#125;</span> <span class="frame-name">PAD <b>{$frameName}</b></span> {icon 'chevron-down', size=14/}</summary>
-      <nav class="frame-apps" aria-label="PAD applications">
-        {frameApps}<a href="{$href}"{if $current} aria-current="page"{/if}>{icon $icon, size=16/} <span><b>{$name}</b><small>{$about}</small></span></a>{/frameApps}
-        <div class="frame-head">More</div>
-        {frameMore}<a href="{$href}"{if $current} aria-current="page"{/if}>{icon $icon, size=16/} <span><b>{$name}</b><small>{$about}</small></span></a>{/frameMore}
-      </nav>
-    </details>
+    <div class="frame-brand">{common:padBrand frame/}</div>
 
     {if $frameNav}
       <nav class="frame-nav" aria-label="{$frameName}">

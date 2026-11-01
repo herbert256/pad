@@ -9,11 +9,14 @@
   <body>
     <div class="container">
 
-      <nav class="menu">
-        {navigate}
-          <a href="?{$page}"{if $padPage == $page} class="active"{/if}>{$text}</a>
-        {/navigate}
-      </nav>
+      <header class="bar">
+        {common:padBrand/}
+        <nav class="menu">
+          {navigate}
+            <a href="?{$page}"{if $padPage == $page} class="active"{/if}>{$text}</a>
+          {/navigate}
+        </nav>
+      </header>
 
       <h1>{$title}</h1>
 

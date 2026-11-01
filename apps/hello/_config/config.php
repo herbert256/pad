@@ -1,8 +1,10 @@
 <?php
 
-  // Hello World is a whole HTML document of its own, the page pairing at its plainest. Under
-  // _common's wrapper it became a document inside a document: Tidy pulled it apart and the
-  // page's own <title> was lost. Without _common it is the page it says it is.
+  // Hello World is the page pairing at its plainest: index.php sets $message, index.pad
+  // shows it. The document around it - with the brand every PAD application shows top left,
+  // {common:padBrand/} - is the application's own _inits.pad and _exits.pad, so _common
+  // stays off: under _common's wrapper it was a document inside a document, Tidy pulled it
+  // apart and the page's own <title> was lost.
 
   $padCommon = FALSE;
 

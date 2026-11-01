@@ -1065,10 +1065,19 @@ missing answers; `./ci.sh` runs `pad test --all` and fails on a failing test.
 
 ### The frame of the PAD applications
 
+Every PAD application shows the same brand top left - `{common:padBrand/}`
+(`_common/_tags/padBrand.pad` + `.php`): the `{}` logo, a link to the PAD home, and beside it
+`PAD <app>`, the pull-down of every PAD application, grouped as `_common/_data/padApps.php`
+lists them (the name and a line about each), the one shown marked. An application with a bar
+of its own puts the tag in it - charts, htmx, kanban ... - which links `www/_common/brand.css`
+and `brand.js` itself; the brand's colours follow the page's `color-scheme`, and its name the
+colour of the bar. Offline (`pad pack`, `padWasm()`) the logo is no link, the name links the
+application's home and the stylesheet is written into the page.
+
 Every application that uses `_common` - and admin, edit and tags, which have it off and reach
 it with the `common:` prefix - shares one frame from `_common`, which has no wrapper of its own
-(no `_common/_inits.pad`): a side with the `{}` logo and `PAD <app>` - a click opens the menu
-of the applications - the application's menu under it, and a bar with the title and the
+(no `_common/_inits.pad`): a side with the brand on top - `{common:padBrand frame/}`, its links
+in the frame's `<head>` - the application's menu under it, and a bar with the title and the
 light/dark switch above the page; side and page are light or dark together, the choice kept
 for all of them (`www/_common/pad.js`). Their `_inits.pad`:
 

@@ -805,7 +805,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Expression errors](docs/FEATURES.md#expression-errors) | what the strict check says about a malformed expression |
 | [Errors in the template](docs/FEATURES.md#errors-point-into-the-template) | file, line, column and excerpt in every error report |
 | [Application tests](docs/FEATURES.md#application-tests) | `_tests/name.pad` + `name.txt`, `{assert}`, `pad test` |
-| [The frame of the PAD apps](docs/FEATURES.md#the-frame-of-the-pad-applications) | `{common:padFrame}`, `$frameMenu`, `www/_common/pad.css` |
+| [The frame of the PAD apps](docs/FEATURES.md#the-frame-of-the-pad-applications) | `{common:padFrame}`, `$frameMenu`, `www/_common/pad.css`; the brand top left of every app `{common:padBrand/}` |
 | [Common patterns](docs/FEATURES.md#common-patterns) | zebra rows, comma lists, first/last wrappers, counters |
 
 ---
@@ -940,7 +940,10 @@ Wrap all pages with a common layout:
 The `@page@` placeholder is replaced with each page's content.
 
 The PAD applications that use `_common` share one frame - `{common:padFrame}` in their
-`_inits.pad`, `$frameMenu`, `www/_common/pad.css`: see
+`_inits.pad`, `$frameMenu`, `www/_common/pad.css` - and every PAD application, framed or with
+a bar of its own, shows the same brand top left, `{common:padBrand/}`: the `{}` logo linking
+the PAD home and the application's name as the pull-down of the applications
+(`_common/_data/padApps.php`): see
 [The frame of the PAD applications](docs/FEATURES.md#the-frame-of-the-pad-applications).
 
 ---

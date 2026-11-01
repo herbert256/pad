@@ -9,6 +9,8 @@
 //                       or data a tag cannot do without, and goes in
 //   apps/<app>/         each application of the pack, its files up to 16 MB each
 //   apps/_common/       the shared application
+//   www/_common/brand.css  the stylesheet of the brand every application shows top left,
+//                       which padBrand writes into the page offline
 //   www/<app>/          its stylesheets, scripts and pictures, without the PHP entry point
 //   runtime/            the PHP side of the runtime's database and storage tools
 //
@@ -58,6 +60,8 @@ export function collect(apps) {
     walk(join(home, 'www', app), APP_MAX, key => !key.endsWith('.php'));
   }
   walk(join(home, 'apps', '_common'), APP_MAX);
+  if (existsSync(join(home, 'www', '_common', 'brand.css')))
+    add('www/_common/brand.css', readFileSync(join(home, 'www', '_common', 'brand.css')));
   add('runtime/pad-runtime.php', readFileSync(join(home, 'wasm', 'app', 'pad-runtime.php')));
 
   return { files, base64, left, skipped };

@@ -10,7 +10,8 @@ The simplest possible PAD application demonstrating the basic page pairing conce
 |------|-------------|
 | `index.php` | Data file - sets `$message` variable |
 | `index.pad` | Template file - renders the message |
-| `_config/config.php` | Switches `_common` off: the page is a whole HTML document of its own |
+| `_inits.pad`, `_exits.pad` | The document around every page, with the brand every PAD application shows top left - `{common:padBrand/}` |
+| `_config/config.php` | Switches `_common` off: the document is the application's own |
 
 ## Code
 
@@ -23,14 +24,7 @@ The simplest possible PAD application demonstrating the basic page pairing conce
 
 **index.pad**:
 ```html
-<html>
-<head>
-  <title>Hello</title>
-</head>
-<body>
-  <h1>{$message}</h1>
-</body>
-</html>
+<h1>{$message}</h1>
 ```
 
 ## Concept

@@ -1,7 +1,8 @@
 // PAD - the little the shared frame does in the browser (apps/_common/_tags/padFrame.pad):
-// the light/dark choice, one for every PAD application, and the application menu under the
-// logo. Loaded in <head>, so the choice is on the page before it paints. Everything works
-// without it: the menu is a <details>, and the theme follows the system.
+// the light/dark choice, one for every PAD application, and the side's menu scrolled to the
+// page shown. Loaded in <head>, so the choice is on the page before it paints. Everything
+// works without it: the theme follows the system. The pull-down of the brand top left is
+// www/_common/brand.js.
 //
 // padTheme.get ()      'light', 'dark' or 'auto' (the system decides)
 // padTheme.set ( t )   keeps that choice - and tells the page with a 'padtheme' event on
@@ -58,26 +59,6 @@
       toggle.addEventListener ( 'click', function () {
         padTheme.set ( padTheme.dark () ? 'light' : 'dark' );
       } );
-
-    // The application menu closes on a click elsewhere and on Escape.
-
-    var brand = document.querySelector ( '.frame-brand' );
-
-    if ( brand ) {
-
-      document.addEventListener ( 'click', function ( event ) {
-        if ( brand.open && ! brand.contains ( event.target ) )
-          brand.open = false;
-      } );
-
-      document.addEventListener ( 'keydown', function ( event ) {
-        if ( event.key === 'Escape' && brand.open ) {
-          brand.open = false;
-          brand.querySelector ( 'summary' ).focus ();
-        }
-      } );
-
-    }
 
     // A long menu - the manual's - is scrolled to the page it is on, the menu only: down in
     // the side, across in the one row it is on a narrow screen.

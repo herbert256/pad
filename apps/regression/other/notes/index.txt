@@ -14,7 +14,18 @@
   \<\/head\>
   \<body\>
     \<header class\="top"\>
-      \<a class\="brand" href\="\/pad\/notes\/\?index"\>\<img src\="\/pad\/notes\/icon\.svg\?v\=[0-9a-f]+" alt\="" width\="28" height\="28"\>\<span\>Notes\<\/span\>\<\/a\>
+      \<link rel\="stylesheet" href\="\/pad\/_common\/brand\.css\?v\=[0-9a-f]+"\>
+      \<script src\="\/pad\/_common\/brand\.js\?v\=[0-9a-f]+" defer\>\<\/script\>
+      \<div class\="pad\-brand"\>
+        \<a class\="pad\-brand\-logo" href\="\/pad\/pad\/" title\="PAD home" aria\-label\="PAD home"\>\{\}\<\/a\>
+        \<details class\="pad\-brand\-menu"\>
+          \<summary title\="The PAD applications"\>
+            \<span class\="pad\-brand\-name"\>\<span class\="pad\-brand\-pad"\>PAD\<\/span\> \<b\>notes\<\/b\>\<\/span\>\<svg xmlns\="http\:\/\/www\.w3\.org\/2000\/svg" class\="pad\-icon pad\-icon\-chevron\-down" aria\-hidden\="true" focusable\="false" width\="14" height\="14" viewbox\="0 0 24 24" fill\="none" stroke\="currentcolor" stroke\-width\="2" stroke\-linecap\="round" stroke\-linejoin\="round"\>
+            \<path d\="M6 9\.5l6 6 6\-6"\>\<\/path\>\<\/svg\>
+          \<\/summary\>
+          [\s\S]*?
+        \<\/details\>
+      \<\/div\>
       \<form class\="search" method\="get" role\="search"\>
         \<input type\="hidden" name\="index" value\=""\> \<input type\="search" name\="q" value\="" placeholder\="Search notes" aria\-label\="Search notes" autocomplete\="off"\>
       \<\/form\>
