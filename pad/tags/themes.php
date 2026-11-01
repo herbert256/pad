@@ -1,8 +1,8 @@
 <?php
 
-  // {themes/} - a switcher of the themes of subs/themes/types/: a form whose choice is kept in
-  // a cookie of the application and colours its pages from then on, without JavaScript - the themes
-  // subsystem, subs/themes/themes.php.
+  // {themes/} - a switcher of the themes of subs/themes/types/: a list whose choice is applied
+  // the moment it is made, kept in a cookie of the PAD applications and colouring their pages
+  // built on the frame from then on - the themes subsystem, subs/themes/themes.php.
 
   return include PAD . 'subs/themes/themes.php';
 

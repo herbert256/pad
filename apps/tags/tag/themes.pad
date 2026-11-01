@@ -1,14 +1,16 @@
 {ignore}
 <p><code>{themes/}</code> writes a switcher of the themes of <code>pad/subs/themes/types/</code>:
-a list of them, with Default first, and a button. The form posts the choice back to the page,
-which keeps it in a cookie of the application - its pages are in that theme from then on, this
-one already: the pages built on the frame, or all of them when the application sets a
-<code>$padTheme</code>; another application's never. Default takes the choice away: the
-application's <code>$padTheme</code>, or the frame's own colours.</p>
+a list of them, with Default first. Choosing one posts it back to the page, which keeps it in a
+cookie of the PAD applications - their pages are in that theme from then on, this one already:
+the pages built on the frame, and every page of an application that sets a
+<code>$padTheme</code>. Default takes the choice away: the application's <code>$padTheme</code>,
+or the frame's own colours.</p>
 
-<p>No script: the page changes when the visitor presses the button, not while an arrow key walks
-the list, and it works without JavaScript. The form writes no token of its own, so showing it
-or choosing starts no session, and a post from another site changes nothing; with
-<code>$padCsrf</code> on it carries the session's token as every form then does.
-<code>$padTheme = FALSE</code> turns themes off, the visitor's choice too.</p>
+<p>A small script posts the form the moment a theme is chosen; without JavaScript a button
+does it. The list's label is there for a screen reader, not shown. The post is answered before
+the application runs, with a redirect back to the page, so the page's own PHP never sees it.
+The form writes no token of its own, so showing it or choosing starts no session, and a post
+from another site changes nothing; with <code>$padCsrf</code> on it carries the session's token
+as every form then does. <code>$padTheme = FALSE</code> turns themes off, the visitor's choice
+too.</p>
 {/ignore}

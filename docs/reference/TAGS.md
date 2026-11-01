@@ -4030,8 +4030,9 @@ strict errors.
 ---
 
 ### themes
-A switcher of the themes: a list of them, Default first, and a button - the choice posted back to
-the page and kept in a cookie of the application, its pages in that theme from then on.
+A switcher of the themes: a list of them, Default first, that applies a theme the moment it is
+chosen - the choice posted back to the page and kept in a cookie, the pages built on the frame
+in that theme from then on.
 
 ```html
 {themes/}
@@ -4042,19 +4043,21 @@ the page and kept in a cookie of the application, its pages in that theme from t
 
 | Option | Description |
 |--------|-------------|
-| `label` | The label of the list (`Theme`) |
-| `button` | The text of the button (`Apply`) |
+| `label` | The label of the list (`Theme`), for a screen reader - it is not shown |
+| `button` | The text of the button shown without JavaScript (`Apply`) |
 
-**Behavior:** a form with a `<select>` and a button, no script - the page changes when the
-visitor presses the button, not while an arrow key walks the list (WCAG 3.2.2), and it works
-without JavaScript. The post of the form is taken where the switcher renders, before the page
-goes out, so the answer to it is in the new theme already; Default takes the choice away. The
-choice is the `padTheme` cookie (SameSite=Lax, a year) on the application's directory, read and
-checked on every request: it colours the application's pages built on the frame
-(`_common/pad.css`), or every page of an application that sets `$padTheme`, and no page of
-another application; a post from another site (`Sec-Fetch-Site: cross-site`) changes nothing.
-The form writes no token of its own, so showing it or choosing starts no session; with
-`$padCsrf` on it carries the session's token as every form then does. Content is a strict error.
+**Behavior:** a form with a `<select>` on one line: a small script posts the form when the
+list changes, so a theme applies the moment it is chosen; without JavaScript a button, in a
+`<noscript>`, does it. The post of the form is taken before the application runs
+(`pad/inits/themes.php`) and answered with a 303 back to the page, which comes in the new theme -
+the page's own PHP never sees it; Default takes the choice away. The choice is the `padTheme`
+cookie (SameSite=Lax, a year) on the directory the PAD applications are served under, read and
+checked on every request: it colours the pages built on the frame (`_common/pad.css`) of every
+application, or every page of an application that sets `$padTheme`, and no page with a design
+of its own; a post from another site (`Sec-Fetch-Site: cross-site`) changes nothing. The frame
+every PAD application shares has the switcher in its bar. The form writes no token of its own,
+so showing it or choosing starts no session; with `$padCsrf` on it carries the session's token
+as every form then does. Content is a strict error.
 
 ---
 
@@ -4703,7 +4706,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `section` | Output | A block of a landing page - the files of `pad/subs/sections/types/`: hero, features, pricing, faq, cta, footer ... - pure CSS, coloured by the theme; `{section:item}` an item of a list section |
 | `effect` | Output | Motion and decoration, CSS first - the files of `pad/subs/effects/types/`: typewriter, highlighter, countup, reveal, marquee, spinner, confetti ... - still under reduced motion |
 | `theme` | Output | The page in a theme of `pad/subs/themes/types/` - the frame's colours swapped; as a pair, its content alone |
-| `themes` | Output | A switcher of the themes, the visitor's choice kept in a cookie of the application - a form, no script |
+| `themes` | Output | A switcher of the themes, the visitor's choice kept in a cookie - applied when chosen |
 | `palette` | Output | The colours of a palette of `pad/subs/palettes/types/` as swatches with their hex values; palette= colours a chart |
 | `nonce` | Web | The request's CSP nonce for `<script nonce>` |
 | `files` | Files | List files |

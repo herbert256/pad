@@ -22,7 +22,7 @@
   // top of them.
   //
   // Which theme a page gets - padThemeAdd: the visitor's choice from a {themes/} switcher,
-  // kept in the padTheme cookie of the application it was made in, on a page built on the
+  // kept in the padTheme cookie of the PAD applications, on a page built on the
   // frame or in an application that chose a theme itself, else $padTheme; FALSE in $padTheme
   // turns both off. exits/output.php puts its <style> into the page's <head> on the way out
   // (padThemeAdd) - after the page cache has stored the page, as the toolbar goes in, so a
@@ -157,12 +157,12 @@
 
   }
 
-  // The visitor's choice is a cookie of its own, padTheme, on the directory of the application
-  // it was made in: read and checked against the themes on every request - a name that is
+  // The visitor's choice is a cookie of its own, padTheme, on the directory the PAD
+  // applications are served under: read and checked against the themes on every request - a name that is
   // no theme is no choice - and never kept in the session. It was: the hook started a session
   // at the end of every page of every application for a visitor who had the host's session
-  // cookie - a stale one got a new session on every request - and a choice made in one
-  // application coloured every other one on the host.
+  // cookie - a stale one got a new session on every request. A choice made in one
+  // application colours the others too - their pages built on the frame.
 
   const padThemeCookie = 'padTheme';
 
@@ -211,13 +211,15 @@
   }
 
   // Whether a page is built on the frame's palette - it links the frame's stylesheet,
-  // www/_common/pad.css - so a theme, which sets that palette, colours it as it should. A
+  // www/_common/pad.css, or it is the frame itself, whose <body> has the class frame: offline
+  // (pad pack) the frame writes pad.css into the page, and a theme chosen there was kept but
+  // never shown - so a theme, which sets that palette, colours it as it should. A
   // page with a design of its own - demo's, kanban's - went unreadable under a theme a
   // visitor chose elsewhere: the theme's text colour on its own white panels.
 
   function padThemeFramed ( $html ) {
 
-    return (bool) preg_match ( '#<link\b[^>]*/_common/pad\.css#i', (string) $html );
+    return (bool) preg_match ( '#<link\b[^>]*/_common/pad\.css|<body\b[^>]*\bclass="frame\b#i', (string) $html );
 
   }
 
@@ -286,8 +288,8 @@
 
   }
 
-  // A post of a {themes/} switcher: the theme chosen kept in the padTheme cookie - Default
-  // ('') takes it away; a name that is no theme changes nothing - for this request too. The
+  // A post of a {themes/} switcher, taken by inits/themes.php before the application runs:
+  // the theme chosen kept in the padTheme cookie - Default ('') takes it away; a name that is no theme changes nothing - for this request too. The
   // switcher writes no token of its own, so showing it starts no session, and keeping the
   // choice starts none either. A post another site sends - its Sec-Fetch-Site says
   // cross-site - changes nothing: it started a session, which replaced the visitor's own and
@@ -297,7 +299,7 @@
 
   function padThemeSwitch () {
 
-    if ( ! padFormCameBack ( 'padThemes' ) or padSecondTime ( 'themeSwitch' ) )
+    if ( ! padFormCameBack ( 'padThemes' ) )
       return;
 
     if ( strtolower ( (string) ( $_SERVER ['HTTP_SEC_FETCH_SITE'] ?? '' ) ) === 'cross-site' )
@@ -311,10 +313,11 @@
   }
 
   // The choice into its cookie, for a year, and into $_COOKIE for this request - '' takes it
-  // away. On the application's directory - /pad/shop/ - as inits/cookies.php keeps the
-  // identity cookies, so a choice colours the application it was made in and no other; where
-  // the address does not begin with that directory, or it holds what a cookie's path cannot,
-  // the browser's own choice stands. A script may read it: SameSite=Lax, not HttpOnly.
+  // away. On the directory the PAD applications are served under - /pad/, $padRoot - so a
+  // choice colours every application of the host, as the light/dark choice does: they share
+  // the frame, and a page with a design of its own is not coloured by it (padThemeFramed).
+  // Where the address does not begin with that directory, or it holds what a cookie's path
+  // cannot, the browser's own choice stands. A script may read it: SameSite=Lax, not HttpOnly.
 
   function padThemeKeep ( $theme ) {
 
@@ -330,12 +333,35 @@
                'samesite' => 'Lax',
                'secure'   => padCookieSecure () ];
 
-    $dir = rtrim ( str_replace ( '\\', '/', dirname ( (string) ( $_SERVER ['SCRIPT_NAME'] ?? '' ) ) ), '/' ) . '/';
+    $dir = (string) ( $GLOBALS ['padRoot'] ?? '/' );
 
     if ( str_starts_with ( (string) ( $_SERVER ['REQUEST_URI'] ?? '' ), $dir ) and strpbrk ( $dir, ",; \t\r\n\013\014" ) === FALSE )
       $flags ['path'] = $dir;
 
     setcookie ( padThemeCookie, $theme, $flags );
+
+  }
+
+  // After the switch: back to the address the form was posted to - the path and the query it
+  // was asked by, on $padHost - as a GET (303), so the page answers in the new theme and a
+  // reload posts nothing. An address outside the mount prefix, which the server would not
+  // have sent here, goes to the application's home. Control characters are percent-encoded,
+  // as padRedirect does.
+
+  function padThemeBack () {
+
+    global $padHost, $padRoot, $padApp;
+
+    $asked = '/' . ltrim ( (string) ( $_SERVER ['REQUEST_URI'] ?? '' ), '/' );
+    $root  = $padRoot ?? '/';
+
+    $back = str_starts_with ( $asked, $root ) ? $padHost . substr ( $asked, strlen ( $root ) ) : "$padHost$padApp/";
+    $back = preg_replace_callback ( '/[\x00-\x20\x7f]/', fn ( $match ) => rawurlencode ( $match [0] ), $back );
+
+    padHeader ( 'Cache-Control: no-cache, no-store' );
+    padHeader ( "Location: $back" );
+
+    padExit ( 303 );
 
   }
 

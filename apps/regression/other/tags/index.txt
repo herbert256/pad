@@ -6,11 +6,14 @@
     <title>
       Every PAD tag · PAD tags
     </title>
-    <link rel="stylesheet" href="/pad/_common/pad.css?v=36120da499">
+    <link rel="stylesheet" href="/pad/_common/pad.css?v=d34d8518e1">
     <link rel="stylesheet" href="/pad/_common/brand.css?v=9d9469b15f">
     <script src="/pad/_common/pad.js?v=f09aab25e1"></script>
     <script src="/pad/_common/brand.js?v=da909af1af" defer></script>
     <link rel="stylesheet" href="/pad/tags/tags.css?v=c43617a140">
+    <style>
+    .pad-themes{display:inline-flex;align-items:center;gap:8px;margin:0;white-space:nowrap}.pad-themes label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.pad-themes select,.pad-themes button{font:inherit;padding:5px 10px;border-radius:6px;border:1px solid var(--line,#c9ccd2);background:var(--panel,#fff);color:var(--text,#1d2330)}.pad-themes button{cursor:pointer;background:var(--accent,#2563eb);border-color:var(--accent,#2563eb);color:var(--accent-text,#fff)}
+    </style>
   </head>
   <body class="frame app-tags">
     <aside class="frame-side">
@@ -149,7 +152,46 @@
           <input type="hidden" name="search" value=""> <label class="sr-only" for="q">Search the tags</label> <input type="search" id="q" name="q" value="" placeholder="Search 732 tags" autocomplete="off">
         </form>
         <div class="frame-tools">
-          <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <form method="post" class="pad-themes">
+            <input type="hidden" name="padForm" value="padThemes"><label for="pad-themes-498bdfcd">Theme</label><select id="pad-themes-498bdfcd" name="padTheme">
+              <option value="" selected>
+                Default
+              </option>
+              <option value="contrast">
+                Contrast
+              </option>
+              <option value="dark">
+                Dark
+              </option>
+              <option value="forest">
+                Forest
+              </option>
+              <option value="light">
+                Light
+              </option>
+              <option value="mono">
+                Mono
+              </option>
+              <option value="newspaper">
+                Newspaper
+              </option>
+              <option value="ocean">
+                Ocean
+              </option>
+              <option value="paper">
+                Paper
+              </option>
+              <option value="sepia">
+                Sepia
+              </option>
+              <option value="terminal">
+                Terminal
+              </option>
+            </select><noscript><button type="submit">Apply</button></noscript>
+          </form>
+          <script>
+          document.addEventListener("change",function(e){var s=e.target;if(s.matches&&s.matches(".pad-themes select")&&s.form)s.form.requestSubmit?s.form.requestSubmit():s.form.submit()})
+          </script> <button type="button" class="frame-theme" title="Light or dark" aria-label="Switch between light and dark"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-sun" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="4"></circle>
           <path d="M18.5 12L21 12M16.6 16.6L18.36 18.36M12 18.5L12 21M7.4 16.6L5.64 18.36M5.5 12L3 12M7.4 7.4L5.64 5.64M12 5.5L12 3M16.6 7.4L18.36 5.64"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-moon" aria-hidden="true" focusable="false" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10Z"></path></svg></button>
@@ -396,7 +438,7 @@
               Extending, blocks, slots, stacks and fragments
             </p>
             <div class="tagcloud">
-              <a href="?tag/block" title="A named region of a layout or wrapper - and a page's override of it.">pad:block</a><a href="?tag/define" title="Writes a custom tag in the template itself - what a _tags/name.pad file is, without the file.">pad:define</a><a href="?tag/extends" title="Frames the page with a layout instead of its directories' wrappers.">pad:extends</a><a href="?tag/fragment" title="A named part of the page that a request can ask for alone - for htmx and ajax swaps.">pad:fragment</a><a href="?tag/macro" title="A template function: declared parameters, given in order or by name, read as fields inside its body.">pad:macro</a><a href="?tag/meta" title="The page's metadata - a title, a layout, a cache time or any value - read while the page is assembled.">pad:meta</a><a href="?tag/parent" title="Inside an overriding block: the content of the block it overrides.">pad:parent</a><a href="?tag/parms" title="Declares the parameters of a custom tag, with defaults, at the top of its template.">pad:parms</a><a href="?tag/push" title="Renders its content and adds it to a named stack, for a stack tag elsewhere in the page to print.">pad:push</a><a href="?tag/section" title="A block of a landing page - 15 of them, from a hero, the features and the prices to the questions, a newsletter form and the footer - in pure CSS.">pad:section</a><a href="?tag/shadow" title="The shadow root of a custom element, rendered on the server as declarative shadow DOM.">pad:shadow</a><a href="?tag/slot" title="A named place in a custom tag's template - and the fill a caller gives it.">pad:slot</a><a href="?tag/stack" title="Prints everything pushed to a named stack, from above or below it in the page.">pad:stack</a><a href="?tag/theme" title="The colours of the page swapped for a theme - 10 of them, from paper and sepia to a terminal, an ocean and a high-contrast one - or its content alone in a box of the theme.">pad:theme</a><a href="?tag/themes" title="A switcher of the themes: the visitor's choice kept in a cookie of the application, its pages in that theme from then on - a form, no JavaScript needed.">pad:themes</a>
+              <a href="?tag/block" title="A named region of a layout or wrapper - and a page's override of it.">pad:block</a><a href="?tag/define" title="Writes a custom tag in the template itself - what a _tags/name.pad file is, without the file.">pad:define</a><a href="?tag/extends" title="Frames the page with a layout instead of its directories' wrappers.">pad:extends</a><a href="?tag/fragment" title="A named part of the page that a request can ask for alone - for htmx and ajax swaps.">pad:fragment</a><a href="?tag/macro" title="A template function: declared parameters, given in order or by name, read as fields inside its body.">pad:macro</a><a href="?tag/meta" title="The page's metadata - a title, a layout, a cache time or any value - read while the page is assembled.">pad:meta</a><a href="?tag/parent" title="Inside an overriding block: the content of the block it overrides.">pad:parent</a><a href="?tag/parms" title="Declares the parameters of a custom tag, with defaults, at the top of its template.">pad:parms</a><a href="?tag/push" title="Renders its content and adds it to a named stack, for a stack tag elsewhere in the page to print.">pad:push</a><a href="?tag/section" title="A block of a landing page - 15 of them, from a hero, the features and the prices to the questions, a newsletter form and the footer - in pure CSS.">pad:section</a><a href="?tag/shadow" title="The shadow root of a custom element, rendered on the server as declarative shadow DOM.">pad:shadow</a><a href="?tag/slot" title="A named place in a custom tag's template - and the fill a caller gives it.">pad:slot</a><a href="?tag/stack" title="Prints everything pushed to a named stack, from above or below it in the page.">pad:stack</a><a href="?tag/theme" title="The colours of the page swapped for a theme - 10 of them, from paper and sepia to a terminal, an ocean and a high-contrast one - or its content alone in a box of the theme.">pad:theme</a><a href="?tag/themes" title="A switcher of the themes: the visitor's choice kept in a cookie, the pages built on the frame in that theme from then on, applied the moment it is chosen.">pad:themes</a>
             </div>
           </section>
           <section class="card">

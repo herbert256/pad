@@ -11,7 +11,8 @@
   // before anything that reads a setting, error handling before the first thing that can
   // fail, and the level arrays before parms and the hand-over to the application in app.php.
   // The CSRF check stands just before parms, so a post it turns away never becomes
-  // variables.
+  // variables; the theme switcher's post, which it lets through, is answered right after
+  // it, before the application runs.
   //
   // Once the host is known, and before anything can answer: the CORS headers (a preflight
   // ends there), maintenance (503 for every page, before the page cache), then the
@@ -48,6 +49,7 @@
   include PAD . 'inits/cache.php';
   include PAD . 'inits/level.php';
   include PAD . 'inits/csrf.php';
+  include PAD . 'inits/themes.php';
   include PAD . 'inits/flash.php';
   include PAD . 'inits/parms.php';
   include PAD . 'inits/app.php';
