@@ -181,9 +181,10 @@ relative path are relative to the application's address (`http://host/pad/shop/`
 `<img src>` of its pages finds its file; `javascript:`, `data:` or any other scheme is left out.
 A date passes as it is when it is ISO 8601 (`2026-11-20`, `2026-11-20T19:30:00+01:00`); another
 text that PHP's `date_parse` reads in full is written so (`20 November 2026 19:30` is
-`2026-11-20T19:30:00`, with its offset when it names a zone, none invented), a date object with
-its offset and an integer as a Unix time in UTC; a relative date - tomorrow - is none, as its
-value would change by the day. A price is a number with a dot, kept as written (`"39.95"`), a
+`2026-11-20T19:30:00`, with its offset when it names a zone, none invented - the name of its day
+beside it, as an RSS `pubDate` has it, `Fri, 20 Nov 2026 19:30:00 +0000`, when it is the date's
+own), a date object with its offset and an integer as a Unix time in UTC; a relative date -
+tomorrow, next friday - is none, as its value would change by the day. A price is a number with a dot, kept as written (`"39.95"`), a
 currency three letters of ISO 4217, an availability one of Schema.org's (`InStock`, `in stock`
 or its address). `search=` is the search address up to the term, written as the urlTemplate
 with `{search_term_string}` after it - braces that stay text, as every value's do; an address

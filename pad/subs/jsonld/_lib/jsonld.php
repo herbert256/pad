@@ -40,9 +40,11 @@
   //   date          a date or a date and time: ISO 8601 passes as it is - 2026-11-20,
   //                 2026-11-20T19:30, 2026-11-20T19:30:00+01:00 - a text PHP's date_parse
   //                 reads in full as it is written in ISO 8601 (20 November 2026 19:30 is
-  //                 2026-11-20T19:30:00, with its offset when it has a zone), a date object
-  //                 with its offset, an integer a Unix time in UTC; a relative date
-  //                 (tomorrow, +1 week) is none - its value would change from day to day
+  //                 2026-11-20T19:30:00, with its offset when it has a zone - the name of
+  //                 its day beside it, Fri, 20 Nov 2026, as an RSS pubDate has it, when it
+  //                 is the date's own), a date object with its offset, an integer a Unix
+  //                 time in UTC; a relative date (tomorrow, +1 week, next friday) is none -
+  //                 its value would change from day to day
   //   price         a number with a dot as written - 19.95 - kept as its text
   //   currency      a code of ISO 4217, three letters, EUR
   //   availability  one of the item availabilities of Schema.org - InStock, OutOfStock,
@@ -481,9 +483,23 @@
 
     $parts = date_parse ( $value );
 
+    // The name of the day beside a full date - Fri, 20 Nov 2026 19:30:00 +0000, as an RSS
+    // pubDate or a mail header writes it - is no relative date, though date_parse files it
+    // under relative: the text is read without it, and the name must be the date's own day.
+
+    $days = '/\b(sunday|monday|tuesday|wednesday|thursday|friday|saturday|sun|mon|tue|wed|thu|fri|sat)\b\.?,?/i';
+
+    if ( isset ( $parts ['relative'] ) and preg_match_all ( $days, $value, $day ) == 1 ) {
+      $day   = array_search ( strtolower ( substr ( $day [1] [0], 0, 3 ) ), [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ] );
+      $value = trim ( preg_replace ( $days, ' ', $value ) );
+      $parts = date_parse ( $value );
+    } else
+      $day = FALSE;
+
     if ( $parts ['error_count'] or $parts ['warning_count'] or isset ( $parts ['relative'] )
          or $parts ['year'] === FALSE or $parts ['month'] === FALSE or $parts ['day'] === FALSE
-         or ! checkdate ( $parts ['month'], $parts ['day'], $parts ['year'] ) )
+         or ! checkdate ( $parts ['month'], $parts ['day'], $parts ['year'] )
+         or ( $day !== FALSE and $day != gmdate ( 'w', gmmktime ( 0, 0, 0, $parts ['month'], $parts ['day'], $parts ['year'] ) ) ) )
       return FALSE;
 
     $date = sprintf ( '%04d-%02d-%02d', $parts ['year'], $parts ['month'], $parts ['day'] );

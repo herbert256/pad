@@ -661,8 +661,8 @@ them, and no rows answer nothing, the `@else@` shown. `id=` the `@id`. The field
 by their PAD name or the Schema.org property (`datePublished`), win over the row's - and a row is
 never written whole, only what its kind maps. An empty field is left out. Addresses are made
 absolute (relative to the application's address; another scheme than http and https left out),
-dates written as ISO 8601 (passed as they are, or from what `date_parse` reads in full; a
-relative date is none), a price is a number with a dot, a currency three letters, an
+dates written as ISO 8601 (passed as they are, or from what `date_parse` reads in full - `Fri,
+20 Nov 2026` when the day is the date's own; a relative date is none), a price is a number with a dot, a currency three letters, an
 availability a word of Schema.org; `search=` is the search address up to the term, written with
 `{search_term_string}` after it. The JSON is written with `JSON_HEX_TAG` - a `</script>` in a
 value cannot end the element - and needs no CSP nonce, a data block not being run. A missing
