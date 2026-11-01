@@ -10,6 +10,15 @@
   //
   // alt= is required: a picture without one is read out by its file name. alt='' says the
   // picture is decoration, and a screen reader passes it by.
+  //
+  // filter= is a comma list of the filters of subs/filters/types/, applied in the order
+  // written, each reading its own options from the tag - colors=, levels=, cell=, radius=,
+  // amount=, columns=, chars=, components=:
+  //
+  //   {img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='...'/}
+  //   {img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='...'/}
+  //   {img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='...'/}
+  //   {img 'photos/harbour.jpg', width=400, filter='blurhash', alt='...'/}
 
   $padImgAlt = padTagParm ( 'alt', NULL );
 
@@ -29,6 +38,7 @@
                               'height'  => padTagParm ( 'height',  0         ),
                               'fit'     => padTagParm ( 'fit',     'cover'   ),
                               'format'  => padTagParm ( 'format',  ''        ),
-                              'quality' => padTagParm ( 'quality', 80        ) ] );
+                              'quality' => padTagParm ( 'quality', 80        ),
+                              'filter'  => padTagParm ( 'filter',  ''        ) ] );
 
 ?>

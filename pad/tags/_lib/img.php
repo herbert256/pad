@@ -34,6 +34,14 @@
   // to it, and the 2x picture is made only as far as the source reaches - the srcset then
   // says the density it really has, 1.5x for one. The format is the source's (a GIF becomes
   // a PNG), or format= jpeg, png or webp; quality= 1 to 100 (80) for JPEG and WebP.
+  //
+  // filter= - a comma list of the filters of the filter subsystem (subs/filters/), applied in
+  // the order written: those that change the picture work on each thumbnail after it was
+  // resized and are part of its name; halftone and ascii write the picture as SVG dots or as
+  // text in place of the <img>; the placeholders - blurhash, dominant, lqip - stand behind
+  // the <img> while it loads. What a filter makes besides a thumbnail - the dots, the text,
+  // the placeholder - is kept in _thumbs/ too, under a name of its own from the same hash. A
+  // picture without filter= is written as it always was, to the byte.
 
   function padImg ( $file, $opts ) {
 
@@ -46,7 +54,26 @@
 
     list ( $path, $name, $type, $sw, $sh, $turn ) = $source;
 
+    $chain = [];
+
+    if ( trim ( (string) ( $opts ['filter'] ?? '' ) ) !== '' ) {
+      include_once PAD . 'subs/filters/_lib/filter.php';
+      $chain = padFilterChain ( $opts ['filter'] );
+    }
+
+    $images = array_values ( array_filter ( $chain, fn ( $one ) => $one [1] ['form'] == 'image' ) );
+    $markup = array_values ( array_filter ( $chain, fn ( $one ) => $one [1] ['form'] == 'markup' ) ) [0] ?? NULL;
+    $holds  = array_values ( array_filter ( $chain, fn ( $one ) => $one [1] ['form'] == 'placeholder' ) );
+    $pixels = (bool) array_filter ( $images, fn ( $one ) => $one [1] ['pixels'] ?? FALSE );
+
+    // A filter of flat colours is a PNG unless format= says otherwise: JPEG smeared the edges
+    // of a dither or a posterized area.
+
     $format = strtolower ( (string) ( $opts ['format'] ?? '' ) );
+
+    if ( $format === '' and array_filter ( $images, fn ( $one ) => $one [1] ['lossless'] ?? FALSE ) )
+      $format = 'png';
+
     $format = ( $format === '' ) ? [ 'gif' => 'png' ] [$type] ?? $type : ( $format == 'jpg' ? 'jpeg' : $format );
 
     if ( ! in_array ( $format, [ 'jpeg', 'png', 'webp' ], TRUE ) ) {
@@ -76,33 +103,50 @@
 
     list ( $crop, $w1, $h1, $max ) = padImgSizes ( $sw, $sh, $width, $height, $fit );
 
+    // The filters that change the picture are part of every thumbnail's name - only when
+    // there are any, so a picture without them keeps the name it had.
+
     $hash = padImgHash ( $path );
     $base = [ $hash, $crop, $format, $quality, $turn ];
-    $one  = padImgThumb ( $path, $type, $turn, $crop, $w1, $h1, $format, $quality, $base );
+
+    if ( $images )
+      $base [] = padFilterKey ( $images );
+
+    if ( $markup )
+      return padFilterStyle () . padImgMarkup ( $path, $type, $turn, $crop, $w1, $h1, $images, $markup, $base, $opts ['alt'] );
+
+    $one = padImgThumb ( $path, $type, $turn, $crop, $w1, $h1, $format, $quality, $base, $images, 1 );
 
     if ( $one === NULL )
       return padImgTag ( padAsset ( $name ), '', $w1, $h1, $opts ['alt'] );
 
     // The 2x picture, as far as the source reaches: a density of 1.2 or more is worth a
-    // second file, less is the same picture again.
+    // second file, less is the same picture again. A picture of pixel filters has none: its
+    // 1x pixels are drawn sharp, doubled (image-rendering: pixelated).
 
     $density = min ( 2, $max );
     $set     = '';
 
-    if ( $density >= 1.2 ) {
-      $two = padImgThumb ( $path, $type, $turn, $crop, (int) round ( $w1 * $density ), (int) round ( $h1 * $density ), $format, $quality, $base );
+    if ( $density >= 1.2 and ! $pixels ) {
+      $two = padImgThumb ( $path, $type, $turn, $crop, (int) round ( $w1 * $density ), (int) round ( $h1 * $density ), $format, $quality, $base, $images, $density );
       if ( $two !== NULL )
         $set = "$one 1x, $two " . rtrim ( rtrim ( number_format ( $density, 2, '.', '' ), '0' ), '.' ) . 'x';
     }
 
-    return padImgTag ( $one, $set, $w1, $h1, $opts ['alt'] );
+    if ( ! $chain )
+      return padImgTag ( $one, $set, $w1, $h1, $opts ['alt'] );
+
+    $more = $holds ? padImgHold ( $one, $holds, $base, $w1, $h1 ) : '';
+
+    return padFilterStyle () . padImgTag ( $one, $set, $w1, $h1, $opts ['alt'], ( $pixels ? ' pad-img-pixels' : '' ), $more );
 
   }
 
   // The element, and once per request the rule that keeps a picture inside its column and
-  // shows a quiet colour in its place until the lazy load has it.
+  // shows a quiet colour in its place until the lazy load has it. $class and $more are what
+  // the filters add: a class, and the placeholder's style and attributes.
 
-  function padImgTag ( $src, $set, $width, $height, $alt ) {
+  function padImgTag ( $src, $set, $width, $height, $alt, $class = '', $more = '' ) {
 
     static $styled = FALSE;
 
@@ -113,10 +157,10 @@
       $style  = padImgStyle ();
     }
 
-    return $style . '<img class="pad-img" src="' . padImgAttr ( $src ) . '"'
+    return $style . "<img class=\"pad-img$class\" src=\"" . padImgAttr ( $src ) . '"'
          . ( $set !== '' ? ' srcset="' . padImgAttr ( $set ) . '"' : '' )
          . " width=\"$width\" height=\"$height\" alt=\"" . padImgAttr ( $alt ) . '"'
-         . ' loading="lazy" decoding="async">';
+         . "$more loading=\"lazy\" decoding=\"async\">";
 
   }
 
@@ -256,59 +300,34 @@
 
   // One thumbnail: its address, made first when the file is not there. It is written to a
   // name of its own and renamed into place, so a request that arrives while another makes
-  // it never reads half a picture. NULL when it cannot be written - said once.
+  // it never reads half a picture. NULL when it cannot be written - said once. $filters are
+  // the image filters of filter=, applied after the picture was resized, $scale the density
+  // of this picture - 1, or that of the 2x one - which a filter measured in CSS pixels reads.
 
-  function padImgThumb ( $path, $type, $turn, $crop, $w, $h, $format, $quality, $base ) {
+  function padImgThumb ( $path, $type, $turn, $crop, $w, $h, $format, $quality, $base, $filters = [], $scale = 1 ) {
 
-    global $padApp, $padRoot;
+    global $padApp;
 
-    $ext  = [ 'jpeg' => 'jpg', 'png' => 'png', 'webp' => 'webp' ] [$format];
-    $hash = substr ( hash ( 'sha256', serialize ( [ $base, $w, $h ] ) ), 0, 16 );
-    $dir  = dirname ( APPS ) . "/www/$padApp/_thumbs";
-    $file = "$dir/$hash.$ext";
-    $url  = ( $padRoot ?? '/' ) . "$padApp/_thumbs/$hash.$ext";
+    list ( $file, $url, $hash ) = padImgName ( $base, $w, $h, [ 'jpeg' => 'jpg', 'png' => 'png', 'webp' => 'webp' ] [$format] );
 
     if ( is_file ( $file ) )
       return $url;
 
-    if ( ! is_dir ( $dir ) )
-      @mkdir ( $dir, 0755, TRUE );
-
-    if ( ! is_dir ( $dir ) or ! is_writable ( $dir ) ) {
-      padImgFailed ( "the img tag cannot write its thumbnails to www/$padApp/_thumbs/ - make the directory writable for the web server" );
+    if ( ! padImgDir () )
       return NULL;
-    }
 
-    $from = [ 'jpeg' => 'imagecreatefromjpeg', 'png' => 'imagecreatefrompng',
-              'gif'  => 'imagecreatefromgif',  'webp' => 'imagecreatefromwebp' ] [$type];
+    $out = padImgDraw ( $path, $type, $turn, $crop, $w, $h, $format == 'jpeg' );
 
-    $src = @$from ( $path );
-
-    if ( ! $src ) {
-      padImgFailed ( "the img tag cannot read the picture " . basename ( $path ) );
+    if ( ! $out )
       return NULL;
-    }
 
-    $src = padImgOrient ( $src, $turn );
-    $out = imagecreatetruecolor ( $w, $h );
-
-    // A JPEG has no transparency: what was transparent becomes white. PNG and WebP keep it.
-
-    if ( $format == 'jpeg' )
-      imagefill ( $out, 0, 0, imagecolorallocate ( $out, 255, 255, 255 ) );
-    else {
-      imagealphablending ( $out, FALSE );
-      imagesavealpha ( $out, TRUE );
-      imagefill ( $out, 0, 0, imagecolorallocatealpha ( $out, 0, 0, 0, 127 ) );
-      imagealphablending ( $out, TRUE );
-    }
-
-    imagecopyresampled ( $out, $src, 0, 0, $crop [0], $crop [1], $w, $h, $crop [2], $crop [3] );
+    foreach ( $filters as list ( , $spec, $options ) )
+      $out = $spec ['apply'] ( $out, $options, $scale );
 
     if ( $format != 'jpeg' )
       imagealphablending ( $out, FALSE );
 
-    $temp = "$dir/." . $hash . '-' . bin2hex ( random_bytes ( 4 ) );
+    $temp = dirname ( $file ) . "/." . $hash . '-' . bin2hex ( random_bytes ( 4 ) );
 
     $done = match ( $format ) {
       'jpeg' => imagejpeg ( $out, $temp, $quality ),
@@ -323,6 +342,180 @@
     }
 
     return $url;
+
+  }
+
+  // The file, the address and the hash of what the img tag keeps in _thumbs/: sixteen hex
+  // digits of a hash of what it is made from, and an extension the engine picked.
+
+  function padImgName ( $base, $w, $h, $ext ) {
+
+    global $padApp, $padRoot;
+
+    $hash = substr ( hash ( 'sha256', serialize ( [ $base, $w, $h ] ) ), 0, 16 );
+
+    return [ dirname ( APPS ) . "/www/$padApp/_thumbs/$hash.$ext", ( $padRoot ?? '/' ) . "$padApp/_thumbs/$hash.$ext", $hash ];
+
+  }
+
+  // The _thumbs/ directory, made when it is not there; FALSE - said once - when the web server
+  // cannot write it.
+
+  function padImgDir () {
+
+    global $padApp;
+
+    $dir = dirname ( APPS ) . "/www/$padApp/_thumbs";
+
+    if ( ! is_dir ( $dir ) )
+      @mkdir ( $dir, 0755, TRUE );
+
+    if ( ! is_dir ( $dir ) or ! is_writable ( $dir ) ) {
+      padImgFailed ( "the img tag cannot write its thumbnails to www/$padApp/_thumbs/ - make the directory writable for the web server" );
+      return FALSE;
+    }
+
+    return TRUE;
+
+  }
+
+  // The part $crop of the upright source, resized to $w by $h - a GD picture, NULL when the
+  // source cannot be read. The source is decoded once a request for the thumbnails, the dots
+  // and the placeholders of one picture alike - the last one read kept.
+
+  function padImgDraw ( $path, $type, $turn, $crop, $w, $h, $white ) {
+
+    static $memo = [ '', NULL ];
+
+    if ( $memo [0] !== "$path|$turn" ) {
+
+      $from = [ 'jpeg' => 'imagecreatefromjpeg', 'png' => 'imagecreatefrompng',
+                'gif'  => 'imagecreatefromgif',  'webp' => 'imagecreatefromwebp' ] [$type];
+
+      $src = @$from ( $path );
+
+      if ( ! $src ) {
+        padImgFailed ( "the img tag cannot read the picture " . basename ( $path ) );
+        return NULL;
+      }
+
+      $memo = [ "$path|$turn", padImgOrient ( $src, $turn ) ];
+
+    }
+
+    $out = imagecreatetruecolor ( $w, $h );
+
+    // A JPEG has no transparency: what was transparent becomes white. PNG and WebP keep it.
+
+    if ( $white )
+      imagefill ( $out, 0, 0, imagecolorallocate ( $out, 255, 255, 255 ) );
+    else {
+      imagealphablending ( $out, FALSE );
+      imagesavealpha ( $out, TRUE );
+      imagefill ( $out, 0, 0, imagecolorallocatealpha ( $out, 0, 0, 0, 127 ) );
+      imagealphablending ( $out, TRUE );
+    }
+
+    imagecopyresampled ( $out, $memo [1], 0, 0, $crop [0], $crop [1], $w, $h, $crop [2], $crop [3] );
+
+    return $out;
+
+  }
+
+  // halftone or ascii: the picture written another way in place of the <img>. What the
+  // filter makes of the filtered 1x picture is kept in _thumbs/ - an .svg, a .txt - under a
+  // name of its own; shown, it gets the alt text as its name. '' when it cannot be made.
+
+  function padImgMarkup ( $path, $type, $turn, $crop, $w, $h, $images, $markup, $base, $alt ) {
+
+    list ( $name, $spec, $options ) = $markup;
+
+    list ( $file, , $hash ) = padImgName ( [ $base, $name, $options ], $w, $h, $spec ['ext'] );
+
+    if ( ! is_file ( $file ) ) {
+
+      if ( ! padImgDir () )
+        return '';
+
+      $picture = padImgDraw ( $path, $type, $turn, $crop, $w, $h, TRUE );
+
+      if ( ! $picture )
+        return '';
+
+      foreach ( $images as list ( , $one, $o ) )
+        $picture = $one ['apply'] ( $picture, $o, 1 );
+
+      padImgKeep ( $file, $hash, $spec ['make'] ( $picture, $options ) );
+
+    }
+
+    $kept = (string) @file_get_contents ( $file );
+
+    return ( $kept === '' ) ? '' : $spec ['show'] ( $kept, $options, $w, $h, $alt );
+
+  }
+
+  // The placeholders: the style and the attributes they add to the <img>, made from the 1x
+  // thumbnail just written - the picture as the page shows it - and kept in _thumbs/ as a
+  // .json under a name of their own.
+
+  function padImgHold ( $url, $holds, $base, $w, $h ) {
+
+    global $padApp, $padRoot;
+
+    list ( $file, , $hash ) = padImgName ( [ $base, padFilterKey ( $holds ) ], $w, $h, 'json' );
+
+    if ( ! is_file ( $file ) ) {
+
+      $thumb   = dirname ( APPS ) . "/www/$padApp/_thumbs/" . basename ( $url );
+      $picture = is_file ( $thumb ) ? @imagecreatefromstring ( (string) file_get_contents ( $thumb ) ) : FALSE;
+
+      if ( ! $picture )
+        return '';
+
+      $style = [];
+      $attrs = [];
+
+      foreach ( $holds as list ( , $spec, $options ) ) {
+        $held  = $spec ['hold'] ( $picture, $options );
+        $style = array_merge ( $style, $held ['style'] ?? [] );
+        $attrs = array_merge ( $attrs, $held ['attrs'] ?? [] );
+      }
+
+      padImgKeep ( $file, $hash, json_encode ( [ 'style' => $style, 'attrs' => $attrs ], JSON_UNESCAPED_SLASHES ) );
+
+    }
+
+    $held = json_decode ( (string) @file_get_contents ( $file ), TRUE );
+
+    if ( ! is_array ( $held ) )
+      return '';
+
+    $more  = '';
+    $style = '';
+
+    foreach ( $held ['attrs'] ?? [] as $name => $value )
+      $more .= " $name=\"" . padImgAttr ( $value ) . '"';
+
+    foreach ( $held ['style'] ?? [] as $name => $value )
+      $style .= "$name:$value;";
+
+    return $more . ( $style !== '' ? ' style="' . padImgAttr ( rtrim ( $style, ';' ) ) . '"' : '' );
+
+  }
+
+  // A text kept in _thumbs/, written to a name of its own and renamed into place.
+
+  function padImgKeep ( $file, $hash, $text ) {
+
+    global $padApp;
+
+    $temp = dirname ( $file ) . "/." . $hash . '-' . bin2hex ( random_bytes ( 4 ) );
+
+    if ( @file_put_contents ( $temp, $text ) === FALSE or ! @rename ( $temp, $file ) ) {
+      @unlink ( $temp );
+      padImgFailed ( "the img tag cannot write its thumbnails to www/$padApp/_thumbs/" );
+    }
 
   }
 

@@ -1,0 +1,35 @@
+<?php
+
+  // lqip - a placeholder: a low quality image of the picture, 16 pixels on its longer side and
+  // blurred, as a PNG in the page behind the <img> until the picture has loaded.
+  //
+  //   {img 'photos/harbour.jpg', width=400, filter='lqip', alt='The harbour'/}
+  //
+  // The 1x picture, the filters before it applied, made small - each pixel the average of
+  // what it covers - and blurred once by GD's Gaussian blur, a few hundred bytes in the page,
+  // drawn over the whole box (background-size: cover).
+
+  return [
+
+    'form'       => 'placeholder',
+    'background' => TRUE,
+
+    'hold'       => function ( $image, $o ) {
+
+      $w     = imagesx ( $image );
+      $h     = imagesy ( $image );
+      $small = padFilterResize ( $image, max ( 1, (int) round ( $w * 16 / max ( $w, $h ) ) ), max ( 1, (int) round ( $h * 16 / max ( $w, $h ) ) ) );
+
+      imagefilter ( $small, IMG_FILTER_GAUSSIAN_BLUR );
+
+      ob_start ();
+      imagepng ( $small, NULL, 9 );
+      $png = ob_get_clean ();
+
+      return [ 'style' => [ 'background-image' => 'url(data:image/png;base64,' . base64_encode ( $png ) . ')', 'background-size' => 'cover' ] ];
+
+    }
+
+  ];
+
+?>

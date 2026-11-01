@@ -60,6 +60,7 @@ applications show them working.
   - [QR codes and barcodes](#qr-codes-and-barcodes)
   - [Icons](#icons)
   - [Patterns](#patterns)
+  - [Image filters](#image-filters)
   - [Showcase tags](#showcase-tags)
   - [Live Regions (interactivity without app JavaScript)](#live-regions-interactivity-without-app-javascript)
 - [Development](#development)
@@ -952,6 +953,34 @@ under the strict check. Code: the pattern subsystem in `pad/subs/patterns/` - `p
 body both forms run, `_lib/` the drawing and its helpers, `types/` the patterns;
 `pad/types/pattern.php` the pattern type, `pad/lib/pattern.php` `padPattern`. The `patterns`
 application shows every pattern with a seed to change by link.
+
+### Image filters
+```
+{img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
+{img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}   # in the order written
+{img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour'/}    # SVG dots for the <img>
+{img 'photos/harbour.jpg', width=400, filter='ascii', columns=80, alt='The harbour'/}   # text in a <pre role="img">
+{img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}            # a placeholder behind it
+```
+`filter=` on `{img}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
+is a file of its `types/` - no tag of its own, a word of `filter=` as a validation rule is a word of
+`padValidate` - and the files there are the filters there are. grayscale, sepia (`amount=`),
+duotone (`colors=`, dark first), posterize (`levels=`), pixelate (`cell=`), blur (`radius=` CSS
+pixels), sharpen and vignette (`amount=`), invert, and the dithers - dither (Floyd and Steinberg),
+atkinson and bayer (ordered), with `levels=` and `colors=` - change the picture: they work on the
+thumbnail after it was resized, the 1x and the 2x alike, and are part of its file name in
+`www/<app>/_thumbs/`. A pixel filter (pixelate and the dithers) is made at 1x and drawn with its
+pixels sharp; posterize, pixelate and the dithers are PNGs unless `format=` says otherwise. halftone
+(`cell=`, `colors=`) writes the picture as SVG dots and ascii (`columns=`, `chars=`) as text, each
+in place of the `<img>` and named by the alt text. blurhash (`components=`, `'4,3'`), dominant and
+lqip are placeholders: a BlurHash - the reference algorithm, encode and decode - in `data-blurhash`
+and decoded to a small PNG, the dominant colour, a tiny blurred PNG, behind the `<img>` while it
+loads. What a filter makes is made once with GD and kept in `_thumbs/` - dots, text and
+placeholders too - the same picture and options the same bytes on every run. An unknown filter, an
+option out of its bounds and a filter that cannot follow the one before are errors under the strict
+check. Code: `pad/subs/filters/` - `_lib/filter.php` the chain and its options, `_lib/dither.php`,
+`_lib/blurhash.php`, `types/` the filters - and `pad/tags/_lib/img.php`, which applies them. The
+`patterns` application shows every filter on the same picture.
 
 ### Showcase tags
 ```

@@ -2825,6 +2825,48 @@ sends it like any asset.
 | `format` | `jpeg`, `png` or `webp` - default the source's, a GIF becoming a PNG |
 | `quality` | 1 to 100 for JPEG and WebP, default 80 |
 | `alt` | Required - the text for whoever cannot see the picture; `alt=''` marks it as decoration |
+| `filter` | A comma list of filters of `pad/subs/filters/types/`, applied in the order written - see below |
+| `colors`, `levels`, `cell`, `radius`, `amount`, `columns`, `chars`, `components` | The options of the filters, each read by the filters that take it |
+
+**Filters:** `filter=` runs the picture through the filter subsystem (`pad/subs/filters/`), the
+files of its `types/` the filters there are, written in the order they apply:
+
+```html
+{img 'photos/harbour.jpg', width=400, filter='duotone', colors='#123, #fc6', alt='The harbour'/}
+{img 'photos/harbour.jpg', width=400, filter='grayscale, dither', alt='The harbour'/}
+{img 'photos/harbour.jpg', width=400, filter='halftone', cell=6, alt='The harbour in dots'/}
+{img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}
+```
+
+| Filter | Does | Its options |
+|--------|------|-------------|
+| `grayscale` | Shades of grey, the luminance of every pixel | |
+| `sepia` | The brown of an old photograph, the classic matrix | `amount` (100) |
+| `duotone` | The luminance from one colour in the shadows to another in the highlights | `colors` ('#16213e, #f5c26b') |
+| `posterize` | Every channel cut to so many steps; a PNG | `levels` (4) |
+| `pixelate` | Blocks, each the average of what it covers; 1x, pixels sharp, a PNG | `cell` (8) |
+| `blur` | Out of focus, in CSS pixels on the 1x and the 2x picture | `radius` (6) |
+| `sharpen` | Crisper edges, the picture plus its Laplacian | `amount` (50) |
+| `vignette` | Darker corners | `amount` (50) |
+| `invert` | The negative | |
+| `dither` | Floyd and Steinberg's error diffusion to ink and paper; 1x, a PNG | `levels` (2), `colors` ('#000000, #ffffff') |
+| `atkinson` | Atkinson's dither, three quarters of the error carried on | as dither |
+| `bayer` | Ordered dithering by Bayer's map of 8 by 8 | as dither |
+| `halftone` | SVG dots in place of the `<img>`, their area the darkness, named by the alt text | `cell` (8), `colors` ('#1a1a19, #fcfcfb') |
+| `ascii` | Text in a `<pre>` in place of the `<img>`, `role="img"` named by the alt text | `columns` (64), `chars` (' .:-=+*#%@') |
+| `blurhash` | A placeholder: Wolt's BlurHash in `data-blurhash`, decoded to a small PNG behind the picture | `components` ('4,3') |
+| `dominant` | A placeholder: the dominant colour behind the picture, and in `data-color` | |
+| `lqip` | A placeholder: a tiny blurred PNG behind the picture | |
+
+The filters that change the picture work on each thumbnail after it was resized and are part of
+its name - the same picture and options, the same file, its bytes the same on every run. A pixel
+filter (pixelate and the dithers) is made at 1x alone and drawn `image-rendering: pixelated`; a
+filter of flat colours is a PNG unless `format=` says otherwise. halftone's dots, ascii's text and
+the placeholders are kept in `_thumbs/` as well, beside the thumbnails, made once. BlurHash is the
+reference algorithm, its hash made of the 1x picture at most 64 pixels on its longer side. An
+unknown filter, an option out of its bounds, a filter after halftone or ascii, a placeholder
+beside them, two pictures behind one `<img>` and an option no filter of the list reads are errors
+under the strict check.
 
 **Behavior:** writes `<img class="pad-img">` with its `width` and `height` (no layout shift),
 `loading="lazy"`, `decoding="async"` and a `srcset` whose second picture is twice the size -
