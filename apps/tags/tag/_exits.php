@@ -78,13 +78,16 @@
       $file    = $open = '';
     }
 
-    $tagExampleRows [] = $example + [
-      'number'  => 1,
+    // A kind's example is shown by its own page, tag/[tagType]/[tagKind].pad, not by this
+    // frame: a crawl renders a page without its frame (padReference) - the example a frame
+    // showed was on no xref record, every kind on no page of the reference but its subsystem's.
+
+    $tagKindExample = [ $example + [
       'file'    => $file,
       'padHtml' => $padHtml,
       'php'     => $php,
       'phpHtml' => $php ? padHighlightTokens ( trim ( padFileGet ( $root . $php ) ), 'php' ) : '',
-      'open'    => $open ];
+      'open'    => $open ] ];
 
   }
 

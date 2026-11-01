@@ -231,7 +231,10 @@
         return $example ( "A $kind", '', "{{$type}:$kind/}" );
 
       case 'input':
-        return $example ( 'From the inputs application', 'Its page there, in a form that posts back.', '', $kind, 'inputs' );
+        $line = preg_match ( "/\\{(?:input:)?$kind\\s[^\\n]*?\\/\\}/", padFileGet ( APPS . 'inputs/form.pad' ), $m ) ? $m [0] : "{input:$kind 'field', label='Try it'/}";
+        $line = preg_replace ( [ '/^\{' . $kind . '\s/', "/, rules='[^']*'/" ], [ "{input:$kind ", '' ], $line );
+        return $example ( 'A field of a form', "As the inputs application's form writes it - its rules= left out, which the page's own template must hold.",
+                          "{form 'try'}\n  $line\n  <button>Send</button>\n{/form}" );
 
       case 'barcode':
         return $example ( "A $kind barcode", '', "{barcode:$kind '" . ( tagsKindBarcodeValues () [$kind] ?? '12345' ) . "'/}" );
