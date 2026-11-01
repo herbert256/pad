@@ -452,12 +452,15 @@
       $name = ( $child instanceof DOMElement ) ? strtolower ( $child->tagName ) : '';
 
       // A printable's sheet is a page of its own, what it shows on the screen alone stays
-      // out, and an SVG in one of its boxes - a barcode, a QR code - is drawn.
+      // out, and an SVG in one of its boxes - a barcode, a QR code - is drawn. A sheet inside
+      // a box - a printable in an item of another - is a block of that box, its text set
+      // there: as a page of its own it ended the outer sheet's page, and the boxes after it
+      // went to another.
 
       if ( $name !== '' and $child->hasAttribute ( 'data-pdf-skip' ) )
         continue;
 
-      if ( $name !== '' and $child->hasAttribute ( 'data-pdf-sheet' ) ) {
+      if ( $name !== '' and $child->hasAttribute ( 'data-pdf-sheet' ) and ! isset ( $doc ['box'] ) ) {
         padPdfParagraph ( $doc, $runs, $ctx );
         $runs = [];
         padPdfPrintSheet ( $doc, $child );
