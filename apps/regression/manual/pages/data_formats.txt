@@ -1,6 +1,6 @@
 <p>Besides JSON, XML, YAML and CSV, <b>{data}</b> reads the formats of
 <code>pad/subs/formats/</code>: TOML, INI, TSV, NDJSON, Markdown pipe tables, iCalendar,
-vCard, GeoJSON, GPX and Excel spreadsheets. Name the format with <code>format=</code> - or
+vCard, GeoJSON, GPX, WebVTT and SRT subtitles and Excel spreadsheets. Name the format with <code>format=</code> - or
 <code>type=</code>, the same option:</p>
 
 
@@ -146,6 +146,77 @@ table a table and a header of tabs TSV. Each event is a row - <code>summary</cod
 
 
 
+<h2>Captions and subtitles</h2>
+
+<p>A text that opens with <code>WEBVTT</code> is the captions of a video, an SRT file its
+subtitles: a cue is a row - <code>start</code> and <code>end</code> as
+<code>00:01:02.500</code> (<code>startms</code> and <code>endms</code> in milliseconds),
+<code>text</code> with its markup, <code>plain</code> without it and <code>voice</code>, who
+speaks:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/data_formats_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiJ7ZGF0YSAndGFsayd9XG4gIFdFQlZUVFxuXG4gIDAwOjAwLjAwMCAtLT4gMDA6MDQuMDAwXG4gIDx2IEFubj5XZWxjb21lIHRvIHRoZSA8aT5mb3JtYXRzPC9pPiB0YWxrLlxuXG4gIDAwOjA0LjAwMCAtLT4gMDA6MDkuNTAwXG4gIDx2IEJvYj5FdmVyeSBjdWUgaXMgYSByb3cgJmFtcDsgZXZlcnkgcm93IGEgY3VlLlxuey9kYXRhfVxuXG48ZGw+XG4gIHt0YWxrfTxkdD57JHN0YXJ0fSB7JHZvaWNlfTwvZHQ+PGRkPnskcGxhaW59PC9kZD57L3RhbGt9XG48L2RsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7ZGF0YSAndGFsayd9XG4gIFdFQlZUVFxuXG4gIDAwOjAwLjAwMCAtLT4gMDA6MDQuMDAwXG4gIDx2IEFubj5XZWxjb21lIHRvIHRoZSA8aT5mb3JtYXRzPC9pPiB0YWxrLlxuXG4gIDAwOjA0LjAwMCAtLT4gMDA6MDkuNTAwXG4gIDx2IEJvYj5FdmVyeSBjdWUgaXMgYSByb3cgJmFtcDsgZXZlcnkgcm93IGEgY3VlLlxuey9kYXRhfVxuXG48ZGw+XG4gIHt0YWxrfTxkdD57JHN0YXJ0fSB7JHZvaWNlfTwvZHQ+PGRkPnskcGxhaW59PC9kZD57L3RhbGt9XG48L2RsPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>talk<font color="black">'</font></font>}</b><br>  WEBVTT<br><br>  00:00.000 --&gt; 00:04.000<br>  &lt;v Ann&gt;Welcome to the &lt;i&gt;formats&lt;/i&gt; talk.<br><br>  00:04.000 --&gt; 00:09.500<br>  &lt;v Bob&gt;Every cue is a row &amp;amp; every row a cue.<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;dl&gt;<br>  <b>{<font color="blue">talk</font><font color="red"></font>}</b>&lt;dt&gt;<b>{<font color="green"><font color="red">$</font>start</font>}</b> <b>{<font color="green"><font color="red">$</font>voice</font>}</b>&lt;/dt&gt;&lt;dd&gt;<b>{<font color="green"><font color="red">$</font>plain</font>}</b>&lt;/dd&gt;<b>{/<font color="blue">talk</font><font color="red"></font>}</b><br>&lt;/dl&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+
+<dl>
+  <dt>00:00:00.000 Ann</dt><dd>Welcome to the formats talk.</dd><dt>00:00:04.000 Bob</dt><dd>Every cue is a row &amp; every row a cue.</dd>
+</dl>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
 <h2>Files and PHP</h2>
 
 <p>A file in <code>_data/</code> is read by its extension - <code>_data/trip.toml</code> is
@@ -219,8 +290,8 @@ Bob	17
 
 <ul>
   <li>The formats are the files of <code>pad/subs/formats/types/</code> - toml, ini, tsv,
-      ndjson, markdown, ics, vcf, geojson, gpx, xlsx and json, csv, yaml, xml; rss, atom and
-      jsonfeed write only. An extension names its format too: md, jsonl, yml.</li>
+      ndjson, markdown, ics, vcf, geojson, gpx, vtt, srt, xlsx and json, csv, yaml, xml; rss,
+      atom and jsonfeed write only. An extension names its format too: md, jsonl, yml.</li>
   <li>A text a format cannot read is an error naming the format and the line -
       <code>TOML error on line 3: the key 'name' is defined twice</code>; with the strict check
       off it gives no rows.</li>

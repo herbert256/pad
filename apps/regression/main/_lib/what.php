@@ -86,6 +86,8 @@
       'format/records'            => 'The fixture of format/a_csv_answer_of_a_record_or_of_objects_is_a_table, fetched bare: its page',
       'format/formats'            => 'A page answers in every format of pad/subs/formats that writes - toml, yaml, ini, ndjson, md, tsv, ics, vcf, rss, atom, jsonfeed, geojson, gpx, xlsx - with the format\'s content type and file name; text/calendar, application/rss+xml and application/toml in the Accept header ask for theirs, a browser\'s and text/plain for the page, a read-only format is 406',
       'format/events'             => 'The fixture of format/formats, fetched bare: its page, the events it exposes with $padFormatOptions',
+      'format/a_page_answers_its_chapters_as_the_track_of_a_video' => 'A page exposing its chapters answers them as WebVTT - text/vtt, the src of a <track> - and as SRT, each chapter ending where the next starts',
+      'format/chapters'           => 'The fixture of format/a_page_answers_its_chapters_as_the_track_of_a_video, fetched bare: its page',
       'themes/a_theme_choice_is_a_cookie_of_its_application_and_starts_no_session' => 'A visitor\'s theme is a padTheme cookie on the application\'s directory, SameSite=Lax, checked on every read: no session started to keep or read it, a page without the frame in an application without a theme of its own not coloured by it, a cross-site post of the switcher refused, Default taking it away',
       'themes/framed'             => 'The fixture for the theme choice: a page that links the frame\'s stylesheet, with the switcher',
       'themes/plain'              => 'The fixture for the theme choice: a page with a design of its own, which a visitor\'s choice leaves alone',

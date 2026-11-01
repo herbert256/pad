@@ -16,6 +16,18 @@
 
   }
 
+  // A fault a format's own players pass over - a cue of a subtitle file a browser drops, a
+  // record of a JSON text sequence its RFC skips: the format's error under the strict check,
+  // and on the lenient walk the reader goes on without the cue or the record, where any
+  // other fault gives no rows at all.
+
+  function padFormatFault ( $line, $why ) {
+
+    if ( $GLOBALS ['padCheckSyntax'] ?? TRUE )
+      padFormatFail ( $line, $why );
+
+  }
+
   // The line of a byte offset of a text.
 
   function padFormatLineAt ( $text, $at ) {

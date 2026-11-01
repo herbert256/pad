@@ -14,9 +14,12 @@ writer what the rows do not say, here the name of the calendar:</p>
 {example 'fragments/feeds_and_exports_2'/}
 
 <ul>
-  <li>The formats that write: ics, vcf, xlsx, rss, atom, jsonfeed, geojson, gpx, markdown, tsv,
-      ndjson, toml, yaml, ini, besides json and csv. A table format answers the first list the
-      page exposes, toml, yaml and ini every exposed variable by name.</li>
+  <li>The formats that write: ics, vcf, xlsx, rss, atom, jsonfeed, geojson, gpx, vtt, srt,
+      markdown, tsv, ndjson, toml, yaml, ini, besides json and csv. A table format answers the
+      first list the page exposes, toml, yaml and ini every exposed variable by name.</li>
+  <li>A page of chapters - a <code>start</code> and a <code>title</code> each, the end the next
+      one's start - asked with <code>&amp;padFormat=vtt</code> is the <code>src</code> of a
+      video's <code>&lt;track kind="chapters"&gt;</code>.</li>
   <li>Each answers with its own content type, and a file with the page's name and the format's
       extension - <code>talks.ics</code> inline, <code>talks.xlsx</code> as an attachment.</li>
   <li>The answer is the same bytes for the same rows: an event's UID is made of the row, its

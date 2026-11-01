@@ -2,7 +2,7 @@
 
 <p>Besides JSON, XML, YAML and CSV, {tag 'data'/} reads the formats of
 <code>pad/subs/formats/</code>: TOML, INI, TSV, NDJSON, Markdown pipe tables, iCalendar,
-vCard, GeoJSON, GPX and Excel spreadsheets. Name the format with <code>format=</code> - or
+vCard, GeoJSON, GPX, WebVTT and SRT subtitles and Excel spreadsheets. Name the format with <code>format=</code> - or
 <code>type=</code>, the same option:</p>
 
 {example 'fragments/data_formats_1'/}
@@ -19,6 +19,16 @@ table a table and a header of tabs TSV. Each event is a row - <code>summary</cod
 
 {example 'fragments/data_formats_2'/}
 
+<h2>Captions and subtitles</h2>
+
+<p>A text that opens with <code>WEBVTT</code> is the captions of a video, an SRT file its
+subtitles: a cue is a row - <code>start</code> and <code>end</code> as
+<code>00:01:02.500</code> (<code>startms</code> and <code>endms</code> in milliseconds),
+<code>text</code> with its markup, <code>plain</code> without it and <code>voice</code>, who
+speaks:</p>
+
+{example 'fragments/data_formats_4'/}
+
 <h2>Files and PHP</h2>
 
 <p>A file in <code>_data/</code> is read by its extension - <code>_data/trip.toml</code> is
@@ -31,8 +41,8 @@ table a table and a header of tabs TSV. Each event is a row - <code>summary</cod
 
 <ul>
   <li>The formats are the files of <code>pad/subs/formats/types/</code> - toml, ini, tsv,
-      ndjson, markdown, ics, vcf, geojson, gpx, xlsx and json, csv, yaml, xml; rss, atom and
-      jsonfeed write only. An extension names its format too: md, jsonl, yml.</li>
+      ndjson, markdown, ics, vcf, geojson, gpx, vtt, srt, xlsx and json, csv, yaml, xml; rss,
+      atom and jsonfeed write only. An extension names its format too: md, jsonl, yml.</li>
   <li>A text a format cannot read is an error naming the format and the line -
       <code>TOML error on line 3: the key 'name' is defined twice</code>; with the strict check
       off it gives no rows.</li>

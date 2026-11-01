@@ -331,7 +331,7 @@ with its extension or with the first of `.xml`, `.json`, `.yaml`, `.csv`, `.php`
 - `.xml` - Parsed as XML
 - `.curl` - Fetches the URL it names
 - `.sql` - Runs the named query
-- `.toml`, `.ini`, `.tsv`, `.ndjson`, `.md`, `.ics`, `.vcf`, `.geojson`, `.gpx`, `.xlsx` ... - the
+- `.toml`, `.ini`, `.tsv`, `.ndjson`, `.md`, `.ics`, `.vcf`, `.geojson`, `.gpx`, `.vtt`, `.srt`, `.xlsx` ... - the
   extension of a format of `pad/subs/formats/` that reads, tried after the extensions above
   ([Data formats](../FEATURES.md#data-formats)); an `.xlsx` is read as its bytes, `sheet=`
   picking a sheet
