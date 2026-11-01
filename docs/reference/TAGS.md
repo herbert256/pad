@@ -2423,6 +2423,7 @@ are written, so they may hold braces; an L-system's first value names one of its
 | `mandelbrot` | The Mandelbrot set and its Julia sets; click to zoom, drag to move, Play cycles the colours | `iterations` (300), `palette` (ocean, fire, rainbow, mono), `center`, `zoom`, `julia` |
 | `orbits` | Bodies under gravity drawing their paths; drag to throw in a planet | `system` (solar, binary, eight, swarm), `trail` (300), `speed` (5) |
 | `pendulum` | A double pendulum, chaotic; drag a bob to hold it | `pendulums` (1), `angles` ('120, -10'), `trail` (400), `gravity` (9.81) |
+| `percolation` | Site percolation: water through a grid of open sites, clusters, and the experiment that estimates the threshold | `probability` (0.59), `size` (64), `neighbours` (4, 8), `mode` (flow, experiment), `colour` (flow, clusters), `speed` (5) |
 | `reactiondiffusion` | Gray-Scott reaction-diffusion - coral, spots that split, mazes, worms, waves; paint V, pick rates on the map | `pattern` (coral, mitosis, spots, mazes, worms, holes, waves, chaos), `feed`, `kill`, `initial` (spots, center, noise), `width` (192), `height` (128), `speed` (1200) |
 | `ripples` | A ripple tank - interference, slits, raindrops; click the water, build walls | `setup` (two, slits, pond), `frequency` (4) |
 | `sand` | Falling sand, water, walls, wood, fire and plants to paint with | `width` (160), `height` (100), `material`, `brush` (3), `scene` (hourglass, garden, empty) |
@@ -2437,8 +2438,8 @@ motion - a drawing toy then shows its figure finished. The root carries `data-st
 `paused` or `held`; the colours are `--pad-toy-ink`, `-canvas`, `-accent`, `-accent2`, `-night` and
 their like on `.pad-toy`, `light-dark()` defaults, resolved by the script for the canvas and again
 when the scheme changes. An option out of its bounds, a word a choice does not know, a life rule or
-pattern row, an L-system line, an epicycles point or a time zone that is none are errors under the
-strict check.
+pattern row, an L-system line, an epicycles point, a percolation neighbourhood or a time zone that
+is none are errors under the strict check.
 
 ---
 
