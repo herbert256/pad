@@ -40,7 +40,8 @@
   $frameFamily = [
     'pad'             => [ 'home',       'home',         'What PAD is, Hello World' ],
     'manual'          => [ 'manual',     'help',         'The manual, a page per subject' ],
-    'tags'            => [ 'tags',       'tag',          'Every built-in tag, with examples' ],
+    'tags'            => [ 'tags',       'tag',          'Every tag by its prefix, with examples' ],
+    'types'           => [ 'types',      'layers',       'Every type of tag - the prefixes' ],
     'reference'       => [ 'reference',  'list',         'Tags, functions and options, cross-referenced' ],
     'sequence'        => [ 'sequence',   'bar-chart',    'The sequence subsystem' ],
     'regression/main' => [ 'regression', 'check-circle', 'The regression suites' ],

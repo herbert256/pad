@@ -1147,7 +1147,8 @@ the `claude` line of `./ci.sh`.
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
 | `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family (every kind of `pad/charts/types/`), every example a page of three cells: the data, the tag, the chart |
 | `showcase` | Standard | A showcase of the tags that draw, format and interact - a pulldown per group, a section per tag, every example its template beside the result |
-| `tags` | Standard | A page per built-in tag - one line, syntax with the tag's own options, a longer description and live examples - with indexes by name, group, form and option, a cheat sheet and a search |
+| `tags` | Standard | A page per tag, named with its type prefix - every built-in tag, `{pad:if}`, every kind of the subsystems, `{chart:pie}`, and every sequence type, `{sequence:fibonacci}` - one line, syntax with the tag's own options, a longer description and live examples - with indexes by name, group, form and option, a cheat sheet and a search |
+| `types` | Standard | A page per type of tag - the prefix of `{pad:if}`, `{chart:pie}`, `{field:name}` - with what it reaches and its tags linked into the tags app, its place in the order a bare name is tried in, its section of TYPES.md and live examples; indexes by name, order and group, a cheat sheet and a search |
 | `classicModels` | Standard | PAD Select over the Classic Models sample database |
 | `padSelect` | Standard | A showcase of PAD Select over a music catalogue (database `padSelect`) - tables, relations, views, joins, groups, pages, unions, each example with its declarations, template, result and the SQL PAD sent |
 | `cli` | CLI | The `pad` command (`apps/cli/pad`): new, serve, render, lint, export, test - and the cli application |

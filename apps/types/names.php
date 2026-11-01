@@ -1,0 +1,5 @@
+<?php
+
+  $types = typesByName ();
+
+?>

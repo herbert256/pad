@@ -1,0 +1,6 @@
+{meta title='An array field of an enclosing row', about='Each family has its kids; level:kids is that array of the row around it.'/}
+{data 'families'}[ {"family": "Jansen", "kids": [ {"name": "Eva"}, {"name": "Tim"} ]},
+                   {"family": "Smit",   "kids": [ {"name": "Noor"} ]} ]{/data}
+<ul>
+  {families}<li>{$family}: {level:kids}{$name} {/level:kids}</li>{/families}
+</ul>

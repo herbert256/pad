@@ -1,0 +1,23 @@
+{common:padFrame}
+
+  {slot 'head'}
+    {asset 'types.css', tag/}
+  {/slot}
+
+  {slot 'title'}
+    <form class="search" action="" method="get" role="search">
+      <input type="hidden" name="search" value="">
+      <label class="sr-only" for="q">Search the types</label>
+      <input type="search" id="q" name="q" value="{$typesSearch}" placeholder="Search {$typesCount} types" autocomplete="off">
+    </form>
+  {/slot}
+
+{/common:padFrame}
+
+@page@
+
+<footer class="foot">
+  <p>{$typesCount} types of PAD tags - the prefix before the colon of <code>&#123;pad:if&#125;</code> - each with what it reaches, the order a bare name is tried in and live examples; every tag of them in the <a href="{$padRoot}tags/">tags application</a>.</p>
+</footer>
+
+{common:padFrameEnd/}
