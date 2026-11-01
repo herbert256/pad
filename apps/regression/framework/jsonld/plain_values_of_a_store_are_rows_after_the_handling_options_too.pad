@@ -1,0 +1,7 @@
+{data 'steps'}["Home", "Shop", "Tea"]{/data}
+{data 'titles'}["Zed", "Alpha"]{/data}
+<p>{jsonld:breadcrumb data='steps'/}</p>
+<p>{jsonld:breadcrumb data=['Home', 'Shop']/}</p>
+<p>{jsonld:breadcrumb data='trail', first=2/}</p>
+<p>{jsonld 'article', data='titles', sort/}</p>
+<p>{sequence:fibonacci rows=3, toData='fib'/}{jsonld:person data='fib', last=1/}</p>

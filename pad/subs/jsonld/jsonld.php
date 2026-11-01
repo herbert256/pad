@@ -61,6 +61,8 @@
       $padHandDone [$pad] = TRUE;
     }
 
+    $padJsonLdRows = padJsonLdPlain ( padJsonLdSpec ( $padJsonLdKind ), $padJsonLdRows, [ $padPrm [$pad] ['data'] ?? '', padDataName ( '' ) ] );
+
   }
 
   $padData [$pad] = padDefaultData ();

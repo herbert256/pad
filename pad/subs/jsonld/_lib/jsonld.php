@@ -72,6 +72,7 @@
   // padJsonLdSpec   a kind's answer, its file read once a request
   // padJsonLdMake   the object of a kind from its rows and the fields given beside them
   // padJsonLdRows   the rows of a data= value, a row of fields made a list of one
+  // padJsonLdPlain  the plain values of rows the engine made rows of one field
   // padJsonLdUrl    an address made absolute, '' for one that is none
   // padJsonLdHome   the application's own address
   // padJsonLdScript the script element of an object
@@ -200,6 +201,26 @@
         return [ $data ];
 
     return array_values ( array_map ( fn ( $row ) => is_object ( $row ) ? padToArray ( $row ) : $row, $data ) );
+
+  }
+
+  // The plain values of a list as the engine holds them: padData makes each a row of one
+  // field named for the store, the _data file, toData= or the tag ($names) - a {data} store,
+  // a sequence store, data=['a', 'b'] and the rows the handling options give back hold them
+  // so. Such a row is its value again, the value of the kind's first field (padJsonLdRow), as
+  // the breadcrumb widget takes it - unless its one field is a name the kind reads.
+
+  function padJsonLdPlain ( $spec, $rows, $names ) {
+
+    $known = array_merge ( ...array_values ( array_column ( $spec ['items'] ['fields'] ?? $spec ['fields'], 'names' ) ) );
+    $names = array_filter ( $names, fn ( $one ) => is_string ( $one ) and $one !== '' );
+
+    foreach ( $rows as $at => $row )
+      if ( is_array ( $row ) and count ( $row ) == 1 and ! is_array ( reset ( $row ) ) and ! is_object ( reset ( $row ) )
+           and in_array ( (string) array_key_first ( $row ), $names, TRUE ) and ! in_array ( (string) array_key_first ( $row ), $known, TRUE ) )
+        $rows [$at] = reset ( $row );
+
+    return $rows;
 
   }
 
