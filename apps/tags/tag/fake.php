@@ -24,11 +24,15 @@ PAD;
     'from'      => 'number, decimal, price: the lowest value; date: the first moment (<code>-1 year</code>); time: the first clock time (<code>08:00</code>).',
     'to'        => 'number, decimal, price: the highest value; date: the last moment (<code>now</code>); time: the last clock time (<code>18:00</code>).',
     'format'    => 'date: the format of the moment, <code>Y-m-d</code>.',
-    'decimals'  => 'decimal: the places it is rounded to, 2.',
+    'decimals'  => 'decimal: the places it is rounded to, 2; latitude, longitude: the places written, 6.',
     'chance'    => 'boolean: the chance of TRUE in percent, 50.',
     'words'     => 'sentence: the number of words.',
     'sentences' => 'paragraph: the number of sentences.',
-    'name'      => 'email: the name the address is made from.' ];
+    'name'      => 'email: the name the address is made from.',
+    'south'     => 'latitude: the southern edge of the band, -90.',
+    'north'     => 'latitude: the northern edge of the band, 90.',
+    'west'      => 'longitude: the western edge of the box, -180 - east of <code>east</code> the box crosses the 180th meridian.',
+    'east'      => 'longitude: the eastern edge of the box, 180.' ];
 
   $tagSee     = [ 'lorem', 'data', 'datatable' ];
 

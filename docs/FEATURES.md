@@ -410,7 +410,9 @@ reproducible after `padFakeSeed ( 42 )`: `padFakeName`, `padFakeEmail`, `padFake
 
 The kinds of fake value are the files of `pad/subs/fakes/types/` - address, boolean, city, colour,
 company, country, date, decimal, email, firstname, iban (a Dutch number of the bank TEST that
-passes the check), ip (the documentation ranges), job, lastname, name, number, paragraph,
+passes the check), ip (the documentation ranges), job, lastname, latitude and longitude (a
+point of the box south=, north=, west=, east=, across the 180th meridian when west= lies east
+of east=), name, number, paragraph,
 phone, postcode, price, sentence, street, time, url, username, uuid, word - each named by
 `padFake ( 'email' )` and in a template:
 ```
@@ -418,6 +420,7 @@ phone, postcode, price, sentence, street, time, url, username, uuid, word - each
 {fake 'name, email', rows=5, toData='people'/}               # rows of fields named after their kinds
 {fake 'customer:name, total:price', rows=3}<li>{$customer} {$total}</li>{/fake}
 {fake 'name', seed=7/}                                        # a value of its own seed
+{fake 'lat:latitude, lon:longitude', south=50.75, north=53.55, west=3.36, east=7.23, rows=5/}  # points of a box
 ```
 `padFakeRows ( 'name, email', 5, 7 )` gives the rows `{fake 'name, email', rows=5, seed=7/}`
 gives - a fact of the seed, the sequence put back after them - for a seeder, a prototype's

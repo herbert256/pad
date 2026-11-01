@@ -2612,12 +2612,13 @@ of `lib/fake.php`'s sequence.
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The kind, a file of `pad/subs/fakes/types/` - address, boolean, city, colour, company, country, date, decimal, email, firstname, iban, ip, job, lastname, name, number, paragraph, phone, postcode, price, sentence, street, time, url, username, uuid, word - or several, `'name, email'`, a field each under its kind's name or as `'field:kind'` says. The fake type names one: `{fake:email/}` |
+| first parameter | The kind, a file of `pad/subs/fakes/types/` - address, boolean, city, colour, company, country, date, decimal, email, firstname, iban, ip, job, lastname, latitude, longitude, name, number, paragraph, phone, postcode, price, sentence, street, time, url, username, uuid, word - or several, `'name, email'`, a field each under its kind's name or as `'field:kind'` says. The fake type names one: `{fake:email/}` |
 | `rows` | So many rows of the kinds, the level's data - iterated by the pair's content, kept by `toData=` |
 | `seed` | Values of their own seed: the rows `padFakeRows ( kinds, rows, seed )` gives |
 | `from`, `to` | number (0, 100), decimal (0, 1), price (1, 100): the range; date: two moments padDateParse reads (`-1 year`, `now`); time: two clock times (`08:00`, `18:00`) |
 | `format` | date: the format, `Y-m-d` |
-| `decimals` | decimal: the places, 2 |
+| `decimals` | decimal: the places, 2; latitude, longitude: the places written, 6 |
+| `south`, `north`, `west`, `east` | latitude: the band, -90 to 90; longitude: -180 to 180, a box across the 180th meridian when `west` lies east of `east` |
 | `chance` | boolean: the chance of TRUE in percent, 50 |
 | `words`, `sentences` | sentence: its words; paragraph: its sentences |
 | `name` | email: the name it is made from |
@@ -2633,6 +2634,9 @@ answer the value and read their options with `padFakeOpt`; a kind is added by ad
 A kind there is none of, a field that is no plain name, `rows` that are no number from 0 to
 10000 and an option no kind of the tag reads are errors; `{fake:zebra/}` is "there is no fake
 kind named 'zebra'". Fake kinds are never reached bare: their names are those of fields.
+A latitude beyond a pole, a longitude beyond the 180th meridian and `decimals` that are no
+whole number from 0 to 10 are errors under the strict check; the lenient walk leaves the value
+out.
 
 ### widget
 An interactive part of the page that works without JavaScript and gets better with it - tabs,
