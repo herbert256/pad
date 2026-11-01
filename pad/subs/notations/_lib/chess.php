@@ -76,7 +76,7 @@
       $rank = 8 - $index;
       $file = 0;
 
-      foreach ( str_split ( $text ) as $char ) {
+      foreach ( mb_str_split ( $text ) as $char ) {
         if ( $char >= '1' and $char <= '8' )
           $file += (int) $char;
         elseif ( isset ( PAD_CHESS_NAMES [ strtolower ( $char ) ] ) ) {
@@ -84,7 +84,7 @@
             $squares [ "$file,$rank" ] = $char;
           $file++;
         } else
-          return "the placement has a '" . $char . "' - pieces are KQRBNP and kqrbnp, empty squares a digit";
+          return "the placement has a '" . padNotationShow ( $char ) . "' - pieces are KQRBNP and kqrbnp, empty squares a digit";
       }
 
       if ( $file != 8 )
@@ -97,17 +97,17 @@
     $passant  = $fields [3] ?? '-';
 
     if ( $side !== 'w' and $side !== 'b' )
-      return "the side to move is '$side', not w or b";
+      return "the side to move is '" . padNotationShow ( $side ) . "', not w or b";
 
     if ( $castling !== '-' and ! preg_match ( '/^K?Q?k?q?$/', $castling ) or $castling === '' )
-      return "the castling rights are '$castling', not - or a part of KQkq";
+      return "the castling rights are '" . padNotationShow ( $castling ) . "', not - or a part of KQkq";
 
     if ( $passant !== '-' and ! preg_match ( '/^[a-h][36]$/', $passant ) )
-      return "the en passant square is '$passant', not - or a square on rank 3 or 6";
+      return "the en passant square is '" . padNotationShow ( $passant ) . "', not - or a square on rank 3 or 6";
 
     foreach ( [ 4, 5 ] as $at )
       if ( isset ( $fields [$at] ) and ! ctype_digit ( $fields [$at] ) )
-        return "the " . ( $at == 4 ? 'halfmove clock' : 'move number' ) . " is '{$fields [$at]}', not a number";
+        return "the " . ( $at == 4 ? 'halfmove clock' : 'move number' ) . " is '" . padNotationShow ( $fields [$at] ) . "', not a number";
 
     // What no game can reach is no position, where the fields were checked by their shape
     // alone: an en passant square is behind the pawn that just moved two squares - on rank 6
@@ -125,7 +125,7 @@
         return "the castling right $right has no king and rook on their squares";
 
     if ( isset ( $fields [5] ) and (int) $fields [5] < 1 )
-      return "the move number is {$fields [5]}, where the first move is 1";
+      return "the move number is " . padNotationShow ( $fields [5] ) . ", where the first move is 1";
 
     return [ $squares, $side, $castling, $passant ];
 

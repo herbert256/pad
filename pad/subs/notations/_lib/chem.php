@@ -278,7 +278,7 @@
   function padChemState ( $state, &$problems ) {
 
     if ( ! in_array ( $state, PAD_CHEM_STATES, TRUE ) )
-      $problems [] = "has no state '($state)' - a state is (s), (l), (g) or (aq)";
+      $problems [] = "has no state '(" . padNotationShow ( $state ) . ")' - a state is (s), (l), (g) or (aq)";
 
     return '<mrow>' . padChemFence ( '(' ) . padChemMi ( $state ) . padChemFence ( ')' ) . '</mrow>';
 
@@ -478,7 +478,7 @@
         while ( $i < $n and padChemDigit ( $c [$i] ) )
           $sign .= $c [$i++];
         if ( $unit === NULL ) {
-          $problems [] = "has a charge $sign with nothing before it";
+          $problems [] = "has a charge " . padNotationShow ( $sign ) . " with nothing before it";
           $out .= padChemScript ( $sign );
         } else
           $unit ['charge'] = padChemScript ( $sign );
@@ -511,7 +511,7 @@
         continue;
       }
 
-      $problems [] = "has a '" . $ch . "' where a formula goes";
+      $problems [] = "has a '" . padNotationShow ( $ch ) . "' where a formula goes";
       $out .= padChemUnit ( $unit ) . padChemMo ( $ch );
       $unit = NULL;
       $i++;
@@ -606,7 +606,7 @@
       if ( isset ( $c [$i] ) and padChemLower ( $c [$i] ) )
         $symbol .= $c [$i++];
       if ( ! isset ( $elements [$symbol] ) )
-        $problems [] = "has no element '$symbol' - an element is written H, He, Fe ...";
+        $problems [] = "has no element '" . padNotationShow ( $symbol ) . "' - an element is written H, He, Fe ...";
       return [ 'base' => padChemMi ( $symbol ) ];
     }
 
@@ -621,7 +621,7 @@
     if ( $word === 'hv' or $word === "h\u{03BD}" )
       return [ 'base' => padChemSpecial ( 'hv' ) ];
 
-    $problems [] = "has no element '$word' - an element is written H, He, Fe ...";
+    $problems [] = "has no element '" . padNotationShow ( $word ) . "' - an element is written H, He, Fe ...";
 
     return [ 'base' => padChemMi ( $word ) ];
 

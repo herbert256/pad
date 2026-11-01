@@ -14,8 +14,8 @@
   //
   // The properties read: SZ the size (9, 13 and 19 have their star points; 2 to 25), AB AW AE
   // the stones set up and taken away (point lists aa:cc as well), B and W the moves (an empty
-  // value or tt a pass), PL the player to move, GN the game's name, and the markup a diagram
-  // carries: LB labels, TR CR SQ MA marks. The others - the players, the result, comments,
+  // value or tt a pass), GN the game's name, and the markup a diagram carries: LB labels, TR
+  // CR SQ MA marks. The others - the players, the player to move (PL), the result, comments,
   // the time - are read and left out.
 
   const PAD_GO_COLOURS = [ 'board' => [ '#e3b866', '#a98545' ], 'line' => [ '#3d2f1a', '#2a2012' ],
@@ -84,7 +84,7 @@
       }
 
       if ( $char != ';' )
-        return "it has a '$char' where a node starts with ;";
+        return "it has a '" . padNotationShow ( preg_match ( '/./su', $text, $one, 0, $at ) ? $one [0] : $char ) . "' where a node starts with ;";
 
       $at++;
       $node = [];
@@ -101,7 +101,7 @@
         $skip ();
 
         if ( ( $text [$at] ?? '' ) != '[' )
-          return "the property $name has no value in [ ]";
+          return "the property " . padNotationShow ( $name ) . " has no value in [ ]";
 
         while ( ( $text [$at] ?? '' ) == '[' ) {
           $at++;
@@ -112,7 +112,7 @@
             $value .= $text [$at++];
           }
           if ( $at >= $length )
-            return "a value of $name never closes with ]";
+            return "a value of " . padNotationShow ( $name ) . " never closes with ]";
           $at++;
           $node [$name] [] = $value;
           $skip ();
@@ -243,7 +243,7 @@
         foreach ( $node [$property] ?? [] as $value ) {
           $points = padGoPoints ( $value, $size );
           if ( $points === FALSE ) {
-            $problems [] = "has a point '$value' off the board in $property";
+            $problems [] = "has a point '" . padNotationShow ( $value ) . "' off the board in $property";
             continue;
           }
           foreach ( $points as list ( $x, $y ) ) {
@@ -258,7 +258,7 @@
           $point = padGoPoint ( $value, $size );
 
           if ( $point === FALSE ) {
-            $problems [] = "has a move $colour" . "[$value] off the board";
+            $problems [] = "has a move $colour" . '[' . padNotationShow ( $value ) . '] off the board';
             continue;
           }
 
@@ -272,7 +272,7 @@
           list ( $x, $y ) = $point;
 
           if ( $board [$y] [$x] !== '' )
-            $problems [] = "has a move $colour" . "[$value] on a point that is taken";
+            $problems [] = "has a move $colour" . '[' . padNotationShow ( $value ) . '] on a point that is taken';
 
           $board [$y] [$x]       = $colour;
           $numbers [ "$x,$y" ]   = $count;

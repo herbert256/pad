@@ -41,7 +41,7 @@
       $chord = padMusicChord ( $tokens [0] );
 
       if ( ! $chord )
-        return "no note or chord '" . $tokens [0] . "' - notes are written C4 E4 G4, a chord C, Am7, F#dim";
+        return "no note or chord '" . padNotationShow ( $tokens [0] ) . "' - notes are written C4 E4 G4, a chord C, Am7, F#dim";
 
       list ( $root, $intervals, $bass, $name, $words, $spelling ) = $chord;
 
@@ -69,7 +69,7 @@
       $note = padMusicNote ( $token );
 
       if ( ! $note )
-        return "no note '$token' - a note is a letter, a sharp or flat and its octave: C4, F#3, Bb5";
+        return "no note '" . padNotationShow ( $token ) . "' - a note is a letter, a sharp or flat and its octave: C4, F#3, Bb5";
 
       list ( $class, $octave, $name, $shift ) = $note;
 
@@ -81,7 +81,7 @@
         $midi = ( $octave + 1 ) * 12 + $class;
 
       if ( $midi < 21 or $midi > 108 )
-        return "a note '$token' off the keyboard - a piano runs from A0 to C8";
+        return "a note '" . padNotationShow ( $token ) . "' off the keyboard - a piano runs from A0 to C8";
 
       // The note is named with the octave of its letter, as it was written: Cb4 is the key of
       // B3 and says C♭4, B#3 the key of C4 and says B♯3 - the octave of the key put C♭3 and B♯4.

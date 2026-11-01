@@ -29,7 +29,7 @@
     $side    = strtoupper ( array_shift ( $fields ) );
 
     if ( $side !== 'W' and $side !== 'B' )
-      return "the side to move is '$side', not W or B";
+      return "the side to move is '" . padNotationShow ( $side ) . "', not W or B";
 
     $pieces = [];
 
@@ -41,7 +41,7 @@
       $colour = strtoupper ( $field [0] );
 
       if ( $colour !== 'W' and $colour !== 'B' )
-        return "a part '" . $field . "' starts with no W or B";
+        return "a part '" . padNotationShow ( $field ) . "' starts with no W or B";
 
       foreach ( explode ( ',', substr ( $field, 1 ) ) as $item ) {
 
@@ -56,12 +56,12 @@
           $item = substr ( $item, 1 );
 
         if ( ! preg_match ( '/^(\d+)(?:-(\d+))?$/D', $item, $m ) )
-          return "it has a square '$item' that is no number - squares are 1 to $squares, a K before a king";
+          return "it has a square '" . padNotationShow ( $item ) . "' that is no number - squares are 1 to $squares, a K before a king";
 
         $to = isset ( $m [2] ) ? (int) $m [2] : (int) $m [1];
 
         if ( (int) $m [1] > $to )
-          return "it has a range $item that runs backwards";
+          return "it has a range " . padNotationShow ( $item ) . " that runs backwards";
 
         for ( $square = (int) $m [1]; $square <= $to; $square++ ) {
           if ( $square < 1 or $square > $squares )
