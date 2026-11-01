@@ -458,7 +458,7 @@
     // The ways the later kinds take - a recipe's durations, its ingredients - and a how
     // written as a list, the how and what it needs beside it, are those of values.php.
 
-    if ( is_array ( $how ) or in_array ( $how, [ 'number', 'count', 'duration', 'energy', 'texts', 'steps' ], TRUE ) ) {
+    if ( is_array ( $how ) or in_array ( $how, [ 'number', 'count', 'duration', 'energy', 'texts', 'steps', 'hours' ], TRUE ) ) {
       include_once PAD . 'subs/jsonld/_lib/values.php';
       return padJsonLdMore ( $value, (array) $how, $name, $what, $report );
     }

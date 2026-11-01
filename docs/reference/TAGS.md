@@ -649,12 +649,15 @@ of fields and pages. `padJsonLd ( 'article', $post )` answers the same object as
 |------|------------|-------------------------------|
 | `article` | Article | **headline**, description, image, url, author, published, modified, publisher, logo |
 | `breadcrumb` | BreadcrumbList | rows of **name** (or label, text) and url (or link, href); without `data=` the page's trail, `home=` its first step, a directory that is no page left out |
+| `breadcrumb` | BreadcrumbList | rows of **name** (or label, text) and url (or link, href); without `data=` the page's trail, `home=` its first step |
+| `business` | LocalBusiness (or one of its 151 subtypes, type=) | **name**, **city**, type, description, image, url, phone, email, street, region, postcode, country, latitude, longitude, hours, prices |
 | `event` | Event | **name**, **starts**, ends, place, address, description, image, url, price, currency, availability, tickets |
 | `faq` | FAQPage | rows of **question** and **answer** |
 | `organization` | Organization | **name**, url, logo, description, profiles, phone, email, contact |
 | `person` | Person | **name**, url, image, job, description, profiles |
 | `product` | Product | **name**, description, image, url, sku, brand, price, currency, availability |
 | `recipe` | Recipe | **name**, **image**, description, author, published, prep, cook, total (durations), yield, category, cuisine, keywords, calories (needs yield), ingredients, steps, rating, ratings |
+| `restaurant` | Restaurant (or another FoodEstablishment, type=) | every field of business, cuisine, menu |
 | `video` | VideoObject | **name**, **thumbnail**, **uploaded**, description, duration, file (contentUrl), player (embedUrl), expires, author, views |
 | `website` | WebSite | name, url (the application's address), description, search |
 
@@ -678,7 +681,8 @@ the object, or the field, out.
 The later kinds' values: a duration is ISO 8601 (`PT1H30M`) or numbers with their units
 (`1 h 30 min`, `90 min`), written as ISO 8601; a list - ingredients, steps - is a list in the row
 or a text with a line between its values; a rating is a number, a count a whole number, both
-written as JSON numbers.
+written as JSON numbers; opening hours are written as openingHours writes them
+(`Mo-Fr 09:00-17:30; Sa 10:00-16:00`), a type and the other words of a list in any case.
 
 ---
 
@@ -4706,7 +4710,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `redirect` | Navigation | HTTP redirect |
 | `restart` | Navigation | Restart processing |
 | `pager` | Navigation | Page links for a tag with the page option |
-| `jsonld` | Navigation | The structured data of a page - a Schema.org object of `pad/subs/jsonld/types/` as JSON-LD: article, breadcrumb, event, faq, organization, person, product, recipe, video, website - its fields mapped by name |
+| `jsonld` | Navigation | The structured data of a page - a Schema.org object of `pad/subs/jsonld/types/` as JSON-LD: article, breadcrumb, business, event, faq, organization, person, product, recipe, restaurant, video, website - its fields mapped by name |
 | `csrf` | Web | Hidden CSRF token field of the session |
 | `extends` | Layout | Frame the page with a layout |
 | `block` | Layout | A named region of a layout or wrapper, and its override |

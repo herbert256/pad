@@ -1,10 +1,12 @@
 <?php
 
   // The ways of writing a value the kinds after the first eight take - a recipe's times and
-  // ingredients - included by padJsonLdValue (jsonld.php) the first time a field asks for
-  // one. A field's how is a word, or the word and what it needs beside it:
+  // ingredients, a business's opening hours - included by padJsonLdValue (jsonld.php) the
+  // first time a field asks for one. A field's how is a word, or the word and what it needs
+  // beside it - [ 'word', [ 'Bakery', 'Store' ] ]:
   //
-  //   number        a number with a dot - 4.5, -73.98 - written as a JSON number
+  //   number        a number with a dot - 4.5, -73.98 - written as a JSON number; with
+  //                 [ 'number', [ low, high ] ] it must lie between the two
   //   count         a whole number, 0 or more - 1523 - written as a JSON number
   //   duration      a duration of ISO 8601 as it is - PT1H30M, P1D - or one written in
   //                 words, each a number and its unit: 1 h 30 min, 90 minutes, 1.5 hours,
@@ -18,10 +20,22 @@
   //   steps         the steps of a recipe, each a HowToStep: a list of texts, a text with a
   //                 line between them, or rows of text (required), name, url and image -
   //                 nothing else of a row
+  //   word          one word of the list beside it, in any case or spacing - bar or pub is
+  //                 BarOrPub - written as the list writes it; a word that is none is
+  //                 reported with the list, or with the word that comes nearest when the
+  //                 list is long
+  //   hours         opening hours as Schema.org's openingHours writes them - Mo-Fr
+  //                 09:00-17:30; Sa 10:00-16:00 - written as OpeningHoursSpecification
+  //                 objects, Google's form (padJsonLdHours)
   //
   // Beside them a kind's file may say, in 'objects', the whole object a path starts with
   // where its @type alone is not enough - a video's views are an InteractionCounter whose
-  // interactionType is the WatchAction.
+  // interactionType is the WatchAction. A field whose path ends in @type is the type itself,
+  // one of its words: a Bakery for the business kind.
+
+  // The days of the week by Schema.org's name, in order (padJsonLdHours).
+
+  const padJsonLdDays = [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ];
 
   function padJsonLdMore ( $value, $how, $name, $what, $report ) {
 
@@ -47,6 +61,9 @@
       case 'steps':
         return padJsonLdSteps ( $value, $name, $what, $report );
 
+      case 'hours':
+        return padJsonLdHours ( $value, $name, $what, $report );
+
     }
 
     if ( is_array ( $value ) ) {
@@ -64,6 +81,10 @@
       case 'number':
         if ( ! preg_match ( '/^-?[0-9]+(\.[0-9]+)?$/D', $text ) )
           return $no ( 'number', 'write 4.5, with a dot' );
+        if ( $with and ( $text + 0 < $with [0] or $text + 0 > $with [1] ) ) {
+          $report ( "the $name of $what is not between {$with [0]} and {$with [1]}: '" . padMakeSafe ( $text, 40 ) . "'" );
+          return NULL;
+        }
         return $text + 0;
 
       case 'count':
@@ -75,6 +96,17 @@
 
       case 'energy':
         return preg_match ( '/^[0-9]+(\.[0-9]+)?$/D', $text ) ? "$text calories" : $text;
+
+      case 'word':
+        $word = padJsonLdWord ( $text, $with );
+        if ( $word !== NULL )
+          return $word;
+        if ( count ( $with ) <= 25 )
+          $report ( "the $name of $what is none of " . implode ( ', ', $with ) . ": '" . padMakeSafe ( $text, 40 ) . "'" );
+        else
+          $report ( "the $name of $what is none of the " . count ( $with ) . " it takes: '" . padMakeSafe ( $text, 40 ) . "' - "
+                    . padJsonLdNearest ( $text, $with ) . ' comes nearest' );
+        return NULL;
 
     }
 
@@ -107,6 +139,43 @@
     }
 
     return $list;
+
+  }
+
+  // A word of a list, in any case and spacing - bar or pub, Bar-or-Pub and BarOrPub are the
+  // same word - and with the address of Schema.org before it as well; NULL for none.
+
+  function padJsonLdWord ( $text, $words ) {
+
+    $key = fn ( $one ) => strtolower ( preg_replace ( '/[^A-Za-z0-9]/', '', $one ) );
+
+    $find = $key ( preg_replace ( '#^https?://schema\.org/#i', '', $text ) );
+
+    foreach ( $words as $word )
+      if ( $find !== '' and $key ( $word ) === $find )
+        return $word;
+
+    return NULL;
+
+  }
+
+  // The word of a long list that comes nearest to one that is none of them.
+
+  function padJsonLdNearest ( $text, $words ) {
+
+    $text = strtolower ( substr ( $text, 0, 60 ) );
+    $best = $words [0];
+    $far  = PHP_INT_MAX;
+
+    foreach ( $words as $word ) {
+      $distance = levenshtein ( $text, strtolower ( $word ) );
+      if ( $distance < $far ) {
+        $far  = $distance;
+        $best = $word;
+      }
+    }
+
+    return $best;
 
   }
 
@@ -184,6 +253,91 @@
     }
 
     return $steps ?: NULL;
+
+  }
+
+  // Opening hours as Schema.org's openingHours text writes them, made the
+  // OpeningHoursSpecification objects Google reads: a group is days and one or more times
+  // - Mo-Fr 09:00-17:30, Mo,We 09:00-12:00, Sa 10:00-12:00,13:00-16:00 - and groups stand
+  // after each other, with a ; or a , or a line between them, or as the values of a list. A
+  // day is Mo, Mon or Monday, a range of days may pass Sunday (Fr-Mo), and a time is hh:mm
+  // of a day - 00:00-23:59 for a whole day; closes before opens is open past midnight.
+  // Each time of a group is an object of its own with the group's days - one day as a text,
+  // more as a list, as Google's examples write them - and opens and closes as hh:mm:ss, the
+  // form its list of the properties names.
+
+  function padJsonLdHours ( $value, $name, $what, $report ) {
+
+    $day   = '(?:mon(?:day)?|tue(?:sday)?|wed(?:nesday)?|thu(?:rsday)?|fri(?:day)?|sat(?:urday)?|sun(?:day)?|mo|tu|we|th|fr|sa|su)';
+    $days  = "$day(?:\s*-\s*$day)?(?:\s*,\s*$day(?:\s*-\s*$day)?)*";
+    $time  = '[0-9]{1,2}:[0-9]{2}\s*-\s*[0-9]{1,2}:[0-9]{2}';
+    $group = "/\G[\s,;]*($days)\s+($time(?:\s*,\s*$time)*)/i";
+
+    $specs = [];
+    $bad   = FALSE;
+
+    foreach ( padJsonLdList ( $value, '/\R/' ) as $text ) {
+
+      if ( is_array ( $text ) ) {
+        $bad = TRUE;
+        continue;
+      }
+
+      $at = 0;
+
+      while ( preg_match ( $group, $text, $m, 0, $at ) ) {
+
+        $at = strlen ( $m [0] ) + $at;
+
+        $list = [];
+
+        foreach ( preg_split ( '/\s*,\s*/', $m [1] ) as $range ) {
+          $ends  = array_map ( fn ( $one ) => padJsonLdDay ( $one ), preg_split ( '/\s*-\s*/', $range ) );
+          $first = $ends [0];
+          $last  = $ends [1] ?? $first;
+          for ( $one = $first ; ; $one = ( $one + 1 ) % 7 ) {
+            if ( ! in_array ( padJsonLdDays [$one], $list, TRUE ) )
+              $list [] = padJsonLdDays [$one];
+            if ( $one == $last )
+              break;
+          }
+        }
+
+        foreach ( preg_split ( '/\s*,\s*/', $m [2] ) as $times ) {
+          [ $opens, $closes ] = array_map ( 'trim', explode ( '-', $times ) );
+          foreach ( [ &$opens, &$closes ] as &$clock ) {
+            [ $hour, $minute ] = explode ( ':', $clock );
+            if ( $hour > 23 or $minute > 59 )
+              $bad = TRUE;
+            $clock = sprintf ( '%02d:%02d:00', $hour, $minute );
+          }
+          unset ( $clock );
+          $specs [] = [ '@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ( count ( $list ) == 1 ) ? $list [0] : $list,
+                        'opens' => $opens, 'closes' => $closes ];
+        }
+
+      }
+
+      if ( trim ( substr ( $text, $at ), " \t\n\r,;" ) !== '' or $at == 0 )
+        $bad = TRUE;
+
+    }
+
+    if ( $bad ) {
+      $report ( "the $name of $what are no opening hours: '" . padMakeSafe ( is_array ( $value ) ? implode ( '; ', array_filter ( $value, 'is_scalar' ) ) : padJsonLdScalar ( $value ), 60 )
+                . "' - write Mo-Fr 09:00-17:30; Sa 10:00-16:00, a day Mo, Mon or Monday, a time 00:00 to 23:59" );
+      return NULL;
+    }
+
+    return $specs ?: NULL;
+
+  }
+
+  // The number of a day of the week, Monday 0, from the names an opening hours text uses.
+
+  function padJsonLdDay ( $name ) {
+
+    return array_search ( strtolower ( substr ( trim ( $name ), 0, 2 ) ), [ 'mo', 'tu', 'we', 'th', 'fr', 'sa', 'su' ], TRUE );
 
   }
 

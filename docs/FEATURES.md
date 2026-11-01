@@ -149,13 +149,14 @@ template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip
 {jsonld:website name='Shop', search='?search&q='/}        # a SearchAction ending in {search_term_string}
 {jsonld:recipe data='recipe'/}                            # times, ingredients and steps of a dish
 {jsonld:video data='clip'/}                               # thumbnails, upload date, length, views
+{jsonld:business type='Bakery', name='The Loaf', city='Utrecht', hours='Mo-Fr 08:00-18:00; Sa 08:00-16:00'/}
 ```
 ```php
 $url  = padUrl ( '', [], TRUE );                          // the page's own address, for url=
 $data = padJsonLd ( 'event', $concert );                  // the same object as a plain array
 ```
 One `<script type="application/ld+json">` holding a Schema.org object - what search engines read
-for a rich result - from ordinary PAD data, explicitly mapped. Ten kinds, each a file of
+for a rich result - from ordinary PAD data, explicitly mapped. Twelve kinds, each a file of
 `pad/subs/jsonld/types/` whose header lists its fields, a PAD name and the Schema.org property it
 fills: `article` (headline required, description, image, url, author, published, modified,
 publisher, logo), `breadcrumb` (rows of name and url - the rows `{breadcrumb data=}` takes,
@@ -180,7 +181,13 @@ the text, name, url and image of a row, and rating with ratings as an AggregateR
 `video`: name, thumbnail (one address or more) and uploaded required - with its offset, or Google
 takes its own time zone - description, duration, file (contentUrl, the video file itself), player
 (embedUrl), expires, author and views as an InteractionCounter of the WatchAction - not
-`content=`, the option of every tag.
+`content=`, the option of every tag. `business`: a LocalBusiness - type (LocalBusiness or the most
+specific of the 151 Schema.org types under it, `Dentist`, `BookStore`, `bar or pub` in any case or
+spacing), name and city required, description, image, url, phone, email, street, city, region,
+postcode and country as its PostalAddress, latitude and longitude as GeoCoordinates (each needing
+the other, -90 to 90 and -180 to 180), hours and prices (priceRange). `restaurant`: every field
+of the business and cuisine (servesCuisine) and menu, which a business of another type cannot
+have - type Restaurant, or Bakery, BarOrPub, CafeOrCoffeeShop and the other food establishments.
 
 The fields come from the row or rows `data=` names - a `{data}` store, the page's array, a
 field holding a list or a `_data` file (a store holds rows, so a single row in a `{data}` block
@@ -210,7 +217,13 @@ The later kinds' values (`pad/subs/jsonld/_lib/values.php`): a duration passes a
 `2 days`, each number with its unit, `m` minutes - and a number alone, without its unit, is none.
 A list is a list in the row, or a text with a line between its values - an ingredient may hold
 a comma; an option holds no list. A rating is a number with a dot, a count a whole number, both
-written as JSON numbers. An energy that is a number alone is that many calories. A value that
+written as JSON numbers. An energy that is a number alone is that many calories. Opening hours
+are written as Schema.org's openingHours writes them - `Mo-Fr 09:00-12:00,13:00-17:30; Sa
+10:00-16:00`, a day `Mo`, `Mon` or `Monday`, a range past Sunday (`Fr-Mo`), a time 00:00 to 23:59,
+closing before opening open past midnight - and become an OpeningHoursSpecification per time,
+Google's form, its days a text or a list, opens and closes as hh:mm:ss. A type and the other
+words of a list (an employment, a category) are matched in any case and spacing and written as
+Schema.org or Google writes them; a long list's error names the word that comes nearest. A value that
 is none of these, a row where a list holds texts and a step without its text are errors under
 the strict check, naming the field and the kind, and left out without it.
 
