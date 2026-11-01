@@ -190,6 +190,15 @@ what stands behind it while it loads is what you see.</p>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;sharpen&#039;</span>, <span class="hl-opt">amount</span>=<span class="hl-num">80</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
 </section>
 
+<section class="patterns-filter" id="threshold">
+  <h2>threshold</h2>
+  <p>The picture in two colours alone, a hard cut: every pixel whose luminance is threshold= percent (50) of white or more the second of colors= (paper), every other one the first (ink) - a stencil, a stamp, a scanned page made clean, where dither spreads the error on to keep the greys.</p>
+  <div class="patterns-play">
+    <img class="pad-img" src="/pad/patterns/_thumbs/7afcad28b1d77607.png" srcset="/pad/patterns/_thumbs/7afcad28b1d77607.png 1x, /pad/patterns/_thumbs/2f3c6f4a9500eeac.png 2x" width="360" height="240" alt="Rows of tulips running to a windmill" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;threshold&#039;</span>, <span class="hl-opt">threshold</span>=<span class="hl-num">60</span>, <span class="hl-opt">colors</span>=<span class="hl-str">&#039;#1d1d1b, #f4f1e8&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
 <section class="patterns-filter" id="thumbhash">
   <h2>thumbhash</h2>
   <p>A placeholder: Evan Wallace&#039;s ThumbHash of the picture in data-thumbhash, and the hash decoded again as a small PNG behind the &lt;img&gt; - more of the picture than a BlurHash in fewer bytes, its proportion and its transparency kept.</p>

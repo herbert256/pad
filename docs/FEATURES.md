@@ -1821,6 +1821,7 @@ application shows every pattern with a seed to change by link.
 {img 'photos/harbour.jpg', width=400, filter='blurhash', alt='The harbour'/}            # a placeholder behind it
 {img 'logos/shop.png', width=200, filter='thumbhash', alt='The shop'/}                  # ThumbHash: its shape, transparency kept
 {img 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour'/}   # Sobel: ink on paper
+{img 'scans/letter.png', width=600, filter='threshold', threshold=60, alt='The letter'/}  # ink or paper, a hard cut
 ```
 `filter=` on `{img}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
 is a file of its `types/` - no tag of its own, a word of `filter=` as a validation rule is a word of
@@ -1853,6 +1854,10 @@ ground, `#000000`) to the second (the lines, `#ffffff`): `'#fbfaf7, #1d1d1b'` is
 transparent pixel reads as the one it borders and the opacity has its own edges, so a logo gets its
 outline and its ground stays transparent; a PNG unless `format=` says otherwise, within the budget
 of the filters that read every pixel.
+threshold cuts the picture into two colours: a pixel whose luminance is `threshold=` percent (50) of
+white or more is the second of `colors=` (paper, `#ffffff`), every other one the first (ink,
+`#000000`) - a hard cut where dither keeps the greys; every pixel keeps its opacity, a PNG unless
+`format=` says otherwise, within the same budget.
 
 ### Notations
 ```

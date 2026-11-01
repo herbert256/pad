@@ -3221,7 +3221,7 @@ sends it like any asset.
 | `quality` | 1 to 100 for JPEG and WebP, default 80 |
 | `alt` | Required - the text for whoever cannot see the picture; `alt=''` marks it as decoration |
 | `filter` | A comma list of filters of `pad/subs/filters/types/`, applied in the order written - see below |
-| `colors`, `levels`, `cell`, `radius`, `amount`, `columns`, `chars`, `components` | The options of the filters, each read by the filters that take it |
+| `colors`, `levels`, `cell`, `radius`, `amount`, `columns`, `chars`, `components`, `threshold` | The options of the filters, each read by the filters that take it |
 
 **Filters:** `filter=` runs the picture through the filter subsystem (`pad/subs/filters/`), the
 files of its `types/` the filters there are, written in the order they apply:
@@ -3245,6 +3245,7 @@ files of its `types/` the filters there are, written in the order they apply:
 | `vignette` | Darker corners | `amount` (50) |
 | `invert` | The negative | |
 | `edges` | The outlines: Sobel's operator on the luminance, from the ground to the lines; a PNG | `colors` ('#000000, #ffffff' - the ground first), `amount` (100) |
+| `threshold` | Two colours, a hard cut: ink below the luminance, paper from it on; a PNG | `threshold` (50, percent of white), `colors` ('#000000, #ffffff') |
 | `dither` | Floyd and Steinberg's error diffusion to ink and paper; 1x, a PNG | `levels` (2), `colors` ('#000000, #ffffff') |
 | `atkinson` | Atkinson's dither, three quarters of the error carried on | as dither |
 | `bayer` | Ordered dithering by Bayer's map of 8 by 8 | as dither |
@@ -3281,6 +3282,9 @@ gradient's length - a hard step from black to white the full line colour on the 
 side of it, a picture of one colour no line at all, the border read again - and a transparent
 pixel reads as the pixel it borders while the opacity has edges of its own: the outline of a shape
 on a transparent ground, drawn on its own pixels, the ground left transparent.
+threshold reads every pixel in PHP too; its cut is `threshold` x 255 / 100 of the luminance - at 50
+a pixel of 128 and more is paper, at 0 every pixel, at 100 white alone - and every pixel keeps its
+opacity.
 
 **Behavior:** writes `<img class="pad-img">` with its `width` and `height` (no layout shift),
 `loading="lazy"`, `decoding="async"` and a `srcset` whose second picture is twice the size -
