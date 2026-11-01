@@ -47,7 +47,10 @@
   if ( $padChessWrong and $padCheckSyntax )
     padError ( "the chess board has no square or arrow '" . padMakeSafe ( implode ( ', ', $padChessWrong ), 60 ) . "' - write squares as e4, arrows as e2-e4" );
 
-  return padChess ( $padChessPosition, (bool) padTagParm ( 'flip', FALSE ), $padChessMarks, $padChessArrows,
-                    max ( 80, (int) padTagParm ( 'size', 360 ) ), padParmText ( padTagParm ( 'title' ) ) );
+  // In a <pad-notation>, as every notation is: the page's tidy pass leaves it as it is, where
+  // it took every attribute off the bare svg and nested its rects and paths in one another.
+
+  return padNotationWrap ( padChess ( $padChessPosition, (bool) padTagParm ( 'flip', FALSE ), $padChessMarks, $padChessArrows,
+                                      max ( 80, (int) padTagParm ( 'size', 360 ) ), padParmText ( padTagParm ( 'title' ) ) ) );
 
 ?>

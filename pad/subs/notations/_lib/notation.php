@@ -168,8 +168,8 @@
   // Tidy indented MathML, a space and a line break inside every <mi> and <mo>, so the
   // browser drew x upright and the brackets of a matrix short; and it took a <style> out of
   // a paragraph into the head, closing the <p> in front of it, so an inline formula, a braille
-  // word or a chord in a sentence stood after an empty paragraph. The chess board keeps the
-  // markup it had as a tag of its own, its style inside its svg.
+  // word or a chord in a sentence stood after an empty paragraph; and it took every attribute
+  // off the chess board's svg, its style kept inside it.
 
   function padNotationWrap ( $html ) {
 
