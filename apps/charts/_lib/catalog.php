@@ -76,7 +76,8 @@
         'distribution/reaction' => [ 'Reaction times, rested or not', 'density: a smooth curve per group over one axis, the medians dashed.' ],
         'distribution/scores'   => [ 'Exam scores per class',  'violin: the shape of each class, quartiles and median inside - a split class shows its two humps.' ],
         'distribution/battery'  => [ 'Battery life per laptop', 'errorbar: the mean of ten runs and its 95% interval, as given - the laptop tested once stands alone.' ],
-        'distribution/parcels'  => [ 'Parcels delivered, hour by hour', 'ecdf: the share of each carrier\'s parcels at the door by every hour - no bins, the parcels never delivered counted apart.' ] ] ],
+        'distribution/parcels'  => [ 'Parcels delivered, hour by hour', 'ecdf: the share of each carrier\'s parcels at the door by every hour - no bins, the parcels never delivered counted apart.' ],
+        'distribution/highs'    => [ 'A year of daily highs',  'ridgeline: a density per month stacked from January down, one bandwidth for all - summer\'s shapes wider than winter\'s.' ] ] ],
 
       'measure' => [ 'Bullet, rings & areas', 'Measures against goals', [
         'measure/kpis'      => [ 'A quarter against its targets', 'bullet: the value as a bar, the target a line, grey bands from poor to good.' ],

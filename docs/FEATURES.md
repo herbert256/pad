@@ -1162,6 +1162,7 @@ query and the ranking, `_lib/snowball.php` the stemmers' runtime, `types/` the l
 {chart 'dumbbell', data='scores', label='team', from='before', to='after', ranked/}  # two dots a row joined; names='2025, 2026'
 {chart 'errorbar', data='trial', label='dose', value='mean', low='lo', high='hi', interval='95% CI'/}  # computed intervals, drawn as given
 {chart 'ecdf', data='trials', label='group', value='ms'/}            # the share at or below each value, a step line a group
+{chart 'ridgeline', data='days', label='month', value='celsius', overlap=2/}  # a density a group stacked, one bandwidth=
 {chart 'violin', data='scores', label='class', value='score'/}       # also density, parallel (value= the axes), spiral (period=)
 {chart 'chord', data='migration', source='from', target='to', value='people'/}  # also arc
 {chart 'orgchart', data='staff', id='id', parent='boss', label='name', sub='role'/}  # pack: the treemap's options

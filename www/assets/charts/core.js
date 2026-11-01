@@ -1042,6 +1042,7 @@
     pyramid:      function () { return C.padChartFunnel('pyramid', C.padChartGather(), ...C.padChartSize(600, 300)); },
     radar:        function () { return C.padChartRadar(C.padChartGather(), ...C.padChartSize(600, 400)); },
     radialbar:    function () { return C.padChartRadial('radialbar', C.padChartGather(), ...C.padChartSize(480, 280)); },
+    ridgeline:    function () { return C.padChartRidgeline(C.padChartGather(), ...C.padChartSize(600, 400)); },
     rings:        function () { return C.padChartRings(C.padChartGather(), ...C.padChartSize(480, 280)); },
     rose:         function () { return C.padChartRadial('rose', C.padChartGather(), ...C.padChartSize(480, 280)); },
     sankey:       function () { return C.padChartSankey(C.padChartGather(), ...C.padChartSize(600, 400)); },

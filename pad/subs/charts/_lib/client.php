@@ -46,7 +46,8 @@
     'treemap'      => [ 'hierarchy' ],                  'venn'         => [ 'venn' ],
     'violin'       => [ 'distribution', 'density' ],    'waffle'       => [ 'waffle' ],
     'waterfall'    => [ 'waterfall' ],
-    'ecdf'         => [ 'distribution', 'ecdf' ] ];
+    'ecdf'         => [ 'distribution', 'ecdf' ],
+    'ridgeline'    => [ 'distribution', 'ridgeline' ] ];
 
   function padChartClient ( $kind, $source = '', $handled = NULL, $palette = '' ) {
 
