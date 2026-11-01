@@ -7,7 +7,8 @@
   //   {chart 'hexbin', data='trips', x='distance', y='minutes'}
   //   {chart 'hexbin', data='stars', x='colour', y='brightness', bins=30}
   //
-  // x= and y= name the numbers - else the first two numeric fields. The axes take in every
+  // x= and y= name the numbers - else the first two numeric fields, a field the other names
+  // left to it, so y= alone draws against the first other number. The axes take in every
   // point, round numbers without a zero of their own, as a scatter's do; bins= hexagons (20,
   // 2 to 100) fit across the plot, pointed at the top, every second row shifted by half a
   // hexagon. The grid lies on the axes, so a point's hexagon follows from its numbers alone:
@@ -26,7 +27,10 @@
 
     list ( $numbers ) = padChartGuess ( $rows );
 
-    $used   = [];
+    // A field x= or y= names is no guess for the other: y= alone took that field for x as
+    // well, and the chart failed for want of two fields (dumbbell does the same).
+
+    $used   = array_values ( array_filter ( [ (string) padTagParm ( 'x' ), (string) padTagParm ( 'y' ) ], 'strlen' ) );
     $xField = padChartPick ( 'x', $numbers, $used );
     $yField = padChartPick ( 'y', $numbers, $used );
     $bins   = padTagParm ( 'bins', 20 );

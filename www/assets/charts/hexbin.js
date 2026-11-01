@@ -10,7 +10,7 @@
 
     var numbers = C.padChartGuess(rows)[0];
 
-    var used   = [];
+    var used   = [C.str(C.padTagParm('x')), C.str(C.padTagParm('y'))].filter(function (f) { return f !== ''; });
     var xField = C.padChartPick('x', numbers, used);
     var yField = C.padChartPick('y', numbers, used);
     var bins   = C.padTagParm('bins', 20);
