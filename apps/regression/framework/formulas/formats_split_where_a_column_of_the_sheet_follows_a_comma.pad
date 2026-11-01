@@ -1,0 +1,7 @@
+{spreadsheet 'times', headers=FALSE, formats='A:mmm d, hh:mm, B:0.00'}
+  2024-01-15 13:45,2.5
+{/spreadsheet | after('</style>')}{spreadsheet 'lines', headers=FALSE, formulas='Line total=B2*C2', totals='Line total', formats='Line total:0.00, C:"€ "#,##0.00, D4:"sum, "0.00'}
+  Item,Qty,Price
+  Apples,3,1.2
+  Pears,5,0.8
+{/spreadsheet}

@@ -3616,7 +3616,7 @@ them), answering what Excel answers. See [Spreadsheets](../FEATURES.md#spreadshe
 | `data` | The cells: records under a first row of their field names (their values never formulas), a list of rows of values, or cells by name (`[ 'A1' => 10, 'B1' => '=A1*2' ]`); as a pair the content is the cells, a line a row, a comma between cells (a tab when a line holds one) - read as written, its tags not run |
 | `formulas` | Formulas put in: `total=B2*C2` fills a column (named in row 1, else a new one) down every row below the first, the references moving as a fill moves them; `D2:D9=B2*C2` fills a range; `F1=SUM(D:D)` one cell |
 | `totals` | A row below the last with the SUM of the columns named (letters or names of row 1), Total in the first column |
-| `formats` | A format code per column, cell or range - `B:0.00, total:€ #,##0.00, B5:B8:0.0%` - the later deciding; see TEXT |
+| `formats` | A format code per column, cell or range - `B:0.00, total:€ #,##0.00, B5:B8:0.0%` - the later deciding; a code keeps its commas, `A:mmm d, hh:mm`, as the next item starts only where a column of the sheet, a cell or a range and its colon follow one; see TEXT |
 | `headers` | The column letters and row numbers; `headers=FALSE` leaves them out |
 | `caption` | The table's `<caption>` |
 | `editable` | Cells as fields: alone every cell holding a number, a date or TRUE/FALSE; `editable='B2:C9, F1'` the cells named, formulas too (their value in an `<output>` under them) |

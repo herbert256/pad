@@ -162,18 +162,55 @@
   }
 
   // The format rules: [ c1, r1, c2, r2, code ] each, the later one deciding where two meet. A
-  // rule names a column - B:0.00, total:€ #,##0.00 - a cell - B5:0.0% - or a range -
-  // B5:B8:€ #,##0.00. The commas of a code (#,##0) stay in it: an item starts only where a
-  // name and its colon follow the comma.
+  // rule names a column - B:0.00, total:€ #,##0.00, a name of the first row with a space as
+  // formulas= makes one, Line total:0.00 - a cell - B5:0.0% - or a range - B5:B8:€ #,##0.00.
+  // The commas of a code stay in it - #,##0, and mmm d, hh:mm, whose hh is no column - for an
+  // item starts only where a column of the sheet, a cell or a range and its colon follow the
+  // comma (padSheetFormatItems): the code was cut at ", hh:mm" and its time dropped, or
+  // reported as naming no column, and a name with a space could not be named at all.
 
-  const padSheetFormatTarget = '(?:\$?[A-Za-z]{1,3}\$?[1-9][0-9]*:\$?[A-Za-z]{1,3}\$?[1-9][0-9]*|\$?[A-Za-z]{1,3}\$?[1-9][0-9]*|[\p{L}_][\p{L}\p{N}_]*)';
+  const padSheetFormatTarget = '(?:\$?[A-Za-z]{1,3}\$?[1-9][0-9]*:\$?[A-Za-z]{1,3}\$?[1-9][0-9]*|\$?[A-Za-z]{1,3}\$?[1-9][0-9]*|[\p{L}_][\p{L}\p{N}_ .-]*?)';
+
+  function padSheetFormatItems ( $sheet, $text ) {
+
+    $items  = [];
+    $from   = 0;
+    $quoted = FALSE;
+    $length = strlen ( $text );
+
+    for ( $at = 0; $at < $length; $at++ ) {
+
+      if ( $text [$at] == '"' )
+        $quoted = ! $quoted;
+
+      if ( $text [$at] != ',' or $quoted
+           or ! preg_match ( '/\G\s*(' . padSheetFormatTarget . ')\s*:/u', $text, $match, 0, $at + 1 ) )
+        continue;
+
+      // A column by its letters past the sheet's last is no item: HH of HH:MM is a code.
+
+      $target = padSheetTarget ( $sheet, $match [1] );
+
+      if ( ! $target or ( $target [0] == 'column' and $target [1] > $sheet ['width'] ) )
+        continue;
+
+      $items [] = substr ( $text, $from, $at - $from );
+      $from     = $at + 1;
+
+    }
+
+    $items [] = substr ( $text, $from );
+
+    return $items;
+
+  }
 
   function padSheetFormats ( $sheet, $text, $what ) {
 
     global $padCheckSyntax;
 
     $rules = [];
-    $items = preg_split ( '/,\s*(?=' . padSheetFormatTarget . '\s*:)/u', trim ( (string) $text ) );
+    $items = padSheetFormatItems ( $sheet, trim ( (string) $text ) );
 
     foreach ( $items as $item ) {
 
