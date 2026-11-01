@@ -92,11 +92,12 @@
       return [ $name, $vars ?? array_slice ( [ 'A', 'B', 'C', 'D' ], 0, $count ), $cells ];
     }
 
-    // The output column of a truth table, the row of A = B = ... = 0 first.
+    // The output column of a truth table, the row of A = B = ... = 0 first - unless it is a
+    // product of variables named x and digits, which a column's don't care x may look like.
 
     $column = preg_replace ( '/\s+/u', '', $text );
 
-    if ( strlen ( $column ) > 1 and preg_match ( '/^[01xX\-]+$/', $column ) ) {
+    if ( strlen ( $column ) > 1 and preg_match ( '/^[01xX\-]+$/', $column ) and ! padKarnaughProduct ( $text, $vars ) ) {
       $count = array_search ( strlen ( $column ), [ 2 => 4, 3 => 8, 4 => 16 ], TRUE );
       if ( $count === FALSE )
         return "a truth table of " . strlen ( $column ) . " values - a map of 2, 3 or 4 variables takes 4, 8 or 16";
@@ -134,6 +135,31 @@
     }
 
     return [ $name, $vars, $cells ];
+
+  }
+
+  // A text of x and the digits 0 and 1 alone that reads as variables - every x with digits
+  // after it, no digit standing alone, no name twice: x0 x1, x1x0, x01 x10 x11 - is the
+  // product of them when it names two to four, or when every one is among the variables
+  // named, vars= or F(x0, x1); else its x is a don't care of a column - 10xx, x0x0, x1x0x1x0,
+  // and 1x01 for x0 and x1.
+
+  function padKarnaughProduct ( $text, $vars ) {
+
+    if ( ! preg_match ( '/^\s*(?:[xX][01]+\s*)+$/D', $text ) )
+      return FALSE;
+
+    preg_match_all ( '/[xX][01]+/', $text, $names );
+
+    $names = $names [0];
+
+    if ( count ( array_unique ( $names ) ) != count ( $names ) )
+      return FALSE;
+
+    if ( $vars !== NULL )
+      return ! array_diff ( $names, $vars );
+
+    return count ( $names ) >= 2 and count ( $names ) <= 4;
 
   }
 
