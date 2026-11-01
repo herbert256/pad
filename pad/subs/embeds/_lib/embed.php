@@ -111,6 +111,37 @@
 
   }
 
+  // The host names the page is shown under, for a player that must be told them - Twitch's
+  // parent=: the names of $padHosts, the names this server answers to, when it lists them;
+  // else the host of $padHostBase or of the request. Offline (pad pack) and in a static copy
+  // (pad export) the page may be anywhere, so only $padHosts says - without it there is no
+  // name, and no player made up for one. $more adds names of the tag's own - a page shown in
+  // a frame of another site; a name that is none is an error under the strict check.
+
+  function padEmbedHosts ( $more, $tag ) {
+
+    global $padHosts, $padHostBase, $padHost, $padExportRun, $padCheckSyntax;
+
+    $names = [];
+    $name  = '/^(?=.{1,253}$)[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$/D';
+
+    if ( count ( $padHosts ?? [] ) )
+      $names = array_map ( fn ( $host ) => preg_replace ( '/:[0-9]+$/', '', strtolower ( (string) $host ) ), $padHosts );
+    elseif ( ! ( $padExportRun ?? FALSE ) and ! padWasm () )
+      $names = [ strtolower ( (string) parse_url ( ( $padHostBase ?? '' ) !== '' ? $padHostBase : (string) ( $padHost ?? '' ), PHP_URL_HOST ) ) ];
+
+    $names = array_filter ( $names, fn ( $one ) => preg_match ( $name, $one ) );
+
+    foreach ( preg_split ( '/[\s,]+/', strtolower ( is_scalar ( $more ) ? (string) $more : '' ), -1, PREG_SPLIT_NO_EMPTY ) as $one )
+      if ( preg_match ( $name, $one ) )
+        $names [] = $one;
+      elseif ( $padCheckSyntax )
+        padError ( "the $tag embed has no host name '" . padMakeSafe ( $one, 40 ) . "' in domains= - write example.com, a name a comma" );
+
+    return array_values ( array_unique ( $names ) );
+
+  }
+
   // A moment - 90, 1m30s, 1:30 - in seconds; 0 for anything else.
 
   function padEmbedStart ( $value ) {
@@ -139,7 +170,7 @@
     $embed    = $provider ['embed'] ( $parts, $opts ) + [ 'mode' => 'frame', 'link' => '', 'thumb' => '', 'ratio' => '16:9', 'allow' => '', 'sandbox' => '',
                                                          'type' => '', 'name' => $provider ['name'] ];
 
-    if ( $embed ['src'] === '' )
+    if ( ( $embed ['mode'] == 'link' ? $embed ['link'] : $embed ['src'] ) === '' )
       return '';
 
     $ratio = padEmbedRatio ( $opts ['ratio'] ?? '', $embed ['ratio'] );
@@ -159,7 +190,9 @@
   }
 
   // A frame of another site: the poster with its button, the frame's address waiting in
-  // data-pad-embed; the address on the provider's own site is the noscript link.
+  // data-pad-embed; the address on the provider's own site is the noscript link. The mode
+  // link - a frame that cannot work where the page is shown, a Twitch player without the
+  // host names it must be told - is the poster with that link alone, script or not.
 
   function padEmbedFacade ( $provider, $embed, $class, $label, $opts ) {
 
@@ -167,18 +200,23 @@
 
     $poster = trim ( (string) ( $opts ['poster'] ?? '' ) );
     $poster = ( $poster !== '' ) ? padAsset ( $poster ) : ( ( $opts ['thumbnail'] ?? FALSE ) ? $embed ['thumb'] : '' );
+    $poster = ( $poster !== '' ) ? '<img class="pad-embed-poster" src="' . padWidgetAttr ( $poster ) . '" alt="" loading="lazy" decoding="async">'
+                                 : padEmbedDrawn ( $provider ['kind'] );
+    $link   = '<a class="pad-embed-link" href="' . padWidgetAttr ( $embed ['link'] ) . "\">$open “{$label}” on " . padWidgetAttr ( $embed ['name'] ) . '</a>';
+
+    if ( $embed ['mode'] == 'link' )
+      return padEmbedStyle () . "<div class=\"$class\">$poster$link</div>";
 
     return padEmbedStyle ( TRUE )
          . "<div class=\"$class\">"
-         . ( $poster !== '' ? '<img class="pad-embed-poster" src="' . padWidgetAttr ( $poster ) . '" alt="" loading="lazy" decoding="async">'
-                            : padEmbedDrawn ( $provider ['kind'] ) )
+         . $poster
          . '<button type="button" class="pad-embed-load" data-pad-embed="' . padWidgetAttr ( $embed ['src'] ) . '"'
          . " data-pad-title=\"$label\"" . ( $embed ['allow'] !== '' ? ' data-pad-allow="' . padWidgetAttr ( $embed ['allow'] ) . '"' : '' )
          . ( $embed ['sandbox'] !== '' ? ' data-pad-sandbox="' . padWidgetAttr ( $embed ['sandbox'] ) . '"' : '' ) . '>'
          . padEmbedIcon ( $provider ['kind'] )
          . "<span class=\"pad-embed-title\"><span class=\"pad-embed-hidden\">$verb </span>$label</span>"
          . '<span class="pad-embed-site">' . $site . '</span></button>'
-         . ( $embed ['link'] !== '' ? '<noscript><a class="pad-embed-link" href="' . padWidgetAttr ( $embed ['link'] ) . "\">$open “{$label}” on " . padWidgetAttr ( $embed ['name'] ) . '</a></noscript>' : '' )
+         . ( $embed ['link'] !== '' ? "<noscript>$link</noscript>" : '' )
          . '</div>';
 
   }
@@ -319,7 +357,7 @@
                . '.pad-embed-drawn-audio path,.pad-embed-drawn-map path,.pad-embed-drawn-code path{fill:none;stroke:var(--pad-embed-hill-2);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}'
                . '.pad-embed-drawn-document path{fill:var(--pad-embed-hill);stroke:none}.pad-embed-drawn-document path+path{fill:none;stroke:var(--pad-embed-hill-2);stroke-width:3;stroke-linecap:round}'
                . '.pad-embed-load,.pad-embed-link{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;'
-               . 'width:100%;height:100%;margin:0;padding:12px;border:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.55));color:var(--pad-embed-text);'
+               . 'box-sizing:border-box;width:100%;height:100%;margin:0;padding:12px;border:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.55));color:var(--pad-embed-text);'
                . 'font:600 15px/1.3 system-ui,sans-serif;text-align:center;text-decoration:none;cursor:pointer}'
                . '.pad-embed-link{justify-content:flex-end;padding-bottom:18px;text-decoration:underline;text-shadow:0 1px 3px rgba(0,0,0,.7)}'
                . '.pad-embed-load svg{flex:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}'

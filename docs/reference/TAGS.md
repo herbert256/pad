@@ -3341,6 +3341,7 @@ presses the button; a file of the application is an element that loads nothing b
 {figma 'https://www.figma.com/design/nrPSsILSYjesyc5UHjYYa4/Embed-Kit-2.0-examples', title='Embed Kit 2.0 examples', theme='system'/}
 {loom 'fa3c0bc94e904ab6b0746f844ca7a385', title='A demo', at='0:05'/}
 {embed 'https://stackblitz.com/github/vitejs/vite/tree/main/packages/create-vite/template-vanilla', title='Vite', view='preview'/}
+{twitch 'twitchgaming', title='Twitch Gaming', domains='partner.example.com'/}
 {audio 'sounds/bell.mp3', title='The bell'/}
 {embed 'docs/leaflet.pdf', title='The leaflet'/}
 ```
@@ -3349,15 +3350,16 @@ presses the button; a file of the application is an element that loads nothing b
 
 | Option | Description |
 |--------|-------------|
-| first parameter | An address a provider knows - a file of `pad/subs/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), `applemusic` (music.apple.com/`<country>`/album, playlist, song, artist, music-video or station, `?i=` a song of an album) and `applepodcasts` (podcasts.apple.com/`<country>`/podcast/.../id`<id>`, `?i=` an episode), `figma` (figma.com/design, /proto, /board, /slides, /deck and the old /file, with its `node-id`), `loom` (loom.com/share/ with the title before the id or not, /embed/), `tiktok` (tiktok.com/@`<user>`/video/`<id>`, /photo/, /player/v1/, /embed/v2/), `stackblitz` (stackblitz.com/edit/`<project>`, /github/`<owner>`/`<repository>`), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
+| first parameter | An address a provider knows - a file of `pad/subs/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), `applemusic` (music.apple.com/`<country>`/album, playlist, song, artist, music-video or station, `?i=` a song of an album) and `applepodcasts` (podcasts.apple.com/`<country>`/podcast/.../id`<id>`, `?i=` an episode), `figma` (figma.com/design, /proto, /board, /slides, /deck and the old /file, with its `node-id`), `loom` (loom.com/share/ with the title before the id or not, /embed/), `tiktok` (tiktok.com/@`<user>`/video/`<id>`, /photo/, /player/v1/, /embed/v2/), `stackblitz` (stackblitz.com/edit/`<project>`, /github/`<owner>`/`<repository>`), `twitch` (twitch.tv/`<channel>`, /videos/`<id>`, /collections/`<id>`, a clip, player.twitch.tv; named, a channel), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
 | `title` | Required - the button's text, the frame's title, the element's name |
 | `poster` | A picture of `www/<application>/` (versioned as `{asset}`) in place of the drawn poster |
 | `thumbnail` | Bare: the provider's own picture as the poster where it has one at a known address (YouTube) - asked of the provider before the click |
 | `ratio` | The proportion - `16:9`, SoundCloud and Spotify `2:1`, a PDF `4:5`, a YouTube short and a TikTok `9:16` (kept to a phone's width), Apple Music and Apple Podcasts `4:3` - a song or an episode `5:2` |
-| `at` | youtube, vimeo, peertube, dailymotion, loom: the moment to start at - `90`, `1m30s`, `1:30` |
+| `at` | youtube, vimeo, peertube, dailymotion, loom, twitch (a video): the moment to start at - `90`, `1m30s`, `1:30` |
 | `lat`, `lon`, `zoom` | openstreetmap: the place and the zoom, 1 to 19 (13) |
 | `theme` | figma: the viewer's theme - `light` (Figma's default), `dark` or `system`, the visitor's |
 | `file`, `view` | stackblitz: the file open in the editor, and what is shown - `editor`, `preview` or `both` (default) |
+| `domains` | twitch: host names beside the page's own its player may play under (its `parent=`) - a page shown in a frame of another site |
 | `tab` | codepen: the panes - `result` (default), `html`, `css`, `js`, or two of them |
 
 **Behavior:** a frame of another site is a facade first: a poster drawn for its kind (video,
@@ -3393,6 +3395,10 @@ A PeerTube instance is added by hand, so is `img-src https://i.ytimg.com` for `t
 `media-src` for a sound or a video of another site. An address no provider knows, a missing
 `title`, a provider's id or place it cannot read and an option of another provider are errors
 under the strict check; `{embed:zigzag}` is "there is no embed provider named 'zigzag'".
+Twitch's player plays only on the host names it is told (`parent=`): those of `$padHosts`
+without their ports, else the host of `$padHostBase` or of the request, and `domains=` adds names -
+a name that is none is an error under the strict check. Offline (`pad pack`) and in a static copy
+(`pad export`) without `$padHosts` no name is known, and the poster is a link to Twitch, no button.
 
 ---
 

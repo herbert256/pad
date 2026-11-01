@@ -1325,6 +1325,7 @@ budget, a loan, grades, dates, an editable sheet and a page of every function.
 {embed 'https://www.loom.com/share/fa3c0bc94e904ab6b0746f844ca7a385', title='A demo', at='0:05'/}   # loom
 {embed 'https://www.tiktok.com/@scout2015/video/6718335390845095173', title='A short'/}   # tiktok: upright, a phone's width
 {embed 'https://stackblitz.com/edit/<project>', title='A project', file='src/main.js', view='preview'/}   # stackblitz
+{twitch 'twitchgaming', title='Live', domains='partner.example.com'/}                # told the page's host names, parent=
 {audio 'sounds/bell.mp3', title='The bell'/}                                # a file: <audio preload="none">; videofile, pdffile
 ```
 A frame of another site is a click-to-load facade: a poster drawn for its kind (or `poster=`,
@@ -1336,6 +1337,9 @@ knows (`match`), its frame (`embed`), its origin for `frame-src` and its own opt
 provider is added by adding its file. `padEmbedSources ()` lists the origins a Content
 Security Policy needs: `$padCsp = "...; frame-src " . implode ( ' ', padEmbedSources () )`.
 `{video}` is the video-only form of the same providers, its markup as before.
+Twitch plays only on the host names its player is told: those of `$padHosts`, else the page's
+own, and `domains=` adds names; offline and in a static copy without `$padHosts` the poster
+links to Twitch instead.
 A frame is given what the provider's own embed code gives it - its `allow` and, for Apple Music
 and Apple Podcasts, the `sandbox` of Apple's code: the frame may do only what those tokens allow.
 ### Toys
