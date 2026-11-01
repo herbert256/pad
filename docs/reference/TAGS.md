@@ -3290,7 +3290,8 @@ window, and the context menu key or Shift+F10 at the focused element; the menu i
 `menuitem`s then, the focus on the first, the arrow keys, Home and End move between them, a
 letter to the next item starting with it, Enter or a click runs one and closes the menu, Escape
 and Tab close it and the focus goes back where it was. A disabled item - `<button disabled>`,
-`<a aria-disabled="true">` - is drawn faint and skipped. A right click with Shift, or in a
+`<a aria-disabled="true">` - is drawn faint and skipped, and such a link loses its `href`, so it
+leads nowhere without a script too. A right click with Shift, or in a
 field, a text area or an editable part, keeps the browser's own menu; of menus whose parts lie
 in each other the innermost opens. The menu's wrapper takes no room (`display: contents`), so
 the button stands in the line - a block, a list item or a table cell holds it, as a `<div>`
