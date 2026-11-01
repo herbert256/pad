@@ -36,7 +36,10 @@
   //                 to the application's address (padJsonLdUrl) - another scheme,
   //                 javascript: or data:, is no address and is left out, as a link of a
   //                 widget is (padWidgetLink)
-  //   urls          a list of those - an array, or a text with a comma between them
+  //   urls          a list of those - an array, or a text with a comma between them: a
+  //                 comma with white space after it, or one in front of an address - a
+  //                 scheme, /, ?, # - as a comma inside an address (a map's @52.09,5.12)
+  //                 is a part of it
   //   date          a date or a date and time: ISO 8601 passes as it is - 2026-11-20,
   //                 2026-11-20T19:30, 2026-11-20T19:30:00+01:00 - a text PHP's date_parse
   //                 reads in full as it is written in ISO 8601 (20 November 2026 19:30 is
@@ -416,7 +419,7 @@
   function padJsonLdValue ( $value, $how, $name, $what, $report ) {
 
     if ( $how == 'urls' ) {
-      $list = is_array ( $value ) ? $value : preg_split ( '/\s*,\s*/', (string) padJsonLdScalar ( $value ) );
+      $list = is_array ( $value ) ? $value : preg_split ( '/\s*,\s+|\s*,(?=[a-z][a-z0-9+.-]*:|[\/?#])/i', (string) padJsonLdScalar ( $value ) );
       $list = array_values ( array_filter ( array_map ( fn ( $one ) => is_scalar ( $one ) ? padJsonLdUrl ( (string) $one ) : '', $list ), 'strlen' ) );
       return $list ?: NULL;
     }
