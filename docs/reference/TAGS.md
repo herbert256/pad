@@ -2346,6 +2346,7 @@ line each - taken as they are written, so they may hold braces - or come from a 
 | `mancala` | Oware by the abapa rules: sow the seeds of a house, capture the houses of two or three; against the computer or two players | `seeds` (4), `level` ('normal'), `opens`, `two` |
 | `maze` | Find the way through a new maze each game | `height` (12), `width` (18) |
 | `memory` | Pairs of cards face down | `pairs` (8), the faces |
+| `morris` | Nine men's morris: place nine pieces, then move them along the lines - jump with three left; a mill takes a piece | `level` ('normal'), `opens`, `two` |
 | `nim` | Take matches from heaps; the last one wins - or loses | `heaps` ('3, 4, 5'), `misere`, `opens` |
 | `nonogram` | Uncover a picture from the runs of each row and column | the picture, `#` and `.` |
 | `pegsolitaire` | Peg solitaire on the English cross | |
@@ -4907,7 +4908,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
 | `notation` | Output | A text in a notation drawn on the server - the files of `pad/subs/notations/types/`: AsciiMath, chemistry, ABC music, chords, piano, braille, morse, semaphore, signal flags, chess, go, draughts, tablature, Karnaugh maps, bridge deals, siteswaps, cube moves |
 | `chess` | Output | A chess position from FEN as inline SVG - the chess notation, as a built-in tag |
-| `game` | Output | A little game played in the browser - 21 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
+| `game` | Output | A little game played in the browser - 22 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
 | `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
 | `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
 | `printable` | Output | Pages made for paper - the files of `pad/subs/printables/types/`: labels, badges, cards, tickets, a certificate, envelopes, letters, invoices ... - printed alone, the same from the PDF writer |

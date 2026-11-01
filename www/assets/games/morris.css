@@ -1,0 +1,23 @@
+.pad-game-morris .mrs-board{--mrs-cell:52px;--mrs-pad:10px;position:relative;display:grid;grid-template-columns:repeat(7,var(--mrs-cell));grid-template-rows:repeat(7,var(--mrs-cell));width:max-content;padding:var(--mrs-pad);border-radius:8px;background:#e3c48b;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.pad-game-morris .mrs-lines{position:absolute;left:calc(var(--mrs-pad) + var(--mrs-cell) / 2);top:calc(var(--mrs-pad) + var(--mrs-cell) / 2);width:calc(var(--mrs-cell) * 6);height:calc(var(--mrs-cell) * 6);overflow:visible;pointer-events:none}
+.pad-game-morris .mrs-lines rect,.pad-game-morris .mrs-lines path{fill:none;stroke:#5b4220;stroke-width:.06}
+.pad-game-morris .mrs-point{position:relative;z-index:1;margin:4px;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer}
+.pad-game-morris .mrs-point::after{content:"";position:absolute;inset:calc(50% - 6px);border-radius:50%;background:#5b4220;transition:inset .15s}
+.pad-game-morris .mrs-point.is-white::after,.pad-game-morris .mrs-point.is-black::after{inset:3px;box-shadow:0 1px 3px rgba(0,0,0,.5)}
+.pad-game-morris .mrs-point.is-white::after{background:radial-gradient(circle at 35% 35%,#fff,#cfcfc8)}
+.pad-game-morris .mrs-point.is-black::after{background:radial-gradient(circle at 35% 35%,#555,#111)}
+.pad-game-morris .mrs-point.is-target::after{inset:calc(50% - 9px);background:var(--pad-game-good)}
+.pad-game-morris .mrs-point.is-target:hover::after,.pad-game-morris .mrs-point.is-target:focus-visible::after{inset:6px}
+.pad-game-morris .mrs-point.is-movable:hover::after,.pad-game-morris .mrs-point.is-movable:focus-visible::after{box-shadow:0 0 0 3px var(--pad-game-accent)}
+.pad-game-morris .mrs-point.is-chosen::after{box-shadow:0 0 0 4px var(--pad-game-accent2)}
+.pad-game-morris .mrs-point.is-takeable::after{box-shadow:0 0 0 4px var(--pad-game-bad)}
+.pad-game-morris .mrs-point.is-last::before{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px dashed var(--pad-game-accent)}
+.pad-game-morris .mrs-point[aria-disabled=true]{cursor:default}
+.pad-game-morris .mrs-hand{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;min-height:26px;margin:4px 0 8px;font-variant-numeric:tabular-nums}
+.pad-game-morris .mrs-board+.mrs-hand{margin:8px 0 0}
+.pad-game-morris .mrs-left{display:flex;gap:3px}
+.pad-game-morris .mrs-piece{width:16px;height:16px;border-radius:50%}
+.pad-game-morris .mrs-piece.is-white{background:radial-gradient(circle at 35% 35%,#fff,#cfcfc8);box-shadow:0 0 0 1px var(--pad-game-line)}
+.pad-game-morris .mrs-piece.is-black{background:radial-gradient(circle at 35% 35%,#555,#111);box-shadow:0 0 0 1px var(--pad-game-line)}
+@media (max-width:520px){.pad-game-morris .mrs-board{--mrs-cell:40px;--mrs-pad:6px}.pad-game-morris .mrs-point{margin:2px}.pad-game-morris .mrs-piece{width:12px;height:12px}}
+@media (prefers-reduced-motion:reduce){.pad-game-morris .mrs-point::after{transition:none}}
