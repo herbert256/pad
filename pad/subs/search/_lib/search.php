@@ -402,6 +402,11 @@
 
   }
 
+  // A phrase is found where each next word stands at its place after the first: the places
+  // of the next words are looked up by key, flipped once per field - in_array went through
+  // them all for every place of the first word, and a word standing thousands of times in
+  // one long field made a phrase take seconds.
+
   function padSearchPhrase ( $index, $phrase ) {
 
     $docs = [];
@@ -410,11 +415,15 @@
       foreach ( $fields as $f => $places ) {
 
         $count = 0;
+        $next  = [];
+
+        for ( $i = 1; $i < count ( $phrase ); $i++ )
+          $next [$i] = array_flip ( $index ['terms'] [ $phrase [$i] [0] ] [$doc] [$f] ?? [] );
 
         foreach ( $places as $at ) {
           $whole = TRUE;
           for ( $i = 1; $i < count ( $phrase ) and $whole; $i++ )
-            $whole = in_array ( $at + $phrase [$i] [1], $index ['terms'] [ $phrase [$i] [0] ] [$doc] [$f] ?? [], TRUE );
+            $whole = isset ( $next [$i] [ $at + $phrase [$i] [1] ] );
           if ( $whole )
             $count++;
         }
