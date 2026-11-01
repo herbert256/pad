@@ -79,7 +79,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">algorithm</td>
       <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
-      <td>sorting: bubble, cocktail, insertion, selection, gnome, shell, comb, quick, merge, heap or radix; <code>race</code> runs them all side by side.</td>
+      <td>sorting: bubble, cocktail, insertion, selection, gnome, shell, comb, quick, merge, heap or radix; <code>race</code> runs them all side by side; ising: metropolis, a spin at a time, or clusters, Swendsen and Wang's.</td>
     </tr>
     
   
@@ -513,6 +513,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">circles</td>
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>epicycles: how many circles turn (30, at most one fewer than the points).</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">city</td>
       <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
       <td>A field of business (<code>address.addressLocality</code>, required), job (<code>jobLocation.address.addressLocality</code>), restaurant (<code>address.addressLocality</code>, required) - it wins over the field of the row.</td>
@@ -618,6 +626,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a></td>
       <td>A list of colours, the background first and the inks after it: <code>colors='#fff, #1d3557, #e63946'</code> - hex, a name, or <code>rgb()</code>, <code>hsl()</code> and their like; <code>none</code> leaves the background out. Each kind has its own palette.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">colour</td>
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>kaleidoscope: rainbow, ink or palette; percolation: flow, the water in the accent, or clusters, each one a colour.</td>
     </tr>
     
   
@@ -1134,6 +1150,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">fallback</td>
       <td><a class="name" href="?tag/gravatar">&#123;pad:gravatar&#125;</a></td>
       <td><code>avatar</code> draws the <code>{avatar}</code> initials of <code>alt</code> (or of the address) instead, <code>identicon</code> the <code>{identicon}</code> of the address - no <code>&lt;img&gt;</code>, no outside request.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">feed</td>
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>reactiondiffusion: the feed rate of the first chemical, 0 to 0.1 - a pattern's rates of your own, with <code>kill</code>.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">field</td>
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>ising: an outside field pulling the spins up, or down below 0 (0, -1 to 1).</td>
     </tr>
     
   
@@ -1797,6 +1829,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">initial</td>
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>automaton: single or random; reactiondiffusion: what the second chemical starts as - spots, center or noise; ising: random, a hot start, or up, a cold one.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">instrument</td>
       <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
       <td>chord: <code>guitar</code> (the default) or <code>ukulele</code>.</td>
@@ -1868,6 +1908,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">keywords</td>
       <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
       <td>A field of recipe (<code>keywords</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">kill</td>
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>reactiondiffusion: the rate the second chemical is taken away, 0 to 0.1.</td>
     </tr>
     
   
@@ -2307,9 +2355,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">mode</td>
+      <td class="opt" rowspan="2">mode</td>
       <td><a class="name" href="?tag/shadow">&#123;pad:shadow&#125;</a></td>
       <td><code>open</code> (the default) or <code>closed</code>.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>percolation: what Play does - flow, the water seeping down, or experiment, trials that estimate the threshold.</td>
     </tr>
     
   
@@ -2436,6 +2490,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">negative</td>
       <td><a class="name" href="?tag/sequence">&#123;pad:sequence&#125;</a></td>
       <td>Bare option: invert the selection of an action - <code>first=3, negative</code> is all but the first three.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">neighbours</td>
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>percolation: 4, the sites beside, or 8, the corners too.</td>
     </tr>
     
   
@@ -2599,9 +2661,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">order</td>
+      <td class="opt" rowspan="2">order</td>
       <td><a class="name" href="?tag/game">&#123;pad:game&#125;</a></td>
       <td>Bare option, quiz: the questions in the order written.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>sorting: what the bars start as - random, reversed, nearly or few; epicycles: the circles largest first, size, or slowest first, frequency.</td>
     </tr>
     
   
@@ -2703,7 +2771,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       <td class="opt" rowspan="1">pattern</td>
       <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
-      <td>life: glider, spaceship, pulsar, gun, pentadecathlon, rpentomino, acorn, diehard, random or empty - or a pattern of your own between the tags.</td>
+      <td>life: glider, spaceship, pulsar, gun, pentadecathlon, rpentomino, acorn, diehard, random or empty - or a pattern of your own between the tags; reactiondiffusion: the feed and kill rates of coral, mitosis, spots, mazes, worms, holes, waves or chaos.</td>
     </tr>
     
   
@@ -2833,9 +2901,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">points</td>
+      <td class="opt" rowspan="2">points</td>
       <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
       <td>Bare option. bridge: the high-card points of every hand by its seat.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>epicycles: the samples taken along the drawing (256, 16 to 1024).</td>
     </tr>
     
   
@@ -2922,6 +2996,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">prices</td>
       <td><a class="name" href="?tag/jsonld">&#123;pad:jsonld&#125;</a></td>
       <td>A field of business (<code>priceRange</code>), restaurant (<code>priceRange</code>) - it wins over the field of the row.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">probability</td>
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>percolation: the chance a site is open (0.59, 0 to 1).</td>
     </tr>
     
   
@@ -3419,7 +3501,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">shape</td>
+      <td class="opt" rowspan="3">shape</td>
       <td><a class="name" href="?tag/avatar">&#123;pad:avatar&#125;</a></td>
       <td><code>circle</code> (default) or <code>square</code> - with rounded corners.</td>
     </tr>
@@ -3428,6 +3510,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
       <td>skeleton: text, block, avatar, card or media - the shape of what is still on its way.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>epicycles: heart, star, square or trefoil - or the x,y points of a drawing of your own between the tags.</td>
     </tr>
     
   
@@ -3487,7 +3575,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="16">size</td>
+      <td class="opt" rowspan="17">size</td>
       <td><a class="name" href="?tag/avatar">&#123;pad:avatar&#125;</a></td>
       <td>Width and height in pixels, default 48.</td>
     </tr>
@@ -3574,6 +3662,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/rating">&#123;pad:rating&#125;</a></td>
       <td>The height in pixels, default 20.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>ant (160), percolation (64), ising (128): the cells, sites or spins across and down.</td>
     </tr>
     
     <tr>
@@ -3669,7 +3763,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       
       <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
-      <td>How fast it runs: generations, steps or rows a second (life, ant, automaton, sorting), or a level of 1 to 10 (boids, flowfield, orbits; starfield 1 to 20).</td>
+      <td>How fast it runs: generations, steps, rows or sweeps a second (life, ant, automaton, sorting, reactiondiffusion, ising), or a level of 1 to 10 (boids, flowfield, orbits, epicycles, percolation; starfield 1 to 20).</td>
     </tr>
     
   
@@ -3850,6 +3944,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/sound">&#123;pad:sound&#125;</a></td>
       <td>A CSS selector: no button, the sound plays when an element it finds has the event of <code>on=</code> - the elements a fragment brings later too.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">temperature</td>
+      <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
+      <td>ising: the heat, 0.5 to 5 (2.27, near the critical point).</td>
     </tr>
     
   
@@ -4559,7 +4661,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     <tr>
       
       <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
-      <td>life (64), sand (160): the cells across; <code>height</code> the cells down.</td>
+      <td>life (64), sand (160), reactiondiffusion (192): the cells across; <code>height</code> the cells down.</td>
     </tr>
     
   
