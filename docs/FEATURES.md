@@ -661,7 +661,7 @@ $summary = padAi ( "Summarise: $body", [ 'provider' => 'openai', 'tokens' => 300
 ```
 The content renders first and is the prompt; the answer is printed as text - a value, never
 template code. The providers are the files of `pad/subs/ai/types/` - anthropic
-(`claude-opus-5-5` by default), openai, mistral, gemini, cohere and ollama (a local server, no key) - each
+(`claude-opus-5-5` by default), openai, mistral, gemini, cohere, cloudflare and ollama (a local server, no key) - each
 its endpoint, headers, request and how the text and an error are taken out of the answer. The
 key is `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `MISTRAL_API_KEY` or `GEMINI_API_KEY`
 (`OLLAMA_HOST` for Ollama), the provider `provider=` or `PAD_AI_PROVIDER`. Options `model=`,
@@ -675,6 +675,13 @@ strict check; without it the tag answers nothing, the error is logged (`padLog`)
 key `COHERE_API_KEY` or `CO_API_KEY` (the name Cohere's SDKs read): the text blocks of its answer
 are joined, a thinking block is passed over, and an answer that ended in `ERROR` or `TIMEOUT` is
 an error, its partial text never printed.
+
+`cloudflare` runs a model of Workers AI under the account of `CLOUDFLARE_ACCOUNT_ID`, the token
+`CLOUDFLARE_API_TOKEN` - `@cf/meta/llama-3.3-70b-instruct-fp8-fast` unless `model=` names another
+of the catalogue (`@cf/<author>/<name>`, a part of the address: another form is refused); the
+answer is its result's response, or the first choice of the models that answer a chat
+completion, and a failure says its errors with their codes (3036, the day's free allocation used
+up). `url=` names an AI Gateway's address instead, the account not needed then.
 
 ## Template features
 

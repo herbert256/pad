@@ -12,6 +12,10 @@
   //   body     function ( $ask ) - the request, sent as JSON
   //   text     function ( $answer ) - the text taken out of the answer, '' when there is none
   //   error    function ( $answer, $status ) - the error taken out of a failed answer
+  //   check    function ( $ask, $url ) - optional: the author's mistake the provider finds in
+  //            what it is asked - a setting its address needs (an account) that is missing or
+  //            wrong, a model name of its own form - '' when there is none; $url is the url=
+  //            option, NULL when the provider's own address is used
   //
   // $ask is what the request is made of: provider, model, system, prompt, tokens, key. The
   // fetch is padCurl's - a test answers it with padCurlFake - and waits two minutes at most.
@@ -58,7 +62,7 @@
     if ( ! is_numeric ( $ttl ) or (int) $ttl != $ttl or $ttl < 0 )
       return padAiAuthor ( "$function: ttl is the seconds an answer is kept, 0 or more - not " . padMakeSafe ( is_scalar ( $ttl ) ? (string) $ttl : get_debug_type ( $ttl ), 20 ) );
 
-    if ( ! is_string ( $model ) or ! preg_match ( '/^[A-Za-z0-9][A-Za-z0-9._:\/-]{0,127}$/D', $model ) )
+    if ( ! is_string ( $model ) or ! preg_match ( '/^@?[A-Za-z0-9][A-Za-z0-9._:\/-]{0,127}$/D', $model ) )
       return padAiAuthor ( "$function: the model is a name like " . ( $kind ['model'] ?? 'its own' ) . ' - not ' . padMakeSafe ( is_scalar ( $model ) ? (string) $model : get_debug_type ( $model ), 40 ) );
 
     if ( ! is_scalar ( $system ) or ! is_scalar ( $prompt ) or trim ( (string) $prompt ) === '' )
@@ -66,6 +70,9 @@
 
     $ask = [ 'provider' => $provider, 'model' => $model, 'system' => trim ( (string) $system ), 'prompt' => trim ( (string) $prompt ),
              'tokens'   => (int) $tokens, 'key' => trim ( $key ) ];
+
+    if ( ( $kind ['check'] ?? NULL ) instanceof Closure and ( $said = (string) ( $kind ['check'] ) ( $ask, $options ['url'] ?? NULL ) ) !== '' )
+      return padAiAuthor ( "$function: $said" );
 
     $url = $options ['url'] ?? $kind ['url'];
     $url = ( $url instanceof Closure ) ? $url ( $ask ) : (string) $url;

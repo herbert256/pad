@@ -1,8 +1,8 @@
 <?php
 
   // A language model answering in the page: a prompt sent to Anthropic, OpenAI, Mistral,
-  // Gemini, Cohere or a local Ollama, the text of the answer back. The providers are the files of
-  // subs/ai/types/ (padKinds): a provider is added by adding its file.
+  // Gemini, Cohere, Cloudflare Workers AI or a local Ollama, the text of the answer back. The
+  // providers are the files of subs/ai/types/ (padKinds): a provider is added by adding its file.
   //
   //   $summary = padAi ( "Summarise in one sentence: $body", [ 'provider' => 'anthropic', 'ttl' => 86400 ] );
   //   {ai provider='anthropic', ttl=86400}Summarise in one sentence: {$body}{/ai}
