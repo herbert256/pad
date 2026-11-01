@@ -61,14 +61,16 @@
     // The data text is read as padData reads a text: its indent and a byte order mark taken
     // off (padDataText), its type sniffed (padContentType) and the reader of that type, a
     // file of pad/data/, run - in a function of its own, so that the reader's own variables
-    // stay there. A record - a JSON object, a YAML mapping, an XML document - gives its keys
-    // as variables; a list - CSV, a JSON or YAML array, a range - has no names of its own
-    // and becomes the variable rows, as {data 'rows'} would store it.
+    // stay there - or, for a format known on sight that has no file there (a pipe table,
+    // TSV, NDJSON, iCalendar, vCard), the format's reader (padFormatRead). A record - a JSON
+    // object, a YAML mapping, an XML document - gives its keys as variables; a list - CSV, a
+    // JSON or YAML array, a range - has no names of its own and becomes the variable rows, as
+    // {data 'rows'} would store it.
 
     $playRead = static function ( $data ) {
       $name = 'rows';
       $type = padContentType ( $data );
-      $read = include PAD . "data/$type.php";
+      $read = padFileExists ( PAD . "data/$type.php" ) ? include PAD . "data/$type.php" : padFormatRead ( $type, $data );
       return is_array ( $read ) ? $read : [];
     };
 

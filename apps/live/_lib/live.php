@@ -33,15 +33,17 @@
 
   // The data text read as the playground reads it, as padData reads a text: its indent and a
   // byte order mark taken off, its type sniffed (padContentType) and the reader of that type
-  // run in a function of its own. A record's keys are the variables; a list, which has no
-  // names of its own - CSV, a JSON or YAML array - is the variable rows.
+  // run in a function of its own - a file of pad/data/, or the reader of a format known on
+  // sight that has none there (padFormatRead): a pipe table, TSV, NDJSON, iCalendar, vCard.
+  // A record's keys are the variables; a list, which has no names of its own - CSV, a JSON
+  // or YAML array - is the variable rows.
 
   function liveData ( $text ) {
 
     $read = static function ( $data ) {
       $name = 'rows';
       $type = padContentType ( $data );
-      $read = include PAD . "data/$type.php";
+      $read = padFileExists ( PAD . "data/$type.php" ) ? include PAD . "data/$type.php" : padFormatRead ( $type, $data );
       return is_array ( $read ) ? $read : [];
     };
 
