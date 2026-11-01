@@ -2337,6 +2337,7 @@ line each - taken as they are written, so they may hold braces - or come from a 
 |------|-------|-------------|
 | `bullscows` | Bulls and cows: find a number of different digits from the bulls and cows of each guess | `digits` (4), `tries` (10) |
 | `crossword` | A crossword from `WORD: clue` lines, laid out on the server; type into the squares, check, reveal | `paper`, `solution` |
+| `dotsandboxes` | Dots and boxes: draw a line between two dots, close a box to take it and draw again; against the computer or two players | `height` (4), `width` (4), `opens`, `two` |
 | `fifteen` | The sliding puzzle | `size` (4) |
 | `gomoku` | Five in a row against the computer | `size` (15), `first`, `two` |
 | `hangman` | Guess a word a letter at a time | `tries` (6), the words |
@@ -4904,7 +4905,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
 | `notation` | Output | A text in a notation drawn on the server - the files of `pad/subs/notations/types/`: AsciiMath, chemistry, ABC music, chords, piano, braille, morse, semaphore, signal flags, chess, go, draughts, tablature, Karnaugh maps, bridge deals, siteswaps, cube moves |
 | `chess` | Output | A chess position from FEN as inline SVG - the chess notation, as a built-in tag |
-| `game` | Output | A little game played in the browser - 18 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
+| `game` | Output | A little game played in the browser - 19 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
 | `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
 | `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
 | `printable` | Output | Pages made for paper - the files of `pad/subs/printables/types/`: labels, badges, cards, tickets, a certificate, envelopes, letters, invoices ... - printed alone, the same from the PDF writer |

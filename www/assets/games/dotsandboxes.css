@@ -1,0 +1,18 @@
+.pad-game-dotsandboxes .dnb-grid{--dnb-box:44px;--dnb-dot:16px;display:grid;width:max-content;padding:4px;touch-action:manipulation}
+.pad-game-dotsandboxes .dnb-dot{border-radius:50%;background:var(--pad-game-ink);margin:3px}
+.pad-game-dotsandboxes .dnb-line{border:0;padding:0;margin:0;background:transparent;cursor:pointer;position:relative;border-radius:4px}
+.pad-game-dotsandboxes .dnb-line::before{content:"";position:absolute;border-radius:3px;background:color-mix(in srgb,var(--pad-game-line) 70%,transparent)}
+.pad-game-dotsandboxes .dnb-h::before{left:0;right:0;top:7px;bottom:7px}
+.pad-game-dotsandboxes .dnb-v::before{top:0;bottom:0;left:7px;right:7px}
+.pad-game-dotsandboxes .dnb-line:hover:not([aria-disabled=true])::before,.pad-game-dotsandboxes .dnb-line:focus-visible:not([aria-disabled=true])::before{background:var(--pad-game-muted)}
+.pad-game-dotsandboxes .dnb-h.is-drawn::before,.pad-game-dotsandboxes .dnb-h:hover:not([aria-disabled=true])::before{top:6px;bottom:6px}
+.pad-game-dotsandboxes .dnb-v.is-drawn::before,.pad-game-dotsandboxes .dnb-v:hover:not([aria-disabled=true])::before{left:6px;right:6px}
+.pad-game-dotsandboxes .dnb-line.is-drawn::before{background:var(--pad-game-ink)}
+.pad-game-dotsandboxes .dnb-line.is-last.is-p1::before{background:var(--pad-game-accent)}
+.pad-game-dotsandboxes .dnb-line.is-last.is-p2::before{background:var(--pad-game-accent2)}
+.pad-game-dotsandboxes .dnb-line[aria-disabled=true]{cursor:default}
+.pad-game-dotsandboxes .dnb-box{display:grid;place-items:center;margin:3px;border-radius:4px;font:700 20px/1 system-ui,sans-serif;color:var(--pad-game-ink)}
+.pad-game-dotsandboxes .dnb-box.is-p1{background:color-mix(in srgb,var(--pad-game-accent) 28%,transparent);box-shadow:inset 0 0 0 2px var(--pad-game-accent)}
+.pad-game-dotsandboxes .dnb-box.is-p2{background:color-mix(in srgb,var(--pad-game-accent2) 28%,transparent);box-shadow:inset 0 0 0 2px var(--pad-game-accent2)}
+.pad-game-dotsandboxes .dnb-score{margin:8px 0 0;font-variant-numeric:tabular-nums}
+@media (max-width:520px){.pad-game-dotsandboxes .dnb-grid{--dnb-box:34px;--dnb-dot:14px}}
