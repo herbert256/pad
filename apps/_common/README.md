@@ -70,7 +70,9 @@ itself:
 ```
 
 Its colours are its own and follow the page's `color-scheme`; its name takes the colour of the
-bar. The frame writes it as `{common:padBrand frame/}`, with the links in its `<head>`.
+bar. Its list of the applications opens in front of everything the page has - a popover in the
+top layer, placed by `brand.js` - with the page dimmed behind it; a click on the dimmed page or
+Escape closes it. The frame writes it as `{common:padBrand frame/}`, with the links in its `<head>`.
 
 ## Usage
 

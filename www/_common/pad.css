@@ -70,8 +70,12 @@ body.frame {
 .frame a:hover { text-decoration: underline; }
 .frame .pad-icon { vertical-align: -3px; flex: none; }
 
+/* z-index: the side stands beside the page and never over it, but the brand's list of the
+   applications drops out of it - above the bar (z-index 20) when the list is a plain
+   <details>, without brand.js; with it the list is a popover in the top layer. */
+
 .frame-side {
-  position: sticky; top: 0; height: 100vh;
+  position: sticky; top: 0; z-index: 30; height: 100vh;
   display: flex; flex-direction: column; min-width: 0;
   background: var(--frame-side); color: var(--frame-side-text);
   border-right: 1px solid var(--frame-side-line);

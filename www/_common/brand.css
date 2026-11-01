@@ -82,6 +82,20 @@
   white-space: normal; text-align: left;
 }
 
+/* With brand.js the list opens as a popover: in the top layer, in front of everything the page
+   has whatever its parts stack - the frame's sticky side made a stacking context of its own,
+   and the bar and the page's positioned parts painted over the list - placed by the script
+   under the name; the page behind it is dimmed by a popover of its own over the whole window,
+   pad-brand-dim, which takes a click on the page and shuts the list. */
+
+.pad-brand .pad-brand-apps:popover-open { position: fixed; inset: auto; margin: 0; }
+
+.pad-brand-dim:popover-open {
+  position: fixed; inset: 0; width: auto; height: auto; max-width: none; max-height: none;
+  margin: 0; padding: 0; border: 0; overflow: hidden;
+  background: rgba(8, 12, 20, .5);
+}
+
 .pad-brand .pad-brand-columns { columns: 3; column-gap: 8px; }
 .pad-brand .pad-brand-group { break-inside: avoid; padding-bottom: 6px; }
 
@@ -119,4 +133,5 @@
 @media (max-width: 540px) {
   .pad-brand .pad-brand-columns { columns: auto; }
   .pad-brand .pad-brand-apps { position: fixed; top: 64px; left: 12px; right: 12px; width: auto; max-height: calc(100vh - 80px); }
+  .pad-brand .pad-brand-apps:popover-open { right: 12px; }
 }

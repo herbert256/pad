@@ -1761,7 +1761,9 @@ missing answers; `./ci.sh` runs `pad test --all` and fails on a failing test.
 Every PAD application shows the same brand top left - `{common:padBrand/}`
 (`_common/_tags/padBrand.pad` + `.php`): the `{}` logo, a link to the PAD home, and beside it
 `PAD <app>`, the pull-down of every PAD application, grouped as `_common/_data/padApps.php`
-lists them (the name and a line about each), the one shown marked. The frame below writes it;
+lists them (the name and a line about each), the one shown marked. The list opens in front of
+everything the page has - a popover in the top layer (`www/_common/brand.js`) - with the page
+dimmed behind it; a click on the dimmed page or Escape closes it. The frame below writes it;
 an application with a bar of its own would put the tag in it, which links
 `www/_common/brand.css` and `brand.js` itself; the brand's colours follow the page's
 `color-scheme`, and its name the colour of the bar. Offline (`pad pack`, `padWasm()`) the logo is no link, the name links the
