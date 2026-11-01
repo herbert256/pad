@@ -762,7 +762,8 @@ $found = padSearch ( db ( "ARRAY id, name, about FROM products" ), $q, [ 'name' 
 Site search without a search server. The source is a Markdown collection (`_content/<name>/`,
 read by `padCollection`), else a `{data}` store, a page's array - a `db()` result - or a
 `_data` file of the name; `padSearch` takes the rows themselves too. The first search makes an
-inverted index of it, kept in `DATA/cache/search/<app>/` and made again when the source
+inverted index of it, kept in `DATA/cache/search/<app>/` in parts - a search reads those of
+its words, so a large source costs a request little memory - and made again when the source
 changed: the names, times and sizes of a collection's files, a hash of any other rows. The
 query: words (a row with any of them is found), `"a phrase"` (required, its words in order -
 `"word"` makes one word required), `prefix*`, `-word` and `-"a phrase"` (left out). Words are

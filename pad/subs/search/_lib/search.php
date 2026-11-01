@@ -23,8 +23,10 @@
   // padSearchLanguage  the language of a code, read once per request, or an error message
   // padSearchFields    'title^2, body' as [ [ field, boost ] ...], or an error message
   // padSearchWords     a text as its words, padSearchTerm a word as its term
-  // padSearchIndex     the inverted index of rows
-  // padSearchKept      the index of a source from the cache, made again when it changed
+  // padSearchIndex     the inverted index of rows, a string per term
+  // padSearchKept      the index of a source from the cache, made again when it changed -
+  //                    kept in parts (padSearchParts, padSearchWrite), of which a request
+  //                    reads those its query needs (padSearchPart)
   // padSearchQuery     a query as its words, prefixes, phrases and exclusions
   // padSearchScores    the documents a query finds, with their scores, best first
   // padSearchRun       all of it: a source and a query to the rows found, each with its score
@@ -37,7 +39,7 @@
 
   // Raised when the index's form changes: every kept index is then made again.
 
-  const padSearchForm = 2;
+  const padSearchForm = 3;
 
   function padSearchLanguage ( $lang ) {
 
@@ -224,16 +226,20 @@
 
   }
 
-  // The inverted index of rows: per term the documents with it, per document the fields and
-  // the positions of the term there; the length of every field of every document and the
-  // average length per field; and the words met, by their unaccented form, to the term each
-  // stands for - what a prefix is looked up in.
+  // The inverted index of rows, in the form it is kept in: per term one string, the
+  // documents with it - "document:field:count;" for each field it stands in - then a "|"
+  // and the places of the term there, "p,p,p;" in the same order, read apart only for the
+  // terms a query has; the length of every field of every document as 32-bit numbers one
+  // after the other (len); the average length per field; and the words met, by their
+  // unaccented form, to the term each stands for - what a prefix is looked up in. Nested
+  // arrays per term, document, field and place took some 185 bytes for every word of the
+  // source, and the index of a few thousand rows ran out of PHP's memory on every request
+  // that read it.
 
   function padSearchIndex ( $rows, $fields, $language ) {
 
-    $index = [ 'form' => padSearchForm, 'lang' => $language ['code'], 'fields' => array_column ( $fields, 0 ),
-               'n' => 0, 'len' => [], 'avg' => [], 'terms' => [], 'words' => [] ];
-
+    $docs = $places = $words = [];
+    $lens = '';
     $sums = array_fill ( 0, count ( $fields ), 0 );
     $doc  = 0;
 
@@ -244,35 +250,50 @@
 
       foreach ( $fields as $f => [ $name ] ) {
 
-        $words = padSearchWords ( padSearchText ( padArrGet ( $row, $name, '' ) ) );
+        $at = [];
         $len [$f] = 0;
 
-        foreach ( $words as $at => $word ) {
+        foreach ( padSearchWords ( padSearchText ( padArrGet ( $row, $name, '' ) ) ) as $place => $word ) {
           $term = padSearchTerm ( $word, $language );
           if ( $term === '' )
             continue;
           $len [$f]++;
-          $index ['terms'] [$term] [$doc] [$f] [] = $at;
-          $index ['words'] [ padSearchFold ( $word ) ] = $term;
+          $at [$term] [] = $place;
+          $words [ padSearchFold ( $word ) ] = $term;
+        }
+
+        // Appended in place: a string built again for every document of a term made the
+        // index quadratic in how many documents hold a word.
+
+        foreach ( $at as $term => $list ) {
+          $one = "$doc:$f:" . count ( $list ) . ';';
+          if ( isset ( $docs [$term] ) ) {
+            $docs   [$term] .= $one;
+            $places [$term] .= implode ( ',', $list ) . ';';
+          } else {
+            $docs   [$term]  = $one;
+            $places [$term]  = implode ( ',', $list ) . ';';
+          }
         }
 
         $sums [$f] += $len [$f];
 
       }
 
-      $index ['len'] [$doc] = $len;
+      $lens .= pack ( 'N*', ...$len );
       $doc++;
 
     }
 
-    $index ['n'] = $doc;
+    $terms = [];
 
-    foreach ( $sums as $f => $sum )
-      $index ['avg'] [$f] = $doc ? $sum / $doc : 0;
+    foreach ( $docs as $term => $list ) {
+      $terms [$term] = "$list|" . $places [$term];
+      unset ( $docs [$term], $places [$term] );
+    }
 
-    ksort ( $index ['words'], SORT_STRING );
-
-    return $index;
+    return [ 'form' => padSearchForm, 'lang' => $language ['code'], 'fields' => array_column ( $fields, 0 ), 'n' => $doc,
+             'avg' => array_map ( fn ( $sum ) => $doc ? $sum / $doc : 0, $sums ), 'len' => $lens, 'terms' => $terms, 'words' => $words ];
 
   }
 
@@ -287,37 +308,210 @@
 
   }
 
-  // The index of a source, kept in DATA/cache/search/<app>/ under a name made of the source's
-  // name, the fields and the language. $sign says what the source is now - the files of a
-  // collection, a hash of the rows - and an index kept for another sign is made again by
-  // $make, which answers [ rows, index ]. The rows of a collection are kept with the index:
-  // reading them means writing every file's Markdown as HTML.
+  // The index of a source, kept in DATA/cache/search/<app>/<key>/<sign>/ - the key made of
+  // the source's name, the fields and the language, the sign of what the source is now (the
+  // files of a collection, a hash of the rows) and of the index's form. An index kept for
+  // another sign is made again by $make, which answers [ rows, index ], and the one it
+  // replaces is swept. A request reads what a query needs and no more: head.json (the
+  // number of documents, the fields, their average lengths, how the terms and words are
+  // spread), len.bin (the lengths), the buckets t<n>.json of the query's terms - a term's
+  // bucket a hash of it - the shard w<n>.json of a prefix's first letter, and rows.json,
+  // the rows of a collection, which are kept with the index: reading them means writing
+  // every file's Markdown as HTML. The whole index was one file read in full by every
+  // request. The files are written in a directory of their own, renamed into place when
+  // complete: a reader finds a whole index or none. An index that cannot be written is
+  // used from memory.
 
-  function padSearchKept ( $name, $fields, $language, $sign, $make, $keepRows ) {
+  function padSearchKept ( $name, $fields, $language, $sign, $make, $keepRows, $again = FALSE ) {
 
     static $read = [];
 
-    $file = 'cache/search/' . $GLOBALS ['padApp'] . '/' . md5 ( padSearchForm . "\n$name\n" . json_encode ( $fields ) . "\n" . $language ['code'] ) . '.json';
+    $key = 'cache/search/' . $GLOBALS ['padApp'] . '/' . md5 ( "$name\n" . json_encode ( $fields ) . "\n" . $language ['code'] ) . '/';
+    $dir = $key . md5 ( padSearchForm . "\n$sign" ) . '/';
 
-    if ( isset ( $read [$file] ) and $read [$file] ['sign'] === $sign )
-      return $read [$file];
+    if ( ! $again and isset ( $read [$dir] ) )
+      return $read [$dir];
 
-    $kept = is_file ( DATA . $file ) ? json_decode ( (string) @file_get_contents ( DATA . $file ), TRUE ) : NULL;
+    if ( ! $again and is_file ( DATA . $dir . 'head.json' ) ) {
 
-    if ( ! is_array ( $kept ) or ( $kept ['sign'] ?? '' ) !== $sign or ( $kept ['index'] ['form'] ?? 0 ) !== padSearchForm ) {
+      $head = json_decode ( (string) @file_get_contents ( DATA . $dir . 'head.json' ), TRUE );
+      $len  = @file_get_contents ( DATA . $dir . 'len.bin' );
 
-      [ $rows, $index ] = $make ();
-
-      $kept = [ 'sign' => $sign, 'index' => $index, 'rows' => $keepRows ? array_values ( $rows ) : NULL ];
-
-      $json = json_encode ( $kept, JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PRESERVE_ZERO_FRACTION );
-
-      if ( $json !== FALSE )
-        padFilePut ( $file, $json );
+      if ( is_array ( $head ) and ( $head ['form'] ?? 0 ) === padSearchForm and is_string ( $len )
+           and strlen ( $len ) === $head ['n'] * count ( $head ['fields'] ) * 4 )
+        return $read [$dir] = [ 'dir' => $dir, 'len' => $len, 'f' => count ( $head ['fields'] ) ] + $head;
 
     }
 
-    return $read [$file] = $kept;
+    [ $rows, $index ] = $make ();
+
+    $parts = padSearchParts ( $index );
+    $head  = [ 'form' => padSearchForm, 'lang' => $index ['lang'], 'fields' => $index ['fields'], 'n' => $index ['n'],
+               'avg' => $index ['avg'], 'buckets' => count ( $parts ['t'] ), 'shards' => count ( $parts ['w'] ) ];
+    $kept  = [ 'dir' => $dir, 'len' => $index ['len'], 'f' => count ( $index ['fields'] ) ] + $head;
+
+    unset ( $index );
+
+    // Made again for a part that was gone: what stands of the index goes first, or the new
+    // one could never take its place.
+
+    if ( $again )
+      padSearchDrop ( DATA . $dir );
+
+    if ( ! padSearchWrite ( $key, $dir, $head, $kept ['len'], $parts, $keepRows ? array_values ( (array) $rows ) : NULL ) )
+      $kept ['mem'] = $parts + [ 'rows' => $keepRows ? array_values ( (array) $rows ) : NULL ];
+
+    return $read [$dir] = $kept;
+
+  }
+
+  // The terms of an index in buckets and its words in shards, each some 64 kB at the most -
+  // their number a power of two, a term's bucket the low bits of its crc32, a word's shard
+  // those of its first letter, so a prefix reads the one shard of its first letter.
+
+  function padSearchParts ( $index ) {
+
+    $size = 0;
+    foreach ( $index ['terms'] as $term => $posting )
+      $size += strlen ( $posting ) + strlen ( $term ) + 6;
+
+    for ( $buckets = 1; $buckets < 4096 and $size / $buckets > 65536; $buckets *= 2 );
+
+    $size = 0;
+    foreach ( $index ['words'] as $word => $term )
+      $size += strlen ( $word ) + strlen ( $term ) + 6;
+
+    for ( $shards = 1; $shards < 256 and $size / $shards > 65536; $shards *= 2 );
+
+    $parts = [ 't' => array_fill ( 0, $buckets, [] ), 'w' => array_fill ( 0, $shards, [] ) ];
+
+    foreach ( $index ['terms'] as $term => $posting )
+      $parts ['t'] [ crc32 ( (string) $term ) & ( $buckets - 1 ) ] [$term] = $posting;
+
+    foreach ( $index ['words'] as $word => $term )
+      $parts ['w'] [ crc32 ( mb_substr ( (string) $word, 0, 1 ) ) & ( $shards - 1 ) ] [$word] = $term;
+
+    return $parts;
+
+  }
+
+  // The files of an index in a directory of their own, renamed to its place when they are
+  // all there, and the indexes kept before for the key swept - a build another request left
+  // unfinished once it is ten minutes old. FALSE when the index is not there to read.
+
+  function padSearchWrite ( $key, $dir, $head, $len, $parts, $rows ) {
+
+    $flags = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE;
+    $files = [ 'len.bin' => $len ];
+
+    foreach ( [ 't', 'w' ] as $kind )
+      foreach ( $parts [$kind] as $n => $part )
+        $files ["$kind$n.json"] = json_encode ( $part, $flags | JSON_FORCE_OBJECT );
+
+    if ( $rows !== NULL )
+      $files ['rows.json'] = json_encode ( $rows, $flags | JSON_PRESERVE_ZERO_FRACTION );
+
+    $files ['head.json'] = json_encode ( $head, $flags | JSON_PRESERVE_ZERO_FRACTION );
+
+    if ( in_array ( FALSE, $files, TRUE ) )
+      return FALSE;
+
+    $build = $key . '.b' . padRandomString ( 8 ) . '/';
+
+    foreach ( $files as $file => $data )
+      padFilePut ( $build . $file, $data );
+
+    if ( ! is_dir ( DATA . $build ) )
+      return FALSE;
+
+    if ( ! @rename ( DATA . $build, DATA . $dir ) )
+      padSearchDrop ( DATA . $build );
+
+    foreach ( scandir ( DATA . $key ) ?: [] as $entry )
+      if ( $entry != '.' and $entry != '..' and "$key$entry/" != $dir
+           and ( $entry [0] != '.' or ( str_starts_with ( $entry, '.b' ) and @filemtime ( DATA . $key . $entry ) < time () - 600 ) ) )
+        padSearchDrop ( DATA . $key . $entry );
+
+    return is_file ( DATA . $dir . 'head.json' );
+
+  }
+
+  function padSearchDrop ( $dir ) {
+
+    if ( ! is_dir ( $dir ) or is_link ( $dir ) )
+      return;
+
+    foreach ( scandir ( $dir ) ?: [] as $file )
+      if ( $file != '.' and $file != '..' )
+        @unlink ( "$dir/$file" );
+
+    @rmdir ( $dir );
+
+  }
+
+  // A bucket of terms ('t') or a shard of words ('w') of a kept index: from memory for an
+  // index that could not be written, else its file - the files read kept for the request,
+  // eight megabytes of them at the most. A file that is gone - swept by a request that made
+  // the index again for a source changed meanwhile - is noted, and padSearchRun makes the
+  // index again itself.
+
+  function padSearchPart ( $index, $kind, $n ) {
+
+    static $parts = [], $size = 0;
+
+    if ( isset ( $index ['mem'] ) )
+      return $index ['mem'] [$kind] [$n] ?? [];
+
+    $file = $index ['dir'] . "$kind$n.json";
+
+    if ( isset ( $parts [$file] ) )
+      return $parts [$file];
+
+    $json = @file_get_contents ( DATA . $file );
+
+    if ( $json === FALSE ) {
+      padSearchLost ( TRUE );
+      return [];
+    }
+
+    if ( $size > 8000000 )
+      $parts = [];
+
+    $size += strlen ( $json );
+
+    return $parts [$file] = json_decode ( $json, TRUE ) ?? [];
+
+  }
+
+  function padSearchLost ( $lost = NULL ) {
+
+    static $is = FALSE;
+
+    if ( $lost !== NULL )
+      $is = $lost;
+
+    return $is;
+
+  }
+
+  // The rows kept with the index of a collection, NULL when they are gone.
+
+  function padSearchKeptRows ( $index ) {
+
+    if ( isset ( $index ['mem'] ) )
+      return $index ['mem'] ['rows'];
+
+    $rows = json_decode ( (string) @file_get_contents ( DATA . $index ['dir'] . 'rows.json' ), TRUE );
+
+    return is_array ( $rows ) ? $rows : NULL;
+
+  }
+
+  // The length of a field of a document, from the 32-bit numbers of len.
+
+  function padSearchLen ( $index, $doc, $f ) {
+
+    return unpack ( 'N', $index ['len'], ( $doc * $index ['f'] + $f ) * 4 ) [1];
 
   }
 
@@ -399,13 +593,14 @@
 
   }
 
-  // The terms of the words that begin with a prefix, read from the sorted words of the index.
+  // The terms of the words that begin with a prefix, read from the shard of the words of
+  // its first letter.
 
   function padSearchExpand ( $prefix, $index ) {
 
     $terms = [];
 
-    foreach ( $index ['words'] as $word => $term )
+    foreach ( padSearchPart ( $index, 'w', crc32 ( mb_substr ( $prefix, 0, 1 ) ) & ( $index ['shards'] - 1 ) ) as $word => $term )
       if ( str_starts_with ( (string) $word, $prefix ) )
         $terms [$term] = TRUE;
 
@@ -413,15 +608,53 @@
 
   }
 
-  // The documents of a term - or of a phrase - as [ document => [ field => count ] ].
+  // The kept string of a term, '' when no document has it.
+
+  function padSearchPosting ( $index, $term ) {
+
+    $term = (string) $term;
+
+    return padSearchPart ( $index, 't', crc32 ( $term ) & ( $index ['buckets'] - 1 ) ) [$term] ?? '';
+
+  }
+
+  // The documents of a term as [ document => [ field => count ] ].
 
   function padSearchPostings ( $index, $term ) {
 
-    $docs = [];
+    $posting = padSearchPosting ( $index, $term );
+    $docs    = [];
 
-    foreach ( $index ['terms'] [$term] ?? [] as $doc => $fields )
-      foreach ( $fields as $f => $places )
-        $docs [$doc] [$f] = count ( $places );
+    if ( $posting === '' )
+      return $docs;
+
+    foreach ( explode ( ';', substr ( $posting, 0, strpos ( $posting, '|' ) - 1 ) ) as $entry ) {
+      [ $doc, $f, $count ] = explode ( ':', $entry );
+      $docs [ (int) $doc ] [ (int) $f ] = (int) $count;
+    }
+
+    return $docs;
+
+  }
+
+  // The places of a term as [ document => [ field => 'p,p,p' ] ].
+
+  function padSearchPlaces ( $index, $term ) {
+
+    $posting = padSearchPosting ( $index, $term );
+    $docs    = [];
+
+    if ( $posting === '' )
+      return $docs;
+
+    [ $list, $places ] = explode ( '|', $posting, 2 );
+
+    $places = explode ( ';', rtrim ( $places, ';' ) );
+
+    foreach ( explode ( ';', rtrim ( $list, ';' ) ) as $i => $entry ) {
+      [ $doc, $f ] = explode ( ':', $entry );
+      $docs [ (int) $doc ] [ (int) $f ] = $places [$i];
+    }
 
     return $docs;
 
@@ -430,25 +663,33 @@
   // A phrase is found where each next word stands at its place after the first: the places
   // of the next words are looked up by key, flipped once per field - in_array went through
   // them all for every place of the first word, and a word standing thousands of times in
-  // one long field made a phrase take seconds.
+  // one long field made a phrase take seconds. [ document => [ field => count ] ].
 
   function padSearchPhrase ( $index, $phrase ) {
 
     $docs = [];
+    $next = [];
 
-    foreach ( $index ['terms'] [ $phrase [0] [0] ] ?? [] as $doc => $fields )
+    for ( $i = 1; $i < count ( $phrase ); $i++ )
+      $next [$i] = padSearchPlaces ( $index, $phrase [$i] [0] );
+
+    foreach ( padSearchPlaces ( $index, $phrase [0] [0] ) as $doc => $fields )
       foreach ( $fields as $f => $places ) {
 
-        $count = 0;
-        $next  = [];
+        $flip = [];
 
         for ( $i = 1; $i < count ( $phrase ); $i++ )
-          $next [$i] = array_flip ( $index ['terms'] [ $phrase [$i] [0] ] [$doc] [$f] ?? [] );
+          if ( isset ( $next [$i] [$doc] [$f] ) )
+            $flip [$i] = array_flip ( explode ( ',', $next [$i] [$doc] [$f] ) );
+          else
+            continue 2;
 
-        foreach ( $places as $at ) {
+        $count = 0;
+
+        foreach ( explode ( ',', $places ) as $at ) {
           $whole = TRUE;
           for ( $i = 1; $i < count ( $phrase ) and $whole; $i++ )
-            $whole = isset ( $next [$i] [ $at + $phrase [$i] [1] ] );
+            $whole = isset ( $flip [$i] [ $at + $phrase [$i] [1] ] );
           if ( $whole )
             $count++;
         }
@@ -479,7 +720,7 @@
 
       foreach ( $fields as $f => $count ) {
         $avg = $index ['avg'] [$f] ?: 1;
-        $tf += $boosts [$f] * $count / ( 1 - $b + $b * $index ['len'] [$doc] [$f] / $avg );
+        $tf += $boosts [$f] * $count / ( 1 - $b + $b * padSearchLen ( $index, $doc, $f ) / $avg );
       }
 
       $scores [$doc] = $idf * $tf * ( $k1 + 1 ) / ( $tf + $k1 );
@@ -502,13 +743,13 @@
     $not    = [];
 
     foreach ( array_keys ( $query ['words'] ) as $term )
-      foreach ( padSearchBm25 ( $index, $boosts, padSearchPostings ( $index, (string) $term ) ) as $doc => $score )
+      foreach ( padSearchBm25 ( $index, $boosts, padSearchPostings ( $index, $term ) ) as $doc => $score )
         $scores [$doc] = ( $scores [$doc] ?? 0 ) + $score;
 
     foreach ( $query ['prefixes'] as $terms ) {
       $best = [];
       foreach ( $terms as $term )
-        foreach ( padSearchBm25 ( $index, $boosts, padSearchPostings ( $index, (string) $term ) ) as $doc => $score )
+        foreach ( padSearchBm25 ( $index, $boosts, padSearchPostings ( $index, $term ) ) as $doc => $score )
           $best [$doc] = max ( $best [$doc] ?? 0, $score );
       foreach ( $best as $doc => $score )
         $scores [$doc] = ( $scores [$doc] ?? 0 ) + $score;
@@ -522,11 +763,11 @@
     }
 
     foreach ( array_keys ( $query ['out'] ['words'] ) as $term )
-      $not += $index ['terms'] [ (string) $term ] ?? [];
+      $not += padSearchPostings ( $index, $term );
 
     foreach ( $query ['out'] ['prefixes'] as $terms )
       foreach ( $terms as $term )
-        $not += $index ['terms'] [ (string) $term ] ?? [];
+        $not += padSearchPostings ( $index, $term );
 
     foreach ( $query ['out'] ['phrases'] as $phrase )
       $not += padSearchPhrase ( $index, $phrase );
@@ -584,9 +825,9 @@
   // score (BM25F, three decimals) and excerpt (HTML: the words around the first match, every
   // match in a <mark>) added, the best first. $source is [ name, sign, rows or a function
   // that answers them, keep the rows with the index, the fields when none are given ('' for
-  // every field with text in a row - none is an error, no rows find nothing) ]; the options are fields, lang, words (of the
-  // excerpt, 30) and excerpt (the field it is cut from, the last of fields). An error is
-  // answered as a string.
+  // every field with text in a row - none is an error, no rows find nothing) ]; the options
+  // are fields, lang, words (of the excerpt, 30) and excerpt (the field it is cut from, the
+  // last of fields). An error is answered as a string.
 
   function padSearchRun ( $source, $q, $options ) {
 
@@ -617,21 +858,32 @@
 
     $excerpt = (string) ( $options ['excerpt'] ?? end ( $fields ) [0] ?? '' );
 
-    $kept = padSearchKept ( $name, $fields, $language, $sign, function () use ( &$rows, $fields, $language ) {
+    $make = function () use ( &$rows, $fields, $language ) {
       if ( is_callable ( $rows ) )
         $rows = $rows ();
       return [ $rows, padSearchIndex ( $rows, $fields, $language ) ];
-    }, $keepRows );
+    };
 
-    $index  = $kept ['index'];
+    // A part of the kept index gone while it was read - swept by a request that made it
+    // again for a source changed meanwhile - and the index is made again here, in memory.
+
+    padSearchLost ( FALSE );
+
+    $index  = padSearchKept ( $name, $fields, $language, $sign, $make, $keepRows );
     $query  = padSearchQuery ( $q, $language, $index );
     $scores = padSearchScores ( $index, array_column ( $fields, 1 ), $query );
+
+    if ( padSearchLost () ) {
+      $index  = padSearchKept ( $name, $fields, $language, $sign, $make, $keepRows, TRUE );
+      $query  = padSearchQuery ( $q, $language, $index );
+      $scores = padSearchScores ( $index, array_column ( $fields, 1 ), $query );
+    }
 
     if ( ! $scores )
       return [];
 
     if ( $keepRows )
-      $rows = $kept ['rows'];
+      $rows = padSearchKeptRows ( $index ) ?? ( is_callable ( $rows ) ? $rows () : $rows );
     elseif ( is_callable ( $rows ) )
       $rows = $rows ();
 
