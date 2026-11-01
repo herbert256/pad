@@ -665,7 +665,7 @@ braces writes them as `&open;` and `&close;`, and a backslash as `\\`: `rules='r
 messages stay with `padValidate`'s third argument.
 
 **In the browser too:** `client` on a named form whose fields have rules checks them in the
-browser as well - the same rules, the same messages (the rules' scripts in `pad/rules/assets/`, written into the
+browser as well - the same rules, the same messages (the rules' scripts in `pad/subs/rules/assets/`, written into the
 page once, behind the first such form). The rules go in a `data-pad-rules` attribute, the
 `error=` text in `data-pad-error`, and the form gets `novalidate` - the browser's own checks
 would stop the send first, with messages of their own; a field is checked when it is left, again while it is typed
@@ -693,7 +693,7 @@ The browser's checker of `padValidate`'s rules, for a form a component draws.
 {validator/}
 ```
 
-**Behavior:** Writes the checker - `pad/rules/assets/validate.js` with the script of every rule of `pad/rules/types/` - as one inline script - once a page, also when a
+**Behavior:** Writes the checker - `pad/subs/rules/assets/validate.js` with the script of every rule of `pad/subs/rules/types/` - as one inline script - once a page, also when a
 `{form ..., client}` brought it already - carrying the request's nonce when `$padCsp` asks
 for one. The script defines `padValidate.check(rules, values)` (the message of every field
 that broke a rule), `padValidate.field(spec, value, values)` and `padValidate.form(form)`;
@@ -1260,7 +1260,7 @@ with `client` the browser draws the same SVG from the rows the server hands it.
 
 **Kinds:**
 
-A kind is a file of `pad/charts/types/` - its default size and the function that draws it -
+A kind is a file of `pad/subs/charts/types/` - its default size and the function that draws it -
 and the files there are the kinds there are; a kind is added by adding its file. The parameter
 names it, or the chart type does: `{chart:pie data='budget'/}` is `{chart 'pie', data='budget'/}`,
 and so is the bare `{pie data='budget'/}` when no tag, store, field or sequence has the name.
@@ -1344,7 +1344,7 @@ is one that nothing reads under the strict check. The handling options (`row`, `
 | `label` | The field for the category axis - by default the first other field, else the row number |
 | `title` | The accessible name; by default made from value and label |
 | `width`, `height` | The size, default 600 x 300 (pie, donut, sunburst, rose, radialbar, rings, parliament, venn, waffle 480 x 280; sankey, network, treemap, radar, chord, pack, orgchart, parallel, multiples 600 x 400; gauge 320 x 200; calendar 720 x 150; spiral 480 x 420); `.pad-chart { max-width: 100%; height: auto }` in the page's CSS makes it shrink with its container |
-| `client` | Drawn in the browser: the server writes the rows and the options as JSON and a script draws the same SVG there (`pad/charts/client/`) - no SVG drawn on the server |
+| `client` | Drawn in the browser: the server writes the rows and the options as JSON and a script draws the same SVG there (`pad/subs/charts/client/`) - no SVG drawn on the server |
 
 **Accessibility:** `role="img"`, labelled by a `<title>` and a `<desc>` that lists the values;
 each bar, point, slice, cell, flow and node has its own `<title>`, the tooltip on hover - a
@@ -1375,7 +1375,7 @@ default, scaled to its own minimum and maximum.
 ---
 
 ### qr
-A QR code as inline SVG - encoded on the server (`codes/_lib/qr.php`), no image library, no remote
+A QR code as inline SVG - encoded on the server (`subs/codes/_lib/qr.php`), no image library, no remote
 service, no JavaScript. The `qr` symbology of the codes subsystem by a tag of its own: the same
 code as `{barcode:qr 'text'/}` and `{barcode 'text', type='qr'/}`.
 
@@ -1402,8 +1402,8 @@ check, and writes nothing.
 ---
 
 ### barcode
-A barcode as inline SVG, encoded on the server by the codes subsystem (`pad/codes/`): a
-symbology is a file of `pad/codes/types/` - `ean13`, `ean8`, `upca`, `upce`, `code128`,
+A barcode as inline SVG, encoded on the server by the codes subsystem (`pad/subs/codes/`): a
+symbology is a file of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`, `code128`,
 `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `qr` and `datamatrix` - and `type=` names
 it. The barcode type writes a symbology by its name, `{barcode:upce '0425261'/}`, and so does
 the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequence has it.
@@ -1421,7 +1421,7 @@ the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequenc
 | Option | Description |
 |--------|-------------|
 | first parameter | The number or text |
-| `type` | The symbology, a file of `pad/codes/types/`; left out, twelve or thirteen digits are an EAN-13 and anything else Code 128 |
+| `type` | The symbology, a file of `pad/subs/codes/types/`; left out, twelve or thirteen digits are an EAN-13 and anything else Code 128 |
 | `height` | The height of the bars in pixels, default 60 |
 | `scale` | The width of one module (the thinnest bar) in pixels, default 2 |
 | `title` | The accessible name, by default the code |
@@ -1916,7 +1916,7 @@ unusable max or an unknown icon is an error under the strict check.
 ### icon
 An interface icon from PAD's own set, drawn on a 24 by 24 grid as lines, circles and
 rectangles and written as inline SVG in the colour of the text around it - no icon font, no
-sprite, no request. The icon subsystem (`pad/icons/`): an icon is a file of `pad/icons/types/`,
+sprite, no request. The icon subsystem (`pad/subs/icons/`): an icon is a file of `pad/subs/icons/types/`,
 `<name>.svg` - a whole SVG a browser shows as it is, whose drawing the tag writes - and the
 files there are the icons there are; the icon type writes one by its name, `{icon:star/}`. The
 names are never reached bare: they are the names of fields and pages too.
@@ -1932,7 +1932,7 @@ names are never reached bare: they are the names of fields and pages too.
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The name, a file of `pad/icons/types/`: arrows and movement (`arrow-right`, `chevron-down`, `chevrons-right`, `undo`, `redo`, `refresh`, `move`, `trending-up` ...), marks and shapes (`check`, `x`, `plus`, `info`, `alert`, `alert-circle`, `ban`, `star`, `heart`, `thumb-up`, `smile`, `shield` ...), layout and text (`home`, `menu`, `grid`, `table`, `sidebar`, `search`, `zoom-in`, `settings`, `cog`, `align-left`, `toggle-on` ...), people and talk (`user`, `user-plus`, `mail`, `chat`, `bell`, `wifi`, `rss` ...), files and office (`file`, `file-text`, `folder`, `save`, `clipboard`, `paperclip`, `book`, `qr-code`, `barcode` ...), media (`play`, `pause`, `mic`, `volume`, `mute`, `music`, `video` ...), devices and code (`monitor`, `laptop`, `cpu`, `server`, `bug`, `git-branch`, `code`, `terminal`, `database` ...), money and trade (`cart`, `credit-card`, `wallet`, `package`, `truck`, `chart-line`, `chart-pie` ...), time, places and nature (`calendar`, `clock`, `history`, `map`, `compass`, `sun`, `cloud-rain`, `leaf`, `flame` ...) - `padIconNames ()` lists them all |
+| first parameter | The name, a file of `pad/subs/icons/types/`: arrows and movement (`arrow-right`, `chevron-down`, `chevrons-right`, `undo`, `redo`, `refresh`, `move`, `trending-up` ...), marks and shapes (`check`, `x`, `plus`, `info`, `alert`, `alert-circle`, `ban`, `star`, `heart`, `thumb-up`, `smile`, `shield` ...), layout and text (`home`, `menu`, `grid`, `table`, `sidebar`, `search`, `zoom-in`, `settings`, `cog`, `align-left`, `toggle-on` ...), people and talk (`user`, `user-plus`, `mail`, `chat`, `bell`, `wifi`, `rss` ...), files and office (`file`, `file-text`, `folder`, `save`, `clipboard`, `paperclip`, `book`, `qr-code`, `barcode` ...), media (`play`, `pause`, `mic`, `volume`, `mute`, `music`, `video` ...), devices and code (`monitor`, `laptop`, `cpu`, `server`, `bug`, `git-branch`, `code`, `terminal`, `database` ...), money and trade (`cart`, `credit-card`, `wallet`, `package`, `truck`, `chart-line`, `chart-pie` ...), time, places and nature (`calendar`, `clock`, `history`, `map`, `compass`, `sun`, `cloud-rain`, `leaf`, `flame` ...) - `padIconNames ()` lists them all |
 | `size` | Width and height in pixels, default 20 |
 | `label` | The accessible name: the icon becomes `role="img"` with `aria-label` and `<title>` |
 | `stroke` | The line width on the 24-unit grid, default 2 |
@@ -2007,8 +2007,8 @@ under the strict check.
 ### game
 A little game played in the browser: the server checks what the game is given and writes its
 board, the game's script - once per page, with the CSP nonce - plays it. Every game is a file of
-`pad/games/types/`, its `.js` and `.css` in `pad/games/assets/`, and the files of `types/` are
-the games there are (`padGameTypes()`); the subsystem is `pad/games/`.
+`pad/subs/games/types/`, its `.js` and `.css` in `pad/subs/games/assets/`, and the files of `types/` are
+the games there are (`padGameTypes()`); the subsystem is `pad/subs/games/`.
 
 ```html
 {game 'memory', pairs=6/}
@@ -2071,9 +2071,9 @@ down, on the smallest grid; a word that fits nowhere is left out and named under
 ### toy
 A small live simulation or visual toy played in the browser: the server checks the options it is
 given and writes its frame, the toy's script - once per page, with the CSP nonce - runs it. Every
-toy is a file of `pad/toys/types/`, its `.js` (and a `.css` when it needs one) in
-`pad/toys/assets/`, and the files of `types/` are the toys there are (`padToyTypes()`); the
-subsystem is `pad/toys/`.
+toy is a file of `pad/subs/toys/types/`, its `.js` (and a `.css` when it needs one) in
+`pad/subs/toys/assets/`, and the files of `types/` are the toys there are (`padToyTypes()`); the
+subsystem is `pad/subs/toys/`.
 
 ```html
 {toy 'life', pattern='gun', wrap/}
@@ -2222,7 +2222,7 @@ check.
 
 ### fake
 A fake value of a kind - a name, an email, a price, an IBAN - or rows of several kinds, for a
-prototype, a designer's preview or a demo page: the fake subsystem in `pad/fakes/`, the values
+prototype, a designer's preview or a demo page: the fake subsystem in `pad/subs/fakes/`, the values
 of `lib/fake.php`'s sequence.
 
 ```html
@@ -2238,7 +2238,7 @@ of `lib/fake.php`'s sequence.
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The kind, a file of `pad/fakes/types/` - address, boolean, city, colour, company, country, date, decimal, email, firstname, iban, ip, job, lastname, name, number, paragraph, phone, postcode, price, sentence, street, time, url, username, uuid, word - or several, `'name, email'`, a field each under its kind's name or as `'field:kind'` says. The fake type names one: `{fake:email/}` |
+| first parameter | The kind, a file of `pad/subs/fakes/types/` - address, boolean, city, colour, company, country, date, decimal, email, firstname, iban, ip, job, lastname, name, number, paragraph, phone, postcode, price, sentence, street, time, url, username, uuid, word - or several, `'name, email'`, a field each under its kind's name or as `'field:kind'` says. The fake type names one: `{fake:email/}` |
 | `rows` | So many rows of the kinds, the level's data - iterated by the pair's content, kept by `toData=` |
 | `seed` | Values of their own seed: the rows `padFakeRows ( kinds, rows, seed )` gives |
 | `from`, `to` | number (0, 100), decimal (0, 1), price (1, 100): the range; date: two moments padDateParse reads (`-1 year`, `now`); time: two clock times (`08:00`, `18:00`) |
@@ -2254,7 +2254,7 @@ miss, so its `@else@` shows. An email or a username in a row with a name is that
 Without `seed=` the `{fake}` tags of a request share a sequence of their own from one seed:
 the page shows the same values on every request (a date relative to now moves with the day).
 The page's own sequence - its `padFakeSeed` and what it made - is put back afterwards, as
-`{lorem}` puts it back. The kinds are the files of `pad/fakes/types/`, each a few lines that
+`{lorem}` puts it back. The kinds are the files of `pad/subs/fakes/types/`, each a few lines that
 answer the value and read their options with `padFakeOpt`; a kind is added by adding its file.
 A kind there is none of, a field that is no plain name, `rows` that are no number from 0 to
 10000 and an option no kind of the tag reads are errors; `{fake:zebra/}` is "there is no fake
@@ -2264,9 +2264,9 @@ kind named 'zebra'". Fake kinds are never reached bare: their names are those of
 An interactive part of the page that works without JavaScript and gets better with it - tabs,
 an accordion, a carousel, a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a
 toast, a copy box, a poll, a breadcrumb. Every widget is a file of
-`pad/widgets/types/` - its tag code - with its functions in `pad/widgets/_lib/`, its style and
-script in `pad/widgets/assets/`, and the files of `types/` are the widgets there are
-(`padWidgetTypes()`); the subsystem is `pad/widgets/`.
+`pad/subs/widgets/types/` - its tag code - with its functions in `pad/subs/widgets/_lib/`, its style and
+script in `pad/subs/widgets/assets/`, and the files of `types/` are the widgets there are
+(`padWidgetTypes()`); the subsystem is `pad/subs/widgets/`.
 
 ```html
 {widget 'tabs', active=2}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/widget}
@@ -2308,7 +2308,7 @@ written once per page. A name that is no widget is an error, "there is no widget
 
 ### tabs
 Panels behind a row of tabs, without JavaScript - a radio button and a label per tab, the CSS
-showing the panel of the checked one (`widgets/_lib/tabs.php`). The items are `{tab}` pairs,
+showing the panel of the checked one (`subs/widgets/_lib/tabs.php`). The items are `{tab}` pairs,
 which `{accordion}`, `{carousel}`, `{wizard}` and `{lightbox}` take as well - `{tab}` is a
 built-in tag.
 
@@ -2343,7 +2343,7 @@ under the strict check.
 
 ### accordion
 Items that open and close on a click, without JavaScript - every `{tab}` a `<details>` with its
-label as the `<summary>` (`widgets/_lib/accordion.php`).
+label as the `<summary>` (`subs/widgets/_lib/accordion.php`).
 
 ```html
 {accordion single, open=1}
@@ -2370,7 +2370,7 @@ a loop. The browser opens and closes an item, from the keyboard too, a screen re
 
 ### modal
 A dialog over the page - an HTML `<dialog>` with the content, and the button that opens it
-(`widgets/_lib/modal.php`).
+(`subs/widgets/_lib/modal.php`).
 
 ```html
 {modal 'terms', title='Terms of sale', button='Read the terms'}
@@ -2403,7 +2403,7 @@ once per page. A modal without a valid name is an error under the strict check.
 ### carousel
 Slides in a row that scrolls and snaps sideways (CSS scroll snap), with previous and next links
 on each slide and a dot per slide below - links to the slides' ids, so no JavaScript is needed
-(`widgets/_lib/carousel.php`).
+(`subs/widgets/_lib/carousel.php`).
 
 ```html
 {carousel label='Landscapes'}
@@ -2434,7 +2434,7 @@ reduced motion is asked for; printed, the slides stand under each other. The col
 
 ### copy
 A text with a copy-to-clipboard button - the text in a `<pre><code>` that selects as a whole
-with one click, so it is copied by hand where the button cannot run (`widgets/_lib/copy.php`).
+with one click, so it is copied by hand where the button cannot run (`subs/widgets/_lib/copy.php`).
 
 ```html
 {copy 'composer require pad/pad'/}
@@ -2463,7 +2463,7 @@ A `{copy}` without a text is an error under the strict check.
 
 ### poll
 A vote among a few answers, once per visitor, and then the results as bars with their
-percentages - built on a `{live}` region, and a plain form without scripting (`widgets/_lib/poll.php`).
+percentages - built on a `{live}` region, and a plain form without scripting (`subs/widgets/_lib/poll.php`).
 
 ```html
 {poll 'favorite-language', options='PHP, Python, Ruby, Go', title='Which language do you reach for first?'/}
@@ -2498,7 +2498,7 @@ answers is one under the strict check.
 A notice the visitor dismisses - a `<dialog>` shown from the start, not modal, with its title,
 its text and a close button whose invoker command (`commandfor`, `command="close"`) has the
 browser close it, the toast's script where the browser has none - no form of its own, so a
-toast stands inside a `{form}` as well, its fields staying in the form (`widgets/_lib/toast.php`).
+toast stands inside a `{form}` as well, its fields staying in the form (`subs/widgets/_lib/toast.php`).
 
 ```html
 {toast 'Saved', tone='success'}Your changes are kept.{/toast}
@@ -2531,7 +2531,7 @@ timeout that is no whole number of seconds are errors under the strict check.
 ### dropdown
 A button and the menu it opens - the menu a popover (the HTML popover attribute) the button
 opens through `popovertarget`, so the browser opens, closes and places it without a script
-(`widgets/_lib/dropdown.php`).
+(`subs/widgets/_lib/dropdown.php`).
 
 ```html
 {dropdown 'Account', align='end'}
@@ -2568,7 +2568,7 @@ an empty menu and an unknown `align` are errors under the strict check.
 ### tooltip
 A short tip shown while the pointer is on its trigger or the trigger has the focus - shown by
 CSS alone, the trigger naming it for a screen reader with `aria-describedby`
-(`widgets/_lib/tooltip.php`).
+(`subs/widgets/_lib/tooltip.php`).
 
 ```html
 The {tooltip 'Billed every month, cancel any time'}Starter plan{/tooltip} costs € 9.
@@ -2601,7 +2601,7 @@ the strict check.
 ### wizard
 A form or a story in steps, one shown at a time - every `{tab}` a step, the steps numbered in a
 row above, the ones done and the current one marked, and a Back and a Next under each; radio
-buttons and CSS, as `{tabs}` is, so no script is needed (`widgets/_lib/wizard.php`).
+buttons and CSS, as `{tabs}` is, so no script is needed (`subs/widgets/_lib/wizard.php`).
 
 ```html
 {form 'order'}
@@ -2639,7 +2639,7 @@ steps, a wizard without a step and an `active=` naming none are errors under the
 ### lightbox
 A gallery whose pictures open large over the page - every `{tab}` a thumbnail in a grid, a link
 to a view of the picture that the CSS shows over the whole window when the address names it
-(`:target`), so no script is needed (`widgets/_lib/lightbox.php`).
+(`:target`), so no script is needed (`subs/widgets/_lib/lightbox.php`).
 
 ```html
 {lightbox label='The harbour'}
@@ -2671,7 +2671,7 @@ them is an error under the strict check.
 
 ### drawer
 A panel that slides in from a side of the window - a modal `<dialog>` along an edge and the
-button that opens it, opened the way `{modal}` opens its dialog (`widgets/_lib/drawer.php`).
+button that opens it, opened the way `{modal}` opens its dialog (`subs/widgets/_lib/drawer.php`).
 
 ```html
 {drawer 'filters', title='Filters', button='Show filters', side='left'}
@@ -2704,7 +2704,7 @@ an unknown `side` are errors under the strict check.
 ### breadcrumb
 Where the page stands - a `<nav>` around an ordered list of links from the application's home
 to the page, the last step the page itself (`aria-current="page"`), the separators drawn by the
-CSS and never read out (`widgets/_lib/breadcrumb.php`).
+CSS and never read out (`subs/widgets/_lib/breadcrumb.php`).
 
 ```html
 {breadcrumb/}
@@ -2774,7 +2774,7 @@ written instead. The colour behind a picture still loading is `--pad-img-placeho
 
 ### video
 A YouTube or Vimeo video as its poster with a play button; the player's iframe is loaded
-only when the button is pressed (`embeds/_lib/video.php`) - nothing of the video site runs before the
+only when the button is pressed (`subs/embeds/_lib/video.php`) - nothing of the video site runs before the
 visitor asks for it. A file of `www/<application>/` is a `<video>` element. The addresses are
 those the youtube and vimeo providers of the embed subsystem read; [`{embed}`](#embed) is the
 general form, of more sites and without the site's thumbnail.
@@ -2811,7 +2811,7 @@ with `light-dark()` steps on `.pad-video`. An address that is no known video and
 
 ### embed
 A video, a sound, a map, a pen or a document of another site behind a click-to-load facade -
-the embed subsystem in `pad/embeds/` - nothing of the provider is asked for before the visitor
+the embed subsystem in `pad/subs/embeds/` - nothing of the provider is asked for before the visitor
 presses the button; a file of the application is an element that loads nothing before play.
 
 ```html
@@ -2827,7 +2827,7 @@ presses the button; a file of the application is an element that loads nothing b
 
 | Option | Description |
 |--------|-------------|
-| first parameter | An address a provider knows - a file of `pad/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
+| first parameter | An address a provider knows - a file of `pad/subs/embeds/types/`: `youtube`, `vimeo`, `peertube` (any instance: `/w/<id>`, `/videos/watch/<uuid>`), `dailymotion`, `internetarchive` (archive.org/details/), `soundcloud`, `spotify` (open.spotify.com, `spotify:track:<id>`), `codepen`, `openstreetmap` (`#map=z/lat/lon`, `?mlat=&mlon=`), and by extension `videofile`, `audio` and `pdffile`, of `www/<application>/` or of the web. Named - `{embed:youtube 'id'/}` or bare `{youtube 'id'/}` - a bare id of that provider as well, and for openstreetmap `'latitude,longitude'` |
 | `title` | Required - the button's text, the frame's title, the element's name |
 | `poster` | A picture of `www/<application>/` (versioned as `{asset}`) in place of the drawn poster |
 | `thumbnail` | Bare: the provider's own picture as the poster where it has one at a known address (YouTube) - asked of the provider before the click |
@@ -2850,7 +2850,7 @@ too. A proportion other than 16:9 is a class with its own nonce'd rule - no `sty
 attribute, so a strict `style-src` holds. The colours are `--pad-embed-*` custom properties
 with `light-dark()` steps on `.pad-embed`.
 
-**Providers:** a provider is a file of `pad/embeds/types/<name>.php` answering its `name`,
+**Providers:** a provider is a file of `pad/subs/embeds/types/<name>.php` answering its `name`,
 `kind`, the `frame` origin(s), whether it is `generic` (known by the shape of its addresses,
 tried after those that know their host), its own `options`, `match` - the address read into
 its parts, or NULL - and `embed` - the frame's address, the link, the ratio, the `allow`. The
@@ -2915,8 +2915,8 @@ answers the bytes.
 
 ### diagram
 A diagram from a few lines of text in the content, written the Mermaid way and laid out on
-the server as inline SVG by the diagram subsystem (`pad/diagrams/`) - no JavaScript. A kind
-is a file of `pad/diagrams/types/`: `flowchart` (the default), `sequence`, `state`, `class`,
+the server as inline SVG by the diagram subsystem (`pad/subs/diagrams/`) - no JavaScript. A kind
+is a file of `pad/subs/diagrams/types/`: `flowchart` (the default), `sequence`, `state`, `class`,
 `er`, `mindmap`, `tree`, `journey` and `gitgraph`.
 
 ```html
@@ -2982,7 +2982,7 @@ is a file of `pad/diagrams/types/`: `flowchart` (the default), `sequence`, `stat
 
 | Option | Description |
 |--------|-------------|
-| `type` | The kind, a file of `pad/diagrams/types/` - `flowchart` (default; `flow` and `graph` say so too). A first line written the Mermaid way names it as well: `sequenceDiagram`, `stateDiagram` / `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph` whatever the tag says, and a kind's name alone (`mindmap`, `journey`) where the tag names none |
+| `type` | The kind, a file of `pad/subs/diagrams/types/` - `flowchart` (default; `flow` and `graph` say so too). A first line written the Mermaid way names it as well: `sequenceDiagram`, `stateDiagram` / `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph` whatever the tag says, and a kind's name alone (`mindmap`, `journey`) where the tag names none |
 | `direction` | flowchart, state, class, er and tree: `TB` (default), `BT`, `LR` or `RL` - else the lines say it: a first line `graph LR` / `flowchart LR` in a flowchart, a line `direction LR` in a state, class or entity-relationship diagram |
 | `edges` | flowchart, state, class and er: `orthogonal` (default, rounded turns in channels of their own), `straight` or `curved` |
 | `title` | The accessible name, default the kind's (`Flowchart`, `Sequence diagram`, `State diagram`, `Class diagram`, `Entity-relationship diagram`, `Mind map`, `Tree`, `Commit graph`; a journey's `title` line, else `User journey`) |
@@ -3064,8 +3064,8 @@ direction or edges value are errors under the strict check.
 
 ### map
 A choropleth map as inline SVG - every country coloured by a value of its row, drawn on the
-server by the map subsystem in `pad/maps/` from Natural Earth's outlines (`maps/_lib/map.php`,
-`maps/_lib/world.json`) - no JavaScript, no tiles, no remote service.
+server by the map subsystem in `pad/subs/maps/` from Natural Earth's outlines (`subs/maps/_lib/map.php`,
+`subs/maps/_lib/world.json`) - no JavaScript, no tiles, no remote service.
 
 ```html
 {map 'world', data='sales', key='country', value='amount'/}
@@ -3081,7 +3081,7 @@ server by the map subsystem in `pad/maps/` from Natural Earth's outlines (`maps/
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The view, a file of `pad/maps/types/`: `world` (default), the continents `europe`, `africa`, `asia`, `north-america`, `south-america`, `oceania`, and the regions `middle-east`, `mediterranean`, `eu`, `nordic`, `benelux`, `baltic`, `british-isles`, `iberia`, `dach`, `balkans`, `central-america`, `caribbean`, `east-asia`, `southeast-asia`, `south-asia`, `central-asia` |
+| first parameter | The view, a file of `pad/subs/maps/types/`: `world` (default), the continents `europe`, `africa`, `asia`, `north-america`, `south-america`, `oceania`, and the regions `middle-east`, `mediterranean`, `eu`, `nordic`, `benelux`, `baltic`, `british-isles`, `iberia`, `dach`, `balkans`, `central-america`, `caribbean`, `east-asia`, `southeast-asia`, `south-asia`, `central-asia` |
 | `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
 | `key` | The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - else the first field that is no number |
 | `value` | The number - else the first numeric field |
@@ -3101,7 +3101,7 @@ uses paths simplified for its scale; a country too small to keep its outline is 
 diamond. Without data the map is drawn in grey. An unknown view or scale is an error under
 the strict check, which lists the views there are.
 
-**Views:** a view is a file of `pad/maps/types/<view>.php` answering its `box` - west, south,
+**Views:** a view is a file of `pad/subs/maps/types/<view>.php` answering its `box` - west, south,
 east, north in degrees - and for a region that is a list of countries rather than a stretch
 of the globe its `countries` (alpha-2 codes) and the `name` the map's title takes; the files
 there are the views there are (`padMapViews`), and a view is added by adding its file. A view
@@ -3926,13 +3926,13 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `icon` | Output | One of 79 built-in line icons as inline SVG in `currentColor` |
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
 | `chess` | Output | A chess position from FEN as inline SVG - pieces, coordinates, marked squares, arrows |
-| `game` | Output | A little game played in the browser - 18 of them, the files of `pad/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
-| `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
+| `game` | Output | A little game played in the browser - 18 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
+| `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |
-| `fake` | Output | A fake value of a kind - a file of `pad/fakes/types/` - or rows of several kinds, the same for the same seed |
-| `widget` | Widget | An interactive part of the page - the files of `pad/widgets/types/`: tabs, accordion, carousel, modal, copy, poll ...; also the `widget:` type and the bare names |
+| `fake` | Output | A fake value of a kind - a file of `pad/subs/fakes/types/` - or rows of several kinds, the same for the same seed |
+| `widget` | Widget | An interactive part of the page - the files of `pad/subs/widgets/types/`: tabs, accordion, carousel, modal, copy, poll ...; also the `widget:` type and the bare names |
 | `tabs` | Widget | Panels behind a row of tabs - radio buttons and CSS, no JavaScript; `{tab}` is one item |
 | `accordion` | Widget | Items that open on a click - every `{tab}` a `<details>`, one open at a time with `single` |
 | `modal` | Widget | A `<dialog>` and its opening button - invoker commands, a small script, or a link without scripting |
@@ -3948,7 +3948,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `breadcrumb` | Widget | The trail from home to the page - from the page's path, the lines of a pair or `data=` rows; no JavaScript |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
-| `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |
+| `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/subs/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |
 | `pdf` | Output | The rendered content sent as a PDF, written in plain PHP - fonts, tables, JPEG pictures |
 | `diagram` | Output | A flowchart, sequence, state, class, entity-relationship, mind map, tree, user journey or commit graph diagram from Mermaid-style lines, laid out on the server as inline SVG |
 | `map` | Output | A choropleth map of the world or a region as inline SVG, a colour step per value |
@@ -3976,7 +3976,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `tidy` | Output | Format HTML |
 | `spaceless` | Output | Remove whitespace between HTML tags |
 | `markdown` | Output | Markdown written as HTML, raw HTML escaped |
-| `chart` | Output | A chart as inline SVG - 45 kinds, the files of `pad/charts/types/`, from bar and line to candlestick, chord and org chart |
+| `chart` | Output | A chart as inline SVG - 45 kinds, the files of `pad/subs/charts/types/`, from bar and line to candlestick, chord and org chart |
 | `sparkline` | Output | Word-sized line chart as inline SVG |
 | `qr` | Output | QR code as inline SVG |
 | `barcode` | Output | EAN-13, EAN-8, UPC-A or Code 128 barcode as inline SVG |

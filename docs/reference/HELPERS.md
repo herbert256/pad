@@ -975,9 +975,9 @@ never pasted into SQL: `db ( "RECORD * FROM users WHERE id={0}", [ $id ] )`.
 | `padFakeDate ( $from, $to, $format )`, `padFakeUuid ()` | A moment between two (relative ones follow `padNowFreeze`); a v4 UUID |
 | `padFakeUnique ( $key, $function, ...$args )`, `padFakeUniqueReset ( $key )` | A value never given twice under the key in the request, a new seed or not; the reset forgets them - after `padFakeSeed` the same values again |
 | `padFactory ( $table, $count, $row )` | Inserts `$count` rows - `$row` an array or `fn ( $i )` - with placeholders; the rows with their ids |
-| `padFake ( $kind, $options = [] )` | A value of a kind by its name - `padFake ( 'email' )`, `padFake ( 'number', [ 'from' => 1, 'to' => 6 ] )` - the kind a file of `pad/fakes/types/`; after the same seed what the kind's own helper gives |
+| `padFake ( $kind, $options = [] )` | A value of a kind by its name - `padFake ( 'email' )`, `padFake ( 'number', [ 'from' => 1, 'to' => 6 ] )` - the kind a file of `pad/subs/fakes/types/`; after the same seed what the kind's own helper gives |
 | `padFakeRows ( $fields, $count, $seed = NULL, $options = [] )` | `$count` rows of fields of kinds: `'name, email'`, `'customer:name, total:price'` or `[ 'customer' => 'name', 'total' => [ 'price', [ 'to' => 500 ] ] ]`; an email beside a name is that name's. With `$seed` the rows of that seed, the sequence put back afterwards - the rows `{fake ..., rows=, seed=}` writes |
-| `padFakeKinds ()` | The kinds - the files of `pad/fakes/types/`: address, boolean, city, colour, company, country, date, decimal, email, firstname, iban, ip, job, lastname, name, number, paragraph, phone, postcode, price, sentence, street, time, url, username, uuid, word |
+| `padFakeKinds ()` | The kinds - the files of `pad/subs/fakes/types/`: address, boolean, city, colour, company, country, date, decimal, email, firstname, iban, ip, job, lastname, name, number, paragraph, phone, postcode, price, sentence, street, time, url, username, uuid, word |
 | `padFakeOpt ( $name, $default )`, `padFakeInRow ( $kind )` | For a kind's file: an option of the value being made - the tag's own inside `{fake}` - and the value of a kind in the row being made |
 
 ## Queues, schedule and HTTP fakes

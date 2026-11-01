@@ -232,7 +232,7 @@ reproducible after `padFakeSeed ( 42 )`: `padFakeName`, `padFakeEmail`, `padFake
 `pad migrate shop [--pretend|--status|--rollback[=n]|--fresh --force|--seed|--new=name]`,
 `pad seed shop [name]`.
 
-The kinds of fake value are the files of `pad/fakes/types/` - address, boolean, city, colour,
+The kinds of fake value are the files of `pad/subs/fakes/types/` - address, boolean, city, colour,
 company, country, date, decimal, email, firstname, iban (a Dutch number of the bank TEST that
 passes the check), ip (the documentation ranges), job, lastname, name, number, paragraph,
 phone, postcode, price, sentence, street, time, url, username, uuid, word - each named by
@@ -357,8 +357,8 @@ page's own template (and its `_inits.pad`/`_exits.pad`) is read, literal rules o
 a snippet, custom tag, `{page}` or layout, from a variable, in an `action=`/GET form or on a
 file field are errors.
 
-The rules are the files of `pad/rules/types/` - `<rule>.php` answers its check, its message and
-whether an empty field or a list is judged, `pad/rules/assets/<rule>.js` is its check in the
+The rules are the files of `pad/subs/rules/types/` - `<rule>.php` answers its check, its message and
+whether an empty field or a list is judged, `pad/subs/rules/assets/<rule>.js` is its check in the
 browser - and the files there are the rules there are: besides `required`, `email`, `url`,
 `numeric`, `integer`, `min:n`, `max:n`, `in:a,b`, `regex:/x/`, `same:field`, `accepted` and
 `date` they are `between:a,b` (a length, or a value with `numeric`), `digits` and `digits:n`,
@@ -368,7 +368,7 @@ browser - and the files there are the rules there are: besides `required`, `emai
 `digits:four`, `between:9,1` - is an error, as a pattern PCRE cannot read is.
 
 `client` on the form checks the same rules in the browser too, with the same messages, before
-the form leaves (the runtime `pad/rules/assets/validate.js` with every rule's script, written
+the form leaves (the runtime `pad/subs/rules/assets/validate.js` with every rule's script, written
 once a page). For a form a component draws,
 keep the rules in PHP - `padValidate ( $rules )` checks the post, `padValidateClient ( $rules )`
 exports them for `padValidate.check ( rules, values )` in the browser, `{validator}` brings the
@@ -392,10 +392,10 @@ checker:
   {dropzone 'cv', label='Your CV', accept='.pdf', limit='2M'/}   # padUpload takes it
 {/form}
 ```
-The kinds are the files of `pad/inputs/types/` - colorpicker, combobox, datepicker, dropzone,
+The kinds are the files of `pad/subs/inputs/types/` - colorpicker, combobox, datepicker, dropzone,
 mdeditor (Markdown with a live preview), newpassword (strength meter, show/hide; `known` for a
 login), otp (a box per character), signature, slider, stars, stepper, taginput, timepicker and
-toggle (a switch posting `on=`/`off=`) - their script and style in `pad/inputs/assets/`. Each
+toggle (a switch posting `on=`/`off=`) - their script and style in `pad/subs/inputs/assets/`. Each
 is a field of its `{form}` as `{input}` is: named by its first parameter, labelled by `label=`,
 refilled from a post of its own form, the message of `padValidate` or of its `rules=` (read
 from the template before the PHP runs, `client` too) after its frame in the words of its label,
@@ -599,7 +599,7 @@ through; `padCollection('blog')` gives the rows to PHP.
 With `client` the browser draws the chart: the server gathers the rows - the handling options
 applied - and the tag's options, writes them into the page as JSON in a span, and a script
 draws the SVG in its place (`PadChart.mount`; `PadChart.mountAll ( element )` for a part of a
-page that came in later). The scripts are `pad/charts/client/` - `core.js`, written once a page,
+page that came in later). The scripts are `pad/subs/charts/client/` - `core.js`, written once a page,
 and a file per family, the PHP of `_lib/` written again in JavaScript a function for a function,
 so the chart is the same SVG, character for character (ids aside), as the server draws:
 `apps/regression/pages/charts/_client.mjs` holds every example of the charts application to
@@ -611,14 +611,14 @@ every phrase `strtotime` reads.
 `role="img"` with `<title>`/`<desc>`; colours are `--pad-chart-*` custom properties on
 `.pad-chart`, following the page's `color-scheme`. A field option left out takes the first
 field that fits; the chart's options keep clear of the handling options (`row`, `group`).
-The kinds are the files of `pad/charts/types/` - one file a kind, its default size and the
+The kinds are the files of `pad/subs/charts/types/` - one file a kind, its default size and the
 function that draws it; a kind is added by adding its file. Each is written three ways, the
 same chart: `{chart 'pie', data='budget'/}`, the chart type `{chart:pie data='budget'/}`, and
 bare, `{pie data='budget'/}`, when no tag, store, field or sequence has the name (the bare
 name comes last, after every other kind of tag). `{sparkline .../}` is the sparkline kind.
 `calendar` is the month calendar tag and `pack` PHP's function, so those two kinds are
 `{chart:calendar .../}` and `{chart:pack .../}` (or `{chart 'pack', .../}`).
-Code: the chart subsystem in `pad/charts/` - `chart.php` the body every form runs,
+Code: the chart subsystem in `pad/subs/charts/` - `chart.php` the body every form runs,
 `_lib/` the drawing (`chart.php` bar, line and sparkline, the files beside it the other
 kinds, `client.php` the hand-over to the browser), `types/` the kinds, `client/` the drawing
 in the browser; `pad/types/chart.php` the chart type.
@@ -638,11 +638,11 @@ in the browser; `pad/types/chart.php` the chart type.
   Which tag repeats its content? | while | if | set     # the right answer first
 {/quiz}
 ```
-The games are the files of `pad/games/types/` - `<game>.php` checks the options and writes the
-board; `pad/games/assets/<game>.js` plays it, `<game>.css` there draws it - and the files there
+The games are the files of `pad/subs/games/types/` - `<game>.php` checks the options and writes the
+board; `pad/subs/games/assets/<game>.js` plays it, `<game>.css` there draws it - and the files there
 are the games there are: bullscows, crossword, fifteen, gomoku (five in a row), hangman, hanoi, maze, memory, nim,
 nonogram, pegsolitaire, quiz, reversi, scramble, snake, sudoku, tictactoe, wordsearch. The
-script of every game and a small runtime (`pad/games/assets/game.js`: a seeded random number,
+script of every game and a small runtime (`pad/subs/games/assets/game.js`: a seeded random number,
 the status line, the buttons) are written once per page with the CSP nonce; a game a fragment
 or a live region brings later starts too. A finished game carries `data-result="won"` or
 `"lost"` and sends `pad-game-end`. The `games` application plays every one of them, the
@@ -664,7 +664,7 @@ reference lists them with the pages that play them.
 {journey}...{/journey}                         # section, Make tea: 5: Me - a face per score
 {gitgraph}...{/gitgraph}                       # commit, branch, checkout, merge, cherry-pick
 ```
-The kinds are the files of `pad/diagrams/types/` - one file a kind, reading the options it
+The kinds are the files of `pad/subs/diagrams/types/` - one file a kind, reading the options it
 draws with - and a kind is added by adding its file. Each is written three ways, the same
 picture: `{diagram type='state'}`, the diagram type `{diagram:state}` and bare, `{state}`, when
 no tag, store, field or sequence has the name (the bare name comes last); `sequence` and `tree`
@@ -675,7 +675,7 @@ pastes in as it is. The content is read as it stands, braces and all; the layout
 deterministic (the same lines, the same picture); `role="img"` with a `<title>` and a `<desc>`
 that says every edge, relation or step in words; the colours are `--pad-diagram-*` custom
 properties on `.pad-chart-diagram` with `light-dark()` defaults. Code: the diagram subsystem
-in `pad/diagrams/` - `diagram.php` the body every form runs, `_lib/diagram.php` the shared
+in `pad/subs/diagrams/` - `diagram.php` the body every form runs, `_lib/diagram.php` the shared
 parts, the flowchart and the layered layout the state, class and entity-relationship diagrams
 share (`padDiagramGraph`), the files beside it the other kinds, `types/` the kinds;
 `pad/types/diagram.php` the diagram type. The `showcase` application has an example of each.
@@ -685,7 +685,7 @@ share (`padDiagramGraph`), the files beside it the other kinds, `types/` the kin
 {map 'eu', data='visitors', scale='quantile'/}                 # the 27 member states, the rest of Europe around them
 {map 'benelux'}{"NL": 1200, "BE": 800, "LU": 90}{/map}         # a pair: the content is the rows
 ```
-The views are the files of `pad/maps/types/` - each answers its box of longitude and latitude
+The views are the files of `pad/subs/maps/types/` - each answers its box of longitude and latitude
 and, for a region that is a list of countries, those countries and the name its title takes:
 world, the six continents (europe, africa, asia, north-america, south-america, oceania) and
 middle-east, mediterranean, eu, nordic, benelux, baltic, british-isles, iberia, dach, balkans,
@@ -693,7 +693,7 @@ central-america, caribbean, east-asia, southeast-asia, south-asia, central-asia.
 list draws the countries around it quieter, without values (`--pad-map-context`); a value of
 a country the view does not show is named in the title, and kept off the scale. A view is
 added by adding its file - no new outlines needed, every view is a crop of the same Natural
-Earth outlines (`pad/maps/_lib/world.json`).
+Earth outlines (`pad/subs/maps/_lib/world.json`).
 
 ### Embeds
 ```
@@ -707,7 +707,7 @@ A frame of another site is a click-to-load facade: a poster drawn for its kind (
 or the provider's own picture with `thumbnail`), the title, "Plays from YouTube", a button -
 nothing is asked of the provider before the click, which swaps the frame in by a script written
 once per page with the CSP nonce; without script a `<noscript>` link to the address on its
-own site. The providers are the files of `pad/embeds/types/` - each says the addresses it
+own site. The providers are the files of `pad/subs/embeds/types/` - each says the addresses it
 knows (`match`), its frame (`embed`), its origin for `frame-src` and its own options - and a
 provider is added by adding its file. `padEmbedSources ()` lists the origins a Content
 Security Policy needs: `$padCsp = "...; frame-src " . implode ( ' ', padEmbedSources () )`.
@@ -731,14 +731,14 @@ Security Policy needs: `$padCsp = "...; frame-src " . implode ( ' ', padEmbedSou
   angle: 20
 {/lsystem}
 ```
-The toys are the files of `pad/toys/types/` - `<toy>.php` checks the options and hands them on;
-`pad/toys/assets/<toy>.js` runs it, `<toy>.css` there styles it when it needs to - and the files
+The toys are the files of `pad/subs/toys/types/` - `<toy>.php` checks the options and hands them on;
+`pad/subs/toys/assets/<toy>.js` runs it, `<toy>.css` there styles it when it needs to - and the files
 there are the toys there are (`padToyTypes()`): the Game of Life, Langton's ant, an elementary
 cellular automaton, the Mandelbrot set, sorting algorithms, a double pendulum, boids, fireworks,
 falling sand, a harmonograph, a spirograph, three clocks, a starfield, a flow field, L-systems, a
 ripple tank, orbits, a Galton board and a kaleidoscope. Every toy can be touched - draw, drag,
 click - and has labelled controls, a status line and a canvas with `role="img"` and a label. The
-runtime (`pad/toys/assets/toy.js`: a seeded random number, the palette resolved for the canvas, the
+runtime (`pad/subs/toys/assets/toy.js`: a seeded random number, the palette resolved for the canvas, the
 pointer, the controls, the animation loop) and every toy's script are written once per page with
 the CSP nonce; a toy holds while the page is hidden or it is scrolled away, and waits for Play under
 `prefers-reduced-motion` - a drawing toy shows its figure finished. The root carries
@@ -764,9 +764,9 @@ show them.
 {widget 'modal', 'terms', title='Terms'}...{/widget}   # the widget tag: its first parameter names the widget
 {widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type - or bare, as above
 ```
-The widgets are the files of `pad/widgets/types/` - each the tag code of one widget, its
-functions in `pad/widgets/_lib/<widget>.php`, its style and script in
-`pad/widgets/assets/<widget>.css` and `.js` - and the files there are the widgets there are.
+The widgets are the files of `pad/subs/widgets/types/` - each the tag code of one widget, its
+functions in `pad/subs/widgets/_lib/<widget>.php`, its style and script in
+`pad/subs/widgets/assets/<widget>.css` and `.js` - and the files there are the widgets there are.
 Each is written three ways, the same widget: `{widget 'modal', 'terms'}` (the tag's second
 parameter is the widget's first), the widget type `{widget:modal 'terms'}`, and bare,
 `{modal 'terms'}`. The bare name comes after every other kind of tag, so a store, a field or
@@ -797,7 +797,7 @@ page lists every widget with its options, the manual has a widgets page.
 
 ### QR codes and barcodes
 ```
-{qr 'https://example.com/order/42'/}            # inline SVG, encoded on the server (codes/_lib/qr.php)
+{qr 'https://example.com/order/42'/}            # inline SVG, encoded on the server (subs/codes/_lib/qr.php)
 {qr $url, size=200, level='H', title='Scan'/}   # level L, M (default), Q, H; color=, background=
 {barcode '871234567890'/}                       # EAN-13 (check digit added); anything else Code 128
 {barcode $parcel, type='code128', height=70/}   # scale= module width, plain = no digits under the bars
@@ -806,7 +806,7 @@ page lists every widget with its options, the manual has a widgets page.
 {code39 'PAD-2026', check/}                     # check: code39's modulo 43, itf's digit; msi check='mod1010'|'none'
 {datamatrix 'PAD-2026-0042', size=120/}         # Data Matrix ECC 200, the smallest of its 24 square sizes
 ```
-The symbologies are the files of `pad/codes/types/` - `ean13`, `ean8`, `upca`, `upce`,
+The symbologies are the files of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`,
 `code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `qr` and `datamatrix` - one
 file a symbology, which encodes the text and draws it; a symbology is added by adding its file.
 Each is written three ways, the same code: `{barcode '...', type='upce'/}`, the barcode type
@@ -815,7 +815,7 @@ the name; `{qr}` is the qr symbology by a tag of its own. The bars take `height`
 `title`, `plain`, `color` and `background`, the two-dimensional codes `size`, `title`, `color`
 and `background`; black on white unless told otherwise, as a scanner needs the contrast, and
 `role="img"` named by the text or `title`. A text the symbology cannot hold is an error under
-the strict check. Code: the codes subsystem in `pad/codes/` - `barcode.php` the body every form
+the strict check. Code: the codes subsystem in `pad/subs/codes/` - `barcode.php` the body every form
 runs, `_lib/` the encoders and the SVG writers, `types/` the symbologies;
 `pad/types/barcode.php` the barcode type.
 
@@ -826,12 +826,12 @@ runs, `_lib/` the encoders and the SVG writers, `types/` the symbologies;
 {icon 'settings', size=20, label='Settings'/}   # label= makes it an image of that name, for an icon alone
 {icon:cloud-upload stroke=1.5/}                 # the icon type; the names are never reached bare
 ```
-An icon is a file of `pad/icons/types/`, `<name>.svg`: a whole SVG on the 24 by 24 grid -
+An icon is a file of `pad/subs/icons/types/`, `<name>.svg`: a whole SVG on the 24 by 24 grid -
 lines, circles and rectangles, `stroke="currentColor"`, round caps and joins - which a browser
 shows as it is and whose drawing `{icon}` writes inside an svg element of its own; the files
 there are the icons there are, so an icon is added by adding its file, and `padIconNames ()`
 lists them for a page's PHP. A name that is no icon is an error naming the icons close to it.
-Code: the icon subsystem in `pad/icons/` - `icon.php` the body both forms run, `_lib/icon.php`
+Code: the icon subsystem in `pad/subs/icons/` - `icon.php` the body both forms run, `_lib/icon.php`
 the drawing, `types/` the icons; `pad/types/icon.php` the icon type.
 
 ### Showcase tags
@@ -841,7 +841,7 @@ the drawing, `types/` the icons; `pad/types/icon.php` the icon type.
 {placeholder '600x300', text='Hero image'/}    # grey SVG box with crossing lines; ratio='16:9', fluid
 {progress 72, max=100, label='Upload'/}       # styled <progress> with label and %; steps for dots, color=, size=
 {rating 4.5, max=5/}                           # stars as SVG, half stars clipped, aria '4.5 out of 5'; icon='heart'
-{icon 'arrow-right', size=20, label='Next'/}   # line icon in currentColor, a file of icons/types/; see Icons
+{icon 'arrow-right', size=20, label='Next'/}   # line icon in currentColor, a file of subs/icons/types/; see Icons
 {gravatar $email, size=64, default='identicon'/} # gravatar.com img (sha256, lazy, no referrer); fallback='avatar' stays local
 {chess $fen, flip, highlight='e2,e4', arrow='e2-e4'/}   # a FEN as an SVG board, pieces described for a screen reader
 {sudoku '53..7....6..195...'/}                   # a game - played in the page; see Games
@@ -855,7 +855,7 @@ the drawing, `types/` the icons; `pad/types/icon.php` the icon type.
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
 {map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # flowchart (or type='sequence') laid out as SVG on the server
-{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/maps/types/ - world, continents, benelux, eu, middle-east ...
+{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ...
 {timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
 {datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
 {toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered

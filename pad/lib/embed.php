@@ -1,14 +1,14 @@
 <?php
 
   // The pieces of the embed subsystem needed where no embed is written: the providers - the
-  // files of embeds/types/ (padKinds, lib/subsystem.php) - a provider's file, and the
+  // files of subs/embeds/types/ (padKinds, lib/subsystem.php) - a provider's file, and the
   // origins a Content Security Policy has to allow for their frames, which an application's
   // _config/config.php puts in its $padCsp:
   //
   //   $padCsp = "default-src 'self'; script-src 'self' 'nonce'; style-src 'self' 'nonce'; "
   //           . 'frame-src ' . implode ( ' ', padEmbedSources () );
   //
-  // The rest of the embeds is the subsystem in embeds/, its library embeds/_lib/ loaded when
+  // The rest of the embeds is the subsystem in subs/embeds/, its library subs/embeds/_lib/ loaded when
   // a page writes one.
 
   function padEmbedProviders () {
@@ -27,11 +27,11 @@
     if ( ! padKind ( 'embeds', $name ) )
       return NULL;
 
-    return $providers [$name] ??= ( include PAD . "embeds/types/$name.php" ) + [ 'kind' => 'video', 'frame' => '', 'generic' => FALSE, 'options' => [] ];
+    return $providers [$name] ??= ( include PAD . "subs/embeds/types/$name.php" ) + [ 'kind' => 'video', 'frame' => '', 'generic' => FALSE, 'options' => [] ];
 
   }
 
-  // The origins the files of embeds/types/ name for their frames, for frame-src. A PeerTube
+  // The origins the files of subs/embeds/types/ name for their frames, for frame-src. A PeerTube
   // instance is one's own choosing and is added by hand, and so is https://i.ytimg.com in
   // img-src for a page that shows a YouTube thumbnail (thumbnail); a file of the web - a
   // sound, a video, a PDF - needs its origin in media-src or frame-src.

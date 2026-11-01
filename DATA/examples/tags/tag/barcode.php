@@ -1,6 +1,6 @@
 <?php
 
-  // The symbologies are the files of pad/codes/types/, as the engine reads them (padKinds).
+  // The symbologies are the files of pad/subs/codes/types/, as the engine reads them (padKinds).
 
   $tagAbout   = 'Draws a barcode as inline SVG, encoded on the server - ' . count ( padKinds ( 'codes' ) ) . ' symbologies, from EAN-13 and Code 128 to QR and Data Matrix.';
   $tagGroup   = 'graphics';
@@ -18,7 +18,7 @@ PAD;
     'code' => 'The number or text. An EAN or UPC number may leave its check digit off - it is added; one given is checked.' ];
 
   $tagOptions = [
-    'type'       => 'The symbology, a file of <code>pad/codes/types/</code>: '
+    'type'       => 'The symbology, a file of <code>pad/subs/codes/types/</code>: '
                       . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padKinds ( 'codes' ) ) )
                       . '. Left out, twelve or thirteen digits are an EAN-13 and anything else Code 128. The barcode type names it as well - <code>{barcode:upce \'0425261\'/}</code>, or bare, <code>{itf14 \'1540014128876\'/}</code>, when nothing else has the name.',
     'height'     => 'The height of the bars in pixels, default 60.',

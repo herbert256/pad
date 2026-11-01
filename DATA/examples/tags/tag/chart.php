@@ -1,6 +1,6 @@
 <?php
 
-  // The kinds are the files of pad/charts/types/, as the engine reads them (padChartTypes).
+  // The kinds are the files of pad/subs/charts/types/, as the engine reads them (padChartTypes).
 
   $tagAbout   = 'Draws a chart as inline SVG on the server - ' . count ( padChartTypes () ) . ' kinds, from bars and lines to sankeys, maps of a hierarchy and org charts.';
   $tagGroup   = 'graphics';
@@ -17,7 +17,7 @@
 PAD;
 
   $tagParms   = [
-    'kind' => 'The kind of chart, a file of <code>pad/charts/types/</code>: '
+    'kind' => 'The kind of chart, a file of <code>pad/subs/charts/types/</code>: '
                 . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padChartTypes () ) )
                 . '. The chart type names it as well - <code>{chart:pie data=\'budget\'/}</code>, or bare, <code>{pie data=\'budget\'/}</code>, when nothing else has the name.' ];
 

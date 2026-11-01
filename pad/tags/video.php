@@ -2,7 +2,7 @@
 
   // {video 'https://www.youtube.com/watch?v=aqz-KE-bpKQ', title='Big Buck Bunny'} - a
   // YouTube or Vimeo video as its poster with a play button, the player's iframe loaded only
-  // when it is pressed, from youtube-nocookie.com or with Vimeo's dnt=1 (embeds/_lib/video.php,
+  // when it is pressed, from youtube-nocookie.com or with Vimeo's dnt=1 (subs/embeds/_lib/video.php,
   // the addresses those of the youtube and vimeo providers of the embed subsystem, whose
   // {embed} tag knows more sites): nothing of the video site runs before the visitor asks
   // for it. Without script the poster
@@ -17,7 +17,7 @@
   // - is a <video controls preload="none">. title= is required: the button's text, the
   // iframe's title, what a screen reader says.
 
-  include_once PAD . 'embeds/_lib/video.php';
+  include_once PAD . 'subs/embeds/_lib/video.php';
 
   $padVideoTitle = trim ( padParmText ( padTagParm ( 'title' ) ) );
 

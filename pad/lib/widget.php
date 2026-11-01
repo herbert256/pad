@@ -1,13 +1,13 @@
 <?php
 
   // What the widgets share - {tabs}, {accordion}, {modal}, {copy} and the rest of the widgets
-  // subsystem in widgets/ - with the other tags that draw and play, the charts, the games,
+  // subsystem in subs/widgets/ - with the other tags that draw and play, the charts, the games,
   // {video} and {chess} among them: an id of their own on the page, their colours as custom
   // properties, their CSS and script written once, the script with this request's CSP nonce.
   //
-  // padWidgetTypes   the widgets: the files of widgets/types/ (padKinds, lib/subsystem.php) -
+  // padWidgetTypes   the widgets: the files of subs/widgets/types/ (padKinds, lib/subsystem.php) -
   //                  a widget is added by adding its file there; the subsystem's own code is
-  //                  in widgets/, loaded when a page uses a widget
+  //                  in subs/widgets/, loaded when a page uses a widget
   // padWidgetType    whether a name is a widget
   // padWidgetId      a deterministic id: made from the widget's own content, so a widget
   //                  served from the fragment cache and one rendered next to it, or the
@@ -23,7 +23,7 @@
   // padWidgetStyle   a <style> with those properties and the rules, once per page
   // padWidgetScript  a <script> once per page, carrying the nonce when $padCsp names one
   // padWidgetAttr    a text escaped for an attribute or an element's content
-  // padWidgetAsset   the style or the script of a widget, a file of widgets/assets/
+  // padWidgetAsset   the style or the script of a widget, a file of subs/widgets/assets/
   //
   // What these write is protected (padProtect): their braces are CSS and JavaScript, never
   // tags of the page around them - a tag that hands its rendering back through $padContent
@@ -164,7 +164,7 @@
 
   }
 
-  // The text of a file of widgets/assets/, kept for the request. A style sheet there is
+  // The text of a file of subs/widgets/assets/, kept for the request. A style sheet there is
   // written a rule a line and sent as one line - the line breaks and the indent after them
   // taken out, which a rule of these never holds - as the rules were sent when they stood in
   // the PHP; a script is sent as it stands, without the line break that ends the file.
@@ -176,7 +176,7 @@
     if ( isset ( $memo [$file] ) )
       return $memo [$file];
 
-    $text = (string) padFileGet ( PAD . "widgets/assets/$file" );
+    $text = (string) padFileGet ( PAD . "subs/widgets/assets/$file" );
 
     return $memo [$file] = str_ends_with ( $file, '.css' )
       ? preg_replace ( '/\R[ \t]*/', '', trim ( $text ) )

@@ -1,7 +1,7 @@
 <p><b>{game}</b> puts a little game on the page that is played in the browser. The server checks
 what the game is given and writes its board; the game's script, written once per page, plays it.
 There are 18 of them - every game is a file of
-<code>pad/games/types/</code>, and the <a href="../games/">games</a> application plays them all.</p>
+<code>pad/subs/games/types/</code>, and the <a href="../games/">games</a> application plays them all.</p>
 
 
 
@@ -69,7 +69,7 @@ There are 18 of them - every game is a file of
 .pad-game-memory .mem-card.is-open{background:var(--pad-game-cell);box-shadow:inset 0 0 0 2px var(--pad-game-line)}
 .pad-game-memory .mem-card.is-found{background:var(--pad-game-mark);box-shadow:inset 0 0 0 2px var(--pad-game-good);cursor:default}
 @media (max-width:520px){.pad-game-memory .mem-grid{--mem-size:56px}}
-</style><section class="pad-game pad-game-memory" id="pad-game-memory-27c8cee1" data-pad-game="memory" data-config="{&quot;pairs&quot;:6,&quot;faces&quot;:[],&quot;name&quot;:&quot;Memory&quot;}" aria-label="Memory"><header class="pg-head"><strong class="pg-title">Memory</strong><span class="pg-status" role="status" aria-live="polite"></span></header><div class="pg-board"></div><div class="pg-bar"></div><noscript><p class="pg-noscript">This game is played in the browser and needs JavaScript.</p></noscript></section><script>/* The runtime of the PAD games (pad/games/_lib/game.php writes it once per page). A game's
+</style><section class="pad-game pad-game-memory" id="pad-game-memory-27c8cee1" data-pad-game="memory" data-config="{&quot;pairs&quot;:6,&quot;faces&quot;:[],&quot;name&quot;:&quot;Memory&quot;}" aria-label="Memory"><header class="pg-head"><strong class="pg-title">Memory</strong><span class="pg-status" role="status" aria-live="polite"></span></header><div class="pg-board"></div><div class="pg-bar"></div><noscript><p class="pg-noscript">This game is played in the browser and needs JavaScript.</p></noscript></section><script>/* The runtime of the PAD games (pad/subs/games/_lib/game.php writes it once per page). A game's
    script registers itself - PadGames.register('memory', function (k, cfg) { ... }) - and is
    started on every board of its kind: the ones on the page, and the ones a fragment, a live
    region or a script brings later. k is the game's kit: its board, its status line and its

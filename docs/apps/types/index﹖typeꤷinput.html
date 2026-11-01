@@ -176,7 +176,7 @@
               input:
             </h1>
             <p class="tag-about">
-              A rich form field, a file of pad/inputs/types/, posted by any form.
+              A rich form field, a file of pad/subs/inputs/types/, posted by any form.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#bare">Tried 30 of 31 for a bare name</a>
@@ -194,14 +194,14 @@
               Description
             </h2>
             <p>
-              A rich form field of the kind the tag names - a slider, a stepper, a date picker, stars, a signature ... - the inputs subsystem in <code>PAD/inputs/</code> writes it, a field of its <code>{form}</code> as <code>{input}</code> is: a native field a form posts without any script, made more of by its script.
+              A rich form field of the kind the tag names - a slider, a stepper, a date picker, stars, a signature ... - the inputs subsystem in <code>PAD/subs/inputs/</code> writes it, a field of its <code>{form}</code> as <code>{input}</code> is: a native field a form posts without any script, made more of by its script.
             </p>
             <pre><code>{input:slider 'volume', label='Volume', unit='%', rules='integer|between:10,90'/}
 {input:datepicker 'arrival', label='Arrival', min='2026-01-01'/}
 {stars 'score', label='Score'/}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a PHP file <code>PAD/inputs/types/&lt;name&gt;.php</code>, its script and style in <code>PAD/inputs/assets/</code>, the field written by <code>PAD/inputs/input.php</code>: the files of <code>types/</code> are the kinds, and a kind is added by adding its file. Its items are read raw, as <code>{input}</code>'s are - <code>label=</code>, <code>rules=</code>, <code>min=</code> are the field's, never an option of the engine. Bare, an input kind comes last of the subsystems, so a store, a field, an array of the name - a page's <code>$slider</code> - or a kind of another subsystem wins; write <code>input:slider</code> there.
+              <strong>Resolution:</strong> a PHP file <code>PAD/subs/inputs/types/&lt;name&gt;.php</code>, its script and style in <code>PAD/subs/inputs/assets/</code>, the field written by <code>PAD/subs/inputs/input.php</code>: the files of <code>types/</code> are the kinds, and a kind is added by adding its file. Its items are read raw, as <code>{input}</code>'s are - <code>label=</code>, <code>rules=</code>, <code>min=</code> are the field's, never an option of the engine. Bare, an input kind comes last of the subsystems, so a store, a field, an array of the name - a page's <code>$slider</code> - or a kind of another subsystem wins; write <code>input:slider</code> there.
             </p>
             <h3>
               The handler
@@ -245,14 +245,14 @@
                   </div>
                   <div class="result">
                     <script>
-                    /* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
+                    /* The runtime of the PAD inputs (pad/subs/inputs/_lib/input.php writes it once per page). A kind's
                     script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
                     - and is started on every field of its kind: the ones on the page, and the ones a fragment,
                     a live region or a script brings later. frame is the field's .pad-input element, cfg its
                     data-config, kit the helpers below. The server wrote a native control that a form posts
                     as it is; a kind's script makes more of it and keeps the posted control's value true -
                     and says so with the input and change events a typed value sends, which the browser's
-                    checker of the rules (pad/rules/assets/validate.js) listens to. */
+                    checker of the rules (pad/subs/rules/assets/validate.js) listens to. */
 
                     (function () {
                     'use strict';

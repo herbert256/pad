@@ -457,6 +457,10 @@ pad/
 ├── properties/          # Tag properties (26 properties)
 ├── constructs/          # Special constructs (6 constructs)
 │
+├── subs/                # The directory-driven subsystems - a kind per file of each one's types/:
+│                        #   charts, codes, diagrams, embeds, fakes, games, icons, inputs, maps,
+│                        #   rules, toys, widgets
+│
 ├── lib/                 # PHP library
 ├── config/              # Configuration
 ├── database/            # Database layer

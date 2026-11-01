@@ -3,7 +3,7 @@
   // The PAD applications, grouped as the pull-down of the brand shows them - every
   // application's top-left corner (_tags/padBrand) - and the name the brand and the frame
   // (_tags/padFrame) give each: per application its directory under apps/, the name, an
-  // icon (a file of pad/icons/types/) and a line about it. An application that is not here
+  // icon (a file of pad/subs/icons/types/) and a line about it. An application that is not here
   // is named by its directory.
 
   return [

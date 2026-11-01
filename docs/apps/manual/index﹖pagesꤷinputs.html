@@ -288,7 +288,7 @@
       </header>
       <div class="frame-body">
         <p>
-          Beside <code>{input}</code> and <code>{textarea}</code> a form can hold fields that do more: a slider, a row of stars, a switch, a month to choose a day from, a tag input, a signature, a Markdown editor with its preview. There are 14 of them - every kind is a file of <code>pad/inputs/types/</code>, its script and style in <code>pad/inputs/assets/</code>, and the <a href="../inputs/index.html">inputs</a> application shows them all, each in a form that posts back.
+          Beside <code>{input}</code> and <code>{textarea}</code> a form can hold fields that do more: a slider, a row of stars, a switch, a month to choose a day from, a tag input, a signature, a Markdown editor with its preview. There are 14 of them - every kind is a file of <code>pad/subs/inputs/types/</code>, its script and style in <code>pad/subs/inputs/assets/</code>, and the <a href="../inputs/index.html">inputs</a> application shows them all, each in a form that posts back.
         </p>
         <table border="1" cellpadding="10" cellspacing="0">
           <tr>
@@ -311,14 +311,14 @@
             </td>
             <td style="vertical-align:top">
               <script>
-              /* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
+              /* The runtime of the PAD inputs (pad/subs/inputs/_lib/input.php writes it once per page). A kind's
               script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
               - and is started on every field of its kind: the ones on the page, and the ones a fragment,
               a live region or a script brings later. frame is the field's .pad-input element, cfg its
               data-config, kit the helpers below. The server wrote a native control that a form posts
               as it is; a kind's script makes more of it and keeps the posted control's value true -
               and says so with the input and change events a typed value sends, which the browser's
-              checker of the rules (pad/rules/assets/validate.js) listens to. */
+              checker of the rules (pad/subs/rules/assets/validate.js) listens to. */
 
               (function () {
               'use strict';

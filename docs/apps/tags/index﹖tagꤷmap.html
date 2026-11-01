@@ -259,7 +259,7 @@
                 <code>view</code>
               </dt>
               <dd>
-                The part of the world drawn, a file of <code>pad/maps/types/</code>: <code>africa</code>, <code>asia</code>, <code>balkans</code>, <code>baltic</code>, <code>benelux</code>, <code>british-isles</code>, <code>caribbean</code>, <code>central-america</code>, <code>central-asia</code>, <code>dach</code>, <code>east-asia</code>, <code>eu</code>, <code>europe</code>, <code>iberia</code>, <code>mediterranean</code>, <code>middle-east</code>, <code>nordic</code>, <code>north-america</code>, <code>oceania</code>, <code>south-america</code>, <code>south-asia</code>, <code>southeast-asia</code>, <code>world</code> - <code>world</code> unless given.
+                The part of the world drawn, a file of <code>pad/subs/maps/types/</code>: <code>africa</code>, <code>asia</code>, <code>balkans</code>, <code>baltic</code>, <code>benelux</code>, <code>british-isles</code>, <code>caribbean</code>, <code>central-america</code>, <code>central-asia</code>, <code>dach</code>, <code>east-asia</code>, <code>eu</code>, <code>europe</code>, <code>iberia</code>, <code>mediterranean</code>, <code>middle-east</code>, <code>nordic</code>, <code>north-america</code>, <code>oceania</code>, <code>south-america</code>, <code>south-asia</code>, <code>southeast-asia</code>, <code>world</code> - <code>world</code> unless given.
               </dd>
             </dl>
             <h3>
@@ -315,7 +315,7 @@
               Description
             </h2>
             <p>
-              <code>{map}</code> draws countries filled by a value of their row - a choropleth - as inline SVG on the server (the map subsystem in <code>pad/maps/</code>), from Natural Earth's outlines kept in PAD itself: no JavaScript, no map tiles, no remote service. The first parameter picks the view, a file of <code>pad/maps/types/</code>: the whole world, or a crop of the same projection at full detail for a continent or a region. A region that is a list of countries - <code>eu</code>, <code>benelux</code>, <code>middle-east</code> - draws the countries around it quieter and without values, and names a value of theirs in the title as one it does not show. An unknown view is an error under the strict check.
+              <code>{map}</code> draws countries filled by a value of their row - a choropleth - as inline SVG on the server (the map subsystem in <code>pad/subs/maps/</code>), from Natural Earth's outlines kept in PAD itself: no JavaScript, no map tiles, no remote service. The first parameter picks the view, a file of <code>pad/subs/maps/types/</code>: the whole world, or a crop of the same projection at full detail for a continent or a region. A region that is a list of countries - <code>eu</code>, <code>benelux</code>, <code>middle-east</code> - draws the countries around it quieter and without values, and names a value of theirs in the title as one it does not show. An unknown view is an error under the strict check.
             </p>
             <p>
               The rows come from <code>data=</code> as for <a href="index%EF%B9%96tag%EA%A4%B7chart.html">{chart}</a>, or from the content of the pair - JSON, YAML, XML or CSV, read before the level walks it. <code>key</code> names the country, written as an alpha-2 code (<code>NL</code>), an alpha-3 code (<code>NLD</code>) or the English name; <code>value</code> the number. Rows of one country add up. A key that is no country is not drawn but named in the title (<code>not on the map: ...</code>), so a typo shows instead of disappearing.
@@ -966,7 +966,7 @@
                 The regions of Europe and Asia, and the Americas between
               </h3>
               <p class="example-about">
-                Twelve views of pad/maps/types/ from a page array, each drawn small without values - its countries grey, the land around them lighter.
+                Twelve views of pad/subs/maps/types/ from a page array, each drawn small without values - its countries grey, the land around them lighter.
               </p>
               <div class="example-grid">
                 <div class="cell">

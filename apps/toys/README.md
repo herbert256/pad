@@ -4,7 +4,7 @@
 
 Every toy of the engine's toys subsystem, to play with: the home page has a card per toy, a
 toy's page runs it and shows the template that does. The toys are the files of
-`pad/toys/types/` - the list, the names and the descriptions are read from them
+`pad/subs/toys/types/` - the list, the names and the descriptions are read from them
 (`_lib/toys.php`), so a toy added to the engine is here without a change to this application.
 
 ## Files

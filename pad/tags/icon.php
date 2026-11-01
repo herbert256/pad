@@ -1,7 +1,7 @@
 <?php
 
   // {icon 'arrow-right'/} - an icon from PAD's own set, inline SVG drawn by the icon subsystem in
-  // icons/: an icon is a file of icons/types/, the same icon as the icon: type writes it,
+  // subs/icons/: an icon is a file of subs/icons/types/, the same icon as the icon: type writes it,
   // {icon:arrow-right/}. Lines in the colour of the text around it (stroke="currentColor"), on
   // a 24 by 24 grid. size= is the width and height in pixels (default 20), stroke= the line
   // width (default 2). Without label= the icon is decoration, hidden from a screen reader
@@ -15,6 +15,6 @@
 
   $padIconName = strtolower ( trim ( (string) $padParm ) );
 
-  return include PAD . 'icons/icon.php';
+  return include PAD . 'subs/icons/icon.php';
 
 ?>

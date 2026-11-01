@@ -1,7 +1,7 @@
 <?php
 
   // {barcode '8712345678906'/} - a barcode as inline SVG, drawn by the codes subsystem in
-  // codes/: type= names the symbology, a file of codes/types/ - the same code as the barcode:
+  // subs/codes/: type= names the symbology, a file of subs/codes/types/ - the same code as the barcode:
   // type writes it, {barcode:ean13 '871234567890'/}. Left out, twelve or thirteen digits are an
   // EAN-13 and anything else Code 128. An EAN or UPC number may leave its check digit off: it
   // is added, and one given is checked.
@@ -14,6 +14,6 @@
 
   $padCodeKind = strtolower ( trim ( (string) padTagParm ( 'type', preg_match ( '/^\d{12,13}$/', trim ( padParmText ( $padParm ) ) ) ? 'ean13' : 'code128' ) ) );
 
-  return include PAD . 'codes/barcode.php';
+  return include PAD . 'subs/codes/barcode.php';
 
 ?>

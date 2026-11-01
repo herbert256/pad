@@ -292,7 +292,7 @@
               When <code>padValidate</code> - or the field's own <code>rules=</code> - found something wrong, the message follows the field in <code>&lt;span class="error" id="email-error"&gt;</code>, worded with the field's label, and the field gets <code>aria-invalid="true"</code> and <code>aria-describedby</code>, so a screen reader says the message with the field. A file field shows why <code>padUpload</code> refused its file the same way. Outside a <code>{form}</code> the tag still writes the field, but it never refills.
             </p>
             <p>
-              The input: type writes the rich fields of <code>pad/inputs/types/</code> the same way - named, labelled, refilled, with their message and their <code>rules=</code> - each a native field its script makes more of: <code>{input:slider 'volume', label='Volume'/}</code>, or bare, <code>{slider 'volume'/}</code>. The kinds are the files there: colorpicker, combobox, datepicker, dropzone, mdeditor, newpassword, otp, signature, slider, stars, stepper, taginput, timepicker, toggle; the <a href="../inputs/index.html">inputs</a> application shows each one in a form that posts back.
+              The input: type writes the rich fields of <code>pad/subs/inputs/types/</code> the same way - named, labelled, refilled, with their message and their <code>rules=</code> - each a native field its script makes more of: <code>{input:slider 'volume', label='Volume'/}</code>, or bare, <code>{slider 'volume'/}</code>. The kinds are the files there: colorpicker, combobox, datepicker, dropzone, mdeditor, newpassword, otp, signature, slider, stars, stepper, taginput, timepicker, toggle; the <a href="../inputs/index.html">inputs</a> application shows each one in a form that posts back.
             </p>
           </section>
           <section class="block" aria-labelledby="examples">
@@ -406,14 +406,14 @@
                   <div class="result">
                     <form method="get">
                       <script>
-                      /* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
+                      /* The runtime of the PAD inputs (pad/subs/inputs/_lib/input.php writes it once per page). A kind's
                       script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
                       - and is started on every field of its kind: the ones on the page, and the ones a fragment,
                       a live region or a script brings later. frame is the field's .pad-input element, cfg its
                       data-config, kit the helpers below. The server wrote a native control that a form posts
                       as it is; a kind's script makes more of it and keeps the posted control's value true -
                       and says so with the input and change events a typed value sends, which the browser's
-                      checker of the rules (pad/rules/assets/validate.js) listens to. */
+                      checker of the rules (pad/subs/rules/assets/validate.js) listens to. */
 
                       (function () {
                       'use strict';

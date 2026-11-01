@@ -2,17 +2,17 @@
 
   // {tab 'Overview'} ... {/tab} - one item of the {tabs}, {accordion}, {carousel}, {wizard}
   // or {lightbox} it stands in: its label and its content, rendered and handed to that owner
-  // instead of printed here (widgets/_lib/tabs.php). It may stand deeper than directly
+  // instead of printed here (subs/widgets/_lib/tabs.php). It may stand deeper than directly
   // inside - in an {if}, or in a loop that makes a tab per row. A tab of a set, an accordion
   // or a wizard needs its label; a slide of a carousel and a picture of a lightbox may go
   // without, their label is their caption.
   //
-  // The owners are widgets (widgets/types/), the item a built-in tag: it belongs to several
+  // The owners are widgets (subs/widgets/types/), the item a built-in tag: it belongs to several
   // of them, and a built-in tag comes before a field of its name - a row with a field named
   // tab, {settings}{tab $group}...{/tab}{/settings}, still makes tabs - where a widget
   // reached bare comes after every field.
 
-  include_once PAD . 'widgets/_lib/tabs.php';
+  include_once PAD . 'subs/widgets/_lib/tabs.php';
 
   if ( $padWalk [$pad] == 'start' ) {
 

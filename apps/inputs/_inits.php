@@ -2,7 +2,7 @@
 
   // The menu of the frame every PAD application shares (_common/_tags/padFrame.pad): the home
   // page, the form with every field, and a page per kind - the kinds the engine has,
-  // pad/inputs/types/. A kind's page is its own file here, <kind>.pad, with its fields and
+  // pad/subs/inputs/types/. A kind's page is its own file here, <kind>.pad, with its fields and
   // their rules written out - the rules of a form are read from the page's own text - and
   // [kind].pad shows a kind that has no page of its own yet.
 

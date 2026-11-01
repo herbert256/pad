@@ -1,8 +1,8 @@
 <?php
 
-  // The providers are the files of pad/embeds/types/, as the engine reads them (padEmbedProviders).
+  // The providers are the files of pad/subs/embeds/types/, as the engine reads them (padEmbedProviders).
 
-  include_once PAD . 'embeds/_lib/embed.php';
+  include_once PAD . 'subs/embeds/_lib/embed.php';
 
   $tagAbout   = 'Embeds a video, a sound, a map, a pen or a document of another site behind a click-to-load facade - ' . count ( padEmbedProviders () ) . ' providers, nothing of theirs loaded before the click.';
   $tagGroup   = 'pictures';
@@ -17,7 +17,7 @@
 PAD;
 
   $tagParms   = [
-    'address' => 'An address one of the providers knows, a file of <code>pad/embeds/types/</code>: '
+    'address' => 'An address one of the providers knows, a file of <code>pad/subs/embeds/types/</code>: '
                    . implode ( ', ', array_map ( fn ( $name ) => "<code>$name</code>", padEmbedProviders () ) )
                    . '. The embed type names one - <code>{embed:youtube \'id\'/}</code>, or bare, <code>{youtube \'id\'/}</code>, when nothing else has the name - and then a bare id of that provider is read as well.' ];
 

@@ -4,7 +4,7 @@
   // cookie, a form on another site - is not counted: the voting post started the session
   // itself, and five posts were five votes.
 
-  include_once PAD . 'widgets/_lib/poll.php';
+  include_once PAD . 'subs/widgets/_lib/poll.php';
 
   @unlink ( padPollFile ( 'fw-unseen' ) );
 

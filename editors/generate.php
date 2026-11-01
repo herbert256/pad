@@ -74,8 +74,8 @@
                                       generateNames ( "$pad/sequence/types", TRUE ), generateNames ( "$pad/sequence/actions/types" ) ) );
 
   foreach ( padSubsystems as [ $kindDir, $kindBare, $kindLabel ] )
-    if ( $kindBare and is_dir ( "$pad/$kindDir/types" ) )
-      foreach ( generateNames ( "$pad/$kindDir/types" ) as $kindName )
+    if ( $kindBare and is_dir ( "$pad/subs/$kindDir/types" ) )
+      foreach ( generateNames ( "$pad/subs/$kindDir/types" ) as $kindName )
         if ( ! isset ( $tags [$kindName] ) and ! function_exists ( $kindName ) )
           $kinds [$kindName] ??= $kindLabel;
 

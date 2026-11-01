@@ -1,6 +1,6 @@
 <?php
 
-  // The icons are the files of pad/icons/types/, as the engine reads them (padIconNames).
+  // The icons are the files of pad/subs/icons/types/, as the engine reads them (padIconNames).
 
   $tagIconCount = count ( padIconNames () );
 
@@ -15,7 +15,7 @@
 PAD;
 
   $tagParms   = [
-    'name' => 'The icon, a file of <code>pad/icons/types/</code>: arrows (<code>arrow-right</code>, <code>chevron-down</code>, <code>undo</code>, <code>refresh</code> ...), marks (<code>check</code>, <code>x</code>, <code>plus</code>, <code>info</code>, <code>alert</code>, <code>star</code>, <code>heart</code> ...), layout (<code>home</code>, <code>menu</code>, <code>search</code>, <code>settings</code>, <code>table</code> ...), people and talk (<code>user</code>, <code>mail</code>, <code>chat</code>, <code>bell</code> ...), files (<code>file</code>, <code>folder</code>, <code>edit</code>, <code>trash</code>, <code>save</code> ...), media (<code>play</code>, <code>mic</code>, <code>volume</code> ...), devices and code (<code>monitor</code>, <code>cpu</code>, <code>bug</code>, <code>terminal</code> ...), money, weather and things. The icon type names it as well, <code>{icon:star/}</code>. <code>padIconNames ()</code> lists them all.' ];
+    'name' => 'The icon, a file of <code>pad/subs/icons/types/</code>: arrows (<code>arrow-right</code>, <code>chevron-down</code>, <code>undo</code>, <code>refresh</code> ...), marks (<code>check</code>, <code>x</code>, <code>plus</code>, <code>info</code>, <code>alert</code>, <code>star</code>, <code>heart</code> ...), layout (<code>home</code>, <code>menu</code>, <code>search</code>, <code>settings</code>, <code>table</code> ...), people and talk (<code>user</code>, <code>mail</code>, <code>chat</code>, <code>bell</code> ...), files (<code>file</code>, <code>folder</code>, <code>edit</code>, <code>trash</code>, <code>save</code> ...), media (<code>play</code>, <code>mic</code>, <code>volume</code> ...), devices and code (<code>monitor</code>, <code>cpu</code>, <code>bug</code>, <code>terminal</code> ...), money, weather and things. The icon type names it as well, <code>{icon:star/}</code>. <code>padIconNames ()</code> lists them all.' ];
 
   $tagOptions = [
     'size'   => 'Width and height in pixels, default 20.',

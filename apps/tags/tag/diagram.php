@@ -1,6 +1,6 @@
 <?php
 
-  // The kinds are the files of pad/diagrams/types/, as the engine reads them (padKinds).
+  // The kinds are the files of pad/subs/diagrams/types/, as the engine reads them (padKinds).
 
   $tagKinds   = padKinds ( 'diagrams' );
 
@@ -24,7 +24,7 @@ PAD;
   $tagParms   = [];
 
   $tagOptions = [
-    'type'      => 'The kind, a file of <code>pad/diagrams/types/</code>: '
+    'type'      => 'The kind, a file of <code>pad/subs/diagrams/types/</code>: '
                  . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", $tagKinds ) )
                  . ' - <code>flowchart</code> unless it says otherwise. The diagram type names it as well, <code>{diagram:state}</code>, and so does the bare name, <code>{state}</code>, when nothing else has it; <code>sequence</code> and <code>tree</code> are tags of their own, so those are <code>{diagram:sequence}</code> and <code>{diagram:tree}</code>. A first line written the Mermaid way - <code>sequenceDiagram</code>, <code>stateDiagram-v2</code>, <code>classDiagram</code>, <code>erDiagram</code>, <code>gitGraph</code> - names the kind too.',
     'direction' => 'flowchart, state, class, er and tree: <code>TB</code> (default), <code>BT</code>, <code>LR</code> or <code>RL</code> - else a first line <code>graph LR</code> in a flowchart, or a line <code>direction LR</code> in a state, class or entity-relationship diagram.',

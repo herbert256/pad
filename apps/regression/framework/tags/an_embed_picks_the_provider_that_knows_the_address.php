@@ -1,11 +1,11 @@
 <?php
 
-  // Every address goes to the provider whose file of embeds/types/ knows it - the ones that
+  // Every address goes to the provider whose file of subs/embeds/types/ knows it - the ones that
   // know their host first, the generic ones (a PeerTube instance, a file by its extension)
   // after them - and an address none knows to none; a bare id is no address unless the
   // provider is named.
 
-  include_once PAD . 'embeds/_lib/embed.php';
+  include_once PAD . 'subs/embeds/_lib/embed.php';
 
   $found = implode ( ' ', array_map ( fn ( $url ) => padEmbedFind ( $url ) [0] ?? 'none', [
     'https://www.youtube.com/watch?v=aqz-KE-bpKQ',

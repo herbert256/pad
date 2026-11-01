@@ -1,8 +1,8 @@
 <?php
 
-  // The views are the files of pad/maps/types/, as the engine reads them (padMapViews).
+  // The views are the files of pad/subs/maps/types/, as the engine reads them (padMapViews).
 
-  include_once PAD . 'maps/_lib/map.php';
+  include_once PAD . 'subs/maps/_lib/map.php';
 
   $tagAbout   = 'Draws a choropleth map as inline SVG - every country coloured by a value of its row - of the world or one of its ' . ( count ( padMapViews () ) - 1 ) . ' regions.';
   $tagGroup   = 'graphics';
@@ -14,7 +14,7 @@
 PAD;
 
   $tagParms   = [
-    'view' => 'The part of the world drawn, a file of <code>pad/maps/types/</code>: '
+    'view' => 'The part of the world drawn, a file of <code>pad/subs/maps/types/</code>: '
                 . implode ( ', ', array_map ( fn ( $view ) => "<code>$view</code>", padMapViews () ) )
                 . ' - <code>world</code> unless given.' ];
 

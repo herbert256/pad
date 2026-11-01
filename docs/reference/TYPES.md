@@ -58,18 +58,18 @@ When no explicit type is given, PAD checks in this order (see `padTypeTag()` and
 18. **php** - PHP function - one that is also a pipe function (`trim`, `date`, `substr` ...) runs as the pipe function
 19. **sequence** - Sequence type
 20. **action** - Sequence action
-21. **chart** - Chart type, a file of `PAD/charts/types/`
-22. **game** - Game, a file of `PAD/games/types/`
-23. **toy** - Toy, a file of `PAD/toys/types/`
-24. **diagram** - Diagram kind, a file of `PAD/diagrams/types/`
-25. **widget** - Widget, a file of `PAD/widgets/types/`
-26. **barcode** - Barcode symbology, a file of `PAD/codes/types/`
-27. **embed** - Embed provider, a file of `PAD/embeds/types/`
-28. **input** - Rich form field, a file of `PAD/inputs/types/`
+21. **chart** - Chart type, a file of `PAD/subs/charts/types/`
+22. **game** - Game, a file of `PAD/subs/games/types/`
+23. **toy** - Toy, a file of `PAD/subs/toys/types/`
+24. **diagram** - Diagram kind, a file of `PAD/subs/diagrams/types/`
+25. **widget** - Widget, a file of `PAD/subs/widgets/types/`
+26. **barcode** - Barcode symbology, a file of `PAD/subs/codes/types/`
+27. **embed** - Embed provider, a file of `PAD/subs/embeds/types/`
+28. **input** - Rich form field, a file of `PAD/subs/inputs/types/`
 29. **function** - PAD function (fallback)
 
 Items 21 to 28 are the subsystems of `padSubsystems` (`PAD/lib/subsystem.php`), tried in that
-order. The icons (`PAD/icons/types/`) and the fake kinds (`PAD/fakes/types/`) are never reached
+order. The icons (`PAD/subs/icons/types/`) and the fake kinds (`PAD/subs/fakes/types/`) are never reached
 bare - their names, home or email, are those of fields and pages - only as `{icon:star/}` and
 `{fake:email/}`.
 
@@ -447,7 +447,7 @@ the page's directory up to the application root.
 
 ### chart
 
-A chart of the kind the tag names - the chart subsystem in `PAD/charts/` draws it, as the
+A chart of the kind the tag names - the chart subsystem in `PAD/subs/charts/` draws it, as the
 `{chart}` tag draws the kind its parameter names.
 
 ```
@@ -456,7 +456,7 @@ A chart of the kind the tag names - the chart subsystem in `PAD/charts/` draws i
 {gauge value=72, unit='%'/}
 ```
 
-**Resolution:** a file `PAD/charts/types/<name>.php` (`padChartType()` in `PAD/lib/chart.php`):
+**Resolution:** a file `PAD/subs/charts/types/<name>.php` (`padChartType()` in `PAD/lib/chart.php`):
 the files there are the kinds, and a kind is added by adding its file. Bare, a chart kind
 comes after every other kind of tag, so a tag, a store, a field or a sequence of the name wins.
 
@@ -467,7 +467,7 @@ comes after every other kind of tag, so a tag, a store, a field or a sequence of
 ### game
 
 A little game played in the browser, of the kind the tag names - the games subsystem in
-`PAD/games/` sets it up, as the `{game}` tag sets up the game its parameter names.
+`PAD/subs/games/` sets it up, as the `{game}` tag sets up the game its parameter names.
 
 ```
 {game:memory pairs=6/}
@@ -475,8 +475,8 @@ A little game played in the browser, of the kind the tag names - the games subsy
 {hangman}lighthouse{/hangman}
 ```
 
-**Resolution:** a PHP file `PAD/games/types/<name>.php` (`padGameType()` in `PAD/lib/game.php`),
-its script and style `PAD/games/assets/<name>.js` and `.css`: the files of `types/` are the
+**Resolution:** a PHP file `PAD/subs/games/types/<name>.php` (`padGameType()` in `PAD/lib/game.php`),
+its script and style `PAD/subs/games/assets/<name>.js` and `.css`: the files of `types/` are the
 games, and a game is added by adding its files. Bare, a game comes after every other kind of tag, the chart kinds too.
 
 ---
@@ -486,7 +486,7 @@ games, and a game is added by adding its files. Bare, a game comes after every o
 ### diagram
 
 A diagram of the kind the tag names, drawn from the lines between its tags - the diagram
-subsystem in `PAD/diagrams/` lays it out, as the `{diagram}` tag lays out the kind its
+subsystem in `PAD/subs/diagrams/` lays it out, as the `{diagram}` tag lays out the kind its
 `type=` names.
 
 ```
@@ -495,8 +495,8 @@ subsystem in `PAD/diagrams/` lays it out, as the `{diagram}` tag lays out the ki
 {flowchart}A --> B{/flowchart}
 ```
 
-**Resolution:** a file `PAD/diagrams/types/<name>.php` (`padDiagramType()` in
-`PAD/diagrams/_lib/diagram.php`): the files there are the kinds, and a kind is added by adding
+**Resolution:** a file `PAD/subs/diagrams/types/<name>.php` (`padDiagramType()` in
+`PAD/subs/diagrams/_lib/diagram.php`): the files there are the kinds, and a kind is added by adding
 its file. Bare, a diagram kind comes after every other kind of tag, the chart kinds and the
 games too - so `{sequence}` is the sequence tag, and the sequence diagram is
 `{diagram:sequence}` or `{diagram type='sequence'}`.
@@ -505,7 +505,7 @@ games too - so `{sequence}` is the sequence tag, and the sequence diagram is
 ### embed
 
 A video, a sound, a map, a pen or a document of the provider the tag names, behind a
-click-to-load facade - the embed subsystem in `PAD/embeds/` writes it, as the `{embed}` tag
+click-to-load facade - the embed subsystem in `PAD/subs/embeds/` writes it, as the `{embed}` tag
 writes the provider that knows its address. Named, a provider reads its own bare ids too.
 
 ```
@@ -514,7 +514,7 @@ writes the provider that knows its address. Named, a provider reads its own bare
 {openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}
 ```
 
-**Resolution:** a file `PAD/embeds/types/<name>.php` (`padEmbedProviders()` in `PAD/lib/embed.php`):
+**Resolution:** a file `PAD/subs/embeds/types/<name>.php` (`padEmbedProviders()` in `PAD/lib/embed.php`):
 the files there are the providers, and a provider is added by adding its file. Bare, a provider
 comes after every other kind of tag, the chart kinds and the games too, so a tag, a store, a
 field or a sequence of the name wins. `{embed:zigzag/}` is "there is no embed provider named
@@ -526,7 +526,7 @@ field or a sequence of the name wins. `{embed:zigzag/}` is "there is no embed pr
 
 ### fake
 
-A fake value of the kind the tag names - the fake subsystem in `PAD/fakes/` makes it, as the
+A fake value of the kind the tag names - the fake subsystem in `PAD/subs/fakes/` makes it, as the
 `{fake}` tag makes the kind its parameter names.
 
 ```
@@ -535,14 +535,14 @@ A fake value of the kind the tag names - the fake subsystem in `PAD/fakes/` make
 {fake:date from='2026-01-01', to='2026-12-31', format='j M Y'/}
 ```
 
-**Resolution:** a file `PAD/fakes/types/<name>.php` (`padFakeKinds()` in `PAD/lib/fake.php`): the
+**Resolution:** a file `PAD/subs/fakes/types/<name>.php` (`padFakeKinds()` in `PAD/lib/fake.php`): the
 files there are the kinds, and a kind is added by adding its file. Never bare: `{email/}` is no
 fake. `{fake:zebra/}` is "there is no fake kind named 'zebra'".
 ## Barcode Types
 
 ### barcode
 
-A barcode of the symbology the tag names - the codes subsystem in `PAD/codes/` encodes and
+A barcode of the symbology the tag names - the codes subsystem in `PAD/subs/codes/` encodes and
 draws it, as the `{barcode}` tag draws the symbology its `type=` names.
 
 ```
@@ -551,9 +551,9 @@ draws it, as the `{barcode}` tag draws the symbology its `type=` names.
 {itf14 '1540014128876'/}
 ```
 
-**Resolution:** a file `PAD/codes/types/<name>.php` (`padKinds ('codes')`): the files there are
+**Resolution:** a file `PAD/subs/codes/types/<name>.php` (`padKinds ('codes')`): the files there are
 the symbologies - `qr` among them, which the `{qr}` tag writes by a name of its own - and a
-symbology is added by adding its file and its encoder in `PAD/codes/_lib/`. Bare, a symbology
+symbology is added by adding its file and its encoder in `PAD/subs/codes/_lib/`. Bare, a symbology
 comes after every other kind of tag, the chart kinds and the games too.
 
 ---
@@ -562,7 +562,7 @@ comes after every other kind of tag, the chart kinds and the games too.
 
 ### icon
 
-An icon of PAD's own set, the one the tag names - the icon subsystem in `PAD/icons/` draws it,
+An icon of PAD's own set, the one the tag names - the icon subsystem in `PAD/subs/icons/` draws it,
 as the `{icon}` tag draws the icon its parameter names.
 
 ```
@@ -570,7 +570,7 @@ as the `{icon}` tag draws the icon its parameter names.
 {icon:arrow-right label='Next page'/}
 ```
 
-**Resolution:** a file `PAD/icons/types/<name>.svg` (`padIconNames ()` in `PAD/lib/icon.php`):
+**Resolution:** a file `PAD/subs/icons/types/<name>.svg` (`padIconNames ()` in `PAD/lib/icon.php`):
 the files there are the icons, and an icon is added by adding its file. The type is only ever
 written with its prefix - an icon's name alone is no tag, the names being those of fields and
 pages as well.
@@ -579,7 +579,7 @@ pages as well.
 ### toy
 
 A small live simulation or visual toy played in the browser, of the kind the tag names - the toys
-subsystem in `PAD/toys/` sets it up, as the `{toy}` tag sets up the toy its parameter names.
+subsystem in `PAD/subs/toys/` sets it up, as the `{toy}` tag sets up the toy its parameter names.
 
 ```
 {toy:life pattern='gun'/}
@@ -587,8 +587,8 @@ subsystem in `PAD/toys/` sets it up, as the `{toy}` tag sets up the toy its para
 {lsystem 'dragon', iterations=14/}
 ```
 
-**Resolution:** a PHP file `PAD/toys/types/<name>.php` (`padToyType()` in `PAD/lib/toy.php`), its
-script `PAD/toys/assets/<name>.js` and its style, when it has one, `<name>.css` beside it: the files
+**Resolution:** a PHP file `PAD/subs/toys/types/<name>.php` (`padToyType()` in `PAD/lib/toy.php`), its
+script `PAD/subs/toys/assets/<name>.js` and its style, when it has one, `<name>.css` beside it: the files
 of `types/` are the toys, and a toy is added by adding its files. Bare, a toy comes after every other
 kind of tag, the chart kinds and the games too.
 
@@ -597,7 +597,7 @@ kind of tag, the chart kinds and the games too.
 ### widget
 
 An interactive part of the page - tabs, an accordion, a carousel, a modal, a copy box, a poll
-... - of the kind the tag names: the widgets subsystem in `PAD/widgets/` builds it, as the
+... - of the kind the tag names: the widgets subsystem in `PAD/subs/widgets/` builds it, as the
 `{widget}` tag builds the widget its first parameter names.
 
 ```
@@ -606,9 +606,9 @@ An interactive part of the page - tabs, an accordion, a carousel, a modal, a cop
 {tabs}{tab 'Overview'}...{/tab}{/tabs}
 ```
 
-**Resolution:** a PHP file `PAD/widgets/types/<name>.php` (`padWidgetType()` in `PAD/lib/widget.php`),
-the widget's tag code; its functions in `PAD/widgets/_lib/<name>.php`, its style and script in
-`PAD/widgets/assets/<name>.css` and `.js`. The files of `types/` are the widgets, and a widget is
+**Resolution:** a PHP file `PAD/subs/widgets/types/<name>.php` (`padWidgetType()` in `PAD/lib/widget.php`),
+the widget's tag code; its functions in `PAD/subs/widgets/_lib/<name>.php`, its style and script in
+`PAD/subs/widgets/assets/<name>.css` and `.js`. The files of `types/` are the widgets, and a widget is
 added by adding its files. Bare, a widget comes after every other kind of tag - the chart kinds
 and the games too - so a store, a field or an array of the name wins: a page's `$tabs` array
 is the data of `{tabs}`. `{copy}` stays a built-in tag that runs the copy widget, as PHP has a
@@ -622,7 +622,7 @@ and `{carousel}`, is a built-in tag.
 ### input
 
 A rich form field of the kind the tag names - a slider, a stepper, a date picker, stars, a
-signature ... - the inputs subsystem in `PAD/inputs/` writes it, a field of its `{form}` as
+signature ... - the inputs subsystem in `PAD/subs/inputs/` writes it, a field of its `{form}` as
 `{input}` is: a native field a form posts without any script, made more of by its script.
 
 ```
@@ -631,8 +631,8 @@ signature ... - the inputs subsystem in `PAD/inputs/` writes it, a field of its 
 {stars 'score', label='Score'/}
 ```
 
-**Resolution:** a PHP file `PAD/inputs/types/<name>.php`, its script and style in
-`PAD/inputs/assets/`, the field written by `PAD/inputs/input.php`: the files of `types/` are
+**Resolution:** a PHP file `PAD/subs/inputs/types/<name>.php`, its script and style in
+`PAD/subs/inputs/assets/`, the field written by `PAD/subs/inputs/input.php`: the files of `types/` are
 the kinds, and a kind is added by adding its file. Its items are read raw, as `{input}`'s are -
 `label=`, `rules=`, `min=` are the field's, never an option of the engine. Bare, an input kind
 comes last of the subsystems, so a store, a field, an array of the name - a page's `$slider` -
@@ -767,16 +767,16 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `script` | Scripts | Shell scripts |
 | `sequence` | PQ | Sequence types |
 | `action` | PQ | Sequence actions |
-| `chart` | PAD/charts/types/ | Chart kinds |
-| `game` | PAD/games/types/ | Games |
-| `diagram` | PAD/diagrams/types/ | Diagram kinds |
-| `embed` | PAD/embeds/types/ | Embed providers |
-| `fake` | PAD/fakes/types/ | Fake value kinds |
-| `barcode` | PAD/codes/types/ | Barcode symbologies |
-| `icon` | PAD/icons/types/ | Icons |
-| `toy` | PAD/toys/types/ | Toys |
-| `widget` | PAD/widgets/types/ | Widgets |
-| `input` | PAD/inputs/types/ | Rich form fields |
+| `chart` | PAD/subs/charts/types/ | Chart kinds |
+| `game` | PAD/subs/games/types/ | Games |
+| `diagram` | PAD/subs/diagrams/types/ | Diagram kinds |
+| `embed` | PAD/subs/embeds/types/ | Embed providers |
+| `fake` | PAD/subs/fakes/types/ | Fake value kinds |
+| `barcode` | PAD/subs/codes/types/ | Barcode symbologies |
+| `icon` | PAD/subs/icons/types/ | Icons |
+| `toy` | PAD/subs/toys/types/ | Toys |
+| `widget` | PAD/subs/widgets/types/ | Widgets |
+| `input` | PAD/subs/inputs/types/ | Rich form fields |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |

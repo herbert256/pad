@@ -1,6 +1,6 @@
 <?php
 
-  // The games are the files of pad/games/types/, as the engine reads them (padGameTypes).
+  // The games are the files of pad/subs/games/types/, as the engine reads them (padGameTypes).
 
   $tagAbout   = 'A little game played in the browser - ' . count ( padGameTypes () ) . ' of them, from sudoku and a crossword to snake, reversi and a quiz.';
   $tagGroup   = 'games';
@@ -19,7 +19,7 @@
 PAD;
 
   $tagParms   = [
-    'name' => 'The game, a file of <code>pad/games/types/</code>: '
+    'name' => 'The game, a file of <code>pad/subs/games/types/</code>: '
             . implode ( ', ', array_map ( fn ( $game ) => "<code>$game</code>", padGameTypes () ) )
             . '. The game: type names it as well - <code>{game:memory/}</code>, or bare, <code>{memory/}</code>, when nothing else has the name.' ];
 

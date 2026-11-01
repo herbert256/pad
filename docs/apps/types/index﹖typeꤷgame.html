@@ -181,7 +181,7 @@
               game:
             </h1>
             <p class="tag-about">
-              A game, a file of pad/games/types/, played in the browser.
+              A game, a file of pad/subs/games/types/, played in the browser.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#bare">Tried 24 of 31 for a bare name</a>
@@ -200,14 +200,14 @@
               Description
             </h2>
             <p>
-              A little game played in the browser, of the kind the tag names - the games subsystem in <code>PAD/games/</code> sets it up, as the <code>{game}</code> tag sets up the game its parameter names.
+              A little game played in the browser, of the kind the tag names - the games subsystem in <code>PAD/subs/games/</code> sets it up, as the <code>{game}</code> tag sets up the game its parameter names.
             </p>
             <pre><code>{game:memory pairs=6/}
 {sudoku givens=26/}
 {hangman}lighthouse{/hangman}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a PHP file <code>PAD/games/types/&lt;name&gt;.php</code> (<code>padGameType()</code> in <code>PAD/lib/game.php</code>), its script and style <code>PAD/games/assets/&lt;name&gt;.js</code> and <code>.css</code>: the files of <code>types/</code> are the games, and a game is added by adding its files. Bare, a game comes after every other kind of tag, the chart kinds too.
+              <strong>Resolution:</strong> a PHP file <code>PAD/subs/games/types/&lt;name&gt;.php</code> (<code>padGameType()</code> in <code>PAD/lib/game.php</code>), its script and style <code>PAD/subs/games/assets/&lt;name&gt;.js</code> and <code>.css</code>: the files of <code>types/</code> are the games, and a game is added by adding its files. Bare, a game comes after every other kind of tag, the chart kinds too.
             </p>
             <h3>
               The handler
@@ -261,7 +261,7 @@
                       </p></noscript>
                     </section>
                     <script>
-                    /* The runtime of the PAD games (pad/games/_lib/game.php writes it once per page). A game's
+                    /* The runtime of the PAD games (pad/subs/games/_lib/game.php writes it once per page). A game's
                     script registers itself - PadGames.register('memory', function (k, cfg) { ... }) - and is
                     started on every board of its kind: the ones on the page, and the ones a fragment, a live
                     region or a script brings later. k is the game's kit: its board, its status line and its

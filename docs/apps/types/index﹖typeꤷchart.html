@@ -154,7 +154,7 @@
               chart:
             </h1>
             <p class="tag-about">
-              A chart type, a file of pad/charts/types/, drawn as inline SVG.
+              A chart type, a file of pad/subs/charts/types/, drawn as inline SVG.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#bare">Tried 23 of 31 for a bare name</a>
@@ -173,14 +173,14 @@
               Description
             </h2>
             <p>
-              A chart of the kind the tag names - the chart subsystem in <code>PAD/charts/</code> draws it, as the <code>{chart}</code> tag draws the kind its parameter names.
+              A chart of the kind the tag names - the chart subsystem in <code>PAD/subs/charts/</code> draws it, as the <code>{chart}</code> tag draws the kind its parameter names.
             </p>
             <pre><code>{chart:pie data='budget', label='post', value='amount'/}
 {chart:bar data='sales', label='month', value='amount', stacked/}
 {gauge value=72, unit='%'/}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a file <code>PAD/charts/types/&lt;name&gt;.php</code> (<code>padChartType()</code> in <code>PAD/lib/chart.php</code>): the files there are the kinds, and a kind is added by adding its file. Bare, a chart kind comes after every other kind of tag, so a tag, a store, a field or a sequence of the name wins.
+              <strong>Resolution:</strong> a file <code>PAD/subs/charts/types/&lt;name&gt;.php</code> (<code>padChartType()</code> in <code>PAD/lib/chart.php</code>): the files there are the kinds, and a kind is added by adding its file. Bare, a chart kind comes after every other kind of tag, so a tag, a store, a field or a sequence of the name wins.
             </p>
             <h3>
               The handler

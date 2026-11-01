@@ -154,7 +154,7 @@
               widget:
             </h1>
             <p class="tag-about">
-              A widget, a file of pad/widgets/types/, that works without JavaScript.
+              A widget, a file of pad/subs/widgets/types/, that works without JavaScript.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#bare">Tried 27 of 31 for a bare name</a>
@@ -173,14 +173,14 @@
               Description
             </h2>
             <p>
-              An interactive part of the page - tabs, an accordion, a carousel, a modal, a copy box, a poll ... - of the kind the tag names: the widgets subsystem in <code>PAD/widgets/</code> builds it, as the <code>{widget}</code> tag builds the widget its first parameter names.
+              An interactive part of the page - tabs, an accordion, a carousel, a modal, a copy box, a poll ... - of the kind the tag names: the widgets subsystem in <code>PAD/subs/widgets/</code> builds it, as the <code>{widget}</code> tag builds the widget its first parameter names.
             </p>
             <pre><code>{widget:tabs active=2}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/widget:tabs}
 {widget:modal 'terms', title='Terms of sale'}...{/widget:modal}
 {tabs}{tab 'Overview'}...{/tab}{/tabs}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a PHP file <code>PAD/widgets/types/&lt;name&gt;.php</code> (<code>padWidgetType()</code> in <code>PAD/lib/widget.php</code>), the widget's tag code; its functions in <code>PAD/widgets/_lib/&lt;name&gt;.php</code>, its style and script in <code>PAD/widgets/assets/&lt;name&gt;.css</code> and <code>.js</code>. The files of <code>types/</code> are the widgets, and a widget is added by adding its files. Bare, a widget comes after every other kind of tag - the chart kinds and the games too - so a store, a field or an array of the name wins: a page's <code>$tabs</code> array is the data of <code>{tabs}</code>. <code>{copy}</code> stays a built-in tag that runs the copy widget, as PHP has a <code>copy()</code> function that a bare name reaches first; <code>{tab}</code>, the item of <code>{tabs}</code>, <code>{accordion}</code> and <code>{carousel}</code>, is a built-in tag.
+              <strong>Resolution:</strong> a PHP file <code>PAD/subs/widgets/types/&lt;name&gt;.php</code> (<code>padWidgetType()</code> in <code>PAD/lib/widget.php</code>), the widget's tag code; its functions in <code>PAD/subs/widgets/_lib/&lt;name&gt;.php</code>, its style and script in <code>PAD/subs/widgets/assets/&lt;name&gt;.css</code> and <code>.js</code>. The files of <code>types/</code> are the widgets, and a widget is added by adding its files. Bare, a widget comes after every other kind of tag - the chart kinds and the games too - so a store, a field or an array of the name wins: a page's <code>$tabs</code> array is the data of <code>{tabs}</code>. <code>{copy}</code> stays a built-in tag that runs the copy widget, as PHP has a <code>copy()</code> function that a bare name reaches first; <code>{tab}</code>, the item of <code>{tabs}</code>, <code>{accordion}</code> and <code>{carousel}</code>, is a built-in tag.
             </p>
             <h3>
               The handler

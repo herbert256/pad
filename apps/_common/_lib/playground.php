@@ -73,7 +73,7 @@
       $style  = '<link rel="stylesheet" href="' . htmlspecialchars ( ( $padRoot ?? '/' ) . "_common/play.css$hash" ) . '">';
     }
 
-    include_once PAD . 'icons/_lib/icon.php';
+    include_once PAD . 'subs/icons/_lib/icon.php';
 
     $class = $inline ? ' pad-play-inline' : '';
 

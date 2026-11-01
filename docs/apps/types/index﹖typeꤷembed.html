@@ -154,7 +154,7 @@
               embed:
             </h1>
             <p class="tag-about">
-              An embed provider, a file of pad/embeds/types/ - loaded only on a click.
+              An embed provider, a file of pad/subs/embeds/types/ - loaded only on a click.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#bare">Tried 29 of 31 for a bare name</a>
@@ -173,20 +173,20 @@
               Description
             </h2>
             <p>
-              A video, a sound, a map, a pen or a document of the provider the tag names, behind a click-to-load facade - the embed subsystem in <code>PAD/embeds/</code> writes it, as the <code>{embed}</code> tag writes the provider that knows its address. Named, a provider reads its own bare ids too.
+              A video, a sound, a map, a pen or a document of the provider the tag names, behind a click-to-load facade - the embed subsystem in <code>PAD/subs/embeds/</code> writes it, as the <code>{embed}</code> tag writes the provider that knows its address. Named, a provider reads its own bare ids too.
             </p>
             <pre><code>{embed:youtube 'aqz-KE-bpKQ', title='Big Buck Bunny'/}
 {vimeo '76979871', title='The new Vimeo player'/}
 {openstreetmap '52.3731,4.8922', zoom=15, title='Dam Square'/}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a file <code>PAD/embeds/types/&lt;name&gt;.php</code> (<code>padEmbedProviders()</code> in <code>PAD/lib/embed.php</code>): the files there are the providers, and a provider is added by adding its file. Bare, a provider comes after every other kind of tag, the chart kinds and the games too, so a tag, a store, a field or a sequence of the name wins. <code>{embed:zigzag/}</code> is "there is no embed provider named 'zigzag'".
+              <strong>Resolution:</strong> a file <code>PAD/subs/embeds/types/&lt;name&gt;.php</code> (<code>padEmbedProviders()</code> in <code>PAD/lib/embed.php</code>): the files there are the providers, and a provider is added by adding its file. Bare, a provider comes after every other kind of tag, the chart kinds and the games too, so a tag, a store, a field or a sequence of the name wins. <code>{embed:zigzag/}</code> is "there is no embed provider named 'zigzag'".
             </p>
             <h3>
               The handler
             </h3>
             <p>
-              <code>pad/types/embed.php</code>: Type handler for an embed provider: {embed:youtube 'aqz-KE-bpKQ', title='Big Buck Bunny'/}, or a bare tag naming a file of embeds/types/ when nothing else has the name, {openstreetmap '52.3731,4.8922', title='Dam Square'/}. The provider is the tag's name, and the embed is written as {embed} writes it, by embeds/embed.php - run as a built-in tag's PHP half is run, types/_go/tag.php.
+              <code>pad/types/embed.php</code>: Type handler for an embed provider: {embed:youtube 'aqz-KE-bpKQ', title='Big Buck Bunny'/}, or a bare tag naming a file of subs/embeds/types/ when nothing else has the name, {openstreetmap '52.3731,4.8922', title='Dam Square'/}. The provider is the tag's name, and the embed is written as {embed} writes it, by embeds/embed.php - run as a built-in tag's PHP half is run, types/_go/tag.php.
             </p>
           </section>
           <section class="block" aria-labelledby="members">

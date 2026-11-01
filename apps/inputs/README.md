@@ -5,7 +5,7 @@
 Every rich form field of the engine's inputs subsystem, to try: the home page has a card per kind,
 a kind's page puts it in a form that posts back and shows what the page's PHP received, whether
 the post kept the rules of the template, and the template itself. One form holds every kind with
-rules, checked in the browser too (`client`). The kinds are the files of `pad/inputs/types/` - the
+rules, checked in the browser too (`client`). The kinds are the files of `pad/subs/inputs/types/` - the
 list and the descriptions are read from them (`_lib/inputs.php`), and a kind without a page of
 its own here is shown by `[kind].pad`.
 

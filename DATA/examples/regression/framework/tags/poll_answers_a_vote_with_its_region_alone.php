@@ -5,7 +5,7 @@
   // same answer posted without the region is the form of a browser without scripting: the
   // whole page comes back, the results in it.
 
-  include_once PAD . 'widgets/_lib/poll.php';
+  include_once PAD . 'subs/widgets/_lib/poll.php';
 
   @unlink ( padPollFile ( 'fw-form' ) );
 

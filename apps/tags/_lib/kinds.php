@@ -3,7 +3,7 @@
   // The kinds of the subsystems - the chart types, the games, the toys ... - and the sequence
   // types: each a tag of its own, written with its type prefix, {chart:pie/}, and listed by
   // the tags application beside the built-in tags, {pad:if}. Nothing lists them here: a kind
-  // is a file of pad/<directory>/types/ (padSubsystems, lib/subsystem.php), a sequence type a
+  // is a file of pad/subs/<directory>/types/ (padSubsystems, lib/subsystem.php), a sequence type a
   // directory of pad/sequence/types/, and what its page says comes from there - the comment
   // at the top of its file, the line of docs/sequences/SEQUENCES.md - and its example from
   // what plays it already: the charts application's examples, the templates of the games
@@ -125,7 +125,7 @@
       return [ '', $line !== '' ? "$line." : "The $kind sequence.", '' ];
     }
 
-    $file = PAD . padSubsystems [$type] [0] . "/types/$kind.php";
+    $file = PAD . "subs/" . padSubsystems [$type] [0] . "/types/$kind.php";
     $text = '';
 
     if ( preg_match ( '/\A<\?php\s*\n((?:[ \t]*\/\/[^\n]*\n)+)/', padFileGet ( $file ), $match ) )

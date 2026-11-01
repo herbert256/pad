@@ -1,7 +1,7 @@
 <?php
 
   // {qr 'https://example.com'/} - a QR code as inline SVG, the qr symbology of the codes
-  // subsystem in codes/ (codes/types/qr.php): no image library, no remote service - the same
+  // subsystem in subs/codes/ (subs/codes/types/qr.php): no image library, no remote service - the same
   // code as {barcode:qr 'https://example.com'/} writes. The first parameter is the text;
   // size= is the width and height in pixels (default 160), level= the error correction - L,
   // M (default), Q or H - and title= the accessible name, else the text itself. color= and
@@ -10,6 +10,6 @@
 
   $padCodeKind = 'qr';
 
-  return include PAD . 'codes/barcode.php';
+  return include PAD . 'subs/codes/barcode.php';
 
 ?>

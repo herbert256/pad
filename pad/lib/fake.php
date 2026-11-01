@@ -30,7 +30,7 @@
   //                   The rows as inserted, each with 'id' - the id the insert answered -
   //                   when the row did not give one itself
   // padFake           a value of a kind by its name - padFake ( 'email' ), padFake ( 'number',
-  //                   [ 'from' => 1, 'to' => 6 ] ) - a kind being a file of fakes/types/
+  //                   [ 'from' => 1, 'to' => 6 ] ) - a kind being a file of subs/fakes/types/
   //                   (padFakeKinds), which reads its options with padFakeOpt
   // padFakeRows       rows of fields of those kinds - padFakeRows ( 'name, email', 5 ), or
   //                   [ 'customer' => 'name', 'total' => [ 'price', [ 'to' => 500 ] ] ] -
@@ -437,7 +437,7 @@
 
   }
 
-  // The kinds of fake value: the files of fakes/types/ (padKinds, lib/subsystem.php) - a
+  // The kinds of fake value: the files of subs/fakes/types/ (padKinds, lib/subsystem.php) - a
   // kind is added by adding its file, which answers the value and reads its options with
   // padFakeOpt.
 
@@ -467,7 +467,7 @@
 
     $padFakeBefore = $padFakeOpts ?? [];
     $padFakeOpts   = ( $opts === TRUE ) ? TRUE : (array) $opts;
-    $padFakeValue  = include PAD . "fakes/types/$kind.php";
+    $padFakeValue  = include PAD . "subs/fakes/types/$kind.php";
     $padFakeOpts   = $padFakeBefore;
 
     return $padFakeValue;

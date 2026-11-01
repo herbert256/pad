@@ -1,6 +1,6 @@
 <?php
 
-  // The widgets are the files of pad/widgets/types/, as the engine reads them (padWidgetTypes).
+  // The widgets are the files of pad/subs/widgets/types/, as the engine reads them (padWidgetTypes).
 
   $tagAbout   = 'An interactive part of the page that works without JavaScript - ' . count ( padWidgetTypes () ) . ' of them, from tabs, a modal and a carousel to a toast, a dropdown and a wizard.';
   $tagGroup   = 'widgets';
@@ -25,7 +25,7 @@
 PAD;
 
   $tagParms   = [
-    'name' => 'The widget, a file of <code>pad/widgets/types/</code>: '
+    'name' => 'The widget, a file of <code>pad/subs/widgets/types/</code>: '
             . implode ( ', ', array_map ( fn ( $widget ) => "<code>$widget</code>", padWidgetTypes () ) )
             . '. The widget: type names it as well - <code>{widget:modal \'terms\'}</code> - and so does the bare name, <code>{modal \'terms\'}</code>, after every other kind of tag: a store, a field or an array of the name wins.',
     'first'  => 'The widget\'s own first parameter, the second of <code>{widget}</code>: the name of a modal, a drawer or a poll, the text of a copy box, the title of a toast, the button of a dropdown, the tip of a tooltip.' ];

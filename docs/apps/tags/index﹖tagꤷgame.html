@@ -261,7 +261,7 @@
                 <code>name</code>
               </dt>
               <dd>
-                The game, a file of <code>pad/games/types/</code>: <code>bullscows</code>, <code>crossword</code>, <code>fifteen</code>, <code>gomoku</code>, <code>hangman</code>, <code>hanoi</code>, <code>maze</code>, <code>memory</code>, <code>nim</code>, <code>nonogram</code>, <code>pegsolitaire</code>, <code>quiz</code>, <code>reversi</code>, <code>scramble</code>, <code>snake</code>, <code>sudoku</code>, <code>tictactoe</code>, <code>wordsearch</code>. The game: type names it as well - <code>{game:memory/}</code>, or bare, <code>{memory/}</code>, when nothing else has the name.
+                The game, a file of <code>pad/subs/games/types/</code>: <code>bullscows</code>, <code>crossword</code>, <code>fifteen</code>, <code>gomoku</code>, <code>hangman</code>, <code>hanoi</code>, <code>maze</code>, <code>memory</code>, <code>nim</code>, <code>nonogram</code>, <code>pegsolitaire</code>, <code>quiz</code>, <code>reversi</code>, <code>scramble</code>, <code>snake</code>, <code>sudoku</code>, <code>tictactoe</code>, <code>wordsearch</code>. The game: type names it as well - <code>{game:memory/}</code>, or bare, <code>{memory/}</code>, when nothing else has the name.
               </dd>
             </dl>
             <h3>
@@ -383,7 +383,7 @@
               Description
             </h2>
             <p>
-              <code>{game}</code> puts a little game on the page, played in the browser: the server checks what the game is given and writes its board, and the game's script - written once per page, with the CSP nonce - plays it. Every game is a file of <code>pad/games/types/</code>, its script and its style in <code>pad/games/assets/</code>; the files of <code>types/</code> are the games there are.
+              <code>{game}</code> puts a little game on the page, played in the browser: the server checks what the game is given and writes its board, and the game's script - written once per page, with the CSP nonce - plays it. Every game is a file of <code>pad/subs/games/types/</code>, its script and its style in <code>pad/subs/games/assets/</code>; the files of <code>types/</code> are the games there are.
             </p>
             <p>
               A game is written three ways, the same game each time: the tag with the game's name, <code>{game 'memory'/}</code>; the game: type, <code>{game:memory/}</code>; and the bare name, <code>{memory/}</code>, when no tag, store, field or sequence has that name. The words of a word game, the clues of a crossword, the questions of a quiz and the picture of a nonogram stand between the tags, one a line - taken as written, so they may hold braces - or come from a store named by <code>data=</code>.
@@ -429,7 +429,7 @@
                       </p></noscript>
                     </section>
                     <script>
-                    /* The runtime of the PAD games (pad/games/_lib/game.php writes it once per page). A game's
+                    /* The runtime of the PAD games (pad/subs/games/_lib/game.php writes it once per page). A game's
                     script registers itself - PadGames.register('memory', function (k, cfg) { ... }) - and is
                     started on every board of its kind: the ones on the page, and the ones a fragment, a live
                     region or a script brings later. k is the game's kit: its board, its status line and its

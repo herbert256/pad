@@ -160,7 +160,7 @@
               diagram:
             </h1>
             <p class="tag-about">
-              A diagram type, a file of pad/diagrams/types/, laid out on the server.
+              A diagram type, a file of pad/subs/diagrams/types/, laid out on the server.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#bare">Tried 26 of 31 for a bare name</a>
@@ -178,14 +178,14 @@
               Description
             </h2>
             <p>
-              A diagram of the kind the tag names, drawn from the lines between its tags - the diagram subsystem in <code>PAD/diagrams/</code> lays it out, as the <code>{diagram}</code> tag lays out the kind its <code>type=</code> names.
+              A diagram of the kind the tag names, drawn from the lines between its tags - the diagram subsystem in <code>PAD/subs/diagrams/</code> lays it out, as the <code>{diagram}</code> tag lays out the kind its <code>type=</code> names.
             </p>
             <pre><code>{diagram:flowchart direction='LR'}A[Order] --&gt; B{Paid?}{/diagram:flowchart}
 {diagram:sequence}Shop -&gt;&gt; Bank: Charge{/diagram:sequence}
 {flowchart}A --&gt; B{/flowchart}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a file <code>PAD/diagrams/types/&lt;name&gt;.php</code> (<code>padDiagramType()</code> in <code>PAD/diagrams/_lib/diagram.php</code>): the files there are the kinds, and a kind is added by adding its file. Bare, a diagram kind comes after every other kind of tag, the chart kinds and the games too - so <code>{sequence}</code> is the sequence tag, and the sequence diagram is <code>{diagram:sequence}</code> or <code>{diagram type='sequence'}</code>.
+              <strong>Resolution:</strong> a file <code>PAD/subs/diagrams/types/&lt;name&gt;.php</code> (<code>padDiagramType()</code> in <code>PAD/subs/diagrams/_lib/diagram.php</code>): the files there are the kinds, and a kind is added by adding its file. Bare, a diagram kind comes after every other kind of tag, the chart kinds and the games too - so <code>{sequence}</code> is the sequence tag, and the sequence diagram is <code>{diagram:sequence}</code> or <code>{diagram type='sequence'}</code>.
             </p>
             <h3>
               The handler

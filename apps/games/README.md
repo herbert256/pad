@@ -3,7 +3,7 @@
 ## Introduction
 
 Every game of the engine's games subsystem, to play: the home page has a card per game, a game's
-page plays it and shows the template that does. The games are the files of `pad/games/types/` -
+page plays it and shows the template that does. The games are the files of `pad/subs/games/types/` -
 the list, the names and the descriptions are read from them (`_lib/games.php`), so a game added
 to the engine is here without a change to this application.
 

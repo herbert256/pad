@@ -31,14 +31,14 @@
 .pad-input-dropzone .pi-drop-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pad-input-dropzone .pi-drop-said{margin:.3em 0 0;color:var(--pad-input-bad);font-size:.9em}
 .pad-input-dropzone .pi-drop-said:empty{display:none}
-</style><script>/* The runtime of the PAD inputs (pad/inputs/_lib/input.php writes it once per page). A kind's
+</style><script>/* The runtime of the PAD inputs (pad/subs/inputs/_lib/input.php writes it once per page). A kind's
    script registers itself - PadInputs.register('slider', function (frame, cfg, kit) { ... })
    - and is started on every field of its kind: the ones on the page, and the ones a fragment,
    a live region or a script brings later. frame is the field's .pad-input element, cfg its
    data-config, kit the helpers below. The server wrote a native control that a form posts
    as it is; a kind's script makes more of it and keeps the posted control's value true -
    and says so with the input and change events a typed value sends, which the browser's
-   checker of the rules (pad/rules/assets/validate.js) listens to. */
+   checker of the rules (pad/subs/rules/assets/validate.js) listens to. */
 
 (function () {
   'use strict';

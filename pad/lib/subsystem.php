@@ -4,10 +4,12 @@
   // ... - each a tag type of its own, handled by pad/types/<type>.php: written <type>:<kind>,
   // {chart:pie/}, and - when the subsystem allows it - bare, {pie/}, after every other kind of
   // tag (padTypeCommon, lib/type.php), so a tag, a store, a field or a sequence of the name
-  // wins. The kinds of a subsystem are the names of the files of pad/<directory>/types/, their
-  // extensions left off: a kind is added by adding its file.
+  // wins. The kinds of a subsystem are the names of the files of pad/subs/<directory>/types/,
+  // their extensions left off: a kind is added by adding its file. The maps and the validation
+  // rules are subsystems of pad/subs/ too, their kinds read the same way (padKinds), but no
+  // tag type: a view is the parameter of {map}, a rule a word of padValidate.
   //
-  // The list says, per type: its directory under pad/, whether its kinds are reached bare -
+  // The list says, per type: its directory under pad/subs/, whether its kinds are reached bare -
   // the icons and the fakes are not: their names, home or email, are the names of fields and
   // pages - and what a miss of the type: prefix is called (level/no.php). The bare names are
   // tried in its order, so where two subsystems have a kind of one name the first has it.
@@ -25,7 +27,7 @@
     'fake'    => [ 'fakes',    FALSE, 'fake kind'      ],
   ];
 
-  // The kinds of the subsystem in pad/<directory>/: the names of the files of its types/,
+  // The kinds of the subsystem in pad/subs/<directory>/: the names of the files of its types/,
   // without their extensions, sorted, each once - read from the listing kept between
   // requests (padDirList, lib/dirs.php) as written on disk, so on a file system that ignores
   // case {Pie} is no kind, as a tag in another case is none (padTagBuiltIn). A directory that
@@ -37,7 +39,7 @@
 
     if ( ! isset ( $kinds [$directory] ) ) {
       $names = [];
-      foreach ( ( is_dir ( PAD . "$directory/types" ) ? padDirList ( PAD . "$directory/types" ) : [] ) ?: [] as $file )
+      foreach ( ( is_dir ( PAD . "subs/$directory/types" ) ? padDirList ( PAD . "subs/$directory/types" ) : [] ) ?: [] as $file )
         if ( $file [0] != '.' and ( $dot = strrpos ( $file, '.' ) ) )
           $names [ substr ( $file, 0, $dot ) ] = TRUE;
       $names = array_keys ( $names );

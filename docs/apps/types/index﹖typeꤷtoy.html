@@ -180,7 +180,7 @@
               toy:
             </h1>
             <p class="tag-about">
-              A toy, a file of pad/toys/types/ - a live simulation in the browser.
+              A toy, a file of pad/subs/toys/types/ - a live simulation in the browser.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#bare">Tried 25 of 31 for a bare name</a>
@@ -199,14 +199,14 @@
               Description
             </h2>
             <p>
-              A small live simulation or visual toy played in the browser, of the kind the tag names - the toys subsystem in <code>PAD/toys/</code> sets it up, as the <code>{toy}</code> tag sets up the toy its parameter names.
+              A small live simulation or visual toy played in the browser, of the kind the tag names - the toys subsystem in <code>PAD/subs/toys/</code> sets it up, as the <code>{toy}</code> tag sets up the toy its parameter names.
             </p>
             <pre><code>{toy:life pattern='gun'/}
 {mandelbrot zoom=40, center='-0.745, 0.11'/}
 {lsystem 'dragon', iterations=14/}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a PHP file <code>PAD/toys/types/&lt;name&gt;.php</code> (<code>padToyType()</code> in <code>PAD/lib/toy.php</code>), its script <code>PAD/toys/assets/&lt;name&gt;.js</code> and its style, when it has one, <code>&lt;name&gt;.css</code> beside it: the files of <code>types/</code> are the toys, and a toy is added by adding its files. Bare, a toy comes after every other kind of tag, the chart kinds and the games too.
+              <strong>Resolution:</strong> a PHP file <code>PAD/subs/toys/types/&lt;name&gt;.php</code> (<code>padToyType()</code> in <code>PAD/lib/toy.php</code>), its script <code>PAD/subs/toys/assets/&lt;name&gt;.js</code> and its style, when it has one, <code>&lt;name&gt;.css</code> beside it: the files of <code>types/</code> are the toys, and a toy is added by adding its files. Bare, a toy comes after every other kind of tag, the chart kinds and the games too.
             </p>
             <h3>
               The handler
@@ -261,7 +261,7 @@
                       </p></noscript>
                     </section>
                     <script>
-                    /* The runtime of the PAD toys (pad/toys/_lib/toy.php writes it once per page). A toy's script
+                    /* The runtime of the PAD toys (pad/subs/toys/_lib/toy.php writes it once per page). A toy's script
                     registers itself - PadToys.register('life', function (k, cfg) { ... }) - and is started on
                     every stage of its kind: the ones on the page, and the ones a fragment, a live region or a
                     script brings later. k is the toy's kit: its stage, status line, counter line and bar, a
@@ -282,7 +282,7 @@
 
                     var kinds = {}, kits = [];
 
-                    // The colours of the palette, custom properties --pad-toy-<role> (toys/_lib/toy.php).
+                    // The colours of the palette, custom properties --pad-toy-<role> (subs/toys/_lib/toy.php).
                     var ROLES = ['ink', 'muted', 'line', 'surface', 'canvas', 'grid', 'accent', 'accent2', 'accent3', 'good', 'bad', 'mark', 'night', 'glow'];
                     var media = function (q) { return window.matchMedia ? window.matchMedia(q) : { matches: false }; };
                     var reduced = media('(prefers-reduced-motion: reduce)');

@@ -1,6 +1,6 @@
 <?php
 
-  // The kinds are the files of pad/fakes/types/, as the engine reads them (padFakeKinds).
+  // The kinds are the files of pad/subs/fakes/types/, as the engine reads them (padFakeKinds).
 
   $tagAbout   = 'Makes a fake value - a name, an email, a price, an IBAN, ' . count ( padFakeKinds () ) . ' kinds - or rows of several kinds, the same on every request, for prototypes and previews.';
   $tagGroup   = 'text';
@@ -14,7 +14,7 @@
 PAD;
 
   $tagParms   = [
-    'kind' => 'The kind, a file of <code>pad/fakes/types/</code>: '
+    'kind' => 'The kind, a file of <code>pad/subs/fakes/types/</code>: '
                 . implode ( ', ', array_map ( fn ( $kind ) => "<code>$kind</code>", padFakeKinds () ) )
                 . ' - or several, each a field under its kind\'s name or as <code>field:kind</code> says. The fake type names one as well, <code>{fake:email/}</code>.' ];
 

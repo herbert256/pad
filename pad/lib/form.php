@@ -15,7 +15,7 @@
   // padFormError   the message padValidate left for a field, when its form came back
   // padValidateClient  rules as the browser's checker reads them - each with the message
   //                padValidate would give - for {form ..., client} and for a component that
-  //                checks with the same rules the page's PHP checks with (rules/assets/)
+  //                checks with the same rules the page's PHP checks with (subs/rules/assets/)
   // padFormRules   the rules the page's template gives the fields of its named forms, or
   //                of one of them
   //
@@ -42,8 +42,8 @@
   const padFormName = 'padForm';
   const padFormAt   = 'padFormAt';
 
-  // The rules are the files of pad/rules/types/ - <rule>.php the server's check, and
-  // pad/rules/assets/<rule>.js the browser's - so a rule is added by adding its files, and
+  // The rules are the files of pad/subs/rules/types/ - <rule>.php the server's check, and
+  // pad/subs/rules/assets/<rule>.js the browser's - so a rule is added by adding its files, and
   // padValidate, the browser's checker, the messages that list the rules and the pages that
   // document them all read the directory (padRuleTypes). A rule's file answers what the rule
   // is, read once a request (padRule):
@@ -78,7 +78,7 @@
     static $rules = [];
 
     if ( ! array_key_exists ( $name, $rules ) )
-      $rules [$name] = padKind ( 'rules', $name ) ? include PAD . "rules/types/$name.php" : NULL;
+      $rules [$name] = padKind ( 'rules', $name ) ? include PAD . "subs/rules/types/$name.php" : NULL;
 
     return $rules [$name];
 
@@ -1091,8 +1091,8 @@
 
   }
 
-  // The checker's code: the runtime, rules/assets/validate.js, with the script of every rule
-  // of rules/types/ that has one - rules/assets/<rule>.js - where its /*rules*/ stands, and
+  // The checker's code: the runtime, subs/rules/assets/validate.js, with the script of every rule
+  // of subs/rules/types/ that has one - subs/rules/assets/<rule>.js - where its /*rules*/ stands, and
   // the rules that judge an empty field, read from their PHP files, where /*empties*/ does:
   // what the browser does is what the directory says, as padValidate's is. Each rule's script
   // runs in a function of its own, inside the runtime's: it reads the runtime's helpers -
@@ -1113,11 +1113,11 @@
     foreach ( padRuleTypes () as $name ) {
       if ( padRule ( $name ) ['empty'] ?? FALSE )
         $empties [$name] = TRUE;
-      if ( ( $script = padFileGet ( PAD . "rules/assets/$name.js" ) ) !== '' )
+      if ( ( $script = padFileGet ( PAD . "subs/rules/assets/$name.js" ) ) !== '' )
         $rules .= "(function () {\n$script})();\n";
     }
 
-    $code = strtr ( padFileGet ( PAD . 'rules/assets/validate.js' ),
+    $code = strtr ( padFileGet ( PAD . 'subs/rules/assets/validate.js' ),
                     [ '/*empties*/{}' => json_encode ( (object) $empties ), '/*rules*/' => $rules ] );
 
     return $code = preg_replace ( '~^[ \t]*(//[^\n]*)?\n~m', '', $code );
@@ -1146,8 +1146,8 @@
     $forms  = [];
     $offset = 0;
 
-    // The rich fields of pad/inputs/ carry rules= as {input} does: {input:slider 'volume'} and
-    // the bare {slider 'volume'}, each kind a file of inputs/types/.
+    // The rich fields of pad/subs/inputs/ carry rules= as {input} does: {input:slider 'volume'} and
+    // the bare {slider 'volume'}, each kind a file of subs/inputs/types/.
 
     $kinds = implode ( '|', array_map ( fn ( $kind ) => preg_quote ( $kind, '/' ), padKinds ( 'inputs' ) ) );
     $tags  = '(?:pad:)?(form|input|textarea)' . ( $kinds !== '' ? "|((?:input:)?(?:$kinds))" : '' );
@@ -1179,7 +1179,7 @@
       $items = padFormRulesItems ( $parms );
 
       // The content of a rich field written as a pair - the text a markdown editor starts
-      // with, the choices of a combobox - is taken as written and never rendered (inputs/
+      // with, the choices of a combobox - is taken as written and never rendered (subs/inputs/
       // input.php), so a field written in it is text, as in {ignore}: the reading goes on
       // after its closing tag. {mdeditor 'body'}Write {input 'email', rules='required'/}
       // ...{/mdeditor} gave the form the rules of an email field it does not have, and no

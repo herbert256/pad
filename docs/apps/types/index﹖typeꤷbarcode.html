@@ -151,7 +151,7 @@
               barcode:
             </h1>
             <p class="tag-about">
-              A barcode symbology, a file of pad/codes/types/, encoded on the server.
+              A barcode symbology, a file of pad/subs/codes/types/, encoded on the server.
             </p>
             <p class="chips">
               <a class="chip" href="index%EF%B9%96groups.html#subsystems">Subsystems</a> <a class="chip chip-form" href="index%EF%B9%96order.html#bare">Tried 28 of 31 for a bare name</a>
@@ -170,14 +170,14 @@
               Description
             </h2>
             <p>
-              A barcode of the symbology the tag names - the codes subsystem in <code>PAD/codes/</code> encodes and draws it, as the <code>{barcode}</code> tag draws the symbology its <code>type=</code> names.
+              A barcode of the symbology the tag names - the codes subsystem in <code>PAD/subs/codes/</code> encodes and draws it, as the <code>{barcode}</code> tag draws the symbology its <code>type=</code> names.
             </p>
             <pre><code>{barcode:ean13 '400638133393'/}
 {barcode:datamatrix $serial, size=120/}
 {itf14 '1540014128876'/}
 </code></pre>
             <p>
-              <strong>Resolution:</strong> a file <code>PAD/codes/types/&lt;name&gt;.php</code> (<code>padKinds ('codes')</code>): the files there are the symbologies - <code>qr</code> among them, which the <code>{qr}</code> tag writes by a name of its own - and a symbology is added by adding its file and its encoder in <code>PAD/codes/_lib/</code>. Bare, a symbology comes after every other kind of tag, the chart kinds and the games too.
+              <strong>Resolution:</strong> a file <code>PAD/subs/codes/types/&lt;name&gt;.php</code> (<code>padKinds ('codes')</code>): the files there are the symbologies - <code>qr</code> among them, which the <code>{qr}</code> tag writes by a name of its own - and a symbology is added by adding its file and its encoder in <code>PAD/subs/codes/_lib/</code>. Bare, a symbology comes after every other kind of tag, the chart kinds and the games too.
             </p>
             <h3>
               The handler

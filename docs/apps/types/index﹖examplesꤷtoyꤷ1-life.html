@@ -183,7 +183,7 @@
           </p></noscript>
         </section>
         <script>
-        /* The runtime of the PAD toys (pad/toys/_lib/toy.php writes it once per page). A toy's script
+        /* The runtime of the PAD toys (pad/subs/toys/_lib/toy.php writes it once per page). A toy's script
         registers itself - PadToys.register('life', function (k, cfg) { ... }) - and is started on
         every stage of its kind: the ones on the page, and the ones a fragment, a live region or a
         script brings later. k is the toy's kit: its stage, status line, counter line and bar, a
@@ -204,7 +204,7 @@
 
         var kinds = {}, kits = [];
 
-        // The colours of the palette, custom properties --pad-toy-<role> (toys/_lib/toy.php).
+        // The colours of the palette, custom properties --pad-toy-<role> (subs/toys/_lib/toy.php).
         var ROLES = ['ink', 'muted', 'line', 'surface', 'canvas', 'grid', 'accent', 'accent2', 'accent3', 'good', 'bad', 'mark', 'night', 'glow'];
         var media = function (q) { return window.matchMedia ? window.matchMedia(q) : { matches: false }; };
         var reduced = media('(prefers-reduced-motion: reduce)');

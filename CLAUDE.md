@@ -40,7 +40,8 @@ The template structure mirrors the application flow. No routing, no controllers 
 
 ```
 pad/
-├── pad/      # PAD framework core (template engine, tag processors, expression evaluator)
+├── pad/      # PAD framework core (template engine, tag processors, expression evaluator);
+│             #   pad/subs/ the directory-driven subsystems - charts, games, toys, widgets, icons ...
 ├── apps/     # PAD applications (each subdirectory is a self-contained app)
 ├── www/      # Web server entry points (PHP entry points for each app); www/_common/ the frame's CSS and JS
 ├── editors/  # Editor kits, the language server, the command-line renderer
@@ -502,7 +503,7 @@ Renders when the value differs from the previous row of the loop; the first row 
 The fields refill from the post when their form came back and show the message
 `padValidate` found - in the page's PHP:
 `if ( padPosted ( 'contact' ) ) $errors = padValidate ( [ 'email' => 'required|email' ] );`
-Rules - a file each of `pad/rules/types/`: required, email, url, numeric, integer, min:n, max:n,
+Rules - a file each of `pad/subs/rules/types/`: required, email, url, numeric, integer, min:n, max:n,
 between:a,b, digits[:n], in:a,b, regex:/x/, same:field, accepted, date, time, alpha, alphanum,
 starts_with:x, ends_with:x, lowercase, uppercase, color, uuid, ip[:v4|v6], slug, json, iban. A
 list passes `required` and `in:` (every item) only, and only on a field named for one
@@ -693,16 +694,16 @@ Resolve naming conflicts with explicit prefixes:
 | `property:` | Tag property | `{property:current}` |
 | `script:` | Script from `_scripts/` | `{script:backup}` |
 | `sequence:` | Sequence type | `{sequence:fibonacci}` as a tag, `sequence:fibonacci(8)` in an expression - the 8th term |
-| `chart:` | Chart type | `{chart:pie data='budget'/}`, the same chart as `{chart 'pie', data='budget'/}` - a kind is a file of `pad/charts/types/` |
-| `game:` | Game | `{game:memory pairs=6/}`, the same game as `{game 'memory', pairs=6/}` - a game is a file of `pad/games/types/` |
-| `toy:` | Toy | `{toy:life/}`, as `{toy 'life'/}` - a toy is a file of `pad/toys/types/` |
-| `diagram:` | Diagram kind | `{diagram:state}...{/diagram:state}`, the same as `{diagram type='state'}` - a kind is a file of `pad/diagrams/types/` |
-| `widget:` | Widget | `{widget:modal 'terms'}...{/widget:modal}`, as `{widget 'modal', 'terms'}` or bare `{modal 'terms'}` - a widget is a file of `pad/widgets/types/` |
-| `barcode:` | Barcode symbology | `{barcode:ean13 '400638133393'/}`, as `{barcode '...', type='ean13'/}` - a symbology is a file of `pad/codes/types/` |
-| `icon:` | Icon | `{icon:star size=20/}`, as `{icon 'star', size=20/}` - an icon is a file of `pad/icons/types/`; never bare |
-| `embed:` | Embed provider | `{embed:youtube 'id'/}`, as `{embed 'https://youtu.be/id'/}` - a provider is a file of `pad/embeds/types/` |
-| `fake:` | Fake kind | `{fake:email/}`, as `{fake 'email'/}` - a kind is a file of `pad/fakes/types/`; never bare |
-| `input:` | Rich form field | `{input:slider 'volume'/}`, as bare `{slider 'volume'/}` - a kind is a file of `pad/inputs/types/` |
+| `chart:` | Chart type | `{chart:pie data='budget'/}`, the same chart as `{chart 'pie', data='budget'/}` - a kind is a file of `pad/subs/charts/types/` |
+| `game:` | Game | `{game:memory pairs=6/}`, the same game as `{game 'memory', pairs=6/}` - a game is a file of `pad/subs/games/types/` |
+| `toy:` | Toy | `{toy:life/}`, as `{toy 'life'/}` - a toy is a file of `pad/subs/toys/types/` |
+| `diagram:` | Diagram kind | `{diagram:state}...{/diagram:state}`, the same as `{diagram type='state'}` - a kind is a file of `pad/subs/diagrams/types/` |
+| `widget:` | Widget | `{widget:modal 'terms'}...{/widget:modal}`, as `{widget 'modal', 'terms'}` or bare `{modal 'terms'}` - a widget is a file of `pad/subs/widgets/types/` |
+| `barcode:` | Barcode symbology | `{barcode:ean13 '400638133393'/}`, as `{barcode '...', type='ean13'/}` - a symbology is a file of `pad/subs/codes/types/` |
+| `icon:` | Icon | `{icon:star size=20/}`, as `{icon 'star', size=20/}` - an icon is a file of `pad/subs/icons/types/`; never bare |
+| `embed:` | Embed provider | `{embed:youtube 'id'/}`, as `{embed 'https://youtu.be/id'/}` - a provider is a file of `pad/subs/embeds/types/` |
+| `fake:` | Fake kind | `{fake:email/}`, as `{fake 'email'/}` - a kind is a file of `pad/subs/fakes/types/`; never bare |
+| `input:` | Rich form field | `{input:slider 'volume'/}`, as bare `{slider 'volume'/}` - a kind is a file of `pad/subs/inputs/types/` |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
 
@@ -763,7 +764,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [CORS](docs/FEATURES.md#cross-origin-requests-cors) | `$padCors` |
 | [Login, gates, feature flags](docs/FEATURES.md#logging-in-gates-and-feature-flags) | `padLogin`, `padAuthRequire`, `{auth}`, `{guest}`, `{can}`, `padGate`, `{feature}` |
 | [Asset versioning](docs/FEATURES.md#asset-versioning) | `{asset 'app.css', tag/}`, `padAsset ()` |
-| [Fake data](docs/FEATURES.md#migrations-and-seeders) | `{fake 'email'/}`, `{fake 'name, email', rows=5, toData='people'/}`, `padFake ()`, `padFakeRows ()` - a kind per file of `pad/fakes/types/` |
+| [Fake data](docs/FEATURES.md#migrations-and-seeders) | `{fake 'email'/}`, `{fake 'name, email', rows=5, toData='people'/}`, `padFake ()`, `padFakeRows ()` - a kind per file of `pad/subs/fakes/types/` |
 | [Migrations and seeders](docs/FEATURES.md#migrations-and-seeders) | `_migrations/`, `_seeds/`, `pad migrate`, `padFactory`, `padFake*` |
 | [Queues and the scheduler](docs/FEATURES.md#queues-and-the-scheduler) | `padQueue ()`, `_jobs/`, `pad work`, `_schedule.php` |
 | [Offline applications](docs/FEATURES.md#offline-applications-in-the-browser) | `pad pack notes`, `_offline.json`, `padWasm ()` |
@@ -774,7 +775,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Page links](docs/FEATURES.md#page-links-pager-tag) | `page=`, `rows=`, `{pager 'products'}` |
 | [Recursive trees](docs/FEATURES.md#recursive-trees) | `{tree}`, `{branch}`, `{recurse}` |
 | [Form rules](docs/FEATURES.md#form-rules-on-the-fields-and-in-the-browser) | `rules='required\|email'` on a field, `client`, `{validator}` |
-| [Rich form fields](docs/FEATURES.md#rich-form-fields) | `{slider 'v'/}`, `{input:datepicker 'd'/}`, `{stars}`, `{taginput}`, `{signature}` ... - native fields made more of, a kind per file of `pad/inputs/types/` |
+| [Rich form fields](docs/FEATURES.md#rich-form-fields) | `{slider 'v'/}`, `{input:datepicker 'd'/}`, `{stars}`, `{taginput}`, `{signature}` ... - native fields made more of, a kind per file of `pad/subs/inputs/types/` |
 | [Layouts](docs/FEATURES.md#layouts-extends--block--parent) | `{extends}`, `{block 'title'}`, `{parent}` |
 | [Components](docs/FEATURES.md#components-slots--parms) | `{slot}`, `{parms}` in a `_tags/x.pad` |
 | [Tags defined in the template](docs/FEATURES.md#tags-defined-in-the-template-define--macro) | `{define}`, `{macro}` |
@@ -788,17 +789,17 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Translations, locale formatting](docs/FEATURES.md#translations-and-locale-formatting) | `{trans}`, `_lang/`, `\| currency`, `\| localDate` |
 | [Markdown](docs/FEATURES.md#markdown) | `{markdown}`, `\| markdown` |
 | [Markdown collections](docs/FEATURES.md#markdown-collections) | `{collection 'blog'}`, `_content/` |
-| [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/charts/types/`; `{sparkline/}`; `client` draws it in the browser (`pad/charts/client/`) |
-| [Games](docs/FEATURES.md#games) | `{game 'memory'/}`, `{game:sudoku/}`, `{crossword}...{/crossword}` - 18 games played in the browser, a game per file of `pad/games/types/` |
-| [Toys](docs/FEATURES.md#toys) | `{toy 'life'/}`, `{toy:mandelbrot/}`, bare `{boids/}` - live simulations in the browser, a toy per file of `pad/toys/types/` |
-| [Widgets](docs/FEATURES.md#widgets) | `{tabs}`, `{modal 'x'}`, `{toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{tooltip}`, `{wizard}`, `{lightbox}`, `{drawer}`, `{breadcrumb/}` - work without JavaScript, a widget per file of `pad/widgets/types/` |
-| [Diagrams](docs/FEATURES.md#diagrams) | `{diagram}...{/diagram}`, `{diagram:state}`, `{mindmap}`, `{gitgraph}` - flowchart, sequence, state, class, er, mindmap, tree, journey, gitgraph: a kind per file of `pad/diagrams/types/` |
-| [Maps](docs/FEATURES.md#maps) | `{map 'eu', data=, key=, value=/}` - a view per file of `pad/maps/types/` |
-| [Embeds](docs/FEATURES.md#embeds) | `{embed 'url'/}`, `{youtube 'id'/}`, `{openstreetmap 'lat,lon'/}` - click to load, a provider per file of `pad/embeds/types/`; `padEmbedSources ()` |
+| [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/subs/charts/types/`; `{sparkline/}`; `client` draws it in the browser (`pad/subs/charts/client/`) |
+| [Games](docs/FEATURES.md#games) | `{game 'memory'/}`, `{game:sudoku/}`, `{crossword}...{/crossword}` - 18 games played in the browser, a game per file of `pad/subs/games/types/` |
+| [Toys](docs/FEATURES.md#toys) | `{toy 'life'/}`, `{toy:mandelbrot/}`, bare `{boids/}` - live simulations in the browser, a toy per file of `pad/subs/toys/types/` |
+| [Widgets](docs/FEATURES.md#widgets) | `{tabs}`, `{modal 'x'}`, `{toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{tooltip}`, `{wizard}`, `{lightbox}`, `{drawer}`, `{breadcrumb/}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
+| [Diagrams](docs/FEATURES.md#diagrams) | `{diagram}...{/diagram}`, `{diagram:state}`, `{mindmap}`, `{gitgraph}` - flowchart, sequence, state, class, er, mindmap, tree, journey, gitgraph: a kind per file of `pad/subs/diagrams/types/` |
+| [Maps](docs/FEATURES.md#maps) | `{map 'eu', data=, key=, value=/}` - a view per file of `pad/subs/maps/types/` |
+| [Embeds](docs/FEATURES.md#embeds) | `{embed 'url'/}`, `{youtube 'id'/}`, `{openstreetmap 'lat,lon'/}` - click to load, a provider per file of `pad/subs/embeds/types/`; `padEmbedSources ()` |
 | [Month calendar](docs/FEATURES.md#month-calendar) | `{calendar}` |
 | [Syntax highlighting](docs/FEATURES.md#syntax-highlighting) | `{highlight 'php'}`, `{source}` |
-| [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{qr}`, `{barcode type='upce'}`, `{barcode:ean13 '...'/}`, bare `{itf14 '...'/}`, `{datamatrix '...'/}` - a symbology per file of `pad/codes/types/` |
-| [Icons](docs/FEATURES.md#icons) | `{icon 'star'/}`, `{icon:star/}` - an icon per file of `pad/icons/types/` (an SVG each) |
+| [QR codes and barcodes](docs/FEATURES.md#qr-codes-and-barcodes) | `{qr}`, `{barcode type='upce'}`, `{barcode:ean13 '...'/}`, bare `{itf14 '...'/}`, `{datamatrix '...'/}` - a symbology per file of `pad/subs/codes/types/` |
+| [Icons](docs/FEATURES.md#icons) | `{icon 'star'/}`, `{icon:star/}` - an icon per file of `pad/subs/icons/types/` (an SVG each) |
 | [Showcase tags](docs/FEATURES.md#showcase-tags) | `{avatar}`, `{progress}`, `{rating}`, `{icon}`, `{datatable}`, `{toc}`, `{diagram}`, `{map}`, `{pdf}` ... |
 | [Settings](docs/FEATURES.md#configuration-settings) | every `$pad*` setting - defaults and comments in `pad/config/config.php` |
 | [Designer preview](docs/FEATURES.md#designer-preview-with-sample-data) | `?page&padSample`, `_samples/`, `pad sample` |
@@ -1036,8 +1037,8 @@ drawn in [docs/PAD.md](docs/PAD.md#processing-pipeline).
   CORS (`inits/_lib/`), toolbar, live reload (`exits/_lib/`), error pages, dumps, the source
   map's error-time walk (`error/_lib/`), data answers, the designer preview (`build/_lib/`),
   the select builder (`select/_lib/`), lookup (`functions/_lib/`), group aggregates
-  (`handling/_lib/`), the charts (`charts/_lib/`, a kind per file of `charts/types/`), the
-  games (`games/_lib/`, a game per file of `games/types/`) -
+  (`handling/_lib/`), the charts (`subs/charts/_lib/`, a kind per file of `subs/charts/types/`), the
+  games (`subs/games/_lib/`, a game per file of `subs/games/types/`) -
   included where the feature runs. What the engine calls on every
   request, a pipe, a documented PHP helper or a page calls stays in `pad/lib/` - as the
   entry, which includes the rest when it runs (`padMarkdown`, `padMail`, `padHighlight`,
@@ -1148,7 +1149,7 @@ the `claude` line of `./ci.sh`.
 | `admin` | Standard | The web PAD console, the successor of `apps`: every application with its pages, parts and settings, files, search, the pad command (lint, test, migrate, queue, schedule ...) with a history, maintenance, queues, schedules, logs, error dumps, the mail outbox, DATA/ storage, PHP, the PAD settings, git and its own users - behind a login, this machine only |
 | `alpine` | Standard | PAD + Alpine: state from PHP with `x-data="{^field}"`, components in `www/` with `Alpine.data`, live search over `$padExpose`, one set of rules for both sides, a list kept in the session, server-sent events |
 | `apps` | Standard | Lists all PAD applications with descriptions from README files |
-| `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family (every kind of `pad/charts/types/`), every example a page of three cells: the data, the tag, the chart |
+| `charts` | Standard | A showcase of the `{chart}` tag - a pulldown per chart family (every kind of `pad/subs/charts/types/`), every example a page of three cells: the data, the tag, the chart |
 | `showcase` | Standard | A showcase of the tags that draw, format and interact - a pulldown per group, a section per tag, every example its template beside the result |
 | `tags` | Standard | A page per tag, named with its type prefix - every built-in tag, `{pad:if}`, every kind of the subsystems, `{chart:pie}`, and every sequence type, `{sequence:fibonacci}` - one line, syntax with the tag's own options, a longer description and live examples - with indexes by name, group, form and option, a cheat sheet and a search |
 | `types` | Standard | A page per type of tag - the prefix of `{pad:if}`, `{chart:pie}`, `{field:name}` - with what it reaches and its tags linked into the tags app, its place in the order a bare name is tried in, its section of TYPES.md and live examples; indexes by name, order and group, a cheat sheet and a search |
@@ -1158,9 +1159,9 @@ the `claude` line of `./ci.sh`.
 | `demo` | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
 | `develop` | Standard | Development tools for PAD - the source trimmer, the harvest of the reference and the examples, the error listing |
 | `edit` | Standard | A browser editor for every application, behind a login, this machine only by default - file tree with new, copy, rename, delete, upload and trash; Monaco with PAD colouring, completion, hover, go-to-definition and PAD's own checks, PHP completion; preview, history, search, git, a terminal, an Xdebug step debugger; the framework's own pad/ in the tree too |
-| `games` | Standard | Every game of the games subsystem to play - a card per game, a page per game with the template that plays it, all read from `pad/games/types/` |
-| `toys` | Standard | Every toy of the toys subsystem to play with - a card per toy, a page per toy that runs it beside its template, read from `pad/toys/types/` |
-| `inputs` | Standard | Every rich form field of `pad/inputs/` to try - a page per kind in a form that posts back with what the page received, one form with them all checked in the browser too |
+| `games` | Standard | Every game of the games subsystem to play - a card per game, a page per game with the template that plays it, all read from `pad/subs/games/types/` |
+| `toys` | Standard | Every toy of the toys subsystem to play with - a card per toy, a page per toy that runs it beside its template, read from `pad/subs/toys/types/` |
+| `inputs` | Standard | Every rich form field of `pad/subs/inputs/` to try - a page per kind in a form that posts back with what the page received, one form with them all checked in the browser too |
 | `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |
 | `hello` | Minimal | Hello World example demonstrating page pairing |
 | `htmx` | Standard | PAD + htmx: active search, lazy loading, infinite scroll, inline editing, forms, out-of-band updates and server-sent events - htmx asks for a part, PAD answers its `{fragment}` (by `HX-Target`), each example with a request log and its sources |

@@ -1,6 +1,6 @@
 <?php
 
-  // The rich form fields of the engine, as the engine reads them - the files of pad/inputs/types/
+  // The rich form fields of the engine, as the engine reads them - the files of pad/subs/inputs/types/
   // (padInputTypes) - each with what its own file says of it: the comment at its top, its line
   // the words after the dash up to the first colon or full stop.
 
@@ -17,7 +17,7 @@
 
       $comment = [];
 
-      foreach ( file ( PAD . "inputs/types/$kind.php", FILE_IGNORE_NEW_LINES ) as $line ) {
+      foreach ( file ( PAD . "subs/inputs/types/$kind.php", FILE_IGNORE_NEW_LINES ) as $line ) {
         if ( preg_match ( '/^\s*\/\/\s?(.*)$/', $line, $match ) ) {
           if ( trim ( $match [1] ) === '' )
             break;
