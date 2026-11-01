@@ -35,8 +35,41 @@
 
   // The names of the first row's fields: the numeric ones and the other scalar ones, in
   // their order - the fields a kind falls back on when an option names none.
+  //
+  // $sparse - a kind whose rows may leave a value out, dumbbell and errorbar - tells a field
+  // by the first row with a value in it, '' and NULL being none, the fields still in the
+  // order they come: a first row with an end or its estimate left out, a row the kind draws,
+  // made that field a name, and the chart failed for want of numeric fields.
 
-  function padChartGuess ( $rows ) {
+  function padChartGuess ( $rows, $sparse = FALSE ) {
+
+    if ( $sparse ) {
+
+      $kinds = [];
+
+      foreach ( (array) $rows as $row ) {
+
+        foreach ( padChartRow ( $row ) as $key => $field )
+          if ( ( $kinds [$key] ?? NULL ) === NULL )
+            $kinds [$key] = ( $field === NULL or is_string ( $field ) and trim ( $field ) === '' ) ? NULL
+                          : ( is_numeric ( $field ) ? 'number' : ( is_scalar ( $field ) ? 'name' : 'other' ) );
+
+        if ( ! in_array ( NULL, $kinds, TRUE ) )
+          break;
+
+      }
+
+      $numbers = $names = [];
+
+      foreach ( $kinds as $key => $kind )
+        if ( $kind === 'number' )
+          $numbers [] = (string) $key;
+        elseif ( $kind === 'name' )
+          $names [] = (string) $key;
+
+      return [ $numbers, $names ];
+
+    }
 
     foreach ( (array) $rows as $row ) {
 

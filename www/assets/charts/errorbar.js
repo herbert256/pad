@@ -8,7 +8,7 @@
 
   C.padChartErrorbar = function (rows, width, height) {
 
-    var guess = C.padChartGuess(rows);
+    var guess = C.padChartGuess(rows, true);
     var low   = C.str(C.padTagParm('low',  'low'));
     var high  = C.str(C.padTagParm('high', 'high'));
     var used  = [low, high];

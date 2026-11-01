@@ -21,7 +21,7 @@
 
     global $padCheckSyntax;
 
-    list ( $numbers, $names ) = padChartGuess ( $rows );
+    list ( $numbers, $names ) = padChartGuess ( $rows, TRUE );
 
     // The fields from= and to= name are no other field's guess, as errorbar keeps its bounds
     // out: to='a' alone took a for from= as well, and the chart failed for want of two fields.

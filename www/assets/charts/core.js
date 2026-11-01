@@ -811,7 +811,26 @@
     return C.isArray(row) ? row : new Map([['value', row]]);
   };
 
-  C.padChartGuess = function (rows) {
+  C.padChartGuess = function (rows, sparse) {
+    if (sparse) {
+      var kinds = new Map(), all = C.values(rows);
+      for (var i = 0; i < all.length; i++) {
+        C.entries(C.padChartRow(all[i])).forEach(function (e) {
+          var key = C.str(e[0]), v = e[1];
+          if (kinds.has(key) && kinds.get(key) !== null) return;
+          kinds.set(key, (v === null || v === undefined || (typeof v === 'string' && C.trim(v) === '')) ? null
+                         : (C.isNumeric(v) ? 'number' : (C.isScalar(v) ? 'name' : 'other')));
+        });
+        if (!Array.from(kinds.values()).some(function (k) { return k === null; }))
+          break;
+      }
+      var nums = [], strs = [];
+      kinds.forEach(function (kind, key) {
+        if (kind === 'number') nums.push(key);
+        else if (kind === 'name') strs.push(key);
+      });
+      return [nums, strs];
+    }
     var first = C.values(rows)[0];
     if (first === undefined) return [[], []];
     var row = C.padChartRow(first), numbers = [], names = [];

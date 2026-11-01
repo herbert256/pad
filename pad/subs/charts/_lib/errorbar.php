@@ -23,7 +23,7 @@
 
     global $padCheckSyntax;
 
-    list ( $numbers, $names ) = padChartGuess ( $rows );
+    list ( $numbers, $names ) = padChartGuess ( $rows, TRUE );
 
     $low   = (string) padTagParm ( 'low',  'low'  );
     $high  = (string) padTagParm ( 'high', 'high' );
