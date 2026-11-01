@@ -194,6 +194,30 @@
       [ 'roles[]',  'not_in:admin,root',                 [ 'roles[]' => [ 'editor', ' root ' ] ] ],
       [ 'roles[]',  'not_in:admin,root',                 [ 'roles[]' => [ ] ] ],
       [ 'role',     'not_in:admin,root',                 [ 'role' => [ 'editor' ] ] ]
+    ],
+
+    // The rules of the second round (types: rules), each with the posts that tell its cases
+    // apart, replayed alike by the framework case of its rule and by client_parity.
+
+    'different' => [
+      [ 'password', 'different:current',                 [ 'current' => 'secret', 'password' => 'secret' ] ],
+      [ 'password', 'different:current',                 [ 'current' => 'secret', 'password' => 'secret2' ] ],
+      [ 'password', 'different:current',                 [ 'current' => ' secret ', 'password' => 'secret' ] ],
+      [ 'password', 'different:current',                 [ 'current' => 'Secret', 'password' => 'secret' ] ],
+      [ 'password', 'different:current',                 [ 'current' => '0', 'password' => '0' ] ],
+      [ 'password', 'different:current',                 [ 'current' => '', 'password' => 'secret' ] ],
+      [ 'password', 'different:current',                 [ 'password' => 'secret' ] ],
+      [ 'password', 'different:current',                 [ 'current' => 'secret', 'password' => '' ] ],
+      [ 'password', 'different:current',                 [ 'current' => 'secret' ] ],
+      [ 'password', 'required|different:current',        [ 'current' => 'secret', 'password' => '' ] ],
+      [ 'password', 'different: current ',               [ 'current' => 'secret', 'password' => 'secret' ] ],
+      [ 'password', 'different:user[pass]',              [ 'user[pass]' => 'secret', 'password' => 'secret' ] ],
+      [ 'password', 'different:user[pass]',              [ 'user[pass]' => 'other', 'password' => 'secret' ] ],
+      [ 'password', 'different:old[]',                   [ 'old[]' => [ 'secret' ], 'password' => 'secret' ] ],
+      [ 'new_password', 'different:current_password',    [ 'current_password' => 'pw', 'new_password' => 'pw' ] ],
+      [ 'new_password', 'different:current_password|min:3', [ 'current_password' => 'pw', 'new_password' => 'px' ] ],
+      [ 'passwords[]', 'different:current',              [ 'current' => 'a', 'passwords[]' => [ 'b' ] ] ],
+      [ 'password', 'different:current',                 [ 'current' => 'a', 'password' => [ 'b' ] ] ]
     ]
 
   ];

@@ -869,7 +869,7 @@ the rules are the files of `pad/subs/rules/types/` - `required`, `email`, `url`,
 `lowercase`, `uppercase`, `color`, `uuid`, `ip`, `slug`, `json`, `iban`, `not_in:a,b`, and the
 rules that look at another field - `required_if:field,value`, `required_unless:field,value`,
 `required_with:field`, `required_without:field`, `before:field` and `after:field` (or a date,
-`after:2026-01-01`). An empty field is checked for `required`, `accepted` and the
+`after:2026-01-01`), `different:field` (the mirror of `same:`). An empty field is checked for `required`, `accepted` and the
 `required_*` rules only. The field shows the message in the words of its own
 label, with `aria-invalid` and `aria-describedby`.
 

@@ -510,6 +510,8 @@ starts_with:x, ends_with:x, lowercase, uppercase, color, uuid, ip[:v4|v6], slug,
 not_in:a,b - and the rules that look at another field of the post: required_if:field,value[,value],
 required_unless:field,value, required_with:field[,field], required_without:field[,field],
 before:field|date and after:field|date (ISO `2026-11-01`, `2026-11-01T14:30`, `:15`, `:15.25`). A
+different:field (the mirror of same:),
+before:field|date and after:field|date (ISO `2026-11-01` or `2026-11-01T14:30`). A
 list passes `required`, the required_* rules, `in:` and `not_in:` (every item) only, and only on a field named for one
 (`tags[]`, in the rules too); on a field of one value it is refused - "must be a
 single value" - and any other rule in the `rules=` of a field that posts a list (`tags[]`, a
