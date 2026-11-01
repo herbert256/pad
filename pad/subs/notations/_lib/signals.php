@@ -117,10 +117,13 @@
       case 'V': return $field ( $w ) . $saltire ( $r );
       case 'W': return $field ( $b ) . $rect ( 10, 8.33, 40, 33.33, $w ) . $rect ( 20, 16.67, 20, 16.67, $r );
       case 'X': return $field ( $w ) . $cross ( $b );
+      // Yankee: yellow and red stripes rising from the lower hoist to the upper fly, a yellow
+      // one in the upper corner of the hoist - each from x + 50 at the top to x at the bottom.
+
       case 'Y':
         $stripes = $field ( $r );
-        for ( $i = -5; $i < 12; $i += 2 )
-          $stripes .= $poly ( ( $i * 8.5 ) . ',0 ' . ( ( $i + 1 ) * 8.5 ) . ',0 ' . ( ( $i + 1 ) * 8.5 + 50 ) . ',50 ' . ( $i * 8.5 + 50 ) . ',50', $y );
+        for ( $i = -6; $i <= 6; $i += 2 )
+          $stripes .= $poly ( ( $i * 8.5 + 50 ) . ',0 ' . ( $i * 8.5 + 58.5 ) . ',0 ' . ( $i * 8.5 + 8.5 ) . ',50 ' . ( $i * 8.5 ) . ',50', $y );
         return $stripes;
       case 'Z': return $poly ( '0,0 60,0 30,25', $y ) . $poly ( '60,0 60,50 30,25', $b )
                      . $poly ( '0,50 60,50 30,25', $r ) . $poly ( '0,0 0,50 30,25', $k );
