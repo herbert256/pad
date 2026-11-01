@@ -5,7 +5,7 @@
   $tagKinds   = padKinds ( 'diagrams' );
 
   $tagAbout   = 'Draws a diagram from Mermaid-style lines of text, laid out on the server as inline SVG - '
-              . count ( $tagKinds ) . ' kinds, from flowcharts and sequence diagrams to state machines, class and entity-relationship diagrams, mind maps, trees, user journeys, commit graphs and fishbones.';
+              . count ( $tagKinds ) . ' kinds, from flowcharts and sequence diagrams to state machines, class and entity-relationship diagrams, mind maps, trees, user journeys, commit graphs, fishbones and railroad diagrams.';
   $tagGroup   = 'graphics';
   $tagForm    = 'pair';
 
@@ -20,6 +20,7 @@
 {journey} section Morning ... {/journey}
 {gitgraph} commit ... {/gitgraph}
 {fishbone} Effect ... {/fishbone}
+{railroad} rule ::= 'a' item* {/railroad}
 PAD;
 
   $tagParms   = [];

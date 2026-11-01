@@ -1,0 +1,6 @@
+{meta title='A railroad diagram', about='Rules in W3C EBNF as syntax diagrams: a choice, an optional part, a repetition, a character class and a rule linked by its name.'/}
+{railroad}
+  list   ::= '[' ( item ( ',' item )* )? ']'
+  item   ::= number | 'null'
+  number ::= '-'? [0-9]+
+{/railroad}

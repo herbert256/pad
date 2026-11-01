@@ -1178,6 +1178,7 @@ reference lists them with the pages that play them.
 {journey}...{/journey}                         # section, Make tea: 5: Me - a face per score
 {gitgraph}...{/gitgraph}                       # commit, branch, checkout, merge, cherry-pick
 {fishbone}...{/fishbone}                       # the effect, then categories and causes indented under it
+{railroad}...{/railroad}                       # syntax diagrams of W3C EBNF: rule ::= 'a' ( b | c )* d?
 ```
 The kinds are the files of `pad/subs/diagrams/types/` - one file a kind, reading the options it
 draws with - and a kind is added by adding its file. Each is written three ways, the same
