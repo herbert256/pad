@@ -32,7 +32,7 @@
   // padPatternRand     the next number of the seeded sequence, from 0 up to, not including, 1
   // padPatternPick     one value of a list, picked by the sequence
   // padPatternFill     the rect that covers the picture with a <pattern> of the defs
-  // padPatternUrl      the SVG as url('data:image/svg+xml,...')
+  // padPatternUrl      the SVG as url(data:image/svg+xml,...), safe in either quotes
   // padPatternSimilar  the kinds that look like a name that is none - for the error message
   //
   // The same options give the same bytes, on every request and every machine: the random
@@ -261,16 +261,18 @@
 
   }
 
-  // The SVG as a CSS url() for a style attribute: url('data:image/svg+xml,...'), the SVG
-  // written in it with %-escapes for what would end the attribute or the url - both quotes -
-  // and what a URL or HTML reads as its own: % # & < > and the braces. The quotes around the
-  // data are single ones: double ones ended a style="..." attribute the url() was put in.
+  // The SVG as a CSS url() for a style attribute or a style sheet: url(data:image/svg+xml,...),
+  // the SVG written in it with %-escapes for what would end the attribute or the url - both
+  // quotes, the parentheses, white space and the backslash - and what a URL or HTML reads as
+  // its own: % # & < > and the braces. Unquoted, so it stands in style='...' as in style="...":
+  // the single quotes it had around the data ended an attribute of single quotes.
 
   function padPatternUrl ( $svg ) {
 
-    return "url('data:image/svg+xml," . strtr ( $svg, [ '%' => '%25', '#' => '%23', '&' => '%26', '<' => '%3C', '>' => '%3E',
-                                                         '"' => '%22', "'" => '%27', '{' => '%7B', '}' => '%7D', '|' => '%7C',
-                                                         "\n" => '%0A', '\\' => '%5C' ] ) . "')";
+    return 'url(data:image/svg+xml,' . strtr ( $svg, [ '%' => '%25', '#' => '%23', '&' => '%26', '<' => '%3C', '>' => '%3E',
+                                                       '"' => '%22', "'" => '%27', '{' => '%7B', '}' => '%7D', '|' => '%7C',
+                                                       '(' => '%28', ')' => '%29', ' ' => '%20', "\t" => '%09', "\r" => '%0D',
+                                                       "\n" => '%0A', "\f" => '%0C', '\\' => '%5C' ] ) . ')';
 
   }
 

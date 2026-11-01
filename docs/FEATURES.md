@@ -1222,7 +1222,7 @@ the drawing, `types/` the icons; `pad/types/icon.php` the icon type.
 {pattern 'topography', seed=7, width=960, height=320/}   # contour lines of a landscape the seed makes up
 {pattern 'dots', size=24, colors='#fdfbf7, #e0c9a6'/}     # the background first, then the inks
 {pattern:voronoi seed=3, title='Shards of colour'/}       # the pattern: type; title= makes it an image
-<div style="background-image:{pattern 'waves', as='url'/}">...</div>   # url('data:image/svg+xml,...')
+<div style="background-image:{pattern 'waves', as='url'/}">...</div>   # url(data:image/svg+xml,...), either quotes
 ```
 ```php
 $hero = padPattern ( 'circles', [ 'seed' => 4, 'width' => 1200, 'height' => 400 ] );   // the same bytes in PHP

@@ -3166,8 +3166,9 @@ does not change with it. `colors=` is a list, the background first and the inks 
 name, `rgb()`, `hsl()` and their like, `none` for no background. `size=` is the motif's size in
 pixels, each kind with its own default and bounds; `width=` (480) and `height=` (240) the picture's,
 which covers its box (`preserveAspectRatio="xMidYMid slice"`); `opacity=` how strongly the motif
-shows (1). `as='url'` writes `url('data:image/svg+xml,...')` for a style attribute - quotes and the
-characters a URL or HTML would read escaped. A pattern is decoration, `aria-hidden`, unless
+shows (1). `as='url'` writes `url(data:image/svg+xml,...)` for a style attribute - in single or
+double quotes - or a style sheet: the quotes, parentheses and white space and the characters a
+URL or HTML would read escaped. A pattern is decoration, `aria-hidden`, unless
 `title=` names it: then it is `role="img"` with a `<title>`. Its ids are its own on the page. A
 pattern is drawn on every request, so the kinds that draw a shape per place - triangles,
 hexagons, truchet, chevron and waves 50,000 at most, voronoi 10,000 cells - and topography (its

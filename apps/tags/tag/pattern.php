@@ -26,7 +26,7 @@ PAD;
     'width'   => 'The width of the picture in pixels (480); the SVG covers its box when it is made larger or smaller, <code>preserveAspectRatio="xMidYMid slice"</code>.',
     'height'  => 'The height in pixels (240).',
     'opacity' => 'From 0 to 1: how strongly the motif shows over the background (1; grain 0.5).',
-    'as'      => '<code>svg</code>, the default, writes the SVG; <code>url</code> writes <code>url(\'data:image/svg+xml,...\')</code> for a style attribute or a style sheet.',
+    'as'      => '<code>svg</code>, the default, writes the SVG; <code>url</code> writes <code>url(data:image/svg+xml,...)</code> for a style attribute - in either quotes - or a style sheet.',
     'title'   => 'The accessible name: the pattern becomes <code>role="img"</code> with <code>aria-label</code> and <code>&lt;title&gt;</code>. Without it the pattern is decoration, <code>aria-hidden</code>.',
     'angle'   => 'stripes: the angle in degrees (45).',
     'levels'  => 'topography: the number of contour lines (12), every fifth the bolder index line.' ];
