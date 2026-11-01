@@ -23,7 +23,10 @@
 
     list ( $numbers, $names ) = padChartGuess ( $rows );
 
-    $used  = [];
+    // The fields from= and to= name are no other field's guess, as errorbar keeps its bounds
+    // out: to='a' alone took a for from= as well, and the chart failed for want of two fields.
+
+    $used  = array_values ( array_filter ( [ (string) padTagParm ( 'from' ), (string) padTagParm ( 'to' ) ], 'strlen' ) );
     $label = padChartPick ( 'label', $names,   $used );
     $from  = padChartPick ( 'from',  $numbers, $used );
     $to    = padChartPick ( 'to',    $numbers, $used );

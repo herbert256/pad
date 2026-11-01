@@ -9,7 +9,7 @@
   C.padChartDumbbell = function (rows, width, height) {
 
     var guess = C.padChartGuess(rows);
-    var used  = [];
+    var used  = [C.str(C.padTagParm('from')), C.str(C.padTagParm('to'))].filter(function (f) { return f !== ''; });
     var label = C.padChartPick('label', guess[1], used);
     var from  = C.padChartPick('from',  guess[0], used);
     var to    = C.padChartPick('to',    guess[0], used);
