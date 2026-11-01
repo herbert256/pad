@@ -326,6 +326,7 @@
       'business'     => $pre ( "{jsonld:business type='Bakery', name='The Loaf', street='Main Street 1', city='Utrecht', country='NL', latitude='52.09074', longitude='5.12142', hours='Mo-Fr 08:00-18:00; Sa 08:00-16:00' | html/}" ),
       'event'        => $pre ( "{jsonld:event name='PAD day', starts='2026-11-20 19:30', place='The Hall', address='Main Street 1, Utrecht', price='12.50', currency='EUR', availability='InStock' | html/}" ),
       'faq'          => "{data 'questions'}\n[ { \"question\": \"Is it free?\", \"answer\": \"Yes, under the GPL.\" } ]\n{/data}\n" . $pre ( "{jsonld:faq data='questions' | html/}" ),
+      'job'          => $pre ( "{jsonld:job title='Baker', description='Bread from 05:00, four days a week.', posted='2026-11-01', company='The Loaf', city='Utrecht', country='NL', employment='part time', salary='2400-2800', currency='EUR', per='month' | html/}" ),
       'organization' => $pre ( "{jsonld:organization name='PAD', url='https://pad.example', logo='logo.png', profiles='https://github.com/pad', phone='+31 30 123 4567', contact='customer service' | html/}" ),
       'person'       => $pre ( "{jsonld:person name='Ann Smith', job='Engineer', profiles='https://github.com/ann, https://social.example/@ann' | html/}" ),
       'product'      => $pre ( "{jsonld:product name='Aurora kettle', sku='AK-1', brand='Aurora', price='39.95', currency='EUR', availability='InStock' | html/}" ),

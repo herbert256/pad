@@ -150,13 +150,14 @@ template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip
 {jsonld:recipe data='recipe'/}                            # times, ingredients and steps of a dish
 {jsonld:video data='clip'/}                               # thumbnails, upload date, length, views
 {jsonld:business type='Bakery', name='The Loaf', city='Utrecht', hours='Mo-Fr 08:00-18:00; Sa 08:00-16:00'/}
+{jsonld:job data='vacancy', salary='3200-3800', currency='EUR', per='month'/}
 ```
 ```php
 $url  = padUrl ( '', [], TRUE );                          // the page's own address, for url=
 $data = padJsonLd ( 'event', $concert );                  // the same object as a plain array
 ```
 One `<script type="application/ld+json">` holding a Schema.org object - what search engines read
-for a rich result - from ordinary PAD data, explicitly mapped. Twelve kinds, each a file of
+for a rich result - from ordinary PAD data, explicitly mapped. Thirteen kinds, each a file of
 `pad/subs/jsonld/types/` whose header lists its fields, a PAD name and the Schema.org property it
 fills: `article` (headline required, description, image, url, author, published, modified,
 publisher, logo), `breadcrumb` (rows of name and url - the rows `{breadcrumb data=}` takes,
@@ -188,6 +189,14 @@ postcode and country as its PostalAddress, latitude and longitude as GeoCoordina
 the other, -90 to 90 and -180 to 180), hours and prices (priceRange). `restaurant`: every field
 of the business and cuisine (servesCuisine) and menu, which a business of another type cannot
 have - type Restaurant, or Bakery, BarOrPub, CafeOrCoffeeShop and the other food establishments.
+`job`: a JobPosting - title, description (which may hold `<p>`, `<ul>` and `<li>`), posted and
+company required, expires (validThrough), employment (one or more of FULL_TIME, PART_TIME,
+CONTRACTOR, TEMPORARY, INTERN, VOLUNTEER, PER_DIEM and OTHER, `full time` too), companyurl and
+logo of the hiring Organization, street, city, region, postcode and country of its place - the
+country needed with any of them - remote (yes writes jobLocationType TELECOMMUTE) with countries
+(applicantLocationRequirements, a Country each), and salary (an amount or a range, `3200-3800`),
+currency and per (HOUR, DAY, WEEK, MONTH or YEAR) as a MonetaryAmount - a salary needs both;
+not `min=`/`max=`, which are options of every tag.
 
 The fields come from the row or rows `data=` names - a `{data}` store, the page's array, a
 field holding a list or a `_data` file (a store holds rows, so a single row in a `{data}` block

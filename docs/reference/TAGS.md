@@ -653,6 +653,7 @@ of fields and pages. `padJsonLd ( 'article', $post )` answers the same object as
 | `business` | LocalBusiness (or one of its 151 subtypes, type=) | **name**, **city**, type, description, image, url, phone, email, street, region, postcode, country, latitude, longitude, hours, prices |
 | `event` | Event | **name**, **starts**, ends, place, address, description, image, url, price, currency, availability, tickets |
 | `faq` | FAQPage | rows of **question** and **answer** |
+| `job` | JobPosting | **title**, **description**, **posted**, **company**, expires, employment, companyurl, logo, street, city, region, postcode, country (needed with the place), remote, countries, salary (an amount or a range; needs currency and per), currency, per |
 | `organization` | Organization | **name**, url, logo, description, profiles, phone, email, contact |
 | `person` | Person | **name**, url, image, job, description, profiles |
 | `product` | Product | **name**, description, image, url, sku, brand, price, currency, availability |
@@ -682,7 +683,8 @@ The later kinds' values: a duration is ISO 8601 (`PT1H30M`) or numbers with thei
 (`1 h 30 min`, `90 min`), written as ISO 8601; a list - ingredients, steps - is a list in the row
 or a text with a line between its values; a rating is a number, a count a whole number, both
 written as JSON numbers; opening hours are written as openingHours writes them
-(`Mo-Fr 09:00-17:30; Sa 10:00-16:00`), a type and the other words of a list in any case.
+(`Mo-Fr 09:00-17:30; Sa 10:00-16:00`), a type and the other words of a list in any case, a
+salary as an amount or a range (`3200-3800`), a yes or no (`remote`) as yes, no, 1, 0, true or false.
 
 ---
 
@@ -4710,7 +4712,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `redirect` | Navigation | HTTP redirect |
 | `restart` | Navigation | Restart processing |
 | `pager` | Navigation | Page links for a tag with the page option |
-| `jsonld` | Navigation | The structured data of a page - a Schema.org object of `pad/subs/jsonld/types/` as JSON-LD: article, breadcrumb, business, event, faq, organization, person, product, recipe, restaurant, video, website - its fields mapped by name |
+| `jsonld` | Navigation | The structured data of a page - a Schema.org object of `pad/subs/jsonld/types/` as JSON-LD: article, breadcrumb, business, event, faq, job, organization, person, product, recipe, restaurant, video, website - its fields mapped by name |
 | `csrf` | Web | Hidden CSRF token field of the session |
 | `extends` | Layout | Frame the page with a layout |
 | `block` | Layout | A named region of a layout or wrapper, and its override |

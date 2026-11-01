@@ -362,12 +362,18 @@
 
     $ok = padJsonLdFill ( $object, $spec ['fields'], $spec ['objects'], $values, "the JSON-LD $kind", TRUE, $report );
 
-    foreach ( $spec ['needs'] as $field => $need )
-      if ( padJsonLdWritten ( $object, $spec ['fields'] [$field] ['path'] ) and ! padJsonLdWritten ( $object, $spec ['fields'] [$need] ['path'] ) ) {
-        if ( ! isset ( $values [$need] ) )
-          $report ( "the JSON-LD $kind has a $field and no $need - give it as $need= or as a field $need of the row" );
-        $ok = FALSE;
-      }
+    // A field that needs others - a price its currency, a salary its currency and its period - is judged on what
+    // was written (a need given but dropped as no valid value does not count) and on what was given (a need
+    // whose path another field's value fills - per inside salary - counts only when it was given itself).
+
+    foreach ( $spec ['needs'] as $field => $needs )
+      foreach ( (array) $needs as $need )
+        if ( padJsonLdWritten ( $object, $spec ['fields'] [$field] ['path'] )
+             and ( ! padJsonLdWritten ( $object, $spec ['fields'] [$need] ['path'] ) or ! isset ( $values [$need] ) ) ) {
+          if ( ! isset ( $values [$need] ) )
+            $report ( "the JSON-LD $kind has a $field and no $need - give it as $need= or as a field $need of the row" );
+          $ok = FALSE;
+        }
 
     return $ok ? $object : FALSE;
 
@@ -458,7 +464,7 @@
     // The ways the later kinds take - a recipe's durations, its ingredients - and a how
     // written as a list, the how and what it needs beside it, are those of values.php.
 
-    if ( is_array ( $how ) or in_array ( $how, [ 'number', 'count', 'duration', 'energy', 'texts', 'steps', 'hours' ], TRUE ) ) {
+    if ( is_array ( $how ) or in_array ( $how, [ 'number', 'count', 'duration', 'energy', 'texts', 'steps', 'hours', 'salary' ], TRUE ) ) {
       include_once PAD . 'subs/jsonld/_lib/values.php';
       return padJsonLdMore ( $value, (array) $how, $name, $what, $report );
     }

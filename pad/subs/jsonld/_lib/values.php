@@ -1,9 +1,9 @@
 <?php
 
   // The ways of writing a value the kinds after the first eight take - a recipe's times and
-  // ingredients, a business's opening hours - included by padJsonLdValue (jsonld.php) the
-  // first time a field asks for one. A field's how is a word, or the word and what it needs
-  // beside it - [ 'word', [ 'Bakery', 'Store' ] ]:
+  // ingredients, a business's opening hours, a job's salary - included by padJsonLdValue
+  // (jsonld.php) the first time a field asks for one. A field's how is a word, or the word
+  // and what it needs beside it - [ 'word', [ 'Bakery', 'Store' ] ]:
   //
   //   number        a number with a dot - 4.5, -73.98 - written as a JSON number; with
   //                 [ 'number', [ low, high ] ] it must lie between the two
@@ -24,14 +24,23 @@
   //                 BarOrPub - written as the list writes it; a word that is none is
   //                 reported with the list, or with the word that comes nearest when the
   //                 list is long
+  //   words         one or more of them: a list, or a text with a comma between them -
+  //                 one written as a text, more as a list
+  //   flag          yes or no - TRUE, 1, yes, true, on, or FALSE, 0, no, false, off -
+  //                 and yes writes the word beside it: [ 'flag', 'TELECOMMUTE' ]
+  //   names         one or more names, each an object of the type beside it, by its name:
+  //                 [ 'names', 'Country' ] writes NL as { "@type": "Country", "name": "NL" }
   //   hours         opening hours as Schema.org's openingHours writes them - Mo-Fr
   //                 09:00-17:30; Sa 10:00-16:00 - written as OpeningHoursSpecification
   //                 objects, Google's form (padJsonLdHours)
+  //   salary        an amount or a range of two - 4200, 40000-55000 - as a
+  //                 QuantitativeValue of value, or of minValue and maxValue
   //
   // Beside them a kind's file may say, in 'objects', the whole object a path starts with
   // where its @type alone is not enough - a video's views are an InteractionCounter whose
-  // interactionType is the WatchAction. A field whose path ends in @type is the type itself,
-  // one of its words: a Bakery for the business kind.
+  // interactionType is the WatchAction - and in 'needs' a list of the fields a field is no
+  // use without: a job's salary needs its currency and its period. A field whose path ends
+  // in @type is the type itself, one of its words: a Bakery for the business kind.
 
   // The days of the week by Schema.org's name, in order (padJsonLdHours).
 
@@ -46,8 +55,8 @@
       return NULL;
     };
 
-    if ( in_array ( $how, [ 'texts' ], TRUE ) ) {
-      $list = padJsonLdList ( $value, "/\R/" );
+    if ( in_array ( $how, [ 'texts', 'names' ], TRUE ) ) {
+      $list = padJsonLdList ( $value, ( $how == 'texts' ) ? "/\R/" : '/\s*,\s*/' );
       if ( array_filter ( $list, 'is_array' ) )
         $report ( "the $name of $what holds a row where a text is meant" );
       $list = array_values ( array_filter ( $list, 'is_string' ) );
@@ -64,11 +73,35 @@
       case 'hours':
         return padJsonLdHours ( $value, $name, $what, $report );
 
+      case 'words':
+        $done = [];
+        foreach ( padJsonLdList ( $value, '/\s*,\s*/' ) as $one ) {
+          $word = padJsonLdMore ( $one, [ 'word', $with ], $name, $what, $report );
+          if ( $word !== NULL and ! in_array ( $word, $done, TRUE ) )
+            $done [] = $word;
+        }
+        return ( count ( $done ) > 1 ) ? $done : ( $done [0] ?? NULL );
+
+      case 'names':
+        $done = array_map ( fn ( $one ) => [ '@type' => $with, 'name' => $one ], $list );
+        return ( count ( $done ) > 1 ) ? $done : ( $done [0] ?? NULL );
+
     }
 
     if ( is_array ( $value ) ) {
       $report ( "the $name of $what is a list, not a value" );
       return NULL;
+    }
+
+    if ( $how == 'flag' ) {
+      if ( $value === TRUE )
+        return $with;
+      $flag = strtolower ( trim ( (string) padJsonLdScalar ( $value ) ) );
+      if ( in_array ( $flag, [ '1', 'yes', 'true', 'on' ], TRUE ) )
+        return $with;
+      if ( in_array ( $flag, [ '0', 'no', 'false', 'off' ], TRUE ) )
+        return NULL;
+      return $no ( 'yes or no', 'yes writes ' . $with );
     }
 
     if ( is_float ( $value ) and is_finite ( $value ) )
@@ -107,6 +140,15 @@
           $report ( "the $name of $what is none of the " . count ( $with ) . " it takes: '" . padMakeSafe ( $text, 40 ) . "' - "
                     . padJsonLdNearest ( $text, $with ) . ' comes nearest' );
         return NULL;
+
+      case 'salary':
+        if ( ! preg_match ( '/^([0-9]+(?:\.[0-9]+)?)(?:\s*-\s*([0-9]+(?:\.[0-9]+)?))?$/D', $text, $m ) )
+          return $no ( 'amount', 'write 4200 or 40000-55000, with a dot' );
+        if ( ! isset ( $m [2] ) )
+          return [ '@type' => 'QuantitativeValue', 'value' => $m [1] + 0 ];
+        if ( $m [1] + 0 > $m [2] + 0 )
+          return $no ( 'range from low to high', "write {$m [2]}-{$m [1]}" );
+        return [ '@type' => 'QuantitativeValue', 'minValue' => $m [1] + 0, 'maxValue' => $m [2] + 0 ];
 
     }
 
