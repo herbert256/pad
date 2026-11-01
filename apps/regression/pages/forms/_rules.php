@@ -389,6 +389,35 @@
       [ 'code',     'lte:4',                             [ 'code' => 'abcd' ] ],
       [ 'code',     'lte:4',                             [ 'code' => 'abcde' ] ],
       [ 'nick',     'lte:name',                          [ 'name' => 'Ada', 'nick' => 'Adam' ] ]
+    ],
+
+    'min_items' => [
+      [ 'toppings[]', 'min_items:2',                     [ 'toppings[]' => [ 'cheese', 'olives' ] ] ],
+      [ 'toppings[]', 'min_items:2',                     [ 'toppings[]' => [ 'cheese' ] ] ],
+      [ 'toppings[]', 'min_items:2',                     [ 'toppings[]' => [ 'cheese', '', ' ' ] ] ],
+      [ 'toppings[]', 'min_items:2',                     [ 'toppings[]' => [ '', '' ] ] ],
+      [ 'toppings[]', 'min_items:2',                     [ 'toppings[]' => [ '0', '0' ] ] ],
+      [ 'toppings[]', 'min_items:2',                     [ 'toppings[]' => [ ] ] ],
+      [ 'toppings[]', 'min_items:2',                     [ ] ],
+      [ 'toppings[]', 'required|min_items:2',            [ 'toppings[]' => [ ] ] ],
+      [ 'toppings[]', 'required|min_items:2',            [ 'toppings[]' => [ 'cheese' ] ] ],
+      [ 'toppings[]', 'min_items:1',                     [ 'toppings[]' => [ ' ' ] ] ],
+      [ 'toppings[]', 'min_items: 2 ',                   [ 'toppings[]' => [ 'a', 'b' ] ] ],
+      [ 'toppings[]', 'min_items:2|in:cheese,olives',    [ 'toppings[]' => [ 'cheese', 'ham' ] ] ],
+      [ 'topping',  'min_items:1',                       [ 'topping' => 'cheese' ] ],
+      [ 'topping',  'min_items:2',                       [ 'topping' => 'cheese' ] ],
+      [ 'topping',  'min_items:2',                       [ 'topping' => [ 'cheese', 'olives' ] ] ]
+    ],
+
+    'max_items' => [
+      [ 'toppings[]', 'max_items:3',                     [ 'toppings[]' => [ 'a', 'b', 'c' ] ] ],
+      [ 'toppings[]', 'max_items:3',                     [ 'toppings[]' => [ 'a', 'b', 'c', 'd' ] ] ],
+      [ 'toppings[]', 'max_items:3',                     [ 'toppings[]' => [ 'a', 'b', 'c', '', ' ' ] ] ],
+      [ 'toppings[]', 'max_items:1',                     [ 'toppings[]' => [ 'a', 'b' ] ] ],
+      [ 'toppings[]', 'max_items:3',                     [ 'toppings[]' => [ ] ] ],
+      [ 'toppings[]', 'required|min_items:2|max_items:3', [ 'toppings[]' => [ 'a' ] ] ],
+      [ 'toppings[]', 'required|min_items:2|max_items:3', [ 'toppings[]' => [ 'a', 'b', 'c', 'd' ] ] ],
+      [ 'topping',  'max_items:1',                       [ 'topping' => 'cheese' ] ]
     ]
 
   ];

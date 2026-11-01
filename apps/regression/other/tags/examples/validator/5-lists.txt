@@ -1,9 +1,16 @@
-<form method="get" novalidate data-pad-rules="{&quot;guests[]&quot;:{&quot;label&quot;:&quot;Guests&quot;,&quot;number&quot;:false,&quot;list&quot;:true,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;distinct&quot;,&quot;&quot;,&quot;:label must not hold the same value twice&quot;,&quot;&quot;]]}}">
+<form method="get" novalidate data-pad-rules="{&quot;guests[]&quot;:{&quot;label&quot;:&quot;Guests&quot;,&quot;number&quot;:false,&quot;list&quot;:true,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;distinct&quot;,&quot;&quot;,&quot;:label must not hold the same value twice&quot;,&quot;&quot;]]},&quot;toppings[]&quot;:{&quot;label&quot;:&quot;Toppings&quot;,&quot;number&quot;:false,&quot;list&quot;:true,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;min_items&quot;,&quot;2&quot;,&quot;:label must hold at least :n values&quot;,&quot;2&quot;],[&quot;max_items&quot;,&quot;3&quot;,&quot;:label must hold at most :n values&quot;,&quot;3&quot;],[&quot;in&quot;,&quot;cheese,olives,basil,onion&quot;,&quot;:label must be one of :n&quot;,&quot;cheese, olives, basil, onion&quot;]]}}">
   <fieldset>
     <legend>Guests</legend>
     <label>First <input name="guests[]" type="email"></label>
     <label>Second <input name="guests[]" type="email"></label>
     <label>Third <input name="guests[]" type="email"></label>
+  </fieldset>
+  <fieldset>
+    <legend>Toppings, two or three</legend>
+    <input type="checkbox" name="toppings[]" value="cheese" id="l-cheese"> <label for="l-cheese">Cheese</label>
+    <input type="checkbox" name="toppings[]" value="olives" id="l-olives"> <label for="l-olives">Olives</label>
+    <input type="checkbox" name="toppings[]" value="basil" id="l-basil"> <label for="l-basil">Basil</label>
+    <input type="checkbox" name="toppings[]" value="onion" id="l-onion"> <label for="l-onion">Onion</label>
   </fieldset>
   <button>Check</button>
 </form>
@@ -127,6 +134,9 @@
     if (typeof other !== 'string' || other === '') return null;
     if (number && !/^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?[ \t\n\r\v\f]*$/.test(other)) return null;
     return [size(value, number), size(other, number)];
+  }
+  function counted(list) {
+    return list.filter(function (one) { return typeof one !== 'string' || trim(one) !== ''; }).length;
   }
   (function () {
 addRule('accepted', {
@@ -327,8 +337,20 @@ addRule('max', {
 });
 })();
 (function () {
+addRule('max_items', {
+  check: function (value, arg) { return 1 <= parseInt(trim(String(arg)), 10); },
+  list: function (list, arg) { return counted(list) <= parseInt(trim(String(arg)), 10); }
+});
+})();
+(function () {
 addRule('min', {
   check: function (value, arg, values, number) { return size(value, number) >= toNumber(arg); }
+});
+})();
+(function () {
+addRule('min_items', {
+  check: function (value, arg) { return 1 >= parseInt(trim(String(arg)), 10); },
+  list: function (list, arg) { return counted(list) >= parseInt(trim(String(arg)), 10); }
 });
 })();
 (function () {

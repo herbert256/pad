@@ -13474,6 +13474,628 @@
                     ]
                 }
             }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "cheese",
+                    "olives"
+                ]
+            },
+            "server": "",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "cheese"
+                ]
+            },
+            "server": "Toppings must hold at least 2 values",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "cheese",
+                    "",
+                    " "
+                ]
+            },
+            "server": "Toppings must hold at least 2 values",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "",
+                    ""
+                ]
+            },
+            "server": "Toppings must hold at least 2 values",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "0",
+                    "0"
+                ]
+            },
+            "server": "",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": []
+            },
+            "server": "",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {},
+            "server": "",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": []
+            },
+            "server": "Toppings is required",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "cheese"
+                ]
+            },
+            "server": "Toppings must hold at least 2 values",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    " "
+                ]
+            },
+            "server": "Toppings must hold at least 1 value",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "1",
+                            ":label must hold at least :n value",
+                            "1"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "a",
+                    "b"
+                ]
+            },
+            "server": "",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "cheese",
+                    "ham"
+                ]
+            },
+            "server": "Toppings must be one of cheese, olives",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ],
+                        [
+                            "in",
+                            "cheese,olives",
+                            ":label must be one of :n",
+                            "cheese, olives"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "topping",
+            "data": {
+                "topping": "cheese"
+            },
+            "server": "",
+            "client": {
+                "topping": {
+                    "label": "Topping",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "1",
+                            ":label must hold at least :n value",
+                            "1"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "topping",
+            "data": {
+                "topping": "cheese"
+            },
+            "server": "Topping must hold at least 2 values",
+            "client": {
+                "topping": {
+                    "label": "Topping",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "topping",
+            "data": {
+                "topping": [
+                    "cheese",
+                    "olives"
+                ]
+            },
+            "server": "Topping must be a single value",
+            "client": {
+                "topping": {
+                    "label": "Topping",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "a",
+                    "b",
+                    "c"
+                ]
+            },
+            "server": "",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "max_items",
+                            "3",
+                            ":label must hold at most :n values",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "a",
+                    "b",
+                    "c",
+                    "d"
+                ]
+            },
+            "server": "Toppings must hold at most 3 values",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "max_items",
+                            "3",
+                            ":label must hold at most :n values",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "a",
+                    "b",
+                    "c",
+                    "",
+                    " "
+                ]
+            },
+            "server": "",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "max_items",
+                            "3",
+                            ":label must hold at most :n values",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "a",
+                    "b"
+                ]
+            },
+            "server": "Toppings must hold at most 1 value",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "max_items",
+                            "1",
+                            ":label must hold at most :n value",
+                            "1"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": []
+            },
+            "server": "",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "max_items",
+                            "3",
+                            ":label must hold at most :n values",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "a"
+                ]
+            },
+            "server": "Toppings must hold at least 2 values",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ],
+                        [
+                            "max_items",
+                            "3",
+                            ":label must hold at most :n values",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "toppings[]",
+            "data": {
+                "toppings[]": [
+                    "a",
+                    "b",
+                    "c",
+                    "d"
+                ]
+            },
+            "server": "Toppings must hold at most 3 values",
+            "client": {
+                "toppings[]": {
+                    "label": "Toppings",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "min_items",
+                            "2",
+                            ":label must hold at least :n values",
+                            "2"
+                        ],
+                        [
+                            "max_items",
+                            "3",
+                            ":label must hold at most :n values",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "topping",
+            "data": {
+                "topping": "cheese"
+            },
+            "server": "",
+            "client": {
+                "topping": {
+                    "label": "Topping",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "max_items",
+                            "1",
+                            ":label must hold at most :n value",
+                            "1"
+                        ]
+                    ]
+                }
+            }
         }
     ]
 }

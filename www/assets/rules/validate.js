@@ -285,6 +285,11 @@
     return [size(value, number), size(other, number)];
   }
 
+  // min_items and max_items (padRuleItems): the items of a list that are filled in.
+  function counted(list) {
+    return list.filter(function (one) { return typeof one !== 'string' || trim(one) !== ''; }).length;
+  }
+
   /*rules*/
 
   function rule(name, arg, value, values, number) {

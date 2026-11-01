@@ -735,7 +735,10 @@ for `min`, `max` and `between`. Its argument is a positive number written plainl
 Some rules speak about a list, a field named `guests[]`: `distinct` refuses a value it holds
 twice - as written, each trimmed, an item left blank no value (three fields of `guests[]`, two
 of them empty, pass) - "Guests must not hold the same value twice"; a field of one value holds
-its value once.
+its value once. `min_items:n` and `max_items:n` count the values of a list - two or three
+toppings ticked, `required|min_items:2|max_items:3` - the items left blank not counted, a field
+of one value holding one, an empty list judged by `required` alone (as `min:` leaves an empty
+text): "Toppings must hold at least 2 values". Their argument is a whole number from 1.
 
 Some rules look at another field of the post:
 ```

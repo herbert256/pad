@@ -129,6 +129,9 @@
     if (number && !/^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?[ \t\n\r\v\f]*$/.test(other)) return null;
     return [size(value, number), size(other, number)];
   }
+  function counted(list) {
+    return list.filter(function (one) { return typeof one !== 'string' || trim(one) !== ''; }).length;
+  }
   (function () {
 addRule('accepted', {
   check: function (value) { return ['1', 'on', 'yes', 'true'].indexOf(value.toLowerCase()) >= 0; }
@@ -328,8 +331,20 @@ addRule('max', {
 });
 })();
 (function () {
+addRule('max_items', {
+  check: function (value, arg) { return 1 <= parseInt(trim(String(arg)), 10); },
+  list: function (list, arg) { return counted(list) <= parseInt(trim(String(arg)), 10); }
+});
+})();
+(function () {
 addRule('min', {
   check: function (value, arg, values, number) { return size(value, number) >= toNumber(arg); }
+});
+})();
+(function () {
+addRule('min_items', {
+  check: function (value, arg) { return 1 >= parseInt(trim(String(arg)), 10); },
+  list: function (list, arg) { return counted(list) >= parseInt(trim(String(arg)), 10); }
 });
 })();
 (function () {

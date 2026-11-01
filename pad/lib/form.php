@@ -1629,4 +1629,14 @@
 
   }
 
+  // min_items and max_items - the values of a list that are filled in: an item that is a
+  // text empty once trimmed - one of three fields of guests[] left blank - is none, any other
+  // item counts. The browser counts alike (validate.js, counted).
+
+  function padRuleItems ( $list ) {
+
+    return count ( array_filter ( $list, fn ( $one ) => ! is_string ( $one ) or trim ( $one ) !== '' ) );
+
+  }
+
 ?>
