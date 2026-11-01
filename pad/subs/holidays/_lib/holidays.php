@@ -15,7 +15,8 @@
   //              3166-2 gives them after the country's: de-by is Bavaria, gb-sct Scotland
   //   substitute how a public holiday on a weekend is made up for, for the days marked
   //              substitute: 'next' (the next weekday that is no holiday yet - gb), 'nearest'
-  //              (Saturday to the Friday before, Sunday to the Monday after - us); with
+  //              (Saturday to the Friday before, Sunday to the Monday after - us), 'sunday'
+  //              (a Sunday only, to the Monday after, a holiday already or not - za); with
   //              suffix, what the name of the substitute day gets: ' (substitute day)'
   //   years      [ first, last ] - the years the rules are known to be right for, where the
   //              file says so: a country whose holidays begin with a law or end with a table
@@ -29,7 +30,7 @@
   //                 39 Ascension Day, 50 Whit Monday
   //     orthodox    a number of days from the Easter Sunday of the Orthodox churches (the
   //                 Julian computus, as a Gregorian date): -48 Clean Monday, 50 Whit Monday
-  //     nth       [ n, weekday, month ] - the nth weekday of the month, n -1 the last:
+  //     nth         [ n, weekday, month ] - the nth weekday of the month, n -1 the last:
   //                 [ 4, 'thu', 11 ] Thanksgiving, [ -1, 'mon', 5 ] Memorial Day
   //     onOrAfter   [ weekday, 'MM-DD' ] - the first such weekday on or after the date;
   //     onOrBefore  the last on or before it: [ 'mon', '05-24' ] Victoria Day
@@ -408,9 +409,11 @@
   // first weekday after it that is no holiday yet, counting the substitutes given before it
   // - in Britain Christmas on a Saturday is made up for on Monday the 27th and Boxing Day on
   // the Sunday on Tuesday the 28th; 'nearest' moves Saturday to the Friday before and Sunday
-  // to the Monday after - the United States' observed days. A holiday with a rule of its own
-  // follows that: 'monday' is the Monday after it, a holiday already or not - New Zealand's
-  // Anzac Day on Sunday 25 April 2038 is observed on Easter Monday, no day more.
+  // to the Monday after - the United States' observed days; 'sunday' leaves a Saturday be and
+  // makes up for a Sunday on the Monday after, a holiday already or not, as South Africa's
+  // act says - Christmas on a Sunday gives no day more than the Day of Goodwill. A holiday
+  // with a rule of its own follows that: 'monday' is the Monday after it, a holiday already
+  // or not - New Zealand's Anzac Day on Sunday 25 April 2038 is observed on Easter Monday.
 
   function padHolidaysSubstitutes ( $found, $how, $suffix ) {
 
@@ -431,9 +434,12 @@
 
       $rule = ( $substitute === TRUE ) ? $how : $substitute;
 
+      if ( $rule == 'sunday' and $weekday == 6 )
+        continue;
+
       if ( $rule == 'nearest' )
         $day = ( $weekday == 6 ) ? $z - 1 : $z + 1;
-      elseif ( $rule == 'monday' )
+      elseif ( $rule == 'monday' or $rule == 'sunday' )
         $day = $z + 8 - $weekday;
       else
         for ( $day = $z + 1; padHolidaysWeekday ( $day ) >= 6 or isset ( $taken [$day] ); $day++ ) ;
