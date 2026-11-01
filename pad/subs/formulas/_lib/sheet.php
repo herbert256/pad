@@ -82,9 +82,11 @@
     }
 
     // A number past what a float holds - 1e400, or 400 digits - stays the text it is, as
-    // Excel keeps it; one below 2.2251E-308 is 0 (padFormulaKept).
+    // Excel keeps it; one below 2.2251E-308 is 0 (padFormulaKept). A number has digits before
+    // its exponent: E1, e10 and -E3 are texts, codes as Excel keeps them, where the exponent
+    // alone was read as the number 0.
 
-    if ( preg_match ( '/^[+-]?(?:\d{1,3}(?:,\d{3})+|\d+)?(?:\.\d+)?(?:[eE][+-]?\d+)?$/', $trim ) and preg_match ( '/\d/', $trim )
+    if ( preg_match ( '/^[+-]?(?:(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?$/', $trim )
          and ( $number = padFormulaKept ( (float) str_replace ( ',', '', $trim ) ) ) !== NULL ) {
       $cell ['value'] = $number;
       return $cell;
