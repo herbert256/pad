@@ -1,7 +1,9 @@
-<form method="get" novalidate data-pad-rules="{&quot;password&quot;:{&quot;label&quot;:&quot;Password&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;min&quot;,&quot;8&quot;,&quot;:label must be at least :n characters&quot;,&quot;8&quot;],[&quot;different&quot;,&quot;current_password&quot;,&quot;:label must be different from :n&quot;,&quot;Current password&quot;]],&quot;watch&quot;:[&quot;current_password&quot;]},&quot;bottles&quot;:{&quot;label&quot;:&quot;Bottles&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;multiple_of&quot;,&quot;6&quot;,&quot;:label must be a multiple of :n&quot;,&quot;6&quot;],[&quot;max&quot;,&quot;120&quot;,&quot;:label must be at most :n&quot;,&quot;120&quot;]]},&quot;leave&quot;:{&quot;label&quot;:&quot;Leave&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;after_or_equal&quot;,&quot;arrive&quot;,&quot;:label must be a date on or after :n&quot;,&quot;Arrive&quot;]],&quot;watch&quot;:[&quot;arrive&quot;]}}">
+<form method="get" novalidate data-pad-rules="{&quot;password&quot;:{&quot;label&quot;:&quot;Password&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;required&quot;,&quot;&quot;,&quot;:label is required&quot;,&quot;&quot;],[&quot;min&quot;,&quot;8&quot;,&quot;:label must be at least :n characters&quot;,&quot;8&quot;],[&quot;different&quot;,&quot;current_password&quot;,&quot;:label must be different from :n&quot;,&quot;Current password&quot;]],&quot;watch&quot;:[&quot;current_password&quot;]},&quot;bottles&quot;:{&quot;label&quot;:&quot;Bottles&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;integer&quot;,&quot;&quot;,&quot;:label must be a whole number&quot;,&quot;&quot;],[&quot;multiple_of&quot;,&quot;6&quot;,&quot;:label must be a multiple of :n&quot;,&quot;6&quot;],[&quot;max&quot;,&quot;120&quot;,&quot;:label must be at most :n&quot;,&quot;120&quot;]]},&quot;max_price&quot;:{&quot;label&quot;:&quot;Max price&quot;,&quot;number&quot;:true,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;numeric&quot;,&quot;&quot;,&quot;:label must be a number&quot;,&quot;&quot;],[&quot;gt&quot;,&quot;min_price&quot;,&quot;:label must be greater than :n&quot;,&quot;Min price&quot;]],&quot;watch&quot;:[&quot;min_price&quot;]},&quot;leave&quot;:{&quot;label&quot;:&quot;Leave&quot;,&quot;number&quot;:false,&quot;list&quot;:false,&quot;single&quot;:&quot;:label must be a single value&quot;,&quot;rules&quot;:[[&quot;after_or_equal&quot;,&quot;arrive&quot;,&quot;:label must be a date on or after :n&quot;,&quot;Arrive&quot;]],&quot;watch&quot;:[&quot;arrive&quot;]}}">
   <label for="m-current">Current password</label> <input name="current_password" id="m-current" type="password">
   <label for="m-password">New password</label> <input name="password" id="m-password" type="password">
   <label for="m-bottles">Bottles</label> <input name="bottles" id="m-bottles" inputmode="numeric"> <small>by the crate of six</small>
+  <label for="m-low">Lowest price</label> <input name="min_price" id="m-low" inputmode="decimal">
+  <label for="m-high">Highest price</label> <input name="max_price" id="m-high" inputmode="decimal">
   <label for="m-arrive">Arrive</label> <input name="arrive" id="m-arrive" type="date">
   <label for="m-leave">Leave</label> <input name="leave" id="m-leave" type="date">
   <button>Check</button>
@@ -119,6 +121,14 @@
     var mine = moment(value);
     return mine !== null && mine === moment(dateArg(arg) ? trim(String(arg)) : sibling(values, arg));
   }
+  function compare(value, arg, values, number) {
+    var given = trim(String(arg));
+    if (/^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/.test(given)) return [size(value, number), toNumber(given)];
+    var other = sibling(values, arg);
+    if (typeof other !== 'string' || other === '') return null;
+    if (number && !/^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?[ \t\n\r\v\f]*$/.test(other)) return null;
+    return [size(value, number), size(other, number)];
+  }
   (function () {
 addRule('accepted', {
   check: function (value) { return ['1', 'on', 'yes', 'true'].indexOf(value.toLowerCase()) >= 0; }
@@ -232,6 +242,16 @@ addRule('ends_with', {
 });
 })();
 (function () {
+addRule('gt', {
+  check: function (value, arg, values, number) { var two = compare(value, arg, values, number); return !two || two[0] > two[1]; }
+});
+})();
+(function () {
+addRule('gte', {
+  check: function (value, arg, values, number) { var two = compare(value, arg, values, number); return !two || two[0] >= two[1]; }
+});
+})();
+(function () {
 addRule('iban', {
   check: function (value) {
     var iban = value.replace(/ /g, '').toUpperCase();
@@ -290,6 +310,16 @@ addRule('json', {
 (function () {
 addRule('lowercase', {
   check: function (value) { return value === value.toLowerCase(); }
+});
+})();
+(function () {
+addRule('lt', {
+  check: function (value, arg, values, number) { var two = compare(value, arg, values, number); return !two || two[0] < two[1]; }
+});
+})();
+(function () {
+addRule('lte', {
+  check: function (value, arg, values, number) { var two = compare(value, arg, values, number); return !two || two[0] <= two[1]; }
 });
 })();
 (function () {

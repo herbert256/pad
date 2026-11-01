@@ -11879,6 +11879,1601 @@
                     ]
                 }
             }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "0.01"
+            },
+            "server": "",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "0",
+                            ":label must be greater than :n",
+                            "0"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "0"
+            },
+            "server": "Amount must be greater than 0",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "0",
+                            ":label must be greater than :n",
+                            "0"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "-1"
+            },
+            "server": "Amount must be greater than 0",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "0",
+                            ":label must be greater than :n",
+                            "0"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "0"
+            },
+            "server": "Amount must be greater than 0",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "0",
+                            ":label must be greater than :n",
+                            "0"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "10"
+            },
+            "server": "Amount must be greater than 1e1",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "1e1",
+                            ":label must be greater than :n",
+                            "1e1"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "11"
+            },
+            "server": "",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "1e1",
+                            ":label must be greater than :n",
+                            "1e1"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "10",
+                "max_price": "20"
+            },
+            "server": "",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "10",
+                "max_price": "10"
+            },
+            "server": "Max price must be greater than Min price",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "10",
+                "max_price": "9.5"
+            },
+            "server": "Max price must be greater than Min price",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "9",
+                "max_price": "10"
+            },
+            "server": "",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": " 10 ",
+                "max_price": "9"
+            },
+            "server": "Max price must be greater than Min price",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "",
+                "max_price": "9"
+            },
+            "server": "",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "max_price": "9"
+            },
+            "server": "",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "ten",
+                "max_price": "9"
+            },
+            "server": "",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "1e3",
+                "max_price": "999"
+            },
+            "server": "Max price must be greater than Min price",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "\f10",
+                "max_price": "9"
+            },
+            "server": "Max price must be greater than Min price",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price[]": [
+                    "10"
+                ],
+                "max_price": "9"
+            },
+            "server": "",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "price[min]": "10",
+                "max_price": "9"
+            },
+            "server": "Max price must be greater than Price[min]",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "price[min]",
+                            ":label must be greater than :n",
+                            "Price[min]"
+                        ]
+                    ],
+                    "watch": [
+                        "price[min]"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "10",
+                "max_price": ""
+            },
+            "server": "",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "10",
+                "max_price": ""
+            },
+            "server": "Max price is required",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "required",
+                            "",
+                            ":label is required",
+                            ""
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gt",
+                            "min_price",
+                            ":label must be greater than :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "title",
+            "data": {
+                "title": "abcd"
+            },
+            "server": "",
+            "client": {
+                "title": {
+                    "label": "Title",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "3",
+                            ":label must be longer than :n characters",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "title",
+            "data": {
+                "title": "abc"
+            },
+            "server": "Title must be longer than 3 characters",
+            "client": {
+                "title": {
+                    "label": "Title",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "3",
+                            ":label must be longer than :n characters",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "title",
+            "data": {
+                "title": "éèêë"
+            },
+            "server": "",
+            "client": {
+                "title": {
+                    "label": "Title",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "3",
+                            ":label must be longer than :n characters",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "title",
+            "data": {
+                "subtitle": "abc",
+                "title": "abcd"
+            },
+            "server": "",
+            "client": {
+                "title": {
+                    "label": "Title",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "subtitle",
+                            ":label must be longer than :n",
+                            "Subtitle"
+                        ]
+                    ],
+                    "watch": [
+                        "subtitle"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "title",
+            "data": {
+                "subtitle": "abcd",
+                "title": "abcd"
+            },
+            "server": "Title must be longer than Subtitle",
+            "client": {
+                "title": {
+                    "label": "Title",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "subtitle",
+                            ":label must be longer than :n",
+                            "Subtitle"
+                        ]
+                    ],
+                    "watch": [
+                        "subtitle"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "title",
+            "data": {
+                "subtitle": "ten",
+                "title": "four"
+            },
+            "server": "",
+            "client": {
+                "title": {
+                    "label": "Title",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "subtitle",
+                            ":label must be longer than :n",
+                            "Subtitle"
+                        ]
+                    ],
+                    "watch": [
+                        "subtitle"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "title",
+            "data": {
+                "subtitle": "",
+                "title": "a"
+            },
+            "server": "",
+            "client": {
+                "title": {
+                    "label": "Title",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "subtitle",
+                            ":label must be longer than :n",
+                            "Subtitle"
+                        ]
+                    ],
+                    "watch": [
+                        "subtitle"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "counts[]",
+            "data": {
+                "counts[]": [
+                    "1"
+                ]
+            },
+            "server": "Counts must be longer than 0 characters",
+            "client": {
+                "counts[]": {
+                    "label": "Counts",
+                    "number": false,
+                    "list": true,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "0",
+                            ":label must be longer than :n characters",
+                            "0"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "10",
+                "max_price": "10"
+            },
+            "server": "",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gte",
+                            "min_price",
+                            ":label must be at least :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "10",
+                "max_price": "9.99"
+            },
+            "server": "Max price must be at least Min price",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gte",
+                            "min_price",
+                            ":label must be at least :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "max_price",
+            "data": {
+                "min_price": "",
+                "max_price": "1"
+            },
+            "server": "",
+            "client": {
+                "max_price": {
+                    "label": "Max price",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "gte",
+                            "min_price",
+                            ":label must be at least :n",
+                            "Min price"
+                        ]
+                    ],
+                    "watch": [
+                        "min_price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "-5"
+            },
+            "server": "",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ],
+                        [
+                            "gte",
+                            "-5",
+                            ":label must be at least :n",
+                            "-5"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "-6"
+            },
+            "server": "Amount must be at least -5",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ],
+                        [
+                            "gte",
+                            "-5",
+                            ":label must be at least :n",
+                            "-5"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "title",
+            "data": {
+                "title": "abc"
+            },
+            "server": "",
+            "client": {
+                "title": {
+                    "label": "Title",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gte",
+                            "3",
+                            ":label must be at least :n characters",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "title",
+            "data": {
+                "title": "ab"
+            },
+            "server": "Title must be at least 3 characters",
+            "client": {
+                "title": {
+                    "label": "Title",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gte",
+                            "3",
+                            ":label must be at least :n characters",
+                            "3"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "title",
+            "data": {
+                "subtitle": "abc",
+                "title": "ab"
+            },
+            "server": "Title must be at least as long as Subtitle",
+            "client": {
+                "title": {
+                    "label": "Title",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gte",
+                            "subtitle",
+                            ":label must be at least as long as :n",
+                            "Subtitle"
+                        ]
+                    ],
+                    "watch": [
+                        "subtitle"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "discount",
+            "data": {
+                "price": "20",
+                "discount": "5"
+            },
+            "server": "",
+            "client": {
+                "discount": {
+                    "label": "Discount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "lt",
+                            "price",
+                            ":label must be less than :n",
+                            "Price"
+                        ]
+                    ],
+                    "watch": [
+                        "price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "discount",
+            "data": {
+                "price": "20",
+                "discount": "20"
+            },
+            "server": "Discount must be less than Price",
+            "client": {
+                "discount": {
+                    "label": "Discount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "lt",
+                            "price",
+                            ":label must be less than :n",
+                            "Price"
+                        ]
+                    ],
+                    "watch": [
+                        "price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "discount",
+            "data": {
+                "price": "20",
+                "discount": "20.5"
+            },
+            "server": "Discount must be less than Price",
+            "client": {
+                "discount": {
+                    "label": "Discount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "lt",
+                            "price",
+                            ":label must be less than :n",
+                            "Price"
+                        ]
+                    ],
+                    "watch": [
+                        "price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "discount",
+            "data": {
+                "price": "free",
+                "discount": "20.5"
+            },
+            "server": "",
+            "client": {
+                "discount": {
+                    "label": "Discount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "lt",
+                            "price",
+                            ":label must be less than :n",
+                            "Price"
+                        ]
+                    ],
+                    "watch": [
+                        "price"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "share",
+            "data": {
+                "share": "99.9"
+            },
+            "server": "",
+            "client": {
+                "share": {
+                    "label": "Share",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "lt",
+                            "100",
+                            ":label must be less than :n",
+                            "100"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "share",
+            "data": {
+                "share": "100"
+            },
+            "server": "Share must be less than 100",
+            "client": {
+                "share": {
+                    "label": "Share",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "lt",
+                            "100",
+                            ":label must be less than :n",
+                            "100"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "code": "abcd"
+            },
+            "server": "",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "lt",
+                            "5",
+                            ":label must be shorter than :n characters",
+                            "5"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "code": "abcde"
+            },
+            "server": "Code must be shorter than 5 characters",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "lt",
+                            "5",
+                            ":label must be shorter than :n characters",
+                            "5"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "nick",
+            "data": {
+                "name": "Ada",
+                "nick": "Ad"
+            },
+            "server": "",
+            "client": {
+                "nick": {
+                    "label": "Nick",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "lt",
+                            "name",
+                            ":label must be shorter than :n",
+                            "Name"
+                        ]
+                    ],
+                    "watch": [
+                        "name"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "nick",
+            "data": {
+                "name": "Ada",
+                "nick": "Ada"
+            },
+            "server": "Nick must be shorter than Name",
+            "client": {
+                "nick": {
+                    "label": "Nick",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "lt",
+                            "name",
+                            ":label must be shorter than :n",
+                            "Name"
+                        ]
+                    ],
+                    "watch": [
+                        "name"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests",
+            "data": {
+                "seats": "8",
+                "guests": "8"
+            },
+            "server": "",
+            "client": {
+                "guests": {
+                    "label": "Guests",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ],
+                        [
+                            "lte",
+                            "seats",
+                            ":label must be at most :n",
+                            "Seats"
+                        ]
+                    ],
+                    "watch": [
+                        "seats"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests",
+            "data": {
+                "seats": "8",
+                "guests": "9"
+            },
+            "server": "Guests must be at most Seats",
+            "client": {
+                "guests": {
+                    "label": "Guests",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ],
+                        [
+                            "lte",
+                            "seats",
+                            ":label must be at most :n",
+                            "Seats"
+                        ]
+                    ],
+                    "watch": [
+                        "seats"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "guests",
+            "data": {
+                "seats": "",
+                "guests": "9"
+            },
+            "server": "",
+            "client": {
+                "guests": {
+                    "label": "Guests",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ],
+                        [
+                            "lte",
+                            "seats",
+                            ":label must be at most :n",
+                            "Seats"
+                        ]
+                    ],
+                    "watch": [
+                        "seats"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "share",
+            "data": {
+                "share": "100"
+            },
+            "server": "",
+            "client": {
+                "share": {
+                    "label": "Share",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "lte",
+                            "100",
+                            ":label must be at most :n",
+                            "100"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "share",
+            "data": {
+                "share": "100.01"
+            },
+            "server": "Share must be at most 100",
+            "client": {
+                "share": {
+                    "label": "Share",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ],
+                        [
+                            "lte",
+                            "100",
+                            ":label must be at most :n",
+                            "100"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "code": "abcd"
+            },
+            "server": "",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "lte",
+                            "4",
+                            ":label must be at most :n characters",
+                            "4"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "code",
+            "data": {
+                "code": "abcde"
+            },
+            "server": "Code must be at most 4 characters",
+            "client": {
+                "code": {
+                    "label": "Code",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "lte",
+                            "4",
+                            ":label must be at most :n characters",
+                            "4"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "nick",
+            "data": {
+                "name": "Ada",
+                "nick": "Adam"
+            },
+            "server": "Nick must be at most as long as Name",
+            "client": {
+                "nick": {
+                    "label": "Nick",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "lte",
+                            "name",
+                            ":label must be at most as long as :n",
+                            "Name"
+                        ]
+                    ],
+                    "watch": [
+                        "name"
+                    ]
+                }
+            }
         }
     ]
 }

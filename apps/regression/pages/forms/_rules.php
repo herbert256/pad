@@ -323,6 +323,72 @@
       [ 'start',    'before_or_equal:2026-12-31',        [ 'start' => '2026-12-31T10:00' ] ],
       [ 'start',    'before_or_equal:2026-12-31',        [ 'start' => '2026-12-31', '2026-12-31' => '2000-01-01' ] ],
       [ 'start',    'before_or_equal:end_date',          [ 'start' => '2026-03-01', 'end_date' => '2026-02-01' ] ]
+    ],
+
+    'gt' => [
+      [ 'amount',   'numeric|gt:0',                      [ 'amount' => '0.01' ] ],
+      [ 'amount',   'numeric|gt:0',                      [ 'amount' => '0' ] ],
+      [ 'amount',   'numeric|gt:0',                      [ 'amount' => '-1' ] ],
+      [ 'amount',   'numeric|gt: 0 ',                    [ 'amount' => '0' ] ],
+      [ 'amount',   'integer|gt:1e1',                    [ 'amount' => '10' ] ],
+      [ 'amount',   'integer|gt:1e1',                    [ 'amount' => '11' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'min_price' => '10', 'max_price' => '20' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'min_price' => '10', 'max_price' => '10' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'min_price' => '10', 'max_price' => '9.5' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'min_price' => '9', 'max_price' => '10' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'min_price' => ' 10 ', 'max_price' => '9' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'min_price' => '', 'max_price' => '9' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'max_price' => '9' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'min_price' => 'ten', 'max_price' => '9' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'min_price' => '1e3', 'max_price' => '999' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'min_price' => "\f10", 'max_price' => '9' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'min_price[]' => [ '10' ], 'max_price' => '9' ] ],
+      [ 'max_price', 'numeric|gt:price[min]',            [ 'price[min]' => '10', 'max_price' => '9' ] ],
+      [ 'max_price', 'numeric|gt:min_price',             [ 'min_price' => '10', 'max_price' => '' ] ],
+      [ 'max_price', 'required|numeric|gt:min_price',    [ 'min_price' => '10', 'max_price' => '' ] ],
+      [ 'title',    'gt:3',                              [ 'title' => 'abcd' ] ],
+      [ 'title',    'gt:3',                              [ 'title' => 'abc' ] ],
+      [ 'title',    'gt:3',                              [ 'title' => 'éèêë' ] ],
+      [ 'title',    'gt:subtitle',                       [ 'subtitle' => 'abc', 'title' => 'abcd' ] ],
+      [ 'title',    'gt:subtitle',                       [ 'subtitle' => 'abcd', 'title' => 'abcd' ] ],
+      [ 'title',    'gt:subtitle',                       [ 'subtitle' => 'ten', 'title' => 'four' ] ],
+      [ 'title',    'gt:subtitle',                       [ 'subtitle' => '', 'title' => 'a' ] ],
+      [ 'counts[]', 'gt:0',                              [ 'counts[]' => [ '1' ] ] ]
+    ],
+
+    'gte' => [
+      [ 'max_price', 'numeric|gte:min_price',            [ 'min_price' => '10', 'max_price' => '10' ] ],
+      [ 'max_price', 'numeric|gte:min_price',            [ 'min_price' => '10', 'max_price' => '9.99' ] ],
+      [ 'max_price', 'numeric|gte:min_price',            [ 'min_price' => '', 'max_price' => '1' ] ],
+      [ 'amount',   'integer|gte:-5',                    [ 'amount' => '-5' ] ],
+      [ 'amount',   'integer|gte:-5',                    [ 'amount' => '-6' ] ],
+      [ 'title',    'gte:3',                             [ 'title' => 'abc' ] ],
+      [ 'title',    'gte:3',                             [ 'title' => 'ab' ] ],
+      [ 'title',    'gte:subtitle',                      [ 'subtitle' => 'abc', 'title' => 'ab' ] ]
+    ],
+
+    'lt' => [
+      [ 'discount', 'numeric|lt:price',                  [ 'price' => '20', 'discount' => '5' ] ],
+      [ 'discount', 'numeric|lt:price',                  [ 'price' => '20', 'discount' => '20' ] ],
+      [ 'discount', 'numeric|lt:price',                  [ 'price' => '20', 'discount' => '20.5' ] ],
+      [ 'discount', 'numeric|lt:price',                  [ 'price' => 'free', 'discount' => '20.5' ] ],
+      [ 'share',    'numeric|lt:100',                    [ 'share' => '99.9' ] ],
+      [ 'share',    'numeric|lt:100',                    [ 'share' => '100' ] ],
+      [ 'code',     'lt:5',                              [ 'code' => 'abcd' ] ],
+      [ 'code',     'lt:5',                              [ 'code' => 'abcde' ] ],
+      [ 'nick',     'lt:name',                           [ 'name' => 'Ada', 'nick' => 'Ad' ] ],
+      [ 'nick',     'lt:name',                           [ 'name' => 'Ada', 'nick' => 'Ada' ] ]
+    ],
+
+    'lte' => [
+      [ 'guests',   'integer|lte:seats',                 [ 'seats' => '8', 'guests' => '8' ] ],
+      [ 'guests',   'integer|lte:seats',                 [ 'seats' => '8', 'guests' => '9' ] ],
+      [ 'guests',   'integer|lte:seats',                 [ 'seats' => '', 'guests' => '9' ] ],
+      [ 'share',    'numeric|lte:100',                   [ 'share' => '100' ] ],
+      [ 'share',    'numeric|lte:100',                   [ 'share' => '100.01' ] ],
+      [ 'code',     'lte:4',                             [ 'code' => 'abcd' ] ],
+      [ 'code',     'lte:4',                             [ 'code' => 'abcde' ] ],
+      [ 'nick',     'lte:name',                          [ 'name' => 'Ada', 'nick' => 'Adam' ] ]
     ]
 
   ];

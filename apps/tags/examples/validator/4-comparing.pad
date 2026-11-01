@@ -1,8 +1,10 @@
-{meta title='Rules that compare', about='different holds a value apart from another field, multiple_of a number to whole steps, after_or_equal a date on or after another; the checker judges them as padValidate does, again when the other field changes.'/}
+{meta title='Rules that compare', about='different holds a value apart from another field, multiple_of a number to whole steps, gt a number above another, after_or_equal a date on or after another; the checker judges them as padValidate does, again when the other field changes.'/}
 <form method="get" novalidate data-pad-rules="{^accountRules}">
   <label for="m-current">Current password</label> <input name="current_password" id="m-current" type="password">
   <label for="m-password">New password</label> <input name="password" id="m-password" type="password">
   <label for="m-bottles">Bottles</label> <input name="bottles" id="m-bottles" inputmode="numeric"> <small>by the crate of six</small>
+  <label for="m-low">Lowest price</label> <input name="min_price" id="m-low" inputmode="decimal">
+  <label for="m-high">Highest price</label> <input name="max_price" id="m-high" inputmode="decimal">
   <label for="m-arrive">Arrive</label> <input name="arrive" id="m-arrive" type="date">
   <label for="m-leave">Leave</label> <input name="leave" id="m-leave" type="date">
   <button>Check</button>

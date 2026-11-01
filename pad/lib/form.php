@@ -1607,4 +1607,26 @@
 
   }
 
+  // gt, gte, lt and lte - [ the field's measure, the other's ], or NULL when there is none to
+  // compare with. The measure is what min and max measure (padValidateSize): on a number
+  // field the value, on any other the length. The other is a number written in the rule -
+  // gt:0, as padRuleNumber reads one - or another field of the post, read as padRuleSibling
+  // reads it and measured alike; one that is empty or a list - on a number field one
+  // is_numeric refuses - gives none, and the rule passes: its own rules speak about it. The
+  // browser compares alike (validate.js, compare).
+
+  function padRuleCompare ( $value, $arg, $data, $number ) {
+
+    if ( padRuleNumber ( $arg ) )
+      return [ padValidateSize ( $value, $number ), (float) trim ( $arg ) ];
+
+    $other = padRuleSibling ( $data, $arg );
+
+    if ( ! is_string ( $other ) or $other === '' or ( $number and ! is_numeric ( $other ) ) )
+      return NULL;
+
+    return [ padValidateSize ( $value, $number ), padValidateSize ( $other, $number ) ];
+
+  }
+
 ?>

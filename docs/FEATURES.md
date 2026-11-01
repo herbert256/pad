@@ -747,6 +747,7 @@ Some rules look at another field of the post:
 {input 'end', type='date', rules='after:start'/}                # or before:end, after:2026-01-01
 {input 'leave', type='date', rules='after_or_equal:arrive'/}    # the same day too - or before_or_equal:
 {input 'password', rules='different:current_password'/}         # not the other's text - the mirror of same:
+{input 'max_price', rules='numeric|gt:min_price'/}              # above the other - gte:, lt:, lte:; or gt:0
 ```
 The other field is found where PHP files the post, by the browser's checker too (`user[kind]`,
 `kinds[]` - which `kinds` finds too - the items `kinds[0]` and `kinds[1]`, `first.name` as
@@ -771,6 +772,12 @@ Phone or Fax is filled in", "... when Email is empty", "End must be a date after
 same moment too - a stay that leaves on the day it arrives - a day being its first moment, so
 `2026-01-01T00:00` is on or after `2026-01-01` and `before_or_equal:2026-12-31` refuses
 `2026-12-31T10:00`: "Leave must be a date on or after Arrive".
+`gt:`, `gte:`, `lt:` and `lte:` compare with another field or a number written in the rule
+(`gt:0` - where `min:0` takes 0 - `lte:100`), measuring as `min` and `max` measure: on a number
+field (`numeric`, `integer`, `multiple_of`) the value, on any other the length in characters,
+the other field measured alike; an other field that is empty, a list or on a number field no
+number lets them pass. "Max price must be greater than Min price", "Code must be shorter than
+5 characters", "Nick must be at most as long as Name".
 `different:` finds and trims the other field as `same:` does and passes where `same:` fails -
 an other field that is left out, empty or a list holds no text the value could be:
 "Password must be different from Current password".
@@ -778,7 +785,7 @@ an other field that is left out, empty or a list holds no text the value could b
 `client` on the form checks the same rules in the browser too, with the same messages, before
 the form leaves (the runtime `www/assets/rules/validate.js` with every rule's script, written
 once a page). A field whose rules look at another - `same:`, `different:`, the `required_*` rules, `before:`,
-`after:` and their `_or_equal` with a field - is checked again when that one changes, if it shows a message or was
+`after:` and their `_or_equal`, `gt:` and its kin with a field - is checked again when that one changes, if it shows a message or was
 checked or left before: "is required when Delivery is ship" goes when delivery becomes
 collect, and comes on an address already left when it becomes ship. The rules name those
 fields themselves (`fields` in their files); `padValidateClient` hands them on as the field's

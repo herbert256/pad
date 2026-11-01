@@ -871,7 +871,8 @@ the rules are the files of `pad/subs/rules/types/` - `required`, `email`, `url`,
 rules that look at another field - `required_if:field,value`, `required_unless:field,value`,
 `required_with:field`, `required_without:field`, `before:field` and `after:field` (or a date,
 `after:2026-01-01`), `before_or_equal:field` and `after_or_equal:field` (the same moment
-too), `different:field` (the mirror of `same:`). An empty field is checked for `required`, `accepted` and the
+too), `different:field` (the mirror of `same:`), `gt:field`, `gte:field`, `lt:field` and
+`lte:field` (or a number, `gt:0`). An empty field is checked for `required`, `accepted` and the
 `required_*` rules only. The field shows the message in the words of its own
 label, with `aria-invalid` and `aria-describedby`.
 

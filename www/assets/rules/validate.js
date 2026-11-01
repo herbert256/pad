@@ -273,6 +273,18 @@
     return mine !== null && mine === moment(dateArg(arg) ? trim(String(arg)) : sibling(values, arg));
   }
 
+  // gt, gte, lt and lte (padRuleCompare): [ the field's measure, the other's ] - a number of
+  // the rule, or the other field measured alike - or null when there is none: an other that
+  // is empty or a list, or on a number field no number as is_numeric reads one.
+  function compare(value, arg, values, number) {
+    var given = trim(String(arg));
+    if (/^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/.test(given)) return [size(value, number), toNumber(given)];
+    var other = sibling(values, arg);
+    if (typeof other !== 'string' || other === '') return null;
+    if (number && !/^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?[ \t\n\r\v\f]*$/.test(other)) return null;
+    return [size(value, number), size(other, number)];
+  }
+
   /*rules*/
 
   function rule(name, arg, value, values, number) {
