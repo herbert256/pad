@@ -4299,8 +4299,8 @@ the palettes there are, and the subsystem is `pad/subs/palettes/`.
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The palette: viridis, magma, plasma, inferno, cividis (perceptual, sequential); blues, greens, oranges, greys (sequential); rdbu, brbg, piyg (diverging); okabe-ito, tol-bright, tol-muted, tol-vibrant, pastel, earth (categorical) |
-| `steps` | How many colours, 1 to 256 - a scale sampled evenly from its first colour to its last (one: its middle), a categorical palette its colours in order, starting again past its last; without it a categorical palette's own colours, nine of a scale |
+| first parameter | The palette: viridis, magma, plasma, inferno, cividis (perceptual, sequential); blues, greens, oranges, greys (sequential); rdbu, brbg, piyg (diverging); romao (cyclic, for angles, directions, hours, months); okabe-ito, tol-bright, tol-muted, tol-vibrant, pastel, earth (categorical) |
+| `steps` | How many colours, 1 to 256 - a scale sampled evenly from its first colour to its last (one: its middle), a cyclic one evenly round its circle, never its first colour twice (one: its first), a categorical palette its colours in order, starting again past its last; without it a categorical palette's own colours, twelve of a cyclic one, nine of a scale |
 | `title` | The row's name for a screen reader (the palette's name and the count) |
 
 **Behavior:** the row is a list for a screen reader, `role="list"`, a swatch an item; its style

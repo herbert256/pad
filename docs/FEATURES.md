@@ -2060,11 +2060,16 @@ from matplotlib's published 256-colour tables (`_cm_listed.py`), and ColorBrewer
 oranges and greys of nine classes; diverging: ColorBrewer's rdbu, brbg and piyg of eleven;
 categorical, told apart by colour-blind eyes: okabe-ito (Okabe and Ito's eight, black put last,
 where it vanishes on a dark surface) and Paul Tol's bright, muted and vibrant (from his
-`tol_colors` package), and ColorBrewer's pastel (Pastel1) and PAD's own earth. `steps=` samples a
+`tol_colors` package), and ColorBrewer's pastel (Pastel1) and PAD's own earth; cyclic, for what
+goes round - an angle, a direction, the hour, the month - whose colours run once round a circle,
+the last next to the first: romaO (Crameri's Scientific colour maps 8.0.1, MIT licence). `steps=` samples a
 sequential or diverging palette evenly from its first colour to its last, the colours between
 two of its own mixed in sRGB - nine steps of a nine-class scale are the scale itself - one step
-its middle; a categorical palette gives its colours in order and starts again past its last.
-Without `steps` a categorical palette gives its own colours, the others nine; 1 to 256.
+its middle; a cyclic palette evenly round its circle from its first colour, the last step short
+of the first again, so no colour comes twice - four steps are its quarters, one its first; a
+categorical palette gives its colours in order and starts again past its last.
+Without `steps` a categorical palette gives its own colours, a cyclic one twelve, the others
+nine; 1 to 256.
 `padPalette ( $name, $steps )` answers the same list to a page's PHP. `{palette}` writes a row of
 swatches - a list for a screen reader, each hex value in black or white, whichever contrasts
 more - its style once per page with the nonce, a swatch's colours a class of its value
@@ -2076,7 +2081,8 @@ whose rule in the chart's own `<style>` gives it the palette's colours for those
 properties: a categorical palette its colours in order, a sequential or diverging one spread
 over the slots the chart uses - the middles of so many equal parts, so three series of viridis
 are purple, teal and green, never three purples, and neither pale end is a slot - and its whole
-length on the ramp. No colour stands in a style attribute, which a CSP nonce drops. A chart drawn
+length on the ramp, a cyclic palette seven steps round its circle, so the lowest and the
+highest step are neighbours, never one colour. No colour stands in a style attribute, which a CSP nonce drops. A chart drawn
 in the browser (`client`) gets the same: the server hands it the class and the rules for each
 number of slots and `www/assets/charts/palette.js` puts on the ones its
 drawing needs - the same SVG, character for character, which the `charts` line of `./ci.sh` holds

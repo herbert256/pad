@@ -19,7 +19,7 @@ PAD;
             . '. <code>padPalette ( \'viridis\', 7 )</code> answers the same colours to a page\'s PHP.' ];
 
   $tagOptions = [
-    'steps' => 'How many colours, 1 to 256: a sequential or diverging palette sampled evenly from its first colour to its last, a categorical one its colours in order, starting again past its last. Without it a categorical palette shows its own, the others nine.',
+    'steps' => 'How many colours, 1 to 256: a sequential or diverging palette sampled evenly from its first colour to its last, a cyclic one evenly round its circle, never its first colour twice, a categorical one its colours in order, starting again past its last. Without it a categorical palette shows its own, a cyclic one twelve, the others nine.',
     'title' => 'The name of the row for a screen reader, else the palette\'s name and the count.' ];
 
   $tagSee     = [ 'chart', 'theme', 'progress' ];

@@ -9,13 +9,16 @@
   // A palette is a file of subs/palettes/types/ - its name, its type and its colours - and the
   // files there are the palettes there are (padKinds, lib/subsystem.php); no tag type: a palette
   // is the parameter of {palette}, the option palette= of {chart} and the first argument of
-  // padPalette. Three types:
+  // padPalette. Four types:
   //
   //   sequential   a scale from low to high - viridis, magma, plasma, inferno and cividis from
   //                matplotlib's published 256-colour tables, the ColorBrewer blues, greens,
   //                oranges and greys of nine classes
   //   diverging    two scales meeting in a light middle - ColorBrewer's rdbu, brbg and piyg of
   //                eleven classes
+  //   cyclic       a scale that goes round, for what does - an angle, a direction, the hour,
+  //                the month: its colours run once round a circle, its last next to its first
+  //                again - Crameri's romaO
   //   categorical  colours to tell things apart, no order - okabe-ito and Paul Tol's bright,
   //                muted and vibrant, which colour-blind eyes tell apart, ColorBrewer's pastel
   //                and PAD's own earth
@@ -23,10 +26,13 @@
   // Steps: a sequential or diverging palette is sampled evenly from its first colour to its
   // last - the colours between two of its own made by mixing them in sRGB, so nine steps of
   // a nine-class scale are the scale itself and seven of a 256-colour table are seven of its
-  // colours, give or take a rounding - and one step is the middle. A categorical palette
-  // gives its colours in its order, and past its last starts again: an eighth of a palette
-  // of seven is its first. Without steps, a categorical palette gives all its colours, the
-  // others nine.
+  // colours, give or take a rounding - and one step is the middle. A cyclic palette is
+  // sampled evenly round its circle from its first colour on, its last step short of the
+  // first again - twelve steps are the twelve months, none of them twice, where sampled to
+  // its end its last colour would be its first once more - and one step is its first. A
+  // categorical palette gives its colours in its order, and past its last starts again: an
+  // eighth of a palette of seven is its first. Without steps, a categorical palette gives
+  // all its colours, a cyclic one twelve, the others nine.
   //
   // Included on use - by {palette}, by a chart given palette= and by padPalette (lib/palette.php).
 
@@ -61,7 +67,10 @@
 
     $data = padPaletteData ( $name );
 
-    return ( $data ['type'] == 'categorical' ) ? count ( $data ['colors'] ) : 9;
+    if ( $data ['type'] == 'categorical' )
+      return count ( $data ['colors'] );
+
+    return ( $data ['type'] == 'cyclic' ) ? 12 : 9;
 
   }
 
@@ -81,6 +90,12 @@
     if ( $data ['type'] == 'categorical' ) {
       for ( $i = 0; $i < $steps; $i++ )
         $list [] = $colors [ $i % count ( $colors ) ];
+      return $list;
+    }
+
+    if ( $data ['type'] == 'cyclic' ) {
+      for ( $i = 0; $i < $steps; $i++ )
+        $list [] = padPaletteAt ( $colors, $i / $steps );
       return $list;
     }
 
@@ -154,10 +169,12 @@
   // The colours of a chart in a palette: the custom properties its svg carries, for a chart
   // that uses the first $n of the eight categorical slots (pc-c1 to pc-c8, --pad-chart-series
   // the first) - those $n alone. A categorical palette gives the slots its colours in its
-  // order. A sequential or diverging palette spreads the slots over its whole length - the
-  // middles of $n equal parts, so neither end, which is near the surface for some, is a
+  // order. A sequential, diverging or cyclic palette spreads the slots over its whole length -
+  // the middles of $n equal parts, so neither end, which is near the surface for some, is a
   // slot - and gives the seven steps of the heatmap's ramp (--pad-chart-heat-0 to -6) from
-  // its first colour to its last; a categorical palette leaves the ramp as it is.
+  // its first colour to its last, a cyclic one seven steps round its circle, the last short
+  // of the first, so the lowest and the highest step are neighbours and never one colour; a
+  // categorical palette leaves the ramp as it is.
 
   function padPaletteChart ( $name, $n ) {
 
@@ -183,13 +200,15 @@
     // reads better (padPaletteInk): a scale's dark end may be its first step, where the
     // default ramp has its lightest.
 
-    if ( $data ['type'] != 'categorical' )
-      for ( $step = 0; $step <= 6; $step++ )
-        $style .= "--pad-chart-heat-$step:" . padPaletteAt ( $data ['colors'], $step / 6 ) . ';';
+    $round = ( $data ['type'] == 'cyclic' ) ? 7 : 6;
 
     if ( $data ['type'] != 'categorical' )
       for ( $step = 0; $step <= 6; $step++ )
-        $style .= "--pad-chart-heat-ink-$step:" . padPaletteInk ( padPaletteAt ( $data ['colors'], $step / 6 ) ) . ';';
+        $style .= "--pad-chart-heat-$step:" . padPaletteAt ( $data ['colors'], $step / $round ) . ';';
+
+    if ( $data ['type'] != 'categorical' )
+      for ( $step = 0; $step <= 6; $step++ )
+        $style .= "--pad-chart-heat-ink-$step:" . padPaletteInk ( padPaletteAt ( $data ['colors'], $step / $round ) ) . ';';
 
     return rtrim ( $style, ';' );
 

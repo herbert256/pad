@@ -19,7 +19,7 @@
       'section' => [ 'Sections', 'sections', 'Blocks a landing page is built from - a hero, features, prices, questions, a footer - in pure CSS, coloured by the theme.', 'layout' ],
       'effect'  => [ 'Effects',  'effects',  'Motion and decoration, CSS first - still for whoever asks for reduced motion, and read whole by a screen reader.', 'sparkle' ],
       'theme'   => [ 'Themes',   'themes',   'The colours of the frame swapped for another set - for a page, an application or the visitor\'s own choice.', 'droplet' ],
-      'palette' => [ 'Palettes', 'palettes', 'Colour scales for charts and anything else - perceptual, colour-blind safe, sequential and diverging.', 'bar-chart' ],
+      'palette' => [ 'Palettes', 'palettes', 'Colour scales for charts and anything else - perceptual, colour-blind safe, sequential, diverging and cyclic.', 'bar-chart' ],
     ];
 
   }
@@ -172,7 +172,8 @@ PAD;
   }
 
   // A palette shown as its swatches and in charts: the bars of several series and, for a
-  // scale - sequential or diverging - a heatmap, for a categorical palette a pie.
+  // scale - sequential or diverging - a heatmap, for a categorical palette a pie, for a cyclic
+  // one the eight points of the compass round a donut, the last next to the first.
 
   function sectionsPaletteTemplates ( $palette ) {
 
@@ -204,6 +205,21 @@ Mail,900
 Other,500
 {/data}
 {chart 'donut', data='traffic', label='source', value='visits', palette='$palette'/}
+PAD;
+    elseif ( $type == 'cyclic' )
+      $templates [] = <<<PAD
+{data 'wind'}
+from,days
+N,38
+NE,29
+E,24
+SE,31
+S,45
+SW,72
+W,64
+NW,49
+{/data}
+{chart 'donut', data='wind', label='from', value='days', palette='$palette'/}
 PAD;
     else
       $templates [] = <<<PAD
