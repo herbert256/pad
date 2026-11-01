@@ -3246,6 +3246,7 @@ files of its `types/` the filters there are, written in the order they apply:
 | `invert` | The negative | |
 | `edges` | The outlines: Sobel's operator on the luminance, from the ground to the lines; a PNG | `colors` ('#000000, #ffffff' - the ground first), `amount` (100) |
 | `threshold` | Two colours, a hard cut: ink below the luminance, paper from it on; a PNG | `threshold` (50, percent of white), `colors` ('#000000, #ffffff') |
+| `solarize` | The Sabattier effect: every channel from the threshold on turned into its negative | `threshold` (50) |
 | `dither` | Floyd and Steinberg's error diffusion to ink and paper; 1x, a PNG | `levels` (2), `colors` ('#000000, #ffffff') |
 | `atkinson` | Atkinson's dither, three quarters of the error carried on | as dither |
 | `bayer` | Ordered dithering by Bayer's map of 8 by 8 | as dither |
@@ -3285,6 +3286,9 @@ on a transparent ground, drawn on its own pixels, the ground left transparent.
 threshold reads every pixel in PHP too; its cut is `threshold` x 255 / 100 of the luminance - at 50
 a pixel of 128 and more is paper, at 0 every pixel, at 100 white alone - and every pixel keeps its
 opacity.
+solarize cuts each of red, green and blue on its own at `threshold` x 255 / 100 - a channel of 128
+and more at 50 becomes 255 less itself, as PIL's default and ImageMagick's `-solarize 50%` - reads
+every pixel in PHP within the same budget, and keeps every pixel's opacity.
 
 **Behavior:** writes `<img class="pad-img">` with its `width` and `height` (no layout shift),
 `loading="lazy"`, `decoding="async"` and a `srcset` whose second picture is twice the size -

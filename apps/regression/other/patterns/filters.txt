@@ -190,6 +190,15 @@ what stands behind it while it loads is what you see.</p>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;sharpen&#039;</span>, <span class="hl-opt">amount</span>=<span class="hl-num">80</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
 </section>
 
+<section class="patterns-filter" id="solarize">
+  <h2>solarize</h2>
+  <p>The Sabattier effect of the darkroom, a print flashed with light while it develops: every channel at threshold= percent (50) of its full value or more turned into its negative, 255 less itself, the rest left as it was - the highlights go dark and strange, the shadows stay.</p>
+  <div class="patterns-play">
+    <img class="pad-img" src="/pad/patterns/_thumbs/b5b017d5273fcc72.jpg" srcset="/pad/patterns/_thumbs/b5b017d5273fcc72.jpg 1x, /pad/patterns/_thumbs/7240bee0b74a3583.jpg 2x" width="360" height="240" alt="Rows of tulips running to a windmill" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;solarize&#039;</span>, <span class="hl-opt">threshold</span>=<span class="hl-num">40</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
 <section class="patterns-filter" id="threshold">
   <h2>threshold</h2>
   <p>The picture in two colours alone, a hard cut: every pixel whose luminance is threshold= percent (50) of white or more the second of colors= (paper), every other one the first (ink) - a stencil, a stamp, a scanned page made clean, where dither spreads the error on to keep the greys.</p>

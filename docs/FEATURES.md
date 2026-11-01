@@ -1822,6 +1822,7 @@ application shows every pattern with a seed to change by link.
 {img 'logos/shop.png', width=200, filter='thumbhash', alt='The shop'/}                  # ThumbHash: its shape, transparency kept
 {img 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour'/}   # Sobel: ink on paper
 {img 'scans/letter.png', width=600, filter='threshold', threshold=60, alt='The letter'/}  # ink or paper, a hard cut
+{img 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour'/} # the highlights turned negative
 ```
 `filter=` on `{img}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
 is a file of its `types/` - no tag of its own, a word of `filter=` as a validation rule is a word of
@@ -1858,6 +1859,10 @@ threshold cuts the picture into two colours: a pixel whose luminance is `thresho
 white or more is the second of `colors=` (paper, `#ffffff`), every other one the first (ink,
 `#000000`) - a hard cut where dither keeps the greys; every pixel keeps its opacity, a PNG unless
 `format=` says otherwise, within the same budget.
+solarize is the darkroom's Sabattier effect: every channel at `threshold=` percent (50) of its full
+value or more turned into its negative, the rest left - as PIL's `ImageOps.solarize` and
+ImageMagick's `-solarize` do it, the same bytes; at 0 it is invert, and every pixel keeps its
+opacity.
 
 ### Notations
 ```
