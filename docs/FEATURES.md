@@ -410,9 +410,10 @@ reproducible after `padFakeSeed ( 42 )`: `padFakeName`, `padFakeEmail`, `padFake
 
 The kinds of fake value are the files of `pad/subs/fakes/types/` - address, boolean, city, colour,
 company, country, date, decimal, email, firstname, iban (a Dutch number of the bank TEST that
-passes the check), ip (the documentation ranges), job, lastname, latitude and longitude (a
+passes the check), ip (the documentation ranges), ipv6 (of 2001:db8::/32, kept for
+documentation, as RFC 5952 writes it), job, lastname, latitude and longitude (a
 point of the box south=, north=, west=, east=, across the 180th meridian when west= lies east
-of east=), name, number, paragraph,
+of east=), mac (locally administered, so no maker's), name, number, paragraph,
 phone, postcode, price, sentence, street, time, url, username, uuid, word - each named by
 `padFake ( 'email' )` and in a template:
 ```
