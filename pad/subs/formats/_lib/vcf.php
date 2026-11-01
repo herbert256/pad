@@ -203,7 +203,12 @@
       if ( ( $note = $pick ( 'note', 'notes' ) ) !== '' )
         $out .= padLinesFold ( 'NOTE:' . padLinesEscape ( $note ) );
 
-      $out .= padLinesFold ( 'UID:' . ( $pick ( 'uid' ) ?: 'urn:uuid:' . padFormatUuid ( $name . '|' . ( $emails [0] ?? '' ) . '|' . ( $phones [0] ?? '' ) ) ) )
+      // A UID of 4.0 is a URI, no TEXT to escape: its line breaks are taken out, as a URL's,
+      // so a uid of CRLF and a property behind it is one line, never another property.
+
+      $uid = preg_replace ( '/[\r\n]/', '', $pick ( 'uid' ) );
+
+      $out .= padLinesFold ( 'UID:' . ( $uid !== '' ? $uid : 'urn:uuid:' . padFormatUuid ( $name . '|' . ( $emails [0] ?? '' ) . '|' . ( $phones [0] ?? '' ) ) ) )
             . padLinesFold ( 'END:VCARD' );
 
     }
