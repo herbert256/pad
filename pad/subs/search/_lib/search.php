@@ -545,8 +545,9 @@
 
   // A query as [ words, prefixes, phrases, out ]: a word as its terms, a prefix as the terms
   // of the words it begins, a phrase as the terms of each word with its place after its
-  // first, out as the words, prefixes and phrases that leave a document out. A word that is a stop word is dropped; so is a phrase of them only.
-  // Fifty parts of a thousand characters at the most - a query is typed, not posted.
+  // first, out as the words, prefixes and phrases that leave a document out. A word that is
+  // a stop word is dropped; so is a phrase of them only. Fifty parts of a thousand
+  // characters at the most - a query is typed, not posted.
 
   function padSearchQuery ( $q, $language, $index ) {
 
@@ -879,10 +880,12 @@
   // match in a <mark>) added, the best first. $source is [ name, sign, rows or a function
   // that answers them, keep the rows with the index, the fields when none are given ('' for
   // every field with text in a row - none is an error, no rows find nothing) ] - the sign
-  // NULL for rows, signed here on the fields searched; the options
-  // are fields, lang, words (of the excerpt, 30), excerpt (the field it is cut from, the
-  // last of fields), first (the best rows only) and excerpts (an excerpt for the first rows
-  // only, the others ''). An error is answered as a string.
+  // NULL for rows, signed here on the fields searched; the options are fields, lang, words
+  // (of the excerpt, 30), excerpt (the field it is cut from, the last of fields), first
+  // (the best rows only), excerpts (an excerpt for the first rows only, the others '') and
+  // style (TRUE: every excerpt carries the style of its marks, for padSearch, whose rows the
+  // page's PHP prints as it likes; the tag writes the style once itself). An error is
+  // answered as a string.
 
   function padSearchRun ( $source, $q, $options ) {
 
@@ -967,6 +970,9 @@
 
     $rows  = array_values ( (array) $rows );
     $found = [];
+    $style = ( $options ['style'] ?? FALSE ) ? padSearchExcerptStyle () : '';
+
+    padSearchQuiet ( TRUE );
 
     foreach ( $scores as $doc => $score ) {
 
@@ -976,13 +982,15 @@
 
       if ( $excerpts === NULL or count ( $found ) < $excerpts ) {
         $text = padSearchText ( padArrGet ( $row, $excerpt, '' ) );
-        $row ['excerpt'] = padExcerpt ( $text, (int) $words, padSearchMatched ( $text, $language, $query ), FALSE, '…' );
+        $row ['excerpt'] = $style . padExcerpt ( $text, (int) $words, padSearchMatched ( $text, $language, $query ), FALSE, '…' );
       } else
         $row ['excerpt'] = '';
 
       $found [] = $row;
 
     }
+
+    padSearchQuiet ( FALSE );
 
     return $found;
 
@@ -1068,6 +1076,47 @@
 
   }
 
+  // padExcerpt writes the style of the marks in front of the first excerpt of a page, and
+  // that once is spent whether the excerpt is printed or not: made for the first row found
+  // and dropped by first= after a sort, or never printed, it took the style with it - and
+  // from every later {excerpt} of the page. The excerpts of a search are made in a scope of
+  // their own (padSearchQuiet), where the style was written already, so they carry none
+  // and spend nothing; what prints them prints the style (padSearchExcerptStyle, made in a
+  // scope of its own as well): the {search} pair before its first row, the single tag
+  // before its list, padSearch in every excerpt.
+
+  function padSearchQuiet ( $on ) {
+
+    global $padOnceScope;
+
+    static $was = [];
+
+    if ( $on ) {
+      $was [] = $padOnceScope ?? NULL;
+      $padOnceScope = ( $padOnceScope ?? '' ) . '|search';
+      padExcerptStyle ();
+    } else
+      $padOnceScope = array_pop ( $was );
+
+  }
+
+  function padSearchExcerptStyle () {
+
+    global $padOnceScope;
+
+    static $style = NULL;
+
+    if ( $style === NULL ) {
+      $was          = $padOnceScope ?? NULL;
+      $padOnceScope = ( $was ?? '' ) . '|search-style';
+      $style        = padExcerptStyle ();
+      $padOnceScope = $was;
+    }
+
+    return $style;
+
+  }
+
   // The hits as the single {search/} writes them: a list, each item the title field - a link
   // when link= names a field with one that goes nowhere a script runs - and the excerpt.
 
@@ -1076,7 +1125,7 @@
     include_once PAD . 'tags/_lib/calendar.php';
 
     $h    = fn ( $t ) => htmlspecialchars ( padUnprotectQuotes ( (string) $t ), ENT_QUOTES, 'UTF-8' );
-    $html = padSearchStyle () . '<ol class="pad-search">';
+    $html = padSearchStyle () . padExcerptStyle () . '<ol class="pad-search">';
 
     foreach ( $rows as $row ) {
       $text  = $h ( padSearchText ( padArrGet ( $row, $title, '' ) ) );

@@ -336,7 +336,8 @@ Site search without a search server: the rows of a source a query finds, ranked 
 **Behavior:** as a pair it hands over the rows found, the best first: the source's own fields
 with `$score` (BM25F, three decimals) and `$excerpt` added - HTML, the words around the first
 match with every matched word in a `<mark>`, escaped as `{excerpt}` escapes it; print it
-`{!excerpt}`. The handling options work on them, `first=10` for the ten best - when they keep
+`{!excerpt}` - the style of the marks stands before the first row when the template prints the
+excerpt. The handling options work on them, `first=10` for the ten best - when they keep
 the first rows only (`first`, `page`, `rows`) the excerpts are made for those rows alone;
 nothing found is the `@else@`. As a single tag it answers an `<ol class="pad-search">` of the
 `first=` best, else of every hit: the first field of `fields` as the title, a link when

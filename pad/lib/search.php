@@ -46,6 +46,8 @@
 
     unset ( $options ['excerpts'] );
 
+    $options ['style'] = TRUE;
+
     $found = is_string ( $source ) ? $source : padSearchRun ( $source, padSearchQueryText ( $query ), $options );
 
     if ( is_string ( $found ) ) {

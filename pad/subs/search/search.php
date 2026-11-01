@@ -60,8 +60,17 @@
     return [];
   }
 
-  if ( $padPair [$pad] )
+  // The style of the excerpts' marks once, before the first row shown, when the pair's
+  // template prints the excerpt - a value, so its braces stay text. It went with the
+  // excerpt of the best row, and a page that sorted the rows, cut them or printed no
+  // excerpt lost it, for every {excerpt} after it as well; the page's own once is left to
+  // the {excerpt} tags, which then write it too.
+
+  if ( $padPair [$pad] ) {
+    if ( $padSearchRows and str_contains ( $padContent, 'excerpt' ) )
+      $padContent = '{first}' . padProtect ( padSearchExcerptStyle () ) . '{/first}' . $padContent;
     return $padSearchRows;
+  }
 
   // The title of a hit in the list: the first field searched.
 
