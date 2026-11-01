@@ -1284,7 +1284,9 @@ projection that suits the country - named by the view's `outlines`: us-states (t
 states, the District of Columbia and Puerto Rico in Albers USA, Alaska, Hawaii and Puerto Rico
 moved in below), nl-provinces (the twelve provinces of the Netherlands, the IJsselmeer as water,
 in a Lambert azimuthal equal-area projection centred on the country, Belgium and Germany
-around - `NL-NH`, `NH`, North Holland or Noord-Holland). A region is keyed by its ISO 3166-2 code with or without the country -
+around - `NL-NH`, `NH`, North Holland or Noord-Holland), de-states (the sixteen states of
+Germany, the same projection centred on Germany, its neighbours around - `DE-BY`, `by` as the
+holidays subsystem writes the region, Bavaria or Bayern). A region is keyed by its ISO 3166-2 code with or without the country -
 `US-CA` or `CA` - or its name, in English or the country's own language; a country is no
 region there, and a region the view has no outline for (Guam, Bonaire) is named as one it
 does not show. The default title reads `<Value> by
@@ -1898,7 +1900,7 @@ The `notations` application shows every kind with its examples.
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
 {map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # flowchart (or type='sequence') laid out as SVG on the server
-{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states, nl-provinces ...
+{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states, nl-provinces, de-states ...
 {timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
 {datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
 {toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered
