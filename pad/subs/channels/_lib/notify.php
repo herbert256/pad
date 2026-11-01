@@ -22,7 +22,8 @@
   //   send      function ( $message, $settings, $recipient, $options ) - TRUE when it went, the
   //             reason as text when it did not, or [ 'ok' => ..., 'error' => ..., 'gone' => ... ]
   //
-  // The message a channel gets: name, channel, title, text, html, data, url. Its template is
+  // The message a channel gets: name, channel, title, text, html, data, url, and the id and
+  // time (at) of the notification. Its template is
   // _notifications/<name>.pad, looked up from the page's directory up to the application and
   // then _common, as _mail/ is. A line @<channel>@ - or @title@ - alone on a line opens the
   // section of that channel; what stands before the first one is the plain text, for every
@@ -95,6 +96,16 @@
         padInfoXref ( 'channel', $channel );
 
     }
+
+    // The notification's id and the time it was made, once: a queued one keeps them in the
+    // options of its jobs, so a retry is the same message - the webhook channel's webhook-id,
+    // which a receiver drops a second delivery by.
+
+    if ( ! is_string ( $options ['@id'] ?? NULL ) or ! preg_match ( '/^msg_[A-Za-z0-9]{1,64}$/D', $options ['@id'] ) )
+      $options ['@id'] = 'msg_' . bin2hex ( random_bytes ( 12 ) );
+
+    if ( ! is_int ( $options ['@at'] ?? NULL ) )
+      $options ['@at'] = (int) padNow ( 'U' );
 
     if ( ! empty ( $options ['queue'] ) )
       return padNotifyQueue ( $recipient, $name, $data, $plan, $options );
@@ -364,7 +375,8 @@
     return [ 'name'     => (string) $name, 'channel' => $channel, 'title' => trim ( preg_replace ( '/\s+/', ' ', $title ) ),
              'text'     => $text,          'html'    => $html,    'data'  => $data,
              'rendered' => $body,          'markup'  => $markup,  'own'   => $own,
-             'url'      => (string) ( $options ['url'] ?? ( is_scalar ( $data ['url'] ?? NULL ) ? $data ['url'] : '' ) ) ];
+             'url'      => (string) ( $options ['url'] ?? ( is_scalar ( $data ['url'] ?? NULL ) ? $data ['url'] : '' ) ),
+             'id'       => (string) ( $options ['@id'] ?? '' ), 'at' => (int) ( $options ['@at'] ?? 0 ) ];
 
   }
 

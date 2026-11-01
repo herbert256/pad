@@ -24,6 +24,16 @@ pair the notifications are its rows:</p>
 
 {example 'fragments/notify_2'/}
 
+<h2>To a service of your own</h2>
+
+<p>The webhook channel posts the notification as JSON to <code>WEBHOOK_URL</code> - Zapier, n8n,
+a service of your own - signed as Standard Webhooks has it: the headers <code>webhook-id</code>,
+<code>webhook-timestamp</code> and <code>webhook-signature</code>, the HMAC-SHA256 of the three
+under <code>WEBHOOK_SECRET</code>. The receiver makes the signature again and compares; a queued
+notification keeps its id for a retry, so the receiver can drop a second delivery:</p>
+
+{example 'fragments/notify_3'/}
+
 <h2>Who gets it, and where</h2>
 
 <ul>

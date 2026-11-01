@@ -639,6 +639,12 @@ gone. A channel is added by adding its file: its settings and a `send` function.
 - twilio - a text message through Twilio's Messages API: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`
   (or with `TWILIO_API_KEY` that key's secret), `TWILIO_FROM` - a number, a short code, a sender id
   or a Messaging Service (`MG...`); the row's `phone` in E.164, the text cut at 1600 characters.
+- webhook - the notification as JSON to `WEBHOOK_URL` - Zapier, n8n, a service of your own -
+  signed as Standard Webhooks has it with `WEBHOOK_SECRET` (`whsec_` and base64, several split by
+  spaces while one is rolled in): the headers `webhook-id`, `webhook-timestamp` and
+  `webhook-signature` (`v1,` and the HMAC-SHA256 of id.timestamp.body), the body `type`
+  (`notification.<name>`), `timestamp` and `data` - name, title, text, html, url, the
+  recipient's id and email, the values. A queued notification keeps its id for its retries.
 
 ### A language model answering in the page
 ```

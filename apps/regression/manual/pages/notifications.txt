@@ -73,7 +73,7 @@ Track it at https://shop.example/orders/42</code></p>
 
 
 
-<p>The channels are the files of <code>pad/subs/channels/types/</code> - database, discord, gotify, mail, matrix, mattermost, ntfy, pushover, slack, sms, teams, telegram, twilio, webpush.
+<p>The channels are the files of <code>pad/subs/channels/types/</code> - database, discord, gotify, mail, matrix, mattermost, ntfy, pushover, slack, sms, teams, telegram, twilio, webhook, webpush.
 A channel is added by adding its file: the settings it needs and a function that sends.</p>
 
 <h2>Kept on the site</h2>
@@ -128,6 +128,74 @@ pair the notifications are its rows:</p>
   <li><b>Order 43 shipped</b> - Your order 43 has shipped.
 Track it at https://shop.example/orders/43</li>
 </ul>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>To a service of your own</h2>
+
+<p>The webhook channel posts the notification as JSON to <code>WEBHOOK_URL</code> - Zapier, n8n,
+a service of your own - signed as Standard Webhooks has it: the headers <code>webhook-id</code>,
+<code>webhook-timestamp</code> and <code>webhook-signature</code>, the HMAC-SHA256 of the three
+under <code>WEBHOOK_SECRET</code>. The receiver makes the signature again and compares; a queued
+notification keeps its id for a retry, so the receiver can drop a second delivery:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/notify_3.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/notify_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// The webhook channel posts the notification as JSON, signed as Standard Webhooks has it. A<br>  // fake answers here and keeps what was sent; below it the receiver's side checks the<br>  // signature as any receiver does - the HMAC-SHA256 of id.timestamp.body under the secret.<br>  // In an application the address and the secret stand in .env: WEBHOOK_URL, WEBHOOK_SECRET.<br><br>  </span><span style="color: #0000BB">padCurlFake </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'*' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">204 </span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$signingKey </span><span style="color: #007700">= </span><span style="color: #DD0000">'whsec_MfKQ9r8GKYqrTwjUPD8ILPZIo2LhLjHd'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">padNotify </span><span style="color: #007700">( [ </span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'manual-ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'email' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'ann@example.com' </span><span style="color: #007700">], </span><span style="color: #DD0000">'order-shipped'</span><span style="color: #007700">,<br>              [ </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">42</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Ann'</span><span style="color: #007700">, </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://shop.example/orders/42' </span><span style="color: #007700">],<br>              [ </span><span style="color: #DD0000">'webhook' </span><span style="color: #007700">], [ </span><span style="color: #DD0000">'webhook' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'url' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'https://hooks.example.com/orders'</span><span style="color: #007700">, </span><span style="color: #DD0000">'secret' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$signingKey </span><span style="color: #007700">] ] );<br><br>  </span><span style="color: #0000BB">$sent </span><span style="color: #007700">= </span><span style="color: #0000BB">padCurlRecorded </span><span style="color: #007700">() [</span><span style="color: #0000BB">0</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$head </span><span style="color: #007700">= </span><span style="color: #0000BB">$sent </span><span style="color: #007700">[</span><span style="color: #DD0000">'headers'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$body </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">$sent </span><span style="color: #007700">[</span><span style="color: #DD0000">'post'</span><span style="color: #007700">], </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #FF8000">// The receiver: the signature made again from the headers and the body as they came.<br><br>  </span><span style="color: #0000BB">$signed </span><span style="color: #007700">= </span><span style="color: #0000BB">$head </span><span style="color: #007700">[</span><span style="color: #DD0000">'webhook-id'</span><span style="color: #007700">] . </span><span style="color: #DD0000">'.' </span><span style="color: #007700">. </span><span style="color: #0000BB">$head </span><span style="color: #007700">[</span><span style="color: #DD0000">'webhook-timestamp'</span><span style="color: #007700">] . </span><span style="color: #DD0000">'.' </span><span style="color: #007700">. </span><span style="color: #0000BB">$sent </span><span style="color: #007700">[</span><span style="color: #DD0000">'post'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$mac    </span><span style="color: #007700">= </span><span style="color: #DD0000">'v1,' </span><span style="color: #007700">. </span><span style="color: #0000BB">base64_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">hash_hmac </span><span style="color: #007700">( </span><span style="color: #DD0000">'sha256'</span><span style="color: #007700">, </span><span style="color: #0000BB">$signed</span><span style="color: #007700">, </span><span style="color: #0000BB">base64_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">substr </span><span style="color: #007700">( </span><span style="color: #0000BB">$signingKey</span><span style="color: #007700">, </span><span style="color: #0000BB">6 </span><span style="color: #007700">) ), </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) );<br>  </span><span style="color: #0000BB">$valid  </span><span style="color: #007700">= </span><span style="color: #0000BB">hash_equals </span><span style="color: #007700">( </span><span style="color: #0000BB">$mac</span><span style="color: #007700">, </span><span style="color: #0000BB">$head </span><span style="color: #007700">[</span><span style="color: #DD0000">'webhook-signature'</span><span style="color: #007700">] ) ? </span><span style="color: #DD0000">'yes' </span><span style="color: #007700">: </span><span style="color: #DD0000">'no'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$type  </span><span style="color: #007700">= </span><span style="color: #0000BB">$body </span><span style="color: #007700">[</span><span style="color: #DD0000">'type'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #0000BB">$body </span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'title'</span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">padCurlFakeStop </span><span style="color: #007700">();<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiI8cD5UaGUgdHlwZTogPGNvZGU+eyR0eXBlfTwvY29kZT4sIHRoZSB0aXRsZTogeyR0aXRsZX08L3A+XG48cD5UaGUgc2lnbmF0dXJlIGNoZWNrcyBvdXQ6IHskdmFsaWR9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSB3ZWJob29rIGNoYW5uZWwgcG9zdHMgdGhlIG5vdGlmaWNhdGlvbiBhcyBKU09OLCBzaWduZWQgYXMgU3RhbmRhcmQgV2ViaG9va3MgaGFzIGl0LiBBXG4gIC8vIGZha2UgYW5zd2VycyBoZXJlIGFuZCBrZWVwcyB3aGF0IHdhcyBzZW50OyBiZWxvdyBpdCB0aGUgcmVjZWl2ZXIncyBzaWRlIGNoZWNrcyB0aGVcbiAgLy8gc2lnbmF0dXJlIGFzIGFueSByZWNlaXZlciBkb2VzIC0gdGhlIEhNQUMtU0hBMjU2IG9mIGlkLnRpbWVzdGFtcC5ib2R5IHVuZGVyIHRoZSBzZWNyZXQuXG4gIC8vIEluIGFuIGFwcGxpY2F0aW9uIHRoZSBhZGRyZXNzIGFuZCB0aGUgc2VjcmV0IHN0YW5kIGluIC5lbnY6IFdFQkhPT0tfVVJMLCBXRUJIT09LX1NFQ1JFVC5cblxuICBwYWRDdXJsRmFrZSAoIFsgJyonID0+IDIwNCBdICk7XG5cbiAgJHNpZ25pbmdLZXkgPSAnd2hzZWNfTWZLUTlyOEdLWXFyVHdqVVBEOElMUFpJbzJMaExqSGQnO1xuXG4gIHBhZE5vdGlmeSAoIFsgJ2lkJyA9PiAnbWFudWFsLWFubicsICdlbWFpbCcgPT4gJ2FubkBleGFtcGxlLmNvbScgXSwgJ29yZGVyLXNoaXBwZWQnLFxuICAgICAgICAgICAgICBbICdvcmRlcicgPT4gNDIsICduYW1lJyA9PiAnQW5uJywgJ3VybCcgPT4gJ2h0dHBzOi8vc2hvcC5leGFtcGxlL29yZGVycy80MicgXSxcbiAgICAgICAgICAgICAgWyAnd2ViaG9vaycgXSwgWyAnd2ViaG9vaycgPT4gWyAndXJsJyA9PiAnaHR0cHM6Ly9ob29rcy5leGFtcGxlLmNvbS9vcmRlcnMnLCAnc2VjcmV0JyA9PiAkc2lnbmluZ0tleSBdIF0gKTtcblxuICAkc2VudCA9IHBhZEN1cmxSZWNvcmRlZCAoKSBbMF07XG4gICRoZWFkID0gJHNlbnQgWydoZWFkZXJzJ107XG4gICRib2R5ID0ganNvbl9kZWNvZGUgKCAkc2VudCBbJ3Bvc3QnXSwgVFJVRSApO1xuXG4gIC8vIFRoZSByZWNlaXZlcjogdGhlIHNpZ25hdHVyZSBtYWRlIGFnYWluIGZyb20gdGhlIGhlYWRlcnMgYW5kIHRoZSBib2R5IGFzIHRoZXkgY2FtZS5cblxuICAkc2lnbmVkID0gJGhlYWQgWyd3ZWJob29rLWlkJ10gLiAnLicgLiAkaGVhZCBbJ3dlYmhvb2stdGltZXN0YW1wJ10gLiAnLicgLiAkc2VudCBbJ3Bvc3QnXTtcbiAgJG1hYyAgICA9ICd2MSwnIC4gYmFzZTY0X2VuY29kZSAoIGhhc2hfaG1hYyAoICdzaGEyNTYnLCAkc2lnbmVkLCBiYXNlNjRfZGVjb2RlICggc3Vic3RyICggJHNpZ25pbmdLZXksIDYgKSApLCBUUlVFICkgKTtcbiAgJHZhbGlkICA9IGhhc2hfZXF1YWxzICggJG1hYywgJGhlYWQgWyd3ZWJob29rLXNpZ25hdHVyZSddICkgPyAneWVzJyA6ICdubyc7XG5cbiAgJHR5cGUgID0gJGJvZHkgWyd0eXBlJ107XG4gICR0aXRsZSA9ICRib2R5IFsnZGF0YSddIFsndGl0bGUnXTtcblxuICBwYWRDdXJsRmFrZVN0b3AgKCk7XG5cbj8+XG4ifQ==" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8cD5UaGUgdHlwZTogPGNvZGU+eyR0eXBlfTwvY29kZT4sIHRoZSB0aXRsZTogeyR0aXRsZX08L3A+XG48cD5UaGUgc2lnbmF0dXJlIGNoZWNrcyBvdXQ6IHskdmFsaWR9PC9wPlxuIiwiZGF0YSI6IiIsIm1vZGUiOiJwaHAiLCJwaHAiOiI8P3BocFxuXG4gIC8vIFRoZSB3ZWJob29rIGNoYW5uZWwgcG9zdHMgdGhlIG5vdGlmaWNhdGlvbiBhcyBKU09OLCBzaWduZWQgYXMgU3RhbmRhcmQgV2ViaG9va3MgaGFzIGl0LiBBXG4gIC8vIGZha2UgYW5zd2VycyBoZXJlIGFuZCBrZWVwcyB3aGF0IHdhcyBzZW50OyBiZWxvdyBpdCB0aGUgcmVjZWl2ZXIncyBzaWRlIGNoZWNrcyB0aGVcbiAgLy8gc2lnbmF0dXJlIGFzIGFueSByZWNlaXZlciBkb2VzIC0gdGhlIEhNQUMtU0hBMjU2IG9mIGlkLnRpbWVzdGFtcC5ib2R5IHVuZGVyIHRoZSBzZWNyZXQuXG4gIC8vIEluIGFuIGFwcGxpY2F0aW9uIHRoZSBhZGRyZXNzIGFuZCB0aGUgc2VjcmV0IHN0YW5kIGluIC5lbnY6IFdFQkhPT0tfVVJMLCBXRUJIT09LX1NFQ1JFVC5cblxuICBwYWRDdXJsRmFrZSAoIFsgJyonID0+IDIwNCBdICk7XG5cbiAgJHNpZ25pbmdLZXkgPSAnd2hzZWNfTWZLUTlyOEdLWXFyVHdqVVBEOElMUFpJbzJMaExqSGQnO1xuXG4gIHBhZE5vdGlmeSAoIFsgJ2lkJyA9PiAnbWFudWFsLWFubicsICdlbWFpbCcgPT4gJ2FubkBleGFtcGxlLmNvbScgXSwgJ29yZGVyLXNoaXBwZWQnLFxuICAgICAgICAgICAgICBbICdvcmRlcicgPT4gNDIsICduYW1lJyA9PiAnQW5uJywgJ3VybCcgPT4gJ2h0dHBzOi8vc2hvcC5leGFtcGxlL29yZGVycy80MicgXSxcbiAgICAgICAgICAgICAgWyAnd2ViaG9vaycgXSwgWyAnd2ViaG9vaycgPT4gWyAndXJsJyA9PiAnaHR0cHM6Ly9ob29rcy5leGFtcGxlLmNvbS9vcmRlcnMnLCAnc2VjcmV0JyA9PiAkc2lnbmluZ0tleSBdIF0gKTtcblxuICAkc2VudCA9IHBhZEN1cmxSZWNvcmRlZCAoKSBbMF07XG4gICRoZWFkID0gJHNlbnQgWydoZWFkZXJzJ107XG4gICRib2R5ID0ganNvbl9kZWNvZGUgKCAkc2VudCBbJ3Bvc3QnXSwgVFJVRSApO1xuXG4gIC8vIFRoZSByZWNlaXZlcjogdGhlIHNpZ25hdHVyZSBtYWRlIGFnYWluIGZyb20gdGhlIGhlYWRlcnMgYW5kIHRoZSBib2R5IGFzIHRoZXkgY2FtZS5cblxuICAkc2lnbmVkID0gJGhlYWQgWyd3ZWJob29rLWlkJ10gLiAnLicgLiAkaGVhZCBbJ3dlYmhvb2stdGltZXN0YW1wJ10gLiAnLicgLiAkc2VudCBbJ3Bvc3QnXTtcbiAgJG1hYyAgICA9ICd2MSwnIC4gYmFzZTY0X2VuY29kZSAoIGhhc2hfaG1hYyAoICdzaGEyNTYnLCAkc2lnbmVkLCBiYXNlNjRfZGVjb2RlICggc3Vic3RyICggJHNpZ25pbmdLZXksIDYgKSApLCBUUlVFICkgKTtcbiAgJHZhbGlkICA9IGhhc2hfZXF1YWxzICggJG1hYywgJGhlYWQgWyd3ZWJob29rLXNpZ25hdHVyZSddICkgPyAneWVzJyA6ICdubyc7XG5cbiAgJHR5cGUgID0gJGJvZHkgWyd0eXBlJ107XG4gICR0aXRsZSA9ICRib2R5IFsnZGF0YSddIFsndGl0bGUnXTtcblxuICBwYWRDdXJsRmFrZVN0b3AgKCk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;p&gt;The type: &lt;code&gt;<b>{<font color="green"><font color="red">$</font>type</font>}</b>&lt;/code&gt;, the title: <b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/p&gt;<br>&lt;p&gt;The signature checks out: <b>{<font color="green"><font color="red">$</font>valid</font>}</b>&lt;/p&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <p>The type: <code>notification.order-shipped</code>, the title: Order 42 shipped</p>
+<p>The signature checks out: yes</p>
 
 
 </td>
