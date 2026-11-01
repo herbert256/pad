@@ -332,6 +332,7 @@
       'product'      => $pre ( "{jsonld:product name='Aurora kettle', sku='AK-1', brand='Aurora', price='39.95', currency='EUR', availability='InStock' | html/}" ),
       'recipe'       => "{data 'soup'}\n{ \"name\": \"Pea soup\", \"image\": \"soup.jpg\", \"prep\": \"20 min\", \"cook\": \"1 h 30 min\", \"yield\": \"4\",\n  \"ingredients\": [ \"500 g split peas\", \"1 leek, sliced\", \"2 l water\" ],\n  \"steps\": [ \"Soak the peas overnight.\", \"Simmer it all for an hour and a half.\" ] }\n{/data}\n" . $pre ( "{jsonld:recipe data='soup' | html/}" ),
       'restaurant'   => $pre ( "{jsonld:restaurant name='De Ketel', cuisine='Dutch', menu='?menu', street='Oudegracht 1', city='Utrecht', country='NL', hours='Tu-Su 17:00-23:00', prices='\$\$' | html/}" ),
+      'software'     => $pre ( "{jsonld:software name='Pocket Ledger', type='mobile application', os='Android 12, iOS 17', category='finance application', price=0, rating='4.6', ratings=1523 | html/}" ),
       'video'        => $pre ( "{jsonld:video name='Making pea soup', thumbnail='soup.jpg', uploaded='2026-11-01T10:00:00+01:00', duration='4 min 12 s', player='https://video.example/embed/123', views=2347 | html/}" ),
       'website'      => $pre ( "{jsonld:website name='PAD', search='?search&q=' | html/}" ) ];
 

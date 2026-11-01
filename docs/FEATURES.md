@@ -151,13 +151,14 @@ template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip
 {jsonld:video data='clip'/}                               # thumbnails, upload date, length, views
 {jsonld:business type='Bakery', name='The Loaf', city='Utrecht', hours='Mo-Fr 08:00-18:00; Sa 08:00-16:00'/}
 {jsonld:job data='vacancy', salary='3200-3800', currency='EUR', per='month'/}
+{jsonld:software name='Pocket Ledger', category='finance application', price=0, rating='4.6', ratings=1523/}
 ```
 ```php
 $url  = padUrl ( '', [], TRUE );                          // the page's own address, for url=
 $data = padJsonLd ( 'event', $concert );                  // the same object as a plain array
 ```
 One `<script type="application/ld+json">` holding a Schema.org object - what search engines read
-for a rich result - from ordinary PAD data, explicitly mapped. Thirteen kinds, each a file of
+for a rich result - from ordinary PAD data, explicitly mapped. Fourteen kinds, each a file of
 `pad/subs/jsonld/types/` whose header lists its fields, a PAD name and the Schema.org property it
 fills: `article` (headline required, description, image, url, author, published, modified,
 publisher, logo), `breadcrumb` (rows of name and url - the rows `{breadcrumb data=}` takes,
@@ -196,7 +197,11 @@ logo of the hiring Organization, street, city, region, postcode and country of i
 country needed with any of them - remote (yes writes jobLocationType TELECOMMUTE) with countries
 (applicantLocationRequirements, a Country each), and salary (an amount or a range, `3200-3800`),
 currency and per (HOUR, DAY, WEEK, MONTH or YEAR) as a MonetaryAmount - a salary needs both;
-not `min=`/`max=`, which are options of every tag.
+not `min=`/`max=`, which are options of every tag. `software`: a SoftwareApplication - type
+(MobileApplication, WebApplication), name and price required (`0` for one that is free), description,
+url, image, os, category (one of the 22 applicationCategory values Google takes, `finance
+application`), version, download, currency, and rating with ratings as an AggregateRating - Google
+shows the rich result for an application with a rating or a review.
 
 The fields come from the row or rows `data=` names - a `{data}` store, the page's array, a
 field holding a list or a `_data` file (a store holds rows, so a single row in a `{data}` block
