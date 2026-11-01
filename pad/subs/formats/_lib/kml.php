@@ -43,9 +43,6 @@
 
   function padKmlRead ( $text ) {
 
-    if ( preg_match ( '/<!DOCTYPE/i', $text, $m, PREG_OFFSET_CAPTURE ) )
-      padFormatFail ( padFormatLineAt ( $text, $m [0] [1] ), 'a KML document has no DOCTYPE - its entities are never read' );
-
     $dom    = new DOMDocument ();
     $errors = libxml_use_internal_errors ( TRUE );
 
@@ -62,6 +59,12 @@
 
     $root = $dom->documentElement;
 
+    // A DOCTYPE is refused as the document holds one, in whatever encoding libxml read it - before a
+    // text of it is read, so its entities never are - where a <!DOCTYPE of a CDATA or a comment is text.
+
+    if ( $dom->doctype )
+      padFormatFail ( padKmlDoctypeLine ( $text, $root ), 'a KML document has no DOCTYPE - its entities are never read' );
+
     if ( $root->localName != 'kml' )
       padFormatFail ( $root->getLineNo (), "a KML document is a <kml> element, not <{$root->localName}>" );
 
@@ -70,6 +73,24 @@
     padKmlFeatures ( $root, [], $rows );
 
     return $rows;
+
+  }
+
+  // The line of the DOCTYPE of a document that has one: behind the declaration, the comments
+  // and the processing instructions of its prolog, in the text made UTF-8 when it is UTF-16 -
+  // the root's line for a text in another encoding.
+
+  function padKmlDoctypeLine ( $text, $root ) {
+
+    if ( preg_match ( '/^(?:\xFE\xFF|\x00<)/', $text ) )
+      $text = mb_convert_encoding ( $text, 'UTF-8', 'UTF-16BE' );
+    elseif ( preg_match ( '/^(?:\xFF\xFE|<\x00)/', $text ) )
+      $text = mb_convert_encoding ( $text, 'UTF-8', 'UTF-16LE' );
+
+    if ( preg_match ( '/^(?:\xEF\xBB\xBF)?(?:\s|<\?.*?\?>|<!--.*?-->)*<!DOCTYPE/s', $text, $m ) )
+      return 1 + substr_count ( $m [0], "\n" );
+
+    return $root->getLineNo ();
 
   }
 
