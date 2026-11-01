@@ -19,6 +19,8 @@
   //                        theirs: 150 steps at most, #NUM! when they do not settle
   //   padFormulaStatistics the numbers of a list of arguments with their count, mean and
   //                        sum of squares
+  //   padFormulaMultiple   a number as a whole multiple of another, up, down or the nearest -
+  //                        CEILING, FLOOR, MROUND
 
   function padFormulaAt ( $range, $row, $column, $env ) {
 
@@ -305,6 +307,28 @@
       $sum += ( $number - $mean ) ** 2;
 
     return [ 'numbers' => $numbers, 'count' => $count, 'mean' => $mean, 'squares' => $sum ];
+
+  }
+
+  // A number as a whole multiple of another, neither 0: the quotient on its 15 digits - 2.5 /
+  // 0.1 is 25.000000000000004 as floats, and a number that is a multiple as it shows stays
+  // itself - then rounded up toward plus infinity ('up'), down toward minus infinity ('down')
+  // or to the nearest, half away from zero ('half'), and times the multiple on 15 digits again
+  // - 3 * 0.1 is 0.30000000000000004. -0.25 rounded up to a whole 1 is 0, never -0.
+
+  function padFormulaMultiple ( $number, $multiple, $mode ) {
+
+    $quotient = padFormulaRound15 ( $number / $multiple );
+
+    $whole = match ( $mode ) {
+      'up'    => ceil ( $quotient ),
+      'down'  => floor ( $quotient ),
+      default => round ( $quotient )
+    };
+
+    $result = padFormulaRound15 ( $whole * $multiple );
+
+    return $result == 0 ? 0.0 : $result;
 
   }
 
