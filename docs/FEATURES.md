@@ -1574,6 +1574,7 @@ as graph paper's are; the content between the tags is a line over the staves.
 {breadcrumb/}  {breadcrumb}Home | ?index{/breadcrumb}   # the trail to the page: its path, its lines or data=
 {splitpane size=30, collapse}{tab 'Files'}...{/tab}{tab 'Editor'}...{/tab}{/splitpane}   # two panes, a bar dragged or moved by the keys
 {contextmenu 'Actions for a.pdf', area='tr'}<a href="?open">Open</a>...{/contextmenu}   # right click, Shift+F10 or its dots button
+{commandpalette 'Go to', data='commands'/}   # Ctrl+K: a search box over the commands, Enter runs one
 {widget 'modal', 'terms', title='Terms'}...{/widget}   # the widget tag: its first parameter names the widget
 {widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type - or bare, as above
 ```

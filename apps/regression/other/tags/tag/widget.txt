@@ -1,6 +1,6 @@
 <p><code>{widget}</code> puts an interactive part on the page - tabs, an accordion, a carousel,
-a wizard, a lightbox, a split pane, a modal, a drawer, a dropdown, a context menu, a tooltip,
-a toast, a copy box, a poll, a breadcrumb. Every one is built on the server and works without JavaScript: radio buttons and
+a wizard, a lightbox, a split pane, a modal, a drawer, a dropdown, a context menu, a command
+palette, a tooltip, a toast, a copy box, a poll, a breadcrumb. Every one is built on the server and works without JavaScript: radio buttons and
 CSS, <code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code>, the <code>popover</code>
 attribute, <code>:target</code>. Where a widget has a script it only makes it handier - Escape,
 the arrow keys, the focus - and is written once per page, with the CSP nonce. Every widget is a
@@ -29,7 +29,9 @@ lightbox and splitpane.</p>
   without scripting.</li>
   <li><b>modal</b> - a <code>&lt;dialog&gt;</code> and its button, opened by the invoker
   commands, a script where the browser has none, or a <code>:target</code> link without
-  scripting. <b>drawer</b> - the same along the side of the window.</li>
+  scripting. <b>drawer</b> - the same along the side of the window. <b>commandpalette</b> - a
+  dialog with a search box over the commands, opened by its button or Ctrl+K: typing narrows
+  them, Enter runs one; without scripting the whole list.</li>
   <li><b>dropdown</b> - a menu under a button, a popover the browser opens, closes and places.
   <b>contextmenu</b> - the actions on a part of the page: a right click, Shift+F10 or its button
   of three dots, which opens the same popover without scripting.

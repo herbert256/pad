@@ -2726,7 +2726,7 @@ out.
 ### widget
 An interactive part of the page that works without JavaScript and gets better with it - tabs,
 an accordion, a carousel, a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a
-toast, a copy box, a poll, a breadcrumb, a split pane, a context menu. Every widget is a file of
+toast, a copy box, a poll, a breadcrumb, a split pane, a context menu, a command palette. Every widget is a file of
 `pad/subs/widgets/types/` - its tag code - with its functions in `pad/subs/widgets/_lib/`, its style and
 script in `www/assets/widgets/`, and the files of `types/` are the widgets there are
 (`padWidgetTypes()`); the subsystem is `pad/subs/widgets/`.
@@ -2751,6 +2751,7 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | `accordion` | Every `{tab}` a `<details>`, opened and closed by the browser | `single`, `open` |
 | `breadcrumb` | Where the page stands - links from home to the page, from its path, its lines or data | `home`, `label`, `data` |
 | `carousel` | Slides that scroll and snap sideways, previous/next and dot links | `label` |
+| `commandpalette` | A search over the commands of an application - a button and Ctrl+K open a dialog, typing narrows the list, Enter runs one | the button's text, `data`, `key`, `placeholder`, `empty` |
 | `contextmenu` | The actions on a part of the page - a right click, the context menu key or Shift+F10 opens them at the pointer or the focus, a button of three dots too | the name, `area` |
 | `copy` | A text with a copy-to-clipboard button | the text, `label` |
 | `drawer` | A panel that slides in from a side of the window, with the button that opens it | the name, `title`, `button`, `side` |
@@ -3294,6 +3295,58 @@ ends a paragraph. Printed, no button shows. The colours are `--pad-contextmenu-a
 `-text`, `-muted`, `-line`, `-surface` and `-hover` on `.pad-contextmenu`, taken from the page's
 palette where it has one, with `light-dark()` defaults. A context menu without its name, one
 with an empty menu and an `area` that is no tag name or class are errors under the strict check.
+
+---
+
+### commandpalette
+A search over the commands of an application - a button, and Ctrl+K or ⌘K, open a modal dialog
+with a search box over a list of links and buttons; typing narrows the list, the arrow keys
+choose, Enter runs the chosen one: the WAI-ARIA combobox pattern with a list box
+(`subs/widgets/_lib/commandpalette.php`).
+
+```html
+{commandpalette 'Go to'}
+  <p>Pages</p>
+  <a href="?orders">Orders</a>
+  <a href="?customers" data-pad-keywords="clients buyers">Customers</a>
+  <p>Actions</p>
+  <a href="?orders/new">New order</a>
+{/commandpalette}
+
+{commandpalette 'Go to', data='commands', placeholder='Search pages and actions'/}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The text of the button and the name of the dialog - `Commands` when not given |
+| `data` | The commands from rows of a store, the page's array or a `_data` file: a row's `label` (or `text`, `name`), `link` (or `href`, `url`), `group` - a heading over the rows of one group - and `keywords`, words that find it too |
+| `key` | The letter of the shortcut with Ctrl, ⌘ on a Mac - `k` when not given; one of b d e f g h i j k l m o p r s u: a, c, v, x, y and z are the keys of editing text, n, q, t and w the browser keeps |
+| `placeholder` | The hint in the search box, `Type a command` |
+| `empty` | What shows when nothing is found, `No command found` |
+
+**Behavior:** the commands are what renders between the tags - links, buttons, a line of text
+(`<p>`) heading a group, a rule (`<hr>`) - after the rows of `data=`; a link of a row of another
+scheme than http, https and mailto, and a row without a label or a link, are left out, and a
+label is text. The dialog is a modal `<dialog>` opened as `{modal}` opens its own: by the
+button's invoker commands, a small script where the browser has none, and with scripting off a
+link to the dialog's id that the CSS shows as an overlay (`:target`) - the whole list then, to
+follow, with the title and a close link, and no search box, which only a script makes work.
+The script, once per page with the CSP nonce, makes the search: the box is a `combobox`, the
+list a `listbox` of `option`s, the focus stays in the box and the chosen option is its
+`aria-activedescendant`. The words typed keep the commands whose text or keywords hold every
+one of them, upper and lower case and accents alike, in their order, a heading only over a
+group that kept one, and `No command found` where none did; the arrow keys move the choice
+round the list and a pointer over an option chooses it, Enter or a click runs it - a link
+followed, a button clicked - and closes the dialog. Escape, a click beside the dialog and the
+shortcut again close it; the focus goes back where it was and the box is empty for the next
+time. The shortcut opens the first palette of the page with that key, and not from a field, a
+text area or an editable part, whose own keys stay theirs; the button shows it, `Ctrl K` or
+`⌘K` on a Mac. Printed, no button shows. The colours are `--pad-commandpalette-accent`,
+`-text`, `-muted`, `-line`, `-surface`, `-hover` and `-backdrop` on `.pad-commandpalette`,
+taken from the page's palette where it has one, with `light-dark()` defaults. A palette without
+commands and a `key` outside the letters above are errors under the strict check.
 
 ---
 
@@ -5117,6 +5170,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `breadcrumb` | Widget | The trail from home to the page - from the page's path, the lines of a pair or `data=` rows; no JavaScript |
 | `splitpane` | Widget | Two panes and a bar between them, dragged or moved by the arrow keys - the window splitter pattern; the resize grip without scripting |
 | `contextmenu` | Widget | The actions on a part of the page - a right click, Shift+F10 or the context menu key; its button of three dots opens the same popover without scripting |
+| `commandpalette` | Widget | A search over the commands of an application - Ctrl+K or a button opens a dialog, typing narrows the links, Enter runs one; the whole list without scripting |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/subs/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |

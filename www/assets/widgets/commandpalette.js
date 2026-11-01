@@ -1,0 +1,154 @@
+(function () {
+  if (window.padCommandpaletteReady) return;
+  window.padCommandpaletteReady = true;
+  var native = 'command' in HTMLButtonElement.prototype;
+  var mac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+  var ITEM = 'a[href], button';
+  function fold(text) {
+    return (text || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  }
+  function parts(dialog) {
+    return { input: dialog.querySelector('.pad-commandpalette-input'), list: dialog.querySelector('.pad-commandpalette-list'), empty: dialog.querySelector('.pad-commandpalette-empty') };
+  }
+  function options(list) {
+    return Array.prototype.filter.call(list.querySelectorAll(ITEM), function (item) { return !item.hidden && !item.disabled; });
+  }
+  function dress(dialog) {
+    var at = parts(dialog);
+    if (!at.input || !at.list || at.list.getAttribute('role') === 'listbox') return at;
+    at.list.setAttribute('role', 'listbox');
+    at.list.setAttribute('aria-label', dialog.getAttribute('aria-label') || '');
+    Array.prototype.forEach.call(at.list.querySelectorAll(ITEM), function (item, n) {
+      item.setAttribute('role', 'option');
+      item.setAttribute('aria-selected', 'false');
+      item.id = item.id || at.list.id + '-' + (n + 1);
+      item.tabIndex = -1;
+    });
+    Array.prototype.forEach.call(at.list.children, function (child) {
+      if (!child.matches(ITEM)) child.setAttribute('aria-hidden', 'true');
+    });
+    search(dialog);
+    return at;
+  }
+  function choose(dialog, item) {
+    var at = parts(dialog);
+    Array.prototype.forEach.call(at.list.querySelectorAll('[aria-selected="true"]'), function (one) { one.setAttribute('aria-selected', 'false'); });
+    if (!item) { at.input.removeAttribute('aria-activedescendant'); return; }
+    item.setAttribute('aria-selected', 'true');
+    at.input.setAttribute('aria-activedescendant', item.id);
+    item.scrollIntoView({ block: 'nearest' });
+  }
+  function search(dialog) {
+    var at = parts(dialog), words = fold(at.input.value).split(/\s+/).filter(Boolean), shown = 0, heading = null, kept = false;
+    Array.prototype.forEach.call(at.list.children, function (child) {
+      if (child.matches('p')) { if (heading) heading.hidden = !kept; heading = child; kept = false; return; }
+      if (child.matches('hr')) { child.hidden = words.length > 0; return; }
+      var inside = child.matches(ITEM) ? [child] : Array.prototype.slice.call(child.querySelectorAll(ITEM));
+      var any = false;
+      inside.forEach(function (item) {
+        var text = fold(item.textContent + ' ' + (item.getAttribute('data-pad-keywords') || ''));
+        var hit = words.every(function (word) { return text.indexOf(word) >= 0; });
+        item.hidden = !hit;
+        if (hit) { shown++; any = true; }
+      });
+      if (!child.matches(ITEM)) child.hidden = inside.length > 0 && !any;
+      if (any) kept = true;
+    });
+    if (heading) heading.hidden = !kept;
+    at.empty.hidden = shown > 0;
+    at.input.setAttribute('aria-expanded', shown > 0 ? 'true' : 'false');
+    choose(dialog, options(at.list)[0] || null);
+  }
+  function current(dialog) {
+    var id = parts(dialog).input.getAttribute('aria-activedescendant');
+    return id ? document.getElementById(id) : null;
+  }
+  function show(dialog) {
+    if (dialog.open) return;
+    dress(dialog);
+    dialog.showModal();
+    parts(dialog).input.focus();
+  }
+  function editable(target) {
+    return target.closest && target.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])');
+  }
+  function marks() {
+    if (!mac) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.pad-commandpalette-kbd:not([data-pad-mac])'), function (kbd) {
+      kbd.textContent = '⌘' + kbd.textContent.replace(/^Ctrl\s*/, '');
+      kbd.setAttribute('data-pad-mac', '');
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', marks);
+  else marks();
+  document.addEventListener('focusin', function (e) {
+    var dialog = e.target.closest && e.target.closest('.pad-commandpalette-dialog');
+    if (dialog) dress(dialog);
+  });
+  document.addEventListener('input', function (e) {
+    var dialog = e.target.classList && e.target.classList.contains('pad-commandpalette-input') && e.target.closest('.pad-commandpalette-dialog');
+    if (dialog) search(dialog);
+  });
+  document.addEventListener('keydown', function (e) {
+    var target = e.target;
+    if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey && /^[a-z]$/i.test(e.key || '')) {
+      var key = e.key.toLowerCase(), box = document.querySelector('.pad-commandpalette[data-pad-key="' + key + '"]');
+      var open = target.closest && target.closest('.pad-commandpalette-dialog[open]');
+      if (open && open.parentNode.getAttribute('data-pad-key') === key) { e.preventDefault(); open.close(); return; }
+      if (box && !open && !editable(target)) {
+        e.preventDefault();
+        show(box.querySelector('.pad-commandpalette-dialog'));
+        return;
+      }
+    }
+    if (!target.classList || !target.classList.contains('pad-commandpalette-input')) return;
+    var dialog = target.closest('.pad-commandpalette-dialog'), list = options(parts(dialog).list), now = list.indexOf(current(dialog));
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!list.length) return;
+      if (e.key === 'ArrowDown') now = (now + 1) % list.length;
+      else now = now <= 0 ? list.length - 1 : now - 1;
+      choose(dialog, list[now]);
+    } else if (e.key === 'Enter' && !e.isComposing) {
+      var item = current(dialog);
+      if (!item) return;
+      e.preventDefault();
+      dialog.close();
+      item.click();
+    }
+  });
+  document.addEventListener('mousemove', function (e) {
+    var item = e.target.closest && e.target.closest('.pad-commandpalette-list [role="option"]');
+    if (item && item.getAttribute('aria-selected') !== 'true') choose(item.closest('.pad-commandpalette-dialog'), item);
+  });
+  document.addEventListener('click', function (e) {
+    var target = e.target;
+    if (target.matches && target.matches('dialog.pad-commandpalette-dialog[open]')) { target.close(); return; }
+    var item = target.closest && target.closest('.pad-commandpalette-list a[href], .pad-commandpalette-list button');
+    var opened = item && item.closest('.pad-commandpalette-dialog[open]');
+    if (opened) { opened.close(); return; }
+    var button = target.closest && target.closest('button.pad-commandpalette-button');
+    if (!button) return;
+    var dialog = document.getElementById(button.getAttribute('commandfor'));
+    if (!dialog) return;
+    dress(dialog);
+    if (!native) show(dialog);
+  });
+  function arrived() {
+    var id = '';
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+    var dialog = id && document.getElementById(id);
+    if (dialog && dialog.matches('dialog.pad-commandpalette-dialog') && !dialog.open) show(dialog);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arrived);
+  else arrived();
+  window.addEventListener('hashchange', arrived);
+  document.addEventListener('close', function (e) {
+    var dialog = e.target, id = '';
+    if (!dialog.matches || !dialog.matches('dialog.pad-commandpalette-dialog')) return;
+    var at = parts(dialog);
+    if (at.input) { at.input.value = ''; if (at.list.getAttribute('role') === 'listbox') search(dialog); }
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (error) { return; }
+    if (id === dialog.id) try { history.replaceState(history.state, '', location.pathname + location.search); } catch (error) {}
+  }, true);
+})();
