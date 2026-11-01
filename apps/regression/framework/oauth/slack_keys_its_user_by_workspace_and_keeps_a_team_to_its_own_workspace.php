@@ -5,8 +5,10 @@
   // https://slack.com, the user the openid.connect.userInfo answer. The sub is the workspace
   // and the user, T0R7GR/U0R7JM, as a Slack user id is unique within its workspace alone; a
   // token without a workspace logs no one in. team= asks Slack for that workspace and
-  // refuses another's token. Slack's methods answer an error with HTTP 200 and ok false -
-  // at the token endpoint and at userinfo both, the error is said.
+  // refuses another's token - the login's record keeps it, so a way back handled without
+  // team= (the workspace picked at the start alone) refuses one too, as one with another
+  // team= does. Slack's methods answer an error with HTTP 200 and ok false - at the token
+  // endpoint and at userinfo both, the error is said.
 
   $nonce  = '';
   $claims = [];
@@ -34,14 +36,15 @@
   $rows  = [];
   $first = NULL;
 
-  $login = function ( $label, $options, $set ) use ( &$rows, &$first, &$nonce, &$claims, &$token, &$info ) {
+  $login = function ( $label, $options, $set, $back = NULL ) use ( &$rows, &$first, &$nonce, &$claims, &$token, &$info ) {
     [ $claims, $token, $info ] = $set + [ [], NULL, NULL ];
-    $options += [ 'client_id' => '25259531569.1115258246291', 'client_secret' => 'slack-secret', 'redirect' => 'https://shop.example/oauth/slack' ];
+    $app      = [ 'client_id' => '25259531569.1115258246291', 'client_secret' => 'slack-secret', 'redirect' => 'https://shop.example/oauth/slack' ];
+    $options += $app;
     $start    = padOAuthUrl ( 'slack', $options );
     parse_str ( parse_url ( $start, PHP_URL_QUERY ), $asked );
     $nonce = $asked ['nonce'] ?? '';
     $_GET  = [ 'code' => '4724469134.4644010092847', 'state' => $asked ['state'] ];
-    $user  = padOAuthUser ( 'slack', $options );
+    $user  = padOAuthUser ( 'slack', ( $back === NULL ) ? $options : $back + $app );
     $first = $first ?? [ 'asked' => array_keys ( $asked ), 'user' => $user ];
     $rows [$label] = ( isset ( $asked ['team'] ) ? 'team=' . $asked ['team'] . ': ' : '' ) . ( $user ? $user ['id'] : padOAuthError () );
   };
@@ -49,6 +52,9 @@
   $login ( 'any workspace',             [],                    [ [ 'https://slack.com/team_id' => 'T0R7GR' ] ] );
   $login ( 'its own workspace',         [ 'team' => 'T0R7GR' ], [ [ 'https://slack.com/team_id' => 'T0R7GR' ] ] );
   $login ( 'another workspace',         [ 'team' => 'T0999ZZ' ], [ [ 'https://slack.com/team_id' => 'T0R7GR' ] ] );
+  $login ( 'another, back without team', [ 'team' => 'T0999ZZ' ], [ [ 'https://slack.com/team_id' => 'T0R7GR' ] ], [] );
+  $login ( 'another, back with its team', [ 'team' => 'T0999ZZ' ], [ [ 'https://slack.com/team_id' => 'T0R7GR' ] ], [ 'team' => 'T0R7GR' ] );
+  $login ( 'its own, back without team', [ 'team' => 'T0R7GR' ], [ [ 'https://slack.com/team_id' => 'T0R7GR' ] ], [] );
   $login ( 'a token without workspace', [],                    [ [], NULL, [ 'ok' => TRUE, 'sub' => 'U0R7JM', 'name' => 'krane' ] ] );
   $login ( 'a refused code',            [],                    [ [], [ 'ok' => FALSE, 'error' => 'invalid_code' ] ] );
   $login ( 'a refused token',           [],                    [ [ 'https://slack.com/team_id' => 'T0R7GR' ], NULL, [ 'ok' => FALSE, 'error' => 'invalid_auth' ] ] );
