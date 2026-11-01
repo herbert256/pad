@@ -83,46 +83,57 @@ for (const one of cases) {
 // it listens to. The same steps a visitor takes in headless Chrome hold alike there:
 // _chrome.mjs, run by hand, drives them and the cases above through a real page.
 
-const watched = render('forms/client_parity_watch',
-  "{form 'trip', client}{input 'delivery'/}{input 'address', rules='required_if:delivery,ship'/}" +
-  "{input 'password'/}{input 'confirm', rules='same:password'/}{input 'start'/}{input 'end', rules='after:start'/}{/form}")
-  .match(/data-pad-rules="([^"]*)"/);
-
-const watching = [];
-
-if (!watched) watching.push('{form ..., client} wrote no data-pad-rules');
-else {
+// The world of one form: fields is [ name, value ] each; count says how often the checker
+// read the rules, made the values (FormData) and walked the form's controls.
+function world(template, fields) {
+  const found = render('forms/client_parity_watch', template).match(/data-pad-rules="([^"]*)"/);
+  if (!found) return null;
   const listeners = {};
   const byId = {};
+  const count = { rules: 0, values: 0, walks: 0 };
   const page = {
     addEventListener(type, each) { (listeners[type] = listeners[type] || []).push(each); },
     getElementById(id) { return byId[id] || null; },
     createElement() { return { id: '', textContent: '', remove() { delete byId[this.id]; } }; }
   };
-  const rules = watched[1].replace(/&quot;/g, '"').replace(/&amp;/g, '&');
-  const form = { elements: [], hasAttribute(name) { return name === 'data-pad-rules'; }, querySelector() { return null; },
-                 getAttribute(name) { return name === 'data-pad-rules' ? rules : null; }, contains(span) { return byId[span.id] === span; } };
+  const rules = found[1].replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+  const elements = [];
+  const form = { get elements() { count.walks++; return elements; }, hasAttribute(name) { return name === 'data-pad-rules'; },
+                 querySelector() { return null; }, contains(span) { return byId[span.id] === span; },
+                 getAttribute(name) { if (name !== 'data-pad-rules') return null; count.rules++; return rules; } };
   const controls = {};
-  [['delivery', 'ship'], ['address', ''], ['password', 'secret'], ['confirm', 'secret'], ['start', '2026-05-01'], ['end', '']].forEach(([name, value]) => {
+  fields.forEach(([name, value]) => {
     const attrs = {};
-    form.elements.push(controls[name] = { name, value, id: name, type: 'text', form, focus() {}, closest() { return null; },
+    elements.push(controls[name] = { name, value, id: name, type: 'text', form, focus() {}, closest() { return null; },
       getAttribute(one) { return one in attrs ? attrs[one] : null; }, setAttribute(one, to) { attrs[one] = String(to); },
       removeAttribute(one) { delete attrs[one]; }, insertAdjacentElement(where, span) { byId[span.id] = span; } });
   });
   class PageData {
-    constructor(of) { this.entries = of.elements.map(one => [one.name, one.value]); }
+    constructor() { count.values++; this.entries = elements.map(one => [one.name, one.value]); }
     getAll(name) { return this.entries.filter(one => one[0] === name).map(one => one[1]); }
     forEach(each) { this.entries.forEach(one => each(one[1], one[0])); }
   }
-  const world = { window: {}, document: page, FormData: PageData };
-  vm.runInNewContext(checker[1], world);
+  const scope = { window: {}, document: page, FormData: PageData };
+  vm.runInNewContext(checker[1], scope);
   const fire = (type, name, value) => {
     if (value !== undefined) controls[name].value = value;
     (listeners[type] || []).forEach(each => each({ target: controls[name] }));
   };
+  const shown = name => byId[name + '-error'] ? byId[name + '-error'].textContent : '';
+  return { form, controls, count, fire, shown, padValidate: scope.window.padValidate };
+}
+
+const watching = [];
+
+const trip = world("{form 'trip', client}{input 'delivery'/}{input 'address', rules='required_if:delivery,ship'/}" +
+                   "{input 'password'/}{input 'confirm', rules='same:password'/}{input 'start'/}{input 'end', rules='after:start'/}{/form}",
+                   [['delivery', 'ship'], ['address', ''], ['password', 'secret'], ['confirm', 'secret'], ['start', '2026-05-01'], ['end', '']]);
+
+if (!trip) watching.push('{form ..., client} wrote no data-pad-rules');
+else {
+  const { fire, controls } = trip;
   const expect = (step, name, text) => {
-    const span = byId[name + '-error'];
-    const got = span ? span.textContent : '';
+    const got = trip.shown(name);
     const invalid = controls[name].getAttribute('aria-invalid') === 'true';
     if (got !== text || invalid !== (text !== ''))
       watching.push(`watcher, ${step}: ${name} shows ${JSON.stringify(got)}${invalid ? ' (aria-invalid)' : ''}, not ${JSON.stringify(text)}`);
@@ -150,12 +161,36 @@ else {
   fire('input', 'start', '');
   expect('the start emptied', 'end', '');
   controls.address.value = '';
-  if (world.window.padValidate.form(form) !== false)
+  if (trip.padValidate.form(trip.form) !== false)
     watching.push('watcher: the form was sent with an address required when delivery is ship');
   expect('the form sent', 'address', 'Address is required when Delivery is ship');
   fire('change', 'delivery', 'collect');
   expect('the other changed after the form was sent', 'address', '');
 }
+
+// A keystroke in a field that many fields watch reads the rules, the values and the controls
+// once for all of them: read again for each, it took time growing with the square of their
+// number - half a second a key at 500 watchers.
+const keystroke = watchers => {
+  const big = world("{form 'big', client}{input 'master'/}" +
+                    Array.from({ length: watchers }, (none, i) => `{input 'f${i}', rules='required_with:master'/}`).join('') + '{/form}',
+                    [['master', '']].concat(Array.from({ length: watchers }, (none, i) => ['f' + i, ''])));
+  if (!big) return null;
+  big.padValidate.form(big.form);
+  Object.keys(big.count).forEach(key => { big.count[key] = 0; });
+  big.fire('input', 'master', 'a');
+  big.count.shown = Array.from({ length: watchers }, (none, i) => big.shown('f' + i)).filter(text => /^F\d+ is required when Master is filled in$/.test(text)).length;
+  return big.count;
+};
+
+const few = keystroke(2), many = keystroke(40);
+
+if (!few || !many) watching.push('{form ..., client} wrote no data-pad-rules');
+else if (few.shown !== 2 || many.shown !== 40)
+  watching.push(`watcher: a keystroke in a field 2 and 40 fields watch showed ${few.shown} and ${many.shown} messages`);
+else if (few.rules !== many.rules || few.values !== many.values || few.walks !== many.walks)
+  watching.push(`watcher: a keystroke in a field 2 fields watch read the rules ${few.rules}, the values ${few.values} and the controls ${few.walks} times, ` +
+                `one in a field 40 fields watch ${many.rules}, ${many.values} and ${many.walks} times`);
 
 failed.push(...watching);
 

@@ -479,21 +479,25 @@ addRule('uuid', {
     return one.replace(/\r\n|\r|\n/g, '\r\n');
   }
   function valuesOf(form, rules) {
-    var data = new FormData(form);
-    var values = {};
-    data.forEach(function (one, name) {
-      if (typeof one !== 'string') return;
-      if (/\[\]$/.test(name)) (values[name] = Array.isArray(values[name]) ? values[name] : []).push(sent(one));
-      else values[name] = sent(one);
+    var all = Object.create(null), values = {};
+    new FormData(form).forEach(function (one, name) {
+      if (typeof one === 'string') (all[name] = all[name] || []).push(sent(one));
+    });
+    Object.keys(all).forEach(function (name) {
+      values[name] = /\[\]$/.test(name) ? all[name] : all[name][all[name].length - 1];
     });
     Object.keys(rules).forEach(function (name) {
-      var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; }).map(sent);
-      values[name] = rules[name].list ? all : (all.length ? all[all.length - 1] : '');
+      var list = all[name] || [];
+      values[name] = rules[name].list ? list : (list.length ? list[list.length - 1] : '');
     });
     return values;
   }
-  function controlsOf(form, name) {
-    return Array.prototype.filter.call(form.elements, function (one) { return one.name === name; });
+  function controlsBy(form) {
+    var by = Object.create(null);
+    Array.prototype.forEach.call(form.elements, function (one) {
+      if (one.name) (by[one.name] = by[one.name] || []).push(one);
+    });
+    return by;
   }
   function labelOf(form, control) {
     var frame = control && control.closest ? control.closest('[data-pad-label]') : null;
@@ -513,8 +517,7 @@ addRule('uuid', {
     var id = control.getAttribute && control.getAttribute('data-pad-shows');
     return (id && document.getElementById(id)) || control;
   }
-  function show(form, name, text) {
-    var controls = controlsOf(form, name);
+  function show(form, name, text, controls) {
     var last = controls[controls.length - 1];
     if (!last) return;
     var id = idOf(name, box(last) ? controls[0] : last) + '-error';
@@ -541,7 +544,7 @@ addRule('uuid', {
         after = last.nextElementSibling;
       after.insertAdjacentElement('afterend', span);
     }
-    span.textContent = text;
+    if (span.textContent !== text) span.textContent = text;
   }
   function banner(form, on) {
     var text = form.getAttribute('data-pad-error');
@@ -563,26 +566,26 @@ addRule('uuid', {
     if (!seen) marked.set(form, seen = {});
     return seen;
   }
+  function judge(form, rules, values, controls, name) {
+    var mine = controls[name] || [];
+    var problem = field(rules[name], values[name], values, labelOf(form, mine[mine.length - 1]));
+    show(form, name, problem, mine);
+    marks(form)[name] = true;
+    return problem;
+  }
   function checkOne(form, name) {
     var rules = rulesOf(form);
     if (!rules[name]) return true;
-    var values = valuesOf(form, rules);
-    var controls = controlsOf(form, name);
-    var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
-    show(form, name, problem);
-    marks(form)[name] = true;
-    return !problem;
+    return !judge(form, rules, valuesOf(form, rules), controlsBy(form), name);
   }
   function checkForm(form) {
     var rules = rulesOf(form);
     var values = valuesOf(form, rules);
+    var controls = controlsBy(form);
     var first = null;
     Object.keys(rules).forEach(function (name) {
-      var controls = controlsOf(form, name);
-      var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
-      show(form, name, problem);
-      marks(form)[name] = true;
-      if (problem && !first && controls[0]) first = shownBy(controls[0]);
+      var mine = controls[name] || [];
+      if (judge(form, rules, values, controls, name) && !first && mine[0]) first = shownBy(mine[0]);
     });
     banner(form, !!first);
     if (first && first.focus) first.focus();
@@ -591,17 +594,19 @@ addRule('uuid', {
   function ruled(target) {
     return target && target.form && target.form.hasAttribute('data-pad-rules') && target.name ? target.form : null;
   }
-  function showing(form, name) {
-    return controlsOf(form, name).some(function (control) { return shownBy(control).getAttribute('aria-invalid') === 'true'; });
+  function showing(controls) {
+    return controls.some(function (control) { return shownBy(control).getAttribute('aria-invalid') === 'true'; });
   }
   function bare(name) {
     return trim(String(name)).replace(/\[\]$/, '');
   }
   function recheck(form, name) {
-    var rules = rulesOf(form), seen = marks(form);
+    var rules = rulesOf(form), seen = marks(form), values = null, controls = null;
     Object.keys(rules).forEach(function (one) {
       if (one === name || !(rules[one].watch || []).some(function (other) { return bare(other) === bare(name); })) return;
-      if (seen[one] || showing(form, one)) checkOne(form, one);
+      controls = controls || controlsBy(form);
+      if (!seen[one] && !showing(controls[one] || [])) return;
+      judge(form, rules, values = values || valuesOf(form, rules), controls, one);
     });
   }
   document.addEventListener('submit', function (event) {

@@ -239,23 +239,31 @@
   // A name of a list - kinds[] - is every value it has, as PHP files it, its field with rules
   // or not: the other field of same:kinds[] read as its last value was a text the server
   // never sees, and the confirmation passed here what the server refused.
+  // One walk of the entries: the values of a rule's field taken with getAll walked them all
+  // again for every field.
   function valuesOf(form, rules) {
-    var data = new FormData(form);
-    var values = {};
-    data.forEach(function (one, name) {
-      if (typeof one !== 'string') return;
-      if (/\[\]$/.test(name)) (values[name] = Array.isArray(values[name]) ? values[name] : []).push(sent(one));
-      else values[name] = sent(one);
+    var all = Object.create(null), values = {};
+    new FormData(form).forEach(function (one, name) {
+      if (typeof one === 'string') (all[name] = all[name] || []).push(sent(one));
+    });
+    Object.keys(all).forEach(function (name) {
+      values[name] = /\[\]$/.test(name) ? all[name] : all[name][all[name].length - 1];
     });
     Object.keys(rules).forEach(function (name) {
-      var all = data.getAll(name).filter(function (one) { return typeof one === 'string'; }).map(sent);
-      values[name] = rules[name].list ? all : (all.length ? all[all.length - 1] : '');
+      var list = all[name] || [];
+      values[name] = rules[name].list ? list : (list.length ? list[list.length - 1] : '');
     });
     return values;
   }
 
-  function controlsOf(form, name) {
-    return Array.prototype.filter.call(form.elements, function (one) { return one.name === name; });
+  // The controls of the form by name, in one walk of its elements: looked up field by field,
+  // every field judged walked them all again.
+  function controlsBy(form) {
+    var by = Object.create(null);
+    Array.prototype.forEach.call(form.elements, function (one) {
+      if (one.name) (by[one.name] = by[one.name] || []).push(one);
+    });
+    return by;
   }
 
   // The text of the field's <label>, made fit for a sentence as padValidateLabel makes it.
@@ -294,8 +302,7 @@
 
   // The error of a group of boxes goes by the id of its first box, as {input} writes it; the
   // error of a rich field after its frame, as the server writes it.
-  function show(form, name, text) {
-    var controls = controlsOf(form, name);
+  function show(form, name, text, controls) {
     var last = controls[controls.length - 1];
     if (!last) return;
     var id = idOf(name, box(last) ? controls[0] : last) + '-error';
@@ -322,7 +329,7 @@
         after = last.nextElementSibling;
       after.insertAdjacentElement('afterend', span);
     }
-    span.textContent = text;
+    if (span.textContent !== text) span.textContent = text;
   }
 
   function banner(form, on) {
@@ -350,27 +357,31 @@
     return seen;
   }
 
+  // One field judged and its message shown, with the rules, the values and the controls of
+  // the form read once for all the fields judged together: read again for each, a field
+  // that many fields watch took time growing with their square on every keystroke.
+  function judge(form, rules, values, controls, name) {
+    var mine = controls[name] || [];
+    var problem = field(rules[name], values[name], values, labelOf(form, mine[mine.length - 1]));
+    show(form, name, problem, mine);
+    marks(form)[name] = true;
+    return problem;
+  }
+
   function checkOne(form, name) {
     var rules = rulesOf(form);
     if (!rules[name]) return true;
-    var values = valuesOf(form, rules);
-    var controls = controlsOf(form, name);
-    var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
-    show(form, name, problem);
-    marks(form)[name] = true;
-    return !problem;
+    return !judge(form, rules, valuesOf(form, rules), controlsBy(form), name);
   }
 
   function checkForm(form) {
     var rules = rulesOf(form);
     var values = valuesOf(form, rules);
+    var controls = controlsBy(form);
     var first = null;
     Object.keys(rules).forEach(function (name) {
-      var controls = controlsOf(form, name);
-      var problem = field(rules[name], values[name], values, labelOf(form, controls[controls.length - 1]));
-      show(form, name, problem);
-      marks(form)[name] = true;
-      if (problem && !first && controls[0]) first = shownBy(controls[0]);
+      var mine = controls[name] || [];
+      if (judge(form, rules, values, controls, name) && !first && mine[0]) first = shownBy(mine[0]);
     });
     banner(form, !!first);
     if (first && first.focus) first.focus();
@@ -381,8 +392,8 @@
     return target && target.form && target.form.hasAttribute('data-pad-rules') && target.name ? target.form : null;
   }
 
-  function showing(form, name) {
-    return controlsOf(form, name).some(function (control) { return shownBy(control).getAttribute('aria-invalid') === 'true'; });
+  function showing(controls) {
+    return controls.some(function (control) { return shownBy(control).getAttribute('aria-invalid') === 'true'; });
   }
 
   function bare(name) {
@@ -394,12 +405,15 @@
   // shows a message - the server's or the checker's - or was checked or left before. Only
   // the field typed in was checked: an "is required when Delivery is ship" stayed after
   // delivery became collect, and "must be the same as Password" after the password was
-  // typed again to match. kinds and kinds[] are one name here, as sibling reads them.
+  // typed again to match. kinds and kinds[] are one name here, as sibling reads them. The
+  // rules, the values and the controls are read once for all the fields checked again.
   function recheck(form, name) {
-    var rules = rulesOf(form), seen = marks(form);
+    var rules = rulesOf(form), seen = marks(form), values = null, controls = null;
     Object.keys(rules).forEach(function (one) {
       if (one === name || !(rules[one].watch || []).some(function (other) { return bare(other) === bare(name); })) return;
-      if (seen[one] || showing(form, one)) checkOne(form, one);
+      controls = controls || controlsBy(form);
+      if (!seen[one] && !showing(controls[one] || [])) return;
+      judge(form, rules, values = values || valuesOf(form, rules), controls, one);
     });
   }
 
