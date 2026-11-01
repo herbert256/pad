@@ -262,9 +262,11 @@
 
   }
 
-  // The box. Strings 18 apart, frets 20; four frets shown, or as many as the shape spans up to
-  // five. A shape that stays in the first four frets starts at the nut, drawn thick; one higher
-  // up starts at its lowest fret, its number beside the first.
+  // The box. Strings 18 apart, frets 20; four frets shown, or as many as the shape spans - a
+  // shape no hand plays, which the strict check names (types/chord.php), in a box tall enough
+  // for its dots, where five frets were the most and a dot further up stood below the box. A
+  // shape that stays in the first four frets starts at the nut, drawn thick; one higher up
+  // starts at its lowest fret, its number beside the first.
 
   function padChordSvg ( $frets, $instrument, $name, $words, $spelling, $size, $id, $title ) {
 
@@ -275,7 +277,7 @@
     $high    = $pressed ? max ( $pressed ) : 0;
     $low     = $pressed ? min ( $pressed ) : 0;
     $start   = ( $high <= 4 ) ? 1 : $low;
-    $rows    = max ( 4, min ( 5, $high - $start + 1 ) );
+    $rows    = max ( 4, $high - $start + 1 );
 
     $gap   = 18;
     $step  = 20;

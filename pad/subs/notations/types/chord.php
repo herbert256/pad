@@ -58,6 +58,14 @@
     return '';
   }
 
+  // Frets a hand presses at once lie within five: a shape that spans more is named.
+
+  $padChordPressed = array_filter ( $padChordFrets, fn ( $one ) => $one !== NULL and $one > 0 );
+
+  if ( $padChordPressed and max ( $padChordPressed ) - min ( $padChordPressed ) + 1 > 5 and $padCheckSyntax )
+    padError ( "the " . padNotationWhat () . " has frets '" . padNotationShow ( $padChordGiven !== '' ? $padChordGiven : $padChordText ) . "' that span "
+               . ( max ( $padChordPressed ) - min ( $padChordPressed ) + 1 ) . " frets - a hand presses at most 5 at once" );
+
   $padChordChord ??= padChordName ( $padChordFrets, PAD_CHORD_TUNINGS [$padChordInstrument] [0] );
 
   $padChordName  = $padChordChord ? $padChordChord [3] : '';
