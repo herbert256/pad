@@ -9,7 +9,7 @@
   // The fields come from the row or rows data= names - a {data} store, the page's array, a
   // field holding a list, a _data file, as a widget reads them - and from options of their
   // names, which win over a row's field of the same name: {jsonld:article data='post',
-  // url=$padGoExt/}. Each option is read with padTagParm, so one the kind does not take is
+  // url=$url/}. Each option is read with padTagParm, so one the kind does not take is
   // left unread and named by the strict check. id= is the object's @id. The handling options
   // - first=, where=, sort= - work on the rows, as on any data tag's.
   //

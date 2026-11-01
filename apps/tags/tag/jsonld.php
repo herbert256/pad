@@ -13,7 +13,7 @@
   $tagSyntax  = <<<'PAD'
 {jsonld 'kind', data='rows'/}
 {jsonld 'article', headline=$title, author=$author, published=$date/}
-{jsonld:article data='post', url=$padGoExt/}
+{jsonld:article data='post', url=$url/}
 {jsonld:faq data='questions'/}
 {jsonld:breadcrumb/}
 {jsonld:website name='Shop', search='?search&q='/}

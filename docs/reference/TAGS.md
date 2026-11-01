@@ -634,7 +634,7 @@ subsystem is `pad/subs/jsonld/`.
 
 ```html
 {jsonld 'article', headline=$title, author=$author, published=$date/}
-{jsonld:article data='post', url=$padGoExt/}
+{jsonld:article data='post', url=$url/}
 {jsonld:faq data='questions'/}
 {jsonld:breadcrumb/}
 {jsonld:website name='Shop', search='?search&q='/}
@@ -657,7 +657,9 @@ of fields and pages. `padJsonLd ( 'article', $post )` answers the same object as
 
 **Options:** `data=` the row or rows - a store, the page's array, a field holding a list or a
 `_data` file; several rows of a kind of one object make a `@graph`, the handling options work on
-them, and no rows answer nothing, the `@else@` shown. `id=` the `@id`. The fields of the kind,
+them, and no rows answer nothing, the `@else@` shown. `id=` the `@id`. An article's `url=` is
+its own page - `$url = padUrl ( '', [], TRUE )` in the page's PHP; `$padGoExt` is the base a link
+is written after, the application's `?`, not the page. The fields of the kind,
 by their PAD name or the Schema.org property (`datePublished`), win over the row's - and a row is
 never written whole, only what its kind maps. An empty field is left out. Addresses are made
 absolute (relative to the application's address; another scheme than http and https left out),

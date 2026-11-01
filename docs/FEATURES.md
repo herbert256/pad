@@ -142,13 +142,14 @@ template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip
 ### Structured data (JSON-LD)
 ```
 {jsonld:article headline=$title, author=$author, published=$date, image='cover.jpg'/}
-{jsonld 'article', data='post', url=$padGoExt/}           # a row, an option winning over its field
+{jsonld 'article', data='post', url=$url/}                # a row, an option winning over its field
 {jsonld:faq data='questions'/}                            # rows of question and answer
 {jsonld:breadcrumb/}                                      # the trail {breadcrumb/} shows for the page
 {jsonld:product data='product', availability='InStock'/}  # an Offer of price, currency, availability
 {jsonld:website name='Shop', search='?search&q='/}        # a SearchAction ending in {search_term_string}
 ```
 ```php
+$url  = padUrl ( '', [], TRUE );                          // the page's own address, for url=
 $data = padJsonLd ( 'event', $concert );                  // the same object as a plain array
 ```
 One `<script type="application/ld+json">` holding a Schema.org object - what search engines read
