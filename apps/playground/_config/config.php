@@ -5,7 +5,9 @@
   // turned into a variable ($padRequestVars - the posted template and data are read by
   // render.php itself), no _common, and no database of its own - the db tags reach the
   // engine's default credentials, which name no real database. _inits.php turns every request
-  // away that is not this machine's own.
+  // away that is not this machine's own. None of this holds for the PHP code the data pane
+  // can be switched to: render.php runs it as written, as a page's .php - the guards are all
+  // that keeps it to this machine's own user.
   //
   // And a post carries the CSRF token of the playground's own form, which the form gets on
   // its own: a page on any other site could make this machine's browser post the playground

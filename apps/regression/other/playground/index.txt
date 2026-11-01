@@ -34,14 +34,30 @@
   \{\/items\}
 &lt;\/ul&gt;
 \<\/textarea\>
-        \<label for\="data"\>Data \- a JSON object, each key a variable\<\/label\>
-        \<textarea id\="data" name\="data" spellcheck\="false" rows\="10"\>\{
+        \<div class\="dataHead"\>
+          \<label for\="data" data\-mode\="json"\>Data \- a JSON object, each key a variable\<\/label\>
+          \<label for\="php" data\-mode\="php" hidden\>Data \- PHP code, as a page's \.php\: the variables it sets are the template's\<\/label\>
+          \<button type\="button" id\="dataSwitch" hidden\>Switch to PHP\<\/button\>
+        \<\/div\>
+        \<input type\="hidden" id\="mode" name\="mode" value\="json"\>
+        \<textarea id\="data" name\="data" data\-mode\="json" spellcheck\="false" rows\="10"\>\{
   &quot;title&quot;\: &quot;Fruit&quot;,
   &quot;items&quot;\: \[
     \{ &quot;name&quot;\: &quot;Apple&quot;, &quot;stock&quot;\: 3 \},
     \{ &quot;name&quot;\: &quot;Pear&quot;,  &quot;stock&quot;\: 0 \}
   \]
 \}
+\<\/textarea\>
+        \<textarea id\="php" name\="php" data\-mode\="php" spellcheck\="false" rows\="10" hidden\>&lt;\?php
+
+  \$title \= &\#039;Fruit&\#039;;
+
+  \$items \= \[
+    \[ &\#039;name&\#039; \=&gt; &\#039;Apple&\#039;, &\#039;stock&\#039; \=&gt; 3 \],
+    \[ &\#039;name&\#039; \=&gt; &\#039;Pear&\#039;,  &\#039;stock&\#039; \=&gt; 0 \]
+  \];
+
+\?&gt;
 \<\/textarea\>
         \<p\>
           \<button type\="submit"\>Render\<\/button\>
@@ -58,7 +74,8 @@
 
   \<p class\="limits"\>This machine only\. A template here may not call PHP functions, sees no
   request values and no database, and gets five seconds, 64 KB of source and 256 KB of output\.
-  The output frame is sandboxed\: its scripts do not run\. Errors show as PAD reports them\.\<\/p\>
+  PHP code in the data pane runs as written, with all of PHP's reach\. The output frame is
+  sandboxed\: its scripts do not run\. Errors show as PAD reports them\.\<\/p\>
 
   \<script src\="playground\.js"\>\<\/script\>
 

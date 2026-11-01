@@ -1171,7 +1171,7 @@ the `claude` line of `./ci.sh`.
 | `nono` | Plain PHP | PHP application without PAD templating |
 | `notes` | Offline | A Markdown notebook on SQLite - tags, search as you type (a `{fragment}`), pins and colours (`{live}`), pictures and PDFs attached (`padUpload`, `padUploadSend`), a JSON export (`$padExpose`) and import - packed by `pad pack notes` it runs in the browser |
 | `pad` | Standard | PAD framework introduction and reference |
-| `playground` | Standard | Type a template and its JSON data and see the result - local requests only, no PHP functions, shareable through the URL hash |
+| `playground` | Standard | Type a template and its data - JSON, or PHP code as a page's `.php` (a button switches) - and see the result - local requests only, no PHP functions in the template, shareable through the URL hash |
 | `react` | Standard | PAD + React: components mounted on islands of PAD pages, JSON answers to `fetch()`, forms checked by PAD with the CSRF header, `{fragment}`s, a cart in the session, polling - fourteen examples, each with its sources |
 | `reference` | Standard | Cross-reference and directory utilities |
 | `regression/main` | Standard | Automated regression testing for PAD - the runner for the eight suites and the fresh build |
