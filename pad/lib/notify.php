@@ -2,10 +2,10 @@
 
   // Notifications: one message to a person - an order shipped, a comment answered - written
   // once as a template and sent on the channels asked for: mail, a list on the site, a push
-  // to the browser, Slack, Discord, Teams, Telegram, ntfy, Matrix, a text message, a push
-  // through Pushover or a Gotify server. The channels are the files of subs/channels/types/
-  // (padKinds): a channel is added by adding its file. What Laravel's notifications give, as
-  // plain functions:
+  // to the browser, Slack, Discord, Teams, Mattermost, Telegram, ntfy, Matrix, a text
+  // message, a push through Pushover or a Gotify server. The channels are the files of
+  // subs/channels/types/ (padKinds): a channel is added by adding its file. What Laravel's
+  // notifications give, as plain functions:
   //
   //   padNotify ( $user, 'order-shipped', [ 'order' => 42 ], [ 'mail', 'database', 'slack' ] );
   //   padNotify ( $user, 'order-shipped', [ 'order' => 42 ], [ 'mail' ], [ 'queue' => TRUE ] );

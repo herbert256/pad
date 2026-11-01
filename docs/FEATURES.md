@@ -633,6 +633,9 @@ gone. A channel is added by adding its file: its settings and a `send` function.
 - gotify - a message to a self-hosted Gotify server: `GOTIFY_URL`, the application's
   `GOTIFY_TOKEN` (as a bearer token, never in the address); the title, the text as plain text -
   no markdown - and the url a click opens, the option `priority` (0 to 10).
+- mattermost - a message through a Mattermost incoming webhook, `MATTERMOST_WEBHOOK_URL` (its id
+  redacted in the reports, as Slack's): Mattermost's markdown as written, every mention switched
+  off - a zero-width space after the @ that starts a word - so a value pings nobody.
 
 ### A language model answering in the page
 ```

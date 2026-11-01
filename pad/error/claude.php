@@ -266,18 +266,20 @@
   // token in the path, the webhooks of Slack, Discord and Teams (Office), whose path is the
   // credential, and a signature in a query - sig=, a Teams workflow's and Azure's SAS. The
   // address keeps its service and its path up to the secret. For padRedactText and for the
-  // address padCurlEvent hands to _events/curl.php.
+  // address padCurlEvent hands to _events/curl.php. A Mattermost server's incoming webhook,
+  // on any host, is /hooks/ and the 26 letters and digits of its id.
 
   function padRedactAddress ( $text ) {
 
-    if ( ! preg_match ( '~telegram\.org/|hooks\.slack\.com/|discord(?:app)?\.com/|webhook\.office\.com/|sig=~i', $text ) )
+    if ( ! preg_match ( '~telegram\.org/|hooks\.slack\.com/|discord(?:app)?\.com/|webhook\.office\.com/|sig=|/hooks/[a-z0-9]{26}~i', $text ) )
       return $text;
 
     return preg_replace ( [ '~(\bapi\.telegram\.org/(?:file/)?bot)\d++:[A-Za-z0-9_-]++~i',
                             '~(\bhooks\.slack\.com/(?:services|workflows|triggers)/)[A-Za-z0-9/_-]++~i',
                             '~(\b(?:(?:canary|ptb)\.)?discord(?:app)?\.com/api(?:/v\d++)?/webhooks/)[A-Za-z0-9/_-]++~i',
                             '~(\.webhook\.office\.com/webhookb2/)[A-Za-z0-9@/_-]++~i',
-                            '~(://[^\s"\'<>]*?[?&](?:amp;)?sig=)[^&\s"\'<>#]++~i' ],
+                            '~(://[^\s"\'<>]*?[?&](?:amp;)?sig=)[^&\s"\'<>#]++~i',
+                            '~(://[^\s"\'<>?#]*?/hooks/)[a-z0-9]{26}(?![A-Za-z0-9])~' ],
                           '$1*** redacted ***', $text ) ?? $text;
 
   }
