@@ -772,10 +772,11 @@ query: words (a row with any of them is found), `"a phrase"` (required, its word
 `"word"` makes one word required), `prefix*` (any word beginning so, with or without its
 accents - `univ*` finds `l'université`), `-word` and `-"a phrase"` (left out). Words are
 Unicode letters and digits in lower case, stop words dropped, stemmed by the language's
-Snowball stemmer and written without accents, so `baking` finds `baked` and `cafe` finds
-`Café`; the ranking is BM25F - `fields='title^2, body'` weighs a field, k1 1.2, b 0.75. A row
-found is the source's row with `score` (three decimals) and `excerpt` added: the words around
-the first match, every matched word in a `<mark>` (`padExcerpt`, the function of `{excerpt}`;
+Snowball stemmer and written without accents - a word with accents stemmed without them as
+well - so `baking` finds `baked`, `cafe` finds `Café` and `securite` finds `sécurité`; the
+ranking is BM25F - `fields='title^2, body'` weighs a field, k1 1.2, b 0.75. A row found is
+the source's row with `score` (three decimals) and `excerpt` added: the words around the first
+match, every matched word in a `<mark>` (`padExcerpt`, the function of `{excerpt}`;
 `words=` its length, `excerpt=` its field) - HTML, so print it `{!excerpt}`. A collection is
 searched in `title^2, body` by default, other rows in their text fields; a field that is HTML -
 an end tag, a comment, a `<br>` or `<img>`, a quoted attribute - is read as its text, a `<` in

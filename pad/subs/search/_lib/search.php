@@ -12,8 +12,10 @@
   // its Snowball stemmer; a language is added by adding its file. A text is split into words
   // by Unicode letters and digits (an apostrophe inside a word stays: l'homme, don't), each
   // word in lower case; a stop word counts for the positions only, every other word is
-  // stemmed and then written without its accents - café, cafe and cafés are one term - so a
-  // query finds a word in another form, and without the accents it was typed without.
+  // stemmed and then written without its accents - café, cafe and cafés are one term - and a
+  // word with accents is stemmed without them too, its second term when the stem is another
+  // (sécurité is secur and securit, securite securit), so a query finds a word in another
+  // form, and without the accents it was typed with or with those it was typed without.
   //
   // The query: words (a document with any of them is found), "a phrase" (its words in that
   // order, required - "word" makes a word required), prefix* (any word that begins so), -word
@@ -24,7 +26,7 @@
   //
   // padSearchLanguage  the language of a code, read once per request, or an error message
   // padSearchFields    'title^2, body' as [ [ field, boost ] ...], or an error message
-  // padSearchWords     a text as its words, padSearchTerm a word as its term
+  // padSearchWords     a text as its words, padSearchTerms a word as its terms
   // padSearchIndex     the inverted index of rows, a string per term
   // padSearchKept      the index of a source from the cache, made again when it changed -
   //                    kept in parts (padSearchParts, padSearchWrite), of which a request
@@ -169,10 +171,15 @@
 
   }
 
-  // A word as its term: '' for a stop word, else its stem without accents - a number as it
-  // is. The stems of a request are kept: a word met again is not stemmed again.
+  // A word as its terms: none for a stop word, else its stem without accents - and the stem
+  // of the word written without its accents, when that is another: a stemmer reads the
+  // accents (é is a vowel and a suffix letter to Snowball's French), so the stems of
+  // sécurité and securite are secur and securit, of musée and musee mus and muse, and the
+  // stem alone, accents dropped after, found no word typed without them. A word with a
+  // term of a query's word is found - sécurité by securite, securite by sécurité. A number
+  // is as it is. The terms of a request are kept: a word met again is not stemmed again.
 
-  function padSearchTerm ( $word, $language ) {
+  function padSearchTerms ( $word, $language ) {
 
     static $memo = [];
 
@@ -182,16 +189,23 @@
       return $memo [$key] [$word];
 
     if ( isset ( $language ['stop'] [$word] ) )
-      $term = '';
+      $terms = [];
     elseif ( preg_match ( '/\p{N}/u', $word ) )
-      $term = padSearchFold ( $word );
-    else
-      $term = padSearchFold ( ( $language ['stem'] ) ( $word ) );
+      $terms = [ padSearchFold ( $word ) ];
+    else {
+      $terms = [ padSearchFold ( ( $language ['stem'] ) ( $word ) ) ];
+      $plain = padSearchFold ( $word );
+      if ( $plain !== $word ) {
+        $other = padSearchFold ( ( $language ['stem'] ) ( $plain ) );
+        if ( $other !== $terms [0] )
+          $terms [] = $other;
+      }
+    }
 
     if ( count ( $memo [$key] ?? [] ) > 50000 )
       $memo [$key] = [];
 
-    return $memo [$key] [$word] = $term;
+    return $memo [$key] [$word] = $terms;
 
   }
 
@@ -243,7 +257,7 @@
 
   function padSearchIndex ( $rows, $fields, $language ) {
 
-    $docs = $places = $words = [];
+    $docs = $places = $words = $met = [];
     $lens = '';
     $sums = array_fill ( 0, count ( $fields ), 0 );
     $doc  = 0;
@@ -259,13 +273,18 @@
         $len [$f] = 0;
 
         foreach ( padSearchWords ( padSearchText ( padArrGet ( $row, $name, '' ) ) ) as $place => $word ) {
-          $term = padSearchTerm ( $word, $language );
-          if ( $term === '' )
+          $terms = padSearchTerms ( $word, $language );
+          if ( ! $terms )
             continue;
           $len [$f]++;
-          $at [$term] [] = $place;
-          foreach ( padSearchSurface ( $word ) as $surface )
-            $words [$surface] [$term] = TRUE;
+          foreach ( $terms as $term )
+            $at [$term] [] = $place;
+          if ( ! isset ( $met [$word] ) ) {
+            $met [$word] = TRUE;
+            foreach ( padSearchSurface ( $word ) as $surface )
+              foreach ( $terms as $term )
+                $words [$surface] [$term] = TRUE;
+          }
         }
 
         // Appended in place: a string built again for every document of a term made the
@@ -524,9 +543,9 @@
 
   }
 
-  // A query as [ words, prefixes, phrases, out ]: words and prefixes as terms, a phrase as
-  // its terms with their places after its first, out as the terms, prefixes and phrases that
-  // leave a document out. A word that is a stop word is dropped; so is a phrase of them only.
+  // A query as [ words, prefixes, phrases, out ]: a word as its terms, a prefix as the terms
+  // of the words it begins, a phrase as the terms of each word with its place after its
+  // first, out as the words, prefixes and phrases that leave a document out. A word that is a stop word is dropped; so is a phrase of them only.
   // Fifty parts of a thousand characters at the most - a query is typed, not posted.
 
   function padSearchQuery ( $q, $language, $index ) {
@@ -550,11 +569,11 @@
         $first  = NULL;
 
         foreach ( padSearchWords ( $part [2] ) as $at => $word ) {
-          $term = padSearchTerm ( $word, $language );
-          if ( $term === '' )
+          $terms = padSearchTerms ( $word, $language );
+          if ( ! $terms )
             continue;
           $first   ??= $at;
-          $phrase [] = [ $term, $at - $first ];
+          $phrase [] = [ $terms, $at - $first ];
         }
 
         if ( $phrase )
@@ -570,11 +589,9 @@
 
       } else
 
-        foreach ( padSearchWords ( $part [3] ) as $word ) {
-          $term = padSearchTerm ( $word, $language );
-          if ( $term !== '' )
-            $to ['words'] [$term] = TRUE;
-        }
+        foreach ( padSearchWords ( $part [3] ) as $word )
+          if ( $terms = padSearchTerms ( $word, $language ) )
+            $to ['words'] [ implode ( ' ', $terms ) ] = $terms;
 
       unset ( $to );
 
@@ -689,9 +706,9 @@
   }
 
   // A phrase is found where each next word stands at its place after the first: the places
-  // of the next words are looked up by key, flipped once per field - in_array went through
-  // them all for every place of the first word, and a word standing thousands of times in
-  // one long field made a phrase take seconds. [ document => [ field => count ] ].
+  // of a word - of any of its terms - are looked up by key, flipped once per field: in_array
+  // went through them all for every place of the first word, and a word standing thousands
+  // of times in one long field made a phrase take seconds. [ document => [ field => count ] ].
 
   function padSearchPhrase ( $index, $phrase ) {
 
@@ -699,25 +716,21 @@
     $next = [];
 
     for ( $i = 1; $i < count ( $phrase ); $i++ )
-      $next [$i] = padSearchPlaces ( $index, $phrase [$i] [0] );
+      $next [$i] = padSearchWordPlaces ( $index, $phrase [$i] [0] );
 
-    foreach ( padSearchPlaces ( $index, $phrase [0] [0] ) as $doc => $fields )
+    foreach ( padSearchWordPlaces ( $index, $phrase [0] [0] ) as $doc => $fields )
       foreach ( $fields as $f => $places ) {
 
-        $flip = [];
-
         for ( $i = 1; $i < count ( $phrase ); $i++ )
-          if ( isset ( $next [$i] [$doc] [$f] ) )
-            $flip [$i] = array_flip ( explode ( ',', $next [$i] [$doc] [$f] ) );
-          else
+          if ( ! isset ( $next [$i] [$doc] [$f] ) )
             continue 2;
 
         $count = 0;
 
-        foreach ( explode ( ',', $places ) as $at ) {
+        foreach ( $places as $at => $one ) {
           $whole = TRUE;
           for ( $i = 1; $i < count ( $phrase ) and $whole; $i++ )
-            $whole = isset ( $flip [$i] [ $at + $phrase [$i] [1] ] );
+            $whole = isset ( $next [$i] [$doc] [$f] [ $at + $phrase [$i] [1] ] );
           if ( $whole )
             $count++;
         }
@@ -726,6 +739,22 @@
           $docs [$doc] [$f] = $count;
 
       }
+
+    return $docs;
+
+  }
+
+  // The places of a word of a query - of each of its terms - as [ document => [ field =>
+  // [ place => TRUE ] ] ].
+
+  function padSearchWordPlaces ( $index, $terms ) {
+
+    $docs = [];
+
+    foreach ( $terms as $term )
+      foreach ( padSearchPlaces ( $index, $term ) as $doc => $fields )
+        foreach ( $fields as $f => $places )
+          $docs [$doc] [$f] = ( $docs [$doc] [$f] ?? [] ) + array_fill_keys ( explode ( ',', $places ), TRUE );
 
     return $docs;
 
@@ -770,11 +799,10 @@
     $must   = [];
     $not    = [];
 
-    foreach ( array_keys ( $query ['words'] ) as $term )
-      foreach ( padSearchBm25 ( $index, $boosts, padSearchPostings ( $index, $term ) ) as $doc => $score )
-        $scores [$doc] = ( $scores [$doc] ?? 0 ) + $score;
+    // A word of the query scores as the best of its terms, a prefix as the best word it
+    // stands for.
 
-    foreach ( $query ['prefixes'] as $terms ) {
+    foreach ( array_merge ( array_values ( $query ['words'] ), array_values ( $query ['prefixes'] ) ) as $terms ) {
       $best = [];
       foreach ( $terms as $term )
         foreach ( padSearchBm25 ( $index, $boosts, padSearchPostings ( $index, $term ) ) as $doc => $score )
@@ -790,10 +818,7 @@
         $scores [$doc] = ( $scores [$doc] ?? 0 ) + $score;
     }
 
-    foreach ( array_keys ( $query ['out'] ['words'] ) as $term )
-      $not += padSearchPostings ( $index, $term );
-
-    foreach ( $query ['out'] ['prefixes'] as $terms )
+    foreach ( array_merge ( array_values ( $query ['out'] ['words'] ), array_values ( $query ['out'] ['prefixes'] ) ) as $terms )
       foreach ( $terms as $term )
         $not += padSearchPostings ( $index, $term );
 
@@ -827,19 +852,19 @@
 
   function padSearchMatched ( $text, $language, $query ) {
 
-    $terms = $query ['words'];
+    $terms = [];
 
-    foreach ( $query ['prefixes'] as $list )
+    foreach ( array_merge ( array_values ( $query ['words'] ), array_values ( $query ['prefixes'] ) ) as $list )
       $terms += array_fill_keys ( $list, TRUE );
 
     foreach ( $query ['phrases'] as $phrase )
-      foreach ( $phrase as [ $term ] )
-        $terms [$term] = TRUE;
+      foreach ( $phrase as [ $list ] )
+        $terms += array_fill_keys ( $list, TRUE );
 
     $words = [];
 
     foreach ( padSearchWords ( $text ) as $word )
-      if ( isset ( $terms [ padSearchTerm ( $word, $language ) ] ) ) {
+      if ( array_intersect_key ( array_flip ( padSearchTerms ( $word, $language ) ), $terms ) ) {
         $parts = explode ( "'", $word );
         usort ( $parts, fn ( $a, $b ) => mb_strlen ( $b ) <=> mb_strlen ( $a ) );
         $words [ $parts [0] ] = TRUE;
