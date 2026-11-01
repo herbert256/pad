@@ -15,7 +15,7 @@
       if ( ! padFormulaIsRange ( $range ) )
         return padFormulaError ( '#VALUE!' );
       $over = ( isset ( $args [2] ) and padFormulaIsRange ( $args [2] ) ) ? $args [2] : $range;
-      $hits = padFormulaHits ( [ [ $range, $args [1] ] ], $env );
+      $hits = padFormulaHits ( [ [ $range, $args [1] ] ], $env, $over );
       if ( padFormulaIsError ( $hits ) )
         return $hits;
       $total = 0.0;

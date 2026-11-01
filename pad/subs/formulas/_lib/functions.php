@@ -40,9 +40,12 @@
   // The places [ row, column ] of the ranges - all of one size, else #VALUE! - where each
   // range's criterion holds, as far as one of them reaches into the sheet; and the number of
   // places past that, which are empty in every range, when every criterion takes an empty
-  // cell.
+  // cell. $target is the range a function reads at those places - SUMIFS's sum range, at the
+  // size of the criteria ranges - and the walk reaches as far as it does into the sheet too:
+  // a criteria range shifted below it is empty past the sheet where the target still holds
+  // a value, and that empty place meets "<>b" or "".
 
-  function padFormulaHits ( $pairs, $env ) {
+  function padFormulaHits ( $pairs, $env, $target = NULL ) {
 
     $height = NULL;
     $width  = NULL;
@@ -64,6 +67,11 @@
       $rows    = max ( $rows, min ( $height, ( $env ['height'] ?? 0 ) - $range ['r'] + 1 ) );
       $cols    = max ( $cols, min ( $width,  ( $env ['width']  ?? 0 ) - $range ['c'] + 1 ) );
 
+    }
+
+    if ( $target !== NULL ) {
+      $rows = max ( $rows, min ( $height, ( $env ['height'] ?? 0 ) - $target ['r'] + 1 ) );
+      $cols = max ( $cols, min ( $width,  ( $env ['width']  ?? 0 ) - $target ['c'] + 1 ) );
     }
 
     $hits = [];
@@ -89,7 +97,8 @@
   // Of the arguments of AVERAGEIFS, MINIFS and MAXIFS - a range, then pairs of a range and its
   // criteria - the values of the first range at the places where every criterion holds, as a
   // list: every range the size and shape of the first, else #VALUE!, and an error at one of
-  // those places the answer. The empty places past the sheet hold no value to add.
+  // those places the answer. The places the walk leaves out lie past the sheet in the first
+  // range too and hold no value to add.
 
   function padFormulaIfsValues ( $args, $env ) {
 
@@ -106,7 +115,7 @@
       $pairs [] = [ $args [$at], $args [$at + 1] ];
     }
 
-    $hits = padFormulaHits ( $pairs, $env );
+    $hits = padFormulaHits ( $pairs, $env, $target );
 
     if ( padFormulaIsError ( $hits ) )
       return $hits;

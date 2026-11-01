@@ -21,7 +21,7 @@
           return padFormulaError ( '#VALUE!' );
         $pairs [] = [ $args [$at], $args [$at + 1] ];
       }
-      $hits = padFormulaHits ( $pairs, $env );
+      $hits = padFormulaHits ( $pairs, $env, $sum );
       if ( padFormulaIsError ( $hits ) )
         return $hits;
       $total = 0.0;
