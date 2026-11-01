@@ -213,6 +213,9 @@
     [ 'line',     'regex:/^[.]+$/',           [ 'line' => "a\rb" ] ],
     [ 'amount',   'numeric',                  [ 'amount' => "1\f" ] ],
     [ 'amount',   'numeric',                  [ 'amount' => "\f 1" ] ],
+    [ 'age',      'min:5|numeric',            [ 'age' => "\u{A0}9" ] ],
+    [ 'age',      'between:1,5|numeric',      [ 'age' => "\u{FEFF}3" ] ],
+    [ 'age',      'max:5|integer',            [ 'age' => "\u{2028}9" ] ],
     [ 'again',    'same:password[]',          [ 'again' => 'p1', 'password[]' => [ 'p1' ] ] ],
   ];
 

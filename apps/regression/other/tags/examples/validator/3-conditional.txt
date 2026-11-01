@@ -22,7 +22,7 @@
     return value === '' || value === null || value === undefined || (Array.isArray(value) && value.length === 0);
   }
   function toNumber(value) {
-    var found = String(value).match(/^\s*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?/);
+    var found = String(value).match(/^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?/);
     return found ? parseFloat(found[0]) : 0;
   }
   function length(value) {

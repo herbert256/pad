@@ -54,9 +54,11 @@
     return value === '' || value === null || value === undefined || (Array.isArray(value) && value.length === 0);
   }
 
-  // PHP's (float) of a text: the number its start spells, 0 when it spells none.
+  // PHP's (float) of a text: the number its start spells, 0 when it spells none - the white
+  // space it skips first PHP's own, not \s, which skipped a no-break space or a byte order
+  // mark the server reads as no number.
   function toNumber(value) {
-    var found = String(value).match(/^\s*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?/);
+    var found = String(value).match(/^[ \t\n\r\v\f]*[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?/);
     return found ? parseFloat(found[0]) : 0;
   }
 

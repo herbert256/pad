@@ -353,7 +353,11 @@
       [ 'title',    'gt:subtitle',                       [ 'subtitle' => 'abcd', 'title' => 'abcd' ] ],
       [ 'title',    'gt:subtitle',                       [ 'subtitle' => 'ten', 'title' => 'four' ] ],
       [ 'title',    'gt:subtitle',                       [ 'subtitle' => '', 'title' => 'a' ] ],
-      [ 'counts[]', 'gt:0',                              [ 'counts[]' => [ '1' ] ] ]
+      [ 'counts[]', 'gt:0',                              [ 'counts[]' => [ '1' ] ] ],
+      [ 'amount',   'gt:5|numeric',                      [ 'amount' => "\u{A0}9" ] ],
+      [ 'amount',   'gt:5|numeric',                      [ 'amount' => "\u{2028}9" ] ],
+      [ 'amount',   'gt:5|integer',                      [ 'amount' => "\u{FEFF}9" ] ],
+      [ 'amount',   'gt:5|numeric',                      [ 'amount' => "\f9" ] ]
     ],
 
     'gte' => [
@@ -388,7 +392,8 @@
       [ 'share',    'numeric|lte:100',                   [ 'share' => '100.01' ] ],
       [ 'code',     'lte:4',                             [ 'code' => 'abcd' ] ],
       [ 'code',     'lte:4',                             [ 'code' => 'abcde' ] ],
-      [ 'nick',     'lte:name',                          [ 'name' => 'Ada', 'nick' => 'Adam' ] ]
+      [ 'nick',     'lte:name',                          [ 'name' => 'Ada', 'nick' => 'Adam' ] ],
+      [ 'share',    'lte:5|numeric',                     [ 'share' => "\u{A0}9" ] ]
     ],
 
     'min_items' => [

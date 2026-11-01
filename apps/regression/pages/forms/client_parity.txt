@@ -4964,6 +4964,93 @@
             }
         },
         {
+            "field": "age",
+            "data": {
+                "age": " 9"
+            },
+            "server": "Age must be at least 5",
+            "client": {
+                "age": {
+                    "label": "Age",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "min",
+                            "5",
+                            ":label must be at least :n",
+                            "5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "age",
+            "data": {
+                "age": "﻿3"
+            },
+            "server": "Age must be between 1 and 5",
+            "client": {
+                "age": {
+                    "label": "Age",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "between",
+                            "1,5",
+                            ":label must be between :n",
+                            "1 and 5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "age",
+            "data": {
+                "age": "\u20289"
+            },
+            "server": "Age must be a whole number",
+            "client": {
+                "age": {
+                    "label": "Age",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "max",
+                            "5",
+                            ":label must be at most :n",
+                            "5"
+                        ],
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
             "field": "again",
             "data": {
                 "again": "p1",
@@ -12965,6 +13052,122 @@
             }
         },
         {
+            "field": "amount",
+            "data": {
+                "amount": " 9"
+            },
+            "server": "Amount must be greater than 5",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "5",
+                            ":label must be greater than :n",
+                            "5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "\u20289"
+            },
+            "server": "Amount must be greater than 5",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "5",
+                            ":label must be greater than :n",
+                            "5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "﻿9"
+            },
+            "server": "Amount must be greater than 5",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "5",
+                            ":label must be greater than :n",
+                            "5"
+                        ],
+                        [
+                            "integer",
+                            "",
+                            ":label must be a whole number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "amount",
+            "data": {
+                "amount": "\f9"
+            },
+            "server": "",
+            "client": {
+                "amount": {
+                    "label": "Amount",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "gt",
+                            "5",
+                            ":label must be greater than :n",
+                            "5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
+                    ]
+                }
+            }
+        },
+        {
             "field": "max_price",
             "data": {
                 "min_price": "10",
@@ -13710,6 +13913,35 @@
                     ],
                     "watch": [
                         "name"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "share",
+            "data": {
+                "share": " 9"
+            },
+            "server": "Share must be a number",
+            "client": {
+                "share": {
+                    "label": "Share",
+                    "number": true,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "lte",
+                            "5",
+                            ":label must be at most :n",
+                            "5"
+                        ],
+                        [
+                            "numeric",
+                            "",
+                            ":label must be a number",
+                            ""
+                        ]
                     ]
                 }
             }
