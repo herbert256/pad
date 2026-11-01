@@ -6,8 +6,8 @@
   // _data file of the name. q= is the query - words, "a phrase", prefix*, -left out;
   // fields= the fields searched with their boosts ('title^2, body'; a collection's title^2,
   // body, else every text field); lang= the language of its stop words and stemmer (en, nl,
-  // de, fr, es - the locale's language, else en); words= the length of the excerpt (30) and
-  // excerpt= the field it is cut from (the last of fields).
+  // de, fr, es, it - the locale's language, else en); words= the length of the excerpt (30)
+  // and excerpt= the field it is cut from (the last of fields).
   //
   // As a pair the rows - the source's own fields with score and excerpt added (HTML, print
   // it with {!excerpt}) - and the handling options work on them, first=10 for the ten best;

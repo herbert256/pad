@@ -1,0 +1,8 @@
+{data 'pagine'}
+[ { "t": "Le università italiane" }, { "t": "Studiare all'università di Bologna" }, { "t": "Un viaggio in treno" }, { "t": "Viaggiare con gli amici" } ]
+{/data}
+{!stems}|
+{search 'pagine', q='universita', lang='it'}{$t}; {/search}|
+{search 'pagine', q='viaggi', lang='it'}{$t}; {/search}|
+{search 'pagine', q='"con gli amici"', lang='it'}{$t}; {/search}|
+{search 'pagine', q='con', lang='it'}{$t}; @else@none{/search}

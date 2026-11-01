@@ -811,7 +811,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Translations, locale formatting](docs/FEATURES.md#translations-and-locale-formatting) | `{trans}`, `_lang/`, `\| currency`, `\| localDate` |
 | [Markdown](docs/FEATURES.md#markdown) | `{markdown}`, `\| markdown` |
 | [Markdown collections](docs/FEATURES.md#markdown-collections) | `{collection 'blog'}`, `_content/` |
-| [Site search](docs/FEATURES.md#site-search) | `{search 'blog', q=$q, fields='title^2, body'}...{/search}`, `padSearch ()` - BM25, phrases, prefixes, Snowball stemmers en, nl, de, fr, es: a language per file of `pad/subs/search/types/` |
+| [Site search](docs/FEATURES.md#site-search) | `{search 'blog', q=$q, fields='title^2, body'}...{/search}`, `padSearch ()` - BM25, phrases, prefixes, Snowball stemmers en, nl, de, fr, es, it: a language per file of `pad/subs/search/types/` |
 | [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/subs/charts/types/`; `{sparkline/}`; `client` draws it in the browser (`www/assets/charts/`) |
 | [Games](docs/FEATURES.md#games) | `{game 'memory'/}`, `{game:sudoku/}`, `{crossword}...{/crossword}` - 18 games played in the browser, a game per file of `pad/subs/games/types/` |
 | [Toys](docs/FEATURES.md#toys) | `{toy 'life'/}`, `{toy:mandelbrot/}`, bare `{boids/}` - live simulations in the browser, a toy per file of `pad/subs/toys/types/` |
