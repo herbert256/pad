@@ -82,7 +82,7 @@ for (const [pass, page, n] of [...pages.map((page, n) => [0, page, n]), ...pages
 
   if (!server.length) why = 'the server drew no chart';
   else if (server.length !== client.length) why = `the server drew ${server.length} charts, the browser ${client.length}`;
-  else if (palette && !server.every(s => / pc-pal-[a-z-]+-[1-8]"/.test(s) && s.includes('{--pad-chart-series:'))) why = `the server drew no colours of the palette`;
+  else if (palette && !server.every(s => / pc-pal-[a-z0-9-]+-[1-8]"/.test(s) && s.includes('{--pad-chart-series:'))) why = `the server drew no colours of the palette`;
   else {
     const i = server.findIndex((s, j) => s !== client[j]);
     if (i >= 0) {
