@@ -3324,13 +3324,13 @@ choose, Enter runs the chosen one: the WAI-ARIA combobox pattern with a list box
 | Option | Description |
 |--------|-------------|
 | first parameter | The text of the button and the name of the dialog - `Commands` when not given |
-| `data` | The commands from rows of a store, the page's array or a `_data` file: a row's `label` (or `text`, `name`), `link` (or `href`, `url`), `group` - a heading over the rows of one group - and `keywords`, words that find it too |
+| `data` | The commands from rows of a store, the page's array or a `_data` file: a row's `label` (or `text`, `name`), `link` (or `href`, `url`), `group` - a heading over the rows of one group, a rule before a row of none that follows a group - and `keywords`, words that find it too |
 | `key` | The letter of the shortcut with Ctrl, ⌘ on a Mac - `k` when not given; one of b d e f g h i j k l m o p r s u: a, c, v, x, y and z are the keys of editing text, n, q, t and w the browser keeps |
 | `placeholder` | The hint in the search box, `Type a command` |
 | `empty` | What shows when nothing is found, `No command found` |
 
 **Behavior:** the commands are what renders between the tags - links, buttons, a line of text
-(`<p>`) heading a group, a rule (`<hr>`) - after the rows of `data=`; a link of a row of another
+(`<p>`) heading a group, a rule (`<hr>`) ending one - after the rows of `data=`; a link of a row of another
 scheme than http, https and mailto, and a row without a label or a link, are left out, and a
 label is text. The dialog is a modal `<dialog>` opened as `{modal}` opens its own: by the
 button's invoker commands, a small script where the browser has none, and with scripting off a
