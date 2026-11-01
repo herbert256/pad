@@ -13,6 +13,16 @@ A task board - cards dragged across its columns, every open window kept in step 
 | `move` | A move: JSON in from `kanban.js` - the card, its column, the card it goes before - with `X-CSRF-Token`; the board's version and the cards per column out (`$padExpose`) |
 | `events` | `padSse`: every two seconds the board's version - its newest activity - and a `board` event when it is not the one the window had (`Last-Event-ID`) |
 
+## The frame
+
+Kanban stands in the frame every PAD application shares, `{common:padFrame}` in `_inits.pad`
+(with `$padCommon = FALSE` it is reached with the `common:` prefix): the brand top left, the
+menu (`$frameMenu`, `_inits.php`) - the board and, behind it, the moves and the events - and
+the bar with the page's title (`$title`), the cards on the board, the Live sign, the New card
+button, the theme switcher and the light/dark switch. `www/kanban/kanban.css` colours the board
+with the frame's palette, so the themes and light and dark apply to it; a label is the accent,
+bad, warn or dim. The flash messages stand above the page, where it runs below it.
+
 ## Live, on a server and in the browser
 
 `kanban.js` listens to `?events` with an `EventSource` and asks for the two fragments again

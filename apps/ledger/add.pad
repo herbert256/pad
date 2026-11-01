@@ -1,7 +1,5 @@
 <div class="narrow">
 
-  <h1>Add a transaction</h1>
-
   {form 'entry', error, class='entry'}
     {input 'day', type='date', label='Day', value=$dayDefault, rules='required|date'/}
     {input 'amount', label='Amount', inputmode='decimal', placeholder='42.50', rules='required|regex:/^[0-9]+([.,][0-9][0-9]?)?$/'/}

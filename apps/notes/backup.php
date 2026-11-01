@@ -51,6 +51,6 @@
   $fileBytes = notesSize ( (int) db ( "FIELD coalesce(sum(size), 0) FROM attachments" ) );
   $dbBytes   = notesSize ( @filesize ( DATA . 'notes/notes.sqlite' ) ?: 0 );
   $inBrowser = padWasm ();
-  $notesPage = 'Backup';
+  $title     = 'Backup';
 
 ?>

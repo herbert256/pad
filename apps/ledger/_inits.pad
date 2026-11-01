@@ -1,39 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0f766e">
-  <meta name="csrf-token" content="{csrf token/}">
-  <title>{$ledgerPage} · Ledger</title>
-  <link rel="icon" href="{asset 'icon.svg'/}" type="image/svg+xml">
-  <link rel="stylesheet" href="{asset 'ledger.css'/}">
-  <script src="{asset 'ledger.js'/}" defer></script>
-</head>
-<body>
+{common:padFrame}
 
-  <header class="top">
-    {common:padBrand/}
-    <nav>
-      {menu}<a href="{$padGo}{$page}{?month}" aria-current="{$current}">{$label}</a>{/menu}
-    </nav>
+  {slot 'head'}
+    <meta name="theme-color" content="#0f766e">
+    <meta name="csrf-token" content="{csrf token/}">
+    <link rel="icon" href="{asset 'icon.svg'/}" type="image/svg+xml">
+    {asset 'ledger.css', tag/}
+    <script src="{asset 'ledger.js'/}" defer></script>
+  {/slot}
+
+  {slot 'tools'}
     <form class="month" method="get">
       <input type="hidden" name="{$ledgerHere}" value="">
-      <label for="month-pick" class="hide">Month</label>
+      <label for="month-pick" class="sr-only">Month</label>
       <select id="month-pick" name="month" onchange="this.form.submit()">
         {monthList}<option value="{$value}"{if $chosen} selected{/if}>{$label}</option>{/monthList}
       </select>
       <noscript><button>Show</button></noscript>
     </form>
     <a class="button primary" href="{$padGo}add{?month}">+ Add</a>
-  </header>
+  {/slot}
 
-  <main>
-    {flash}<p class="flash {$type}" role="status">{$message}</p>{/flash}
-    @page@
-  </main>
+{/common:padFrame}
 
-  <footer class="bottom">Ledger runs {$ledgerWhere}.</footer>
+{flash}<p class="flash {$type}" role="status">{$message}</p>{/flash}
 
-</body>
-</html>
+@page@
+
+<footer class="bottom">Ledger runs {$ledgerWhere}.</footer>
+
+{common:padFrameEnd/}

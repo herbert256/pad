@@ -1,7 +1,6 @@
 <div class="narrow">
 
   <p class="crumbs"><a href="{$padGo}index">← The board</a></p>
-  <h1>{if $isCard}{$cardTitle}{else}New card{/if}</h1>
 
   {form 'edit', error, class='card-form sheet'}
     {input 'title', label='Title', value=$draft.title, rules='required|max:100'/}

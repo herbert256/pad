@@ -15,6 +15,16 @@ A household budget - six months as charts, budgets per category, the transaction
 | `budgets` | What each kind of spending may cost a month |
 | `import` | Transactions from a CSV file (`padUpload`): a bank's export, or this application's own |
 
+## The frame
+
+Ledger stands in the frame every PAD application shares, `{common:padFrame}` in `_inits.pad`
+(with `$padCommon = FALSE` it is reached with the `common:` prefix): the brand top left, the
+menu (`$frameMenu`, `_inits.php`) - the four pages of the books, the month going along, and the
+quick entry's page behind the overview - and the bar with the page's title (`$title`), the
+month, the Add button, the theme switcher and the light/dark switch. `www/ledger/ledger.css`
+colours the books with the frame's palette - money in ok, money out bad - so the themes and
+light and dark apply to them. The flash messages stand above the page, where it runs below it.
+
 ## The database and its migrations
 
 `_config/config.php` makes the application database SQLite, `DATA/ledger/ledger.sqlite`. Its

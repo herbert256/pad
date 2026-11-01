@@ -1,7 +1,5 @@
 <div class="editor">
 
-  <h1>{if $draft.id}Edit note{else}New note{/if}</h1>
-
   {form 'note', error}
 
     {input 'title', label='Title', value=$draft.title, rules='required|max:120', placeholder='What is it about?'/}

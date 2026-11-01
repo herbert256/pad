@@ -1,35 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#d97706">
-  <meta name="csrf-token" content="{csrf token/}">
-  <title>{$notesPage} · Notes</title>
-  <link rel="icon" href="{asset 'icon.svg'/}" type="image/svg+xml">
-  <link rel="stylesheet" href="{asset 'notes.css'/}">
-  <script src="{asset 'notes.js'/}" defer></script>
-</head>
-<body>
+{common:padFrame}
 
-  <header class="top">
-    {common:padBrand/}
+  {slot 'head'}
+    <meta name="theme-color" content="#d97706">
+    <meta name="csrf-token" content="{csrf token/}">
+    <link rel="icon" href="{asset 'icon.svg'/}" type="image/svg+xml">
+    {asset 'notes.css', tag/}
+    <script src="{asset 'notes.js'/}" defer></script>
+  {/slot}
+
+  {slot 'tools'}
     <form class="search" method="get" role="search">
       <input type="hidden" name="index" value="">
       <input type="search" name="q" value="{$search}" placeholder="Search notes" aria-label="Search notes" autocomplete="off">
     </form>
-    <nav>
-      <a class="button primary" href="{$padGo}edit">New note</a>
-      <a class="button" href="{$padGo}backup">Backup</a>
-    </nav>
-  </header>
+    <a class="button primary" href="{$padGo}edit">New note</a>
+  {/slot}
 
-  <main>
-    {flash}<p class="flash {$type}" role="status">{$message}</p>{/flash}
-    @page@
-  </main>
+{/common:padFrame}
 
-  <footer class="bottom">Notes runs {$notesWhere}. Its notes live in one SQLite database.</footer>
+{flash}<p class="flash {$type}" role="status">{$message}</p>{/flash}
 
-</body>
-</html>
+@page@
+
+<footer class="bottom">Notes runs {$notesWhere}. Its notes live in one SQLite database.</footer>
+
+{common:padFrameEnd/}

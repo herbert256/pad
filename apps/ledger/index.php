@@ -14,6 +14,6 @@
   $monthName = ledgerMonthName ( $ledgerMonth );
   $today     = date ( 'Y-m-d' );
 
-  $ledgerPage = $monthName;
+  $title     = $monthName;
 
 ?>

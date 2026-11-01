@@ -25,6 +25,6 @@
                                WHERE c.kind = 'expense' ORDER BY c.name" ) ?: [] );
 
   $planned    = array_sum ( array_column ( $plan, 'monthly' ) );
-  $ledgerPage = 'Budgets';
+  $title      = 'Budgets';
 
 ?>

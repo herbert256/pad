@@ -46,7 +46,8 @@
       const found = results.querySelectorAll('article.note').length;
       const count = document.querySelector('.list-head .count');
       if (count) count.textContent = count.textContent.replace(/^\d+/, found);
-      const heading = document.querySelector('.list-head h1');
+      // The page's heading is the frame's, in the bar above the page.
+      const heading = document.querySelector('.frame-top h1');
       if (heading && !tag) heading.textContent = search.value.trim() ? `Found for “${search.value.trim()}”` : 'All notes';
       try { history.replaceState(null, '', query); } catch (e) { /* a page shown from the disk keeps its own address */ }
     } finally {

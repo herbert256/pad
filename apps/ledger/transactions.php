@@ -19,6 +19,6 @@
   $csvQuery     = http_build_query ( [ 'month' => $ledgerMonth, 'category' => $only, 'account' => $from, 'q' => $word, 'padFormat' => 'csv' ] );
 
   $padExpose  = [ 'rows' ];
-  $ledgerPage = "Transactions, $monthName";
+  $title      = "Transactions, $monthName";
 
 ?>

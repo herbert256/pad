@@ -41,6 +41,6 @@
   $noteTags  = $note ['tags'];
   $noteFiles = $note ['files'];
   $fileCount = count ( $noteFiles );
-  $notesPage = $note ['title'];
+  $title     = $note ['title'];
 
 ?>

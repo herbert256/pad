@@ -30,4 +30,9 @@
   $cardLabel  = $cardFailed ? kanbanText ( 'label' ) : '';
   $labelList  = array_map ( fn ( $key, $name ) => [ 'key' => $key, 'name' => $name, 'chosen' => $key === $cardLabel ], array_keys ( kanbanLabels () ), kanbanLabels () );
 
+  // The board's name, the heading of the frame's bar. The dialog posts a title of its own,
+  // which the request makes a variable: this comes after it, so the bar names the board.
+
+  $title = 'Offline shop';
+
 ?>

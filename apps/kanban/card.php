@@ -49,6 +49,6 @@
   $labelList  = array_map ( fn ( $key, $name ) => [ 'key' => $key, 'name' => $name, 'chosen' => $key == $draft ['label'] ], array_keys ( kanbanLabels () ), kanbanLabels () );
   $cardTitle  = $draft ['title'];
   $isCard     = $card ? 1 : 0;
-  $kanbanPage = $card ? $card ['title'] : 'New card';
+  $title      = $card ? $card ['title'] : 'New card';
 
 ?>
