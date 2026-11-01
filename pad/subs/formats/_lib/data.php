@@ -82,21 +82,6 @@
 
   }
 
-  // A spreadsheet runs a cell that starts with =, +, - or @ - or with a tab or a carriage
-  // return in front of one - as a formula: a visitor's =HYPERLINK(...) or +cmd|... in the
-  // data became a link or a command in the spreadsheet of whoever opened the export. Such a
-  // text cell gets a ' in front, which a spreadsheet shows as the text it is; a number of
-  // either sign is no formula and stays as it is.
-
-  function padFormatCsvCell ( $cell ) {
-
-    if ( is_string ( $cell ) and preg_match ( '/^[=+\-@\t\r]/', $cell ) and ! is_numeric ( $cell ) )
-      return "'$cell";
-
-    return $cell;
-
-  }
-
   // YAML as yaml_emit writes it - the PHP yaml extension the reader needs as well: a
   // document between --- and ..., a text that would read as another kind of value quoted.
 

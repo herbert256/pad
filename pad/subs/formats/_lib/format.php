@@ -246,6 +246,22 @@
 
   }
 
+  // A spreadsheet runs a cell that starts with =, +, - or @ - or with a tab or a carriage
+  // return in front of one - as a formula: a visitor's =HYPERLINK(...) or +cmd|... in the
+  // data became a link or a command in the spreadsheet of whoever opened the export. Such a
+  // text cell gets a ' in front, which a spreadsheet shows as the text it is; a number of
+  // either sign is no formula and stays as it is. The CSV and the TSV writers - a
+  // spreadsheet opens a .tsv as it opens a .csv - write their cells and names through it.
+
+  function padFormatCsvCell ( $cell ) {
+
+    if ( is_string ( $cell ) and preg_match ( '/^[=+\-@\t\r]/', $cell ) and ! is_numeric ( $cell ) )
+      return "'$cell";
+
+    return $cell;
+
+  }
+
   // A float as the shortest text that reads back as the same float - as JSON writes one, 0.1
   // as 0.1 and 224617.445991228 whole, where (string) cuts it to 14 digits - with a .0 on a
   // whole number, as a float is told from an integer: 1.0, 5.0E+22.

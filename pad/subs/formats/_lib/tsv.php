@@ -3,7 +3,8 @@
   // TSV, the reader and the writer of types/tsv.php. A row with more cells than the header
   // has names is the text's error - its cells would have no field; a shorter row has the
   // rest empty, as a CSV row has. Blank lines are skipped; the header's names are trimmed,
-  // a cell is kept as it is.
+  // a cell is kept as it is. The writer gives a text cell a spreadsheet would run as a
+  // formula a ' in front, as the CSV writer does (padFormatCsvCell).
 
   function padTsvRead ( $text ) {
 
@@ -43,12 +44,12 @@
   function padTsvWrite ( $rows ) {
 
     $columns = padFormatColumns ( $rows );
-    $lines   = [ implode ( "\t", array_map ( 'padTsvEscape', $columns ) ) ];
+    $lines   = [ implode ( "\t", array_map ( fn ( $name ) => padTsvEscape ( padFormatCsvCell ( $name ) ), $columns ) ) ];
 
     foreach ( $rows as $row ) {
       $cells = [];
       foreach ( $columns as $column )
-        $cells [] = padTsvEscape ( padFormatCell ( $row [$column] ?? '' ) );
+        $cells [] = padTsvEscape ( padFormatCsvCell ( padFormatCell ( $row [$column] ?? '' ) ) );
       $lines [] = implode ( "\t", $cells );
     }
 
