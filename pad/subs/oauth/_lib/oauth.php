@@ -322,15 +322,19 @@
     $state    = is_string ( $callback ['state'] ?? NULL ) ? $callback ['state'] : '';
     $record   = padOAuthTake ( $state, $kind );
 
+    // The state first: the provider's error and its description are its words only in the
+    // answer to a login started here - a crafted link writes whatever it likes in them. The
+    // record is taken either way, so an error with a good state ends the login too.
+
+    if ( $record === NULL )
+      return padOAuthFail ( "the answer from $name does not match a login started here - its state is unknown, used or over ten minutes old; start the login again" );
+
     if ( isset ( $callback ['error'] ) ) {
       $error = padOAuthText ( $callback ['error'] );
       $about = padOAuthText ( $callback ['error_description'] ?? '' );
       return padOAuthFail ( ( $error === 'access_denied' ? "the login at $name was refused" : "$name answered with an error" )
                             . " ($error" . ( $about !== '' ? ": $about" : '' ) . ')' );
     }
-
-    if ( $record === NULL )
-      return padOAuthFail ( "the answer from $name does not match a login started here - its state is unknown, used or over ten minutes old; start the login again" );
 
     if ( ( $record ['token'] ?? NULL ) !== $provider ['token'] or ( $record ['issuer'] ?? NULL ) !== $provider ['issuer'] )
       return padOAuthFail ( "the answer from $name belongs to a login started at another address of it - the way back is handled with other options than the start; start the login again" );
