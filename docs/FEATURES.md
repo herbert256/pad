@@ -1323,6 +1323,7 @@ budget, a loan, grades, dates, an editable sheet and a page of every function.
 {embed 'https://music.apple.com/us/album/abbey-road-2019-mix/1474815798', title='Abbey Road'/}   # applemusic, applepodcasts: in Apple's sandbox
 {figma 'https://www.figma.com/design/<key>/Shop', title='The checkout', theme='system'/}   # a design, prototype, FigJam board or slides
 {embed 'https://www.loom.com/share/fa3c0bc94e904ab6b0746f844ca7a385', title='A demo', at='0:05'/}   # loom
+{embed 'https://www.tiktok.com/@scout2015/video/6718335390845095173', title='A short'/}   # tiktok: upright, a phone's width
 {audio 'sounds/bell.mp3', title='The bell'/}                                # a file: <audio preload="none">; videofile, pdffile
 ```
 A frame of another site is a click-to-load facade: a poster drawn for its kind (or `poster=`,

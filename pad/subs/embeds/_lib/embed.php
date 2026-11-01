@@ -312,7 +312,7 @@
               'arrow'   => [ '#ffffff', '#ffffff' ], 'text' => [ '#ffffff', '#ffffff' ],
               'caption' => [ '#52514e', '#c3c2b7' ], 'focus' => [ '#2a78d6', '#7fb2f0' ] ],
                  '.pad-embed{position:relative;display:block;aspect-ratio:16/9;width:100%;max-width:100%;overflow:hidden;border-radius:10px;background:var(--pad-embed-surface);color:var(--pad-embed-text)}'
-               . 'video.pad-embed{height:auto;background:#000}.pad-embed-upright{max-width:340px}'
+               . 'video.pad-embed{height:auto;background:#000}.pad-embed.pad-embed-upright{max-width:340px}'
                . '.pad-embed-poster,.pad-embed iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}'
                . '.pad-embed-drawn rect{fill:var(--pad-embed-surface)}.pad-embed-drawn path{fill:var(--pad-embed-hill)}'
                . '.pad-embed-drawn path+path{fill:var(--pad-embed-hill-2)}.pad-embed-drawn circle{fill:var(--pad-embed-accent)}'

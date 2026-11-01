@@ -366,6 +366,7 @@
       'applepodcasts'   => [ 'https://podcasts.apple.com/us/podcast/the-daily/id1200361736', 'The Daily' ],
       'figma'           => [ 'https://www.figma.com/design/nrPSsILSYjesyc5UHjYYa4/Embed-Kit-2.0-examples', 'Embed Kit 2.0 examples' ],
       'loom'            => [ 'https://www.loom.com/share/fa3c0bc94e904ab6b0746f844ca7a385', 'Follow a Loom product demo' ],
+      'tiktok'          => [ 'https://www.tiktok.com/@scout2015/video/6718335390845095173', 'A video of @scout2015' ],
       'videofile'       => [ 'https://example.org/clips/sunrise.webm',                 'A sunrise' ],
       'audio'           => [ 'https://example.org/sounds/bell.mp3',                    'A bell' ],
       'pdffile'         => [ 'https://www.example.org/docs/plan.pdf',                  'The floor plan' ] ];
