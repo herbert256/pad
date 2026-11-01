@@ -1,0 +1,16 @@
+{meta title='Segmented'/}
+{about/}
+
+{form 'try', class='inputs-try', error}
+  {segmented 'size', label='Size', options='S, M, L, XL', rules='required|in:S,M,L,XL'/}
+  {input:segmented 'view', label='Show as', value='Grid'}
+    List
+    Grid
+    Map
+  {/input:segmented}
+  <button class="inputs-send">Send</button>
+{/form}
+
+{received/}
+
+{template/}

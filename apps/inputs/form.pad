@@ -19,6 +19,7 @@ the server checks the post again all the same. Send it empty to see them.</p>
   {otp 'code', label='Code', rules='required|digits:6'/}
   {combobox 'city', label='City', options='Amsterdam, Berlin, Paris, Rome', rules='required|in:Amsterdam,Berlin,Paris,Rome'/}
   {multiselect 'interests', label='Interests', options='PHP, Maps, Music, Charts', rules='required|in:PHP,Maps,Music,Charts'/}
+  {segmented 'size', label='Size', options='S, M, L, XL', rules='required|in:S,M,L,XL'/}
   <button class="inputs-send">Send</button>
 {/form}
 

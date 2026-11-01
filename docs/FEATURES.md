@@ -871,6 +871,7 @@ checker:
   {combobox 'city', label='City'}Rome
     Oslo{/combobox}                                        # options=, data=, or a line each
   {multiselect 'tags', label='Tags', options='pad, php, maps', rules='required|in:pad,php,maps'/}   # posts the list tags[]
+  {segmented 'size', label='Size', options='S, M, L'/}    # a radio group drawn as one bar
   {signature 'signed', label='Signature'/}                 # posts a PNG data URL
   {dropzone 'cv', label='Your CV', accept='.pdf', limit='2M'/}   # padUpload takes it
 {/form}
@@ -878,7 +879,8 @@ checker:
 The kinds are the files of `pad/subs/inputs/types/` - colorpicker, combobox, datepicker, dropzone,
 mdeditor (Markdown with a live preview), multiselect (chips and a filtered list over a select of
 many), newpassword (strength meter, show/hide; `known` for a
-login), otp (a box per character), signature, slider, stars, stepper, taginput, timepicker and
+login), otp (a box per character), segmented (a radio group drawn as one bar, without script),
+signature, slider, stars, stepper, taginput, timepicker and
 toggle (a switch posting `on=`/`off=`) - their script and style in `www/assets/inputs/`. Each
 is a field of its `{form}` as `{input}` is: named by its first parameter, labelled by `label=`,
 refilled from a post of its own form, the message of `padValidate` or of its `rules=` (read
