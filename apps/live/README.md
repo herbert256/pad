@@ -10,8 +10,8 @@ that post back and scripts all work as they do in an application.
 
 Open `http://localhost/pad/live/`. It looks like the [playground](../playground/README.md):
 the frame every PAD application shares, filling the window - the brand and the menu on the
-side, the bar with the title, **Run**, **Open in the playground**, the theme switcher and the
-light/dark switch - and in it the template on the left, under it the data - a text in any format PAD reads, JSON, YAML,
+side, the bar with the title, **Run**, **Open in the playground** and the theme
+switcher - and in it the template on the left, under it the data - a text in any format PAD reads, JSON, YAML,
 XML, CSV, recognised on sight, a record's keys the page's variables and a list the variable
 `rows` - or, with **Switch to PHP**, PHP code written as a page's `.php`. The boxes are
 editors with PAD's colours when Monaco loads (`$liveMonaco`), light or dark with the frame.

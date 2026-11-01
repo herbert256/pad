@@ -11,8 +11,8 @@ it and the template, PHP and script below that (`{source}`).
 
 The pages stand in the frame the PAD applications share (`{common:padFrame}`, as in the
 sections application): the brand and the menu - the home page, the guide and the examples
-under the heading of their group - in the side, and in the bar the page's title, the theme
-switcher and the light/dark switch. The colours of the pages are the frame's, so every theme
+under the heading of their group - in the side, and in the bar the page's title and the
+theme switcher. The colours of the pages are the frame's, so every theme
 colours them too.
 
 | Page | Shows |

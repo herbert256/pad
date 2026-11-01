@@ -965,8 +965,8 @@ The `@page@` placeholder is replaced with each page's content.
 Every PAD application shares one frame - `{common:padFrame}` in its `_inits.pad`,
 `$frameMenu`, `www/_common/pad.css` - with the same brand top left, `{common:padBrand frame/}`:
 the `{}` logo linking the PAD home and the application's name as the pull-down of the
-applications (`_common/_data/padApps.php`), and the same bar: the page's title, the theme
-switcher `{themes/}` and the light/dark switch: see
+applications (`_common/_data/padApps.php`), and the same bar: the page's title and the theme
+switcher `{themes/}` - Default is light, Dark is one of the themes: see
 [The frame of the PAD applications](docs/FEATURES.md#the-frame-of-the-pad-applications).
 
 ---

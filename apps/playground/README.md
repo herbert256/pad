@@ -9,8 +9,8 @@ for trying a tag, checking a bug report, or showing someone an example through a
 
 Open `http://localhost/pad/playground/`. The page stands in the frame every PAD application
 shares and fills the window: the brand and the menu on the side, the bar with the title, the
-buttons - **Render**, **Show the HTML**, **Open in live** - the theme switcher and the
-light/dark switch. The left pane holds the template and its data; the right pane shows the
+buttons - **Render**, **Show the HTML**, **Open in live** - and the theme
+switcher. The left pane holds the template and its data; the right pane shows the
 result. The data is a text in any format PAD reads data in - JSON, YAML,
 XML, CSV ... - its type recognised on sight, as `{data}` recognises it: a record's keys (a
 JSON object, a YAML mapping, an XML document) become the template's variables, and a list,

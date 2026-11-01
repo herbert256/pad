@@ -27,8 +27,8 @@ Its files for the browser are in `www/_common/`: `pad.css` and `pad.js`, the fra
   the pull-down of the applications - written by the frame
 - **The frame of the PAD applications**: every PAD application - with `_common` on, or
   reaching it with the `common:` prefix - looks the same: a side with the brand on top, the
-  application's own menu under it, and a bar with the page's title, the theme switcher
-  (`{themes/}`) and the light/dark switch above the page - the side light or dark with the page
+  application's own menu under it, and a bar with the page's title and the theme switcher
+  (`{themes/}`) above the page - light, or in the theme chosen, the side with the page
 - **Title extraction**: `_inits.php` derives the page's title from its name, for the bar
 - **Shared libraries**: Common functions available across applications
 - **Reusable tags and snippets**: `{example}`, `{demo}`, `{table}`, `{block}`, `{lines}` ...
@@ -44,7 +44,7 @@ below the page:
 {common:padFrame}
   {slot 'head'}{asset 'admin.css', tag/}{/slot}    in <head>
   {slot 'title'}...{/slot}                          the bar's left half, in place of the title
-  {slot 'tools'}...{/slot}                          the bar's right half, before the switches
+  {slot 'tools'}...{/slot}                          the bar's right half, before the switcher
   {slot 'side'}...{/slot}                           the side's room under the menu
   {slot 'foot'}...{/slot}                           the bottom of the side
 {/common:padFrame}

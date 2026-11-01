@@ -3,7 +3,10 @@
   // The frame the PAD applications share - every one that uses _common, and admin, edit and
   // tags, which reach it with the common: prefix: a side with the brand every application
   // shows - the logo and the application's name (padBrand) - its menu under it, and the bar
-  // with the page's title and the light/dark switch above the page.
+  // with the page's title and the theme switcher above the page. The frame is light -
+  // <html data-theme="light">, whatever the system prefers - unless a theme is chosen, Dark
+  // among them; a page with a light/dark setting of its own, the editor, sets data-theme
+  // through www/_common/pad.js. The bar's light/dark switch is gone: Default is light.
   // _common has no wrapper of its own: each application's _inits.pad opens the frame with
   // this tag, the parts of its own as slots, and closes it after the page with the
   // padFrameEnd snippet:
@@ -11,7 +14,7 @@
   //   {common:padFrame}
   //     {slot 'head'}{asset 'admin.css', tag}{/slot}    in <head>
   //     {slot 'foot'}...{/slot}                           at the bottom of the side
-  //     {slot 'tools'}...{/slot}                          in the bar, before the light/dark switch
+  //     {slot 'tools'}...{/slot}                          in the bar, before the theme switcher
   //   {/common:padFrame}
   //   @page@
   //   {common:padFrameEnd}
@@ -36,7 +39,7 @@
   // as {asset} writes it.
   //
   // The theme switcher - {themes/}, the themes of pad/subs/themes/ - stands in the bar of
-  // every page, after the tools slot and before the light/dark switch, so the visitor's
+  // every page, at the end of the bar after the tools slot, so the visitor's
   // choice is at hand in every application; $padTheme = FALSE, which turns the themes off,
   // takes it out of the bar.
   //

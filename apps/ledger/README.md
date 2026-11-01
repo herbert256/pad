@@ -21,7 +21,7 @@ Ledger stands in the frame every PAD application shares, `{common:padFrame}` in 
 (with `$padCommon = FALSE` it is reached with the `common:` prefix): the brand top left, the
 menu (`$frameMenu`, `_inits.php`) - the four pages of the books, the month going along, and the
 quick entry's page behind the overview - and the bar with the page's title (`$title`), the
-month, the Add button, the theme switcher and the light/dark switch. `www/ledger/ledger.css`
+month, the Add button and the theme switcher. `www/ledger/ledger.css`
 colours the books with the frame's palette - money in ok, money out bad - so the themes and
 light and dark apply to them. The flash messages stand above the page, where it runs below it.
 

@@ -12,8 +12,8 @@
   // tag itself, with a version from their contents as {asset} writes it; the frame
   // (padFrame) links them in its <head> and writes the brand with the option frame, which
   // leaves the links out. The colours are the brand's own --pad-brand-* properties, light or
-  // dark as the system says or as data-theme on <html> says, which every application's
-  // light/dark switch sets; the name takes the colour of the bar it stands in.
+  // dark as the page's color-scheme says - the frame's light, a theme's, or what data-theme on
+  // <html> says; the name takes the colour of the bar it stands in.
   //
   // Offline - an application packed by pad pack (padWasm) - there is neither a PAD home nor
   // another application to go to, nor www/_common: the logo is no link, the name links the

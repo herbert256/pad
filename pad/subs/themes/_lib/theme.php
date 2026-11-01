@@ -16,8 +16,7 @@
   // page, with color-scheme, so every part that follows the scheme with light-dark() - the
   // charts, the widgets, the toys - follows the theme. A theme may set the page's font
   // (--sans), the hero background of the sections (--pad-section-hero) and rules of its
-  // own - underlined links. The frame's light/dark switch is hidden under a theme: the theme
-  // is the scheme. The sections and the effects read their colours from the same palette, so
+  // own - underlined links. The sections and the effects read their colours from the same palette, so
   // a theme colours them too. The frame's files are not touched: the theme is a <style> on
   // top of them.
   //
@@ -98,7 +97,7 @@
 
   // The CSS of a theme: the frame's properties and the palette's, the scheme, the body's
   // colours - a page without the frame gets them too - its font, its sections' hero and its
-  // own rules, and the frame's light/dark switch hidden. $inside: the theme on the elements
+  // own rules. $inside: the theme on the elements
   // of the class pad-theme-<name> alone - the box of a {theme 'x'}...{/theme} pair, which
   // gets the background, the text colour and a little room - and not on the page.
 
@@ -138,7 +137,7 @@
     $body = 'background-color:var(--bg);color:var(--text)' . ( isset ( $theme ['sans'] ) ? ';font-family:var(--sans)' : '' );
 
     $css = $inside ? "$root{{$vars}color-scheme:{$theme ['scheme']};$body;padding:16px 20px;border-radius:10px}"
-                   : "$root{{$vars}color-scheme:{$theme ['scheme']}}$root body{{$body}}$root .frame-theme{display:none}";
+                   : "$root{{$vars}color-scheme:{$theme ['scheme']}}$root body{{$body}}";
 
     if ( isset ( $theme ['hero'] ) )
       $css .= "$root .pad-section{--pad-section-hero:{$theme ['hero']}}";
@@ -314,8 +313,7 @@
 
   // The choice into its cookie, for a year, and into $_COOKIE for this request - '' takes it
   // away. On the directory the PAD applications are served under - /pad/, $padRoot - so a
-  // choice colours every application of the host, as the light/dark choice does: they share
-  // the frame, and a page with a design of its own is not coloured by it (padThemeFramed).
+  // choice colours every application of the host: they share the frame, and a page with a design of its own is not coloured by it (padThemeFramed).
   // Where the address does not begin with that directory, or it holds what a cookie's path
   // cannot, the browser's own choice stands. A script may read it: SameSite=Lax, not HttpOnly.
 

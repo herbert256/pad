@@ -44,7 +44,7 @@
     panelTab: 'problems'
   };
 
-  var DEFAULTS = { theme: 'auto', fontSize: 14, tabSize: 2, wordWrap: 'off', minimap: true, checkTyping: false,
+  var DEFAULTS = { theme: 'light', fontSize: 14, tabSize: 2, wordWrap: 'off', minimap: true, checkTyping: false,
                    autosave: 'off', autoClose: true, sideWidth: 280, panelHeight: 220, previewWidth: 480,
                    panelOpen: true, sideOpen: true };
 
@@ -83,10 +83,8 @@
 
   var settings = Object.assign({}, DEFAULTS, store('settings') || {});
 
-  // Light or dark is the choice every PAD application shares - the switch in the frame's bar,
-  // www/_common/pad.js - so the editor starts from it and keeps it when its own setting changes.
-
-  if (window.padTheme) settings.theme = window.padTheme.get();
+  // Light or dark is the editor's own setting, light unless it says otherwise, as the frame of
+  // every PAD application is light: the frame's bar has no light/dark switch any more.
 
   function saveSettings() { store('settings', settings); }
 
@@ -617,12 +615,6 @@
     E.editor.onDidChangeCursorPosition(function () { renderStatus(); });
     if (window.matchMedia)
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { if (settings.theme === 'auto') applySettings(); });
-    document.addEventListener('padtheme', function (e) {
-      if (e.detail === settings.theme) return;
-      settings.theme = e.detail;
-      saveSettings();
-      applySettings();
-    });
   }
 
   function applySettings() {

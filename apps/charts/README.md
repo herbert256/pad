@@ -4,7 +4,7 @@
 
 A showcase of the `{chart}` tag: every kind of chart it draws, each with a few worked examples,
 in the frame every PAD application shares - the brand and the menu in the side, the page's
-title, the theme switcher and the light/dark switch in the bar. The menu has a heading per
+title and the theme switcher in the bar. The menu has a heading per
 chart family and a link per example under it; the home page shows every example as a card with
 its chart drawn live. An example page has three cells - the data (JSON, YAML or PHP), the
 `{chart}` tag that draws it, and the result - and both source cells are read from the page's

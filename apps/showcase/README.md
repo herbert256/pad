@@ -5,7 +5,7 @@
 A showcase of the tags that draw, format and interact - diagrams, maps, avatars, tables,
 diffs, thumbnails, tabs, puzzles and the rest - each with a few worked examples, laid out as
 the charts application, in the frame every PAD application shares - the brand and the menu in
-the side, the page's title, the theme switcher and the light/dark switch in the bar. The menu
+the side, the page's title and the theme switcher in the bar. The menu
 has a heading per group of tags and a link per example under it; the home page shows every
 example as a card with its result rendered live. An example page has its template and,
 when it has one, its data side by side with the result - both read from the page's own files,

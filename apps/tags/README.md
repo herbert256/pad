@@ -34,7 +34,7 @@ cheat sheet with the syntax of every tag, and a search.
 | `examples/<name>/<n>-<slug>.src` | An example that is shown but never run - a redirect, an exit, a mail |
 | `_config/config.php` | Switches `_common` off - the frame is reached as `common:padFrame` - and fixes the timezone |
 
-The stylesheet is `www/tags/tags.css`; the frame's own, with the light/dark switch, is
+The stylesheet is `www/tags/tags.css`; the frame's own, with the theme switcher, is
 `www/_common/pad.css` and `pad.js`.
 
 ## Adding a tag

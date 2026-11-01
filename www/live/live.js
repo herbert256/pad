@@ -219,15 +219,10 @@
       settings: function () { return {}; }
     });
 
-    // The editors are light or dark with the frame: the colour scheme of the page, which the
-    // system sets, or the frame's switch (a padtheme event, www/_common/pad.js), or a theme
-    // chosen in the bar - each of them sets it on the page's root.
+    // The editors are light or dark with the frame: the colour scheme of the page - light, or
+    // the theme chosen in the bar, which comes with the page as it is answered again.
 
-    var dark   = window.matchMedia('(prefers-color-scheme: dark)');
     var theme  = function () { return /dark/.test(getComputedStyle(document.documentElement).colorScheme) ? 'pad-dark' : 'pad-light'; };
-    var follow = function () { monaco.editor.setTheme(theme()); };
-    dark.addEventListener('change', follow);
-    document.addEventListener('padtheme', follow);
 
     // An editor takes the place of a text field: the field is hidden for good, the editor's
     // box takes over its data-mode - the switch shows and hides the box - and every change

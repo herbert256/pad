@@ -1,6 +1,6 @@
 // PAD Showcase - the little the showcase does in the browser: copy buttons on the source cells.
-// The light/dark switch and the themes are the frame's (www/_common/pad.js); the tags follow
-// them by themselves, their colours use light-dark().
+// Light, dark and the themes are the frame's (www/_common/pad.css, pad/subs/themes/); the tags
+// follow them by themselves, their colours use light-dark().
 
 document.addEventListener ( 'DOMContentLoaded', function () {
 

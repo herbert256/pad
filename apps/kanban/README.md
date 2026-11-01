@@ -19,7 +19,7 @@ Kanban stands in the frame every PAD application shares, `{common:padFrame}` in 
 (with `$padCommon = FALSE` it is reached with the `common:` prefix): the brand top left, the
 menu (`$frameMenu`, `_inits.php`) - the board and, behind it, the moves and the events - and
 the bar with the page's title (`$title`), the cards on the board, the Live sign, the New card
-button, the theme switcher and the light/dark switch. `www/kanban/kanban.css` colours the board
+button and the theme switcher. `www/kanban/kanban.css` colours the board
 with the frame's palette, so the themes and light and dark apply to it; a label is the accent,
 bad, warn or dim. The flash messages stand above the page, where it runs below it.
 

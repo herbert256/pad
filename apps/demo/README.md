@@ -42,7 +42,7 @@ demo/
 
 The pages stand in the frame every PAD application shares - `{common:padFrame}` in
 `_inits.pad`: the brand top left with the menu of the examples under it, the bar with the
-page's title, the theme switcher and the light/dark switch. `www/demo/style.css` styles the
+page's title and the theme switcher. `www/demo/style.css` styles the
 content of the pages in the frame's colours, so they follow light, dark and every theme.
 
 ## Features Demonstrated

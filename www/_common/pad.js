@@ -1,23 +1,23 @@
 // PAD - the little the shared frame does in the browser (apps/_common/_tags/padFrame.pad):
-// the light/dark choice, one for every PAD application, and the side's menu scrolled to the
-// page shown. Loaded in <head>, so the choice is on the page before it paints. Everything
-// works without it: the theme follows the system. The pull-down of the brand top left is
-// www/_common/brand.js.
+// light or dark for a page that has a setting of its own - the editor's - and the side's menu
+// scrolled to the page shown. The pull-down of the brand top left is www/_common/brand.js.
 //
-// padTheme.get ()      'light', 'dark' or 'auto' (the system decides)
-// padTheme.set ( t )   keeps that choice - and tells the page with a 'padtheme' event on
+// The frame is light - <html data-theme="light"> as padFrame writes it, whatever the system
+// prefers - and a visitor colours it with a theme from the switcher in the bar, Dark among
+// them. The bar had a light/dark switch whose choice was kept for every application; it is
+// gone, and so is the choice it kept, so a page chosen dark with it does not stay dark.
+//
+// padTheme.get ()      'light', 'dark' or 'auto' (the system decides) - the page's own now
+// padTheme.set ( t )   puts the page in it - and tells the page with a 'padtheme' event on
 //                      document, its detail the choice, so a page with colours of its own
-//                      (the editor's Monaco) follows
+//                      (the editor's Monaco) follows; nothing is kept
 // padTheme.dark ()     whether the page shows dark now
 
 ( function () {
 
   var root = document.documentElement;
-  var key  = 'padTheme';
 
-  function stored () {
-    try { return localStorage.getItem ( key ); } catch ( e ) { return null; }
-  }
+  try { localStorage.removeItem ( 'padTheme' ); } catch ( e ) {}
 
   function known ( theme ) {
     return theme === 'light' || theme === 'dark' ? theme : 'auto';
@@ -28,18 +28,12 @@
     else root.removeAttribute ( 'data-theme' );
   }
 
-  apply ( stored () );
-
   window.padTheme = {
 
-    get: function () { return known ( stored () ); },
+    get: function () { return known ( root.getAttribute ( 'data-theme' ) ); },
 
     set: function ( theme ) {
       theme = known ( theme );
-      try {
-        if ( theme === 'auto' ) localStorage.removeItem ( key );
-        else localStorage.setItem ( key, theme );
-      } catch ( e ) {}
       apply ( theme );
       document.dispatchEvent ( new CustomEvent ( 'padtheme', { detail: theme } ) );
     },
@@ -52,13 +46,6 @@
   };
 
   document.addEventListener ( 'DOMContentLoaded', function () {
-
-    var toggle = document.querySelector ( '.frame-theme' );
-
-    if ( toggle )
-      toggle.addEventListener ( 'click', function () {
-        padTheme.set ( padTheme.dark () ? 'light' : 'dark' );
-      } );
 
     // A long menu - the manual's - is scrolled to the page it is on, the menu only: down in
     // the side, across in the one row it is on a narrow screen.

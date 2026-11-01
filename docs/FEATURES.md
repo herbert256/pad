@@ -1478,8 +1478,7 @@ pages build on - `--bg`, `--panel`, `--text`, `--soft`, `--dim`, `--line`, `--ac
 widgets, the toys - follows the theme, and the sections and the effects, whose colours fall back
 to that palette, take it too. The frame's files are not changed: a theme is a `<style>` on top of
 them, on `:root:root:root`, which outweighs the frame's own light and dark rules wherever it
-stands, with the request's nonce; under a theme the frame's light/dark switch is hidden - the
-theme is the scheme. A theme may set the font (`--sans`: paper and newspaper a serif, terminal a
+stands, with the request's nonce. A theme may set the font (`--sans`: paper and newspaper a serif, terminal a
 monospace), the sections' hero background (`--pad-section-hero`) and rules of its own - the
 contrast theme underlines its links and rings the focus thick. The themes are the files of
 `pad/subs/themes/types/` - light, dark, paper, terminal, newspaper, contrast, sepia, ocean, forest,
@@ -1798,9 +1797,11 @@ Every PAD application - the ones that use `_common`, and the ones that have it o
 with the `common:` prefix - shares one frame from `_common`, which has no wrapper of its own
 (no `_common/_inits.pad`): a side with the brand on top - `{common:padBrand frame/}`, its links
 in the frame's `<head>` - the application's menu under it, and a bar above the page with the
-title, the theme switcher (`{themes/}`, left out with `$padTheme = FALSE`) and the light/dark
-switch; side and page are light or dark together, the choice kept for all of them
-(`www/_common/pad.js`), and in the theme the visitor chose, kept in the session. The
+title and the theme switcher (`{themes/}`, left out with `$padTheme = FALSE`); side and page are
+light - `<html data-theme="light">`, whatever the system prefers - or in the theme the visitor
+chose, Dark among them, kept in the `padTheme` cookie. The bar has no light/dark switch: Default
+is light, and a page with a setting of its own - the editor's - sets `data-theme` through
+`www/_common/pad.js`. The
 switcher's post is answered before the application runs (`pad/inits/themes.php`) - a 303 back
 to the page - so no page's own PHP sees it. Left out on purpose: cli (a console), nono (plain
 PHP), test (a scratch application) and the regression applications. Their `_inits.pad`:

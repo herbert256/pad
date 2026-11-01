@@ -1,9 +1,10 @@
 /* PAD - the frame the PAD applications share: every one that uses _common, and admin, edit
    and tags (apps/_common/_tags/padFrame.pad). A static file: PAD never parses it.
 
-   The colours are custom properties - light and dark follow the system, or the choice the
-   frame's toggle keeps (data-theme on <html>, www/_common/pad.js), the side with its menus
-   as well as the page. The --frame-* ones are the frame's own and no application changes
+   The colours are custom properties - light, as padFrame writes <html data-theme="light">,
+   or dark, or the system's, as a page with a setting of its own sets data-theme
+   (www/_common/pad.js) - the side with its menus as well as the page; a theme from the bar's
+   switcher sets them all (pad/subs/themes/). The --frame-* ones are the frame's own and no application changes
    them, so the frame looks the same in every one;
    the others are the palette the applications' pages build on, and an application may
    redefine them for its own content - the editor does. */
@@ -138,20 +139,6 @@ body.frame {
 .frame-top input[type=search] {
   width: 280px; max-width: 100%; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--frame-line);
   background: var(--frame-bg); color: var(--frame-text); font: inherit;
-}
-
-.frame-theme {
-  display: grid; place-items: center; flex: none;
-  width: 34px; height: 34px; border-radius: 8px; cursor: pointer;
-  border: 1px solid var(--frame-line); background: transparent; color: var(--frame-dim);
-}
-.frame-theme:hover { color: var(--frame-text); border-color: var(--frame-accent); }
-.frame-theme .pad-icon-moon { display: none; }
-:root[data-theme="dark"] .frame-theme .pad-icon-sun { display: none; }
-:root[data-theme="dark"] .frame-theme .pad-icon-moon { display: inline; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .frame-theme .pad-icon-sun { display: none; }
-  :root:not([data-theme="light"]) .frame-theme .pad-icon-moon { display: inline; }
 }
 
 .frame-body { flex: 1 0 auto; padding: 24px 28px 48px; min-width: 0; overflow-x: auto; }
