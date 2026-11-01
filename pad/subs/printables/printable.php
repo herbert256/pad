@@ -47,10 +47,14 @@
 
   }
 
+  // The sheets go into content the level walks again, and are protected as the single tag's
+  // value is: the texts of the options - sender=, title=, signed= - are the characters they
+  // hold, where a field's {php:getcwd/} in sender= ran; the items are rendered already.
+
   $padPrintableItems = padPrintableSplit ( $padContent );
 
   if ( $padPrintableItems !== NULL )
-    $padContent = padPrintableTag ( $padPrintableKind, $padPrintableItems );
+    $padContent = padProtect ( padPrintableTag ( $padPrintableKind, $padPrintableItems ) );
 
   return TRUE;
 
