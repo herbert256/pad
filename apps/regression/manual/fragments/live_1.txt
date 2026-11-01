@@ -74,7 +74,16 @@
     var element = e.target.closest('[pad-change]');
     var region = element && element.closest('[data-pad-live]');
     if (!region) return;
-    var value = element.type === 'checkbox' ? (element.checked ? element.value : '') : element.value;
-    send(region, (element.name ? [[element.name, value]] : []).concat(event(element, 'pad-change', value)));
+    var value, fields = [];
+    if (element.type === 'select-multiple') {
+      var chosen = [].filter.call(element.options, function (option) { return option.selected && !option.disabled; })
+        .map(function (option) { return option.value; });
+      value = chosen.join(', ');
+      if (element.name) fields = chosen.map(function (one) { return [element.name, one]; }).concat([['padLists[]', element.name]]);
+    } else {
+      value = element.type === 'checkbox' ? (element.checked ? element.value : '') : element.value;
+      if (element.name) fields = [[element.name, value]];
+    }
+    send(region, fields.concat(event(element, 'pad-change', value)));
   });
 })();</script>

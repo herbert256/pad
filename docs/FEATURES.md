@@ -1512,7 +1512,10 @@ Every one is rendered on the server; the `showcase` application has examples of 
 `pad-click` / `pad-submit` (form) / `pad-change` (field) inside a `{live}` region post the event
 to the page's own URL; the page's PHP reads `padLiveEvent()` / `padLiveValue()` and keeps state
 in the session (`$padSessionVars`) or the event's value; only that region's content comes back
-and is swapped in. The first region brings a small inline script.
+and is swapped in. The first region brings a small inline script. A `pad-change` on a select of
+many - `{multiselect 'tags', pad-change='pick'/}` - posts every choice, `tags[]`, as its form
+would, and `padLiveValue()` is the choices joined by `, ` (`a, c`, what `value=` takes); the
+list itself is `$_POST ['tags']`.
 
 ### Sections
 ```

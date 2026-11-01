@@ -511,8 +511,9 @@ if ( padLiveEvent () == 'add' )
 
 **In the content:**
 - `pad-click="event"` on any element, `pad-submit="event"` on a form (its fields come along as
-  request values), `pad-change="event"` on a field (its name and value come along);
-  `pad-value="..."` gives the event a value.
+  request values), `pad-change="event"` on a field (its name and value come along - a select
+  of many, a multiselect, posts every choice, `tags[]`, and its value is the choices joined by
+  `, `); `pad-value="..."` gives the event a value.
 
 **How it works:** the content is wrapped in `<div data-pad-live="cart">`, and the page's first
 region brings a small inline script. An event posts `padLive`, `padEvent` and `padValue` to

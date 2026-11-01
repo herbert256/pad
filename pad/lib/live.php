@@ -13,7 +13,13 @@
   // region swaps in works the same: a click on a pad-click element, a submit of a pad-submit
   // form or a change of a pad-change field inside a region posts to the page's own URL -
   // padLive (the region), padEvent (the attribute's value) and padValue (pad-value, or the
-  // field's value), plus the form's fields - and puts what comes back into the region. The
+  // field's value), plus the form's fields - and puts what comes back into the region. A
+  // pad-change on a select of many - a multiselect - posts every choice as a form posts it,
+  // tags[]=a&tags[]=c, with padLists[] naming the list, so a change that let the last
+  // choice go is told from a request that never held the list (subs/inputs/_lib/input.php
+  // padInputValues), and padValue is the choices joined by a comma and a space, a, c - the
+  // value= a multiselect takes; where the select's value, its first choice, was the field
+  // and the value alone, and the region came back with that one choice. The
   // scripts of what comes back run, as those of a page that arrives: put in by innerHTML
   // they never ran, and the script a widget brought with the answer - a toast's timeout, a
   // carousel's buttons - did nothing on a page that had no such widget before. They run in
@@ -57,7 +63,9 @@
 
   // A value, a region and an event are texts: one posted as a list - padValue[]=7,
   // padLive[]=box - is no value, and was read as a text, the Array to string conversion
-  // ending the request of any page a post reached, since every request asks padLive.
+  // ending the request of any page a post reached, since every request asks padLive. The
+  // value of a change of a select of many is a text too, its choices joined by ', ' - the
+  // list itself is the field's, $_POST ['tags'] for {multiselect 'tags'}.
 
   function padLiveValue () {
 
@@ -224,8 +232,17 @@
     var element = e.target.closest('[pad-change]');
     var region = element && element.closest('[data-pad-live]');
     if (!region) return;
-    var value = element.type === 'checkbox' ? (element.checked ? element.value : '') : element.value;
-    send(region, (element.name ? [[element.name, value]] : []).concat(event(element, 'pad-change', value)));
+    var value, fields = [];
+    if (element.type === 'select-multiple') {
+      var chosen = [].filter.call(element.options, function (option) { return option.selected && !option.disabled; })
+        .map(function (option) { return option.value; });
+      value = chosen.join(', ');
+      if (element.name) fields = chosen.map(function (one) { return [element.name, one]; }).concat([['padLists[]', element.name]]);
+    } else {
+      value = element.type === 'checkbox' ? (element.checked ? element.value : '') : element.value;
+      if (element.name) fields = [[element.name, value]];
+    }
+    send(region, fields.concat(event(element, 'pad-change', value)));
   });
 })();
 SCRIPT;
