@@ -24,6 +24,7 @@
 {marquee duration=20, direction='left', gap=48, label='name'} ... {/marquee}
 {reveal motion='up', distance=32} ... {/reveal}
 {tilt angle=8, toward='top-right', glare} ... {/tilt}
+{nudge style='bounce', repeat=2, delay=0} ... {/nudge}
 {spotlight at='top', color='#f59e0b'} ... {/spotlight}
 {spinner style='ring', label='Loading', size=24/}
 {skeleton shape='text', lines=3, height=160, size=48, label='Loading'/}
@@ -61,7 +62,7 @@ PAD;
     'toward'    => 'tilt: the corner that comes toward the viewer - top-right, top-left, bottom-right, bottom-left.',
     'glare'     => 'Bare option, tilt: a sheen slides over the card as it leans.',
     'at'        => 'spotlight: where the light rests - top, center, a corner, or two percentages.',
-    'style'     => 'spinner: ring, dots, bars, pulse or orbit; underline: line, double, dashed or dotted; strike: line or double; encircle: circle or box.',
+    'style'     => 'spinner: ring, dots, bars, pulse or orbit; underline: line, double, dashed or dotted; strike: line or double; encircle: circle or box; nudge: bounce, shake, pulse, wiggle or heartbeat.',
     'size'      => 'spinner: pixels (24); skeleton: the avatar\'s (48).',
     'shape'     => 'skeleton: text, block, avatar, card or media - the shape of what is still on its way.',
     'lines'     => 'skeleton: the lines of text (3, media 2).',

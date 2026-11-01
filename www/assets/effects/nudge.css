@@ -1,0 +1,15 @@
+.pad-effect-nudge{display:inline-block;transform-origin:50% 60%}
+div.pad-effect-nudge{display:block;width:fit-content;max-width:100%}
+.pad-effect-nudge.pe-bounce{transform-origin:50% 100%}
+@media (prefers-reduced-motion:no-preference){
+.pad-effect-nudge{animation:pad-effect-nudge-bounce var(--pad-effect-duration) ease-in-out var(--pad-effect-delay) var(--pad-effect-repeat) both}
+.pad-effect-nudge.pe-shake{animation-name:pad-effect-nudge-shake}
+.pad-effect-nudge.pe-pulse{animation-name:pad-effect-nudge-pulse}
+.pad-effect-nudge.pe-wiggle{animation-name:pad-effect-nudge-wiggle}
+.pad-effect-nudge.pe-heartbeat{animation-name:pad-effect-nudge-heartbeat}
+}
+@keyframes pad-effect-nudge-bounce{0%,42%,72%,100%{transform:none}20%{transform:translateY(-.42em) scaleY(1.03)}57%{transform:translateY(-.14em)}}
+@keyframes pad-effect-nudge-shake{0%,100%{transform:none}12%,44%,76%{transform:translateX(-.16em)}28%,60%,92%{transform:translateX(.16em)}}
+@keyframes pad-effect-nudge-pulse{0%,100%{transform:none}45%{transform:scale(1.08)}}
+@keyframes pad-effect-nudge-wiggle{0%,100%{transform:none}18%{transform:rotate(-6deg)}38%{transform:rotate(5deg)}58%{transform:rotate(-3deg)}78%{transform:rotate(1.5deg)}}
+@keyframes pad-effect-nudge-heartbeat{0%,30%,62%,100%{transform:none}15%,46%{transform:scale(1.12)}}

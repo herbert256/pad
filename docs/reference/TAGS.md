@@ -4215,6 +4215,7 @@ subsystem is `pad/subs/effects/`.
 {gradient colors='#f97316, #db2777', angle=120, animate}Launch week{/gradient}
 {marquee duration=25, label='Built with'}<b>PHP</b> <b>SQLite</b> <b>htmx</b>{/marquee}
 {reveal motion='left'}<div class="card">...</div>{/reveal}
+{nudge style='shake', delay=1}<a href="?signup">Try it free</a>{/nudge}
 {spinner style='dots', label='Saving'/}
 {skeleton shape='card', lines=2/}
 {confetti}<button type="button">Celebrate</button>{/confetti}
@@ -4252,6 +4253,7 @@ text kind without its text, a stroke drawn on `scroll` and on `hover` at once.
 | `marquee` | both | A band whose content scrolls by without end; a Pause button | `duration` (20), `direction` (left, right), `gap` (48 px), `label` |
 | `reveal` | pair | A block that comes into view as it is scrolled to | `motion` (up, down, left, right, fade, zoom), `distance` (32 px) |
 | `tilt` | pair | A card that leans in 3D on hover and focus | `angle` (8), `toward` (top-right, top-left, bottom-right, bottom-left), `glare` |
+| `nudge` | both | A short movement that draws the eye, then lets it be; a transform, nothing around it moves | `style` (bounce, shake, pulse, wiggle, heartbeat), `duration` (about 1), `delay`, `repeat` (2) |
 | `spotlight` | pair | A soft light sweeps across the block and rests | `at` (top, center, a side, a corner, '30% 20%'), `color`, `duration` (2.5), `delay`, `repeat` (1) |
 | `spinner` | both | A loader, `role="status"`; the pair's content is its shown label | `style` (ring, dots, bars, pulse, orbit), `label` (Loading), `size` (24 px), `color` |
 | `skeleton` | single | A placeholder of grey bones while a part loads, `role="status"`; a sheen sweeps over it | `shape` (text, block, avatar, card, media), `lines` (3; media 2), `height` (160 px), `size` (48 px), `label` (Loading) |

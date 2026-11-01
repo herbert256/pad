@@ -1986,6 +1986,7 @@ page with the CSP nonce; `pad/subs/sections/section.php` the body every form run
 {marquee duration=25, label='Built with'}...{/marquee}         # a band that scrolls, a Pause button without script
 {reveal motion='left'}<div>...</div>{/reveal}                  # comes into view as it is scrolled to - view()
 {tilt glare}<div class="card">...</div>{/tilt}                 # leans in 3D on hover and focus
+{nudge style='shake'}<a href="?signup">Try it</a>{/nudge}      # bounce, shake, pulse, wiggle, heartbeat - twice
 {spotlight at='top left'}...{/spotlight}                       # a soft light that sweeps across and rests
 {spinner style='dots', label='Saving'/}                        # ring, dots, bars, pulse, orbit - a status
 {skeleton shape='media', lines=3/}                             # grey bones while a part loads - a status
@@ -2010,7 +2011,7 @@ colours are `--pad-effect-accent`, `-accent2`, `-accent3`, `-text`, `-mark` and 
 `.pad-effect`, light and dark, falling back to the frame's `--accent`, `--text` and `--line`, so a
 theme colours them. The kinds are the files of `pad/subs/effects/types/` - typewriter, glitch,
 shimmer, gradient, wave, highlighter, underline, strike, encircle, rotator, decipher, countup, marquee, reveal,
-tilt, spotlight, spinner, skeleton, confetti -
+tilt, nudge, spotlight, spinner, skeleton, confetti -
 and an effect is added by adding its file. Each is written three ways, the same effect:
 `{effect 'typewriter'}...{/effect}`, the effect type `{effect:typewriter}...{/effect:typewriter}`
 and bare, `{typewriter}...{/typewriter}`, when no tag, store, field or sequence has the name. A pair
