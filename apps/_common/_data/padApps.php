@@ -21,6 +21,12 @@
       'games'           => [ 'games',         'trophy',       'Games played in the browser' ],
       'toys'            => [ 'toys',          'sparkle',      'Live simulations to play with' ],
       'inputs'          => [ 'inputs',        'toggle-on',    'Rich form fields to try' ],
+      'notations'       => [ 'notations',     'music',        'Math, music, braille, chess ... drawn on the server' ],
+      'patterns'        => [ 'patterns',      'grid',         'Seeded SVG patterns and image filters' ],
+      'sheets'          => [ 'sheets',        'table',        'Spreadsheets computed on the server' ],
+      'sections'        => [ 'sections',      'layout',       'Landing-page sections, effects, themes, palettes' ],
+      'printables'      => [ 'printables',    'printer',      'Labels, badges, tickets and letters for paper' ],
+      'sounds'          => [ 'sounds',        'volume',       'Sounds made from recipes, no audio files' ],
     ],
     'Front ends' => [
       'htmx'            => [ 'htmx',          'refresh',      'PAD + htmx, HTML over the wire' ],

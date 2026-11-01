@@ -215,6 +215,13 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
     </div>
     
     <div class="cheat-item">
+      <a class="name" href="?type/effect">effect:</a> <span class="about">An effect, a file of pad/subs/effects/types/ - motion and decoration, CSS first, still under reduced motion.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">effect:typewriter</span><span class="hl-brc">}</span>Hello<span class="hl-brc">{</span><span class="hl-tag">/effect:typewriter</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">effect</span> <span class="hl-str">&#039;typewriter&#039;</span><span class="hl-brc">}</span>Hello<span class="hl-brc">{</span><span class="hl-tag">/effect</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">typewriter</span><span class="hl-brc">}</span>Hello<span class="hl-brc">{</span><span class="hl-tag">/typewriter</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
       <a class="name" href="?type/embed">embed:</a> <span class="about">An embed provider, a file of pad/subs/embeds/types/ - loaded only on a click.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">embed:youtube</span> <span class="hl-str">&#039;aqz-KE-bpKQ&#039;</span>, <span class="hl-opt">title</span>=<span class="hl-str">&#039;Big Buck Bunny&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">embed</span> <span class="hl-str">&#039;https://youtu.be/aqz-KE-bpKQ&#039;</span><span class="hl-brc">/}</span>
@@ -245,6 +252,39 @@ sequence:fibonacci(<span class="hl-num">8</span>)</code></pre>
       <a class="name" href="?type/input">input:</a> <span class="about">A rich form field, a file of pad/subs/inputs/types/, posted by any form.</span>
       <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">input:slider</span> <span class="hl-str">&#039;volume&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Volume&#039;</span><span class="hl-brc">/}</span>
 <span class="hl-brc">{</span><span class="hl-tag">slider</span> <span class="hl-str">&#039;volume&#039;</span>, <span class="hl-opt">label</span>=<span class="hl-str">&#039;Volume&#039;</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/notation">notation:</a> <span class="about">A notation, a file of pad/subs/notations/types/ - a formula, a tune, a word or a position drawn on the server.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">notation:braille</span> <span class="hl-str">&#039;Hello&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">notation</span> <span class="hl-str">&#039;braille&#039;</span>, <span class="hl-str">&#039;Hello&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">braille</span> <span class="hl-str">&#039;Hello&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">math</span><span class="hl-brc">}</span>a/b<span class="hl-brc">{</span><span class="hl-tag">/math</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/pattern">pattern:</a> <span class="about">A pattern, a file of pad/subs/patterns/types/ - a seeded SVG background, never bare.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">pattern:topography</span> <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">pattern</span> <span class="hl-str">&#039;topography&#039;</span>, <span class="hl-opt">seed</span>=<span class="hl-num">7</span><span class="hl-brc">/}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/printable">printable:</a> <span class="about">A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">printable:labels</span> <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span>, <span class="hl-opt">sheet</span>=<span class="hl-str">&#039;a4-3x8&#039;</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/printable:labels</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">printable</span> <span class="hl-str">&#039;labels&#039;</span>, <span class="hl-opt">data</span>=<span class="hl-str">&#039;rows&#039;</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/printable</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/section">section:</a> <span class="about">A section of a landing page, a file of pad/subs/sections/types/ - pure CSS, coloured by the theme, never bare.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">section:hero</span> <span class="hl-opt">title</span>=<span class="hl-str">&#039;Build faster&#039;</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/section:hero</span><span class="hl-brc">}</span>
+<span class="hl-brc">{</span><span class="hl-tag">section</span> <span class="hl-str">&#039;hero&#039;</span>, <span class="hl-opt">title</span>=<span class="hl-str">&#039;Build faster&#039;</span><span class="hl-brc">}</span>...<span class="hl-brc">{</span><span class="hl-tag">/section</span><span class="hl-brc">}</span></code></pre>
+    </div>
+    
+    <div class="cheat-item">
+      <a class="name" href="?type/sound">sound:</a> <span class="about">A sound, a file of pad/subs/sounds/types/ - a recipe the browser plays and the server writes as a WAV, never bare.</span>
+      <pre class="code"><code><span class="hl-brc">{</span><span class="hl-tag">sound:chime</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">sound</span> <span class="hl-str">&#039;chime&#039;</span><span class="hl-brc">/}</span>
+<span class="hl-brc">{</span><span class="hl-tag">sound:pop</span> <span class="hl-opt">on</span>=<span class="hl-str">&#039;click&#039;</span>, <span class="hl-opt">target</span>=<span class="hl-str">&#039;#save&#039;</span><span class="hl-brc">/}</span></code></pre>
     </div>
     
     <div class="cheat-item">

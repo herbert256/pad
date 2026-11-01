@@ -17,6 +17,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">across</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>The items across a sheet; <code>down</code> the items down.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="3">action</td>
       <td><a class="name" href="?tag/pull">&#123;pad:pull&#125;</a></td>
       <td>Any sequence action written as an option (or named with <code>action='last|2'</code>), applied to the stored values in the order written: <code>reverse</code>, <code>sort</code>, <code>sum</code>, <code>first=3</code>, <code>last=3</code>, <code>append='other'</code>, ... <code>shift=n</code> and <code>pop=n</code> also take the values out of the store.</td>
@@ -61,9 +69,23 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">align</td>
+      <td class="opt" rowspan="2">align</td>
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td><code>center</code> or <code>left</code>.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/widget">&#123;pad:widget&#125;</a></td>
       <td>dropdown: <code>start</code> (the default) or <code>end</code> - the menu's edge under the button's.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">all</td>
+      <td><a class="name" href="?tag/notifications">&#123;pad:notifications&#125;</a></td>
+      <td>The read notifications too.</td>
     </tr>
     
   
@@ -78,6 +100,44 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/img">&#123;pad:img&#125;</a></td>
       <td>Required: the text for whoever cannot see the picture. <code>alt=''</code> marks it as decoration.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">alttext</td>
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>math, chem: the text a screen reader without MathML says - the formula as written unless given.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">amount</td>
+      <td><a class="name" href="?tag/img">&#123;pad:img&#125;</a></td>
+      <td>sepia (100), sharpen (50) and vignette (50), in percent.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="2">angle</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>gradient: the direction in degrees (90); tilt: how far it leans (8).</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a></td>
+      <td>stripes: the angle in degrees (45).</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">animate</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>Bare option, gradient: the colours flow along the letters.</td>
     </tr>
     
   
@@ -98,8 +158,8 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">arrow</td>
-      <td><a class="name" href="?tag/chess">&#123;pad:chess&#125;</a></td>
-      <td>Arrows from square to square, separated by commas: <code>'e2-e4, g1-f3'</code>.</td>
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>chess: arrows from square to square, <code>'e2-e4, g1-f3'</code>.</td>
     </tr>
     
   
@@ -113,7 +173,21 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">at</td>
+      <td class="opt" rowspan="1">as</td>
+      <td><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a></td>
+      <td><code>svg</code>, the default, writes the SVG; <code>url</code> writes <code>url('data:image/svg+xml,...')</code> for a style attribute or a style sheet.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="3">at</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>spotlight: where the light rests - top, center, a corner, or two percentages.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/embed">&#123;pad:embed&#125;</a></td>
       <td>YouTube, Vimeo, PeerTube, Dailymotion: the moment to start at - <code>90</code>, <code>1m30s</code> or <code>1:30</code>.</td>
     </tr>
@@ -197,7 +271,41 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">button</td>
+      <td class="opt" rowspan="1">board</td>
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>draughts: <code>10</code> (international, the default) or <code>8</code> (English draughts and checkers).</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">brand</td>
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>footer: the name at its side.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="4">button</td>
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>hero, cta: the text of the main button, with <code>link</code> the page it goes to; newsletter, contact: the text of the form's button.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/sound">&#123;pad:sound&#125;</a></td>
+      <td>The label of the button that plays the sound, else the title of its recipe. With <code>target=</code> a button is written only when <code>button=</code> asks for one.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/themes">&#123;pad:themes&#125;</a></td>
+      <td>The text of the button that applies the choice (<code>Apply</code>).</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/widget">&#123;pad:widget&#125;</a></td>
       <td>modal, drawer: the text of the button that opens it (<code>Open</code>); poll: the vote button.</td>
     </tr>
@@ -221,9 +329,31 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">caption</td>
+      <td class="opt" rowspan="2">caption</td>
       <td><a class="name" href="?tag/datatable">&#123;pad:datatable&#125;</a></td>
       <td>The table's <code>&lt;caption&gt;</code>.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/spreadsheet">&#123;pad:spreadsheet&#125;</a></td>
+      <td>The table's <code>&lt;caption&gt;</code>.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">card</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>indexcards: 5x3, 6x4, a6 or a7.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">caret</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>typewriter: <code>bar</code> or <code>none</code>.</td>
     </tr>
     
   
@@ -237,9 +367,23 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">cells</td>
+      <td class="opt" rowspan="1">cell</td>
+      <td><a class="name" href="?tag/img">&#123;pad:img&#125;</a></td>
+      <td>pixelate: the block in pixels (8); halftone: the distance of the dots (8).</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="2">cells</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Waffle: the number of squares (100).</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>braille: the cells drawn as raised dots instead of characters; <code>cells=12</code> breaks the lines at 12 cells.</td>
     </tr>
     
   
@@ -248,6 +392,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">chance</td>
       <td><a class="name" href="?tag/fake">&#123;pad:fake&#125;</a></td>
       <td>boolean: the chance of TRUE in percent, 50.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">chars</td>
+      <td><a class="name" href="?tag/img">&#123;pad:img&#125;</a></td>
+      <td>ascii: the characters from light to dark (<code>' .:-=+*#%@'</code>).</td>
     </tr>
     
   
@@ -299,7 +451,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="5">color</td>
+      <td class="opt" rowspan="7">color</td>
       <td><a class="name" href="?tag/barcode">&#123;pad:barcode&#125;</a></td>
       <td>The colour of the bars, default <code>#000</code>.</td>
     </tr>
@@ -308,6 +460,18 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Scatter, bubble, gantt, parallel: a field whose values colour the marks, with a legend.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>highlighter: the ink; spotlight: the light; spinner: the spinner.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>badges: the band; certificate: the frame and the title.</td>
     </tr>
     
     <tr>
@@ -331,7 +495,27 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">columns</td>
+      <td class="opt" rowspan="3">colors</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>gradient, confetti: CSS colours between commas.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/img">&#123;pad:img&#125;</a></td>
+      <td>duotone, dither, atkinson, bayer, halftone: two hex colours, the dark one first - <code>colors='#123, #fc6'</code>.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a></td>
+      <td>A list of colours, the background first and the inks after it: <code>colors='#fff, #1d3557, #e63946'</code> - hex, a name, or <code>rgb()</code>, <code>hsl()</code> and their like; <code>none</code> leaves the background out. Each kind has its own palette.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="4">columns</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Multiples: the number of small charts side by side.</td>
     </tr>
@@ -342,12 +526,40 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td>The fields shown, in their order. Every field of the first row when not given.</td>
     </tr>
     
+    <tr>
+      
+      <td><a class="name" href="?tag/img">&#123;pad:img&#125;</a></td>
+      <td>ascii: the characters across (64).</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>The cards side by side at the widest, 1 to 6 - fewer as the section narrows.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">components</td>
+      <td><a class="name" href="?tag/img">&#123;pad:img&#125;</a></td>
+      <td>blurhash: the terms across and down, <code>'4,3'</code>.</td>
+    </tr>
+    
   
     
     <tr>
       <td class="opt" rowspan="1">cookies</td>
       <td><a class="name" href="?tag/curl">&#123;pad:curl&#125;</a></td>
       <td>An array of cookies to send.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">copies</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>Every item that many times.</td>
     </tr>
     
   
@@ -369,7 +581,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="9">data</td>
+      <td class="opt" rowspan="11">data</td>
       <td><a class="name" href="?tag/calendar">&#123;pad:calendar&#125;</a></td>
       <td>The events: a <code>{data}</code> store, a page array or a <code>_data</code> file, as for <code>{chart}</code>.</td>
     </tr>
@@ -406,8 +618,20 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>A list section - features, pricing, testimonials, faq, stats, steps, team, logos, gallery, footer: its items from the rows of a store, the page's array or a <code>_data</code> file, by their fields.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/sparkline">&#123;pad:sparkline&#125;</a></td>
       <td>The rows: a <code>{data}</code> store, a sequence store, an array of the page (or a field of the current row holding a list) or a <code>_data</code> file of that name, or a literal (<code>data='[3,1,4]'</code>). Left out on a pair, the content is the data.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/spreadsheet">&#123;pad:spreadsheet&#125;</a></td>
+      <td>The cells: records under a first row of their field names - their values are never formulas - a list of rows of values, or cells by name. As a pair the content is the cells, a line a row, a comma between cells.</td>
     </tr>
     
     <tr>
@@ -467,6 +691,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">delay</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>Seconds before it starts.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">digits</td>
       <td><a class="name" href="?tag/game">&#123;pad:game&#125;</a></td>
       <td>bullscows: how long the secret number is (4).</td>
@@ -483,9 +715,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">direction</td>
+      <td class="opt" rowspan="2">direction</td>
       <td><a class="name" href="?tag/diagram">&#123;pad:diagram&#125;</a></td>
       <td>flowchart, state, class, er and tree: <code>TB</code> (default), <code>BT</code>, <code>LR</code> or <code>RL</code> - else a first line <code>graph LR</code> in a flowchart, or a line <code>direction LR</code> in a state, class or entity-relationship diagram.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>marquee: <code>left</code> or <code>right</code>.</td>
     </tr>
     
   
@@ -499,9 +737,31 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">download</td>
+      <td class="opt" rowspan="1">display</td>
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>math, chem: <code>inline</code> (the default) or <code>block</code> - the formula on a line of its own, centred.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="2">download</td>
       <td><a class="name" href="?tag/pdf">&#123;pad:pdf&#125;</a></td>
       <td>Bare option: sent as an attachment (<code>Content-Disposition: attachment</code>) instead of shown inline.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/sound">&#123;pad:sound&#125;</a></td>
+      <td>Bare option: a link to the sound as a WAV file - the page asked again with <code>&amp;padSound=</code>; <code>download='text'</code> its text.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">duration</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>Seconds one run takes: a glitch's cycle, a shimmer's sweep, a marquee's round, a count.</td>
     </tr>
     
   
@@ -510,6 +770,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">edges</td>
       <td><a class="name" href="?tag/diagram">&#123;pad:diagram&#125;</a></td>
       <td>flowchart, state, class and er: how the edges run - <code>orthogonal</code> (default, rounded turns), <code>straight</code> or <code>curved</code>.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">editable</td>
+      <td><a class="name" href="?tag/spreadsheet">&#123;pad:spreadsheet&#125;</a></td>
+      <td>Cells to edit: bare, every number, date and logical value; or the cells and ranges named. An edit posts back and the sheet is computed again.</td>
     </tr>
     
   
@@ -531,6 +799,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">excerpt</td>
+      <td><a class="name" href="?tag/search">&#123;pad:search&#125;</a></td>
+      <td>The field the excerpt is cut from, default the last of <code>fields</code>.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">exclude</td>
       <td><a class="name" href="?tag/files">&#123;pad:files&#125;</a></td>
       <td>Leave out the names that match this shell pattern.</td>
@@ -547,9 +823,25 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">eyebrow</td>
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>The small line above the heading.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">fallback</td>
       <td><a class="name" href="?tag/gravatar">&#123;pad:gravatar&#125;</a></td>
       <td><code>avatar</code> draws the <code>{avatar}</code> initials of <code>alt</code> (or of the address) instead, <code>identicon</code> the <code>{identicon}</code> of the address - no <code>&lt;img&gt;</code>, no outside request.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">fields</td>
+      <td><a class="name" href="?tag/search">&#123;pad:search&#125;</a></td>
+      <td>The fields searched with their boosts, <code>'title^2, body'</code> - a collection's default; other rows every text field of the first row.</td>
     </tr>
     
   
@@ -577,6 +869,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">filter</td>
+      <td><a class="name" href="?tag/img">&#123;pad:img&#125;</a></td>
+      <td>A comma list of the filters of <code>pad/subs/filters/types/</code>, applied in the order written: <code>ascii</code>, <code>atkinson</code>, <code>bayer</code>, <code>blur</code>, <code>blurhash</code>, <code>dither</code>, <code>dominant</code>, <code>duotone</code>, <code>grayscale</code>, <code>halftone</code>, <code>invert</code>, <code>lqip</code>, <code>pixelate</code>, <code>posterize</code>, <code>sepia</code>, <code>sharpen</code>, <code>vignette</code>. halftone and ascii write the picture as SVG dots or text; blurhash, dominant and lqip are placeholders behind the picture while it loads.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">fit</td>
       <td><a class="name" href="?tag/img">&#123;pad:img&#125;</a></td>
       <td><code>cover</code> (default: fill the box, cut around the centre) or <code>contain</code> (all of the picture inside the box).</td>
@@ -586,8 +886,8 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="1">flip</td>
-      <td><a class="name" href="?tag/chess">&#123;pad:chess&#125;</a></td>
-      <td>Bare option: turn the board, Black at the bottom.</td>
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>Bare option. chess, draughts: the board turned, Black at the bottom.</td>
     </tr>
     
   
@@ -612,6 +912,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">font</td>
       <td><a class="name" href="?tag/pdf">&#123;pad:pdf&#125;</a></td>
       <td><code>helvetica</code> (default), <code>times</code> or <code>courier</code> - code is always Courier.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">for</td>
+      <td><a class="name" href="?tag/notifications">&#123;pad:notifications&#125;</a></td>
+      <td>The recipient - an id or an e-mail address - instead of the user logged in.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">form</td>
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>newsletter: the form's name (<code>newsletter</code>); contact: bare for a message form, or its name. <code>thanks</code> is what shows once it came back right.</td>
     </tr>
     
   
@@ -655,6 +971,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">formats</td>
+      <td><a class="name" href="?tag/spreadsheet">&#123;pad:spreadsheet&#125;</a></td>
+      <td>A format code per column, cell or range: <code>B:0.00, total:€ #,##0.00, B5:B8:0.0%</code>, as TEXT writes them.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">formulas</td>
+      <td><a class="name" href="?tag/spreadsheet">&#123;pad:spreadsheet&#125;</a></td>
+      <td>Formulas put in: <code>total=B2*C2</code> fills a column down every row below the first, <code>D2:D9=B2*C2</code> a range, <code>F1=SUM(D:D)</code> one cell.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">fragment</td>
       <td><a class="name" href="?tag/ajax">&#123;pad:ajax&#125;</a></td>
       <td>Ask the page for one of its response fragments alone - <code>&amp;padFragment=name</code> - instead of the whole page.</td>
@@ -663,7 +995,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="6">from</td>
+      <td class="opt" rowspan="1">frets</td>
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>chord: a shape of your own for the chord named - <code>x32010</code>, <code>8 10 10 9 8 8</code> past the ninth fret.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="9">from</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Gauge: the start of the scale (0). Gantt: the field with the start of a task.</td>
     </tr>
@@ -676,14 +1016,32 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>countup: the number it starts at (0); <code>to</code> the one it ends at.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/fake">&#123;pad:fake&#125;</a></td>
       <td>number, decimal, price: the lowest value; date: the first moment (<code>-1 year</code>); time: the first clock time (<code>08:00</code>).</td>
     </tr>
     
     <tr>
       
+      <td><a class="name" href="?tag/holidays">&#123;pad:holidays&#125;</a></td>
+      <td>With <code>to</code>: the days between two dates instead of a year - <code>today</code>, <code>2026-03-01</code>, <code>+3 months</code>.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/mail">&#123;pad:mail&#125;</a></td>
       <td>The sender, <code>$padMailFrom</code> by default.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>piano: the lowest key shown, <code>C3</code>; <code>to</code> the highest.</td>
     </tr>
     
     <tr>
@@ -721,6 +1079,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">gap</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>marquee: pixels between one round and the next (48).</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">get</td>
       <td><a class="name" href="?tag/curl">&#123;pad:curl&#125;</a></td>
       <td>An array of query values added to the URL.</td>
@@ -737,9 +1103,23 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">headers</td>
+      <td class="opt" rowspan="1">glare</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>Bare option, tilt: a sheen slides over the card as it leans.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="2">headers</td>
       <td><a class="name" href="?tag/curl">&#123;pad:curl&#125;</a></td>
       <td>An array of request headers.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/spreadsheet">&#123;pad:spreadsheet&#125;</a></td>
+      <td>The column letters and the row numbers; <code>headers=FALSE</code> leaves them out.</td>
     </tr>
     
   
@@ -753,7 +1133,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="7">height</td>
+      <td class="opt" rowspan="9">height</td>
       <td><a class="name" href="?tag/barcode">&#123;pad:barcode&#125;</a></td>
       <td>The height of the bars in pixels, default 60.</td>
     </tr>
@@ -762,6 +1142,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>The height in pixels, default 300 (round kinds 280, the tall kinds 400, gauge 200, calendar 150).</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>wave: how far a letter rises, in em (0.25).</td>
     </tr>
     
     <tr>
@@ -784,6 +1170,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
+      <td><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a></td>
+      <td>The height in pixels (240).</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/sparkline">&#123;pad:sparkline&#125;</a></td>
       <td>The height in pixels, default 32.</td>
     </tr>
@@ -798,14 +1190,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       <td class="opt" rowspan="2">highlight</td>
-      <td><a class="name" href="?tag/chess">&#123;pad:chess&#125;</a></td>
-      <td>Squares to mark, separated by commas: <code>'e2, e4'</code>.</td>
+      <td><a class="name" href="?tag/excerpt">&#123;pad:excerpt&#125;</a></td>
+      <td>Search words - a query, split at everything that is no letter or digit. The cut is centred on the first match and every match is put in a <code>&lt;mark&gt;</code>.</td>
     </tr>
     
     <tr>
       
-      <td><a class="name" href="?tag/excerpt">&#123;pad:excerpt&#125;</a></td>
-      <td>Search words - a query, split at everything that is no letter or digit. The cut is centred on the first match and every match is put in a <code>&lt;mark&gt;</code>.</td>
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>chess: squares to mark, <code>'e2, e4'</code>; draughts: <code>'32, 28'</code>.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">holidays</td>
+      <td><a class="name" href="?tag/calendar">&#123;pad:calendar&#125;</a></td>
+      <td>A country's public holidays marked and named in the month - <code>'nl'</code>, or with its region <code>'de-by'</code>; see <code>{holidays}</code>.</td>
     </tr>
     
   
@@ -814,6 +1214,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">home</td>
       <td><a class="name" href="?tag/widget">&#123;pad:widget&#125;</a></td>
       <td>breadcrumb: the first step's text when the trail is the page's path (<code>Home</code>).</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">href</td>
+      <td><a class="name" href="?tag/oauth">&#123;pad:oauth&#125;</a></td>
+      <td>Where it links - <code>oauth/&lt;provider&gt;</code> of the application by default, the page that calls <code>padOAuthStart</code> and <code>padOAuthUser</code>.</td>
     </tr>
     
   
@@ -847,7 +1255,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="5">id</td>
+      <td class="opt" rowspan="6">id</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Orgchart: the field with a row's id.</td>
     </tr>
@@ -872,6 +1280,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>The section's id, to link to it - <code>?page#pricing</code>.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/textarea">&#123;pad:textarea&#125;</a></td>
       <td>The id, by default the name.</td>
     </tr>
@@ -882,6 +1296,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">ignore</td>
       <td><a class="name" href="?tag/markdown">&#123;pad:markdown&#125;</a></td>
       <td>Bare option: the braces in the content are text, not tags - for code samples in the Markdown.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">image</td>
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>hero: a picture beside the words, <code>alt</code> its text - a <code>{slot 'image'}</code> of markup in its place.</td>
     </tr>
     
   
@@ -906,6 +1328,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">increment</td>
       <td><a class="name" href="?tag/sequence">&#123;pad:sequence&#125;</a></td>
       <td>The step of the loop, 1 or more (default 1).</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">instrument</td>
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>chord: <code>guitar</code> (the default) or <code>ukulele</code>.</td>
     </tr>
     
   
@@ -941,7 +1371,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="12">label</td>
+      <td class="opt" rowspan="15">label</td>
       <td><a class="name" href="?tag/avatar">&#123;pad:avatar&#125;</a></td>
       <td>The accessible name (<code>aria-label</code> and <code>&lt;title&gt;</code>), by default the name.</td>
     </tr>
@@ -960,6 +1390,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>marquee: the name of the band for a screen reader; spinner: what it says (<code>Loading</code>).</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/emoji">&#123;pad:emoji&#125;</a></td>
       <td>The name a screen reader says, default the emoji's own name.</td>
     </tr>
@@ -974,6 +1410,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/input">&#123;pad:input&#125;</a></td>
       <td>A <code>&lt;label for&gt;</code> before the field - after a checkbox or radio - and the word its error message uses.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/oauth">&#123;pad:oauth&#125;</a></td>
+      <td>Its text, <code>Log in with &lt;name&gt;</code> by default.</td>
     </tr>
     
     <tr>
@@ -998,6 +1440,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/textarea">&#123;pad:textarea&#125;</a></td>
       <td>A <code>&lt;label for&gt;</code> before the text area, and the word its error message uses.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/themes">&#123;pad:themes&#125;</a></td>
+      <td>The label of the list of themes (<code>Theme</code>).</td>
     </tr>
     
     <tr>
@@ -1031,6 +1479,20 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="2">lang</td>
+      <td><a class="name" href="?tag/holidays">&#123;pad:holidays&#125;</a></td>
+      <td>The language of <code>local</code> for a country of more than one: be <code>nl fr de</code>, lu <code>lb fr de</code>, ch <code>de fr it</code>, ca <code>en fr</code>.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/search">&#123;pad:search&#125;</a></td>
+      <td>The language of the stop words and the stemmer: <code>en</code>, <code>nl</code>, <code>de</code>, <code>fr</code>, <code>es</code> - the locale's, else English.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">lat</td>
       <td><a class="name" href="?tag/embed">&#123;pad:embed&#125;</a></td>
       <td>OpenStreetMap: the latitude of the place, beside <code>lon</code> - or the place as the first parameter, <code>'52.37,4.89'</code>.</td>
@@ -1053,7 +1515,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">level</td>
+      <td class="opt" rowspan="3">level</td>
       <td><a class="name" href="?tag/barcode">&#123;pad:barcode&#125;</a></td>
       <td><code>qr</code>: the error correction, <code>L</code>, <code>M</code> (default), <code>Q</code> or <code>H</code>.</td>
     </tr>
@@ -1064,12 +1526,30 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td>Error correction: <code>L</code> (7% of the symbol may be lost), <code>M</code> (15%, default), <code>Q</code> (25%) or <code>H</code> (30%).</td>
     </tr>
     
+    <tr>
+      
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>The heading's level, 1 to 6 (2); the items' headings one more.</td>
+    </tr>
+    
   
     
     <tr>
-      <td class="opt" rowspan="3">levels</td>
+      <td class="opt" rowspan="5">levels</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Treemap, sunburst, pack: the fields above the parts, outermost first.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/img">&#123;pad:img&#125;</a></td>
+      <td>posterize: the steps of a channel (4); dither, atkinson, bayer: the greys (2).</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a></td>
+      <td>topography: the number of contour lines (12), every fifth the bolder index line.</td>
     </tr>
     
     <tr>
@@ -1109,9 +1589,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">link</td>
+      <td class="opt" rowspan="2">link</td>
       <td><a class="name" href="?tag/calendar">&#123;pad:calendar&#125;</a></td>
       <td>A field with a link for the event - http(s), a page or an anchor; never <code>javascript:</code> or <code>data:</code>.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/search">&#123;pad:search&#125;</a></td>
+      <td>The single tag's list: a field with the link of a hit - http(s), a page or an anchor.</td>
     </tr>
     
   
@@ -1142,6 +1628,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">lon</td>
       <td><a class="name" href="?tag/embed">&#123;pad:embed&#125;</a></td>
       <td>OpenStreetMap: the longitude of the place.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">mail</td>
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>contact: the mail address, a link; <code>phone</code>, <code>address</code> and <code>hours</code> the rest of the details.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">margin</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>The top and the left margin in mm, one number for both - the grid centred without it.</td>
     </tr>
     
   
@@ -1223,6 +1725,38 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">model</td>
+      <td><a class="name" href="?tag/ai">&#123;pad:ai&#125;</a></td>
+      <td>The model - the provider's own default unless given.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">mono</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>Bare option, typewriter: monospaced letters, one step a letter exactly.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">motion</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>reveal: up, down, left, right, fade or zoom; <code>distance</code> how far in pixels (32).</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">move</td>
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>go: the position after that move.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="9">name</td>
       <td><a class="name" href="?tag/array">&#123;pad:array&#125;</a></td>
       <td>Names the level, so its properties read <code>first@orders</code>; in the designer preview (<code>&amp;padSample</code>) the sample's rows of that name answer instead of the database.</td>
@@ -1295,6 +1829,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">note</td>
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>hero, cta, pricing, newsletter: the small print; footer: the line under it all.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="2">now</td>
       <td><a class="name" href="?tag/countdown">&#123;pad:countdown&#125;</a></td>
       <td>Count from this moment instead of now.</td>
@@ -1304,6 +1846,30 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/timeago">&#123;pad:timeago&#125;</a></td>
       <td>Count from this moment instead of now.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">number</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>tickets: the number of the first ticket, on a stub without an aside.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">numbers</td>
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>Bare option. go: the move number on every stone a move put there; draughts: the number of every playing square.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">on</td>
+      <td><a class="name" href="?tag/sound">&#123;pad:sound&#125;</a></td>
+      <td><code>click</code> (default), <code>pointerdown</code>, <code>hover</code>, <code>focus</code>, <code>change</code>, <code>input</code> or <code>submit</code>.</td>
     </tr>
     
   
@@ -1341,7 +1907,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">open</td>
+      <td class="opt" rowspan="1">opacity</td>
+      <td><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a></td>
+      <td>From 0 to 1: how strongly the motif shows over the background (1; grain 0.5).</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="4">open</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Candlestick: the field of the opening price (also <code>high</code>, <code>low</code> and <code>close</code>, each defaulting to its own name).</td>
     </tr>
@@ -1350,6 +1924,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/jsonview">&#123;pad:jsonview&#125;</a></td>
       <td>The number of levels shown unfolded, 2 when not given; 0 folds everything.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>faq: the question open at first, by its number; bare, every question. <code>single</code> keeps one open at a time.</td>
     </tr>
     
     <tr>
@@ -1391,6 +1971,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">outline</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>Bare option: the edges of the labels printed as well.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">padding</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>The room round an item's text in mm; <code>size</code> its text size in points, <code>align</code> left, center or right.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">pairs</td>
       <td><a class="name" href="?tag/game">&#123;pad:game&#125;</a></td>
       <td>memory: how many pairs (8).</td>
@@ -1407,9 +2003,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">paper</td>
+      <td class="opt" rowspan="2">paper</td>
       <td><a class="name" href="?tag/game">&#123;pad:game&#125;</a></td>
       <td>Bare option, sudoku and crossword: the puzzle drawn to print, no script.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>The paper: a4, a5, a6, letter, legal ...; an envelope dl, c4, c5 or c6.</td>
     </tr>
     
   
@@ -1463,6 +2065,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">pdf</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>Bare option: links to the sheets as a PDF - the page asked with <code>&amp;padPdf</code> answers them; <code>file=</code> its name.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">pendulums</td>
       <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
       <td>pendulum: how many swing side by side, each started a hundredth of a degree apart (1); <code>angles</code> the start.</td>
@@ -1487,6 +2097,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">pieces</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>confetti: how many (120); <code>spread</code> the angle they fly out in; <code>seed</code> which pieces.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">pitch</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>The step from an item to the next in mm, across and down.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">place</td>
       <td><a class="name" href="?tag/widget">&#123;pad:widget&#125;</a></td>
       <td>tooltip: <code>top</code> or <code>bottom</code>; toast: <code>inline</code>, <code>top</code> or <code>bottom</code> - in the flow, or in that corner of the window.</td>
@@ -1495,9 +2121,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">plain</td>
+      <td class="opt" rowspan="2">plain</td>
       <td><a class="name" href="?tag/barcode">&#123;pad:barcode&#125;</a></td>
       <td>Bare option: the bars only, no digits under them.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>Bare option. morse: the code alone, without the signal drawn; go: no coordinates.</td>
     </tr>
     
   
@@ -1525,6 +2157,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">prefix</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>countup: a text before the number, <code>suffix</code> one after it.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">preview</td>
       <td><a class="name" href="?tag/pdf">&#123;pad:pdf&#125;</a></td>
       <td>Bare option: the page stays a page - the content on a sheet with links to open or download it; the same page asked with <code>&amp;padPdf</code> (<code>padPdf=download</code> for the attachment) answers the PDF.</td>
@@ -1541,7 +2181,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">provider</td>
+      <td class="opt" rowspan="2">provider</td>
+      <td><a class="name" href="?tag/ai">&#123;pad:ai&#125;</a></td>
+      <td>A file of <code>pad/subs/ai/types/</code>: <code>anthropic</code>, <code>gemini</code>, <code>mistral</code>, <code>ollama</code>, <code>openai</code> - <code>PAD_AI_PROVIDER</code>, else <code>anthropic</code>.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/reactData">&#123;pad:reactData&#125;</a></td>
       <td>The file <code>_providers/&lt;name&gt;.php</code> that answers the data - default the id. A plain name only.</td>
     </tr>
@@ -1560,6 +2206,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">push</td>
       <td><a class="name" href="?tag/sequence">&#123;pad:sequence&#125;</a></td>
       <td>Store the result under this name, for <a href="?tag/pull">{pull}</a>, <a href="?tag/resume">{resume}</a> and <a href="?tag/action">{action}</a>.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">q</td>
+      <td><a class="name" href="?tag/search">&#123;pad:search&#125;</a></td>
+      <td>The query: words (any of them), <code>"a phrase"</code> (required, in order), <code>prefix*</code>, <code>-word</code> and <code>-"a phrase"</code> (left out).</td>
     </tr>
     
   
@@ -1588,6 +2242,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/pager">&#123;pad:pager&#125;</a></td>
       <td>The request value the links set. By default the variable <code>page=</code> was written with - <code>page=$pg</code> makes the links set <code>pg</code> - else <code>page</code>.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">radius</td>
+      <td><a class="name" href="?tag/img">&#123;pad:img&#125;</a></td>
+      <td>blur: in CSS pixels (6).</td>
     </tr>
     
   
@@ -1640,6 +2302,22 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td class="opt" rowspan="1">recursive</td>
       <td><a class="name" href="?tag/files">&#123;pad:files&#125;</a></td>
       <td>Bare option: the subdirectories too - every file below, <code>item</code> holding the path.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">region</td>
+      <td><a class="name" href="?tag/holidays">&#123;pad:holidays&#125;</a></td>
+      <td>The region apart - <code>region='by'</code>: Germany's states, the United Kingdom's nations (<code>sct</code>, <code>nir</code>), France's Alsace-Moselle and overseas departments.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">repeat</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>How often an animation that repeats runs - 3 unless given, <code>forever</code> as the author's choice.</td>
     </tr>
     
   
@@ -1739,7 +2417,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">scale</td>
+      <td class="opt" rowspan="3">scale</td>
       <td><a class="name" href="?tag/barcode">&#123;pad:barcode&#125;</a></td>
       <td>The width of one module - the thinnest bar - in pixels, default 2 (1 to 10).</td>
     </tr>
@@ -1750,10 +2428,32 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       <td><code>linear</code> (default: seven equal steps from the lowest value to the highest) or <code>quantile</code> (seven steps by rank).</td>
     </tr>
     
+    <tr>
+      
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>The preview on the screen made smaller, 0.1 to 3 - paper and PDF keep the size.</td>
+    </tr>
+    
   
     
     <tr>
-      <td class="opt" rowspan="4">seed</td>
+      <td class="opt" rowspan="1">scroll</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>Bare option, countup and highlighter: counted or drawn as it scrolls into view.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">second</td>
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>hero, cta: a quieter second button, with <code>secondLink</code>.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="6">seed</td>
       <td><a class="name" href="?tag/fake">&#123;pad:fake&#125;</a></td>
       <td>Values of their own seed: the rows <code>padFakeRows ( kinds, rows, seed )</code> gives.</td>
     </tr>
@@ -1772,8 +2472,28 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
+      <td><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a></td>
+      <td>A number or a word: what the pattern picks at random, the same for the same seed (1 when left out). A tile repeated - stripes, dots, grid, checks, chevron, isometric - does not change with it.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/spreadsheet">&#123;pad:spreadsheet&#125;</a></td>
+      <td>The seed of RAND, 0 when not given: the same numbers on every request.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
       <td>A whole number: what the toy picks at random is the same on every load. Without it the browser picks.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">sender</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>envelope, letter, invoice: the return address, its lines between commas.</td>
     </tr>
     
   
@@ -1831,6 +2551,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">sheet</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>The grid of a sheet, named by its paper and its grid: <code>a4-3x8</code>, <code>a4-2x7</code>, <code>letter-3x10</code> ... - each kind of a grid has its own.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">show</td>
       <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
       <td>clocks: analog, binary and words - which of them; <code>zone</code> a time zone.</td>
@@ -1853,6 +2581,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">signed</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>certificate: the names under the lines to sign on, between semicolons, a role after a comma.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">single</td>
       <td><a class="name" href="?tag/widget">&#123;pad:widget&#125;</a></td>
       <td>Bare option, accordion: one item open at a time.</td>
@@ -1869,7 +2605,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="12">size</td>
+      <td class="opt" rowspan="14">size</td>
       <td><a class="name" href="?tag/avatar">&#123;pad:avatar&#125;</a></td>
       <td>Width and height in pixels, default 48.</td>
     </tr>
@@ -1888,8 +2624,8 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
-      <td><a class="name" href="?tag/chess">&#123;pad:chess&#125;</a></td>
-      <td>Width and height in pixels, 360 when not given (80 at least); the board shrinks to fit a narrower container.</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>spinner: pixels (24).</td>
     </tr>
     
     <tr>
@@ -1914,6 +2650,18 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/identicon">&#123;pad:identicon&#125;</a></td>
       <td>Width and height in pixels, default 64.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>The width in pixels - chord (120), semaphore a figure (64), signals a flag (40), chess, go and draughts the board (360) - or the height of the piano (120).</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a></td>
+      <td>The size of the motif in pixels - a stripe, a dot's tile, a hexagon's radius, a hill of the topography, the largest circle; each kind its own default and bounds.</td>
     </tr>
     
     <tr>
@@ -1943,7 +2691,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">skip</td>
+      <td class="opt" rowspan="2">skip</td>
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>The items of the first sheet left empty - a sheet of labels used before.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/sequence">&#123;pad:sequence&#125;</a></td>
       <td>Skip the first N candidates the loop offers (not the first N kept).</td>
     </tr>
@@ -1983,7 +2737,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">speed</td>
+      <td class="opt" rowspan="3">speed</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>typewriter: letters a second (14).</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/game">&#123;pad:game&#125;</a></td>
       <td>snake: steps a second it starts with (6); <code>wrap</code> lets it run off one side and on at the other.</td>
     </tr>
@@ -2021,7 +2781,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">steps</td>
+      <td class="opt" rowspan="2">steps</td>
+      <td><a class="name" href="?tag/palette">&#123;pad:palette&#125;</a></td>
+      <td>How many colours, 1 to 256: a sequential or diverging palette sampled evenly from its first colour to its last, a categorical one its colours in order, starting again past its last. Without it a categorical palette shows its own, the others nine.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/progress">&#123;pad:progress&#125;</a></td>
       <td>Bare option: a dot per step joined by a line, the steps up to the value filled and the current one ringed.</td>
     </tr>
@@ -2053,6 +2819,14 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
+      <td class="opt" rowspan="1">style</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>spinner: ring, dots, bars, pulse or orbit.</td>
+    </tr>
+    
+  
+    
+    <tr>
       <td class="opt" rowspan="1">sub</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Orgchart: a field for the second line of a box.</td>
@@ -2077,7 +2851,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">system</td>
+      <td class="opt" rowspan="2">system</td>
+      <td><a class="name" href="?tag/ai">&#123;pad:ai&#125;</a></td>
+      <td>The system prompt.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/toy">&#123;pad:toy&#125;</a></td>
       <td>orbits: solar, binary, eight or swarm. An lsystem names its system as its first value: plant, dragon, koch, hilbert ...</td>
     </tr>
@@ -2101,9 +2881,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">target</td>
+      <td class="opt" rowspan="2">target</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Sankey, network, chord, arc: the field of where a link goes. Gauge and bullet: the value (or field) marked as the goal.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/sound">&#123;pad:sound&#125;</a></td>
+      <td>A CSS selector: no button, the sound plays when an element it finds has the event of <code>on=</code> - the elements a fragment brings later too.</td>
     </tr>
     
   
@@ -2117,9 +2903,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">text</td>
+      <td class="opt" rowspan="3">text</td>
       <td><a class="name" href="?tag/placeholder">&#123;pad:placeholder&#125;</a></td>
       <td>Written in the middle and the accessible name; by default the size (<code>600 × 300</code>) or the ratio.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>The line under the heading - the content between the tags wins over it, and a <code>{slot 'text'}</code> over both.</td>
     </tr>
     
     <tr>
@@ -2147,7 +2939,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="19">title</td>
+      <td class="opt" rowspan="23">title</td>
       <td><a class="name" href="?tag/barcode">&#123;pad:barcode&#125;</a></td>
       <td>The accessible name, by default the code.</td>
     </tr>
@@ -2162,12 +2954,6 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>The accessible name in the SVG's <code>&lt;title&gt;</code>; by default made from value and label.</td>
-    </tr>
-    
-    <tr>
-      
-      <td><a class="name" href="?tag/chess">&#123;pad:chess&#125;</a></td>
-      <td>The accessible name of the board. <code>Chess position, White to move</code> when not given.</td>
     </tr>
     
     <tr>
@@ -2214,14 +3000,44 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>abc, chord, piano, semaphore, signals, chess, go, draughts: the accessible name.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/palette">&#123;pad:palette&#125;</a></td>
+      <td>The name of the row for a screen reader, else the palette's name and the count.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a></td>
+      <td>The accessible name: the pattern becomes <code>role="img"</code> with <code>aria-label</code> and <code>&lt;title&gt;</code>. Without it the pattern is decoration, <code>aria-hidden</code>.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/pdf">&#123;pad:pdf&#125;</a></td>
       <td>The document's title, default its first heading.</td>
     </tr>
     
     <tr>
       
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>badges: the event on the band; certificate: its title; invoice: the heading of the body.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/qr">&#123;pad:qr&#125;</a></td>
       <td>The accessible name, by default the text itself.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td>The heading; also the first value. A <code>{slot 'title'}</code> of markup wins over it.</td>
     </tr>
     
     <tr>
@@ -2263,7 +3079,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="6">to</td>
+      <td class="opt" rowspan="8">to</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Gauge: the end of the scale (100). Gantt: the field with the end of a task. Radar, radialbar, rings, bullet: the end of the scale, a number (or for rings and bullet a field).</td>
     </tr>
@@ -2282,8 +3098,20 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
+      <td><a class="name" href="?tag/holidays">&#123;pad:holidays&#125;</a></td>
+      <td>The last date of <code>from</code>; one of the two alone is a year from it (or from today).</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/mail">&#123;pad:mail&#125;</a></td>
       <td>The address or addresses - <code>ann@example.com</code>, <code>Ann &lt;ann@example.com&gt;</code>, several separated by commas.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>piano: the highest key shown, <code>B5</code>.</td>
     </tr>
     
     <tr>
@@ -2317,7 +3145,21 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">tone</td>
+      <td class="opt" rowspan="1">tokens</td>
+      <td><a class="name" href="?tag/ai">&#123;pad:ai&#125;</a></td>
+      <td>The most the answer may take.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="2">tone</td>
+      <td><a class="name" href="?tag/section">&#123;pad:section&#125;</a></td>
+      <td><code>plain</code>, <code>soft</code> (the accent's light shade) or <code>accent</code> (the accent itself) - the background.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/widget">&#123;pad:widget&#125;</a></td>
       <td>toast: <code>info</code>, <code>success</code>, <code>warning</code> or <code>error</code>.</td>
     </tr>
@@ -2333,9 +3175,23 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">totals</td>
+      <td class="opt" rowspan="2">totals</td>
       <td><a class="name" href="?tag/datatable">&#123;pad:datatable&#125;</a></td>
       <td>Columns summed in a totals row - over every row, not only the page shown.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/spreadsheet">&#123;pad:spreadsheet&#125;</a></td>
+      <td>A row below the last with the SUM of each column named - its letters or the name in its first row.</td>
+    </tr>
+    
+  
+    
+    <tr>
+      <td class="opt" rowspan="1">toward</td>
+      <td><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a></td>
+      <td>tilt: the corner that comes toward the viewer - top-right, top-left, bottom-right, bottom-left.</td>
     </tr>
     
   
@@ -2357,7 +3213,13 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="2">ttl</td>
+      <td class="opt" rowspan="3">ttl</td>
+      <td><a class="name" href="?tag/ai">&#123;pad:ai&#125;</a></td>
+      <td>The seconds an answer is kept - 3600 unless given, 0 keeps nothing.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/cache">&#123;pad:cache&#125;</a></td>
       <td>The seconds the rendering is kept, 300 when not given.</td>
     </tr>
@@ -2519,15 +3381,21 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">volume</td>
+      <td class="opt" rowspan="2">volume</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Candlestick: a field of volumes drawn as light bars below.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/sound">&#123;pad:sound&#125;</a></td>
+      <td>A whole number 0 to 100: the share of the sound's own level it plays at.</td>
     </tr>
     
   
     
     <tr>
-      <td class="opt" rowspan="7">width</td>
+      <td class="opt" rowspan="10">width</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>The width in pixels, default 600 (round kinds 480, gauge 320, calendar 720).</td>
     </tr>
@@ -2546,8 +3414,26 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
     
     <tr>
       
+      <td><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a></td>
+      <td>abc: the lines spread over that many pixels; without it each line takes its natural width.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a></td>
+      <td>The width of the picture in pixels (480); the SVG covers its box when it is made larger or smaller, <code>preserveAspectRatio="xMidYMid slice"</code>.</td>
+    </tr>
+    
+    <tr>
+      
       <td><a class="name" href="?tag/placeholder">&#123;pad:placeholder&#125;</a></td>
       <td>The width of a box drawn from <code>ratio</code>, default 640.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a></td>
+      <td>The width of an item in mm; <code>height</code> its height.</td>
     </tr>
     
     <tr>
@@ -2579,7 +3465,7 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="3">words</td>
+      <td class="opt" rowspan="4">words</td>
       <td><a class="name" href="?tag/excerpt">&#123;pad:excerpt&#125;</a></td>
       <td>The length in words, default 40. A text no longer than that stays whole.</td>
     </tr>
@@ -2594,6 +3480,12 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
       
       <td><a class="name" href="?tag/lorem">&#123;pad:lorem&#125;</a></td>
       <td>So many words exactly, as sentences; fewer than five are a title, without a full stop. 50 when no length is given.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/search">&#123;pad:search&#125;</a></td>
+      <td>The length of the excerpt in words, default 30.</td>
     </tr>
     
   
@@ -2623,9 +3515,15 @@ options every tag takes - <code>sort</code>, <code>where</code>, <code>first</co
   
     
     <tr>
-      <td class="opt" rowspan="1">year</td>
+      <td class="opt" rowspan="2">year</td>
       <td><a class="name" href="?tag/chart">&#123;pad:chart&#125;</a></td>
       <td>Calendar: draw the whole year instead of the span of the data.</td>
+    </tr>
+    
+    <tr>
+      
+      <td><a class="name" href="?tag/holidays">&#123;pad:holidays&#125;</a></td>
+      <td>The year, 1583 to 9999 - this year by default.</td>
     </tr>
     
   

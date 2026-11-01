@@ -1,7 +1,7 @@
 <h1>Tags by group</h1>
-<p class="lead">The tags by what they are for, in 30 groups.</p>
+<p class="lead">The tags by what they are for, in 36 groups.</p>
 
-<nav class="jump" aria-label="Groups"><a href="#conditions">Conditions</a><a href="#loops">Loops and trees</a><a href="#values">Variables and stores</a><a href="#database">Database</a><a href="#pages">Pages and execution</a><a href="#navigation">Navigation</a><a href="#forms">Forms and security</a><a href="#access">Users and access</a><a href="#files">Files</a><a href="#network">Network and mail</a><a href="#output">Output control</a><a href="#text">Text and formatting</a><a href="#graphics">Charts and codes</a><a href="#pictures">Pictures and media</a><a href="#widgets">Widgets</a><a href="#games">Games</a><a href="#layout">Layouts and components</a><a href="#debug">Debugging and errors</a><a href="#sequences">Sequences</a><a href="#kind-chart">Chart types</a><a href="#kind-game">Games</a><a href="#kind-toy">Toys</a><a href="#kind-diagram">Diagram types</a><a href="#kind-widget">Widgets</a><a href="#kind-barcode">Barcode types</a><a href="#kind-embed">Embed providers</a><a href="#kind-input">Rich form fields</a><a href="#kind-icon">Icons</a><a href="#kind-fake">Fake kinds</a><a href="#kind-sequence">Sequence types</a></nav>
+<nav class="jump" aria-label="Groups"><a href="#conditions">Conditions</a><a href="#loops">Loops and trees</a><a href="#values">Variables and stores</a><a href="#database">Database</a><a href="#pages">Pages and execution</a><a href="#navigation">Navigation</a><a href="#forms">Forms and security</a><a href="#access">Users and access</a><a href="#files">Files</a><a href="#network">Network and mail</a><a href="#output">Output control</a><a href="#text">Text and formatting</a><a href="#graphics">Charts and codes</a><a href="#pictures">Pictures and media</a><a href="#widgets">Widgets</a><a href="#games">Games</a><a href="#layout">Layouts and components</a><a href="#debug">Debugging and errors</a><a href="#sequences">Sequences</a><a href="#kind-chart">Chart types</a><a href="#kind-game">Games</a><a href="#kind-toy">Toys</a><a href="#kind-diagram">Diagram types</a><a href="#kind-widget">Widgets</a><a href="#kind-barcode">Barcode types</a><a href="#kind-embed">Embed providers</a><a href="#kind-input">Rich form fields</a><a href="#kind-icon">Icons</a><a href="#kind-fake">Fake kinds</a><a href="#kind-sequence">Sequence types</a><a href="#kind-pattern">Patterns</a><a href="#kind-sound">Sounds</a><a href="#kind-printable">Printables</a><a href="#kind-notation">Notations</a><a href="#kind-section">Sections</a><a href="#kind-effect">Effects</a></nav>
 
 
 <section class="section" id="conditions">
@@ -49,7 +49,7 @@
 </section>
 
 <section class="section" id="values">
-  <div class="section-head"><h2>Variables and stores</h2><span>Setting, counting and keeping values - 8 tags</span></div>
+  <div class="section-head"><h2>Variables and stores</h2><span>Setting, counting and keeping values - 9 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/at">&#123;pad:at&#125;</a> <span class="about">Looks a value up in a data set by a path of names and conditions - the @ notation as a tag.</span></li>
@@ -64,6 +64,8 @@
     
     <li><a class="name" href="?tag/decrement">&#123;pad:decrement&#125;</a> <span class="about">Takes one off a variable, starting it at -1 when it does not exist yet.</span></li>
     
+    <li><a class="name" href="?tag/holidays">&#123;pad:holidays&#125;</a> <span class="about">The public holidays of a country - seventeen of them, each a file of rules - as rows or a table, its regions too.</span></li>
+    
     <li><a class="name" href="?tag/increment">&#123;pad:increment&#125;</a> <span class="about">Adds one to a variable, starting it at 1 when it does not exist yet.</span></li>
     
     <li><a class="name" href="?tag/set">&#123;pad:set&#125;</a> <span class="about">Assigns one or more variables, as globals that outlive the level the tag stands in.</span></li>
@@ -72,7 +74,7 @@
 </section>
 
 <section class="section" id="database">
-  <div class="section-head"><h2>Database</h2><span>Rows and values straight from SQL - 5 tags</span></div>
+  <div class="section-head"><h2>Database</h2><span>Rows and values straight from SQL - 6 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/array">&#123;pad:array&#125;</a> <span class="about">Runs a SQL query on the application database and repeats its content once per row.</span></li>
@@ -84,6 +86,8 @@
     <li><a class="name" href="?tag/field">&#123;pad:field&#125;</a> <span class="about">Runs a SQL query on the application database and prints the single value it answers.</span></li>
     
     <li><a class="name" href="?tag/record">&#123;pad:record&#125;</a> <span class="about">Runs a SQL query on the application database and renders its content with the first row&#039;s columns as fields.</span></li>
+    
+    <li><a class="name" href="?tag/search">&#123;pad:search&#125;</a> <span class="about">Site search without a search server: the rows of a collection, a data store or a page&#039;s array a query finds, ranked by BM25, each with a marked excerpt.</span></li>
     
   </ul>
 </section>
@@ -146,7 +150,7 @@
 </section>
 
 <section class="section" id="access">
-  <div class="section-head"><h2>Users and access</h2><span>Who is logged in and what they may do - 5 tags</span></div>
+  <div class="section-head"><h2>Users and access</h2><span>Who is logged in and what they may do - 7 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/auth">&#123;pad:auth&#125;</a> <span class="about">Renders its content when a user is logged in, with the user&#039;s row as its data, and its else half for a guest.</span></li>
@@ -158,6 +162,10 @@
     <li><a class="name" href="?tag/feature">&#123;pad:feature&#125;</a> <span class="about">Renders its content while a feature flag is on for this visitor, and its else half while it is off.</span></li>
     
     <li><a class="name" href="?tag/guest">&#123;pad:guest&#125;</a> <span class="about">Renders its content when nobody is logged in, and its else half for a user.</span></li>
+    
+    <li><a class="name" href="?tag/notifications">&#123;pad:notifications&#125;</a> <span class="about">Lists the notifications padNotify kept on the site for the user logged in, unread, each with a link that marks it read.</span></li>
+    
+    <li><a class="name" href="?tag/oauth">&#123;pad:oauth&#125;</a> <span class="about">Writes a &quot;Log in with ...&quot; link styled as a button, for the OAuth login of padOAuthStart and padOAuthUser.</span></li>
     
   </ul>
 </section>
@@ -178,8 +186,10 @@
 </section>
 
 <section class="section" id="network">
-  <div class="section-head"><h2>Network and mail</h2><span>Remote data and outgoing mail - 2 tags</span></div>
+  <div class="section-head"><h2>Network and mail</h2><span>Remote data and outgoing mail - 3 tags</span></div>
   <ul class="list">
+    
+    <li><a class="name" href="?tag/ai">&#123;pad:ai&#125;</a> <span class="about">Prints the answer of a language model to the prompt its content renders, as text, kept for a while.</span></li>
     
     <li><a class="name" href="?tag/curl">&#123;pad:curl&#125;</a> <span class="about">Fetches a URL and answers the body of the response, optionally kept in a cache for a number of seconds.</span></li>
     
@@ -259,7 +269,7 @@
 </section>
 
 <section class="section" id="graphics">
-  <div class="section-head"><h2>Charts and codes</h2><span>Charts, maps, diagrams and barcodes as SVG - 8 tags</span></div>
+  <div class="section-head"><h2>Charts and codes</h2><span>Charts, maps, diagrams and barcodes as SVG - 10 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/barcode">&#123;pad:barcode&#125;</a> <span class="about">Draws a barcode as inline SVG, encoded on the server - 13 symbologies, from EAN-13 and Code 128 to QR and Data Matrix.</span></li>
@@ -272,6 +282,10 @@
     
     <li><a class="name" href="?tag/map">&#123;pad:map&#125;</a> <span class="about">Draws a choropleth map as inline SVG - every country coloured by a value of its row - of the world or one of its 22 regions.</span></li>
     
+    <li><a class="name" href="?tag/notation">&#123;pad:notation&#125;</a> <span class="about">A text written in a notation, drawn on the server - 12 of them, from formulas in AsciiMath and chemical equations to a tune in ABC, guitar chords, braille, morse, signal flags and chess, go and draughts positions.</span></li>
+    
+    <li><a class="name" href="?tag/palette">&#123;pad:palette&#125;</a> <span class="about">The colours of a palette as swatches with their hex values - 18 of them: viridis and its family, the colour-blind safe Okabe-Ito and Tol schemes, ColorBrewer&#039;s scales - the same palettes palette= gives a chart.</span></li>
+    
     <li><a class="name" href="?tag/qr">&#123;pad:qr&#125;</a> <span class="about">Draws a QR code as inline SVG, encoded on the server - no image library, no remote service.</span></li>
     
     <li><a class="name" href="?tag/sparkline">&#123;pad:sparkline&#125;</a> <span class="about">Draws a word-sized line chart as inline SVG - no axes, the last point marked - to stand in a sentence or a table cell.</span></li>
@@ -282,7 +296,7 @@
 </section>
 
 <section class="section" id="pictures">
-  <div class="section-head"><h2>Pictures and media</h2><span>Avatars, icons, ratings, images and video - 12 tags</span></div>
+  <div class="section-head"><h2>Pictures and media</h2><span>Avatars, icons, ratings, images and video - 15 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/avatar">&#123;pad:avatar&#125;</a> <span class="about">Draws an initials avatar as inline SVG - the letters of a name in a circle coloured by a hash of it, no image needed.</span></li>
@@ -299,13 +313,19 @@
     
     <li><a class="name" href="?tag/img">&#123;pad:img&#125;</a> <span class="about">Writes a picture of the application&#039;s www directory as a thumbnail of the size the page shows it at, resized once with GD.</span></li>
     
+    <li><a class="name" href="?tag/pattern">&#123;pad:pattern&#125;</a> <span class="about">Draws a seeded SVG background or a piece of generative art on the server - 16 kinds, from stripes and dots to contour lines and circle packing - the same bytes for the same options.</span></li>
+    
     <li><a class="name" href="?tag/pdf">&#123;pad:pdf&#125;</a> <span class="about">Sends what its content renders as a PDF instead of the page - a writer in plain PHP, the standard fonts, no library.</span></li>
     
     <li><a class="name" href="?tag/placeholder">&#123;pad:placeholder&#125;</a> <span class="about">Draws a grey image placeholder as inline SVG - crossing lines and the size or a text in the middle.</span></li>
     
+    <li><a class="name" href="?tag/printable">&#123;pad:printable&#125;</a> <span class="about">Pages made for paper - 10 kinds, from sheets of labels and name badges to a letter for a window envelope - the content between the tags one item, repeated over the data and laid out on sheets that print as they show, and come out of the PDF writer alike.</span></li>
+    
     <li><a class="name" href="?tag/progress">&#123;pad:progress&#125;</a> <span class="about">Writes an accessible progress bar - the native progress element, styled, with its label and percentage - or a row of step dots.</span></li>
     
     <li><a class="name" href="?tag/rating">&#123;pad:rating&#125;</a> <span class="about">Draws a score as stars or hearts in inline SVG - whole ones filled, a part of one clipped - and says it in words.</span></li>
+    
+    <li><a class="name" href="?tag/sound">&#123;pad:sound&#125;</a> <span class="about">A short sound made from a recipe and played by the browser - 17 of them, from a chime and a pop to a coin and a drum kit - a button, a binding to elements of the page, or a WAV file.</span></li>
     
     <li><a class="name" href="?tag/video">&#123;pad:video&#125;</a> <span class="about">Shows a YouTube or Vimeo video as its poster with a play button, loading the player only when pressed - or a video file as a video element.</span></li>
     
@@ -313,14 +333,18 @@
 </section>
 
 <section class="section" id="widgets">
-  <div class="section-head"><h2>Widgets</h2><span>Tabs, modals, tables and more without JavaScript - 5 tags</span></div>
+  <div class="section-head"><h2>Widgets</h2><span>Tabs, modals, tables and more without JavaScript - 7 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/copy">&#123;pad:copy&#125;</a> <span class="about">A text in a code block with a button that copies it to the clipboard.</span></li>
     
     <li><a class="name" href="?tag/datatable">&#123;pad:datatable&#125;</a> <span class="about">Rows as a complete HTML table - formatted numbers, a totals row, sorting and paging on the server.</span></li>
     
+    <li><a class="name" href="?tag/effect">&#123;pad:effect&#125;</a> <span class="about">Motion and decoration on a text or a block, CSS first - 13 of them, from a typewriter, a glitch and a marker stroke to a scroll reveal, a marquee, loaders and confetti.</span></li>
+    
     <li><a class="name" href="?tag/jsonview">&#123;pad:jsonview&#125;</a> <span class="about">A JSON value or a PHP array as a tree that folds open and shut, coloured by type.</span></li>
+    
+    <li><a class="name" href="?tag/spreadsheet">&#123;pad:spreadsheet&#125;</a> <span class="about">A grid of cells whose spreadsheet formulas are computed on the server, as a table - formats, totals and cells to edit.</span></li>
     
     <li><a class="name" href="?tag/tab">&#123;pad:tab&#125;</a> <span class="about">One item of a tabs, accordion, carousel, wizard or lightbox widget: its label and its content, handed to that owner.</span></li>
     
@@ -330,10 +354,8 @@
 </section>
 
 <section class="section" id="games">
-  <div class="section-head"><h2>Games</h2><span>Boards and puzzles - 3 tags</span></div>
+  <div class="section-head"><h2>Games</h2><span>Boards and puzzles - 2 tags</span></div>
   <ul class="list">
-    
-    <li><a class="name" href="?tag/chess">&#123;pad:chess&#125;</a> <span class="about">A chess position from FEN as an SVG board, with marked squares and arrows.</span></li>
     
     <li><a class="name" href="?tag/game">&#123;pad:game&#125;</a> <span class="about">A little game played in the browser - 18 of them, from sudoku and a crossword to snake, reversi and a quiz.</span></li>
     
@@ -343,7 +365,7 @@
 </section>
 
 <section class="section" id="layout">
-  <div class="section-head"><h2>Layouts and components</h2><span>Extending, blocks, slots, stacks and fragments - 12 tags</span></div>
+  <div class="section-head"><h2>Layouts and components</h2><span>Extending, blocks, slots, stacks and fragments - 15 tags</span></div>
   <ul class="list">
     
     <li><a class="name" href="?tag/block">&#123;pad:block&#125;</a> <span class="about">A named region of a layout or wrapper - and a page&#039;s override of it.</span></li>
@@ -364,11 +386,17 @@
     
     <li><a class="name" href="?tag/push">&#123;pad:push&#125;</a> <span class="about">Renders its content and adds it to a named stack, for a stack tag elsewhere in the page to print.</span></li>
     
+    <li><a class="name" href="?tag/section">&#123;pad:section&#125;</a> <span class="about">A block of a landing page - 15 of them, from a hero, the features and the prices to the questions, a newsletter form and the footer - in pure CSS.</span></li>
+    
     <li><a class="name" href="?tag/shadow">&#123;pad:shadow&#125;</a> <span class="about">The shadow root of a custom element, rendered on the server as declarative shadow DOM.</span></li>
     
     <li><a class="name" href="?tag/slot">&#123;pad:slot&#125;</a> <span class="about">A named place in a custom tag&#039;s template - and the fill a caller gives it.</span></li>
     
     <li><a class="name" href="?tag/stack">&#123;pad:stack&#125;</a> <span class="about">Prints everything pushed to a named stack, from above or below it in the page.</span></li>
+    
+    <li><a class="name" href="?tag/theme">&#123;pad:theme&#125;</a> <span class="about">The colours of the page swapped for a theme - 10 of them, from paper and sepia to a terminal, an ocean and a high-contrast one - or its content alone in a box of the theme.</span></li>
+    
+    <li><a class="name" href="?tag/themes">&#123;pad:themes&#125;</a> <span class="about">A switcher of the themes: the visitor&#039;s choice kept in the session, every page in that theme from then on - a form, no JavaScript needed.</span></li>
     
   </ul>
 </section>
@@ -1478,6 +1506,214 @@
     <li><a class="name" href="?tag/sequence/xor">&#123;sequence:xor&#125;</a> <span class="about">Bitwise XOR (with N = 3: 2, 1, 0, 7, ...).</span></li>
     
     <li><a class="name" href="?tag/sequence/xpadovan">&#123;sequence:xpadovan&#125;</a> <span class="about">Padovan sequence (1, 1, 1, 2, 2, 3, 4, 5, ...).</span></li>
+    
+  </ul>
+</section>
+
+<section class="section" id="kind-pattern">
+  <div class="section-head"><h2>Patterns</h2><span>A pattern of {pattern} each, seeded SVG art - 16 tags</span></div>
+  <ul class="list">
+    
+    <li><a class="name" href="?tag/pattern/blobs">&#123;pattern:blobs&#125;</a> <span class="about">Soft organic shapes about the size across, scattered by the seed.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/checks">&#123;pattern:checks&#125;</a> <span class="about">A checkerboard of squares of the size, the dark squares in the inks, the light ones the background.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/chevron">&#123;pattern:chevron&#125;</a> <span class="about">Bold zigzag bands the size apart, the inks taking turns row by row, their corners sharp.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/circles">&#123;pattern:circles&#125;</a> <span class="about">Circle packing: circles of the inks laid where the seed tries them, each as large as the room there allows up to the size.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/dots">&#123;pattern:dots&#125;</a> <span class="about">Polka dots in staggered rows, two to a tile of the size, the second in the second ink when there is one.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/grain">&#123;pattern:grain&#125;</a> <span class="about">Film grain: fractal noise of the browser&#039;s feTurbulence, the size its grain in pixels, in the ink over the background.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/grid">&#123;pattern:grid&#125;</a> <span class="about">Graph paper: a thin line every size pixels in the first ink and a bolder one every fifth in the second.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/hexagons">&#123;pattern:hexagons&#125;</a> <span class="about">A honeycomb of flat-topped hexagons, the size their radius, each filled with an ink the seed picks and set a little apart.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/isometric">&#123;pattern:isometric&#125;</a> <span class="about">Tumbling blocks: cubes seen from above in isometric view, the size their edge, the top in the first ink.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/mesh">&#123;pattern:mesh&#125;</a> <span class="about">A soft mesh gradient: a glow of every ink, the size its radius, at a place the seed picks.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/stripes">&#123;pattern:stripes&#125;</a> <span class="about">Diagonal stripes, a band of each ink half the size wide and the background between them, turned by angle=.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/topography">&#123;pattern:topography&#125;</a> <span class="about">The contour lines of a landscape the seed makes up.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/triangles">&#123;pattern:triangles&#125;</a> <span class="about">A mosaic of equilateral triangles of the size, pointing up and down by turns.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/truchet">&#123;pattern:truchet&#125;</a> <span class="about">Smith&#039;s Truchet tiles: squares of the size, each with two quarter circles joining the middles of its sides.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/voronoi">&#123;pattern:voronoi&#125;</a> <span class="about">A Voronoi diagram: cells around points the seed scatters, one in every square of the size.</span></li>
+    
+    <li><a class="name" href="?tag/pattern/waves">&#123;pattern:waves&#125;</a> <span class="about">Rows of wavy lines the size apart, the inks taking turns, each row shifted along the one above by a step the seed chooses.</span></li>
+    
+  </ul>
+</section>
+
+<section class="section" id="kind-sound">
+  <div class="section-head"><h2>Sounds</h2><span>A sound of {sound} each, synthesised in the browser - 17 tags</span></div>
+  <ul class="list">
+    
+    <li><a class="name" href="?tag/sound/bell">&#123;sound:bell&#125;</a> <span class="about">A struck bell that rings for two seconds.</span></li>
+    
+    <li><a class="name" href="?tag/sound/chime">&#123;sound:chime&#125;</a> <span class="about">Two soft bells a fifth apart, the second a moment after the first.</span></li>
+    
+    <li><a class="name" href="?tag/sound/click">&#123;sound:click&#125;</a> <span class="about">The short dry click of a switch or a key, a burst of noise and a tap of tone.</span></li>
+    
+    <li><a class="name" href="?tag/sound/coin">&#123;sound:coin&#125;</a> <span class="about">The coin of an old video game.</span></li>
+    
+    <li><a class="name" href="?tag/sound/error">&#123;sound:error&#125;</a> <span class="about">Two low notes falling a tritone, buzzing and dull.</span></li>
+    
+    <li><a class="name" href="?tag/sound/hihat">&#123;sound:hihat&#125;</a> <span class="about">A closed hi-hat: a very short hiss of noise, all its low end filtered away.</span></li>
+    
+    <li><a class="name" href="?tag/sound/jump">&#123;sound:jump&#125;</a> <span class="about">The hop of a platform game.</span></li>
+    
+    <li><a class="name" href="?tag/sound/kick">&#123;sound:kick&#125;</a> <span class="about">A bass drum: a sine that drops from 150 Hz to 45 in a tenth of a second, with a little click of noise on the beat.</span></li>
+    
+    <li><a class="name" href="?tag/sound/laser">&#123;sound:laser&#125;</a> <span class="about">The zap of a space game: a square wave diving from high to low.</span></li>
+    
+    <li><a class="name" href="?tag/sound/notify">&#123;sound:notify&#125;</a> <span class="about">A gentle ding-dong, G then C above it.</span></li>
+    
+    <li><a class="name" href="?tag/sound/pop">&#123;sound:pop&#125;</a> <span class="about">A bubble that bursts: a sine swept quickly upward, gone as soon as it is there.</span></li>
+    
+    <li><a class="name" href="?tag/sound/powerup">&#123;sound:powerup&#125;</a> <span class="about">Collected something that makes you stronger.</span></li>
+    
+    <li><a class="name" href="?tag/sound/snare">&#123;sound:snare&#125;</a> <span class="about">A snare drum: a burst of noise, highpassed for the rattle of the snares, over a short falling tone for the drum&#039;s body.</span></li>
+    
+    <li><a class="name" href="?tag/sound/success">&#123;sound:success&#125;</a> <span class="about">A quick rising major arpeggio, C E G C.</span></li>
+    
+    <li><a class="name" href="?tag/sound/tick">&#123;sound:tick&#125;</a> <span class="about">The tick of a clock: a high wooden tap, shorter and brighter than a click.</span></li>
+    
+    <li><a class="name" href="?tag/sound/warning">&#123;sound:warning&#125;</a> <span class="about">Two tones taking turns, high and low, four times.</span></li>
+    
+    <li><a class="name" href="?tag/sound/whoosh">&#123;sound:whoosh&#125;</a> <span class="about">Air rushing past: noise through a bandpass filter that sweeps up from low to high, swelling and fading.</span></li>
+    
+  </ul>
+</section>
+
+<section class="section" id="kind-printable">
+  <div class="section-head"><h2>Printables</h2><span>A kind of {printable} each, pages made for paper - 10 tags</span></div>
+  <ul class="list">
+    
+    <li><a class="name" href="?tag/printable/badges">&#123;printable:badges&#125;</a> <span class="about">Name badges, cut from a sheet or slid into a holder.</span></li>
+    
+    <li><a class="name" href="?tag/printable/cards">&#123;printable:cards&#125;</a> <span class="about">Business cards, 85 by 55 mm, ten to an A4 sheet with crop marks in its margins to cut along.</span></li>
+    
+    <li><a class="name" href="?tag/printable/certificate">&#123;printable:certificate&#125;</a> <span class="about">A certificate, one to a sheet, A4 turned on its side.</span></li>
+    
+    <li><a class="name" href="?tag/printable/envelope">&#123;printable:envelope&#125;</a> <span class="about">Envelopes to print on, one to a sheet the size of the envelope.</span></li>
+    
+    <li><a class="name" href="?tag/printable/indexcards">&#123;printable:indexcards&#125;</a> <span class="about">Index cards, ruled as the ones in a card box are.</span></li>
+    
+    <li><a class="name" href="?tag/printable/invoice">&#123;printable:invoice&#125;</a> <span class="about">An invoice for a window envelope.</span></li>
+    
+    <li><a class="name" href="?tag/printable/labels">&#123;printable:labels&#125;</a> <span class="about">A sheet of sticky labels.</span></li>
+    
+    <li><a class="name" href="?tag/printable/letter">&#123;printable:letter&#125;</a> <span class="about">A letter for a window envelope, one to an A4 sheet, laid out as DIN 5008 lays out its form B.</span></li>
+    
+    <li><a class="name" href="?tag/printable/placecards">&#123;printable:placecards&#125;</a> <span class="about">Place cards for a table, folded into a tent.</span></li>
+    
+    <li><a class="name" href="?tag/printable/tickets">&#123;printable:tickets&#125;</a> <span class="about">Tickets with a stub to tear off.</span></li>
+    
+  </ul>
+</section>
+
+<section class="section" id="kind-notation">
+  <div class="section-head"><h2>Notations</h2><span>A notation of {notation} each, drawn on the server - 12 tags</span></div>
+  <ul class="list">
+    
+    <li><a class="name" href="?tag/notation/abc">&#123;notation:abc&#125;</a> <span class="about">A tune in ABC notation drawn as a staff.</span></li>
+    
+    <li><a class="name" href="?tag/notation/braille">&#123;notation:braille&#125;</a> <span class="about">A text in braille: Unified English Braille, grade 1, as the characters of Unicode&#039;s braille block, the text itself the accessible name.</span></li>
+    
+    <li><a class="name" href="?tag/notation/chem">&#123;notation:chem&#125;</a> <span class="about">Chemical formulas and equations, typed as chemists type them, as MathML.</span></li>
+    
+    <li><a class="name" href="?tag/notation/chess">&#123;notation:chess&#125;</a> <span class="about">A chess position drawn as a board, the pieces shapes of PAD&#039;s own.</span></li>
+    
+    <li><a class="name" href="?tag/notation/chord">&#123;notation:chord&#125;</a> <span class="about">A chord of a guitar or a ukulele as the box of a chord chart.</span></li>
+    
+    <li><a class="name" href="?tag/notation/draughts">&#123;notation:draughts&#125;</a> <span class="about">A draughts position from the FEN of PDN, drawn as a board.</span></li>
+    
+    <li><a class="name" href="?tag/notation/go">&#123;notation:go&#125;</a> <span class="about">A go position from a game record in SGF, drawn as a board.</span></li>
+    
+    <li><a class="name" href="?tag/notation/math">&#123;notation:math&#125;</a> <span class="about">A formula written in AsciiMath, the notation of asciimath.org, as MathML.</span></li>
+    
+    <li><a class="name" href="?tag/notation/morse">&#123;notation:morse&#125;</a> <span class="about">A text in the international Morse code of ITU-R M.1677-1.</span></li>
+    
+    <li><a class="name" href="?tag/notation/piano">&#123;notation:piano&#125;</a> <span class="about">Notes on a piano keyboard, the keys pressed marked and named.</span></li>
+    
+    <li><a class="name" href="?tag/notation/semaphore">&#123;notation:semaphore&#125;</a> <span class="about">A text in flag semaphore.</span></li>
+    
+    <li><a class="name" href="?tag/notation/signals">&#123;notation:signals&#125;</a> <span class="about">A text spelt in the maritime signal flags of the International Code of Signals.</span></li>
+    
+  </ul>
+</section>
+
+<section class="section" id="kind-section">
+  <div class="section-head"><h2>Sections</h2><span>A block of a landing page of {section} each, pure CSS - 15 tags</span></div>
+  <ul class="list">
+    
+    <li><a class="name" href="?tag/section/contact">&#123;section:contact&#125;</a> <span class="about">How to reach you: the address, the mail address and the phone number as links, the opening hours, and.</span></li>
+    
+    <li><a class="name" href="?tag/section/cta">&#123;section:cta&#125;</a> <span class="about">A call to action: a band in the accent colour with a heading, a line and the buttons that act on it.</span></li>
+    
+    <li><a class="name" href="?tag/section/faq">&#123;section:faq&#125;</a> <span class="about">The questions people ask, each a &lt;details&gt; whose &lt;summary&gt; is the question.</span></li>
+    
+    <li><a class="name" href="?tag/section/features">&#123;section:features&#125;</a> <span class="about">What a product does, a card per feature in a grid.</span></li>
+    
+    <li><a class="name" href="?tag/section/footer">&#123;section:footer&#125;</a> <span class="about">The foot of a page: the name and a line about it on one side, columns of links on the other, and the small print under them.</span></li>
+    
+    <li><a class="name" href="?tag/section/gallery">&#123;section:gallery&#125;</a> <span class="about">Pictures in a grid, each with its caption under it, cropped to one shape so the rows line up.</span></li>
+    
+    <li><a class="name" href="?tag/section/hero">&#123;section:hero&#125;</a> <span class="about">The opening block of a page.</span></li>
+    
+    <li><a class="name" href="?tag/section/item">&#123;section:item&#125;</a> <span class="about">One item of the list section around it.</span></li>
+    
+    <li><a class="name" href="?tag/section/logos">&#123;section:logos&#125;</a> <span class="about">The names that vouch for it, in a row that wraps.</span></li>
+    
+    <li><a class="name" href="?tag/section/newsletter">&#123;section:newsletter&#125;</a> <span class="about">A sign-up for the newsletter.</span></li>
+    
+    <li><a class="name" href="?tag/section/pricing">&#123;section:pricing&#125;</a> <span class="about">The plans side by side, a card each.</span></li>
+    
+    <li><a class="name" href="?tag/section/stats">&#123;section:stats&#125;</a> <span class="about">The numbers that tell the story, side by side.</span></li>
+    
+    <li><a class="name" href="?tag/section/steps">&#123;section:steps&#125;</a> <span class="about">The way to a result in numbered steps, the numbers drawn by the list itself.</span></li>
+    
+    <li><a class="name" href="?tag/section/team">&#123;section:team&#125;</a> <span class="about">The people behind it, a card each.</span></li>
+    
+    <li><a class="name" href="?tag/section/testimonials">&#123;section:testimonials&#125;</a> <span class="about">What customers say, a card per quote.</span></li>
+    
+  </ul>
+</section>
+
+<section class="section" id="kind-effect">
+  <div class="section-head"><h2>Effects</h2><span>An effect of {effect} each, motion and decoration - 13 tags</span></div>
+  <ul class="list">
+    
+    <li><a class="name" href="?tag/effect/confetti">&#123;effect:confetti&#125;</a> <span class="about">A burst of confetti from where it stands.</span></li>
+    
+    <li><a class="name" href="?tag/effect/countup">&#123;effect:countup&#125;</a> <span class="about">A number counted up to its value by the CSS alone.</span></li>
+    
+    <li><a class="name" href="?tag/effect/glitch">&#123;effect:glitch&#125;</a> <span class="about">A digital glitch: for a moment the text tears into slices that jump aside in two colours, then it stands still again.</span></li>
+    
+    <li><a class="name" href="?tag/effect/gradient">&#123;effect:gradient&#125;</a> <span class="about">Text painted with a gradient.</span></li>
+    
+    <li><a class="name" href="?tag/effect/highlighter">&#123;effect:highlighter&#125;</a> <span class="about">A stroke of a marker pen drawn behind the words, left to right, once.</span></li>
+    
+    <li><a class="name" href="?tag/effect/marquee">&#123;effect:marquee&#125;</a> <span class="about">A band whose content scrolls by without end, a logo strip, a ticker.</span></li>
+    
+    <li><a class="name" href="?tag/effect/reveal">&#123;effect:reveal&#125;</a> <span class="about">A block that comes into view as it is scrolled to.</span></li>
+    
+    <li><a class="name" href="?tag/effect/shimmer">&#123;effect:shimmer&#125;</a> <span class="about">A band of light that sweeps across the letters and rests, as on something freshly polished.</span></li>
+    
+    <li><a class="name" href="?tag/effect/spinner">&#123;effect:spinner&#125;</a> <span class="about">A loading indicator, the one effect for every loader.</span></li>
+    
+    <li><a class="name" href="?tag/effect/spotlight">&#123;effect:spotlight&#125;</a> <span class="about">A block lit by a soft light behind its content.</span></li>
+    
+    <li><a class="name" href="?tag/effect/tilt">&#123;effect:tilt&#125;</a> <span class="about">A card that leans in 3D when the pointer is on it or the focus is in it, and settles again when it leaves.</span></li>
+    
+    <li><a class="name" href="?tag/effect/typewriter">&#123;effect:typewriter&#125;</a> <span class="about">A line of text typed out letter by letter behind a caret, once, then the caret blinks a few times and stays.</span></li>
+    
+    <li><a class="name" href="?tag/effect/wave">&#123;effect:wave&#125;</a> <span class="about">The letters rise and fall one after the other, a wave running through the word.</span></li>
     
   </ul>
 </section>
