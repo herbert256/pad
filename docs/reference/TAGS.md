@@ -3221,7 +3221,7 @@ sends it like any asset.
 | `quality` | 1 to 100 for JPEG and WebP, default 80 |
 | `alt` | Required - the text for whoever cannot see the picture; `alt=''` marks it as decoration |
 | `filter` | A comma list of filters of `pad/subs/filters/types/`, applied in the order written - see below |
-| `colors`, `levels`, `cell`, `radius`, `amount`, `columns`, `chars`, `components`, `threshold` | The options of the filters, each read by the filters that take it |
+| `colors`, `levels`, `cell`, `radius`, `amount`, `columns`, `chars`, `components`, `threshold`, `cutoff` | The options of the filters, each read by the filters that take it |
 
 **Filters:** `filter=` runs the picture through the filter subsystem (`pad/subs/filters/`), the
 files of its `types/` the filters there are, written in the order they apply:
@@ -3247,6 +3247,7 @@ files of its `types/` the filters there are, written in the order they apply:
 | `edges` | The outlines: Sobel's operator on the luminance, from the ground to the lines; a PNG | `colors` ('#000000, #ffffff' - the ground first), `amount` (100) |
 | `threshold` | Two colours, a hard cut: ink below the luminance, paper from it on; a PNG | `threshold` (50, percent of white), `colors` ('#000000, #ffffff') |
 | `solarize` | The Sabattier effect: every channel from the threshold on turned into its negative | `threshold` (50) |
+| `autocontrast` | The tones stretched from black to white, one table for every channel, as PIL's preserve_tone | `cutoff` (1, percent at each end) |
 | `dither` | Floyd and Steinberg's error diffusion to ink and paper; 1x, a PNG | `levels` (2), `colors` ('#000000, #ffffff') |
 | `atkinson` | Atkinson's dither, three quarters of the error carried on | as dither |
 | `bayer` | Ordered dithering by Bayer's map of 8 by 8 | as dither |
@@ -3289,6 +3290,10 @@ opacity.
 solarize cuts each of red, green and blue on its own at `threshold` x 255 / 100 - a channel of 128
 and more at 50 becomes 255 less itself, as PIL's default and ImageMagick's `-solarize 50%` - reads
 every pixel in PHP within the same budget, and keeps every pixel's opacity.
+autocontrast is PIL's `ImageOps.autocontrast` with `preserve_tone`, the same bytes: the histogram
+of the luminance of the pixels that show, `cutoff` percent of them let go at each end, and one table
+for red, green and blue from the darkest left to black and the lightest to white; a picture of one
+tone stays as it is, a transparent pixel counts for nothing and keeps its opacity.
 
 **Behavior:** writes `<img class="pad-img">` with its `width` and `height` (no layout shift),
 `loading="lazy"`, `decoding="async"` and a `srcset` whose second picture is twice the size -

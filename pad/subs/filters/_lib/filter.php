@@ -21,7 +21,7 @@
   //            'apply'    => function ( $image, $o, $scale ) { ... return $image; } ];
   //
   // image - a GD picture in, a GD picture out: grayscale, sepia, duotone, posterize, pixelate,
-  //   blur, sharpen, vignette, invert, edges, threshold, solarize and the three dithers. They work on the thumbnail after
+  //   blur, sharpen, vignette, invert, edges, threshold, solarize, autocontrast and the three dithers. They work on the thumbnail after
   //   it was resized - the 1x and the 2x picture alike, $scale the 2x one's density, so a blur
   //   of 6 pixels is 6 CSS pixels on both - and the thumbnail's file name holds them and their
   //   options. A filter whose look is the picture's own pixels - pixelate and the dithers - is
@@ -40,7 +40,7 @@
   // costs little, a loop of PHP over the pixels a microsecond a pixel and more - a dither of a
   // camera's 12 megapixels took 15 seconds and 209 MB, past max_execution_time and a stock
   // memory_limit at the 64, so the file was never written and every view began it again. A
-  // filter that loops ('loops': sepia, duotone, posterize, vignette, edges, threshold, solarize, the dithers, dominant)
+  // filter that loops ('loops': sepia, duotone, posterize, vignette, edges, threshold, solarize, autocontrast, the dithers, dominant)
   // works on 2 megapixels at most - a 1x picture larger is an error under the strict check
   // and the filter left out without it, a 2x picture is made only at the density those 2
   // megapixels reach - and a filter that writes a count of things ('count': halftone's dots,

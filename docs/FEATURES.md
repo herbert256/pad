@@ -1823,6 +1823,7 @@ application shows every pattern with a seed to change by link.
 {img 'photos/harbour.jpg', width=400, filter='edges', colors='#fbfaf7, #1d1d1b', alt='The harbour'/}   # Sobel: ink on paper
 {img 'scans/letter.png', width=600, filter='threshold', threshold=60, alt='The letter'/}  # ink or paper, a hard cut
 {img 'photos/harbour.jpg', width=400, filter='solarize', threshold=40, alt='The harbour'/} # the highlights turned negative
+{img 'photos/misty.jpg', width=400, filter='autocontrast', cutoff=2, alt='The valley'/}   # its tones from black to white
 ```
 `filter=` on `{img}` runs the picture through the filter subsystem, `pad/subs/filters/`: a filter
 is a file of its `types/` - no tag of its own, a word of `filter=` as a validation rule is a word of
@@ -1863,6 +1864,11 @@ solarize is the darkroom's Sabattier effect: every channel at `threshold=` perce
 value or more turned into its negative, the rest left - as PIL's `ImageOps.solarize` and
 ImageMagick's `-solarize` do it, the same bytes; at 0 it is invert, and every pixel keeps its
 opacity.
+autocontrast stretches the tones: `cutoff=` percent (1) of the pixels let go at each end of the
+luminance, then the darkest left made black and the lightest white by one table for every channel -
+PIL's `ImageOps.autocontrast` with `preserve_tone`, the same bytes - so a misty or faded picture gets
+its depth back without its colours shifting; a picture of one tone stays as it is, and a transparent
+pixel counts for nothing and keeps its opacity.
 
 ### Notations
 ```

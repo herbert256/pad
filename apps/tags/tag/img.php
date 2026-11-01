@@ -33,7 +33,8 @@ PAD;
     'columns'    => 'ascii: the characters across (64).',
     'chars'      => 'ascii: the characters from light to dark (<code>\' .:-=+*#%@\'</code>).',
     'components' => 'blurhash: the terms across and down, <code>\'4,3\'</code>.',
-    'threshold'  => 'threshold: the luminance where ink becomes paper, in percent of white (50); solarize: where a channel turns into its negative (50).' ];
+    'threshold'  => 'threshold: the luminance where ink becomes paper, in percent of white (50); solarize: where a channel turns into its negative (50).',
+    'cutoff'     => 'autocontrast: the pixels let go at each end of the tones before they are stretched, in percent (1).' ];
 
   $tagSee     = [ 'placeholder', 'asset', 'video' ];
 

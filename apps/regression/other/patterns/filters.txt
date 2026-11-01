@@ -55,6 +55,15 @@ what stands behind it while it loads is what you see.</p>
   <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;atkinson&#039;</span>, <span class="hl-opt">colors</span>=<span class="hl-str">&#039;#222, #f4f1e8&#039;</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
 </section>
 
+<section class="patterns-filter" id="autocontrast">
+  <h2>autocontrast</h2>
+  <p>The picture&#039;s tones stretched over the whole range: its darkest pixels made black and its lightest white, cutoff= percent (1) of them at each end let go first, so a grey, misty or faded picture gets its depth back - the colours keep their relations.</p>
+  <div class="patterns-play">
+    <img class="pad-img" src="/pad/patterns/_thumbs/ac60483413d20712.jpg" srcset="/pad/patterns/_thumbs/ac60483413d20712.jpg 1x, /pad/patterns/_thumbs/a914550e84903be4.jpg 2x" width="360" height="240" alt="Rows of tulips running to a windmill" loading="lazy" decoding="async">
+  </div>
+  <pre class="patterns-source"><code><span class="hl-brc">{</span><span class="hl-tag">img</span> <span class="hl-str">&#039;photos/tulips.jpg&#039;</span>, <span class="hl-opt">width</span>=<span class="hl-num">360</span>, <span class="hl-opt">filter</span>=<span class="hl-str">&#039;autocontrast&#039;</span>, <span class="hl-opt">cutoff</span>=<span class="hl-num">2</span>, <span class="hl-opt">alt</span>=<span class="hl-str">&#039;Rows of tulips running to a windmill&#039;</span><span class="hl-brc">/}</span></code></pre>
+</section>
+
 <section class="patterns-filter" id="bayer">
   <h2>bayer</h2>
   <p>Ordered dithering: every pixel weighed against Bayer&#039;s threshold map of 8 by 8, the cross-hatch of an old screen; levels= and colors= as dither&#039;s.</p>
