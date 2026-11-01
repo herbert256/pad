@@ -671,7 +671,8 @@ compare as written, case and all, and a list meets the value when one of its ite
 filled is what `required` passes (`0` is filled, blanks are not, a list with an item is). The
 four judge an empty field, and require a list as `required` does. `before`/`after` read ISO
 8601 alone - the day `2026-11-01` (its first moment) or the day with a time `2026-11-01T14:30`
-(`:15` seconds too), what date and datetime-local fields post - no other spelling, zone or
+(`:15` seconds and `:15.25` a fraction of one too, as a field with a step under a second posts
+it), what date and datetime-local fields post - no other spelling, zone or
 word, alike on the server and in the browser; strictly before or after, so the same moment
 fails. A value that is no such moment fails; an other field that is empty, no moment or a
 list lets the rule pass - its own rules speak. An argument that reads as a date - four

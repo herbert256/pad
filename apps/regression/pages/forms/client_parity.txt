@@ -7999,6 +7999,83 @@
         {
             "field": "start",
             "data": {
+                "start": "2026-11-01T14:30:15.999",
+                "end": "2026-11-01T14:30:16"
+            },
+            "server": "",
+            "client": {
+                "start": {
+                    "label": "Start",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "before",
+                            "end",
+                            ":label must be a date before :n",
+                            "End"
+                        ]
+                    ],
+                    "watch": [
+                        "end"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "start",
+            "data": {
+                "start": "2026-11-01T14:30:15.5",
+                "end": "2026-11-01T14:30:15.500"
+            },
+            "server": "Start must be a date before End",
+            "client": {
+                "start": {
+                    "label": "Start",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "before",
+                            "end",
+                            ":label must be a date before :n",
+                            "End"
+                        ]
+                    ],
+                    "watch": [
+                        "end"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "start",
+            "data": {
+                "start": "2026-11-01T14:30:15.25"
+            },
+            "server": "",
+            "client": {
+                "start": {
+                    "label": "Start",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "before",
+                            "2026-11-01T14:30:15.5",
+                            ":label must be a date before :n",
+                            "2026-11-01T14:30:15.5"
+                        ]
+                    ]
+                }
+            }
+        },
+        {
+            "field": "start",
+            "data": {
                 "start": "",
                 "end": "2026-01-01"
             },
@@ -8442,6 +8519,168 @@
                 "end": "2000-01-01"
             },
             "server": "",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01T09:00",
+                "end": "2026-11-01T14:30:15.25"
+            },
+            "server": "",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01T14:30:15.5",
+                "end": "2026-11-01T14:30:15.25"
+            },
+            "server": "End must be a date after Start",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01T14:30:15",
+                "end": "2026-11-01T14:30:15.001"
+            },
+            "server": "",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01T14:30:15.1234",
+                "end": "2026-11-01T14:30:16"
+            },
+            "server": "",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01",
+                "end": "2026-11-01T14:30:15.1234"
+            },
+            "server": "End must be a date after Start",
+            "client": {
+                "end": {
+                    "label": "End",
+                    "number": false,
+                    "list": false,
+                    "single": ":label must be a single value",
+                    "rules": [
+                        [
+                            "after",
+                            "start",
+                            ":label must be a date after :n",
+                            "Start"
+                        ]
+                    ],
+                    "watch": [
+                        "start"
+                    ]
+                }
+            }
+        },
+        {
+            "field": "end",
+            "data": {
+                "start": "2026-11-01",
+                "end": "2026-11-01T14:30.5"
+            },
+            "server": "End must be a date after Start",
             "client": {
                 "end": {
                     "label": "End",

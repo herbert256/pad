@@ -205,27 +205,30 @@
   }
 
   // A moment as before: and after: read one, in ISO 8601 alone - the day 2026-11-01, or the
-  // day with a time, 2026-11-01T14:30 or 14:30:15, what <input type="date"> and
-  // <input type="datetime-local"> post - made one text that compares as the moments do:
-  // 2026-11-01T14:30:00, a day its first moment, 00:00. NULL for anything else - a day the
-  // calendar does not have, a time of 24:00, a zone, a space for the T, a day written
-  // another way, a word strtotime would read - as the browser reads it (validate.js, moment):
-  // a form judged alike everywhere, where strtotime and Date.parse read other texts each.
+  // day with a time, 2026-11-01T14:30, 14:30:15 or 14:30:15.25, what <input type="date"> and
+  // <input type="datetime-local"> post (with a step under a second a fraction of one, up to
+  // three digits, whenever the milliseconds are not zero) - made one text that compares as
+  // the moments do: 2026-11-01T14:30:00.000, a day its first moment, 00:00. NULL for
+  // anything else - a day the calendar does not have, a time of 24:00, a zone, a space for
+  // the T, a day written another way, a word strtotime would read - as the browser reads it
+  // (validate.js, moment): a form judged alike everywhere, where strtotime and Date.parse
+  // read other texts each. The fraction was no moment, and an end five hours after its
+  // start, posted by a field with step='0.001', failed after:start.
 
   function padRuleMoment ( $text ) {
 
-    if ( ! is_string ( $text ) or ! preg_match ( '/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2})(?::(\d{2}))?)?$/D', $text, $at ) )
+    if ( ! is_string ( $text ) or ! preg_match ( '/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{1,3}))?)?)?$/D', $text, $at ) )
       return NULL;
 
     if ( ! checkdate ( (int) $at [2], (int) $at [3], (int) $at [1] ) )
       return NULL;
 
-    [ $hour, $minute, $second ] = [ $at [4] ?? '00', $at [5] ?? '00', $at [6] ?? '00' ];
+    [ $hour, $minute, $second, $fraction ] = [ $at [4] ?? '00', $at [5] ?? '00', $at [6] ?? '00', $at [7] ?? '' ];
 
     if ( (int) $hour > 23 or (int) $minute > 59 or (int) $second > 59 )
       return NULL;
 
-    return "$at[1]-$at[2]-$at[3]T$hour:$minute:$second";
+    return "$at[1]-$at[2]-$at[3]T$hour:$minute:$second." . str_pad ( $fraction, 3, '0' );
 
   }
 
