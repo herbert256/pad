@@ -1120,7 +1120,8 @@ never the text ""), ISNUMBER, ISTEXT, ISNONTEXT, ISLOGICAL, ISERROR, ISERR, ISNA
 - an IS function takes the error it tests, never passes it on; ROUND (half away from zero, on 15
 digits), ROUNDUP, ROUNDDOWN, TRUNC, CEILING and FLOOR (Excel's signs - CEILING(2.5,0.1) is 2.5,
 on 15 digits too), MROUND, ABS, INT, MOD (the divisor's sign), POWER, SQRT, EXP, LN, LOG, PI, RAND
-(seeded, `seed=`); CONCAT, TEXTJOIN, LEFT, RIGHT, MID, LEN, UPPER, LOWER, PROPER, TRIM,
+and RANDBETWEEN (seeded, `seed=`), SIGN, QUOTIENT (cut toward 0); CONCAT, TEXTJOIN, LEFT,
+RIGHT, MID, LEN, UPPER, LOWER, PROPER, TRIM,
 SUBSTITUTE, FIND, SEARCH, TEXT (the common format codes), VALUE, REPT, REPLACE, EXACT (in the
 same case); VLOOKUP, HLOOKUP, XLOOKUP,
 INDEX, MATCH, CHOOSE; DATE, TODAY, NOW, YEAR, MONTH, DAY, WEEKDAY, EOMONTH, EDATE, DAYS (the

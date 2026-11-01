@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 123 functions a formula can call, each a file of
+<p class="sheets-lead">The 126 functions a formula can call, each a file of
 <code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -86,10 +86,22 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=PRODUCT(2, 3, 4)</code> <samp>24</samp></li><li><code>=PRODUCT(C2:C3)</code> <samp>0.96</samp></li></ul></td>
     </tr>
   
+    <tr id="quotient">
+      <th scope="row">QUOTIENT</th>
+      <td>QUOTIENT(numerator, denominator) is the whole part of a division, cut toward 0 - the remainder left out, as MOD gives it for numbers of one sign. The division is taken on its 15 digits, so 0.3/0.1 is 3. A denominator of 0 is #DIV/0!.</td>
+      <td><ul class="sheets-examples"><li><code>=QUOTIENT(5, 2)</code> <samp>2</samp></li><li><code>=QUOTIENT(4.5, 3.1)</code> <samp>1</samp></li><li><code>=QUOTIENT(-10, 3)</code> <samp>-3</samp></li><li><code>=QUOTIENT(B4, B3)</code> <samp>4</samp></li><li><code>=QUOTIENT(1, 0)</code> <samp>#DIV/0!</samp></li></ul></td>
+    </tr>
+  
     <tr id="rand">
       <th scope="row">RAND</th>
       <td>RAND() is a number from 0 up to 1. A spreadsheet gives another on every computation; here the number is the same for the same seed (the seed= of {spreadsheet}, 0 unless given), cell and call - a page answers the same twice, so a stored answer holds.</td>
       <td><ul class="sheets-examples"><li><code>=RAND()&lt;1</code> <samp>TRUE</samp></li><li><code>=RAND()&gt;=0</code> <samp>TRUE</samp></li></ul></td>
+    </tr>
+  
+    <tr id="randbetween">
+      <th scope="row">RANDBETWEEN</th>
+      <td>RANDBETWEEN(bottom, top) is a whole number from bottom to top, both included - bottom rounded up to a whole number and top down, a bottom then above the top #NUM!. Drawn as RAND draws: a spreadsheet gives another on every computation, here it is the same for the same seed (the seed= of {spreadsheet}), cell and call, so a page answers the same twice.</td>
+      <td><ul class="sheets-examples"><li><code>=RANDBETWEEN(1, 6)&gt;=1</code> <samp>TRUE</samp></li><li><code>=RANDBETWEEN(7, 7)</code> <samp>7</samp></li><li><code>=RANDBETWEEN(1.5, 2.5)</code> <samp>2</samp></li><li><code>=RANDBETWEEN(2, 1)</code> <samp>#NUM!</samp></li></ul></td>
     </tr>
   
     <tr id="round">
@@ -108,6 +120,12 @@ shows.</p>
       <th scope="row">ROUNDUP</th>
       <td>ROUNDUP(number, digits) rounds away from zero to a number of decimals.</td>
       <td><ul class="sheets-examples"><li><code>=ROUNDUP(3.2, 0)</code> <samp>4</samp></li><li><code>=ROUNDUP(-3.2, 0)</code> <samp>-4</samp></li><li><code>=ROUNDUP(3.14159, 3)</code> <samp>3.142</samp></li></ul></td>
+    </tr>
+  
+    <tr id="sign">
+      <th scope="row">SIGN</th>
+      <td>SIGN(number) is 1 for a number above 0, 0 for 0 and -1 for a number below 0.</td>
+      <td><ul class="sheets-examples"><li><code>=SIGN(10)</code> <samp>1</samp></li><li><code>=SIGN(4-4)</code> <samp>0</samp></li><li><code>=SIGN(-0.00001)</code> <samp>-1</samp></li><li><code>=SIGN(E2)</code> <samp>-1</samp></li></ul></td>
     </tr>
   
     <tr id="sqrt">
