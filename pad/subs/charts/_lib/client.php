@@ -47,7 +47,8 @@
     'violin'       => [ 'distribution', 'density' ],    'waffle'       => [ 'waffle' ],
     'waterfall'    => [ 'waterfall' ],
     'ecdf'         => [ 'distribution', 'ecdf' ],
-    'ridgeline'    => [ 'distribution', 'ridgeline' ] ];
+    'ridgeline'    => [ 'distribution', 'ridgeline' ],
+    'likert'       => [ 'likert' ] ];
 
   function padChartClient ( $kind, $source = '', $handled = NULL, $palette = '' ) {
 

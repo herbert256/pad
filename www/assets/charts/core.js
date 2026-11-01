@@ -1029,6 +1029,7 @@
     hbar:         function () { return C.padChartPlain('hbar', C.padChartGather(), ...C.padChartSize(600, 300)); },
     heatmap:      function () { return C.padChartHeatmap(C.padChartGather(), ...C.padChartSize(600, 300)); },
     histogram:    function () { return C.padChartHistogram(C.padChartGather(), ...C.padChartSize(600, 300)); },
+    likert:       function () { return C.padChartLikert(C.padChartGather(), ...C.padChartSize(600, 300)); },
     line:         function () { return C.padChartPlain('line', C.padChartGather(), ...C.padChartSize(600, 300)); },
     marimekko:    function () { return C.padChartMarimekko(C.padChartGather(), ...C.padChartSize(600, 300)); },
     multiples:    function () { return C.padChartMultiples(C.padChartGather(), ...C.padChartSize(600, 400)); },
