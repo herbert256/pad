@@ -875,6 +875,7 @@ checker:
   {durationpicker 'length', label='Length', parts='hm'/} # posts seconds: 5400 for 1 h 30 min
   {rangeslider 'price', label='Price', max=500, unit=' EUR'/}   # posts price_from and price_to
   {daterange 'stay', label='Stay', nights/}               # posts stay_from and stay_to, one month to pick both
+  {treepicker 'topic', options='Forms > Fields, Pages'/}   # one item of a tree; data= rows, or indented lines
   {signature 'signed', label='Signature'/}                 # posts a PNG data URL
   {dropzone 'cv', label='Your CV', accept='.pdf', limit='2M'/}   # padUpload takes it
 {/form}
@@ -885,7 +886,8 @@ durationpicker (a box per part - days, hours, minutes, seconds - over a number o
 mdeditor (Markdown with a live preview), multiselect (chips and a filtered list over a select of
 many), newpassword (strength meter, show/hide; `known` for a
 login), otp (a box per character), rangeslider (two thumbs on one track), segmented (a radio
-group drawn as one bar, without script), signature, slider, stars, stepper, taginput, timepicker and
+group drawn as one bar, without script), signature, slider, stars, stepper, taginput, timepicker,
+treepicker (one item of a hierarchy, nested radios made a tree view) and
 toggle (a switch posting `on=`/`off=`) - their script and style in `www/assets/inputs/`. Each
 is a field of its `{form}` as `{input}` is: named by its first parameter, labelled by `label=`,
 refilled from a post of its own form, the message of `padValidate` or of its `rules=` (read
@@ -919,6 +921,16 @@ since the rules of the template are read for one field: the page's PHP checks th
 `padValidate ( [ 'price_from' => 'integer', 'price_to' => 'integer' ] )` - for a stay
 `'stay_to' => 'required|date|after:stay_from'`. Without the script the two can be posted crossed;
 with it the last day's field takes no day before the first (its `min` follows it).
+
+A treepicker posts the value of one item of a hierarchy. Its items are the paths of `options=`
+(`'Europe > France > Paris, Asia > Japan'`, a step the paths share one item), the rows of
+`data=` - flat, each naming its `parent=` field (empty for a root), or nested, the children in
+`children=`; the value `key=` (`id`), the text `field=` (name, label or title) - or a line each
+between its tags, a child indented under its parent; a text is its own value. `leaves` lets only
+an item without children be chosen. A value names one item: a second one, a row under a parent
+that is none and a cycle of parents are errors under the strict check, left out by the lenient
+walk. Without the script the items are nested radio buttons; with it a button showing the path
+of the choice opens the WAI-ARIA tree view.
 
 ### Layouts (extends / block / parent)
 ```

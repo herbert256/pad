@@ -1,0 +1,33 @@
+fieldset.pad-input-treepicker{border:0;padding:0;min-width:0}
+.pad-input-treepicker legend{padding:0;margin:0 0 .3em;font-weight:600}
+.pad-input-treepicker .pi-tree-list,.pad-input-treepicker .pi-tree-list ul{list-style:none;margin:0;padding:0}
+.pad-input-treepicker .pi-tree-list ul{padding-left:1.4em;border-left:1px solid var(--pad-input-line);margin-left:.45em}
+.pad-input-treepicker .pi-tree-list li{margin:.15em 0}
+.pad-input-treepicker .pi-tree-list label{margin-left:.35em;cursor:pointer}
+.pad-input-treepicker .pi-tree-text{font-weight:600}
+.pad-input-treepicker .pi-tree-list input{accent-color:var(--pad-input-accent)}
+.pad-input-treepicker .pi-tree-open{display:inline-flex;align-items:center;gap:.5em;min-width:14em;max-width:100%;text-align:left;justify-content:space-between}
+.pad-input-treepicker .pi-tree-open::after{content:"";width:.45em;height:.45em;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-.15em);flex:none}
+.pad-input-treepicker .pi-tree-open.is-empty .pi-tree-path{color:var(--pad-input-muted)}
+.pad-input-treepicker .pi-tree-open[aria-invalid=true]{border-color:var(--pad-input-bad)}
+.pad-input-treepicker .pi-tree-said{display:block;margin-top:.3em}
+.pad-input-treepicker .pi-tree-popup{left:0;top:100%;min-width:100%;max-height:22em;overflow:auto}
+.pad-input-treepicker .pi-tree,.pad-input-treepicker .pi-tree-group{list-style:none;margin:0;padding:0}
+.pad-input-treepicker .pi-tree-item,.pad-input-treepicker .pi-tree-item[tabindex]:focus-visible{outline:none}
+.pad-input-treepicker .pi-tree-item[aria-expanded=false]>.pi-tree-group{display:none}
+.pad-input-treepicker .pi-tree-row{display:flex;align-items:center;gap:.25em;padding:.25em .5em .25em calc(.4em + (var(--pi-level, 1) - 1) * 1.2em);border-radius:5px;cursor:pointer;white-space:nowrap}
+.pad-input-treepicker .pi-tree-item[aria-level="2"]>.pi-tree-row{--pi-level:2}
+.pad-input-treepicker .pi-tree-item[aria-level="3"]>.pi-tree-row{--pi-level:3}
+.pad-input-treepicker .pi-tree-item[aria-level="4"]>.pi-tree-row{--pi-level:4}
+.pad-input-treepicker .pi-tree-item[aria-level="5"]>.pi-tree-row{--pi-level:5}
+.pad-input-treepicker .pi-tree-item[aria-level="6"]>.pi-tree-row{--pi-level:6}
+.pad-input-treepicker .pi-tree-item:not([aria-level="1"]):not([aria-level="2"]):not([aria-level="3"]):not([aria-level="4"]):not([aria-level="5"]):not([aria-level="6"])>.pi-tree-row{--pi-level:7}
+.pad-input-treepicker .pi-tree-row:hover{background:var(--pad-input-shade)}
+.pad-input-treepicker .pi-tree-twisty{width:1.1em;height:1.1em;flex:none;display:inline-flex;align-items:center;justify-content:center}
+.pad-input-treepicker .pi-tree-item[aria-expanded]>.pi-tree-row>.pi-tree-twisty::before{content:"";width:.4em;height:.4em;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg)}
+.pad-input-treepicker .pi-tree-item[aria-expanded=true]>.pi-tree-row>.pi-tree-twisty::before{transform:rotate(45deg)}
+.pad-input-treepicker .pi-tree-item.is-group>.pi-tree-row{font-weight:600;cursor:default}
+.pad-input-treepicker .pi-tree-item[aria-selected=true]>.pi-tree-row{background:var(--pad-input-accent);color:var(--pad-input-on)}
+.pad-input-treepicker .pi-tree-item:focus-visible>.pi-tree-row{outline:2px solid var(--pad-input-accent);outline-offset:-2px}
+.pad-input-treepicker .pi-tree-item[aria-selected=true]:focus-visible>.pi-tree-row{box-shadow:inset 0 0 0 4px var(--pad-input-field)}
+@media (forced-colors:active){.pad-input-treepicker .pi-tree-item[aria-selected=true]>.pi-tree-row{background:Highlight;color:HighlightText;forced-color-adjust:none}}
