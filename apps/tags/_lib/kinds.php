@@ -328,6 +328,7 @@
       'organization' => $pre ( "{jsonld:organization name='PAD', url='https://pad.example', logo='logo.png', profiles='https://github.com/pad', phone='+31 30 123 4567', contact='customer service' | html/}" ),
       'person'       => $pre ( "{jsonld:person name='Ann Smith', job='Engineer', profiles='https://github.com/ann, https://social.example/@ann' | html/}" ),
       'product'      => $pre ( "{jsonld:product name='Aurora kettle', sku='AK-1', brand='Aurora', price='39.95', currency='EUR', availability='InStock' | html/}" ),
+      'recipe'       => "{data 'soup'}\n{ \"name\": \"Pea soup\", \"image\": \"soup.jpg\", \"prep\": \"20 min\", \"cook\": \"1 h 30 min\", \"yield\": \"4\",\n  \"ingredients\": [ \"500 g split peas\", \"1 leek, sliced\", \"2 l water\" ],\n  \"steps\": [ \"Soak the peas overnight.\", \"Simmer it all for an hour and a half.\" ] }\n{/data}\n" . $pre ( "{jsonld:recipe data='soup' | html/}" ),
       'website'      => $pre ( "{jsonld:website name='PAD', search='?search&q=' | html/}" ) ];
 
   }

@@ -455,6 +455,14 @@
 
   function padJsonLdValue ( $value, $how, $name, $what, $report ) {
 
+    // The ways the later kinds take - a recipe's durations, its ingredients - and a how
+    // written as a list, the how and what it needs beside it, are those of values.php.
+
+    if ( is_array ( $how ) or in_array ( $how, [ 'number', 'count', 'duration', 'energy', 'texts', 'steps' ], TRUE ) ) {
+      include_once PAD . 'subs/jsonld/_lib/values.php';
+      return padJsonLdMore ( $value, (array) $how, $name, $what, $report );
+    }
+
     if ( $how == 'urls' ) {
       $list = is_array ( $value ) ? $value : preg_split ( '/\s*,\s+|\s*,(?=[a-z][a-z0-9+.-]*:|[\/?#])/i', (string) padJsonLdScalar ( $value ) );
       $list = array_values ( array_filter ( array_map ( fn ( $one ) => is_scalar ( $one ) ? padJsonLdUrl ( (string) $one ) : '', $list ), 'strlen' ) );

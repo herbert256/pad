@@ -147,13 +147,14 @@ template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip
 {jsonld:breadcrumb/}                                      # the trail {breadcrumb/} shows for the page
 {jsonld:product data='product', availability='InStock'/}  # an Offer of price, currency, availability
 {jsonld:website name='Shop', search='?search&q='/}        # a SearchAction ending in {search_term_string}
+{jsonld:recipe data='recipe'/}                            # times, ingredients and steps of a dish
 ```
 ```php
 $url  = padUrl ( '', [], TRUE );                          // the page's own address, for url=
 $data = padJsonLd ( 'event', $concert );                  // the same object as a plain array
 ```
 One `<script type="application/ld+json">` holding a Schema.org object - what search engines read
-for a rich result - from ordinary PAD data, explicitly mapped. Eight kinds, each a file of
+for a rich result - from ordinary PAD data, explicitly mapped. Nine kinds, each a file of
 `pad/subs/jsonld/types/` whose header lists its fields, a PAD name and the Schema.org property it
 fills: `article` (headline required, description, image, url, author, published, modified,
 publisher, logo), `breadcrumb` (rows of name and url - the rows `{breadcrumb data=}` takes,
@@ -168,6 +169,13 @@ profiles), `product` (name required, description, image, url, sku, brand, price,
 availability) and `website` (name, url - the application's own address when left out -
 description, search). A row's field or an option of the Schema.org name, `datePublished`,
 counts as its PAD name. `id=` is the `@id`.
+
+The kinds after those take the required and recommended properties of Google's rich result of
+the same name. `recipe`: name and image required (one address or more - Google asks for a 16x9,
+a 4x3 and a 1x1), description, author, published, prep, cook and total as durations, yield,
+category, cuisine, keywords, calories as its NutritionInformation - which needs the yield, the
+energy being that of a serving - ingredients and steps, each a step a HowToStep of its text or of
+the text, name, url and image of a row, and rating with ratings as an AggregateRating.
 
 The fields come from the row or rows `data=` names - a `{data}` store, the page's array, a
 field holding a list or a `_data` file (a store holds rows, so a single row in a `{data}` block
@@ -191,6 +199,15 @@ currency three letters of ISO 4217, an availability one of Schema.org's (`InStoc
 or its address). `search=` is the search address up to the term, written as the urlTemplate
 with `{search_term_string}` after it - braces that stay text, as every value's do; an address
 from PHP that holds `{search_term_string}` keeps it where it stands.
+
+The later kinds' values (`pad/subs/jsonld/_lib/values.php`): a duration passes as ISO 8601
+(`PT1H30M`, in any case) or is written so from words - `90 min`, `1 h 30 min`, `1.5 hours`,
+`2 days`, each number with its unit, `m` minutes - and a number alone, without its unit, is none.
+A list is a list in the row, or a text with a line between its values - an ingredient may hold
+a comma; an option holds no list. A rating is a number with a dot, a count a whole number, both
+written as JSON numbers. An energy that is a number alone is that many calories. A value that
+is none of these, a row where a list holds texts and a step without its text are errors under
+the strict check, naming the field and the kind, and left out without it.
 
 The JSON is encoded for its element: `JSON_HEX_TAG` writes `<` and `>` as `\u003C` and
 `\u003E`, so a `</script>` or `<!--` in a value cannot end the element, slashes and Unicode stay

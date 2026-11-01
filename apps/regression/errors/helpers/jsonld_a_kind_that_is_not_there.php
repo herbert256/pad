@@ -1,5 +1,5 @@
 <?php
 
-  padJsonLd ( 'recipe', [ 'name' => 'Soup' ] );
+  padJsonLd ( 'soup', [ 'name' => 'Soup' ] );
 
 ?>

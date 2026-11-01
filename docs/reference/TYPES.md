@@ -793,7 +793,7 @@ the fields the kind maps, as the `{jsonld}` tag builds the kind its first parame
 how each of its fields maps onto it (`padJsonLdKinds()` in `PAD/lib/jsonld.php`): the files there
 are the kinds, and a kind is added by adding its file. Never bare: `{article/}` is no JSON-LD
 block - article, event, person and product are the names of fields and pages.
-`{jsonld:recipe/}` is "there is no JSON-LD kind named 'recipe'" under the strict check.
+`{jsonld:soup/}` is "there is no JSON-LD kind named 'soup'" under the strict check.
 
 ---
 
