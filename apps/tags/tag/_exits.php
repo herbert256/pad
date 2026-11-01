@@ -8,9 +8,15 @@
   if ( $tagsFrame !== $padPage )
     return;
 
-  $tagName       = basename ( $padPage );
-  $tagInfo       = tagsCatalog () [$tagName];
-  $title         = '{' . $tagName . '}';
+  // A built-in tag's page is tag/<name>; a kind's is the route tag/[tagType]/[tagKind] -
+  // ?tag/chart/pie - that binds the two names.
+
+  $tagKey        = str_contains ( $padPage, '[' ) ? "$tagType:$tagKind" : 'pad:' . basename ( $padPage );
+  $tagInfo       = tagsCatalog () [$tagKey];
+  $tagName       = $tagInfo ['name'];
+  $tagAbout      = $tagInfo ['about'];
+  $tagForm       = $tagInfo ['form'];
+  $title         = '{' . $tagKey . '}';
   $tagGroupKey   = $tagInfo ['group'];
   $tagGroupLabel = tagsGroups () [$tagGroupKey] [0];
   $tagFormLabel  = tagsForms  () [ $tagInfo ['form'] ] [0];
@@ -30,27 +36,68 @@
 
   foreach ( $tagInfo ['see'] as $see )
     if ( isset ( tagsCatalog () [$see] ) )
-      $tagSeeRows [] = [ 'see' => $see, 'about' => tagsCatalog () [$see] ['about'] ];
+      $tagSeeRows [] = [ 'see' => $see, 'link' => tagsCatalog () [$see] ['link'], 'about' => tagsCatalog () [$see] ['about'] ];
+
+  // The examples: a built-in tag's files of examples/<name>/, each run as a page of this
+  // application; a kind's one example, a template run here or a page of the application
+  // that has it (tagsKindExample).
 
   $tagExampleRows = [];
 
-  foreach ( tagsExamples ( $tagName ) as $i => $example ) {
+  if ( $tagInfo ['type'] == 'pad' )
 
-    $file = $example ['run'] ? $example ['page'] . '.pad' : $example ['page'];
-    $php  = $example ['run'] && file_exists ( APP . $example ['page'] . '.php' ) ? $example ['page'] . '.php' : '';
+    foreach ( tagsExamples ( $tagName ) as $i => $example ) {
+
+      $file = $example ['run'] ? $example ['page'] . '.pad' : $example ['page'];
+      $php  = $example ['run'] && file_exists ( APP . $example ['page'] . '.php' ) ? $example ['page'] . '.php' : '';
+
+      $tagExampleRows [] = $example + [
+        'number'  => $i + 1,
+        'file'    => $file,
+        'padHtml' => tagsSource ( $file, 'pad' ),
+        'php'     => $php,
+        'phpHtml' => $php ? tagsSource ( $php, 'php' ) : '',
+        'source'  => '',
+        'app'     => '',
+        'open'    => '?' . $example ['page'] ];
+
+    }
+
+  else {
+
+    $example = tagsKindExample ( $tagInfo ['type'], $tagName );
+    $root    = $example ['app'] !== '' ? APPS . "{$example ['app']}/" : APP;
+    $php     = ( $example ['page'] !== '' and is_file ( $root . $example ['page'] . '.php' ) ) ? $example ['page'] . '.php' : '';
+
+    if ( $example ['page'] !== '' ) {
+      $padHtml = padHighlightTokens ( trim ( preg_replace ( '/\A\{meta [^\n]*\}\R?/', '', padFileGet ( $root . $example ['page'] . '.pad' ) ) ), 'pad' );
+      $file    = ( $example ['app'] !== '' ? "{$example ['app']}/" : '' ) . $example ['page'] . '.pad';
+      $open    = $example ['app'] !== '' ? $padRoot . "{$example ['app']}/?{$example ['page']}" : "?{$example ['page']}";
+    } else {
+      $padHtml = padHighlightTokens ( $example ['source'], 'pad' );
+      $file    = $open = '';
+    }
 
     $tagExampleRows [] = $example + [
-      'number'  => $i + 1,
+      'number'  => 1,
       'file'    => $file,
-      'padHtml' => tagsSource ( $file, 'pad' ),
+      'padHtml' => $padHtml,
       'php'     => $php,
-      'phpHtml' => $php ? tagsSource ( $php, 'php' ) : '' ];
+      'phpHtml' => $php ? padHighlightTokens ( trim ( padFileGet ( $root . $php ) ), 'php' ) : '',
+      'open'    => $open ];
 
   }
 
+  // A kind's page says how it is written and where it comes from; its file's comment, when
+  // it has one, is the rest of what it says.
+
+  $tagKindHtml = ( $tagInfo ['type'] == 'pad' ) ? '' : tagsKindHtml ( $tagInfo );
+
   $tagNames = array_keys ( tagsCatalog () );
-  $tagHere  = array_search ( $tagName, $tagNames );
+  $tagHere  = array_search ( $tagKey, $tagNames );
   $tagPrev  = $tagNames [ ( $tagHere + count ( $tagNames ) - 1 ) % count ( $tagNames ) ];
   $tagNext  = $tagNames [ ( $tagHere + 1 ) % count ( $tagNames ) ];
+  $tagPrevLink = tagsCatalog () [$tagPrev] ['link'];
+  $tagNextLink = tagsCatalog () [$tagNext] ['link'];
 
 ?>

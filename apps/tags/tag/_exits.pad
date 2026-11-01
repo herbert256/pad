@@ -16,8 +16,8 @@
         </div>
         {if $run}
         <div class="cell">
-          <div class="cell-head"><span>Result</span><a class="cell-file" href="?{$page}">open alone</a></div>
-          <div class="result">{page $page/}</div>
+          <div class="cell-head"><span>Result</span>{if $open}<a class="cell-file" href="{$open}">open alone</a>{/if}</div>
+          <div class="result">{if $page}{page $page, app=$app/}{else}{echo $source | code/}{/if}</div>
         </div>
         {/if}
       </div>
@@ -27,14 +27,14 @@
 
   {tagSeeRows}
   {first@tagSeeRows}<section class="block" aria-labelledby="see"><h2 id="see">See also</h2><ul class="list">{/first@tagSeeRows}
-    <li><a class="name" href="?tag/{$see}">&#123;{$see}&#125;</a> <span class="about">{$about}</span></li>
+    <li><a class="name" href="?{$link}">&#123;{$see}&#125;</a> <span class="about">{$about}</span></li>
   {last@tagSeeRows}</ul></section>{/last@tagSeeRows}
   {/tagSeeRows}
 
   <nav class="prevnext" aria-label="Other tags">
-    <a href="?tag/{$tagPrev}">&larr; &#123;{$tagPrev}&#125;</a>
+    <a href="?{$tagPrevLink}">&larr; &#123;{$tagPrev}&#125;</a>
     <a href="?names">All tags A-Z</a>
-    <a href="?tag/{$tagNext}">&#123;{$tagNext}&#125; &rarr;</a>
+    <a href="?{$tagNextLink}">&#123;{$tagNext}&#125; &rarr;</a>
   </nav>
 
 </article>

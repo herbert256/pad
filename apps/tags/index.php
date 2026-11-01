@@ -9,7 +9,7 @@
     [ 'page' => 'cheatsheet', 'label' => 'Cheat sheet', 'text' => 'The syntax of every tag on one page.' ] ];
 
   $exampleCount = 0;
-  foreach ( tagsCatalog () as $name => $tag )
-    $exampleCount += tagsExampleCount ( $name );
+  foreach ( tagsCatalog () as $tag )
+    $exampleCount += tagsExampleTotal ( $tag );
 
 ?>

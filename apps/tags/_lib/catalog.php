@@ -1,8 +1,10 @@
 <?php
 
-  // The tags application: a page per built-in tag, and the indexes over them. Nothing
-  // lists the tags - the catalog is read from the files, so a tag joins every index by
-  // adding its files:
+  // The tags application: a page per tag, and the indexes over them - every built-in tag,
+  // listed with its type prefix, {pad:if}, and every kind of the subsystems and every
+  // sequence type, {chart:pie}, {sequence:fibonacci}, read from the engine (_lib/kinds.php).
+  // Nothing lists the built-in tags - the catalog is read from the files, so a tag joins
+  // every index by adding its files:
   //
   //   tag/<name>.php           what the indexes read: $tagAbout (the one line), $tagGroup
   //                            (a key of tagsGroups), $tagForm ('single', 'pair' or 'both'),
@@ -41,7 +43,8 @@
       'layout'     => [ 'Layouts and components','Extending, blocks, slots, stacks and fragments' ],
       'debug'      => [ 'Debugging and errors',  'Looking inside, and stopping on purpose'        ],
       'sequences'  => [ 'Sequences',             'Number sequences and what is done to them'      ],
-    ];
+    ] + array_combine ( array_map ( fn ( $type ) => "kind-$type", array_keys ( tagsKindTypes () ) ),
+                        array_map ( fn ( $one ) => [ $one [0], $one [1] ], tagsKindTypes () ) );
 
   }
 
@@ -55,7 +58,9 @@
 
   }
 
-  // Every tag, by name: [ name, about, group, form, syntax, parms, options, see ].
+  // Every tag, by its name with its type prefix - pad:if, chart:pie: [ name, type, key, link,
+  // about, group, form, syntax, parms, options, see ], the built-in tags first, then the kinds
+  // of the subsystems and the sequence types.
 
   function tagsCatalog () {
 
@@ -69,9 +74,9 @@
 
     foreach ( $files as $file )
       if ( basename ( $file ) [0] != '_' )
-        $catalog [ basename ( $file, '.php' ) ] = tagsRead ( $file );
+        $catalog [ 'pad:' . basename ( $file, '.php' ) ] = tagsRead ( $file );
 
-    return $catalog;
+    return $catalog += tagsKinds ();
 
   }
 
@@ -82,14 +87,19 @@
 
     include $file;
 
-    return [ 'name'    => basename ( $file, '.php' ),
+    $name = basename ( $file, '.php' );
+
+    return [ 'name'    => $name,
+             'type'    => 'pad',
+             'key'     => "pad:$name",
+             'link'    => "tag/$name",
              'about'   => $tagAbout,
              'group'   => isset ( tagsGroups () [$tagGroup] ) ? $tagGroup : 'debug',
              'form'    => isset ( tagsForms  () [$tagForm]  ) ? $tagForm  : 'single',
              'syntax'  => trim ( $tagSyntax ),
              'parms'   => $tagParms,
              'options' => $tagOptions,
-             'see'     => $tagSee ];
+             'see'     => array_map ( fn ( $see ) => str_contains ( $see, ':' ) ? $see : "pad:$see", $tagSee ) ];
 
   }
 
@@ -158,6 +168,14 @@
 
   }
 
+  // The examples of an entry of the catalog: a built-in tag's files, the one of a kind.
+
+  function tagsExampleTotal ( $tag ) {
+
+    return ( $tag ['type'] == 'pad' ) ? tagsExampleCount ( $tag ['name'] ) : 1;
+
+  }
+
   // A source file of the application as highlighted HTML, its {meta} line left out: that
   // line belongs to the catalog, not to the example.
 
@@ -172,14 +190,20 @@
 
   }
 
-  // The rows of the A-Z index: a row per letter, its tags inside.
+  // The rows of the A-Z index: a row per letter of the names after their prefix, its tags
+  // inside by name - {pad:if} beside {sequence:icosahedral}.
 
   function tagsLetters () {
 
     $letters = [];
+    $tags    = tagsCatalog ();
 
-    foreach ( tagsCatalog () as $name => $tag )
-      $letters [ strtoupper ( $name [0] ) ] [] = tagsRow ( $tag );
+    uasort ( $tags, fn ( $a, $b ) => strcasecmp ( $a ['name'], $b ['name'] ) ?: strcmp ( $a ['key'], $b ['key'] ) );
+
+    foreach ( $tags as $tag )
+      $letters [ strtoupper ( $tag ['name'] [0] ) ] [] = tagsRow ( $tag );
+
+    ksort ( $letters );
 
     $rows = [];
 
@@ -242,9 +266,9 @@
 
     $options = [];
 
-    foreach ( tagsCatalog () as $name => $tag )
+    foreach ( tagsCatalog () as $key => $tag )
       foreach ( $tag ['options'] as $option => $meaning )
-        $options [ (string) $option ] [] = [ 'name' => $name, 'meaning' => $meaning ];
+        $options [ (string) $option ] [] = [ 'name' => $tag ['name'], 'key' => $key, 'link' => $tag ['link'], 'meaning' => $meaning ];
 
     ksort ( $options, SORT_NATURAL | SORT_FLAG_CASE );
 
@@ -268,7 +292,7 @@
       $tags = [];
 
       foreach ( $group ['tags'] as $tag )
-        $tags [] = $tag + [ 'syntaxHtml' => padHighlightTokens ( tagsCatalog () [ $tag ['name'] ] ['syntax'], 'pad' ) ];
+        $tags [] = $tag + [ 'syntaxHtml' => padHighlightTokens ( tagsCatalog () [ $tag ['key'] ] ['syntax'], 'pad' ) ];
 
       $rows [] = [ 'key' => $group ['key'], 'label' => $group ['label'], 'tags' => $tags ];
 
@@ -283,11 +307,13 @@
   function tagsRow ( $tag ) {
 
     return [ 'name'       => $tag ['name'],
+             'key'        => $tag ['key'],
+             'link'       => $tag ['link'],
              'about'      => $tag ['about'],
              'group'      => $tag ['group'],
              'groupLabel' => tagsGroups () [ $tag ['group'] ] [0],
              'form'       => $tag ['form'],
-             'examples'   => tagsExampleCount ( $tag ['name'] ) ];
+             'examples'   => tagsExampleTotal ( $tag ) ];
 
   }
 
