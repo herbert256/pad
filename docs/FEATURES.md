@@ -1286,7 +1286,9 @@ moved in below), nl-provinces (the twelve provinces of the Netherlands, the IJss
 in a Lambert azimuthal equal-area projection centred on the country, Belgium and Germany
 around - `NL-NH`, `NH`, North Holland or Noord-Holland), de-states (the sixteen states of
 Germany, the same projection centred on Germany, its neighbours around - `DE-BY`, `by` as the
-holidays subsystem writes the region, Bavaria or Bayern). A region is keyed by its ISO 3166-2 code with or without the country -
+holidays subsystem writes the region, Bavaria or Bayern) and au-states (the six states and two
+mainland territories of Australia in the Australian Albers projection, the Jervis Bay
+Territory and the islands to the north around - `AU-NSW`, `NSW`, `Vic` or Victoria). A region is keyed by its ISO 3166-2 code with or without the country -
 `US-CA` or `CA` - or its name, in English or the country's own language; a country is no
 region there, and a region the view has no outline for (Guam, Bonaire) is named as one it
 does not show. The default title reads `<Value> by
@@ -1900,7 +1902,7 @@ The `notations` application shows every kind with its examples.
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
 {map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # flowchart (or type='sequence') laid out as SVG on the server
-{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states, nl-provinces, de-states ...
+{map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name; a view per file of pad/subs/maps/types/ - world, continents, benelux, eu, middle-east ..., the states of a country: us-states, nl-provinces, de-states, au-states
 {timeline data='releases', date='when', label='what'/}   # cards on a time axis; from=/to= spans, vertical for long lists
 {datatable data='orders', columns='number, customer, total', totals='total', sortable, rows=10/}   # a whole table: totals row, server-side sort and page links
 {toc levels='2,3', title='Contents'/}         # the page's own h2/h3, nested and linked - filled in after the page rendered
