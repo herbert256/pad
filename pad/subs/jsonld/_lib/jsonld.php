@@ -134,7 +134,9 @@
     foreach ( $spec ['fields'] as $name => $field )
       foreach ( $field ['names'] as $one ) {
         $value = padTagParm ( $one, NULL );
-        if ( ! padJsonLdEmpty ( $value ) and ! isset ( $given [$name] ) )
+        if ( padJsonLdFlagged ( $value, $field ) and ! isset ( $given [$name] ) )
+          $given [$name] = TRUE;
+        elseif ( ! padJsonLdEmpty ( $value ) and ! isset ( $given [$name] ) )
           $given [$name] = padJsonLdOption ( $one, $value );
       }
 
@@ -187,6 +189,16 @@
       return array_map ( fn ( $one ) => padJsonLdText ( $one, $option, FALSE ), $value );
 
     return $value;
+
+  }
+
+  // A TRUE is the value of a field that is a flag - remote writes the job's jobLocationType - so a
+  // bare option, {jsonld:job remote/}, or a TRUE of a row sets it, where a boolean is no value of
+  // any other field (padJsonLdEmpty).
+
+  function padJsonLdFlagged ( $value, $field ) {
+
+    return $value === TRUE and is_array ( $field ['how'] ) and ( $field ['how'] [0] ?? '' ) === 'flag';
 
   }
 
@@ -335,7 +347,10 @@
 
     foreach ( $fields as $name => $field )
       foreach ( $field ['names'] as $one )
-        if ( array_key_exists ( $one, $row ) and ! padJsonLdEmpty ( $row [$one] ) ) {
+        if ( array_key_exists ( $one, $row ) and padJsonLdFlagged ( $row [$one], $field ) ) {
+          $found [$name] = TRUE;
+          break;
+        } elseif ( array_key_exists ( $one, $row ) and ! padJsonLdEmpty ( $row [$one] ) ) {
           $found [$name] = padJsonLdText ( $row [$one] );
           break;
         }
@@ -422,7 +437,7 @@
     foreach ( $fields as $name => $field ) {
 
       $value = $values [$name] ?? $field ['default'];
-      $value = padJsonLdEmpty ( $value ) ? NULL : padJsonLdValue ( $value, $field ['how'], $name, $what, $report );
+      $value = ( padJsonLdEmpty ( $value ) and ! padJsonLdFlagged ( $value, $field ) ) ? NULL : padJsonLdValue ( $value, $field ['how'], $name, $what, $report );
 
       if ( $value === NULL ) {
         if ( $field ['required'] ) {
