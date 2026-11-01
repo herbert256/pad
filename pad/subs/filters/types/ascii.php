@@ -17,7 +17,7 @@
 
     'form'    => 'markup',
     'ext'     => 'txt',
-    'options' => [ 'columns' => [ 'number', 64, 8, 240 ], 'chars' => [ 'text', ' .:-=+*#%@', 64 ] ],
+    'options' => [ 'columns' => [ 'number', 64, 8, 240, 'whole' ], 'chars' => [ 'text', ' .:-=+*#%@', 64 ] ],
 
     'make'    => function ( $image, $o ) {
 

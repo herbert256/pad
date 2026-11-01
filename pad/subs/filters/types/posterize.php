@@ -10,7 +10,7 @@
     'form'     => 'image',
     'loops'    => TRUE,
     'lossless' => TRUE,
-    'options'  => [ 'levels' => [ 'number', 4, 2, 32 ] ],
+    'options'  => [ 'levels' => [ 'number', 4, 2, 32, 'whole' ] ],
 
     'apply'    => function ( $image, $o, $scale ) {
 

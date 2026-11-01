@@ -11,7 +11,7 @@
     'loops'    => TRUE,
     'pixels'   => TRUE,
     'lossless' => TRUE,
-    'options'  => [ 'levels' => [ 'number', 2, 2, 16 ], 'colors' => [ 'colors', [ '#000000', '#ffffff' ] ] ],
+    'options'  => [ 'levels' => [ 'number', 2, 2, 16, 'whole' ], 'colors' => [ 'colors', [ '#000000', '#ffffff' ] ] ],
 
     'apply'    => function ( $image, $o, $scale ) {
 

@@ -11,7 +11,7 @@
     'form'     => 'image',
     'pixels'   => TRUE,
     'lossless' => TRUE,
-    'options'  => [ 'cell' => [ 'number', 8, 2, 100 ] ],
+    'options'  => [ 'cell' => [ 'number', 8, 2, 100, 'whole' ] ],
 
     'apply'    => function ( $image, $o, $scale ) {
 

@@ -186,9 +186,9 @@
 
   }
 
-  // An option by its rule: [ 'number', default, least, most ], [ 'colors', default list ],
-  // [ 'text', default, longest ] or [ 'pair', default pair, least, most ] - two whole numbers,
-  // '4,3'. NULL, not given: the default.
+  // An option by its rule: [ 'number', default, least, most ] - [ ..., 'whole' ] for a whole
+  // number - [ 'colors', default list ], [ 'text', default, longest ] or [ 'pair', default
+  // pair, least, most ] - two whole numbers, '4,3'. NULL, not given: the default.
 
   function padFilterOption ( $filter, $option, $rule, $value ) {
 
@@ -209,12 +209,16 @@
 
     switch ( $kind ) {
 
+      // A count - levels, columns, the cell of pixelate - is a whole number: a fraction was
+      // cut to the whole one below it by the filter, and ascii's text sized for the fraction.
+
       case 'number':
+        $whole = ( ( $rule [4] ?? '' ) == 'whole' );
         if ( is_string ( $value ) )
           $value = preg_replace ( '/\s*px\s*$/i', '', trim ( $value ) );
-        if ( ! is_numeric ( $value ) or $value < $rule [2] or $value > $rule [3] )
-          return $fail ( "a number from {$rule [2]} to {$rule [3]}" );
-        return $value + 0;
+        if ( ! is_numeric ( $value ) or $value < $rule [2] or $value > $rule [3] or ( $whole and floor ( $value + 0 ) != $value + 0 ) )
+          return $fail ( ( $whole ? 'a whole number' : 'a number' ) . " from {$rule [2]} to {$rule [3]}" );
+        return $whole ? (int) $value : $value + 0;
 
       case 'colors':
         $list = is_array ( $value ) ? $value : explode ( ',', (string) $value );

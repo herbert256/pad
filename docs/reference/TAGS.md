@@ -3105,7 +3105,8 @@ dominant counts a pixel by its opacity, and lqip and blurhash lay the picture on
 that reads every pixel in PHP - sepia, duotone, posterize, vignette, the dithers and dominant -
 works on 2 megapixels at most: a larger 1x picture leaves it out, and its 2x picture is made
 only to the density those reach (`1.52x`); halftone draws 50,000 dots at most. An unknown
-filter, an option out of its bounds, a filter after halftone or ascii, a placeholder beside them,
+filter, an option out of its bounds - or a fraction for `levels`, `columns` and pixelate's
+`cell`, which are counts - a filter after halftone or ascii, a placeholder beside them,
 two pictures behind one `<img>`, an option no filter of the list reads and a filter past its
 budget are errors under the strict check.
 
