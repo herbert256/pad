@@ -10,12 +10,12 @@
   // a page's array or a _data file - or the rows themselves, a db() result. The rows found
   // come back the best first, each with its own fields and score and excerpt added (the
   // excerpt HTML, the matches in <mark>). The options: fields (every field with text in a
-  // row, title^2, body for a collection), lang (en, nl, de, fr, es, it, pt - the locale's
-  // language, else en), words (the excerpt's length, 30), excerpt (the field it is cut from,
-  // the last of fields), first (the best rows only - an excerpt is made for those alone)
-  // and name - what the index of rows is kept under in DATA/cache/search/<app>/, 'rows'
-  // unless given: rows of one name share one index, made again whenever the fields
-  // searched change. The query is what a visitor typed - a list of words, as ?q[]= makes
+  // row, title^2, body for a collection), lang (en, nl, de, fr, es, it, pt, sv, da, no -
+  // the locale's language, else en), words (the excerpt's length, 30), excerpt (the field it
+  // is cut from, the last of fields), first (the best rows only - an excerpt is made for
+  // those alone) and name - what the index of rows is kept under in
+  // DATA/cache/search/<app>/, 'rows' unless given: rows of one name share one index, made
+  // again whenever the fields searched change. The query is what a visitor typed - a list of words, as ?q[]= makes
   // one, is searched for its words. A wrong argument is reported with padError naming the
   // function, which then answers no rows.
 

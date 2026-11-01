@@ -1,0 +1,12 @@
+{meta title='In Swedish, Danish and Norwegian', about='lang=\'sv\', \'da\' and \'no\' - Snowball\'s stop words and stemmers: the definite and plural endings are no part of the word; nb and nn, Bokmål and Nynorsk, are Norwegian too.'/}
+{data 'sidor'}
+[ { "t": "Flickorna i skolan" }, { "t": "En flicka på landet" }, { "t": "Tidningar och böcker" } ]
+{/data}
+{data 'sider'}
+[ { "t": "Husene ved havet" }, { "t": "Et hus på landet" }, { "t": "Barna leker" } ]
+{/data}
+<ul>
+  <li>sv, flicka: {search 'sidor', q='flicka', lang='sv'}{$t}; {/search}</li>
+  <li>da, huset: {search 'sider', q='huset', lang='da'}{$t}; {/search}</li>
+  <li>nb, barn: {search 'sider', q='barn', lang='nb'}{$t}; {/search}</li>
+</ul>

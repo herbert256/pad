@@ -1,0 +1,15 @@
+{data 'sidor'}
+[ { "t": "Flickorna i skolan" }, { "t": "En flicka på landet" }, { "t": "Husets historia" }, { "t": "Tidningar och böcker" } ]
+{/data}
+{data 'sider'}
+[ { "t": "Husene ved havet" }, { "t": "Et hus på landet" }, { "t": "Børnene leger" } ]
+{/data}
+{!stems}|
+{search 'sidor', q='flicka', lang='sv'}{$t}; {/search}|
+{search 'sidor', q='tidningarna', lang='sv'}{$t}; {/search}|
+{search 'sider', q='huset', lang='da'}{$t}; {/search}|
+{search 'sider', q='børn', lang='da'}{$t}; {/search}|
+{search 'sider', q='husa', lang='no'}{$t}; {/search}|
+{search 'sider', q='husene', lang='nb'}{$t}; {/search}|
+{search 'sider', q='husene'}{$t}; {/search}|
+{search 'sider', q='på ved', lang='nn'}{$t}; @else@none{/search}

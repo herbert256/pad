@@ -6,8 +6,9 @@
   // _data file of the name. q= is the query - words, "a phrase", prefix*, -left out;
   // fields= the fields searched with their boosts ('title^2, body'; a collection's title^2,
   // body, else every text field); lang= the language of its stop words and stemmer (en, nl,
-  // de, fr, es, it, pt - the locale's language, else en); words= the length of the excerpt
-  // (30) and excerpt= the field it is cut from (the last of fields).
+  // de, fr, es, it, pt, sv, da, no - nb and nn are no - the locale's language, else en);
+  // words= the length of the excerpt (30) and excerpt= the field it is cut from (the last of
+  // fields).
   //
   // As a pair the rows - the source's own fields with score and excerpt added (HTML, print
   // it with {!excerpt}) - and the handling options work on them, first=10 for the ten best;
@@ -47,10 +48,13 @@
   elseif ( isset ( $padPrm [$pad] ['first'] ) )
     $padSearchOptions ['first'] = padSearchShown ( [ 'first' => $padPrm [$pad] ['first'] ] );
 
-  // The language used goes on the xref record, which the reference application shows.
+  // The language used goes on the xref record, which the reference application shows - nb
+  // and nn as the no they search in.
 
-  if ( $padInfoXref ?? FALSE )
-    padInfoXref ( 'search', strtolower ( trim ( $padSearchOptions ['lang'] ) ) );
+  if ( $padInfoXref ?? FALSE ) {
+    $padSearchLang = strtolower ( trim ( $padSearchOptions ['lang'] ) );
+    padInfoXref ( 'search', padSearchAlias [$padSearchLang] ?? $padSearchLang );
+  }
 
   $padSearchRows = padSearchRun ( $padSearchSource, (string) padTagParm ( 'q', '' ), $padSearchOptions );
 

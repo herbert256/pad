@@ -8,8 +8,8 @@
   // it changed in the last second), a hash of the fields searched of any other source's
   // rows, and the code that makes an index (padSearchStamp).
   //
-  // A language is a file of subs/search/types/ - en, nl, de, fr, es, it, pt - with its stop
-  // words and its Snowball stemmer; a language is added by adding its file. A text is split into words
+  // A language is a file of subs/search/types/ - en, nl, de, fr, es, it, pt, sv, da, no -
+  // with its stop words and its Snowball stemmer; a language is added by adding its file. A text is split into words
   // by Unicode letters and digits (an apostrophe inside a word stays: l'homme, don't), each
   // word in lower case; a stop word counts for the positions only, every other word is
   // stemmed and then written without its accents - café, cafe and cafés are one term - and a
@@ -46,11 +46,17 @@
 
   const padSearchForm = 3;
 
+  // A language by another code: Norwegian Bokmål and Nynorsk, the nb and nn of the locales
+  // nb_NO and nn_NO, are the one Norwegian of Snowball, no.
+
+  const padSearchAlias = [ 'nb' => 'no', 'nn' => 'no' ];
+
   function padSearchLanguage ( $lang ) {
 
     static $languages = [];
 
     $lang = strtolower ( trim ( (string) $lang ) );
+    $lang = padSearchAlias [$lang] ?? $lang;
 
     if ( ! isset ( $languages [$lang] ) ) {
 
@@ -73,6 +79,7 @@
   function padSearchLocale () {
 
     $lang = strtolower ( substr ( padLocaleOf ( '' ), 0, 2 ) );
+    $lang = padSearchAlias [$lang] ?? $lang;
 
     return padKind ( 'search', $lang ) ? $lang : 'en';
 
