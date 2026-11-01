@@ -1021,6 +1021,7 @@
     donut:        function () { return C.padChartPlain('donut', C.padChartGather(), ...C.padChartSize(480, 280)); },
     dumbbell:     function () { return C.padChartDumbbell(C.padChartGather(), ...C.padChartSize(600, 300)); },
     dual:         function () { return C.padChartDual(C.padChartGather(), ...C.padChartSize(600, 300)); },
+    ecdf:         function () { return C.padChartEcdf(C.padChartGather(), ...C.padChartSize(600, 300)); },
     errorbar:     function () { return C.padChartErrorbar(C.padChartGather(), ...C.padChartSize(600, 300)); },
     funnel:       function () { return C.padChartFunnel('funnel', C.padChartGather(), ...C.padChartSize(600, 300)); },
     gantt:        function () { return C.padChartGantt(C.padChartGather(), ...C.padChartSize(600, 300)); },

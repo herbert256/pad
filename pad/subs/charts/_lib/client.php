@@ -45,7 +45,8 @@
     'stream'       => [ 'area' ],                       'sunburst'     => [ 'hierarchy' ],
     'treemap'      => [ 'hierarchy' ],                  'venn'         => [ 'venn' ],
     'violin'       => [ 'distribution', 'density' ],    'waffle'       => [ 'waffle' ],
-    'waterfall'    => [ 'waterfall' ] ];
+    'waterfall'    => [ 'waterfall' ],
+    'ecdf'         => [ 'distribution', 'ecdf' ] ];
 
   function padChartClient ( $kind, $source = '', $handled = NULL, $palette = '' ) {
 
