@@ -16,8 +16,14 @@
   //   substitute how a public holiday on a weekend is made up for, for the days marked
   //              substitute: 'next' (the next weekday that is no holiday yet - gb), 'nearest'
   //              (Saturday to the Friday before, Sunday to the Monday after - us), 'sunday'
-  //              (a Sunday only, to the Monday after, a holiday already or not - za); with
-  //              suffix, what the name of the substitute day gets: ' (substitute day)'
+  //              (a Sunday only, to the Monday after, a holiday already or not - za),
+  //              'sundayNext' (a Sunday only, to the next day that is no holiday yet - jp);
+  //              with suffix, what the name of the substitute day gets: ' (substitute day)',
+  //              and suffixLocal, what its local name gets where that is another language
+  //   substituteFrom  'YYYY-MM-DD' - the first day whose holiday gets a substitute (jp)
+  //   between    [ 'from' => year, 'name' => ..., 'local' => ... ] - a day that is no holiday,
+  //              between two holidays that are no substitutes, is a holiday of that name
+  //              since the year from, a Sunday left out: Japan's Citizens' Holiday
   //   years      [ first, last ] - the years the rules are known to be right for, where the
   //              file says so: a country whose holidays begin with a law or end with a table
   //              (New Zealand's Matariki dates run to 2052). A year outside them is an error
@@ -82,7 +88,8 @@
         return "there are no holidays of '" . padMakeSafe ( $country, 20 ) . "' - " . implode ( ', ', padKinds ( 'holidays' ) );
 
       $countries [$country] = ( include PAD . "subs/holidays/types/$country.php" )
-                            + [ 'langs' => [ 'en' ], 'regions' => [], 'substitute' => '', 'suffix' => '', 'years' => [ padHolidaysFirst, padHolidaysLast ] ];
+                            + [ 'langs' => [ 'en' ], 'regions' => [], 'substitute' => '', 'suffix' => '', 'years' => [ padHolidaysFirst, padHolidaysLast ],
+                                'substituteFrom' => '', 'between' => NULL ];
 
     }
 
@@ -393,7 +400,11 @@
     usort ( $found, fn ( $a, $b ) => [ $a [0], $a [1] ] <=> [ $b [0], $b [1] ] );
 
     if ( $rules ['substitute'] !== '' )
-      $found = padHolidaysSubstitutes ( $found, $rules ['substitute'], $rules ['suffix'] );
+      $found = padHolidaysSubstitutes ( $found, $rules ['substitute'], $rules ['suffix'], $rules ['suffixLocal'] ?? $rules ['suffix'],
+                                        $rules ['substituteFrom'] !== '' ? padHolidaysValue ( $rules ['substituteFrom'] ) : NULL );
+
+    if ( $rules ['between'] )
+      $found = padHolidaysBetween ( $found, $rules ['between'], $lang, count ( $rules ['days'] ) );
 
     $rows = [];
 
@@ -414,8 +425,11 @@
   // act says - Christmas on a Sunday gives no day more than the Day of Goodwill. A holiday
   // with a rule of its own follows that: 'monday' is the Monday after it, a holiday already
   // or not - New Zealand's Anzac Day on Sunday 25 April 2038 is observed on Easter Monday.
+  // 'sundayNext' makes up for a Sunday on the next day that is no holiday yet, whatever its
+  // weekday: Japan's Constitution Memorial Day on Sunday 3 May 2026 gives Wednesday the 6th,
+  // after Greenery Day and Children's Day. A holiday before the day $since gets none.
 
-  function padHolidaysSubstitutes ( $found, $how, $suffix ) {
+  function padHolidaysSubstitutes ( $found, $how, $suffix, $suffixLocal = NULL, $since = NULL ) {
 
     $taken = [];
 
@@ -429,18 +443,20 @@
 
       $weekday = padHolidaysWeekday ( $z );
 
-      if ( ! $substitute or $weekday < 6 )
+      if ( ! $substitute or $weekday < 6 or ( $since !== NULL and $z < $since ) )
         continue;
 
       $rule = ( $substitute === TRUE ) ? $how : $substitute;
 
-      if ( $rule == 'sunday' and $weekday == 6 )
+      if ( ( $rule == 'sunday' or $rule == 'sundayNext' ) and $weekday == 6 )
         continue;
 
       if ( $rule == 'nearest' )
         $day = ( $weekday == 6 ) ? $z - 1 : $z + 1;
       elseif ( $rule == 'monday' or $rule == 'sunday' )
         $day = $z + 8 - $weekday;
+      elseif ( $rule == 'sundayNext' )
+        for ( $day = $z + 1; isset ( $taken [$day] ); $day++ ) ;
       else
         for ( $day = $z + 1; padHolidaysWeekday ( $day ) >= 6 or isset ( $taken [$day] ); $day++ ) ;
 
@@ -448,10 +464,51 @@
 
       $extra [] = [ $day, $n, array_merge ( $row, [ 'date'       => padHolidaysDate ( $day ),
                                                     'name'       => $row ['name']  . $suffix,
-                                                    'local'      => $row ['local'] . $suffix,
+                                                    'local'      => $row ['local'] . ( $suffixLocal ?? $suffix ),
                                                     'substitute' => TRUE ] ), FALSE ];
 
     }
+
+    $found = array_merge ( $found, $extra );
+
+    usort ( $found, fn ( $a, $b ) => [ $a [0], $a [2] ['substitute'], $a [1] ] <=> [ $b [0], $b [2] ['substitute'], $b [1] ] );
+
+    return $found;
+
+  }
+
+  // The days between two holidays, from the year of the rule's from: a day that is no
+  // holiday - nor a substitute day - with a holiday that is no substitute day before and
+  // after it is a holiday of the rule's name. A Sunday is left out: Japan's law excluded it
+  // until 2006, and it is no workday either way. Japan's Citizens' Holiday - 4 May from 1988
+  // to 2006, 22 September 2026 between Respect for the Aged Day and the equinox, 30 April
+  // and 2 May 2019 around the enthronement. $n orders it after the file's own days.
+
+  function padHolidaysBetween ( $found, $rule, $lang, $n ) {
+
+    $holiday = [];
+    $taken   = [];
+
+    foreach ( $found as [ $z, , $row ] )
+      if ( $row ['type'] == 'public' ) {
+        $taken [$z] = TRUE;
+        if ( ! $row ['substitute'] )
+          $holiday [$z] = TRUE;
+      }
+
+    $extra = [];
+
+    foreach ( array_keys ( $holiday ) as $z )
+      if ( isset ( $holiday [$z + 2] ) and ! isset ( $taken [$z + 1] ) and padHolidaysWeekday ( $z + 1 ) != 7
+           and padHolidaysCivil ( $z + 1 ) [0] >= $rule ['from'] ) {
+        $taken [$z + 1] = TRUE;
+        $extra []       = [ $z + 1, $n, [ 'date'       => padHolidaysDate ( $z + 1 ),
+                                          'name'       => $rule ['name'],
+                                          'local'      => padHolidaysLocal ( $rule, $lang ),
+                                          'type'       => 'public',
+                                          'region'     => '',
+                                          'substitute' => FALSE ], FALSE ];
+      }
 
     $found = array_merge ( $found, $extra );
 

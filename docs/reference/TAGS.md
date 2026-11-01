@@ -1679,7 +1679,7 @@ The public holidays of a country, from the rules of its file in `pad/subs/holida
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The country, its ISO 3166-1 alpha-2 code in any case - at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, ie, it, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us, za - with a region after it as ISO 3166-2 writes it, `'de-by'` |
+| first parameter | The country, its ISO 3166-1 alpha-2 code in any case - at, be, br, ca, ch, cz, de, dk, es, fi, fr, gb, ie, it, jp, lu, mx, nl, no, nz, pl, pt, ro, se, sk, us, za - with a region after it as ISO 3166-2 writes it, `'de-by'` |
 | `region` | The region apart: `{holidays 'de', region='by'}` - Germany's states, the United Kingdom's nations (`sct`, `nir`; `eng` and `wls` are the default), France's `57`, `67`, `68`, `971`-`976`, Finland's Åland (`01`), Portugal's Azores (`20`) and Madeira (`30`), New Zealand's provinces by their region's code (`auk`, `can`, `cit`, `hkb`, `mbh`, `nsn`, `ota`, `stl`, `tki`, `wgn`, `wtc`) |
 | `year` | The year, 1583 to 9999 - default this year (`padNow`); a country whose file names the years it knows (New Zealand 2010 to 2052) only those |
 | `from`, `to` | The days between two dates instead of a year - any date `padDateParse` reads, `today`, `+3 months`; one alone is a year from it (or from today); `to` before `from` is an error under the strict check |
