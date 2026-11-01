@@ -661,8 +661,8 @@ $summary = padAi ( "Summarise: $body", [ 'provider' => 'openai', 'tokens' => 300
 ```
 The content renders first and is the prompt; the answer is printed as text - a value, never
 template code. The providers are the files of `pad/subs/ai/types/` - anthropic
-(`claude-opus-5-5` by default), openai, mistral, gemini, cohere, cloudflare and ollama (a local server, no key) - each
-its endpoint, headers, request and how the text and an error are taken out of the answer. The
+(`claude-opus-5-5` by default), openai, mistral, gemini, cohere, cloudflare, bedrock and ollama
+(a local server, no key) - each its endpoint, headers, request and how the text and an error are taken out of the answer. The
 key is `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `MISTRAL_API_KEY` or `GEMINI_API_KEY`
 (`OLLAMA_HOST` for Ollama), the provider `provider=` or `PAD_AI_PROVIDER`. Options `model=`,
 `system=`, `tokens=` (the most the answer takes - the handling option `max` is something else)
@@ -682,6 +682,14 @@ of the catalogue (`@cf/<author>/<name>`, a part of the address: another form is 
 answer is its result's response, or the first choice of the models that answer a chat
 completion, and a failure says its errors with their codes (3036, the day's free allocation used
 up). `url=` names an AI Gateway's address instead, the account not needed then.
+
+`bedrock` asks Amazon Bedrock's Converse API in the region of `AWS_REGION` (else
+`AWS_DEFAULT_REGION`, else us-east-1) with a Bedrock API key, `AWS_BEARER_TOKEN_BEDROCK` - a
+request signed with an access key (SigV4) is not made - `us.anthropic.claude-sonnet-4-6` unless
+`model=` names another model id, inference profile or ARN: the text blocks of the output message
+are joined, a reasoning block is passed over, an answer a guardrail stopped or that was filtered
+is an error, and a failure is said by its kind (`ThrottlingException`, `ValidationException` ...)
+and message.
 
 ## Template features
 

@@ -11,7 +11,8 @@
   //   headers  function ( $ask ) - the headers: the key in the provider's own way
   //   body     function ( $ask ) - the request, sent as JSON
   //   text     function ( $answer ) - the text taken out of the answer, '' when there is none
-  //   error    function ( $answer, $status ) - the error taken out of a failed answer
+  //   error    function ( $answer, $status, $headers ) - the error taken out of a failed answer,
+  //            the answer's headers there for a provider that says the kind of error in one
   //   check    function ( $ask, $url ) - optional: the author's mistake the provider finds in
   //            what it is asked - a setting its address needs (an account) that is missing or
   //            wrong, a model name of its own form - '' when there is none; $url is the url=
@@ -108,7 +109,7 @@
       // What the provider said, as text - a server behind url= may answer a message that is a
       // list or an object (a validation error's location and text): its JSON then.
 
-      $said = ( $kind ['error'] ) ( $answer, $status );
+      $said = ( $kind ['error'] ) ( $answer, $status, (array) ( $out ['headers'] ?? [] ) );
       $said = is_scalar ( $said ) ? trim ( (string) $said )
                                   : ( $said === NULL ? '' : (string) json_encode ( $said, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR ) );
 

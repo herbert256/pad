@@ -10,6 +10,7 @@
   padCurlFake ( [
     'https://api.anthropic.com/v1/messages' => [ 'data' => [ 'type' => 'message', 'stop_reason' => 'end_turn',
                                                               'content' => [ [ 'type' => 'thinking', 'thinking' => '' ], [ 'type' => 'text', 'text' => 'Paris.' ] ] ] ],
+    'https://bedrock-runtime.us-east-1.amazonaws.com/*' => [ 'data' => [ 'output' => [ 'message' => [ 'role' => 'assistant', 'content' => [ [ 'text' => 'Paris.' ] ] ] ], 'stopReason' => 'end_turn' ] ],
     'https://api.cohere.com/v2/chat' => [ 'data' => [ 'id' => 'c1', 'finish_reason' => 'COMPLETE',
                                                        'message' => [ 'role' => 'assistant', 'content' => [ [ 'type' => 'text', 'text' => 'Paris.' ] ] ] ] ],
     'https://api.cloudflare.com/client/v4/accounts/*' => [ 'data' => [ 'result' => [ 'response' => 'Paris.' ], 'success' => TRUE, 'errors' => [], 'messages' => [] ] ],

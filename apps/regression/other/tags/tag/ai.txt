@@ -5,7 +5,7 @@ parameter: <code>{ai 'Name three rivers of France.'/}</code>.</p>
 
 <p>The key is the provider's <code>.env</code> value - <code>ANTHROPIC_API_KEY</code>,
 <code>OPENAI_API_KEY</code>, <code>MISTRAL_API_KEY</code>, <code>GEMINI_API_KEY</code>,
-<code>COHERE_API_KEY</code>, <code>CLOUDFLARE_API_TOKEN</code>; Ollama runs on
+<code>COHERE_API_KEY</code>, <code>CLOUDFLARE_API_TOKEN</code>, <code>AWS_BEARER_TOKEN_BEDROCK</code>; Ollama runs on
 this machine and needs none. An answer is kept under a hash of the provider, model, system prompt and
 prompt for <code>ttl=</code> seconds, a failed one never. A missing key or an error of the API is an
 error under the strict check; without it the tag answers nothing and the error is logged. From PHP:
