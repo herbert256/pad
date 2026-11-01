@@ -16,9 +16,10 @@
   // writer sends them with their own content type, ETag and 304, like any page.
   //
   // padClientFormat   what the request asks for: an explicit padFormat as written, or else
-  //                   'json' or 'csv' when the Accept header prefers one, '' when not
-  // padAcceptFormat   the Accept header read with its quality values - html wins a tie, and
-  //                   */* alone asks for nothing, so a browser keeps getting the page
+  //                   the format the Accept header asks for, '' when not
+  // padAcceptFormat   the Accept header read with its quality values - a header that accepts
+  //                   text/html, by name or through a wildcard as high as the format, asks
+  //                   for nothing, so a browser, a feed reader or an agent gets the page
   // padExposeRefuse   the 406 answer for a format this page cannot give
   //
   // The bodies of a data answer - the exposed variables, the JSON, the CSV - are
@@ -40,26 +41,24 @@
 
   }
 
-  // Only a type the header names counts for data: application/json and text/csv must be
-  // there by name, with a quality above the one html gets - by name, through text/*, or
-  // through */*. Without either, the answer is '' and the page renders as before.
+  // A page that renders HTML answers HTML to every header that accepts it: data is chosen by
+  // the Accept header only where the header does not accept text/html - names neither it nor
+  // application/xhtml+xml with a quality above 0 - and no wildcard takes it at the format's
+  // quality or above: */*, or text/*, which is text/html too. So a browser, a feed reader or
+  // an agent that sends text/html beside what it prefers - text/markdown, text/html;q=0.9 -
+  // gets the page, as does axios' application/json, text/plain, */*; while application/json,
+  // jQuery's application/json, */*;q=0.01, text/calendar or a feed reader's
+  // application/rss+xml, */*;q=0.8 get the data, where the page has it to give.
   //
-  // So must the media type of a format of the formats subsystem (lib/format.php) that
-  // writes - text/calendar for ics, application/toml - which is asked about only when the
-  // header names a type it does not know here with a quality above html's and above the
-  // JSON or CSV it asks for: a browser's header, which prefers html, loads no format.
+  // The format is the media type the header prefers, of those above the wildcards: JSON and
+  // CSV by name, any other a format of the formats subsystem (lib/format.php) that writes
+  // and is asked for by that type (padFormatAccepted) - a header that names text/html loads
+  // no format. padFormat= in the query is the explicit way, for any header.
 
   function padAcceptFormat ( $header ) {
 
-    $named = [ 'html' => -1.0, 'json' => -1.0, 'csv' => -1.0 ];
-    $other = [];
-    $text  = -1.0;
+    $named = [];
     $any   = -1.0;
-
-    $types = [ 'text/html'             => 'html',
-               'application/xhtml+xml' => 'html',
-               'application/json'      => 'json',
-               'text/csv'              => 'csv' ];
 
     foreach ( explode ( ',', $header ) as $one ) {
 
@@ -71,28 +70,24 @@
         if ( preg_match ( '/^\s*q\s*=\s*([0-9.]+)\s*$/i', $parm, $match ) )
           $q = (float) $match [1];
 
-      if     ( isset ( $types [$name] ) ) $named [ $types [$name] ] = max ( $named [ $types [$name] ], $q );
-      elseif ( $name == 'text/*'        ) $text = max ( $text, $q );
-      elseif ( $name == '*/*'           ) $any  = max ( $any,  $q );
-      elseif ( $name !== ''             ) $other [$name] = max ( $other [$name] ?? -1.0, $q );
+      if     ( $name == 'text/html' or $name == 'application/xhtml+xml' ) { if ( $q > 0 ) return ''; }
+      elseif ( $name == 'text/*' or $name == '*/*'                      ) $any = max ( $any, $q );
+      elseif ( $name !== ''                                             ) $named [$name] = max ( $named [$name] ?? -1.0, $q );
 
     }
 
-    $html = ( $named ['html'] >= 0 ) ? $named ['html'] : ( ( $text >= 0 ) ? $text : max ( $any, 0.0 ) );
-    $best = ( $named ['csv'] > $named ['json'] ) ? 'csv' : 'json';
-    $bar  = max ( $html, $named [$best], 0.0 );
+    $named = array_filter ( $named, fn ( $q ) => $q > 0 and $q > $any );
 
-    $other = array_filter ( $other, fn ( $q ) => $q > $bar );
+    arsort ( $named );
 
-    if ( $other ) {
-      arsort ( $other );
-      foreach ( $other as $type => $q )
-        if ( ( $kind = padFormatAccepted ( $type ) ) !== '' )
-          return $kind;
+    foreach ( $named as $type => $q ) {
+
+      $kind = match ( $type ) { 'application/json' => 'json', 'text/csv' => 'csv', default => padFormatAccepted ( $type ) };
+
+      if ( $kind !== '' )
+        return $kind;
+
     }
-
-    if ( $named [$best] > 0 and $named [$best] > $html )
-      return $best;
 
     return '';
 

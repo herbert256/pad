@@ -141,8 +141,10 @@ template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip
 ### JSON and CSV from the same page
 
 A page answers its data instead of its template when asked - `?orders&padFormat=json` (or
-`csv`), or an `Accept: application/json` / `text/csv` header. What may leave the server is an
-explicit list in the page's `.php`; a page that names nothing answers HTML only:
+`csv`), or an `Accept: application/json` / `text/csv` header that does not accept `text/html`:
+a header naming `text/html` at any quality, or `*/*` (`text/*`) at the format's quality or
+above, gets the page. What may leave the server is an explicit list in the page's `.php`; a
+page that names nothing answers HTML only:
 
 ```php
 // orders.php
@@ -156,8 +158,8 @@ $padExpose = [ 'orders', 'total' ];    // never an engine name (pad*, pq*, _*)
   with a `'` in front so a spreadsheet does not run it. The templates do not run for such a
   request.
 - `padFormat=` asked outright on a page that exposes nothing, a format that does not
-  exist, or CSV without a list answers 406; asked only through `Accept`, the page renders
-  as HTML. An exposing page sends `Vary: Accept`.
+  exist, or CSV - any table format - without a list answers 406; asked only through
+  `Accept`, the page renders as HTML. An exposing page sends `Vary: Accept`.
 - `$padOutputType = 'json'` (or `'csv'`) in `_config/config.php` makes every page of an
   application answer data; `{output 'json'/}` does it from a template.
 
@@ -201,10 +203,12 @@ $padFormatOptions = [ 'title' => 'Talks', 'name' => 'Talks' ];  // the writer's 
 
 - A page answers its `$padExpose` in every format that writes, as it answers JSON and CSV:
   `&padFormat=<format>` (or an extension, `md`) or an `Accept` header naming the format's media
-  type above `text/html`. A table format - `ics`, `xlsx`, the feeds, `geojson`, `gpx`, `vcf`,
-  `md`, `tsv`, `ndjson` - answers the first exposed list, `toml`, `yaml` and `ini` the
-  variables by name. The answer has the format's content type and, for a file, the page's name
-  with the format's extension - `inline` (`events.ics`), an `attachment` for `xlsx` and `gpx`,
+  type that does not accept `text/html` - `text/calendar`, a feed reader's `application/rss+xml,
+  */*;q=0.8`; Markdown, an agent's `text/markdown` asking for the page, only by `padFormat=`.
+  A table format - `ics`, `xlsx`, the feeds, `geojson`, `gpx`, `vcf`, `md`, `tsv`, `ndjson` -
+  answers the first exposed list, `toml`, `yaml` and `ini` the variables by name. The answer
+  has the format's content type and, for a file, the page's name with the format's
+  extension - `inline` (`events.ics`), an `attachment` for `xlsx` and `gpx`,
   none for a feed. A row the format has no place for - an order without a date in a calendar -
   is left out of such an answer; asked of the helper it is an error under the strict check.
   `$padOutputType = 'format'` with `$padOutputFormat = 'ics'` makes every page answer that.

@@ -6,9 +6,13 @@
   // in a cell and <br> a line break. Known on sight: a first line opening with a | and a row
   // of dashes under it.
 
+  // No Accept header asks for it: an agent's text/markdown asks for the page as Markdown, and
+  // a pipe table of its first list is no such thing - padFormat=md asks for the table.
+
   return [
     'name'      => 'Markdown',
     'mime'      => 'text/markdown',
+    'accept'    => [],
     'extension' => [ 'md', 'markdown' ],
     'shape'     => 'rows',
     'lib'       => 'markdown',

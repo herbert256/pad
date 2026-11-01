@@ -59,11 +59,22 @@
   include_once PAD . 'build/_lib/expose.php';
 
   // A table - CSV, a calendar, a spreadsheet, a feed - is made of a list: a request for one
-  // where the page has no list is the visitor's to hear about, where the type set in the
-  // configuration is the author's (exits/output/csv.php).
+  // where the page has no list is the visitor's to hear about when asked with padFormat=,
+  // where the type set in the configuration is the author's (exits/output/csv.php). Asked
+  // only through Accept, the page answers as it would without the header - its HTML, or the
+  // output type of its configuration - as a header that names a format never ends in 406.
 
-  if ( ( padFormatDef ( $padExposeFormat ) ['shape'] ?? '' ) == 'rows' and $padExposeClient and padExposeList () === NULL )
-    padExposeRefuse ( "page '$padPage' answers no $padExposeFormat - nothing it names in \$padExpose is a list" );
+  if ( ( padFormatDef ( $padExposeFormat ) ['shape'] ?? '' ) == 'rows' and $padExposeClient and padExposeList () === NULL ) {
+
+    if ( $padClientFormatAsked )
+      padExposeRefuse ( "page '$padPage' answers no $padExposeFormat - nothing it names in \$padExpose is a list" );
+
+    $padExposeFormat = match ( $padOutputType ) { 'json', 'csv' => $padOutputType, 'format' => padFormatFind ( $padOutputFormat, 'write' ), default => '' };
+
+    if ( ! $padExposeFormat )
+      return;
+
+  }
 
   // The type's settings are loaded unless the configuration pass already applied them -
   // that pass, which the application's config may have refined, stands. The format type's

@@ -91,6 +91,7 @@
       'themes/plain'              => 'The fixture for the theme choice: a page with a design of its own, which a visitor\'s choice leaves alone',
       'themes/own'                => 'The fixture for the theme choice: a framed page with a {theme \'sepia\'/} of its own, which a visitor\'s choice does not outweigh',
       'themes/chosen'             => 'The fixture for the theme choice: a page without the frame in an application that chose a theme ($padTheme), which a visitor\'s choice colours',
+      'format/accept'             => 'The Accept headers of browsers, feed readers, agents and scripts: one that accepts text/html - by name, or through a wildcard as high as the format - gets the page; a format the page cannot give, a table without a list, renders the page too, 406 only for padFormat=',
       'sse/ticks'                 => 'padSse with a producer that sends its own events - the retry first, a named event with an id and JSON, text over two lines, a plain message',
       'sse/every'                 => 'padSse calling the producer on an interval - an array sent as the named event, NULL sending nothing, FALSE ending the stream',
       'sse/headers'               => 'A stream as the browser gets it: text/event-stream, no-cache, no proxy buffering, and the last id back as a header or query value with its line break taken out',
