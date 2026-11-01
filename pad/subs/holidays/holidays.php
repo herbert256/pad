@@ -95,6 +95,14 @@
 
   }
 
+  // A year the country's file does not know - New Zealand's after its last Matariki date -
+  // is an error under the strict check; the lenient walk answers what the rules give.
+
+  $padHolidaysKnown = padHolidaysKnown ( $padHolidaysCountry, $padHolidaysA, $padHolidaysB );
+
+  if ( $padHolidaysKnown !== '' and $padCheckSyntax )
+    padError ( "{holidays}: $padHolidaysKnown" );
+
   if ( $padHolidaysRegion !== '' )
     $padHolidaysCaption = $padHolidaysRules ['name'] . ', ' . $padHolidaysRules ['regions'] [$padHolidaysRegion] . substr ( $padHolidaysCaption, strlen ( $padHolidaysRules ['name'] ) );
 

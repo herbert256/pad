@@ -17,6 +17,11 @@
   //              substitute: 'next' (the next weekday that is no holiday yet - gb), 'nearest'
   //              (Saturday to the Friday before, Sunday to the Monday after - us); with
   //              suffix, what the name of the substitute day gets: ' (substitute day)'
+  //   years      [ first, last ] - the years the rules are known to be right for, where the
+  //              file says so: a country whose holidays begin with a law or end with a table
+  //              (New Zealand's Matariki dates run to 2052). A year outside them is an error
+  //              of {holidays} and of the calendar's holidays= under the strict check, and of
+  //              the helpers; a file without it is computed for every year, 1583 to 9999
   //   days       the holidays, each a rule:
   //
   //     date        'MM-DD', the same date every year
@@ -31,7 +36,8 @@
   //     moved       [ year => 'MM-DD' ] - the years it was held on another date
   //     sunday      -1 or 1: a day falling on a Sunday is held the day before or after
   //     substitute  TRUE: falling on a weekend, the country's substitute rule gives it a
-  //                 day of its own
+  //                 day of its own; or a rule of its own - 'monday', the Monday after it,
+  //                 whether that is a holiday already or not (New Zealand's Anzac Day)
   //     type        'observance' for a day that is no day off; publicEvery = n makes it a
   //                 public holiday in the years that divide by n only (nl's 5 May)
   //     in, not     the regions it is held in only, or the regions it is not held in
@@ -42,6 +48,8 @@
   //
   // padHolidaysCountry  the rules of a country, read once per request, or an error message
   // padHolidaysPlace    'de-by', or 'de' with a region, as [ country, region ] - or a message
+  // padHolidaysKnown    '' for a span of days in the years a country's rules are known for,
+  //                     else the message that says which they are
   // padHolidaysRange    the rows between two day numbers
   // padHolidaysOff      the days off between two day numbers: weekends and public holidays
   // padHolidaysDay      a date as a day number - days from 1970-01-01 - and back with
@@ -70,7 +78,8 @@
       if ( ! padKind ( 'holidays', $country ) )
         return "there are no holidays of '" . padMakeSafe ( $country, 20 ) . "' - " . implode ( ', ', padKinds ( 'holidays' ) );
 
-      $countries [$country] = ( include PAD . "subs/holidays/types/$country.php" ) + [ 'langs' => [ 'en' ], 'regions' => [], 'substitute' => '', 'suffix' => '' ];
+      $countries [$country] = ( include PAD . "subs/holidays/types/$country.php" )
+                            + [ 'langs' => [ 'en' ], 'regions' => [], 'substitute' => '', 'suffix' => '', 'years' => [ padHolidaysFirst, padHolidaysLast ] ];
 
     }
 
@@ -107,6 +116,29 @@
            : "$country has no regions with holidays of their own";
 
     return [ $country, $region ];
+
+  }
+
+  // The 'years' of a country's file for a span from day $from to day $to: '' when the span
+  // lies in them, else a message naming them and the year outside - the rows of such a year
+  // would leave out what no rule knows, New Zealand's Matariki after 2052.
+
+  function padHolidaysKnown ( $country, $from, $to ) {
+
+    $rules = padHolidaysCountry ( $country );
+
+    if ( is_string ( $rules ) )
+      return $rules;
+
+    [ $first, $last ] = $rules ['years'];
+
+    $a = padHolidaysCivil ( $from ) [0];
+    $b = padHolidaysCivil ( $to   ) [0];
+
+    if ( $a >= $first and $b <= $last )
+      return '';
+
+    return "the holidays of {$rules ['name']} are known for $first to $last - not " . ( $a < $first ? $a : $b );
 
   }
 
@@ -332,7 +364,7 @@
           'type'       => $type,
           'region'     => isset ( $day ['in'] ) ? $region : '',
           'substitute' => FALSE
-        ], ( $day ['substitute'] ?? FALSE ) and $type == 'public' ];
+        ], ( $type == 'public' ) ? ( $day ['substitute'] ?? FALSE ) : FALSE ];
 
       }
 
@@ -355,7 +387,9 @@
   // first weekday after it that is no holiday yet, counting the substitutes given before it
   // - in Britain Christmas on a Saturday is made up for on Monday the 27th and Boxing Day on
   // the Sunday on Tuesday the 28th; 'nearest' moves Saturday to the Friday before and Sunday
-  // to the Monday after - the United States' observed days.
+  // to the Monday after - the United States' observed days. A holiday with a rule of its own
+  // follows that: 'monday' is the Monday after it, a holiday already or not - New Zealand's
+  // Anzac Day on Sunday 25 April 2038 is observed on Easter Monday, no day more.
 
   function padHolidaysSubstitutes ( $found, $how, $suffix ) {
 
@@ -374,8 +408,12 @@
       if ( ! $substitute or $weekday < 6 )
         continue;
 
-      if ( $how == 'nearest' )
+      $rule = ( $substitute === TRUE ) ? $how : $substitute;
+
+      if ( $rule == 'nearest' )
         $day = ( $weekday == 6 ) ? $z - 1 : $z + 1;
+      elseif ( $rule == 'monday' )
+        $day = $z + 8 - $weekday;
       else
         for ( $day = $z + 1; padHolidaysWeekday ( $day ) >= 6 or isset ( $taken [$day] ); $day++ ) ;
 

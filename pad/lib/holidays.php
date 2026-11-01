@@ -16,7 +16,8 @@
   // A date is text (2026-04-27, tomorrow), a timestamp or a date object, read in the
   // application's zone. An observance - a day that is no day off - counts as a workday. A
   // wrong argument is reported with padError naming the function, which then answers an
-  // empty value of its kind.
+  // empty value of its kind - so is a date in a year the country's file does not know, as
+  // New Zealand's after its last Matariki date, 2052.
 
   function padHolidaysLoad () {
 
@@ -38,6 +39,22 @@
     }
 
     return $place;
+
+  }
+
+  // Whether the days from $a to $b lie in the years the country's file knows - FALSE after
+  // reporting the error when they do not.
+
+  function padHolidaysKnownOf ( $function, $country, $a, $b ) {
+
+    $known = padHolidaysKnown ( $country, $a, $b );
+
+    if ( $known === '' )
+      return TRUE;
+
+    padError ( "$function: $known" );
+
+    return FALSE;
 
   }
 
@@ -68,13 +85,20 @@
       return [];
     }
 
-    return padHolidaysRange ( $place [0], $place [1], padHolidaysDay ( (int) $year, 1, 1 ), padHolidaysDay ( (int) $year, 12, 31 ) );
+    $a = padHolidaysDay ( (int) $year, 1, 1 );
+    $b = padHolidaysDay ( (int) $year, 12, 31 );
+
+    if ( ! padHolidaysKnownOf ( 'padHolidays', $place [0], $a, $b ) )
+      return [];
+
+    return padHolidaysRange ( $place [0], $place [1], $a, $b );
 
   }
 
   function padIsHoliday ( $date, $country ) {
 
-    if ( ! $place = padHolidaysWhere ( 'padIsHoliday', $country ) or ( $z = padHolidaysDayOf ( 'padIsHoliday', $date ) ) === NULL )
+    if ( ! $place = padHolidaysWhere ( 'padIsHoliday', $country ) or ( $z = padHolidaysDayOf ( 'padIsHoliday', $date ) ) === NULL
+         or ! padHolidaysKnownOf ( 'padIsHoliday', $place [0], $z, $z ) )
       return FALSE;
 
     return isset ( padHolidaysOff ( $place [0], $place [1], $z, $z ) [$z] );
@@ -94,6 +118,9 @@
     $sign = ( $b < $a ) ? -1 : 1;
 
     [ $a, $b ] = [ min ( $a, $b ), max ( $a, $b ) ];
+
+    if ( ! padHolidaysKnownOf ( 'padWorkdays', $place [0], $a, $b ) )
+      return 0;
 
     $off   = padHolidaysOff ( $place [0], $place [1], $a, $b );
     $count = 0;
@@ -136,6 +163,8 @@
       }
 
       if ( ! isset ( $read [$year] ) ) {
+        if ( ! padHolidaysKnownOf ( 'padAddWorkdays', $place [0], $z, $z ) )
+          return '';
         $off         += padHolidaysOff ( $place [0], $place [1], padHolidaysDay ( $year, 1, 1 ), padHolidaysDay ( $year, 12, 31 ) );
         $read [$year] = TRUE;
       }

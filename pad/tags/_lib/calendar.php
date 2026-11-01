@@ -182,7 +182,8 @@
   // holidays joined, class holiday when one of them is a public holiday, else observance.
   // The name is the local one when the request's locale is in a language of the country
   // (padLocale nl_NL and the Netherlands: Koningsdag), else the English one. A country
-  // without a file, or a region it does not have, is an error under the strict check. NULL
+  // without a file, a region it does not have or a month in a year its file does not know
+  // (New Zealand's after 2052) is an error under the strict check. NULL
   // for a calendar without holidays=: its days get no field holiday.
 
   function padCalendarHolidays ( $place, $month ) {
@@ -201,6 +202,11 @@
     }
 
     [ $y, $m ] = array_map ( 'intval', explode ( '-', $month ) );
+
+    $known = padHolidaysKnown ( $where [0], padHolidaysDay ( $y, $m, 1 ), padHolidaysDay ( $y, $m, 1 ) );
+
+    if ( $known !== '' and $GLOBALS ['padCheckSyntax'] )
+      padError ( "the calendar's holidays= - $known" );
 
     $lang  = strtolower ( substr ( padLocaleOf ( '' ), 0, 2 ) );
     $local = in_array ( $lang, padHolidaysCountry ( $where [0] ) ['langs'], TRUE );

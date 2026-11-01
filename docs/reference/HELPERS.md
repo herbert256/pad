@@ -1053,10 +1053,12 @@ naming the variable to set.
 
 `pad/lib/holidays.php` - the entries of the holidays subsystem, `pad/subs/holidays/`. A country
 is its ISO 3166-1 alpha-2 code, a file of `pad/subs/holidays/types/` - at, be, ca, ch, de, dk,
-es, fr, gb, ie, it, lu, nl, no, pl, se, us - with a region after it as ISO 3166-2 writes it,
+es, fr, gb, ie, it, lu, nl, no, nz, pl, se, us - with a region after it as ISO 3166-2 writes it,
 `'de-by'`. A date is text, a timestamp or a date object, read in the application's zone
 (`padDateParse`); the years are 1583 to 9999. A wrong argument is a `padError` naming the
 function, which then answers an empty value of its kind.
+So is a date in a year the country's file does not know, where it names them - New Zealand's
+are 2010 to 2052, the last year of its Matariki schedule.
 
 | Function | Answers |
 |----------|---------|
