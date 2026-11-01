@@ -31,7 +31,8 @@
   // the menu is a menu of menu items then, the focus on its first, the arrow keys, Home and
   // End move between them, a letter to the next item starting with it, Enter or a click runs
   // one and closes the menu, Escape and Tab close it and the focus goes back where it was. A
-  // disabled item - <button disabled>, <a aria-disabled="true"> - is drawn faint and skipped.
+  // disabled item - <button disabled>, <a aria-disabled="true"> - is drawn faint and skipped,
+  // and such a link loses its href, so it leads nowhere without a script either.
   // A right click with Shift, and one in a field, a text area or an editable part, keeps the
   // browser's own menu. Of menus whose parts lie in each other the innermost opens.
   //
@@ -51,9 +52,27 @@
                       . "<button type=\"button\" class=\"pad-contextmenu-button\" popovertarget=\"$id-menu\" aria-label=\"$name\">"
                       . '<span aria-hidden="true">&#8943;</span></button>'
                       . "<div class=\"pad-contextmenu-menu\" id=\"$id-menu\" popover>" )
-         . $items
+         . padContextmenuDisabled ( $items )
          . padProtect ( '</div></div>' )
          . padContextmenuScript ();
+
+  }
+
+  // A link of the menu marked aria-disabled="true" loses its href: drawn faint and skipped,
+  // it leads nowhere without a script too, where the button opens the menu and only the
+  // script stopped a click on it or Enter - <a href="?delete" aria-disabled="true"> was
+  // followed. The value is matched as the script and the CSS match it, exactly true.
+
+  function padContextmenuDisabled ( $items ) {
+
+    return preg_replace_callback ( '/<a\b(?:[^>"\']++|"[^"]*+"|\'[^\']*+\')*+>/i', function ( $tag ) {
+
+      if ( ! preg_match ( '/\s(?i:aria-disabled)\s*=\s*(?:"true"|\'true\'|true(?=[\s\/>]))/', $tag [0] ) )
+        return $tag [0];
+
+      return preg_replace ( '/\shref\s*=\s*(?:"[^"]*+"|\'[^\']*+\'|[^\s"\'>]++)/i', '', $tag [0] );
+
+    }, $items );
 
   }
 
