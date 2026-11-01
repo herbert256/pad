@@ -12,6 +12,7 @@
 {barcode:ean13 'number'/}
 {code39 'TEXT', check/}
 {barcode $text, type='datamatrix', size=160/}
+{gs1128 '(01)09501101530003(10)LOT1'/}
 PAD;
 
   $tagParms   = [

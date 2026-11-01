@@ -1590,7 +1590,7 @@ check, and writes nothing.
 ### barcode
 A barcode as inline SVG, encoded on the server by the codes subsystem (`pad/subs/codes/`): a
 symbology is a file of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`, `code128`,
-`code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `qr` and `datamatrix` - and `type=` names
+`code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `qr` and `datamatrix` - and `type=` names
 it. The barcode type writes a symbology by its name, `{barcode:upce '0425261'/}`, and so does
 the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequence has it.
 
@@ -1602,6 +1602,7 @@ the name alone, `{itf14 '1540014128876'/}`, when no tag, store, field or sequenc
 {barcode:upce '04210000526'/}                      <!-- a UPC-A in its short form: 04252614 -->
 {code39 'PAD-2026', check/}
 {datamatrix 'PAD-2026-0042', size=120/}
+{gs1128 '(01)09501101530003(17)261231(10)AB-123'/}   <!-- GS1-128, FNC1 where GS1 wants it -->
 ```
 
 | Option | Description |
@@ -1632,6 +1633,10 @@ sizes, 10 by 10 to 144 by 144 modules, a text beyond ASCII marked as UTF-8 by it
 designator; `qr` the QR code of `{qr}`. A wrong check digit, a wrong
 length, a character the symbology cannot hold, a text too long for it or an unknown type is an
 error under the strict check, and writes nothing.
+`gs1128` takes GS1 element strings, each AI in parentheses (or square brackets) before its
+value, and writes them in Code 128 after FNC1, a FNC1 behind every value of no predefined
+length but the last; the AIs, lengths, characters, check digits and dates are checked as the
+GS1 General Specifications define them, at most 48 characters.
 
 ---
 

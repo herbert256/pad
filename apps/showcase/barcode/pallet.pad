@@ -1,0 +1,11 @@
+{meta title='A pallet label', about='GS1-128 as the GS1 logistic label has it: what the pallet holds, its batch and best-before date, and the SSCC that names it - the AIs in parentheses under the bars.'/}
+<div style="display:grid; gap:10px; max-width:520px; padding:18px; background:#fff; color:#111; border:2px solid #111; border-radius:6px; font:14px/1.4 system-ui">
+  <div style="display:flex; justify-content:space-between; gap:16px; border-bottom:1px solid #111; padding-bottom:8px">
+    <div><b>From</b><br>PAD Foods, Utrecht</div>
+    <div><b>Contents</b> 10614141000415<br><b>Count</b> 20 <b>Batch</b> LOT4711<br><b>Best before</b> 31.12.2026</div>
+  </div>
+  {gs1128 '(02)10614141000415(15)261231(37)20', height=50, scale=1.5/}
+  {gs1128 '(10)LOT4711', height=50, scale=1.5/}
+  <div style="border-top:1px solid #111; padding-top:8px"><b>SSCC</b> 1 0614141 123456789 8</div>
+  {gs1128 '(00)106141412345678908', height=60, scale=1.5/}
+</div>

@@ -1618,9 +1618,10 @@ days its yearly decree moves around them; it knows the years since 2013.
 {itf14 '1540014128876'/}                        # bare, when nothing else has the name - between bearer bars
 {code39 'PAD-2026', check/}                     # check: code39's modulo 43, itf's digit; msi check='mod1010'|'none'
 {datamatrix 'PAD-2026-0042', size=120/}         # Data Matrix ECC 200, the smallest of its 24 square sizes
+{gs1128 '(01)09501101530003(17)261231(10)AB-123'/}   # GS1-128: GS1 element strings, FNC1 where GS1 wants it
 ```
 The symbologies are the files of `pad/subs/codes/types/` - `ean13`, `ean8`, `upca`, `upce`,
-`code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `qr` and `datamatrix` - one
+`code128`, `code39`, `code93`, `itf`, `itf14`, `codabar`, `msi`, `gs1128`, `qr` and `datamatrix` - one
 file a symbology, which encodes the text and draws it; a symbology is added by adding its file.
 Each is written three ways, the same code: `{barcode '...', type='upce'/}`, the barcode type
 `{barcode:upce '...'/}`, and bare, `{upce '...'/}`, when no tag, store, field or sequence has
@@ -1631,6 +1632,15 @@ and `background`; black on white unless told otherwise, as a scanner needs the c
 the strict check. Code: the codes subsystem in `pad/subs/codes/` - `barcode.php` the body every form
 runs, `_lib/` the encoders and the SVG writers, `types/` the symbologies;
 `pad/types/barcode.php` the barcode type.
+
+`gs1128` writes the GS1 element strings of a logistics label - each application identifier in
+parentheses before its value, `(00)` an SSCC, `(01)` a GTIN, `(10)` a batch, `(17)` an expiry
+date, or in square brackets where a value holds a parenthesis - in Code 128 that starts with
+FNC1, with a FNC1 behind every value of no predefined length that is not the last, and the
+AIs in parentheses under the bars. The values are checked as the GS1 General Specifications
+define them (`pad/subs/codes/_lib/gs1.php`): the digits, the length, GS1's characters, the check
+digit of a GTIN, SSCC or GLN and the dates; an AI GS1 has not defined, a value that breaks its
+format and more than 48 characters are errors under the strict check.
 
 ### Icons
 ```
