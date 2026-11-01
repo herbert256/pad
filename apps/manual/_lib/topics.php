@@ -24,6 +24,7 @@
                                     'holidays',
                                     'environment_and_cache', 'dates_and_logging', 'hashing_and_encryption' ],
       'Output'                 => [ 'html_helpers', 'markdown', 'showing_code', 'charts', 'diagrams', 'games', 'toys', 'widgets', 'codes', 'icons', 'locale',
+                                    'sounds',
                                     'fragment_cache', 'flush', 'live', 'server_sent_events' ],
       'Layouts and components' => [ 'layouts', 'page_meta', 'components', 'stacks', 'response_fragments' ],
       'The application'        => [ 'application_structure', 'extending', 'events', 'application_options',

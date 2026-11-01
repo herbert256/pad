@@ -1,0 +1,17 @@
+{ignore}
+<p><code>{sound}</code> plays a short sound - a chime, a pop, a coin, a drum - made from a recipe:
+no audio file anywhere. Every sound is a file of <code>pad/subs/sounds/types/</code> that returns
+its recipe, voices of sine, square, saw, triangle or noise with an envelope, a pitch that sweeps or
+steps through notes, and a filter; the files of <code>types/</code> are the sounds there are.</p>
+
+<p>The server settles the recipe - every note to its Hz, every default filled in - and both
+renderings read it with the same arithmetic: the script, written once per page with the CSP nonce,
+renders the samples and plays them through WebAudio, and <code>padSoundWav ()</code> renders them
+as a 16-bit mono WAV, the same samples, the same bytes on every request. The page asked again with
+<code>&amp;padSound=chime</code> answers that WAV.</p>
+
+<p>Without <code>target=</code> the tag writes a real button; with it, it binds the sound to the
+elements the selector finds. Once a sound has written the script, any element with
+<code>data-pad-sound="pop"</code> plays too. A browser plays audio only after a gesture on the page,
+so a sound bound to hover or focus is silent until the visitor has clicked or pressed a key.</p>
+{/ignore}

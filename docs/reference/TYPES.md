@@ -663,6 +663,25 @@ the kinds, and a kind is added by adding its file. Its items are read raw, as `{
 comes last of the subsystems, so a store, a field, an array of the name - a page's `$slider` -
 or a kind of another subsystem wins; write `input:slider` there.
 
+## Sound Types
+
+### sound
+
+A short sound made from a recipe, of the kind the tag names - the sounds subsystem in
+`PAD/subs/sounds/` writes its button or its binding, as the `{sound}` tag does for the sound its
+parameter names, and the browser renders and plays it.
+
+```
+{sound:chime/}
+{sound:success on='click', target='#save'/}
+{sound:bell download/}
+```
+
+**Resolution:** a PHP file `PAD/subs/sounds/types/<name>.php` that returns the recipe
+(`padSoundKinds()` in `PAD/lib/sound.php`): the files there are the sounds, and a sound is added by
+adding its file. Never bare: `{chime/}` is no sound - click, error and pop are the names of fields
+and pages. `{sound:zigzag/}` is "there is no sound named 'zigzag'".
+
 ---
 
 ## Sequence Types
@@ -803,6 +822,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `widget` | PAD/subs/widgets/types/ | Widgets |
 | `input` | PAD/subs/inputs/types/ | Rich form fields |
 | `pattern` | PAD/subs/patterns/types/ | Seeded SVG patterns |
+| `sound` | PAD/subs/sounds/types/ | Sounds |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -853,6 +873,7 @@ types/
 ├── script.php      → Shell script
 ├── select.php      → Select table query
 ├── sequence.php    → Sequence type
+├── sound.php       → Sound
 ├── toy.php         → Toy
 ├── widget.php      → Widget
 └── _go/

@@ -2271,6 +2271,67 @@ pattern row, an L-system line or a time zone that is none are errors under the s
 
 ---
 
+### sound
+A short sound made from a recipe and played by the browser - a chime, a pop, a coin, a drum.
+Every sound is a file of `pad/subs/sounds/types/` that returns its recipe, a PHP array, and the
+files there are the sounds there are (`padSoundKinds()`); the subsystem is `pad/subs/sounds/`.
+
+```html
+{sound:chime/}
+{sound 'pop', button='Pop!', volume=60/}
+{sound:success on='click', target='#save'/}
+{sound:tick on='hover', target='nav a'/}
+<button data-pad-sound="coin">Coin</button>
+{sound:bell download/}
+{toast 'Saved', sound='success'/}
+```
+
+A sound is written two ways, the same sound each time: the tag, `{sound 'chime'/}`, and the sound:
+type, `{sound:chime/}`; never bare. Without `target=` it writes a button that plays the sound,
+named after the recipe's title or by `button=`; with `target=` - a CSS selector - it writes no
+button but plays the sound when an element the selector finds has the event `on=` names: `click`
+(the default), `pointerdown`, `hover`, `focus`, `change`, `input` or `submit`; both together
+write the button and bind the selector. `volume=` plays it softer, 0 to 100. `download` adds a
+link to the sound as a WAV file - `download='text'` its text - the page asked again with
+`&padSound=<kind>`, which answers the WAV in place of the page; without script the button is
+hidden and a link to the same WAV stands in its place. Once a sound has written the script, any
+element with `data-pad-sound="<kind>"` plays on a click, or on the event its
+`data-pad-sound-on` names, and `data-pad-sound-volume` from 0 to 1; `PadSound.play ( 'pop' )`
+from a page's own script.
+
+| Sound | What it is |
+|-------|------------|
+| `bell` | A struck bell, inharmonic partials dying away for two seconds |
+| `chime` | Two soft bells a fifth apart - something went well |
+| `click` | The short dry click of a switch or a key |
+| `coin` | The two square notes of a coin in an old video game |
+| `error` | Two low buzzing notes falling a tritone |
+| `hihat` | A closed hi-hat, a short highpassed hiss |
+| `jump` | A thin square pulse swept up - a platform game's hop |
+| `kick` | A bass drum: a sine dropping from 150 Hz to 45 |
+| `laser` | A square wave diving from high to low |
+| `notify` | A gentle ding-dong - something came in |
+| `pop` | A bubble bursting, a sine swept quickly up |
+| `powerup` | A fast run of square notes up two octaves |
+| `snare` | A snare drum: highpassed noise over a falling tone |
+| `success` | A rising major arpeggio |
+| `tick` | The tick of a clock, a high wooden tap |
+| `warning` | Two tones taking turns, a small siren |
+| `whoosh` | Noise through a bandpass sweeping up - air rushing past |
+
+**The recipe:** `voices` played together; a voice has `wave` (sine, square, saw, triangle,
+noise), `note` (A4, C#5, Bb3 or Hz; of noise the rate it is held at) or `notes` ('C5 E5 G5', `-`
+a rest) with `step`, `to` and `glide` for a sweep or `bend` in semitones for every note of a run,
+`start`, `length`, `attack`, `decay`, `sustain`, `release`, `gain`, `duty` (a square's pulse),
+`vibrato` ([ Hz, semitones ]) and `filter` ([ lowpass|highpass|bandpass, Hz, to Hz, q ]); the
+recipe `title`, `level` (the peak it is scaled to, 0.8) and `seed` (its noise). The server settles
+it and both renderings read the settled recipe with the same arithmetic - the browser's script
+and `padSoundWav ()` - so the WAV is what the page plays: 16-bit mono PCM at 22050 Hz, the same
+bytes every time. An unknown sound, an `on=` that is none of its words, a `volume=` out of 0 to
+100 and a toast's `sound=` that is no sound are errors under the strict check.
+
+---
+
 ### diff
 What changed between two texts - word by word in the flow of the text, or line by line in
 one column or side by side - with `<del>` and `<ins>` marked and styled (`tags/_lib/diff.php`).
@@ -2654,6 +2715,7 @@ toast stands inside a `{form}` as well, its fields staying in the form (`subs/wi
 | `tone` | `info` (the default), `success`, `warning` or `error` - the colour of its edge |
 | `place` | `inline` (the default, in the flow of the page), `top` or `bottom` - fixed in that corner of the window |
 | `timeout` | Seconds, 1 to 600: the toast closes by itself after them |
+| `sound` | A sound of `pad/subs/sounds/types/` - `sound='success'` - played as the toast shows, once the browser lets the page play (after a gesture on it); see `{sound}` |
 
 **Behavior:** the text is a status region, an alert for a warning or an error, so a toast a
 fragment or a live region brings is read out; a toast without a title is named by its tone.
@@ -4163,6 +4225,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `game` | Output | A little game played in the browser - 18 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
 | `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
 | `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
+| `sound` | Output | A short sound made from a recipe - the files of `pad/subs/sounds/types/`: chime, pop, coin, kick ... - a button, a binding or a WAV file |
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |
 | `lorem` | Output | Lorem ipsum placeholder text - words, sentences or paragraphs, the same for the same seed |

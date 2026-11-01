@@ -6,7 +6,8 @@
   // no form of its own, so a toast stands inside a {form} too. tone= colours it - info,
   // success, warning or error; place= puts it in a corner of the window, top or bottom,
   // instead of in the flow; timeout= closes it after so many seconds, which the script
-  // does, held while the pointer or the focus is on it. subs/widgets/_lib/toast.php.
+  // does, held while the pointer or the focus is on it; sound= plays a sound of the sounds
+  // subsystem as it shows, sound='success'. subs/widgets/_lib/toast.php.
   //
   // The text of the pair is template, rendered first: like {live}, the pair asks for the end
   // walk and frames what rendered.
@@ -33,7 +34,7 @@
   $padToastHtml = padToast ( $padToastTitle, $padToastText,
                              padWidgetChoice ( 'toast', 'tone',  'info',   [ 'info', 'success', 'warning', 'error' ] ),
                              padWidgetChoice ( 'toast', 'place', 'inline', [ 'inline', 'top', 'bottom' ] ),
-                             padToastTimeout () );
+                             padToastTimeout (), padToastSound () );
 
   if ( ! $padPair [$pad] )
     return $padToastHtml;

@@ -56,6 +56,7 @@ applications show them working.
   - [Maps](#maps)
   - [Embeds](#embeds)
   - [Toys](#toys)
+  - [Sounds](#sounds)
   - [Widgets](#widgets)
   - [Month calendar](#month-calendar)
   - [Public holidays](#public-holidays)
@@ -936,6 +937,36 @@ the CSP nonce; a toy holds while the page is hidden or it is scrolled away, and 
 `data-state="playing"`, `"paused"` or `"held"`; the colours are `--pad-toy-*` on `.pad-toy`, light and
 dark. The `toys` application shows every one of them, the reference lists them with the pages that
 show them.
+
+### Sounds
+```
+{sound:chime/}                                  # a button that plays the chime - named Chime, its recipe's title
+{sound 'pop', button='Pop!', volume=60/}        # the tag; button= the label, volume= 0 to 100
+{sound:success on='click', target='#save'/}     # no button: played when an element the selector finds is clicked
+{sound:tick on='hover', target='nav a'/}        # on= click, pointerdown, hover, focus, change, input, submit
+<button data-pad-sound="coin">Coin</button>     # any element, once a sound has put the script on the page
+{sound:bell download/}                          # with a link to the sound as a WAV file
+{toast 'Saved', tone='success', sound='success'/}   # a toast that sounds as it shows
+```
+A sound is a recipe, a file of `pad/subs/sounds/types/` that returns a PHP array - no audio file
+anywhere: voices played together, each an oscillator (sine, square, saw, triangle) or noise, with
+an envelope (attack, decay to a sustain level, release), a pitch that sweeps (`to=`), wobbles
+(`vibrato`) or steps through a short run of notes (`notes='C5 E5 G5'`, `step=`), and a filter -
+lowpass, highpass or bandpass - whose cutoff may sweep too. The sounds: bell, chime, click, coin,
+error, hihat, jump, kick, laser, notify, pop, powerup, snare, success, tick, warning, whoosh; a
+sound is added by adding its file. The server settles the recipe - every note to its Hz, every
+default filled in - and both renderings read that one definition with the same arithmetic: the
+browser's script (`pad/subs/sounds/assets/sound.js`, written once per page with the CSP nonce,
+every recipe with it) renders the samples and plays them through WebAudio, and `padSoundWav (
+'chime' )` renders them on the server as a 16-bit mono WAV at 22050 Hz - the same samples, the
+noise from a seeded generator, so the same bytes every time. The page asked again with
+`&padSound=chime` answers that WAV - the download link asks for it, and so does the link that
+stands in for the button without script; `padSoundSend ( 'chime' )` answers it from a page's PHP.
+A browser plays audio only after a gesture on the page: the AudioContext is made or resumed on the
+first pointer press or key, so a sound bound to hover or focus, or a toast's sound on a page just
+loaded, is silent before that. A sound is never reached bare - click, error and pop are the words
+of fields and pages. The `sounds` application is a soundboard of them all, each with its recipe
+and its WAV.
 
 ### Widgets
 ```

@@ -1,0 +1,17 @@
+<p class="sounds-lead">Short sounds for a page - a chime when something is saved, a pop, a coin, a
+drum - each a tag of its own: a recipe in a file of <code>pad/subs/sounds/types/</code> in the
+engine, written <code>{open/}sound 'name'/{close/}</code> or <code>{open/}sound:name/{close/}</code>.
+No audio file anywhere: the browser makes the sound from its recipe and plays it, and the server
+makes the same samples into the WAV file each card links.</p>
+
+<ul class="sounds-board">
+  {sounds}
+  <li class="sounds-card" id="sound-{$kind}">
+    <h2 class="sounds-name">{$name}</h2>
+    <p class="sounds-line">{$line}</p>
+    <div class="sounds-play">{sound $kind, download/}</div>
+    <p class="sounds-meta"><code>{open/}sound:{$kind}/{close/}</code> · {$seconds} s · {$voices} {echo $voices eq 1 ? 'voice' : 'voices'/}</p>
+    <details class="sounds-recipe"><summary>The recipe</summary><pre><code>{!recipe}</code></pre></details>
+  </li>
+  {/sounds}
+</ul>

@@ -1,0 +1,40 @@
+{meta title='Sounds'/}
+
+<p>{tag 'sound'/} plays a short sound - a chime when something is saved, a pop, a coin, a drum - made
+from a recipe: there is no audio file anywhere. There are {echo php:count(padSoundKinds())/} of them -
+every sound is a file of <code>pad/subs/sounds/types/</code>, and the <a href="../sounds/">sounds</a>
+application is a soundboard of them all.</p>
+
+{example 'fragments/sounds_1'/}
+
+<h2>A button, or the elements of the page</h2>
+
+<p>Without <code>target=</code> the tag writes a real button that plays the sound, named after the
+sound or by <code>button=</code>. With <code>target=</code>, a CSS selector, it writes no button: the
+sound plays when an element the selector finds has the event <code>on=</code> names - <code>click</code>,
+<code>pointerdown</code>, <code>hover</code>, <code>focus</code>, <code>change</code>, <code>input</code>
+or <code>submit</code>. Once a sound has put the script on the page, any element with
+<code>data-pad-sound="pop"</code> plays that sound when it is clicked.</p>
+
+{example 'fragments/sounds_2'/}
+
+<h2>One recipe, the browser and the WAV file</h2>
+
+<p>A recipe is voices played together - sine, square, saw, triangle or noise - each with an envelope,
+a pitch that sweeps or steps through a few notes, and a filter. The server settles it, every note to
+its Hz, and both renderings read the settled recipe with the same arithmetic: the script renders the
+samples and plays them through WebAudio, and <code>padSoundWav ( 'bell' )</code> renders them as a WAV
+file - the same samples, the noise from a seeded generator, so the same bytes on every request.
+<code>download</code> links that file: the page asked again with <code>&amp;padSound=bell</code>.</p>
+
+{example 'fragments/sounds_3'/}
+
+<ul>
+  <li>A browser plays audio only after a gesture on the page: the first click or key lets the sounds
+  play, so a sound bound to hover or focus is silent until then.</li>
+  <li>A toast plays a sound as it shows with <code>sound=</code> -
+  <code>{open/}toast 'Saved', sound='success'/{close/}</code>.</li>
+  <li>Without script the button is hidden and a link to the WAV stands in its place; a sound is never
+  the only sign that something happened - the page says it too.</li>
+  <li>The script carries the CSP nonce and every recipe, written once per page.</li>
+</ul>

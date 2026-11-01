@@ -89,6 +89,8 @@
                       "{fake:email/}\n{fake 'email'/}\n{fake 'name, email', rows=3}...{/fake}" ],
       'pattern'  => [ 'A pattern, a file of pad/subs/patterns/types/ - a seeded SVG background, never bare.', 'subsystems',
                       "{pattern:topography seed=7/}\n{pattern 'topography', seed=7/}" ],
+      'sound'    => [ 'A sound, a file of pad/subs/sounds/types/ - a recipe the browser plays and the server writes as a WAV, never bare.', 'subsystems',
+                      "{sound:chime/}\n{sound 'chime'/}\n{sound:pop on='click', target='#save'/}" ],
 
     ];
 

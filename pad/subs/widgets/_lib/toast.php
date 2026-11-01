@@ -22,19 +22,26 @@
   // toast - a notice that goes before it is read is an accessibility fault - and closes a
   // toast with Escape. Printed, no toast shows.
   //
+  // sound= names a sound of the sounds subsystem (subs/sounds/) the toast plays as it shows -
+  // data-pad-sound-play on the dialog, which the sounds' script plays once - as soon as the
+  // browser lets the page play, after a gesture on it: a toast a fragment or a live region
+  // brings after a click sounds, one on a page just loaded is silent.
+  //
   // padToast         the dialog: the title, the text, the close button
   // padToastTimeout  the seconds of timeout=, 0 without it
+  // padToastSound    the sound of sound=, '' without it
   // padToastStyle    the CSS, assets/toast.css, once per page
   // padToastScript   the script, assets/toast.js, once per page - the close button of a
   //                  browser without invoker commands, Escape and timeout=
 
-  function padToast ( $title, $text, $tone, $place, $timeout ) {
+  function padToast ( $title, $text, $tone, $place, $timeout, $sound = '' ) {
 
     $id     = padWidgetId ( 'toast', [ $title, $text, $tone, $place ] );
     $role   = in_array ( $tone, [ 'warning', 'error' ] ) ? 'alert' : 'status';
     $class  = "pad-toast pad-toast-$tone" . ( $place != 'inline' ? " pad-toast-$place" : '' );
     $name   = ( $title !== '' ) ? "aria-labelledby=\"$id-title\"" : 'aria-label="' . ucfirst ( $tone ) . '"';
     $later  = $timeout ? " data-pad-timeout=\"$timeout\"" : '';
+    $later .= ( $sound !== '' ) ? " data-pad-sound-play=\"$sound\"" : '';
 
     return padToastStyle ()
          . padProtect ( "<dialog open class=\"$class\" id=\"$id\" $name$later>"
@@ -45,7 +52,33 @@
          . padProtect ( ( $text !== '' ? '</div>' : '' ) . '</div>'
                       . "<button type=\"button\" class=\"pad-toast-close\" commandfor=\"$id\" command=\"close\" aria-label=\"Dismiss\"><span aria-hidden=\"true\">&#215;</span></button>"
                       . '</dialog>' )
-         . padToastScript ();
+         . padToastScript ()
+         . ( ( $sound !== '' ) ? padSoundScript () : '' );
+
+  }
+
+  // A sound of subs/sounds/types/ - its library loaded to write its script - or '' without
+  // sound=; another name is reported under the strict check.
+
+  function padToastSound () {
+
+    global $padCheckSyntax;
+
+    $value = padTagParm ( 'sound', '' );
+    $value = is_scalar ( $value ) ? strtolower ( trim ( padParmText ( (string) $value ) ) ) : '';
+
+    if ( $value === '' )
+      return '';
+
+    if ( padSoundKind ( $value ) ) {
+      include_once PAD . 'subs/sounds/_lib/sound.php';
+      return $value;
+    }
+
+    if ( $padCheckSyntax )
+      padError ( "the {toast} has no sound '" . padMakeSafe ( $value, 20 ) . "' - " . implode ( ', ', padSoundKinds () ) );
+
+    return '';
 
   }
 

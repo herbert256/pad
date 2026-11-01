@@ -26,6 +26,7 @@
     'icon'    => [ 'icons',    FALSE, 'icon'           ],
     'fake'    => [ 'fakes',    FALSE, 'fake kind'      ],
     'pattern' => [ 'patterns', FALSE, 'pattern'        ],
+    'sound'   => [ 'sounds',   FALSE, 'sound'          ],
   ];
 
   // The kinds of the subsystem in pad/subs/<directory>/: the names of the files of its types/,

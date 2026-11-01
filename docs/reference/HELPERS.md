@@ -37,6 +37,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Public holidays](#public-holidays) | `padHolidays`, `padIsHoliday`, `padWorkdays`, `padAddWorkdays` | holidays |
 | [Site search](#site-search) | `padSearch` | search |
 | [Data formats](#data-formats) | `padFormatRead`, `padFormatWrite`, `padFormatKinds`, ... | data_formats |
+| [Sounds](#sounds) | `padSoundWav`, `padSoundSend`, `padSoundKinds` | - |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1079,6 +1080,16 @@ function, which then answers an empty value of its kind.
 | `padFormatWrite ( $format, $rows, $options = [] )` | The text of rows - or of any value, for `toml`, `yaml`, `ini`, `json`; options: `title`, `link`, `self`, `description`, `author` of a feed, `name`, `stamp` of a calendar, `sheet` of a spreadsheet, `as` of GPX; deterministic, the same rows the same bytes |
 | `padFormatKinds ()`, `padFormatFind ( $name, $can = '' )` | The formats - the files of `pad/subs/formats/types/`; the format a name or extension stands for that can `read` or `write` - `''` for none |
 | `padFormatDef ( $format )` | What its file says: `name`, `mime`, `extension`, `shape` (`rows` or `data`), `read`, `write` ... |
+
+## Sounds
+
+`pad/lib/sound.php` - the sounds of `pad/subs/sounds/types/`, the recipes `{sound}` plays.
+
+| Function | Answers |
+|----------|---------|
+| `padSoundWav ( $kind )` | The sound as the bytes of a WAV file - 16-bit mono PCM at 22050 Hz, made from its recipe as the browser makes it, the same bytes every time: `file_put_contents ( 'chime.wav', padSoundWav ( 'chime' ) )` |
+| `padSoundSend ( $kind, $download )` | The WAV as the page's whole answer, sent from its PHP as `padUploadSend` sends a file - inline, or with `TRUE` as a download; an unknown sound 404 |
+| `padSoundKinds ()`, `padSoundKind ( $name )` | The sounds there are; whether a name is one |
 
 ## Engine functions
 
