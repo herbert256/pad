@@ -23,24 +23,35 @@
   //   {/epicycles}
 
   // A drawing of your own: x,y pairs between spaces or new lines, as in the points of
-  // an SVG polyline - three of them or more, at most 2000.
+  // an SVG polyline - three of them or more, at most 2000, not all on one place. A number
+  // of more digits than a double holds is refused as well: it would be INF, which no JSON
+  // can carry.
 
   $padEpiOwn = [];
 
   foreach ( padToyLines () as $padEpiLine )
     foreach ( preg_split ( '/\s+/', trim ( $padEpiLine ) ) as $padEpiPair ) {
-      if ( ! preg_match ( '/^(-?(?:\d+\.?\d*|\.\d+)),(-?(?:\d+\.?\d*|\.\d+))$/D', $padEpiPair, $padEpiMatch ) ) {
+      $padEpiPoint = preg_match ( '/^(-?(?:\d+\.?\d*|\.\d+)),(-?(?:\d+\.?\d*|\.\d+))$/D', $padEpiPair, $padEpiMatch )
+                   ? [ $padEpiMatch [1] + 0, $padEpiMatch [2] + 0 ] : NULL;
+      if ( ! $padEpiPoint or ! is_finite ( $padEpiPoint [0] ) or ! is_finite ( $padEpiPoint [1] ) ) {
         if ( $GLOBALS ['padCheckSyntax'] )
-          padError ( "the " . padToyWhat () . " has a point '" . padMakeSafe ( $padEpiPair, 30 ) . "' - two numbers x,y, as in the points of an SVG polyline" );
+          padError ( "the " . padToyWhat () . " has a point '" . padMakeSafe ( $padEpiPair, 30 ) . "' - "
+                   . ( $padEpiPoint ? 'a number too large' : 'two numbers x,y, as in the points of an SVG polyline' ) );
         $padEpiOwn = [];
         break 2;
       }
-      $padEpiOwn [] = [ $padEpiMatch [1] + 0, $padEpiMatch [2] + 0 ];
+      $padEpiOwn [] = $padEpiPoint;
     }
 
   if ( padToySource () !== '' and ( count ( $padEpiOwn ) < 3 or count ( $padEpiOwn ) > 2000 ) ) {
     if ( $GLOBALS ['padCheckSyntax'] and ( $padEpiOwn or count ( padToyLines () ) ) )
       padError ( "the " . padToyWhat () . " drawing of your own has " . count ( $padEpiOwn ) . " points - three to 2000" );
+    $padEpiOwn = [];
+  }
+
+  if ( $padEpiOwn and ! array_filter ( $padEpiOwn, fn ( $padEpiP ) => $padEpiP != $padEpiOwn [0] ) ) {
+    if ( $GLOBALS ['padCheckSyntax'] )
+      padError ( "the " . padToyWhat () . " drawing of your own has no length - its points all stand on one place" );
     $padEpiOwn = [];
   }
 
