@@ -14,6 +14,11 @@ One runtime mounts components of any framework - React, Vue, Svelte, Preact, Sol
 | `examples/typed` | A TypeScript island whose props are typed by `pad types` from the page's own data - `npm run types`, `npm run check` |
 | `examples/build` | What `{vite 'src/main.js'/}` wrote for the request, the manifest it read, and the dev server that takes over |
 
+The pages stand in the frame of the PAD applications (`{common:padFrame}`): the brand and a menu
+of the examples by group in the side, the page's title, the theme switcher and the light/dark
+switch in the bar. The pages are coloured with the frame's custom properties, and so are the
+components' own styles, so every theme reaches the islands too.
+
 ## The runtime
 
 `_frontend/src/pad-islands.js` (ESM, in the build):
@@ -57,14 +62,14 @@ at `www/islands/` when the project is built from a copy elsewhere.
 ```
 apps/islands/
 ├── _config/config.php     # $padCommon and $padTidy off, $padCsrf on, $padViteBuild
-├── _data/                 # examples.json (the catalogue), products, nav
+├── _data/                 # examples.json (the catalogue - and the menu), products
 ├── _lib/islands.php       # islandsData, islandsGroups, islandsExample, islandsCart, islandsWeight, islandsText
 ├── _frontend/             # the Vite project: package.json, vite.config.js, src/
-├── _inits.pad, _inits.php # the page: {vite 'src/main.js', react/}, the menu
+├── _inits.pad, _inits.php # the frame, {vite 'src/main.js', react/} in its head, the menu ($frameMenu)
 ├── index, guide
 └── examples/
 
 www/islands/
-├── islands.css            # the look, light and dark
+├── islands.css            # the look of the pages, on the frame's colours
 └── build/                 # what npm run build wrote
 ```

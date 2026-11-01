@@ -1,11 +1,12 @@
 <?php
 
-  // The example on show: its entry in _data/examples.json gives the header above it and the
-  // files under it (_inits.pad, _exits.pad) - the template, the PHP and the sources of its
-  // islands in _frontend/src/ - and the examples before and after it the links at the foot.
+  // The example on show: its entry in _data/examples.json gives the title the frame's bar
+  // shows, the header above it and the files under it (_inits.pad, _exits.pad) - the
+  // template, the PHP and the sources of its islands in _frontend/src/ - and the examples
+  // before and after it the links at the foot.
 
   $example     = islandsExample ( $padPage );
-  $title       = $example ['title'] . ' - PAD + islands';
+  $title       = $example ['title'];
   $serverChips = $example ['server'];
   $clientChips = $example ['client'];
   $prev        = $example ['prev'];

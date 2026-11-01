@@ -12,11 +12,11 @@ class PadTimeline extends LitElement {
 
   static styles = css`
     :host { display: block; }
-    ol { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid var(--line, #ddd); }
-    li { position: relative; margin: 0 0 14px; padding: 12px 16px; border-radius: 12px; background: var(--surface-2, #f4f4f4); cursor: pointer; }
-    li::before { content: ''; position: absolute; left: -30px; top: 16px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent, #e8590c); }
-    li.is-open { outline: 2px solid var(--accent, #e8590c); }
-    .year { font: 800 13px/1 system-ui, sans-serif; color: var(--accent, #e8590c); }
+    ol { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid var(--line, #e3e6eb); }
+    li { position: relative; margin: 0 0 14px; padding: 12px 16px; border-radius: 12px; background: var(--head, #eef0f3); cursor: pointer; }
+    li::before { content: ''; position: absolute; left: -30px; top: 16px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent, #2563eb); }
+    li.is-open { outline: 2px solid var(--accent, #2563eb); }
+    .year { font: 800 13px/1 var(--sans, system-ui, sans-serif); color: var(--accent, #2563eb); }
   `;
 
   constructor() {

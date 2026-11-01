@@ -1,12 +1,24 @@
 <?php
 
-  // Every page: the title the wrapper writes unless the page sets its own, the section of
-  // the menu that is lit, and the version of the stylesheet for its address. The scripts are
-  // the build's - {vite} names them by their source, so they need no version of their own.
+  // The menu of the frame every PAD application shares (_common/_tags/padFrame.pad): the
+  // examples' overview and the guide, then the examples of each group of _data/examples.json
+  // under its heading - a link lights when it names the page shown. The title the bar shows
+  // is the page's own; one that sets none is named after its file.
 
-  $title      = 'PAD + islands';
-  $navSection = str_starts_with ( $padPage, 'examples/' ) ? 'index' : explode ( '/', $padPage ) [0];
+  $title = ucfirst ( basename ( $padPage ) );
 
-  $islandsCss = filemtime ( dirname ( APPS ) . "/www/$padApp/islands.css" );
+  $frameMenu = [ [ 'link' => '?index', 'label' => 'All examples', 'icon' => 'grid' ],
+                 [ 'link' => '?guide', 'label' => 'Guide',        'icon' => 'book-open' ] ];
+
+  foreach ( islandsGroups () as $islandsGroup ) {
+
+    $frameMenu [] = [ 'head' => $islandsGroup ['title'] ];
+
+    foreach ( $islandsGroup ['examples'] as $islandsOne )
+      $frameMenu [] = [ 'link' => '?' . $islandsOne ['page'], 'label' => $islandsOne ['title'], 'icon' => '' ];
+
+  }
+
+  unset ( $islandsGroup, $islandsOne );
 
 ?>

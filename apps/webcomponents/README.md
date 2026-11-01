@@ -14,6 +14,10 @@ PAD custom tags write custom elements with their shadow root already in them - d
 | `examples/stepper` | `<pad-stepper>`, form-associated: `ElementInternals` gives the `{form}` its value, `padValidate` checks it on the server |
 | `examples/lit` | A Lit element fed by PAD through `items="{^items}"` |
 
+The pages stand in the frame of the PAD applications (`{common:padFrame}`): the brand and a menu
+of the examples by group in the side, the page's title, the theme switcher and the light/dark
+switch in the bar.
+
 ## How it works
 
 - `{shadow css='www:elements/card.css'} ... {/shadow}` writes `<template shadowrootmode="open">`
@@ -21,23 +25,23 @@ PAD custom tags write custom elements with their shadow root already in them - d
   template would have its braces read as PAD tags. The browser builds the root while it parses.
 - A module in `www/webcomponents/elements/` defines the element; it finds the root PAD rendered
   in `this.shadowRoot` and adds behaviour only.
-- Custom properties cross the shadow boundary, so the elements follow the page's light and dark
-  theme (`var(--surface)`, `var(--accent)`).
+- Custom properties cross the shadow boundary, so the elements follow the frame's colours - light,
+  dark and every theme (`var(--panel)`, `var(--accent)`).
 
 ## Files
 
 ```
 apps/webcomponents/
 ├── _config/config.php     # $padCommon and $padTidy off, $padCsrf on
-├── _data/                 # examples.json (the catalogue), nav
+├── _data/                 # examples.json (the catalogue - and the menu)
 ├── _lib/webcomponents.php # wcData, wcGroups, wcExample, wcText
 ├── _tags/                 # card.pad, tabs.pad, rating.pad, stepper.pad - the elements as PAD tags
+├── _inits.pad, _inits.php # the frame and its menu ($frameMenu)
 ├── index, guide
 └── examples/
 
 www/webcomponents/
-├── webcomponents.css      # the page's look, light and dark
-├── app.js                 # the theme switch
+├── webcomponents.css      # the look of the pages, on the frame's colours
 └── elements/              # the shadow stylesheets and the modules that upgrade the elements
 ```
 

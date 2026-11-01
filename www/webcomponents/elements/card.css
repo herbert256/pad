@@ -1,21 +1,22 @@
 /* The shadow root of <pad-card>, inlined into it by {shadow css=}. Nothing of the page's
-   stylesheet reaches in - but custom properties do, so the card follows the page's theme. */
+   stylesheet reaches in - but custom properties do: the frame's colours (www/_common/pad.css),
+   so the card follows light, dark and every theme. */
 
 :host {
-  --tone: var(--accent, #e8590c);
+  --tone: var(--accent, #2563eb);
   display: block;
   border-radius: 16px;
-  background: var(--surface, #fff);
-  border: 1px solid var(--line, #ddd);
+  background: var(--panel, #fff);
+  border: 1px solid var(--line, #e3e6eb);
   border-top: 4px solid var(--tone);
   box-shadow: var(--shadow, none);
   overflow: hidden;
 }
-:host([tone="good"]) { --tone: var(--good, #108a4a); }
-:host([tone="bad"])  { --tone: var(--bad, #c93838); }
-:host([tone="info"]) { --tone: var(--accent, #e8590c); }
+:host([tone="good"]) { --tone: var(--ok, #15803d); }
+:host([tone="bad"])  { --tone: var(--bad, #b91c1c); }
+:host([tone="info"]) { --tone: var(--accent, #2563eb); }
 
-header { padding: 14px 18px 0; font: 700 12px/1.4 system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--tone); }
+header { padding: 14px 18px 0; font: 700 12px/1.4 var(--sans, system-ui, sans-serif); letter-spacing: .08em; text-transform: uppercase; color: var(--tone); }
 .body { padding: 4px 18px 10px; }
-footer { padding: 10px 18px; border-top: 1px solid var(--line, #ddd); font-size: 14px; }
+footer { padding: 10px 18px; border-top: 1px solid var(--line, #e3e6eb); font-size: 14px; }
 ::slotted([slot="footer"]) { color: var(--tone); font-weight: 600; text-decoration: none; }

@@ -12,5 +12,5 @@
 <span class="cart-badge" title="Svelte">🛒 <strong>{count}</strong></span>
 
 <style>
-  .cart-badge { display: inline-flex; gap: 8px; align-items: center; padding: 8px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .cart-badge { display: inline-flex; gap: 8px; align-items: center; padding: 8px 14px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); box-shadow: var(--shadow); }
 </style>

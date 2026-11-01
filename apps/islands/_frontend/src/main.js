@@ -2,7 +2,6 @@
 // pairs a component with its framework; nothing of either is fetched before an island of
 // that name is on the page and due to load (pad-islands.js).
 
-import './theme.js';
 import { islands, react, vue, svelte, preact, solid } from './pad-islands.js';
 
 islands({
