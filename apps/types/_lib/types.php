@@ -99,6 +99,8 @@
                       "{section:hero title='Build faster'}...{/section:hero}\n{section 'hero', title='Build faster'}...{/section}" ],
       'effect'   => [ 'An effect, a file of pad/subs/effects/types/ - motion and decoration, CSS first, still under reduced motion.', 'subsystems',
                       "{effect:typewriter}Hello{/effect:typewriter}\n{effect 'typewriter'}Hello{/effect}\n{typewriter}Hello{/typewriter}" ],
+      'jsonld'   => [ 'A JSON-LD kind, a file of pad/subs/jsonld/types/ - the structured data of a page as a Schema.org object, never bare.', 'subsystems',
+                      "{jsonld:article headline=\$title, author=\$author/}\n{jsonld 'article', data='post'/}\n{jsonld:faq data='questions'/}" ],
 
     ];
 

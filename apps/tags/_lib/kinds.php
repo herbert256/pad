@@ -33,6 +33,7 @@
       'notation' => [ 'Notations',         'A notation of {notation} each, drawn on the server',  'both',   " 'text'/}",                                   'notation' ],
       'section'  => [ 'Sections',          'A block of a landing page of {section} each, pure CSS', 'pair', " title='...'}\n  ...\n{/section:%s}",          'section' ],
       'effect'   => [ 'Effects',           'An effect of {effect} each, motion and decoration',  'both',   "}...{/effect:%s}",                             'effect'  ],
+      'jsonld'   => [ 'JSON-LD kinds',     'A Schema.org object of {jsonld} each, for search engines', 'single', " data='rows'/}",                          'jsonld'  ],
     ];
 
   }
@@ -273,6 +274,10 @@
         $parm = tagsKindSequenceParm ( $kind );
         return $example ( 'The first ten terms', $parm ? 'With the parameter the type takes.' : '', "{sequence:$kind$parm rows=10}{\$$kind} {/sequence:$kind}" );
 
+      case 'jsonld':
+        return $example ( "The $kind as JSON-LD", 'The script it writes, shown here with | html - on a page the tag alone writes it, unseen.',
+                          tagsKindJsonLdExamples () [$kind] ?? "<pre style=\"white-space:pre-wrap\">{jsonld:$kind | html/}</pre>" );
+
       case 'section':
       case 'effect':
         $file = APPS . "sections/_examples/$type/$kind.pad";
@@ -305,6 +310,25 @@
     ksort ( $found );
 
     return $pages ["$app/$dir$extension"] = $found;
+
+  }
+
+  // The example of each JSON-LD kind: the tag with fields of its own, its script made visible
+  // by the html pipe - a faq's rows from a {data} block, a breadcrumb the trail of its page.
+
+  function tagsKindJsonLdExamples () {
+
+    $pre = fn ( $tag ) => "<pre style=\"white-space:pre-wrap\">$tag</pre>";
+
+    return [
+      'article'      => $pre ( "{jsonld:article headline='Pages that drive themselves', author='Ann Smith', published='2026-11-01', image='cover.jpg' | html/}" ),
+      'breadcrumb'   => $pre ( "{jsonld:breadcrumb | html/}" ),
+      'event'        => $pre ( "{jsonld:event name='PAD day', starts='2026-11-20 19:30', place='The Hall', address='Main Street 1, Utrecht', price='12.50', currency='EUR', availability='InStock' | html/}" ),
+      'faq'          => "{data 'questions'}\n[ { \"question\": \"Is it free?\", \"answer\": \"Yes, under the GPL.\" } ]\n{/data}\n" . $pre ( "{jsonld:faq data='questions' | html/}" ),
+      'organization' => $pre ( "{jsonld:organization name='PAD', url='https://pad.example', logo='logo.png', profiles='https://github.com/pad', phone='+31 30 123 4567', contact='customer service' | html/}" ),
+      'person'       => $pre ( "{jsonld:person name='Ann Smith', job='Engineer', profiles='https://github.com/ann, https://social.example/@ann' | html/}" ),
+      'product'      => $pre ( "{jsonld:product name='Aurora kettle', sku='AK-1', brand='Aurora', price='39.95', currency='EUR', availability='InStock' | html/}" ),
+      'website'      => $pre ( "{jsonld:website name='PAD', search='?search&q=' | html/}" ) ];
 
   }
 
@@ -378,14 +402,20 @@
       'printable' => [ "{printable:$kind}...{/printable:$kind}", "{printable '$kind'}...{/printable}" ],
       'notation' => [ "{notation:$kind 'text'/}", "{notation '$kind', 'text'/}" ],
       'section'  => [ "{section:$kind ...}...{/section:$kind}", "{section '$kind', ...}...{/section}" ],
-      'effect'   => [ "{effect:$kind}...{/effect:$kind}", "{effect '$kind'}...{/effect}" ] ] [$type];
+      'effect'   => [ "{effect:$kind}...{/effect:$kind}", "{effect '$kind'}...{/effect}" ],
+      'jsonld'   => [ "{jsonld:$kind .../}", "{jsonld '$kind', .../}" ] ] [$type];
 
     if ( tagsKindBare ( $type, $kind ) )
       $ways [] = "{{$kind} ...}, bare, when no tag, field or store has the name";
     elseif ( $type == 'notation' and is_file ( PAD . "tags/$kind.php" ) )
       $ways [] = "{{$kind} ...}, the built-in tag {pad:$kind}, which comes before a field or store of the name";
 
-    $html = '<p>One of the ' . $count . ' ' . strtolower ( $types [$type] [0] ) . ' of <a href="?tag/' . $of . '">' . $code ( '{pad:' . $of . '}' ) . '</a>, written '
+    // The group's label in the sentence, lower case - but one that starts with an acronym,
+    // JSON-LD kinds, as it is written.
+
+    $label = preg_match ( '/^[A-Z]{2}/', $types [$type] [0] ) ? $types [$type] [0] : strtolower ( $types [$type] [0] );
+
+    $html = '<p>One of the ' . $count . ' ' . $label . ' of <a href="?tag/' . $of . '">' . $code ( '{pad:' . $of . '}' ) . '</a>, written '
           . implode ( ', ', array_map ( fn ( $way ) => preg_match ( '/^(\{.*?\}|\S+\))(.*)$/', $way, $m ) ? $code ( $m [1] ) . htmlspecialchars ( $m [2] ) : htmlspecialchars ( $way ), $ways ) )
           . '.</p>';
 

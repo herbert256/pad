@@ -1,0 +1,7 @@
+{meta title='The questions of a page', about='Rows of question and answer, an FAQPage of them - the same rows can show the questions on the page.'/}
+{data 'questions'}
+[ { "question": "Is it free?",              "answer": "Yes, under the GPL." },
+  { "question": "Does it need a database?", "answer": "No - SQLite, MySQL or none." } ]
+{/data}
+<dl>{questions}<dt>{$question}</dt><dd>{$answer}</dd>{/questions}</dl>
+<pre style="white-space:pre-wrap">{jsonld:faq data='questions' | html/}</pre>
