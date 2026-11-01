@@ -247,6 +247,14 @@
 
   function padAztecMatrix ( $text, $ecc = 23 ) {
 
+    // A text longer than the largest symbol could hold at the best rate - two characters of
+    // punctuation in five bits, 2.5 bits a character - is refused before its bits are worked
+    // out, which costs some 3 MB of memory for every 1000 characters: 32 layers hold 1664
+    // codewords of 12 bits, the error correction asked and 3 more taken off.
+
+    if ( strlen ( $text ) * 5 > ( 1664 - (int) ceil ( 1664 * $ecc / 100 ) - 3 ) * 12 * 2 )
+      return NULL;
+
     $bits = '';
 
     foreach ( padAztecBits ( $text ) as list ( $count, $value ) )
