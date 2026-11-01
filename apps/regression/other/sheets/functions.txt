@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 120 functions a formula can call, each a file of
+<p class="sheets-lead">The 123 functions a formula can call, each a file of
 <code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -472,6 +472,12 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=CONCAT(&quot;a&quot;, 1, TRUE)</code> <samp>a1TRUE</samp></li><li><code>=CONCAT(A2, &quot; x &quot;, B2)</code> <samp>Apples x 10</samp></li></ul></td>
     </tr>
   
+    <tr id="exact">
+      <th scope="row">EXACT</th>
+      <td>EXACT(text1, text2) is TRUE when two texts are the same, character for character and in the same case - where = takes no notice of case - else FALSE. A number is compared as the text it shows, TRUE and FALSE as those words, an empty cell as the empty text.</td>
+      <td><ul class="sheets-examples"><li><code>=EXACT(&quot;word&quot;, &quot;word&quot;)</code> <samp>TRUE</samp></li><li><code>=EXACT(&quot;Word&quot;, &quot;word&quot;)</code> <samp>FALSE</samp></li><li><code>=EXACT(&quot;w ord&quot;, &quot;word&quot;)</code> <samp>FALSE</samp></li><li><code>=EXACT(B6, &quot;0&quot;)</code> <samp>TRUE</samp></li></ul></td>
+    </tr>
+  
     <tr id="find">
       <th scope="row">FIND</th>
       <td>FIND(find, within, [start]) is the place of the first character of one text in another, from the start-th character on, the first being 1 - in the same case, without wildcards. Not found, or a start past the text, is #VALUE!.</td>
@@ -506,6 +512,18 @@ shows.</p>
       <th scope="row">PROPER</th>
       <td>PROPER(text) gives every word a capital and the rest small letters - a word being a run of letters, so after an apostrophe a new one starts, as in Excel: it&#039;s is It&#039;S.</td>
       <td><ul class="sheets-examples"><li><code>=PROPER(&quot;hello wORLD&quot;)</code> <samp>Hello World</samp></li><li><code>=PROPER(&quot;it&#039;s 2-way&quot;)</code> <samp>It&#039;S 2-Way</samp></li></ul></td>
+    </tr>
+  
+    <tr id="replace">
+      <th scope="row">REPLACE</th>
+      <td>REPLACE(text, start, count, new) puts a new text in the place of count characters of a text from the start-th on, the first being 1 - a count of 0 inserts it, a start past the end adds it at the end. A start below 1 or a count below 0 is #VALUE!, and so is a text that would hold more than 32767 characters. A number is replaced in as the text it shows.</td>
+      <td><ul class="sheets-examples"><li><code>=REPLACE(&quot;abcdefghijk&quot;, 6, 5, &quot;*&quot;)</code> <samp>abcde*k</samp></li><li><code>=REPLACE(2009, 3, 2, &quot;10&quot;)</code> <samp>2010</samp></li><li><code>=REPLACE(A2, 1, 1, &quot;Crab a&quot;)</code> <samp>Crab apples</samp></li><li><code>=REPLACE(&quot;abc&quot;, 0, 1, &quot;x&quot;)</code> <samp>#VALUE!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="rept">
+      <th scope="row">REPT</th>
+      <td>REPT(text, times) is a text repeated a number of times - cut to a whole number toward 0, 0 the empty text; below 0 it is #VALUE!, and so is a text that would hold more than 32767 characters, which is never built.</td>
+      <td><ul class="sheets-examples"><li><code>=REPT(&quot;*-&quot;, 3)</code> <samp>*-*-*-</samp></li><li><code>=REPT(&quot;-&quot;, 10)</code> <samp>----------</samp></li><li><code>=REPT(A6, 2)</code> <samp>PlumsPlums</samp></li><li><code>=REPT(&quot;x&quot;, -1)</code> <samp>#VALUE!</samp></li></ul></td>
     </tr>
   
     <tr id="right">
