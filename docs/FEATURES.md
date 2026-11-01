@@ -1422,11 +1422,12 @@ A sound is a recipe, a file of `pad/subs/sounds/types/` that returns a PHP array
 anywhere: voices played together, each an oscillator (sine, square, saw, triangle) or noise, with
 an envelope (attack, decay to a sustain level, release), a pitch that sweeps (`to=`), wobbles
 (`vibrato`) or steps through a short run of notes (`notes='C5 E5 G5'`, `step=`; of noise
-`notes='x x - x'`, a hit of white noise at every `x`), and a filter -
-lowpass, highpass or bandpass - whose cutoff may sweep too. The sounds: applause, beep, bell, chime, clap, click, coin,
-countdown, error, hihat, jump, kick, laser, notify, pop, powerup, shaker, snare, success, tick, warning, waterdrop, whoosh,
-woodblock; a sound is added by adding its file. The server settles the recipe - every note to its Hz, every
-default filled in - and both renderings read that one definition with the same arithmetic: the
+`notes='x x - x'`, a hit of white noise at every `x`), and a filter - lowpass, highpass or
+bandpass - whose cutoff may sweep too. The sounds: applause, beep, bell, chime, clap, click,
+coin, countdown, error, fanfare, gameover, hihat, jump, kick, laser, notify, pop, powerup,
+shaker, snare, success, tick, warning, waterdrop, whoosh, woodblock; a sound is added by adding
+its file. The server settles the recipe - every note to its Hz, every default filled in - and
+both renderings read that one definition with the same arithmetic: the
 browser's script (`www/assets/sounds/sound.js`, written once per page with the CSP nonce,
 every recipe with it) renders the samples and plays them through WebAudio, and `padSoundWav (
 'chime' )` renders them on the server as a 16-bit mono WAV at 22050 Hz - the same samples, the

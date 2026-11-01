@@ -2478,6 +2478,8 @@ from a page's own script.
 | `coin` | The two square notes of a coin in an old video game |
 | `countdown` | Ready, set, go: three short beeps half a second apart, then a long one an octave up |
 | `error` | Two low buzzing notes falling a tritone |
+| `fanfare` | You won: three quick notes on G, then a held C major chord, like brass |
+| `gameover` | Better luck next time: four notes sinking a semitone each, the last long and wobbling |
 | `hihat` | A closed hi-hat, a short highpassed hiss |
 | `jump` | A thin square pulse swept up - a platform game's hop |
 | `kick` | A bass drum: a sine dropping from 150 Hz to 45 |
