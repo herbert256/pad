@@ -233,7 +233,7 @@ PadToys.register('epicycles', function (k, cfg) {
   k.playButton();
   k.button('Again', function () { t = 0; turned = false; draw(); k.status('From the start again'); }, 'The pen from the start again');
   var shapes = (own.length ? ['yours'] : []).concat(['heart', 'star', 'square', 'trefoil']);
-  var shapeIn = k.select('Drawing', shapes.map(function (n) { return [n, NAMES[n]]; }), shape, function (v) { use(v); }).querySelector('select');
+  var shapeIn = k.select('Drawing', shapes.map(function (n) { return [n, NAMES[n]]; }), shape, function (v) { if (!use(v)) shapeIn.value = shape; }).querySelector('select');
   var drawingBox = k.check('Show the drawing', showDrawing, function (v) { showDrawing = v; draw(); });
   k.row();
   var circlesIn = k.slider('Circles', 1, N - 1, 1, count, function (v) { count = v; measure(); draw(); }, function (v) { return v + ' of ' + (N - 1); });
@@ -241,6 +241,8 @@ PadToys.register('epicycles', function (k, cfg) {
   k.slider('Speed', 1, 10, 1, speed, function (v) { speed = v; });
   k.theme(draw);
 
-  use(shape, true);
+  // A drawing of no length - every point on one place - cannot be taken apart: a shape of
+  // the toy's own is shown, where the circles would be none and the first frame would throw.
+  if (!use(shape, true)) { use('heart', true); shapeIn.value = 'heart'; }
   k.begin('Turning - draw a closed curve to take it apart');
 });
