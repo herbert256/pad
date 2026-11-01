@@ -172,6 +172,8 @@
       'misc/curl_stale'           => 'A source that fails past the ttl: the last good copy is served',
       'misc/pdf_preview_alone'    => 'A {pdf preview} written as a single tag: the page with its links to open and download the document',
       'misc/pdf_preview_alone_document' => 'The document misc/pdf_preview_alone answers when asked: the page, without the preview\'s own links in it',
+      'printables/embedded'       => 'A printable with pdf in a page shown by {page}: its sheets without the links to the document, which asked the page around it',
+      'printables/embedded_inner' => 'The page printables/embedded shows - on its own a printable with pdf and its links to the document',
       'flush/login'               => 'A login below a {flush} on an open session: refused, the id cannot be renewed',
       'flush/login_inner'         => 'The login flush/login asks for - on its own it logs in',
       'flush/logout'              => 'A logout below a {flush} while a remember-me cookie stands: refused, the cookie cannot be dropped',

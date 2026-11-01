@@ -261,13 +261,18 @@
     $links = '';
     $html  = '';
 
-    if ( padPrintableFlag ( 'pdf' ) ) {
+    // Not inside a {page} - a page shown in another, the manual's {example}: only the page
+    // the request asked for answers a document, as {pdf} has it, and its links asked the
+    // page around it, which answered its HTML.
 
-      include_once PAD . 'tags/_lib/pdf.php';
+    if ( padPrintableFlag ( 'pdf' ) ) {
 
       $file = padPrintableText ( 'file', $kind );
 
-      $links = padPdfLinks ( $file );
+      if ( ! ( $padGuardNested ?? FALSE ) ) {
+        include_once PAD . 'tags/_lib/pdf.php';
+        $links = padPdfLinks ( $file );
+      }
 
     }
 

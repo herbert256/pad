@@ -1058,8 +1058,9 @@ millimetres. One plan, three renderings: on the screen the sheets lie on a grey 
 (`scale=` makes the preview smaller); printed, a page with printables prints the sheets alone,
 each on a page of its own size and no margin (`@page` named per printable, mm-based CSS, the
 paper's colours kept); and in a `{pdf}` - or with `pdf` on the tag, whose links ask the page with
-`&padPdf` - the PDF writer sets the same sheets as pages of their size, each box where the CSS puts
-it, the barcodes and QR codes of the codes subsystem drawn. What the PDF does not do: CSS of a
+`&padPdf`, left out inside a `{page}` as `{pdf}` leaves them - the PDF writer sets the same sheets
+as pages of their size, each box where the CSS puts it, the barcodes and QR codes of the codes
+subsystem drawn. What the PDF does not do: CSS of a
 page's own, pictures other than JPEG, an SVG with curves, a table's own look (its grid is the
 writer's), the fonts of the page (Helvetica, Times and Courier stand in). Every item is one region
 of a sheet: what does not fit is cut at its edge - a letter is one page. Positions are classes of
