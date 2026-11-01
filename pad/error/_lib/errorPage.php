@@ -50,13 +50,22 @@
     // only once the page's PHP has run, and that PHP is what fails: a fetch() that asked for
     // JSON got the HTML page to parse.
 
-    $format = $GLOBALS ['padClientFormat'] ?? '';
-
-    if ( in_array ( $format, [ 'json', 'csv' ], TRUE )
-         or ( is_string ( $format ) and $format !== '' and function_exists ( 'padExposeKind' ) and padExposeKind ( $format ) !== '' ) )
+    if ( padErrorDataAsked () )
       return '';
 
     return padErrorPageFileAny ( $status );
+
+  }
+
+  // Whether the request asked for the page's data, in JSON, CSV or any other format that
+  // writes - the error page skipped here, the plain line written by lib/dump.php alike.
+
+  function padErrorDataAsked () {
+
+    $format = $GLOBALS ['padClientFormat'] ?? '';
+
+    return in_array ( $format, [ 'json', 'csv' ], TRUE )
+           or ( is_string ( $format ) and $format !== '' and function_exists ( 'padExposeKind' ) and padExposeKind ( $format ) !== '' );
 
   }
 

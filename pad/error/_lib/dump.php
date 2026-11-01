@@ -59,9 +59,11 @@
 
     // A request that asked for the page's data (inits/client.php) - its output type is still
     // web while the page's PHP runs - gets the line a json or csv answer gets: plain text,
-    // without the closing tags that end a broken HTML page.
+    // without the closing tags that end a broken HTML page. Any format that writes is such
+    // a request, as the error page skipped for it says (padErrorDataAsked): padFormat=ics
+    // got those closing tags as text/html.
 
-    $padDumpData = in_array ( $GLOBALS ['padClientFormat'] ?? '', [ 'json', 'csv' ], TRUE );
+    $padDumpData = padErrorDataAsked ();
 
     if ( $padDumpData and ! padLocal () and ! headers_sent () )
       header ( 'Content-Type: text/plain; charset=UTF-8' );
