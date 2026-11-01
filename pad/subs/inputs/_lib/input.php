@@ -26,9 +26,10 @@
   //
   // The value a kind posts is a real one, and a form posts it without any script: the server
   // writes a native control - a range, a number, a date, a time, a colour, a checkbox, a
-  // radio group, a file field, a text field holding a comma list or the code - and the kind's
-  // script makes more of it where it runs: a calendar over the date, chips over the comma
-  // list, a box per character over the code, a canvas over the hidden value of a signature.
+  // radio group, a file field, a text field holding a comma list or the code, a select of many
+  // posting a list (padInputValues) - and the kind's script makes more of it where it runs: a
+  // calendar over the date, chips over the comma list or the choices of the select, a box per
+  // character over the code, a canvas over the hidden value of a signature.
   // The script of the inputs - www/assets/inputs/input.js, the runtime - and each kind's are written
   // once per page with the CSP nonce, as the interactive tags write theirs (lib/widget.php);
   // a field a fragment or a live region brings later is enhanced too.
@@ -298,6 +299,38 @@
   function padInputValue ( $default = '' ) {
 
     return padFormValue ( padInputName (), (string) padInputTake ( 'value', $default ) );
+
+  }
+
+  // What a field of many values shows - the choices made in a multiselect: the posted list
+  // when its form came back, else value= - a list, or a comma text. padFormValue answers a
+  // text only, so the list is read here, where PHP files it: interests[] is $_POST
+  // ['interests']. A form that came back without the field had nothing chosen in it - the
+  // browser leaves a select with no option chosen out of the post - so the absence is the
+  // empty list, not value= once more, which would bring a field emptied on purpose back
+  // full. A text posted where the list belongs - interests[]=a written as interests=a - is
+  // a list of that one text, and an item that is no text - interests[0][]=a - is left out.
+  // Every item a trimmed text, the empty ones and the second copies left out.
+
+  function padInputValues ( $default = [] ) {
+
+    $given  = padInputTake ( 'value', $default );
+    $source = padFormSource ();
+
+    if ( $source === NULL )
+      $list = is_array ( $given ) ? $given : explode ( ',', is_scalar ( $given ) ? (string) $given : '' );
+    else {
+      [ $found, $posted ] = padFormFind ( $source, padInputName () );
+      $list = ( ! $found ) ? [] : ( is_array ( $posted ) ? $posted : [ $posted ] );
+    }
+
+    $out = [];
+
+    foreach ( $list as $item )
+      if ( is_scalar ( $item ) and ( $item = trim ( (string) $item ) ) !== '' )
+        $out [$item] = TRUE;
+
+    return array_map ( 'strval', array_keys ( $out ) );
 
   }
 

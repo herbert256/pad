@@ -1317,6 +1317,11 @@
         return padError ( "the rules of $where have " . ( strspn ( $rule, 'aeio' ) ? 'an' : 'a' ) . " $rule: that is $why" );
     }
 
+    // A field that posts a list - {multiselect 'interests'} posts interests[] - has its rules
+    // under the name it posts, which padValidate judges as a list (lib/input.php padInputPosts).
+
+    $name = padInputPosts ( $tag, $name );
+
     if ( isset ( $rules [$named] [$name] ) and $rules [$named] [$name] !== $list )
       return padError ( "$where has two sets of rules - '" . $rules [$named] [$name] . "' and '$list'" );
 
