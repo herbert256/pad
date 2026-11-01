@@ -117,7 +117,7 @@
     foreach ( sheetsFunctions () as $function )
       $groups [ $function ['group'] ] [] = $function;
 
-    $order  = [ 'Math', 'Statistics', 'Logic', 'Text', 'Lookup', 'Date and time', 'Finance' ];
+    $order  = [ 'Math', 'Statistics', 'Logic', 'Information', 'Text', 'Lookup', 'Date and time', 'Finance' ];
     $sorted = [];
 
     foreach ( $order as $group )
