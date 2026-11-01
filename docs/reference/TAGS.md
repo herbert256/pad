@@ -3425,7 +3425,7 @@ answers the bytes.
 A diagram from a few lines of text in the content, written the Mermaid way and laid out on
 the server as inline SVG by the diagram subsystem (`pad/subs/diagrams/`) - no JavaScript. A kind
 is a file of `pad/subs/diagrams/types/`: `flowchart` (the default), `sequence`, `state`, `class`,
-`er`, `mindmap`, `tree`, `journey` and `gitgraph`.
+`er`, `mindmap`, `tree`, `journey`, `gitgraph` and `fishbone`.
 
 ```html
 {diagram}
@@ -3484,16 +3484,23 @@ is a file of `pad/subs/diagrams/types/`: `flowchart` (the default), `sequence`, 
   checkout main
   merge develop tag: "v1.0"
 {/gitgraph}
+
+{fishbone}
+  Late trains
+    Weather
+      Snow on the points
+    Staff
+{/fishbone}
 ```
 
 **Parameters:**
 
 | Option | Description |
 |--------|-------------|
-| `type` | The kind, a file of `pad/subs/diagrams/types/` - `flowchart` (default; `flow` and `graph` say so too). A first line written the Mermaid way names it as well: `sequenceDiagram`, `stateDiagram` / `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph` whatever the tag says, and a kind's name alone (`mindmap`, `journey`) where the tag names none |
+| `type` | The kind, a file of `pad/subs/diagrams/types/` - `flowchart` (default; `flow` and `graph` say so too). A first line written the Mermaid way names it as well: `sequenceDiagram`, `stateDiagram` / `stateDiagram-v2`, `classDiagram`, `erDiagram`, `gitGraph` whatever the tag says, and a kind's name alone (`mindmap`, `journey`, `fishbone`, Mermaid's `ishikawa-beta`) where the tag names none |
 | `direction` | flowchart, state, class, er and tree: `TB` (default), `BT`, `LR` or `RL` - else the lines say it: a first line `graph LR` / `flowchart LR` in a flowchart, a line `direction LR` in a state, class or entity-relationship diagram |
 | `edges` | flowchart, state, class and er: `orthogonal` (default, rounded turns in channels of their own), `straight` or `curved` |
-| `title` | The accessible name, default the kind's (`Flowchart`, `Sequence diagram`, `State diagram`, `Class diagram`, `Entity-relationship diagram`, `Mind map`, `Tree`, `Commit graph`; a journey's `title` line, else `User journey`) |
+| `title` | The accessible name, default the kind's (`Flowchart`, `Sequence diagram`, `State diagram`, `Class diagram`, `Entity-relationship diagram`, `Mind map`, `Tree`, `Commit graph`, `Fishbone diagram`; a journey's `title` line, else `User journey`) |
 
 A kind reads only the options it draws with: `direction` on a sequence diagram is an option
 nothing reads, which the strict check reports.
@@ -3557,6 +3564,15 @@ bare they are those tags: the sequence diagram and the tree are `{diagram:sequen
   `main` is the branch at the start. A lane a branch in its colour, a column a commit, left
   to right; the turns between lanes stand between the columns, clear of the names. An unknown
   branch, a commit id twice and a merge into itself are errors.
+- **fishbone** - the cause-and-effect diagram of Ishikawa, the hierarchy from the indentation
+  as Mermaid's `ishikawa-beta` has it: the first line the effect, drawn in a head on the right
+  that the spine runs into; a line under it a category, a bone above or below the spine by
+  turns (the first on the left), leaning toward the head, its name in a box at the outer end;
+  a line under a category a cause - its text over a rib that ends on the bone - and further in
+  a cause of that cause, hanging off its parent's rib by a stem. Each bone reads from its
+  category toward the spine, so the half below the spine mirrors the half above; the bones of
+  a side stand as close as their texts allow, band by band. A second line at the effect's
+  indentation is an error.
 
 The content is read as it stands - the braces of `B{Paid?}` and `class A {` need no
 `{ignore}`. role="img" with a `<title>` and a `<desc>` that says every edge, message,
@@ -4773,7 +4789,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/subs/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |
 | `pdf` | Output | The rendered content sent as a PDF, written in plain PHP - fonts, tables, JPEG pictures |
-| `diagram` | Output | A flowchart, sequence, state, class, entity-relationship, mind map, tree, user journey or commit graph diagram from Mermaid-style lines, laid out on the server as inline SVG |
+| `diagram` | Output | A flowchart, sequence, state, class, entity-relationship, mind map, tree, user journey, commit graph or fishbone diagram from Mermaid-style lines, laid out on the server as inline SVG |
 | `map` | Output | A choropleth map of the world or a region as inline SVG, a colour step per value |
 | `timeline` | Output | Events on a time axis as inline SVG - cards above and below, spans as bars, or a vertical list |
 | `datatable` | Output | Rows as an accessible HTML table - aligned numbers, totals, sorting and paging links |

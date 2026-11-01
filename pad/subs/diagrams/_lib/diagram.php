@@ -90,9 +90,14 @@
   // name with Graph aside (gitGraph LR:), so a flowchart whose first line is a node called
   // mindmap, and an edge from it, stays one.
 
+  //
+  // A name with -beta after it - Mermaid's ishikawa-beta and its like - is a name alone, and
+  // ishikawa is Mermaid's word for the kind called fishbone here: the one word of Mermaid's
+  // kept, for the one kind named otherwise.
+
   function padDiagramHeader ( $text, $named ) {
 
-    if ( ! preg_match ( '/^\s*([a-z]+)(?:((?:Diagram|Graph)(?:-v2)?)(?:[ \t]+[A-Z]{2}:?)?)?[ \t]*(\r?\n|$)/', (string) $text, $match ) )
+    if ( ! preg_match ( '/^\s*([a-z]+)(?:((?:Diagram|Graph)(?:-v2)?)(?:[ \t]+[A-Z]{2}:?)?|-beta)?[ \t]*(\r?\n|$)/', (string) $text, $match ) )
       return '';
 
     $more = $match [2] ?? '';
@@ -100,7 +105,7 @@
     if ( $more === '' and $named )
       return '';
 
-    $kind = $match [1] . ( str_starts_with ( $more, 'Graph' ) ? 'graph' : '' );
+    $kind = ( $match [1] == 'ishikawa' ? 'fishbone' : $match [1] ) . ( str_starts_with ( $more, 'Graph' ) ? 'graph' : '' );
 
     return padDiagramType ( $kind ) ? $kind : '';
 
@@ -368,6 +373,45 @@
 
     foreach ( $lines as $i => $line )
       $svg .= '<tspan x="' . padChartXY ( $x ) . '"' . ( $i ? ' dy="16"' : '' ) . '>' . padChartAttr ( $line ) . '</tspan>';
+
+    return "$svg</text>";
+
+  }
+
+  // A text of an element of the picture - a <text>, a <tspan>, a <title> - escaped as text:
+  // its <, > and & written as entities, its quotes as they are, which a text needs no other
+  // way. Tidy's pass over a page writes every entity inside an <svg> over again - &quot;
+  // came out as &amp;quot; and a terminal '"' of a grammar showed &quot; in its box - so
+  // the fewer entities, the better; padDiagramLines writes lines with it.
+
+  function padDiagramEsc ( $text ) {
+
+    return htmlspecialchars ( padUnprotectQuotes ( (string) $text ), ENT_NOQUOTES | ENT_SUBSTITUTE, 'UTF-8' );
+
+  }
+
+  // A text as the description says it: its straight quotes typographic - “ ” and ’ - which
+  // read the same, and which the <desc> (padChartOpen, as an attribute escapes) carries
+  // without an entity for Tidy to write over.
+
+  function padDiagramSay ( $text ) {
+
+    $text = preg_replace ( '/"([^"]*)"/u', '“$1”', padUnprotectQuotes ( (string) $text ) );
+
+    return str_replace ( [ '"', "'" ], [ '”', '’' ], $text );
+
+  }
+
+  // Lines of text at x, y as padDiagramText writes them, escaped by padDiagramEsc, anchored
+  // at their middle, start or end.
+
+  function padDiagramLines ( $lines, $x, $y, $class = '', $anchor = 'middle' ) {
+
+    $first = $y - ( count ( $lines ) - 1 ) * 8 + 4;
+    $svg   = '<text' . ( $class !== '' ? " class=\"$class\"" : '' ) . ' x="' . padChartXY ( $x ) . '" y="' . padChartXY ( $first ) . "\" text-anchor=\"$anchor\">";
+
+    foreach ( $lines as $i => $line )
+      $svg .= '<tspan x="' . padChartXY ( $x ) . '"' . ( $i ? ' dy="16"' : '' ) . '>' . padDiagramEsc ( $line ) . '</tspan>';
 
     return "$svg</text>";
 

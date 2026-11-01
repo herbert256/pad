@@ -117,7 +117,10 @@
     $examples = [];
     $files    = tagsFiles ( "examples/$name", [ '.pad', '.src' ] );
 
-    usort ( $files, fn ( $a, $b ) => strcmp ( basename ( $a ), basename ( $b ) ) );
+    // By their numbers as numbers: 10-x comes after 9-y, where by their characters it stood
+    // between 1-x and 2-y.
+
+    usort ( $files, fn ( $a, $b ) => strnatcmp ( basename ( $a ), basename ( $b ) ) );
 
     foreach ( $files as $file ) {
 

@@ -93,7 +93,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | start/ | Execution engine and context management |
 | subs/charts/ | The chart subsystem - `{chart}`, `{sparkline}` and the `chart:` type; a chart kind is a file of `subs/charts/types/`, its drawing in `subs/charts/_lib/` |
 | subs/codes/ | The codes subsystem - `{barcode}`, `{qr}` and the `barcode:` type; a symbology is a file of `subs/codes/types/`, its encoder and the SVG writers in `subs/codes/_lib/` |
-| subs/diagrams/ | The diagram subsystem - `{diagram}`, `{mindmap}`, `{gitgraph}` and the `diagram:` type; a kind is a file of `subs/diagrams/types/` laying out the lines between the tags as inline SVG |
+| subs/diagrams/ | The diagram subsystem - `{diagram}`, `{mindmap}`, `{gitgraph}`, `{fishbone}` and the `diagram:` type; a kind is a file of `subs/diagrams/types/` laying out the lines between the tags as inline SVG |
 | subs/embeds/ | The embed subsystem - `{embed}`, the `embed:` type and the addresses of `{video}`; a provider is a file of `subs/embeds/types/` - the addresses it knows and the frame it writes - the click-to-load facade and `{video}`'s own markup in `subs/embeds/_lib/` |
 | subs/fakes/ | The fake data subsystem - `{fake}` and the `fake:` type; a kind is a file of `subs/fakes/types/`, answering its value from the seeded sequence of `lib/fake.php` (`padFake`, `padFakeRows`) |
 | subs/games/ | The games subsystem - `{game}` and the `game:` type; a game is a file of `subs/games/types/`, its `.js` and `.css` in `www/assets/games/` beside the runtime's, the sudoku and crossword code in `subs/games/_lib/` |
