@@ -36,7 +36,7 @@
   // Queued ([ 'queue' => TRUE, or a queue's name ]) every channel is a job of its own,
   // '@notify' (lib/queue.php): a channel that fails is retried alone, and the mail that went
   // is not sent again. The worker renders the message, from the directory of the page that
-  // queued it.
+  // queued it; the job keeps the recipient as padLogin keeps a user row, its secrets left out.
 
   function padNotifyGo ( $to, $name, $data, $channels, $options ) {
 
@@ -115,6 +115,12 @@
     $queue = is_string ( $options ['queue'] ) ? $options ['queue'] : 'default';
 
     unset ( $options ['queue'] );
+
+    // The job is a file under DATA/queue/, kept with the failed jobs after its tries: of the
+    // recipient it holds what padLogin keeps of a user row (padAuthKeep), without the password
+    // hash, the remember token and the second factor's secret.
+
+    $recipient = padAuthKeep ( $recipient );
 
     $results = [];
     $all     = TRUE;

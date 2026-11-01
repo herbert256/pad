@@ -447,7 +447,8 @@ gateway - is the options' or `padEnv`'s alone, never the row's, and absolute htt
 fields are checked, and a push endpoint must be on a browser's push service (FCM, Mozilla's,
 WNS, Apple's - `WEBPUSH_SERVICES` names more): a value that is none is not sent to. With
 `[ 'queue' => TRUE ]` (or a queue's name) every channel is a job of its own, `@notify`, rendered
-and sent by `pad work` - a failing channel is retried alone. A channel that does not deliver is
+and sent by `pad work` - a failing channel is retried alone; the job keeps of the recipient what
+`padLogin` keeps of a row, its password hash, tokens and secrets left out. A channel that does not deliver is
 no error: FALSE, logged, and `padNotifyResults ()` says why - and which push subscriptions are
 gone. A channel is added by adding its file: its settings and a `send` function.
 
