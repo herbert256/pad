@@ -18,9 +18,10 @@
 
   // A tag whose rows came from data= and found none - {pad data='x'} over an empty store - is
   // a tag that came back empty, as {x} or {data:x} reading the same store is: it answered
-  // TRUE, and no @else@, else= or demand ever saw the empty list.
+  // TRUE, and no @else@, else= or demand ever saw the empty list. An empty list written as
+  // data= - data=[] - is such data as well (level/start.php).
 
-  if ( $padTagResult === TRUE and padTagParm ( 'data' ) and is_array ( $padData [$pad] ?? NULL ) and ! count ( $padData [$pad] ) )
+  if ( $padTagResult === TRUE and ( padTagParm ( 'data' ) or is_array ( padTagParm ( 'data' ) ) ) and is_array ( $padData [$pad] ?? NULL ) and ! count ( $padData [$pad] ) )
     $padTagResult = [];
 
   if     ( $padTagResult === NULL ) $padNull [$pad] = TRUE;

@@ -9,6 +9,14 @@
   $padGetName = padTagParm ( 'data' );
   $padCheck   = padTagParm ( 'data' );
 
+  // A list written in the template - data=['b', 'a'], data=[['n' => 'x']] - is the data
+  // itself, rows as padData takes an array: no name of a store to look up, where the lookups
+  // below took the array as a key and every tag given one ended in a TypeError, "Cannot
+  // access offset of type array in isset or empty".
+
+  if ( is_array ( $padCheck ) )
+    return padData ( $padCheck );
+
   if ( isset ( $padDataStore [$padCheck] ) )
     return $padDataStore [$padCheck];
 

@@ -21,7 +21,11 @@
   // on every use, it replaced the @else@ branch with TRUE, dropped a content= option and ran
   // the else content's PHP for a tag that went on to hit.
 
-  if ( padTagParm ('data') ) $padData [$pad] = include PAD . "options/data.php";
+  // A list is data even when it is empty - data=[], or data=$list with no rows yet - so the
+  // tag shows its @else@, as data= naming an empty store does, where an empty list was no
+  // data= at all and the tag ran once on its own.
+
+  if ( padTagParm ('data') or is_array ( padTagParm ('data') ) ) $padData [$pad] = include PAD . "options/data.php";
 
   include PAD . 'level/set.php';
 
