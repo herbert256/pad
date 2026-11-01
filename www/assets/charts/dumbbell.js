@@ -68,7 +68,9 @@
       return '';
     }
 
-    if (C.bool(C.padTagParm('ranked', false)))
+    var ranked = C.padTagParm('ranked', false);
+
+    if (ranked !== false && ranked !== '' && ranked !== 0 && ranked !== '0')
       bells.sort(function (p, q) {
         var one = (p[1] === null || p[2] === null);
         var two = (q[1] === null || q[2] === null);

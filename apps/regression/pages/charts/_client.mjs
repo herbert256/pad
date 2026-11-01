@@ -3,6 +3,8 @@
 // with client added to its chart tags, the JavaScript drawing those in Node - the two SVGs the
 // same, character for character, ids aside (the server makes a client chart's id from its rows
 // and options). The ./ci.sh line charts; it fails on the first page that parts, saying where.
+// The templates of _parity/ beside this file are drawn the same way after the pages: what is
+// no example - an option given an odd value, rows at an edge - where the two once parted.
 //
 //   node _client.mjs                 every example page, a line of summary
 //   node _client.mjs --kinds=gauge   those kinds only, a line per page
@@ -46,7 +48,7 @@ const render  = (page, source) => {
 const unhtml = s => s.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 const norm   = s => s.replace(/pad-chart-[0-9a-f]{8}(-\d+)?/g, 'pad-chart-ID');
 
-let alike = 0, charts = 0;
+let alike = 0, charts = 0, alikeParity = 0;
 const kinds = new Set();
 
 // A second pass draws every page again in a palette (palette=, pad/subs/charts/_lib/palette.php
@@ -56,16 +58,23 @@ const kinds = new Set();
 const palettes  = readdirSync(join(HOME, 'pad/subs/palettes/types')).filter(f => f.endsWith('.php')).map(f => f.slice(0, -4)).sort();
 const paletteOf = (src, palette) => src.replace(tagRe, (m, name, params, slash) => '{' + name + ' ' + (params.trim() ? params.trimEnd() + ', ' : '') + "palette='" + palette + "'" + slash + '}');
 
-for (const [pass, page, n] of [...pages.map((page, n) => [0, page, n]), ...pages.map((page, n) => [1, page, n])]) {
+// A template of _parity/ is rendered as a page of the charts application that has no file,
+// parity, its text handed over as a page's text is: pass 2.
 
-  const palette = pass ? palettes[n % palettes.length] : '';
-  const src     = palette ? paletteOf(readFileSync(join(dir, page + '.pad'), 'utf8'), palette) : readFileSync(join(dir, page + '.pad'), 'utf8');
+const parityDir = join(here, '_parity');
+const parity    = readdirSync(parityDir).filter(f => f.endsWith('.pad')).sort().map(f => f.slice(0, -4));
+
+for (const [pass, page, n] of [...pages.map((page, n) => [0, page, n]), ...pages.map((page, n) => [1, page, n]), ...parity.map((page, n) => [2, page, n])]) {
+
+  const palette = (pass == 1) ? palettes[n % palettes.length] : '';
+  const text    = readFileSync(pass == 2 ? join(parityDir, page + '.pad') : join(dir, page + '.pad'), 'utf8');
+  const src     = palette ? paletteOf(text, palette) : text;
 
   if (kindsWanted.length && !kindsWanted.includes(kindOf(src)))
     continue;
 
-  const server = (render(page, palette ? src : undefined).match(/<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" class="pad-chart[\s\S]*?<\/svg>/g) || []).map(norm);
-  const specs  = [...render(page, clientOf(src)).matchAll(/<span class="pad-chart-client" data-pad-chart="([^"]*)"><\/span>/g)].map(m => JSON.parse(unhtml(m[1])));
+  const server = (render(pass == 2 ? 'parity' : page, (palette || pass == 2) ? src : undefined).match(/<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" class="pad-chart[\s\S]*?<\/svg>/g) || []).map(norm);
+  const specs  = [...render(pass == 2 ? 'parity' : page, clientOf(src)).matchAll(/<span class="pad-chart-client" data-pad-chart="([^"]*)"><\/span>/g)].map(m => JSON.parse(unhtml(m[1])));
   const client = specs.map(spec => { try { return norm(C.render(spec)); } catch (e) { return 'ERROR ' + e.message; } })
                       .filter(svg => svg !== '');
 
@@ -85,11 +94,17 @@ for (const [pass, page, n] of [...pages.map((page, n) => [0, page, n]), ...pages
   }
 
   if (why) {
-    console.log(`charts: ${page} [${specs[0]?.kind || kindOf(src)}]${palette ? ' in ' + palette : ''} - ${why}`);
+    console.log(`charts: ${pass == 2 ? '_parity/' : ''}${page} [${specs[0]?.kind || kindOf(src)}]${palette ? ' in ' + palette : ''} - ${why}`);
     process.exit(1);
   }
 
   if (palette) continue;
+
+  if (pass == 2) {
+    alikeParity++;
+    if (verbose) console.log(`_parity/${page} [${specs.map(s => s.kind).join(', ')}] alike`);
+    continue;
+  }
 
   alike++;
   charts += server.length;
@@ -99,4 +114,4 @@ for (const [pass, page, n] of [...pages.map((page, n) => [0, page, n]), ...pages
 
 }
 
-console.log(`${alike} example pages, ${charts} charts of ${kinds.size} kinds, drawn alike by the server and the browser - and again in the ${palettes.length} palettes`);
+console.log(`${alike} example pages, ${charts} charts of ${kinds.size} kinds, drawn alike by the server and the browser - and again in the ${palettes.length} palettes - and ${alikeParity} templates of _parity/`);
