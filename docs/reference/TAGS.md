@@ -924,7 +924,7 @@ A "Log in with ..." link styled as a button, for the OAuth subsystem (`pad/subs/
 ```
 
 **Parameters:** the provider, a file of `pad/subs/oauth/types/` - apple, bitbucket, discord, forgejo,
-github, gitlab, google, linkedin, microsoft, oidc, slack.
+github, gitlab, google, linkedin, microsoft, oidc, slack, x.
 
 **Options:** `href` - where it links, `oauth/<provider>` of the application by default (a page
 `oauth/[provider].php` calling `padOAuthStart` and `padOAuthUser`); `label` - its text instead of
