@@ -1711,6 +1711,7 @@ past its budget are errors under the strict check, left out without it. Code: `p
 {draughts 'W:W31-50:B1-20'/}  {draughts 'B:W21-32:B1-12', board=8/}   # the FEN of PDN, 10 by 10 or 8 by 8
 {tablature}e|--5h7--7b9--|{/tablature}           # a guitar tab as players write it - h p b r / \ ~ t x <12> (8); tuning=
 {karnaugh 'm(6,8,9,10,11,12,13,14) + d(15)'/}  {karnaugh}F = A'B + AC{/karnaugh}   # the map, its groups, the minimal expression; form='pos'
+{bridge 'N:.63.AKQ987.A9732 A8654.KQ5.T.QJT6 J973.J98742.3.K4 KQT2.AT.J6542.85', dealer='N', points/}   # PBN
 {notation 'braille', 'Hello'/}                        # the tag: its second parameter the kind's text
 ```
 A text written in a notation, drawn on the server the way `{diagram}` lays out a flowchart:
@@ -1720,7 +1721,7 @@ the notes, the flags), its colours `--pad-<kind>-*` with `light-dark()` defaults
 the kind's first parameter, or the content between the tags taken as written before the level
 walks it, so the braces of AsciiMath and the brackets of SGF need no `{ignore}`. The notations
 are the files of `pad/subs/notations/types/` - math (AsciiMath, not TeX, as TeX's braces are
-PAD's), chem, abc, chord, piano, braille, morse, semaphore, signals, chess, go, draughts, tablature and karnaugh - and
+PAD's), chem, abc, chord, piano, braille, morse, semaphore, signals, chess, go, draughts, tablature, karnaugh and bridge - and
 a notation is added by adding its file. Each is written three ways: `{notation 'math', 'a/b'/}`,
 the notation type `{notation:math 'a/b'/}` and bare, `{math 'a/b'/}`, after every other kind of
 tag; `chord` bare is the charts' chord diagram, so a guitar chord is `{notation:chord}`. `{chess}`

@@ -4,7 +4,7 @@
 
   $tagKinds   = padKinds ( 'notations' );
 
-  $tagAbout   = 'A text written in a notation, drawn on the server - ' . count ( $tagKinds ) . ' of them, from formulas in AsciiMath and chemical equations to a tune in ABC, guitar chords and tabs, braille, morse, signal flags, chess, go and draughts positions and Karnaugh maps.';
+  $tagAbout   = 'A text written in a notation, drawn on the server - ' . count ( $tagKinds ) . ' of them, from formulas in AsciiMath and chemical equations to a tune in ABC, guitar chords and tabs, braille, morse, signal flags, chess, go and draughts positions, Karnaugh maps and bridge deals.';
   $tagGroup   = 'graphics';
   $tagForm    = 'both';
 
@@ -23,6 +23,7 @@
 {draughts 'W:W31-50:B1-20', board=8/}
 {tablature tuning='dropd'} e|--0--3--| ... {/tablature}
 {karnaugh 'm(1, 3, 5) + d(7)', form='pos'/}  {karnaugh}F = A'B + AC{/karnaugh}
+{bridge 'N:AKQ2.J9.T87.654 - - -', dealer='N', vulnerable='ns', points/}
 PAD;
 
   $tagParms   = [
@@ -34,7 +35,7 @@ PAD;
   $tagOptions = [
     'display'    => 'math, chem: <code>inline</code> (the default) or <code>block</code> - the formula on a line of its own, centred.',
     'alttext'    => 'math, chem: the text a screen reader without MathML says - the formula as written unless given.',
-    'title'      => 'abc, chord, piano, semaphore, signals, chess, go, draughts, tablature, karnaugh: the accessible name.',
+    'title'      => 'abc, chord, piano, semaphore, signals, chess, go, draughts, tablature, karnaugh, bridge: the accessible name.',
     'size'       => 'The width in pixels - chord (120), semaphore a figure (64), signals a flag (40), chess, go and draughts the board (360) - or the height of the piano (120).',
     'width'      => 'abc: the lines spread over that many pixels; without it each line takes its natural width.',
     'instrument' => 'chord: <code>guitar</code> (the default) or <code>ukulele</code>.',
@@ -51,6 +52,9 @@ PAD;
     'board'      => 'draughts: <code>10</code> (international, the default) or <code>8</code> (English draughts and checkers).',
     'tuning'     => 'tablature: the tuning of the strings - <code>standard</code>, <code>dropd</code>, <code>dadgad</code>, <code>openg</code>, <code>opend</code>, <code>seven</code>, <code>bass</code>, <code>bass5</code>, <code>ukulele</code>, <code>mandolin</code>, <code>banjo</code> - or their notes from the lowest, <code>\'D A D G B E\'</code>; without it the names before the lines, else the usual tuning of so many strings.',
     'vars'       => 'karnaugh: the variables in order, <code>\'A, B, C\'</code> - a letter, digits after it; without it those of the expression, or A B C D.',
+    'dealer'     => 'bridge: the seat that dealt, <code>n</code>, <code>e</code>, <code>s</code> or <code>w</code>, ringed on the compass.',
+    'vulnerable' => 'bridge: <code>none</code> (the default), <code>ns</code>, <code>ew</code> or <code>all</code> - as PBN writes it, <code>love</code>, <code>-</code> and <code>both</code> as well - the vulnerable sides red on the compass.',
+    'points'     => 'Bare option. bridge: the high-card points of every hand by its seat.',
     'form'       => 'karnaugh: <code>sop</code> (the default), the 1s grouped for a minimal sum of products, or <code>pos</code>, the 0s for a minimal product of sums.' ];
 
   $tagSee     = [ 'diagram', 'chart', 'game' ];

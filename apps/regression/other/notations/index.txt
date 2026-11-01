@@ -142,7 +142,8 @@
           Notations
         </div><a href="?abc"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 5v14l11-7Z"></path></svg> ABC music</a> <a href="?braille"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M8 5v14l11-7Z"></path></svg> Braille</a> <a href="?chem"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Braille</a> <a href="?bridge"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5v14l11-7Z"></path></svg> Bridge deals</a> <a href="?chem"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 5v14l11-7Z"></path></svg> Chemistry</a> <a href="?chess"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 5v14l11-7Z"></path></svg> Chess</a> <a href="?chord"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M8 5v14l11-7Z"></path></svg> Chord boxes</a> <a href="?draughts"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -207,7 +208,7 @@
       </header>
       <div class="frame-body">
         <p class="nt-lead">
-          Text written in a notation and drawn on the server - a formula, a chemical equation, a tune, a chord, a word in braille, morse or flags, a chess, go or draughts position, a guitar tab, a Karnaugh map. Each is a tag of its own, a file of <code>pad/subs/notations/types/</code> in the engine, written <code>{notation 'kind', 'text'/}</code>, as <code>{notation:kind 'text'/}</code> or, when nothing else has the name, bare: <code>{math 'a/b'/}</code>. The text is its first parameter or the content between its tags. What comes out is MathML, HTML or inline SVG - no script, the same for the same text, and readable by a screen reader.
+          Text written in a notation and drawn on the server - a formula, a chemical equation, a tune, a chord, a word in braille, morse or flags, a chess, go or draughts position, a guitar tab, a Karnaugh map, a bridge deal. Each is a tag of its own, a file of <code>pad/subs/notations/types/</code> in the engine, written <code>{notation 'kind', 'text'/}</code>, as <code>{notation:kind 'text'/}</code> or, when nothing else has the name, bare: <code>{math 'a/b'/}</code>. The text is its first parameter or the content between its tags. What comes out is MathML, HTML or inline SVG - no script, the same for the same text, and readable by a screen reader.
         </p>
         <ul class="nt-cards">
           <li>
@@ -215,6 +216,9 @@
           </li>
           <li>
             <a class="nt-card" href="?braille"><b>Braille</b><span>A text in braille.</span><code>{braille}</code></a>
+          </li>
+          <li>
+            <a class="nt-card" href="?bridge"><b>Bridge deals</b><span>A deal of contract bridge written as the Deal tag of PBN, the Portable Bridge Notation.</span><code>{bridge}</code></a>
           </li>
           <li>
             <a class="nt-card" href="?chem"><b>Chemistry</b><span>Chemical formulas and equations, typed as chemists type them, as MathML.</span><code>{chem}</code></a>
