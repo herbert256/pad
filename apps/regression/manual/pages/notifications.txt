@@ -73,7 +73,7 @@ Track it at https://shop.example/orders/42</code></p>
 
 
 
-<p>The channels are the files of <code>pad/subs/channels/types/</code> - database, discord, gotify, mail, matrix, mattermost, ntfy, pushover, slack, sms, teams, telegram, webpush.
+<p>The channels are the files of <code>pad/subs/channels/types/</code> - database, discord, gotify, mail, matrix, mattermost, ntfy, pushover, slack, sms, teams, telegram, twilio, webpush.
 A channel is added by adding its file: the settings it needs and a function that sends.</p>
 
 <h2>Kept on the site</h2>
@@ -148,7 +148,7 @@ Track it at https://shop.example/orders/43</li>
 <h2>Who gets it, and where</h2>
 
 <ul>
-  <li>The recipient is a user row - <code>email</code>, <code>phone</code>, and a field per channel
+  <li>The recipient is a user row - <code>email</code>, <code>phone</code> (sms, twilio), and a field per channel
       naming the person there: <code>telegram</code> (a chat id), <code>ntfy</code> (a topic),
       <code>matrix</code> (a room id), <code>webpush</code>, <code>pushover</code> (a user key) - or
       an e-mail address alone.</li>
