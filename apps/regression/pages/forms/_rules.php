@@ -1,9 +1,9 @@
 <?php
 
   // The rules that look at other fields - required_if, required_unless, required_with,
-  // required_without, before, after - each with the posts that tell its cases apart: the
-  // other field absent, empty, 0 or blanks, a list, a nested name, the two orders of two
-  // dates, the same date, a date that is none, a date written in the rule. One table,
+  // required_without, before, after - and not_in, each with the posts that tell its cases
+  // apart: the other field absent, empty, 0 or blanks, a list, a nested name, the two orders
+  // of two dates, the same date, a date that is none, a date written in the rule. One table,
   // read twice: forms/client_parity.php adds its rows to the cases the browser's checker
   // must judge as padValidate does (the validate line of ./ci.sh), and the framework cases
   // of rules/ answer padValidate's verdict on the rows of their rule, which pins it. A row
@@ -165,6 +165,26 @@
       [ 'end',      'after: 2026-01-01T08:00 ',          [ 'end' => '2026-01-01T08:00:01' ] ],
       [ 'end',      'after:2026-01-01',                  [ 'end' => '2025-12-31', '2026-01-01' => '1999-01-01' ] ],
       [ 'end',      'after:start_date',                  [ 'start_date' => '2026-03-01', 'end' => '2026-02-01' ] ]
+    ],
+
+    'not_in' => [
+      [ 'user',     'not_in:admin,root',                 [ 'user' => 'admin' ] ],
+      [ 'user',     'not_in:admin,root',                 [ 'user' => 'root' ] ],
+      [ 'user',     'not_in:admin,root',                 [ 'user' => ' root ' ] ],
+      [ 'user',     'not_in:admin,root',                 [ 'user' => 'Admin' ] ],
+      [ 'user',     'not_in:admin,root',                 [ 'user' => 'ada' ] ],
+      [ 'user',     'not_in:admin,root',                 [ 'user' => 'administrator' ] ],
+      [ 'user',     'not_in:admin,root',                 [ 'user' => '' ] ],
+      [ 'user',     'not_in:admin,root',                 [ ] ],
+      [ 'user',     'not_in: admin , root ',             [ 'user' => 'root' ] ],
+      [ 'code',     'not_in:0,1',                        [ 'code' => '0' ] ],
+      [ 'code',     'not_in:0,1',                        [ 'code' => '00' ] ],
+      [ 'user',     'required|not_in:admin',             [ 'user' => '' ] ],
+      [ 'roles[]',  'not_in:admin,root',                 [ 'roles[]' => [ 'editor', 'viewer' ] ] ],
+      [ 'roles[]',  'not_in:admin,root',                 [ 'roles[]' => [ 'editor', 'admin' ] ] ],
+      [ 'roles[]',  'not_in:admin,root',                 [ 'roles[]' => [ 'editor', ' root ' ] ] ],
+      [ 'roles[]',  'not_in:admin,root',                 [ 'roles[]' => [ ] ] ],
+      [ 'role',     'not_in:admin,root',                 [ 'role' => [ 'editor' ] ] ]
     ]
 
   ];

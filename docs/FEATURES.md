@@ -643,7 +643,7 @@ browser - and the files there are the rules there are: besides `required`, `emai
 `date` they are `between:a,b` (a length, or a value with `numeric`), `digits` and `digits:n`,
 `alpha`, `alphanum`, `starts_with:a,b`, `ends_with:a,b`, `lowercase`, `uppercase`, `time`
 (HH:MM), `color` (#rgb, #rrggbb), `uuid`, `ip` (`ip:v4`, `ip:v6`), `slug`, `json` and `iban`
-(its check digits). A rule is added by adding its files; an argument a rule cannot use -
+(its check digits), `not_in:a,b` (the mirror of `in:`, as written). A rule is added by adding its files; an argument a rule cannot use -
 `digits:four`, `between:9,1` - is an error, as a pattern PCRE cannot read is.
 
 Some rules look at another field of the post:

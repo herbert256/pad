@@ -1,0 +1,37 @@
+200
+<form method="post"><input type="hidden" name="padCsrfToken"><input type="hidden" name="padForm" value="trip"><div class="error" role="alert">Please correct the errors below.</div>
+<input type="text" name="delivery" id="delivery" value="ship">
+<label for="user-address">Address</label><input type="text" name="user[address]" id="user-address" value="" aria-invalid="true" aria-describedby="user-address-error"><span class="error" id="user-address-error">Address is required when Delivery is ship</span>
+<input type="email" name="user[email]" id="user-email" value="">
+<input type="text" name="phone" id="phone" value="" aria-invalid="true" aria-describedby="phone-error"><span class="error" id="phone-error">Phone is required when User[email] is empty</span>
+<input type="date" name="start" id="start" value="2026-03-01">
+<input type="date" name="end" id="end" value="2026-02-01" aria-invalid="true" aria-describedby="end-error"><span class="error" id="end-error">End must be a date after Start</span>
+<input type="text" name="login" id="login" value="root" aria-invalid="true" aria-describedby="login-error"><span class="error" id="login-error">Login must not be one of admin, root</span>
+</form>
+not stored
+
+200
+<form method="post"><input type="hidden" name="padCsrfToken"><input type="hidden" name="padForm" value="trip">
+<input type="text" name="delivery" id="delivery" value="collect">
+<label for="user-address">Address</label><input type="text" name="user[address]" id="user-address" value="">
+<input type="email" name="user[email]" id="user-email" value="a@b.nl">
+<input type="text" name="phone" id="phone" value="">
+<input type="date" name="start" id="start" value="2026-03-01">
+<input type="date" name="end" id="end" value="2026-03-02">
+<input type="text" name="login" id="login" value="ada">
+</form>
+stored ada
+
+200
+<form method="post"><input type="hidden" name="padCsrfToken"><input type="hidden" name="padForm" value="trip"><div class="error" role="alert">Please correct the errors below.</div>
+<input type="text" name="delivery" id="delivery" value="ship">
+<label for="user-address">Address</label><input type="text" name="user[address]" id="user-address" value="Main 1">
+<input type="email" name="user[email]" id="user-email" value="">
+<input type="text" name="phone" id="phone" value="0612">
+<input type="date" name="start" id="start" value="2025-12-31" aria-invalid="true" aria-describedby="start-error"><span class="error" id="start-error">Start must be a date after 2026-01-01</span>
+<input type="date" name="end" id="end" value="">
+<input type="text" name="login" id="login" value="Root">
+</form>
+not stored
+
+
