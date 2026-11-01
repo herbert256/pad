@@ -1499,7 +1499,7 @@ padWorkdays ( '2026-04-01', '2026-04-30', 'nl' );   // 20 - weekdays that are no
 padAddWorkdays ( '2026-04-24', 1, 'nl' );           // '2026-04-28' - the Monday is King's Day; 0 is the date itself
 ```
 The countries are the files of `pad/subs/holidays/types/`, named by their ISO 3166-1 alpha-2
-code - at, be, ca, ch, cz, de, dk, es, fi, fr, gb, ie, it, lu, nl, no, nz, pl, pt, se, sk, us -
+code - at, be, ca, ch, cz, de, dk, es, fi, fr, gb, ie, it, lu, nl, no, nz, pl, pt, ro, se, sk, us -
 and a country is
 added by adding its file. Each holds its national public holidays as rules, not dates: a fixed
 date, days from Easter Sunday (the Gregorian computus), the nth or last weekday of a month, the
@@ -1535,6 +1535,10 @@ Year's Day; it knows the years since 2001.
 Slovakia (`sk`) keeps a state holiday that is no day of rest as an observance - 28 October,
 1 September since 2024, 17 November since November 2025, 8 May and 15 September in 2026; it
 knows the years since 2002.
+Romania (`ro`) counts Good Friday, Easter and Whitsun from the Orthodox Easter - a rule of its
+own, `orthodox`, days from the Julian computus's Easter as a Gregorian date - and has the days
+its Labour Code added, 30 November since 2012 to 6 and 7 January since 2024; it knows the
+years since 2009.
 
 ### Syntax highlighting
 ```

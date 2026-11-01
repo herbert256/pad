@@ -27,7 +27,9 @@
   //     date        'MM-DD', the same date every year
   //     easter      a number of days from Easter Sunday (Gregorian computus): -2 Good Friday,
   //                 39 Ascension Day, 50 Whit Monday
-  //     nth         [ n, weekday, month ] - the nth weekday of the month, n -1 the last:
+  //     orthodox    a number of days from the Easter Sunday of the Orthodox churches (the
+  //                 Julian computus, as a Gregorian date): -48 Clean Monday, 50 Whit Monday
+  //     nth       [ n, weekday, month ] - the nth weekday of the month, n -1 the last:
   //                 [ 4, 'thu', 11 ] Thanksgiving, [ -1, 'mon', 5 ] Memorial Day
   //     onOrAfter   [ weekday, 'MM-DD' ] - the first such weekday on or after the date;
   //     onOrBefore  the last on or before it: [ 'mon', '05-24' ] Victoria Day
@@ -54,7 +56,7 @@
   // padHolidaysOff      the days off between two day numbers: weekends and public holidays
   // padHolidaysDay      a date as a day number - days from 1970-01-01 - and back with
   //                     padHolidaysCivil; padHolidaysWeekday the ISO weekday of one
-  // padHolidaysEaster   Easter Sunday of a year
+  // padHolidaysEaster   Easter Sunday of a year; padHolidaysOrthodox the Orthodox one
   // padHolidaysTable    the rows as the table the single {holidays/} writes
   //
   // The arithmetic is integer days, no clock and no zone: the same rules, the same rows, on
@@ -227,6 +229,22 @@
 
   }
 
+  // Easter Sunday of the Orthodox churches: the Julian computus (Meeus) gives a date of the
+  // Julian calendar, from 22 March to 25 April, and the days the Julian calendar lags behind
+  // the Gregorian one make it a Gregorian date - 13 from 1900 to 2099, 14 from March 2100,
+  // past the Julian 29 February that year has and the Gregorian one has not: 2024-05-05,
+  // 2025-04-20, 2026-04-12, 2027-05-02.
+
+  function padHolidaysOrthodox ( $y ) {
+
+    $d = ( 19 * ( $y % 19 ) + 15 ) % 30;
+    $e = ( 2 * ( $y % 4 ) + 4 * ( $y % 7 ) - $d + 34 ) % 7;
+    $n = $d + $e + 114;
+
+    return padHolidaysDay ( $y, intdiv ( $n, 31 ), $n % 31 + 1 ) + intdiv ( $y, 100 ) - intdiv ( $y, 400 ) - 2;
+
+  }
+
   // 'MM-DD' of a year as a day number, NULL for a date the year has not (02-29).
 
   function padHolidaysMonthDay ( $year, $md ) {
@@ -252,6 +270,9 @@
 
     elseif ( isset ( $day ['easter'] ) )
       $z = padHolidaysEaster ( $year ) + $day ['easter'];
+
+    elseif ( isset ( $day ['orthodox'] ) )
+      $z = padHolidaysOrthodox ( $year ) + $day ['orthodox'];
 
     elseif ( isset ( $day ['nth'] ) ) {
 
