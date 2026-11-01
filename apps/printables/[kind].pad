@@ -1,0 +1,12 @@
+<p class="pr-lead">{$text}</p>
+
+<div class="pr-stage">
+  <section class="pr-template" aria-labelledby="pr-template">
+    <h2 id="pr-template">The template</h2>
+    <div class="pad-play-box">{!play}<pre class="pr-source"><code>{!source}</code></pre></div>
+  </section>
+  <section class="pr-preview" aria-labelledby="pr-preview">
+    <h2 id="pr-preview">What it prints</h2>
+    {echo $template | code/}
+  </section>
+</div>

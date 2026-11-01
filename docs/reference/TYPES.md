@@ -682,6 +682,25 @@ parameter names, and the browser renders and plays it.
 adding its file. Never bare: `{chime/}` is no sound - click, error and pop are the names of fields
 and pages. `{sound:zigzag/}` is "there is no sound named 'zigzag'".
 
+## Printable Types
+
+### printable
+
+Pages made for paper, of the kind the tag names - sheets of labels, badges, tickets, a letter -
+laid out by the printables subsystem in `PAD/subs/printables/`, as the `{printable}` tag lays out
+the kind its parameter names: the content between the tags one item, repeated over the data.
+
+```
+{printable:labels data='products', sheet='a4-3x8'}<b>{$name}</b>{/printable:labels}
+{printable:tickets data='seats'}<h2>{$show}</h2><aside>{qr $code/}</aside>{/printable:tickets}
+```
+
+**Resolution:** a PHP file `PAD/subs/printables/types/<name>.php` that answers its plan
+(`padPrintableKinds()` in `PAD/lib/printable.php`): the files there are the kinds, and a kind is
+added by adding its file. Never bare: `{labels}` is no printable - labels, cards and letter are the
+names of fields and pages. `{printable:zigzag}...{/printable:zigzag}` is "there is no printable
+named 'zigzag'".
+
 ---
 
 ## Sequence Types
@@ -823,6 +842,7 @@ Drops the values the named sequence type accepts; no store is dropped.
 | `input` | PAD/subs/inputs/types/ | Rich form fields |
 | `pattern` | PAD/subs/patterns/types/ | Seeded SVG patterns |
 | `sound` | PAD/subs/sounds/types/ | Sounds |
+| `printable` | PAD/subs/printables/types/ | Printables |
 | `pull` | pqStore | Sequence values |
 | `flag` | PQ | Membership flags, 1 or 0 |
 | `make` | PQ | Sequence creation |
@@ -867,6 +887,7 @@ types/
 ├── parm.php        → Tag parameter
 ├── pattern.php     → Pattern
 ├── php.php         → PHP function
+├── printable.php   → Printable
 ├── property.php    → Tag property
 ├── pull.php        → Sequence pull
 ├── remove.php      → Sequence remove

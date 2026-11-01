@@ -57,6 +57,7 @@ applications show them working.
   - [Embeds](#embeds)
   - [Toys](#toys)
   - [Sounds](#sounds)
+  - [Printables](#printables)
   - [Widgets](#widgets)
   - [Month calendar](#month-calendar)
   - [Public holidays](#public-holidays)
@@ -968,6 +969,47 @@ loaded, is silent before that. A sound is never reached bare - click, error and 
 of fields and pages. The `sounds` application is a soundboard of them all, each with its recipe
 and its WAV.
 
+### Printables
+```
+{printable:labels data='products', sheet='a4-3x8'}      # the content is one label, repeated over the data
+  <b>{$name}</b> {barcode:ean13 $ean/}
+{/printable:labels}
+{printable:labels data='people', sheet='a4-2x7', skip=3, copies=2, outline}...{/printable:labels}
+{printable:labels across=2, down=5, width=90, height=50, margin='20 15', pitch='95 52'}...{/printable:labels}
+{printable:badges data='guests', title='PAD Conference', color='#c0392b'}<h2>{$name}</h2>{$company}{/printable:badges}
+{printable:tickets data='seats', number=1}<h2>{$show}</h2><aside>{qr $code/}</aside>{/printable:tickets}
+{printable:letter data='customers', sender='PAD, Main Street 1, 3511 AB Utrecht'}
+  <header>...</header><address>{$name}<br>{$street}</address><aside>1 November 2026</aside>
+  <p>Dear {$name},</p> ... <footer>...</footer>
+{/printable:letter}
+{printable 'envelope', paper='c5', sender='PAD, Utrecht', scale=0.5, pdf}...{/printable}
+```
+Pages made for paper. A kind is a file of `pad/subs/printables/types/` - labels (sheet grids named
+by their paper and their grid: a4-3x8, a4-3x7, a4-2x7, a4-2x8, a4-2x4, a4-4x10, a4-5x13,
+letter-3x10, letter-2x10, letter-2x5, letter-2x3, letter-4x20 - or a sheet of one's own with
+`across`, `down`, `width`, `height`, `margin` and `pitch` in mm), badges (a band of colour with the
+event), cards (business cards, 85 by 55 mm, with crop marks), tickets (a stub, its `<aside>`, behind
+a perforation), certificate (A4 on its side, framed, signature lines), envelope (DL, C5, C6 or C4,
+the sender and the address), letter (the address in the window of a DL envelope, as DIN 5008
+form B places it, the fold marks), invoice (the letter's page, a title and a table set as invoice
+lines), indexcards (ruled, as many to the sheet as fit) and placecards (the upper half turned, to
+fold into a tent) - and a kind is added by adding its file. The content between the tags is one
+item, rendered per row of the data with the handling options of any tag, `copies=` times; a kind
+takes the parts of an item from the elements that say what they are - `<aside>`, `<address>`,
+`<header>`, `<footer>` - and lays the items out on its sheets as boxes, rectangles and lines in
+millimetres. One plan, three renderings: on the screen the sheets lie on a grey desk at their size
+(`scale=` makes the preview smaller); printed, a page with printables prints the sheets alone,
+each on a page of its own size and no margin (`@page` named per printable, mm-based CSS, the
+paper's colours kept); and in a `{pdf}` - or with `pdf` on the tag, whose links ask the page with
+`&padPdf` - the PDF writer sets the same sheets as pages of their size, each box where the CSS puts
+it, the barcodes and QR codes of the codes subsystem drawn. What the PDF does not do: CSS of a
+page's own, pictures other than JPEG, an SVG with curves, a table's own look (its grid is the
+writer's), the fonts of the page (Helvetica, Times and Courier stand in). Every item is one region
+of a sheet: what does not fit is cut at its edge - a letter is one page. Positions are classes of
+a style written with the CSP nonce, no inline style. Never reached bare: labels, cards and letter
+are the names of fields and pages. The `printables` application shows every kind, its template
+beside what it prints, with the PDF.
+
 ### Widgets
 ```
 {tabs active='Specs'}{tab 'Overview'}...{/tab}{tab 'Specs'}...{/tab}{/tabs}   # CSS-only tabs: radios, arrow keys
@@ -1164,6 +1206,7 @@ check. Code: `pad/subs/filters/` - `_lib/filter.php` the chain and its options, 
 {img 'photos/harbour.jpg', width=400, height=300, alt='The harbour'/}   # GD thumbnail in www/<app>/_thumbs/, 2x srcset, lazy
 {video 'https://youtu.be/ID', title='Launch'/}  # poster + play button, nocookie iframe only after a click; {embed} for more sites
 {pdf file='invoice', download}...{/pdf}   # the content as a PDF (plain PHP writer) instead of the page; preview: a sheet + link
+{printable:labels data='rows', sheet='a4-3x8', pdf}...{/printable:labels}   # sheets for paper, printed alone, the same in the PDF; see Printables
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # a flowchart laid out as SVG on the server; the other kinds - see Diagrams
 {map 'europe', data='sales', key='country', value='amount'/}   # choropleth: ISO alpha-2/3 or name, world or a region
 {diagram direction='LR'}A[Order] --> B{Paid?}{/diagram}   # flowchart (or type='sequence') laid out as SVG on the server

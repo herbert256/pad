@@ -706,6 +706,7 @@ Resolve naming conflicts with explicit prefixes:
 | `fake:` | Fake kind | `{fake:email/}`, as `{fake 'email'/}` - a kind is a file of `pad/subs/fakes/types/`; never bare |
 | `input:` | Rich form field | `{input:slider 'volume'/}`, as bare `{slider 'volume'/}` - a kind is a file of `pad/subs/inputs/types/` |
 | `sound:` | Sound | `{sound:chime/}`, as `{sound 'chime'/}` - a sound is a recipe, a file of `pad/subs/sounds/types/`; never bare |
+| `printable:` | Printable | `{printable:labels data='rows'}...{/printable:labels}`, as `{printable 'labels', ...}...{/printable}` - a kind is a file of `pad/subs/printables/types/`; never bare |
 | `action:` | Sequence action | `{action:reverse}` |
 | `flag:` / `make:` / `keep:` / `remove:` | Sequence operations | `{make:fibonacci}` |
 
@@ -799,6 +800,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/subs/charts/types/`; `{sparkline/}`; `client` draws it in the browser (`pad/subs/charts/client/`) |
 | [Games](docs/FEATURES.md#games) | `{game 'memory'/}`, `{game:sudoku/}`, `{crossword}...{/crossword}` - 18 games played in the browser, a game per file of `pad/subs/games/types/` |
 | [Toys](docs/FEATURES.md#toys) | `{toy 'life'/}`, `{toy:mandelbrot/}`, bare `{boids/}` - live simulations in the browser, a toy per file of `pad/subs/toys/types/` |
+| [Printables](docs/FEATURES.md#printables) | `{printable:labels data='products', sheet='a4-3x8'}...{/printable:labels}`, badges, cards, tickets (`<aside>` the stub), certificate, envelope, letter and invoice (`<address>` in the window), indexcards, placecards - mm-based sheets that print alone, `pdf` for the same sheets from the PDF writer, a kind per file of `pad/subs/printables/types/` |
 | [Sounds](docs/FEATURES.md#sounds) | `{sound:chime/}`, `{sound 'pop', button='Pop'/}`, `{sound:coin on='click', target='#save'/}`, `data-pad-sound="pop"`, `{toast ..., sound='success'/}`, `padSoundWav ()` - synthesised in the browser, the same samples as the server's WAV, a recipe per file of `pad/subs/sounds/types/` |
 | [Widgets](docs/FEATURES.md#widgets) | `{tabs}`, `{modal 'x'}`, `{toast 'Saved'/}`, `{widget:dropdown 'Menu'}...{/widget:dropdown}`, `{tooltip}`, `{wizard}`, `{lightbox}`, `{drawer}`, `{breadcrumb/}` - work without JavaScript, a widget per file of `pad/subs/widgets/types/` |
 | [Diagrams](docs/FEATURES.md#diagrams) | `{diagram}...{/diagram}`, `{diagram:state}`, `{mindmap}`, `{gitgraph}` - flowchart, sequence, state, class, er, mindmap, tree, journey, gitgraph: a kind per file of `pad/subs/diagrams/types/` |
@@ -1175,6 +1177,7 @@ the `claude` line of `./ci.sh`.
 | `games` | Standard | Every game of the games subsystem to play - a card per game, a page per game with the template that plays it, all read from `pad/subs/games/types/` |
 | `toys` | Standard | Every toy of the toys subsystem to play with - a card per toy, a page per toy that runs it beside its template, read from `pad/subs/toys/types/` |
 | `patterns` | Standard | Every pattern of the patterns subsystem - a card per pattern, a page per pattern drawn beside its template with a seed to change by link, its own example and as a background, read from `pad/subs/patterns/types/` - and a page with every image filter of `{img}` on the same picture |
+| `printables` | Standard | Every kind of the printables subsystem - labels, badges, cards, tickets, a certificate, envelopes, letters, invoices, index cards, place cards - a page each with its template beside what it prints and a link to the PDF, sample data from `{fake}` with fixed seeds, read from `pad/subs/printables/types/` |
 | `sounds` | Standard | A soundboard of the sounds subsystem - every sound a button with its recipe and its WAV download, and the ways a page plays one, read from `pad/subs/sounds/types/` |
 | `inputs` | Standard | Every rich form field of `pad/subs/inputs/` to try - a page per kind in a form that posts back with what the page received, one form with them all checked in the browser too |
 | `examples` | Standard | Search the harvested examples of DATA/examples and view one with its sources beside the rendered result |

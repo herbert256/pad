@@ -22,6 +22,7 @@ This directory contains PAD applications and examples.
 | [games](games/README.md) | Standard | Every game of the games subsystem to play - a card per game, a page per game with the template that plays it, read from `pad/subs/games/types/` |
 | [toys](toys/README.md) | Standard | Every toy of the toys subsystem to play with - a card per toy, a page per toy with the template that shows it, read from `pad/subs/toys/types/` |
 | [patterns](patterns/README.md) | Standard | Every pattern of the patterns subsystem - a card per pattern, a page per pattern beside its template with a seed to change by link, read from `pad/subs/patterns/types/` - and every image filter of `{img}` on one picture |
+| [printables](printables/README.md) | Standard | Every kind of the printables subsystem on a page of its own - its template beside what it prints, sheets at their size, a link to the PDF, read from `pad/subs/printables/types/` |
 | [sounds](sounds/README.md) | Standard | A soundboard of the sounds subsystem - a card per sound with its button, its recipe and its WAV file, and the ways a page plays one, read from `pad/subs/sounds/types/` |
 | [examples](examples/README.md) | Standard | Search the harvested examples and view one with its sources beside the rendered result |
 | [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |

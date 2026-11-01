@@ -29,6 +29,7 @@
       'sequence' => [ 'Sequence types',    'A sequence of {sequence} each, its terms a loop',    'both',   " rows=10}{\$%s} {/sequence:%s}",              'sequence' ],
       'pattern'  => [ 'Patterns',          'A pattern of {pattern} each, seeded SVG art',        'single', ' seed=7/}',                                   'pattern' ],
       'sound'    => [ 'Sounds',            'A sound of {sound} each, synthesised in the browser', 'single', '/}',                                          'sound'   ],
+      'printable' => [ 'Printables',       'A kind of {printable} each, pages made for paper',   'pair',   "}\n  ...\n{/printable:%s}",                   'printable' ],
     ];
 
   }
@@ -258,6 +259,10 @@
       case 'sound':
         return $example ( "The $kind sound", 'A button that plays it, and its WAV file.', "{sound:$kind download/}" );
 
+      case 'printable':
+        $file = APPS . "printables/kinds/$kind.pad";
+        return $example ( "The $kind", 'As the printables application shows it.', is_file ( $file ) ? trim ( padFileGet ( $file ) ) : "{printable:$kind scale=0.4}A $kind{/printable:$kind}" );
+
       case 'sequence':
         $parm = tagsKindSequenceParm ( $kind );
         return $example ( 'The first ten terms', $parm ? 'With the parameter the type takes.' : '', "{sequence:$kind$parm rows=10}{\$$kind} {/sequence:$kind}" );
@@ -358,7 +363,8 @@
       'fake'     => [ "{fake:$kind/}", "{fake '$kind'/}" ],
       'pattern'  => [ "{pattern:$kind .../}", "{pattern '$kind', .../}" ],
       'sequence' => [ "{sequence:$kind}...{/sequence:$kind}", "sequence:$kind(8) in an expression, the eighth term" ],
-      'sound'    => [ "{sound:$kind/}", "{sound '$kind'/}" ] ] [$type];
+      'sound'    => [ "{sound:$kind/}", "{sound '$kind'/}" ],
+      'printable' => [ "{printable:$kind}...{/printable:$kind}", "{printable '$kind'}...{/printable}" ] ] [$type];
 
     if ( tagsKindBare ( $type, $kind ) )
       $ways [] = "{{$kind} ...}, bare, when no tag, field or store has the name";

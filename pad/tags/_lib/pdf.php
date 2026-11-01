@@ -28,6 +28,17 @@
   //                {page} renders into another page - with the links to the document
   // padPdfMake     HTML to the bytes of a PDF
   //
+  // What the printables (subs/printables/) write is laid out by place, not by flow: an
+  // element with data-pdf-sheet="210 297" is a page of its own, of that size in millimetres,
+  // and on it an element with data-pdf-box="x y w h" sets its content inside that box -
+  // clipped to it, never broken over a page - and data-pdf-rect and data-pdf-line draw a
+  // rectangle and a line, all in millimetres from the sheet's top left corner, with their
+  // padding, text size, alignment, font, turn and colours in data-pdf-style. In such a box
+  // an SVG of rectangles and straight paths - a barcode, a QR code - is drawn, its text set
+  // in Helvetica or Courier; an element with data-pdf-skip - what only the screen shows -
+  // is left out. The sheets carry no page numbers (padPdfPrintSheet and the functions after
+  // it, at the end of this file).
+  //
   // This file is the {pdf} tag's, included when a page uses it. lib/pdf.php, loaded on
   // every request, keeps what is asked of every page - padPdfStore, the request's {pdf},
   // and padPdfAsked, whether it answers a document - and padPdf, padPdfMake for a page's
@@ -440,6 +451,26 @@
 
       $name = ( $child instanceof DOMElement ) ? strtolower ( $child->tagName ) : '';
 
+      // A printable's sheet is a page of its own, what it shows on the screen alone stays
+      // out, and an SVG in one of its boxes - a barcode, a QR code - is drawn.
+
+      if ( $name !== '' and $child->hasAttribute ( 'data-pdf-skip' ) )
+        continue;
+
+      if ( $name !== '' and $child->hasAttribute ( 'data-pdf-sheet' ) ) {
+        padPdfParagraph ( $doc, $runs, $ctx );
+        $runs = [];
+        padPdfPrintSheet ( $doc, $child );
+        continue;
+      }
+
+      if ( $name == 'svg' and isset ( $doc ['box'] ) ) {
+        padPdfParagraph ( $doc, $runs, $ctx );
+        $runs = [];
+        padPdfSvg ( $doc, $child, $ctx );
+        continue;
+      }
+
       if ( $name !== '' and padPdfSkip ( $name ) )
         continue;
 
@@ -521,9 +552,9 @@
     if ( preg_match ( '/^h([1-6])$/', $name, $m ) ) {
 
       $level = (int) $m [1];
-      $ctx ['size'] = [ 1 => 20, 2 => 15, 3 => 12.5, 4 => 11, 5 => 10.5, 6 => 10.5 ] [$level];
+      $ctx ['size'] = [ 1 => 20, 2 => 15, 3 => 12.5, 4 => 11, 5 => 10.5, 6 => 10.5 ] [$level] * ( $ctx ['scale'] ?? 1 );
       $ctx ['bold'] = TRUE;
-      $ctx ['color'] = '0.05 0.05 0.05';
+      $ctx ['color'] = $ctx ['tint'] ?? '0.05 0.05 0.05';
 
       if ( $doc ['heading'] === '' )
         $doc ['heading'] = trim ( preg_replace ( '/\s+/', ' ', $el->textContent ) );
@@ -1179,6 +1210,9 @@
 
     list ( $set, $height, $head ) = $row;
 
+    if ( isset ( $doc ['box'] ) )
+      return [ $row ];
+
     $room = $doc ['h'] - 2 * $doc ['margin'] - ( $header ? $header [1] : 0 ) - 1;
 
     if ( $height <= $room )
@@ -1320,7 +1354,7 @@
     // scale 0 and the matrix nan.
 
     $room = padPdfWidthLeft ( $doc, $ctx );
-    $tall = $doc ['h'] - 2 * $doc ['margin'] - 20;
+    $tall = $doc ['box'] ['tall'] ?? ( $doc ['h'] - 2 * $doc ['margin'] - 20 );
 
     $size = function ( $attr, $whole ) {
       $attr = trim ( $attr );
@@ -1428,6 +1462,15 @@
 
     $gap = $doc ['top'] ? 0 : $doc ['gap'];
 
+    // In a printable's box there is no next page: what does not fit is clipped at its edge.
+
+    if ( isset ( $doc ['box'] ) ) {
+      $doc ['y']  -= $gap;
+      $doc ['gap'] = 0;
+      $doc ['top'] = FALSE;
+      return FALSE;
+    }
+
     if ( ! $doc ['top'] and $doc ['y'] - $gap - $height < $doc ['margin'] ) {
       padPdfPage ( $doc );
       $gap = 0;
@@ -1466,7 +1509,11 @@
 
   function padPdfNumbers ( &$doc ) {
 
-    $count = count ( $doc ['pages'] );
+    // A printable's sheet - a label sheet, an envelope - carries no number: the numbers are
+    // those of the pages of the flow, among themselves.
+
+    $flow  = array_keys ( array_filter ( $doc ['pages'], fn ( $page ) => ! ( $page ['sheet'] ?? FALSE ) ) );
+    $count = count ( $flow );
 
     if ( $count < 2 )
       return;
@@ -1476,8 +1523,8 @@
     $style ['color'] = '0.45 0.45 0.45';
     $font  = padPdfFont ( $doc, $style );
 
-    foreach ( $doc ['pages'] as $k => $page ) {
-      $text = ( $k + 1 ) . " / $count";
+    foreach ( $flow as $n => $k ) {
+      $text = ( $n + 1 ) . " / $count";
       $x    = ( $doc ['w'] - padPdfWidth ( $doc, $text, $style ) ) / 2;
       $doc ['pages'] [$k] ['ops'] [] = "BT {$style ['color']} rg /$font 8 Tf " . padPdfN ( $x ) . ' ' . padPdfN ( $doc ['margin'] / 2 ) . " Td ($text) Tj ET";
     }
@@ -1503,7 +1550,7 @@
 
   function padPdfBaseFont ( $doc, $style ) {
 
-    $family = $style ['mono'] ? 'courier' : $doc ['family'];
+    $family = $style ['mono'] ? 'courier' : ( $style ['family'] ?? $doc ['family'] );
 
     return PAD_PDF_FONTS [$family] [ ( $style ['bold'] ? 1 : 0 ) + ( $style ['italic'] ? 2 : 0 ) ];
 
@@ -1633,7 +1680,8 @@
         $annots [] = $add ( '<< /Type /Annot /Subtype /Link /Rect [' . padPdfN ( $x0 ) . ' ' . padPdfN ( $y0 ) . ' ' . padPdfN ( $x1 ) . ' ' . padPdfN ( $y1 ) . ']'
                           . ' /Border [0 0 0] /A << /S /URI /URI (' . padPdfString ( padPdfUri ( $uri ) ) . ') >> >>' ) . ' 0 R';
 
-      $kids [] = $add ( "<< /Type /Page /Parent $tree 0 R /MediaBox [0 0 " . padPdfN ( $doc ['w'] ) . ' ' . padPdfN ( $doc ['h'] ) . ']'
+      $media   = $page ['size'] ?? [ $doc ['w'], $doc ['h'] ];
+      $kids [] = $add ( "<< /Type /Page /Parent $tree 0 R /MediaBox [0 0 " . padPdfN ( $media [0] ) . ' ' . padPdfN ( $media [1] ) . ']'
                       . " /Resources $resources /Contents $stream 0 R" . ( $annots ? ' /Annots [' . implode ( ' ', $annots ) . ']' : '' ) . ' >>' ) . ' 0 R';
 
     }
@@ -1671,6 +1719,456 @@
       return '(' . padPdfString ( $text ) . ')';
 
     return '<FEFF' . strtoupper ( bin2hex ( mb_convert_encoding ( $text, 'UTF-16BE', 'UTF-8' ) ) ) . '>';
+
+  }
+
+  // ------------------------------------------------------------------------------------
+  // The sheets of the printables (subs/printables/): content laid out by place.
+  // ------------------------------------------------------------------------------------
+
+  // A sheet: a page of the size data-pdf-sheet gives in millimetres - the paper of the
+  // labels, the envelope itself - the current page when nothing stands on it yet. Its
+  // rectangles and lines are drawn first, under the boxes, then every box sets its content.
+  // What the flow sets after a sheet starts on a page of the document's own size.
+
+  function padPdfPrintSheet ( &$doc, $sheet ) {
+
+    $size = padPdfMmList ( $sheet->getAttribute ( 'data-pdf-sheet' ), 2 );
+
+    if ( ! $size or $size [0] <= 0 or $size [1] <= 0 )
+      return;
+
+    $page = $doc ['pages'] [ count ( $doc ['pages'] ) - 1 ];
+
+    if ( $page ['ops'] or $page ['links'] or ! $doc ['top'] or ( $page ['sheet'] ?? FALSE ) )
+      padPdfPage ( $doc );
+
+    $last = count ( $doc ['pages'] ) - 1;
+
+    $doc ['pages'] [$last] ['size']  = $size;
+    $doc ['pages'] [$last] ['sheet'] = TRUE;
+
+    $boxes = [];
+
+    padPdfPrintWalk ( $doc, $sheet, $boxes );
+
+    foreach ( $boxes as $box )
+      padPdfPrintBox ( $doc, $box );
+
+    $doc ['top'] = FALSE;
+    $doc ['y']   = -1;
+    $doc ['gap'] = 0;
+
+  }
+
+  // The elements of a sheet, depth first: a rectangle or a line drawn, a box kept for later -
+  // its content is its own - and what is on the screen alone left out.
+
+  function padPdfPrintWalk ( &$doc, $node, &$boxes ) {
+
+    foreach ( $node->childNodes as $child ) {
+
+      if ( ! ( $child instanceof DOMElement ) or $child->hasAttribute ( 'data-pdf-skip' ) )
+        continue;
+
+      if ( $child->hasAttribute ( 'data-pdf-box' ) )
+        $boxes [] = $child;
+      elseif ( $child->hasAttribute ( 'data-pdf-rect' ) )
+        padPdfPrintRect ( $doc, $child );
+      elseif ( $child->hasAttribute ( 'data-pdf-line' ) )
+        padPdfPrintLine ( $doc, $child );
+      elseif ( ! padPdfSkip ( strtolower ( $child->tagName ) ) )
+        padPdfPrintWalk ( $doc, $child, $boxes );
+
+    }
+
+  }
+
+  // A box: its content set as the flow sets a page - the box's padding its margins, its text
+  // size, alignment, font and colour from data-pdf-style - clipped to the box, moved down to
+  // its middle or bottom when valign asks, and turned half round for turn=180, the upper half
+  // of a folded place card. A box has no next page: what does not fit is cut at its edge.
+
+  function padPdfPrintBox ( &$doc, $el ) {
+
+    $box = padPdfMmList ( $el->getAttribute ( 'data-pdf-box' ), 4 );
+
+    if ( ! $box or $box [2] <= 0 or $box [3] <= 0 )
+      return;
+
+    $last   = count ( $doc ['pages'] ) - 1;
+    $height = $doc ['pages'] [$last] ['size'] [1] ?? $doc ['h'];
+    $style  = padPdfPrintStyle ( $el );
+    $pad    = min ( (float) ( $style ['pad'] ?? 0 ) * 72 / 25.4, $box [2] / 2, $box [3] / 2 );
+
+    list ( $left, $y, $wide, $tall ) = $box;
+
+    $top = $height - $y;
+
+    if ( ( $fill = padPdfRgb ( $style ['fill'] ?? '' ) ) !== NULL )
+      padPdfOps ( $doc, "$fill rg " . padPdfN ( $left ) . ' ' . padPdfN ( $top - $tall ) . ' ' . padPdfN ( $wide ) . ' ' . padPdfN ( $tall ) . ' re f' );
+
+    $ctx = padPdfContext ();
+
+    if ( isset ( $style ['size'] ) and (float) $style ['size'] > 0 ) {
+      $ctx ['size']  = min ( 200, (float) $style ['size'] );
+      $ctx ['scale'] = $ctx ['size'] / 10.5;
+    }
+
+    if ( in_array ( $style ['align'] ?? '', [ 'left', 'center', 'right' ], TRUE ) )
+      $ctx ['align'] = $style ['align'];
+
+    if ( isset ( PAD_PDF_FONTS [ $style ['font'] ?? '' ] ) )
+      $ctx ['family'] = $style ['font'];
+
+    // A colour of the box is the colour of its headings too, which are otherwise darker than
+    // the text.
+
+    if ( ( $color = padPdfRgb ( $style ['color'] ?? '' ) ) !== NULL )
+      $ctx ['color'] = $ctx ['tint'] = $color;
+
+    $keep =[ $doc ['margin'], $doc ['w'], $doc ['y'], $doc ['top'], $doc ['gap'], $doc ['marker'] ];
+    $ops  = count ( $doc ['pages'] [$last] ['ops'] );
+    $refs = count ( $doc ['pages'] [$last] ['links'] );
+
+    $doc ['box']    = [ 'tall' => max ( 1, $tall - 2 * $pad ) ];
+    $doc ['margin'] = $left + $pad;
+    $doc ['w']      = 2 * ( $left + $pad ) + ( $wide - 2 * $pad );
+    $doc ['y']      = $top - $pad;
+    $doc ['top']    = TRUE;
+    $doc ['gap']    = 0;
+    $doc ['marker'] = NULL;
+
+    padPdfFlow ( $doc, $el, $ctx );
+    padPdfMarker ( $doc );
+
+    $used = ( $top - $pad ) - $doc ['y'];
+    $room = $tall - 2 * $pad;
+    $down = 0;
+
+    if ( ( $style ['valign'] ?? '' ) == 'middle' ) $down = max ( 0, ( $room - $used ) / 2 );
+    if ( ( $style ['valign'] ?? '' ) == 'bottom' ) $down = max ( 0, $room - $used );
+
+    $turn  = ( ( $style ['turn'] ?? '' ) == '180' );
+    $set   = array_splice ( $doc ['pages'] [$last] ['ops'], $ops );
+    $frame = 'q ' . padPdfN ( $left ) . ' ' . padPdfN ( $top - $tall ) . ' ' . padPdfN ( $wide ) . ' ' . padPdfN ( $tall ) . ' re W n';
+
+    if ( $turn )
+      $frame .= ' -1 0 0 -1 ' . padPdfN ( 2 * $left + $wide ) . ' ' . padPdfN ( 2 * $top - $tall ) . ' cm';
+
+    if ( $down )
+      $frame .= ' 1 0 0 1 0 ' . padPdfN ( - $down ) . ' cm';
+
+    if ( $set )
+      $doc ['pages'] [$last] ['ops'] = array_merge ( $doc ['pages'] [$last] ['ops'], [ $frame ], $set, [ 'Q' ] );
+
+    // The links of the box moved as its content was: down, then turned round its middle.
+
+    foreach ( $doc ['pages'] [$last] ['links'] as $k => $link )
+      if ( $k >= $refs ) {
+        list ( $x0, $y0, $x1, $y1, $uri ) = $link;
+        $y0 -= $down;
+        $y1 -= $down;
+        if ( $turn )
+          list ( $x0, $y0, $x1, $y1 ) = [ 2 * $left + $wide - $x1, 2 * $top - $tall - $y1, 2 * $left + $wide - $x0, 2 * $top - $tall - $y0 ];
+        $doc ['pages'] [$last] ['links'] [$k] = [ $x0, $y0, $x1, $y1, $uri ];
+      }
+
+    unset ( $doc ['box'] );
+
+    list ( $doc ['margin'], $doc ['w'], $doc ['y'], $doc ['top'], $doc ['gap'], $doc ['marker'] ) = $keep;
+
+  }
+
+  // A rectangle of a sheet - a band of colour, a frame, the edge to cut along: filled and
+  // stroked as data-pdf-style says.
+
+  function padPdfPrintRect ( &$doc, $el ) {
+
+    $box = padPdfMmList ( $el->getAttribute ( 'data-pdf-rect' ), 4 );
+
+    if ( ! $box )
+      return;
+
+    $last   = count ( $doc ['pages'] ) - 1;
+    $height = $doc ['pages'] [$last] ['size'] [1] ?? $doc ['h'];
+    $style  = padPdfPrintStyle ( $el );
+    $rect   = padPdfN ( $box [0] ) . ' ' . padPdfN ( $height - $box [1] - $box [3] ) . ' ' . padPdfN ( $box [2] ) . ' ' . padPdfN ( $box [3] ) . ' re';
+
+    if ( ( $fill = padPdfRgb ( $style ['fill'] ?? '' ) ) !== NULL )
+      padPdfOps ( $doc, "$fill rg $rect f" );
+
+    if ( ( $stroke = padPdfRgb ( $style ['stroke'] ?? '' ) ) !== NULL )
+      padPdfOps ( $doc, 'q ' . padPdfStroke ( $stroke, $style ) . " $rect S Q" );
+
+  }
+
+  // A line of a sheet - a crop mark, a fold, a perforation.
+
+  function padPdfPrintLine ( &$doc, $el ) {
+
+    $line = padPdfMmList ( $el->getAttribute ( 'data-pdf-line' ), 4 );
+
+    if ( ! $line )
+      return;
+
+    $last   = count ( $doc ['pages'] ) - 1;
+    $height = $doc ['pages'] [$last] ['size'] [1] ?? $doc ['h'];
+    $style  = padPdfPrintStyle ( $el );
+    $stroke = padPdfRgb ( $style ['stroke'] ?? '' ) ?? '0 0 0';
+
+    padPdfOps ( $doc, 'q ' . padPdfStroke ( $stroke, $style ) . ' ' . padPdfN ( $line [0] ) . ' ' . padPdfN ( $height - $line [1] ) . ' m '
+                    . padPdfN ( $line [2] ) . ' ' . padPdfN ( $height - $line [3] ) . ' l S Q' );
+
+  }
+
+  function padPdfStroke ( $rgb, $style ) {
+
+    $width = max ( 0.05, min ( 20, (float) ( $style ['width'] ?? 0.5 ) ) );
+
+    return "$rgb RG " . padPdfN ( $width ) . ' w' . ( ( $style ['dash'] ?? '' ) ? ' [' . padPdfN ( $width * 6 ) . ' ' . padPdfN ( $width * 4 ) . '] 0 d' : '' );
+
+  }
+
+  // data-pdf-style="pad=2;size=9;align=center": its pairs.
+
+  function padPdfPrintStyle ( $el ) {
+
+    $style = [];
+
+    foreach ( explode ( ';', $el->getAttribute ( 'data-pdf-style' ) ) as $pair )
+      if ( str_contains ( $pair, '=' ) ) {
+        list ( $key, $value ) = explode ( '=', $pair, 2 );
+        $style [ trim ( $key ) ] = trim ( $value );
+      }
+
+    return $style;
+
+  }
+
+  // Millimetres, as many as asked for, in points - or NULL when the list is not that.
+
+  function padPdfMmList ( $text, $count ) {
+
+    $parts = preg_split ( '/\s+/', trim ( (string) $text ) );
+
+    if ( count ( $parts ) != $count )
+      return NULL;
+
+    foreach ( $parts as $part )
+      if ( ! is_numeric ( $part ) or ! is_finite ( (float) $part ) or abs ( (float) $part ) > 5000 )
+        return NULL;
+
+    return array_map ( fn ( $mm ) => (float) $mm * 72 / 25.4, $parts );
+
+  }
+
+  // #rgb or #rrggbb as the three numbers of a PDF colour; NULL for none or anything else.
+
+  function padPdfRgb ( $hex ) {
+
+    $hex = strtolower ( trim ( (string) $hex ) );
+
+    if ( preg_match ( '/^#([0-9a-f])([0-9a-f])([0-9a-f])$/D', $hex, $m ) )
+      $hex = "#$m[1]$m[1]$m[2]$m[2]$m[3]$m[3]";
+
+    if ( ! preg_match ( '/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/D', $hex, $m ) )
+      return NULL;
+
+    return implode ( ' ', array_map ( fn ( $c ) => padPdfN ( hexdec ( $c ) / 255 ), [ $m [1], $m [2], $m [3] ] ) );
+
+  }
+
+  // An SVG in a printable's box, drawn as a picture is placed: its own size, made smaller to
+  // fit the column and the box. What it draws is what the codes subsystem draws - rectangles,
+  // paths of straight lines (M, L, H, V, Z, in both cases) filled or stroked, and text, set in
+  // Helvetica, or Courier for a monospaced family; a path with a curve is left out, and so is
+  // a group with a transform. The viewBox is read as viewbox: the HTML parser writes every
+  // attribute name in lower case.
+
+  function padPdfSvg ( &$doc, $svg, $ctx ) {
+
+    $view = preg_split ( '/[\s,]+/', trim ( $svg->getAttribute ( 'viewbox' ) ) );
+    $view = ( count ( $view ) == 4 and count ( array_filter ( $view, 'is_numeric' ) ) == 4 ) ? array_map ( 'floatval', $view ) : NULL;
+
+    $px = fn ( $attr, $other ) => ( is_numeric ( $attr ) and (float) $attr > 0 ) ? (float) $attr : $other;
+
+    $pw = $px ( preg_replace ( '/px$/', '', $svg->getAttribute ( 'width' ) ), $view [2] ?? 0 );
+    $ph = $px ( preg_replace ( '/px$/', '', $svg->getAttribute ( 'height' ) ), $view [3] ?? 0 );
+
+    if ( ! ( $pw > 0 ) or ! ( $ph > 0 ) )
+      return;
+
+    $view = ( $view and $view [2] > 0 and $view [3] > 0 ) ? $view : [ 0, 0, $pw, $ph ];
+
+    $w     = $pw * 0.75;
+    $h     = $ph * 0.75;
+    $room  = padPdfWidthLeft ( $doc, $ctx );
+    $tall  = $doc ['box'] ['tall'] ?? ( $doc ['h'] - 2 * $doc ['margin'] - 20 );
+    $scale = min ( 1, $room / $w, $tall / $h );
+    $w    *= $scale;
+    $h    *= $scale;
+
+    padPdfMarkerLine ( $doc );
+    padPdfSpace ( $doc, 2 );
+    padPdfRoom ( $doc, $h );
+
+    $x = $doc ['margin'] + $ctx ['indent'];
+
+    if ( $ctx ['align'] == 'center' ) $x += ( $room - $w ) / 2;
+    if ( $ctx ['align'] == 'right'  ) $x += $room - $w;
+
+    $doc ['y'] -= $h;
+
+    $map = [ $x, $doc ['y'] + $h, $w / $view [2], $h / $view [3], $view [0], $view [1] ];
+
+    padPdfSvgDraw ( $doc, $svg, $map, $ctx );
+
+    padPdfAfter ( $doc, 4 );
+
+  }
+
+  function padPdfSvgDraw ( &$doc, $node, $map, $ctx ) {
+
+    list ( $x0, $y0, $sx, $sy, $vx, $vy ) = $map;
+
+    $at = fn ( $x, $y ) => padPdfN ( $x0 + ( $x - $vx ) * $sx ) . ' ' . padPdfN ( $y0 - ( $y - $vy ) * $sy );
+
+    foreach ( $node->childNodes as $el ) {
+
+      if ( ! ( $el instanceof DOMElement ) )
+        continue;
+
+      $name  = strtolower ( $el->tagName );
+      $fill  = $el->hasAttribute ( 'fill' ) ? $el->getAttribute ( 'fill' ) : '#000';
+      $fill  = ( strtolower ( $fill ) == 'currentcolor' ) ? $ctx ['color'] : padPdfRgb ( $fill );
+      $paint = ( $fill !== NULL ? "$fill rg " : '' );
+      $line  = padPdfRgb ( $el->getAttribute ( 'stroke' ) );
+      $line  = ( $line !== NULL ) ? "$line RG " . padPdfN ( max ( 0.05, (float) ( $el->getAttribute ( 'stroke-width' ) ?: 1 ) * $sx ) ) . ' w ' : '';
+      $how   = ( $fill !== NULL and $line ) ? 'B' : ( $fill !== NULL ? 'f' : ( $line ? 'S' : '' ) );
+
+      if ( $name == 'g' and ! $el->hasAttribute ( 'transform' ) )
+        padPdfSvgDraw ( $doc, $el, $map, $ctx );
+
+      elseif ( $name == 'rect' and $how ) {
+
+        $size = fn ( $attr, $whole ) => str_ends_with ( trim ( $attr ), '%' ) ? $whole * (float) $attr / 100 : (float) $attr;
+        $rx   = (float) $el->getAttribute ( 'x' );
+        $ry   = (float) $el->getAttribute ( 'y' );
+        $rw   = $size ( $el->getAttribute ( 'width' ),  padPdfSvgWhole ( $el, 2 ) );
+        $rh   = $size ( $el->getAttribute ( 'height' ), padPdfSvgWhole ( $el, 3 ) );
+
+        if ( $rw > 0 and $rh > 0 )
+          padPdfOps ( $doc, "q $paint$line" . $at ( $rx, $ry + $rh ) . ' ' . padPdfN ( $rw * $sx ) . ' ' . padPdfN ( $rh * $sy ) . " re $how Q" );
+
+      } elseif ( $name == 'path' and $how and ( $ops = padPdfSvgPath ( $el->getAttribute ( 'd' ), $at ) ) !== '' )
+
+        padPdfOps ( $doc, "q $paint$line$ops $how Q" );
+
+      elseif ( $name == 'text' and $fill !== NULL ) {
+
+        $text = padPdfText ( trim ( $el->textContent ) );
+
+        if ( $text === '' )
+          continue;
+
+        $style = $ctx;
+        $style ['bold'] = $style ['italic'] = $style ['under'] = FALSE;
+        $style ['mono'] = (bool) preg_match ( '/mono|courier|consolas|menlo/i', $el->getAttribute ( 'font-family' ) );
+        $style ['size'] = max ( 1, (float) ( $el->getAttribute ( 'font-size' ) ?: 12 ) * $sy );
+
+        $wide   = padPdfWidth ( $doc, $text, $style );
+        $anchor = $el->getAttribute ( 'text-anchor' );
+        $tx     = $x0 + ( (float) $el->getAttribute ( 'x' ) - $vx ) * $sx - ( $anchor == 'middle' ? $wide / 2 : ( $anchor == 'end' ? $wide : 0 ) );
+        $ty     = $y0 - ( (float) $el->getAttribute ( 'y' ) - $vy ) * $sy;
+
+        padPdfOps ( $doc, "BT $fill rg /" . padPdfFont ( $doc, $style ) . ' ' . padPdfN ( $style ['size'] ) . ' Tf '
+                        . padPdfN ( $tx ) . ' ' . padPdfN ( $ty ) . ' Td (' . padPdfString ( $text ) . ') Tj ET' );
+
+      }
+
+    }
+
+  }
+
+  // The width or the height of the viewBox of the SVG an element stands in - what 100% is.
+
+  function padPdfSvgWhole ( $el, $which ) {
+
+    for ( $node = $el->parentNode; $node instanceof DOMElement; $node = $node->parentNode )
+      if ( strtolower ( $node->tagName ) == 'svg' ) {
+        $view = preg_split ( '/[\s,]+/', trim ( $node->getAttribute ( 'viewbox' ) ) );
+        if ( count ( $view ) == 4 )
+          return (float) $view [$which];
+        return (float) $node->getAttribute ( $which == 2 ? 'width' : 'height' );
+      }
+
+    return 0;
+
+  }
+
+  // A path of straight lines as PDF path operators - '' for one with a curve or an arc.
+
+  function padPdfSvgPath ( $d, $at ) {
+
+    if ( preg_match ( '/[CcSsQqTtAa]/', $d ) or ! preg_match_all ( '/[MmLlHhVvZz]|[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?/', $d, $found ) )
+      return '';
+
+    $ops  = [];
+    $cmd  = '';
+    $x    = $y = $sx = $sy = 0.0;
+    $nums = [];
+
+    $flush = function () use ( &$cmd, &$nums, &$x, &$y, &$sx, &$sy, &$ops, $at ) {
+
+      $rel = ( $cmd !== '' and ctype_lower ( $cmd ) );
+      $up  = strtoupper ( $cmd );
+      $per = [ 'M' => 2, 'L' => 2, 'H' => 1, 'V' => 1 ] [$up] ?? 0;
+
+      if ( ! $per )
+        return;
+
+      foreach ( array_chunk ( $nums, $per ) as $i => $set ) {
+
+        if ( count ( $set ) < $per )
+          break;
+
+        if ( $up == 'M' or $up == 'L' ) {
+          $x = $rel ? $x + $set [0] : $set [0];
+          $y = $rel ? $y + $set [1] : $set [1];
+        } elseif ( $up == 'H' )
+          $x = $rel ? $x + $set [0] : $set [0];
+        else
+          $y = $rel ? $y + $set [0] : $set [0];
+
+        if ( $up == 'M' and $i == 0 ) {
+          $sx = $x;
+          $sy = $y;
+          $ops [] = $at ( $x, $y ) . ' m';
+        } else
+          $ops [] = $at ( $x, $y ) . ' l';
+
+      }
+
+      $nums = [];
+
+    };
+
+    foreach ( $found [0] as $token )
+      if ( ctype_alpha ( $token ) ) {
+        $flush ();
+        $cmd = $token;
+        if ( strtoupper ( $token ) == 'Z' ) {
+          $ops [] = 'h';
+          $x = $sx;
+          $y = $sy;
+        }
+      } else
+        $nums [] = (float) $token;
+
+    $flush ();
+
+    return implode ( ' ', $ops );
 
   }
 

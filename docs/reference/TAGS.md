@@ -2332,6 +2332,64 @@ bytes every time. An unknown sound, an `on=` that is none of its words, a `volum
 
 ---
 
+### printable
+Pages made for paper: the content between the tags is one item - a label, a badge, a ticket, a
+letter - rendered once per row of the data and laid out by its kind on sheets of paper. Every kind
+is a file of `pad/subs/printables/types/`, and the files there are the kinds there are
+(`padPrintableKinds()`); the subsystem is `pad/subs/printables/`.
+
+```html
+{printable:labels data='products', sheet='a4-3x8'}<b>{$name}</b> {barcode:ean13 $ean/}{/printable:labels}
+{printable 'badges', data='guests', title='PAD Conference'}<h2>{$name}</h2>{$company}{/printable}
+{printable:tickets data='seats'}<h2>{$show}</h2>Row {$row}<aside>{qr $code/}</aside>{/printable:tickets}
+{printable:letter data='customers', sender='PAD, Main Street 1, 3511 AB Utrecht', pdf}
+  <address>{$name}<br>{$street}<br>{$city}</address><aside>1 November 2026</aside>
+  <p>Dear {$name},</p>
+{/printable:letter}
+```
+
+A printable is written two ways, the same each time: the tag, `{printable 'labels'}...{/printable}`,
+and the printable: type, `{printable:labels}...{/printable:labels}`; never bare. The data comes as
+for any tag - `data=`, `sort=`, `where=`, `first=` - and a level without rows renders its `@else@`
+half. Written as a single tag the printable has one item without content.
+
+| Kind | What it lays out | Its options |
+|------|------------------|-------------|
+| `labels` | A sheet of sticky labels, the grid of its sheet | `sheet` (a4-3x8: a4-3x7, a4-2x7, a4-2x8, a4-2x4, a4-4x10, a4-5x13, letter-3x10, letter-2x10, letter-2x5, letter-2x3, letter-4x20), `outline` |
+| `badges` | Name badges under a band of colour, the edges printed | `sheet` (a4-2x5, a4-2x4, letter-2x3), `title` (the band), `color` |
+| `cards` | Business cards, 85 by 55 mm, crop marks in the margins | `sheet` (a4-2x5, letter-2x5) |
+| `tickets` | Tickets with a stub - the `<aside>`, else the number - behind a perforation | `sheet` (a4-1x4, a4-1x5, letter-1x4), `number` |
+| `certificate` | A certificate on A4 turned, framed twice, with signature lines | `title`, `signed` ('Name, Role; Name'), `color`, `paper` (a4, letter, a5), `portrait`, `size` |
+| `envelope` | An envelope the size of the page, the sender and the address | `paper` (dl, c5, c6, c4), `sender`, `size` |
+| `letter` | A letter for a window envelope, DIN 5008 form B: `<address>`, `<aside>`, `<header>`, `<footer>`, the rest the body | `sender`, `size` |
+| `invoice` | The letter's page, a title over the body, its table set as invoice lines | `sender`, `title` (Invoice), `size` |
+| `indexcards` | Index cards, ruled, as many to the sheet as fit, crop marks | `card` (5x3, 6x4, a6, a7), `paper`, `plain` |
+| `placecards` | Place cards folded into a tent, the upper half turned | `sheet` (a4-2x2, a4-1x3, letter-2x2) |
+
+**Every kind of a grid** - labels, badges, cards, tickets, placecards - takes `paper`,
+`landscape`, `across`, `down`, `width`, `height` (mm), `margin` (the top and the left margin, one
+number for both; the grid centred without it), `pitch` (from an item to the next, across and
+down) and `skip` (the first cells of a used sheet left empty). **Every kind** takes `copies`
+(every item that many times), `padding`, `size` (points) and `align` for the text of its items,
+`scale` (the preview on the screen smaller, 0.1 to 3), `pdf` (the links of `{pdf preview}` in its
+bar: the page asked with `&padPdf` answers the sheets as a PDF, named by `file=`).
+
+**Behavior:** on the screen the sheets lie on a grey desk at their size in millimetres, the edges
+of the labels dashed, a bar above them with what they are, a Print button and the PDF links.
+Printed, a page with printables prints the sheets alone - the frame and the rest of the page out of
+the way - each on a named `@page` of its own size without a margin, the paper's colours kept. In a
+`{pdf}` the PDF writer reads the same plan from the `data-pdf-*` attributes: a sheet is a page of
+its size, a box sets its content where the CSS puts it - clipped to it, moved to its middle,
+turned for a place card - with its text size, alignment and font; rectangles and lines are drawn,
+and so are the barcodes and QR codes of the codes subsystem; the sheets carry no page number. The
+PDF has no CSS of the page, no picture but JPEG, no SVG with curves, and sets a table in its own
+grid. Every item is one region of its sheet: what does not fit is cut at its edge. The positions
+are classes of a style written with the CSP nonce. An unknown kind, sheet, paper or card, a number
+out of its bounds, a colour that is no #rgb and a grid that does not fit its paper are errors
+under the strict check.
+
+---
+
 ### diff
 What changed between two texts - word by word in the flow of the text, or line by line in
 one column or side by side - with `<del>` and `<ins>` marked and styled (`tags/_lib/diff.php`).
@@ -3203,7 +3261,9 @@ them; pages get margins and, past one, "2 / 5" at the foot. Only the page a requ
 for answers a document: inside a `{page}` the content is shown on its sheet (the
 `--pad-pdf-*` colours, `light-dark()`), and a data (json, csv) or live answer goes first.
 The document carries no date, so the same page is the same bytes. An unknown `size` or
-`font` is an error under the strict check. From PHP: `padPdf ( $html, [ 'size' => 'Letter' ] )`
+`font` is an error under the strict check. A printable's sheets (`{printable}`) are pages of their
+own size in the document, laid out by place: their boxes, rectangles and lines where the screen has
+them, and in their boxes the SVG of a barcode or a QR code drawn. From PHP: `padPdf ( $html, [ 'size' => 'Letter' ] )`
 answers the bytes.
 
 ---
@@ -4225,6 +4285,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `game` | Output | A little game played in the browser - 18 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
 | `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
 | `pattern` | Output | A seeded SVG background or generative art, the files of `pad/subs/patterns/types/`: stripes, dots, contour lines, Voronoi, circle packing ...; `as='url'` for a style attribute |
+| `printable` | Output | Pages made for paper - the files of `pad/subs/printables/types/`: labels, badges, cards, tickets, a certificate, envelopes, letters, invoices ... - printed alone, the same from the PDF writer |
 | `sound` | Output | A short sound made from a recipe - the files of `pad/subs/sounds/types/`: chime, pop, coin, kick ... - a button, a binding or a WAV file |
 | `diff` | Output | The differences between two texts - words inline, or lines in one column or side by side |
 | `excerpt` | Output | A text cut to whole words around the first search match, the matches marked |

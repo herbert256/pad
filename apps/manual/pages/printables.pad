@@ -1,0 +1,39 @@
+{meta title='Printables'/}
+
+<p>{tag 'printable'/} makes pages for paper - sheets of labels, name badges, business cards, tickets
+with a stub, a certificate, envelopes, a letter and an invoice for a window envelope, index cards and
+place cards. There are {echo php:count(padPrintableKinds())/} kinds - every kind is a file of
+<code>pad/subs/printables/types/</code>, and the <a href="../printables/">printables</a> application
+shows them all, each with its PDF.</p>
+
+{example 'fragments/printables_1'/}
+
+<h2>One item, repeated over the data</h2>
+
+<p>The content between the tags is one item - a label, a badge, a letter - rendered once for every
+row of the data, with the handling options of any tag: <code>sort=</code>, <code>where=</code>,
+<code>first=</code>. <code>copies=</code> writes every item that many times, <code>skip=</code> leaves
+the first labels of a sheet used before empty. A kind takes the parts of an item from the elements
+that say what they are: a ticket's stub is its <code>&lt;aside&gt;</code>, a letter's address its
+<code>&lt;address&gt;</code>.</p>
+
+{example 'fragments/printables_2'/}
+
+<h2>The screen, the paper and the PDF</h2>
+
+<p>On the screen the sheets lie on a grey desk at their size in millimetres - <code>scale=</code>
+makes the preview smaller. Printed, the page prints the sheets alone, each on a page of its own size
+without a margin. And in a <code>{open/}pdf{close/}</code>, or with <code>pdf</code> on the tag, PAD's
+own PDF writer lays out the same sheets: <code>pdf</code> links them, the page asked again with
+<code>&amp;padPdf</code>.</p>
+
+{example 'fragments/printables_3'/}
+
+<ul>
+  <li>A sheet of one's own: <code>across=</code>, <code>down=</code>, <code>width=</code> and
+  <code>height=</code> of a label, <code>margin=</code> and <code>pitch=</code>, all in millimetres.</li>
+  <li>Every item is one region of its sheet: what does not fit is cut at its edge - a letter is one
+  page.</li>
+  <li>The PDF has no CSS of the page: it sets the text in Helvetica, Times or Courier, a table in its own
+  grid, and draws the barcodes and QR codes but no other picture than a JPEG.</li>
+</ul>

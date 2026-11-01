@@ -38,6 +38,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [Site search](#site-search) | `padSearch` | search |
 | [Data formats](#data-formats) | `padFormatRead`, `padFormatWrite`, `padFormatKinds`, ... | data_formats |
 | [Sounds](#sounds) | `padSoundWav`, `padSoundSend`, `padSoundKinds` | - |
+| [Printables](#printables) | `padPrintableKinds`, `padPrintableKind` | - |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1090,6 +1091,14 @@ function, which then answers an empty value of its kind.
 | `padSoundWav ( $kind )` | The sound as the bytes of a WAV file - 16-bit mono PCM at 22050 Hz, made from its recipe as the browser makes it, the same bytes every time: `file_put_contents ( 'chime.wav', padSoundWav ( 'chime' ) )` |
 | `padSoundSend ( $kind, $download )` | The WAV as the page's whole answer, sent from its PHP as `padUploadSend` sends a file - inline, or with `TRUE` as a download; an unknown sound 404 |
 | `padSoundKinds ()`, `padSoundKind ( $name )` | The sounds there are; whether a name is one |
+
+## Printables
+
+`pad/lib/printable.php` - the kinds of `pad/subs/printables/types/` that `{printable}` lays out.
+
+| Function | Answers |
+|----------|---------|
+| `padPrintableKinds ()`, `padPrintableKind ( $name )` | The kinds there are - labels, badges, cards ...; whether a name is one |
 
 ## Engine functions
 

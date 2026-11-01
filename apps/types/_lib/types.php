@@ -91,6 +91,8 @@
                       "{pattern:topography seed=7/}\n{pattern 'topography', seed=7/}" ],
       'sound'    => [ 'A sound, a file of pad/subs/sounds/types/ - a recipe the browser plays and the server writes as a WAV, never bare.', 'subsystems',
                       "{sound:chime/}\n{sound 'chime'/}\n{sound:pop on='click', target='#save'/}" ],
+      'printable' => [ 'A printable, a file of pad/subs/printables/types/ - pages made for paper, the same on the screen, printed and as a PDF, never bare.', 'subsystems',
+                      "{printable:labels data='rows', sheet='a4-3x8'}...{/printable:labels}\n{printable 'labels', data='rows'}...{/printable}" ],
 
     ];
 

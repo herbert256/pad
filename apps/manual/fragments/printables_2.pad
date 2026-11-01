@@ -1,0 +1,7 @@
+{data 'seats'}
+[ { "row": "A", "seat": 4 }, { "row": "B", "seat": 7 } ]
+{/data}
+{printable:tickets data='seats', scale=0.4}
+  <h2>Hamlet</h2>Row {$row}, seat {$seat}
+  <aside>{qr "seat-{$row}{$seat}", size=80/}</aside>
+{/printable:tickets}

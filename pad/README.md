@@ -43,6 +43,7 @@ pad/
 │   ├── icons/     # Icon subsystem (an icon per file of types/)
 │   ├── inputs/    # Rich form fields (a kind per file of types/)
 │   ├── maps/      # Map subsystem (a view per file of types/)
+│   ├── printables/ # Printables subsystem (a kind of paper per file of types/)
 │   ├── rules/     # Validation rules (a rule per file of types/)
 │   ├── sounds/    # Sounds subsystem (a recipe per file of types/)
 │   ├── toys/      # Toys subsystem (a toy per file of types/)
@@ -98,6 +99,7 @@ For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 | subs/inputs/ | The rich form fields - the `input:` type and the bare kinds, `{slider}`, `{stars}`, `{datepicker}` ...; a kind is a file of `subs/inputs/types/` writing a native field, its `.js` and `.css` in `subs/inputs/assets/` beside the runtime's, the shared field code in `subs/inputs/_lib/input.php` |
 | subs/maps/ | The map subsystem behind `{map}`; a view is a file of `subs/maps/types/` - its box of longitude and latitude, for a region its countries - the outlines and the drawing in `subs/maps/_lib/` |
 | subs/rules/ | The validation rules of `padValidate`, `rules=` and the browser's checker - a rule is a file of `subs/rules/types/` (its check, message and argument), its check in the browser `subs/rules/assets/<rule>.js` beside the checker's runtime `subs/rules/assets/validate.js` |
+| subs/printables/ | The printables subsystem - `{printable}` and the `printable:` type, never bare; a kind is a file of `subs/printables/types/` answering its plan - the paper, the places of the items, the boxes, rectangles and lines they draw - laid out by `subs/printables/_lib/printable.php` as mm-based CSS and the `data-pdf-*` attributes the PDF writer (`tags/_lib/pdf.php`) reads; `assets/printable.css` prints the sheets alone |
 | subs/sounds/ | The sounds subsystem - `{sound}` and the `sound:` type, never bare; a sound is a recipe, a file of `subs/sounds/types/`, rendered by `subs/sounds/_lib/sound.php` (the WAV, `padSoundWav`) and by `subs/sounds/assets/sound.js` in the browser with the same arithmetic |
 | subs/toys/ | The toys subsystem - `{toy}` and the `toy:` type; a toy is a file of `subs/toys/types/`, its `.js` and `.css` in `subs/toys/assets/` beside the runtime's `toy.js` and `toy.css`, the frame and the option checks in `subs/toys/_lib/` |
 | subs/widgets/ | The widgets subsystem - `{widget}` and the `widget:` type, reached bare as `{tabs}`, `{modal}` ...; a widget is a file of `subs/widgets/types/` (its tag code), its functions in `subs/widgets/_lib/`, its `.css` and `.js` in `subs/widgets/assets/` |
