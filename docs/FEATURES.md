@@ -981,16 +981,24 @@ error values `#DIV/0! #N/A #NAME? #NULL! #NUM! #REF! #VALUE!`, which travel as E
 holds 32767 characters at most, as a cell of Excel does - a longer one is `#VALUE!`, never built. The
 functions are the files of `pad/subs/formulas/types/` - a function is added by adding its file,
 names are read in any case - and answer what Excel answers: SUM, AVERAGE, MIN, MAX, COUNT,
-COUNTA, COUNTBLANK, COUNTIF(S), SUMIF(S), AVERAGEIF, PRODUCT, MEDIAN, STDEV, VAR, RANK, LARGE,
-SMALL; IF, IFS, AND, OR, NOT, XOR, IFERROR, IFNA; ROUND (half away from zero, on 15 digits),
-ROUNDUP, ROUNDDOWN, ABS, INT, MOD (the divisor's sign), POWER, SQRT, EXP, LN, LOG, PI, RAND
+COUNTA, COUNTBLANK, COUNTIF(S), SUMIF(S), AVERAGEIF(S), MINIFS, MAXIFS, PRODUCT, SUMPRODUCT
+(ranges of one shape multiplied place by place, what is no number 0), MEDIAN, STDEV, VAR, RANK,
+LARGE, SMALL; IF, IFS, AND, OR, NOT, XOR, IFERROR, IFNA; ISBLANK (a reference to an empty cell,
+never the text ""), ISNUMBER, ISTEXT, ISNONTEXT, ISLOGICAL, ISERROR, ISERR, ISNA, ISEVEN, ISODD
+- an IS function takes the error it tests, never passes it on; ROUND (half away from zero, on 15
+digits), ROUNDUP, ROUNDDOWN, TRUNC, CEILING and FLOOR (Excel's signs - CEILING(2.5,0.1) is 2.5,
+on 15 digits too), MROUND, ABS, INT, MOD (the divisor's sign), POWER, SQRT, EXP, LN, LOG, PI, RAND
 (seeded, `seed=`); CONCAT, TEXTJOIN, LEFT, RIGHT, MID, LEN, UPPER, LOWER, PROPER, TRIM,
 SUBSTITUTE, FIND, SEARCH, TEXT (the common format codes), VALUE; VLOOKUP, HLOOKUP, XLOOKUP,
 INDEX, MATCH, CHOOSE; DATE, TODAY, NOW, YEAR, MONTH, DAY, WEEKDAY, EOMONTH, EDATE, DAYS (the
 serials of the 1900 system, 1899-12-30 based, with its 29 February 1900); PMT, FV, PV, NPER,
 RATE, NPV, IRR (Excel's signs, RATE and IRR by Newton from 10%, `#NUM!` when 150 steps do not
 settle). The cells are computed in the order they need one another; a circle of references
-answers `#REF!` in each of its cells, the title naming the circle (`A1 → B1 → A1`).
+answers `#REF!` in each of its cells, the title naming the circle (`A1 → B1 → A1`). There is no
+array evaluation: an operator takes the one cell of a range in the formula's row or column, as
+Excel's implicit intersection does, so `=SUMPRODUCT((A2:A9="x")*B2:B9)` - an operator on every
+cell of a range - is an error of the formula under the strict check and `#VALUE!` otherwise,
+never the number of one cell; SUMIFS and COUNTIFS add up and count with criteria.
 
 `editable` makes cells `<input>`s - alone every number, date and logical value, or the cells and
 ranges named - and an edit posts back and is computed on the server, no script of the page's

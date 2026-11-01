@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 78 functions a formula can call, each a file of
+<p class="sheets-lead">The 96 functions a formula can call, each a file of
 <code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -6,7 +6,7 @@ shows.</p>
 
 <style>:where(.pad-sheet){--pad-sheet-text:#1f1f1d;--pad-sheet-muted:#6b6a66;--pad-sheet-line:#dcdbd6;--pad-sheet-head:#f2f1ed;--pad-sheet-formula:#f7f9fd;--pad-sheet-input:#fffdf2;--pad-sheet-error:#b42318;--pad-sheet-accent:#2a78d6;}@supports (color:light-dark(#000,#fff)){:where(.pad-sheet){--pad-sheet-text:light-dark(#1f1f1d,#ecebe6);--pad-sheet-muted:light-dark(#6b6a66,#9d9c93);--pad-sheet-line:light-dark(#dcdbd6,#3a3a37);--pad-sheet-head:light-dark(#f2f1ed,#262624);--pad-sheet-formula:light-dark(#f7f9fd,#1d2330);--pad-sheet-input:light-dark(#fffdf2,#2a2818);--pad-sheet-error:light-dark(#b42318,#f97066);--pad-sheet-accent:light-dark(#2a78d6,#5598e7);}}</style><link rel="stylesheet" href="/pad/assets/formulas/sheet.css?v=570799721c"><div class="pad-sheet" data-sheet="sample"><table class="pad-sheet-table"><caption>The sample sheet</caption><thead><tr><td class="pad-sheet-corner"></td><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th><th scope="col">E</th></tr></thead><tbody><tr><th scope="row">1</th><td>Item</td><td>Qty</td><td>Price</td><td>Date</td><td>Flow</td></tr><tr><th scope="row">2</th><td>Apples</td><td class="num">10</td><td class="num">1.20</td><td class="num">2024-01-15</td><td class="num">-70000</td></tr><tr><th scope="row">3</th><td>Pears</td><td class="num">5</td><td class="num">0.80</td><td class="num">2024-02-29</td><td class="num">12000</td></tr><tr><th scope="row">4</th><td>Cherries</td><td class="num">20</td><td class="num">3.50</td><td class="num">2024-03-31</td><td class="num">15000</td></tr><tr><th scope="row">5</th><td>Apples</td><td class="num">15</td><td class="num">1.10</td><td class="num">2024-04-01</td><td class="num">18000</td></tr><tr><th scope="row">6</th><td>Plums</td><td class="num">0</td><td class="num">2.25</td><td class="num">2024-12-31</td><td class="num">21000</td></tr><tr><th scope="row">7</th><td>Figs</td><td class="num">8</td><td class="num">4.00</td><td class="num">2025-06-30</td><td class="num">26000</td></tr></tbody></table></div>
 
-<nav class="sheets-groups" aria-label="Groups"><a href="#math">Math</a><a href="#statistics">Statistics</a><a href="#logic">Logic</a><a href="#text">Text</a><a href="#lookup">Lookup</a><a href="#date-and-time">Date and time</a><a href="#finance">Finance</a></nav>
+<nav class="sheets-groups" aria-label="Groups"><a href="#math">Math</a><a href="#statistics">Statistics</a><a href="#logic">Logic</a><a href="#information">Information</a><a href="#text">Text</a><a href="#lookup">Lookup</a><a href="#date-and-time">Date and time</a><a href="#finance">Finance</a></nav>
 
 
 <h2 id="math">Math</h2>
@@ -20,10 +20,22 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=ABS(-4.5)</code> <samp>4.5</samp></li><li><code>=ABS(3)</code> <samp>3</samp></li></ul></td>
     </tr>
   
+    <tr id="ceiling">
+      <th scope="row">CEILING</th>
+      <td>CEILING(number, significance) rounds a number up to a multiple of the significance: a positive number away from zero, a negative one toward zero with a positive significance and away from zero with a negative one. A positive number with a negative significance is #NUM!; a significance of 0 gives 0. It rounds the number as it shows, to its 15 digits: CEILING(2.5, 0.1) is 2.5.</td>
+      <td><ul class="sheets-examples"><li><code>=CEILING(2.5, 1)</code> <samp>3</samp></li><li><code>=CEILING(-2.5, 2)</code> <samp>-2</samp></li><li><code>=CEILING(-2.5, -2)</code> <samp>-4</samp></li><li><code>=CEILING(C2, 0.25)</code> <samp>1.25</samp></li><li><code>=CEILING(2.5, -1)</code> <samp>#NUM!</samp></li></ul></td>
+    </tr>
+  
     <tr id="exp">
       <th scope="row">EXP</th>
       <td>EXP(number) is e raised to the number.</td>
       <td><ul class="sheets-examples"><li><code>=EXP(1)</code> <samp>2.718281828</samp></li><li><code>=EXP(0)</code> <samp>1</samp></li></ul></td>
+    </tr>
+  
+    <tr id="floor">
+      <th scope="row">FLOOR</th>
+      <td>FLOOR(number, significance) rounds a number down to a multiple of the significance: a positive number toward zero, a negative one away from zero with a positive significance and toward zero with a negative one. A positive number with a negative significance is #NUM!, a significance of 0 #DIV/0! - for any number but 0, which stays 0. It rounds the number as it shows, to its 15 digits: FLOOR(0.3, 0.1) is 0.3.</td>
+      <td><ul class="sheets-examples"><li><code>=FLOOR(3.7, 2)</code> <samp>2</samp></li><li><code>=FLOOR(-2.5, -2)</code> <samp>-2</samp></li><li><code>=FLOOR(-2.5, 2)</code> <samp>-4</samp></li><li><code>=FLOOR(2.5, -2)</code> <samp>#NUM!</samp></li><li><code>=FLOOR(5, 0)</code> <samp>#DIV/0!</samp></li></ul></td>
     </tr>
   
     <tr id="int">
@@ -48,6 +60,12 @@ shows.</p>
       <th scope="row">MOD</th>
       <td>MOD(number, divisor) is the remainder of a division, with the sign of the divisor: number - divisor * INT(number / divisor). A divisor of 0 is #DIV/0!.</td>
       <td><ul class="sheets-examples"><li><code>=MOD(10, 3)</code> <samp>1</samp></li><li><code>=MOD(-3, 2)</code> <samp>1</samp></li><li><code>=MOD(3, -2)</code> <samp>-1</samp></li><li><code>=MOD(5, 0)</code> <samp>#DIV/0!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="mround">
+      <th scope="row">MROUND</th>
+      <td>MROUND(number, multiple) rounds a number to the nearest multiple of another - half away from zero. A number and a multiple of different signs are #NUM!, a multiple of 0 gives 0, and a logical value is #VALUE!, as Excel takes it. It rounds the number as it shows, to its 15 digits: MROUND(1.3, 0.2) is 1.4.</td>
+      <td><ul class="sheets-examples"><li><code>=MROUND(10, 3)</code> <samp>9</samp></li><li><code>=MROUND(-10, -3)</code> <samp>-9</samp></li><li><code>=MROUND(1.3, 0.2)</code> <samp>1.4</samp></li><li><code>=MROUND(5, -2)</code> <samp>#NUM!</samp></li></ul></td>
     </tr>
   
     <tr id="pi">
@@ -116,6 +134,18 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=SUMIFS(B2:B7, A2:A7, &quot;Apples&quot;, C2:C7, &quot;&gt;1.15&quot;)</code> <samp>10</samp></li></ul></td>
     </tr>
   
+    <tr id="sumproduct">
+      <th scope="row">SUMPRODUCT</th>
+      <td>SUMPRODUCT(array, ...) multiplies the cells of ranges place by place and adds the products up: the ranges are walked in step, row by row, so they must have as many rows and columns as one another, else #VALUE!. A cell that holds no number counts as 0 - a text, even the text &quot;2&quot;, a logical value, an empty cell - and an error in any cell is the answer. A value typed into the call is a range of one cell by the same rule: SUMPRODUCT(3, 4) is 12, SUMPRODUCT(&quot;3&quot;, 4) is 0, SUMPRODUCT(B2:B7, 2) is #VALUE! - the sizes differ - and an error typed in is the answer at once. Excel computes an operator in the arguments on every cell of a range, SUMPRODUCT((A2:A7=&quot;Apples&quot;)*B2:B7); the formulas have no array evaluation, and such a formula is an error under the strict check and #VALUE! otherwise, never the number of one cell - SUMIFS adds up with criteria.</td>
+      <td><ul class="sheets-examples"><li><code>=SUMPRODUCT(B2:B7, C2:C7)</code> <samp>134.5</samp></li><li><code>=SUMPRODUCT(A2:A7, B2:B7)</code> <samp>0</samp></li><li><code>=SUMPRODUCT(B2:B7, C2:C6)</code> <samp>#VALUE!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="trunc">
+      <th scope="row">TRUNC</th>
+      <td>TRUNC(number, [digits]) cuts a number to a number of decimals - none when digits is left out - toward zero, so -8.9 is -8 where INT makes it -9; digits below 0 cut to tens, hundreds. It cuts the number as it shows, to its 15 digits, as ROUNDDOWN does.</td>
+      <td><ul class="sheets-examples"><li><code>=TRUNC(8.9)</code> <samp>8</samp></li><li><code>=TRUNC(-8.9)</code> <samp>-8</samp></li><li><code>=TRUNC(3.14159, 2)</code> <samp>3.14</samp></li><li><code>=TRUNC(1234.567, -2)</code> <samp>1200</samp></li></ul></td>
+    </tr>
+  
   </tbody>
 </table>
 
@@ -134,6 +164,12 @@ shows.</p>
       <th scope="row">AVERAGEIF</th>
       <td>AVERAGEIF(range, criteria, [average_range]) is the mean of the cells of average_range - else of range - where range meets the criteria (see COUNTIF); without any #DIV/0!.</td>
       <td><ul class="sheets-examples"><li><code>=AVERAGEIF(A2:A7, &quot;Apples&quot;, B2:B7)</code> <samp>12.5</samp></li><li><code>=AVERAGEIF(B2:B7, &quot;&gt;100&quot;)</code> <samp>#DIV/0!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="averageifs">
+      <th scope="row">AVERAGEIFS</th>
+      <td>AVERAGEIFS(average_range, criteria_range, criteria, ...) is the mean of the cells of average_range where every criteria_range meets its criteria - pairs of a range and a criterion (see COUNTIF), each range the size and shape of average_range, else #VALUE!. Only the numbers among those cells count; without any it is #DIV/0!.</td>
+      <td><ul class="sheets-examples"><li><code>=AVERAGEIFS(B2:B7, A2:A7, &quot;Apples&quot;)</code> <samp>12.5</samp></li><li><code>=AVERAGEIFS(C2:C7, B2:B7, &quot;&gt;5&quot;, B2:B7, &quot;&lt;20&quot;)</code> <samp>2.1</samp></li><li><code>=AVERAGEIFS(B2:B7, A2:A7, &quot;Kiwis&quot;)</code> <samp>#DIV/0!</samp></li></ul></td>
     </tr>
   
     <tr id="count">
@@ -178,6 +214,12 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=MAX(4, -2, 7)</code> <samp>7</samp></li><li><code>=MAX(C2:C7)</code> <samp>4</samp></li></ul></td>
     </tr>
   
+    <tr id="maxifs">
+      <th scope="row">MAXIFS</th>
+      <td>MAXIFS(max_range, criteria_range, criteria, ...) is the largest number among the cells of max_range where every criteria_range meets its criteria - pairs of a range and a criterion (see COUNTIF), each range the size and shape of max_range, else #VALUE!. Without any number there it is 0.</td>
+      <td><ul class="sheets-examples"><li><code>=MAXIFS(B2:B7, A2:A7, &quot;Apples&quot;)</code> <samp>15</samp></li><li><code>=MAXIFS(D2:D7, A2:A7, &quot;Apples&quot;)</code> <samp>2024-04-01</samp></li><li><code>=MAXIFS(B2:B7, A2:A7, &quot;Kiwis&quot;)</code> <samp>0</samp></li></ul></td>
+    </tr>
+  
     <tr id="median">
       <th scope="row">MEDIAN</th>
       <td>MEDIAN(number, ...) is the middle number - of an even count the mean of the two in the middle; without any number #NUM!.</td>
@@ -188,6 +230,12 @@ shows.</p>
       <th scope="row">MIN</th>
       <td>MIN(number, ...) is the smallest of numbers, taken as SUM takes them; without any 0.</td>
       <td><ul class="sheets-examples"><li><code>=MIN(4, -2, 7)</code> <samp>-2</samp></li><li><code>=MIN(B2:B7)</code> <samp>0</samp></li></ul></td>
+    </tr>
+  
+    <tr id="minifs">
+      <th scope="row">MINIFS</th>
+      <td>MINIFS(min_range, criteria_range, criteria, ...) is the smallest number among the cells of min_range where every criteria_range meets its criteria - pairs of a range and a criterion (see COUNTIF), each range the size and shape of min_range, else #VALUE!. Without any number there it is 0.</td>
+      <td><ul class="sheets-examples"><li><code>=MINIFS(C2:C7, A2:A7, &quot;Apples&quot;)</code> <samp>1.1</samp></li><li><code>=MINIFS(B2:B7, C2:C7, &quot;&gt;2&quot;, B2:B7, &quot;&gt;0&quot;)</code> <samp>8</samp></li><li><code>=MINIFS(B2:B7, A2:A7, &quot;Kiwis&quot;)</code> <samp>0</samp></li></ul></td>
     </tr>
   
     <tr id="rank">
@@ -268,6 +316,74 @@ shows.</p>
       <th scope="row">XOR</th>
       <td>XOR(logical, ...) is TRUE when an odd number of the values are TRUE, read as AND reads them.</td>
       <td><ul class="sheets-examples"><li><code>=XOR(TRUE, TRUE, TRUE)</code> <samp>TRUE</samp></li><li><code>=XOR(TRUE, TRUE)</code> <samp>FALSE</samp></li></ul></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+<h2 id="information">Information</h2>
+<table class="sheets-functions">
+  <thead><tr><th scope="col">Function</th><th scope="col">What it does</th><th scope="col">Examples</th></tr></thead>
+  <tbody>
+  
+    <tr id="isblank">
+      <th scope="row">ISBLANK</th>
+      <td>ISBLANK(value) is TRUE when the value is a reference to an empty cell - a cell past the sheet&#039;s is one too - and FALSE for anything else: a text, even the empty text &quot;&quot; a formula answers, a 0, an error. A range of more cells stands for its cell in the formula&#039;s row or column.</td>
+      <td><ul class="sheets-examples"><li><code>=ISBLANK(A8)</code> <samp>TRUE</samp></li><li><code>=ISBLANK(A2)</code> <samp>FALSE</samp></li><li><code>=ISBLANK(&quot;&quot;)</code> <samp>FALSE</samp></li></ul></td>
+    </tr>
+  
+    <tr id="iserr">
+      <th scope="row">ISERR</th>
+      <td>ISERR(value) is TRUE when the value is an error other than #N/A - #DIV/0!, #VALUE!, #REF! ... - and FALSE for #N/A and for a value that is no error.</td>
+      <td><ul class="sheets-examples"><li><code>=ISERR(1/0)</code> <samp>TRUE</samp></li><li><code>=ISERR(#N/A)</code> <samp>FALSE</samp></li><li><code>=ISERR(B2)</code> <samp>FALSE</samp></li></ul></td>
+    </tr>
+  
+    <tr id="iserror">
+      <th scope="row">ISERROR</th>
+      <td>ISERROR(value) is TRUE when the value is an error - any of them, #N/A too - and FALSE when it is not: it takes the error it is given, which never passes on - ISERROR(1/0) is TRUE, not #DIV/0!.</td>
+      <td><ul class="sheets-examples"><li><code>=ISERROR(1/0)</code> <samp>TRUE</samp></li><li><code>=ISERROR(#N/A)</code> <samp>TRUE</samp></li><li><code>=ISERROR(B2)</code> <samp>FALSE</samp></li></ul></td>
+    </tr>
+  
+    <tr id="iseven">
+      <th scope="row">ISEVEN</th>
+      <td>ISEVEN(number) is TRUE when the number is even and FALSE when it is odd - a fraction is cut toward zero first, so 2.5 is even, and an empty cell is 0. A text that reads as no number is #VALUE!, and so is a logical value, as Excel takes it; an error is the answer.</td>
+      <td><ul class="sheets-examples"><li><code>=ISEVEN(B2)</code> <samp>TRUE</samp></li><li><code>=ISEVEN(-1)</code> <samp>FALSE</samp></li><li><code>=ISEVEN(2.5)</code> <samp>TRUE</samp></li><li><code>=ISEVEN(&quot;x&quot;)</code> <samp>#VALUE!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="islogical">
+      <th scope="row">ISLOGICAL</th>
+      <td>ISLOGICAL(value) is TRUE when the value is TRUE or FALSE - a comparison answers one - and FALSE for anything else: the text &quot;TRUE&quot; too.</td>
+      <td><ul class="sheets-examples"><li><code>=ISLOGICAL(TRUE)</code> <samp>TRUE</samp></li><li><code>=ISLOGICAL(B2&gt;5)</code> <samp>TRUE</samp></li><li><code>=ISLOGICAL(&quot;TRUE&quot;)</code> <samp>FALSE</samp></li></ul></td>
+    </tr>
+  
+    <tr id="isna">
+      <th scope="row">ISNA</th>
+      <td>ISNA(value) is TRUE when the value is the error #N/A - a lookup that found nothing answers it - and FALSE for another error and for a value that is no error.</td>
+      <td><ul class="sheets-examples"><li><code>=ISNA(VLOOKUP(&quot;Kiwis&quot;, A2:C7, 2, FALSE))</code> <samp>TRUE</samp></li><li><code>=ISNA(#N/A)</code> <samp>TRUE</samp></li><li><code>=ISNA(1/0)</code> <samp>FALSE</samp></li></ul></td>
+    </tr>
+  
+    <tr id="isnontext">
+      <th scope="row">ISNONTEXT</th>
+      <td>ISNONTEXT(value) is TRUE when the value is no text: a number, a logical value, an empty cell, an error too; FALSE for a text.</td>
+      <td><ul class="sheets-examples"><li><code>=ISNONTEXT(B2)</code> <samp>TRUE</samp></li><li><code>=ISNONTEXT(A8)</code> <samp>TRUE</samp></li><li><code>=ISNONTEXT(#N/A)</code> <samp>TRUE</samp></li><li><code>=ISNONTEXT(A2)</code> <samp>FALSE</samp></li></ul></td>
+    </tr>
+  
+    <tr id="isnumber">
+      <th scope="row">ISNUMBER</th>
+      <td>ISNUMBER(value) is TRUE when the value is a number - a date and a time are numbers - and FALSE for anything else: a text that reads as a number too, an empty cell, an error.</td>
+      <td><ul class="sheets-examples"><li><code>=ISNUMBER(B2)</code> <samp>TRUE</samp></li><li><code>=ISNUMBER(D2)</code> <samp>TRUE</samp></li><li><code>=ISNUMBER(&quot;19&quot;)</code> <samp>FALSE</samp></li><li><code>=ISNUMBER(A2)</code> <samp>FALSE</samp></li></ul></td>
+    </tr>
+  
+    <tr id="isodd">
+      <th scope="row">ISODD</th>
+      <td>ISODD(number) is TRUE when the number is odd and FALSE when it is even - a fraction is cut toward zero first, so 2.5 is even, and an empty cell is 0. A text that reads as no number is #VALUE!, and so is a logical value, as Excel takes it; an error is the answer.</td>
+      <td><ul class="sheets-examples"><li><code>=ISODD(B3)</code> <samp>TRUE</samp></li><li><code>=ISODD(-1)</code> <samp>TRUE</samp></li><li><code>=ISODD(2.5)</code> <samp>FALSE</samp></li><li><code>=ISODD(TRUE)</code> <samp>#VALUE!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="istext">
+      <th scope="row">ISTEXT</th>
+      <td>ISTEXT(value) is TRUE when the value is a text - the empty text &quot;&quot; too - and FALSE for anything else: a number, a logical value, an empty cell, an error.</td>
+      <td><ul class="sheets-examples"><li><code>=ISTEXT(A2)</code> <samp>TRUE</samp></li><li><code>=ISTEXT(B2)</code> <samp>FALSE</samp></li><li><code>=ISTEXT(A8)</code> <samp>FALSE</samp></li></ul></td>
     </tr>
   
   </tbody>
