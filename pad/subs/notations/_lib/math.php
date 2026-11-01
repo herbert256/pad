@@ -419,6 +419,12 @@
 
   const PAD_MATH_DEEPEST = 50;
 
+  // How long a formula may be, in bytes: the text is read as what is left of it after every
+  // token, so the time grows with the square of the length - 10 000 bytes, some 150 lines of
+  // formulas, in a tenth of a second (types/math.php names a longer one).
+
+  const PAD_MATH_LONGEST = 10000;
+
   // The <math> element of a formula: display="block" for a formula on a line of its own, the
   // alttext the text itself with its white space squeezed (or $alt when given). A blank text
   // is no formula and answers ''.
@@ -1229,16 +1235,23 @@
 
   function padMathParseExpr ( $str, $rightbracket, &$state ) {
 
-    $key = ( $rightbracket ? 1 : 0 ) . ',' . $state ['depth'] . ',' . $state ['prev'] . ',' . $state ['cur'] . ',' . $state ['level'] . ',' . $str;
+    $key = ( $rightbracket ? 1 : 0 ) . ',' . $state ['depth'] . ',' . $state ['prev'] . ',' . $state ['cur'] . ',' . $state ['level']
+         . ',' . strlen ( $str ) . ',' . hash ( 'xxh128', $str );
 
     if ( isset ( $state ['memo'] [$key] ) ) {
-      list ( $answer, $state ['prev'], $state ['cur'] ) = $state ['memo'] [$key];
-      return $answer;
+      list ( $frag, $rest, $state ['prev'], $state ['cur'] ) = $state ['memo'] [$key];
+      return [ $frag, is_int ( $rest ) ? (string) substr ( $str, strlen ( $str ) - $rest ) : $rest ];
     }
 
     $answer = padMathExpr ( $str, $rightbracket, $state );
 
-    $state ['memo'] [$key] = [ $answer, $state ['prev'], $state ['cur'] ];
+    // What is left of the text is kept as its length when it is the end of the text read -
+    // always, but after a definition spliced in - as each answer kept the rest itself, and a
+    // formula of n groups held n copies of its rest: memory with the square of its length.
+
+    $rest = str_ends_with ( $str, $answer [1] ) ? strlen ( $answer [1] ) : $answer [1];
+
+    $state ['memo'] [$key] = [ $answer [0], $rest, $state ['prev'], $state ['cur'] ];
 
     return $answer;
 

@@ -14,6 +14,16 @@
   if ( trim ( $padNotationText ) === '' )
     return '';
 
+  // A formula is read up to PAD_MATH_LONGEST bytes: the parser reads its text as the rest
+  // after every token, which takes time with the square of its length. A longer one is named
+  // under the strict check, and drawn up to the limit without it.
+
+  if ( strlen ( $padNotationText ) > PAD_MATH_LONGEST ) {
+    if ( $padCheckSyntax )
+      padError ( "the " . padNotationWhat () . " has a formula of " . strlen ( $padNotationText ) . " bytes - a formula is at most " . PAD_MATH_LONGEST );
+    $padNotationText = mb_strcut ( $padNotationText, 0, PAD_MATH_LONGEST, 'UTF-8' );
+  }
+
   $padMathBlock = ( padNotationChoice ( 'display', 'inline', [ 'inline', 'block' ] ) == 'block' );
 
   return padNotationWrap ( padNotationStyle ( 'math', [ 'stroke' => [ '#c8102e', '#ff6b7d' ] ] )
