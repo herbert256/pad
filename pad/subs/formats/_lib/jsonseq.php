@@ -20,14 +20,17 @@
 
   function padJsonSeqRead ( $text ) {
 
+    // The line a record starts on is counted along, piece by piece: counted from the start
+    // of the text for every record, a long sequence took time by the square of its length.
+
     $rows   = [];
     $pieces = explode ( "\x1E", $text );
-    $at     = 0;
+    $next   = 1;
 
     foreach ( $pieces as $index => $piece ) {
 
-      $start = $at;
-      $at   += strlen ( $piece ) + 1;
+      $line  = $next;
+      $next += substr_count ( $piece, "\n" );
 
       if ( $index == 0 ) {
         if ( trim ( $piece ) !== '' )
@@ -38,7 +41,6 @@
       if ( $piece === '' )
         continue;
 
-      $line  = padFormatLineAt ( $text, $start );
       $value = json_decode ( $piece, TRUE, 512, JSON_BIGINT_AS_STRING );
 
       if ( json_last_error () !== JSON_ERROR_NONE ) {
