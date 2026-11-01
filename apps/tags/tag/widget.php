@@ -14,6 +14,7 @@
 {carousel label='name'} {tab 'caption'} ... {/tab} ... {/carousel}
 {wizard active=1, next='Next', back='Back'} {tab 'step'} ... {/tab} ... {/wizard}
 {lightbox label='name'} {tab 'caption'} <img ...> {/tab} ... {/lightbox}
+{splitpane size=30, min=20, max=60, stacked, collapse, height='16rem'} {tab 'label'} ... {/tab} {tab 'label'} ... {/tab} {/splitpane}
 {modal 'name', title='heading', button='text'} ... {/modal}
 {drawer 'name', title='heading', button='text', side='left'} ... {/drawer}
 {dropdown 'text', align='end'} <a href="..."> ... </a> ... {/dropdown}
@@ -47,7 +48,13 @@ PAD;
     'options' => 'poll: the answers, separated by commas - two or more.',
     'results' => 'Bare option, poll: the results to everyone, also before a vote.',
     'home'    => 'breadcrumb: the first step\'s text when the trail is the page\'s path (<code>Home</code>).',
-    'data'    => 'breadcrumb: the steps from rows - their label and link fields - of a store, the page\'s array or a <code>_data</code> file.' ];
+    'data'    => 'breadcrumb: the steps from rows - their label and link fields - of a store, the page\'s array or a <code>_data</code> file.',
+    'size'    => 'splitpane: the first pane\'s share in percent, a whole number (<code>50</code>).',
+    'min'     => 'splitpane: the smallest share of the first pane, in percent (<code>10</code>).',
+    'max'     => 'splitpane: the largest share of the first pane, in percent (<code>90</code>).',
+    'stacked' => 'Bare option, splitpane: the panes one above the other, the bar between them across.',
+    'collapse' => 'Bare option, splitpane: Enter on the bar or a double click folds the first pane away and back.',
+    'height'  => 'splitpane: the height of the panes, a CSS length - <code>300px</code>, <code>24rem</code>, <code>60vh</code>; stacked <code>20rem</code> when not given.' ];
 
   $tagSee     = [ 'tab', 'copy', 'live', 'form' ];
 

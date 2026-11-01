@@ -1572,6 +1572,7 @@ as graph paper's are; the content between the tags is a line over the staves.
 {lightbox label='Harbour'}{tab 'Dawn'}<img ...>{/tab}...{/lightbox}   # thumbnails, a picture large on :target
 {drawer 'filters', title='Filters', side='left'}...{/drawer}   # a side panel - a <dialog>, with and without JS
 {breadcrumb/}  {breadcrumb}Home | ?index{/breadcrumb}   # the trail to the page: its path, its lines or data=
+{splitpane size=30, collapse}{tab 'Files'}...{/tab}{tab 'Editor'}...{/tab}{/splitpane}   # two panes, a bar dragged or moved by the keys
 {widget 'modal', 'terms', title='Terms'}...{/widget}   # the widget tag: its first parameter names the widget
 {widget:modal 'terms', title='Terms'}...{/widget:modal} # the widget: type - or bare, as above
 ```
@@ -1583,8 +1584,8 @@ parameter is the widget's first), the widget type `{widget:modal 'terms'}`, and 
 `{modal 'terms'}`. The bare name comes after every other kind of tag, so a store, a field or
 an array of the name wins - a page's `$tabs` array is the data of `{tabs}`. `{copy}` is a
 built-in tag as well, which runs the copy widget, since PHP's `copy()` would take the bare
-name first; `{tab}` - the item of `{tabs}`, `{accordion}`, `{carousel}`, `{wizard}` and
-`{lightbox}` - is a built-in tag. A widget works without JavaScript; its script, where it has one, is written once per page
+name first; `{tab}` - the item of `{tabs}`, `{accordion}`, `{carousel}`, `{wizard}`,
+`{lightbox}` and `{splitpane}` - is a built-in tag. A widget works without JavaScript; its script, where it has one, is written once per page
 with the CSP nonce, and its colours are `--pad-<widget>-*` custom properties with light and
 dark defaults. The `showcase` application has examples of each, the tags application's widget
 page lists every widget with its options, the manual has a widgets page.

@@ -1,6 +1,6 @@
 <p><code>{widget}</code> puts an interactive part on the page - tabs, an accordion, a carousel,
-a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a toast, a copy box, a poll, a
-breadcrumb. Every one is built on the server and works without JavaScript: radio buttons and
+a wizard, a lightbox, a split pane, a modal, a drawer, a dropdown, a tooltip, a toast, a copy
+box, a poll, a breadcrumb. Every one is built on the server and works without JavaScript: radio buttons and
 CSS, <code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code>, the <code>popover</code>
 attribute, <code>:target</code>. Where a widget has a script it only makes it handier - Escape,
 the arrow keys, the focus - and is written once per page, with the CSP nonce. Every widget is a
@@ -15,8 +15,8 @@ The bare name comes after every other kind of tag, so a store, a field or an arr
 wins - a page's <code>$tabs</code> array is the data of <code>{tabs}</code>. Two names stay
 built-in tags: <a href="?tag/copy"><code>{copy}</code></a>, as PHP has a <code>copy()</code>
 function a bare name would reach first, and <a href="?tag/tab"><code>{tab}</code></a>, the item
-of the widgets that take a list of labelled parts - tabs, accordion, carousel, wizard and
-lightbox.</p>
+of the widgets that take a list of labelled parts - tabs, accordion, carousel, wizard,
+lightbox and splitpane.</p>
 
 <ul>
   <li><b>tabs</b> - panels behind a row of tabs: a radio button and a label per tab, the arrow
@@ -24,7 +24,9 @@ lightbox.</p>
   <code>&lt;details&gt;</code>; <code>single</code> one open at a time. <b>carousel</b> - slides
   that scroll and snap sideways, links to the slides before and after, a dot per slide, no
   autoplay. <b>wizard</b> - steps one at a time, numbered above, Back and Next under each.
-  <b>lightbox</b> - thumbnails whose picture opens large over the page.</li>
+  <b>lightbox</b> - thumbnails whose picture opens large over the page. <b>splitpane</b> - two
+  panes and the bar between them, dragged or moved by the arrow keys; the browser's resize grip
+  without scripting.</li>
   <li><b>modal</b> - a <code>&lt;dialog&gt;</code> and its button, opened by the invoker
   commands, a script where the browser has none, or a <code>:target</code> link without
   scripting. <b>drawer</b> - the same along the side of the window.</li>

@@ -2726,7 +2726,7 @@ out.
 ### widget
 An interactive part of the page that works without JavaScript and gets better with it - tabs,
 an accordion, a carousel, a wizard, a lightbox, a modal, a drawer, a dropdown, a tooltip, a
-toast, a copy box, a poll, a breadcrumb. Every widget is a file of
+toast, a copy box, a poll, a breadcrumb, a split pane. Every widget is a file of
 `pad/subs/widgets/types/` - its tag code - with its functions in `pad/subs/widgets/_lib/`, its style and
 script in `www/assets/widgets/`, and the files of `types/` are the widgets there are
 (`padWidgetTypes()`); the subsystem is `pad/subs/widgets/`.
@@ -2757,6 +2757,7 @@ stays a built-in tag that runs the copy widget, as PHP's `copy()` would take the
 | `lightbox` | Every `{tab}` a thumbnail that opens its picture large over the page, `:target` | `label` |
 | `modal` | A `<dialog>` and the button that opens it | the name, `title`, `button` |
 | `poll` | A vote once per visitor, the results as bars | the name, `options`, `title`, `button`, `results` |
+| `splitpane` | Two `{tab}` panes and the bar between them, dragged or moved by the arrow keys; the browser's resize grip without scripting | `size`, `min`, `max`, `stacked`, `collapse`, `height` |
 | `tabs` | Panels behind a row of tabs - radio buttons and CSS | `active` |
 | `toast` | A notice the visitor dismisses, in the flow or in a corner of the window | the title, `tone`, `place`, `timeout` |
 | `tooltip` | A short tip while the pointer or the focus is on its trigger - CSS alone | the tip, `place` |
@@ -2772,8 +2773,8 @@ written once per page. A name that is no widget is an error, "there is no widget
 ### tabs
 Panels behind a row of tabs, without JavaScript - a radio button and a label per tab, the CSS
 showing the panel of the checked one (`subs/widgets/_lib/tabs.php`). The items are `{tab}` pairs,
-which `{accordion}`, `{carousel}`, `{wizard}` and `{lightbox}` take as well - `{tab}` is a
-built-in tag.
+which `{accordion}`, `{carousel}`, `{wizard}`, `{lightbox}` and `{splitpane}` take as well -
+`{tab}` is a built-in tag.
 
 ```html
 {tabs active='Specs'}
@@ -2792,7 +2793,7 @@ built-in tag.
 | `{tab 'label'}` | One tab: the first parameter is its label, the content its panel |
 
 **Behavior:** a `{tab}` renders its content and hands it to the nearest `{tabs}`,
-`{accordion}`, `{carousel}`, `{wizard}` or `{lightbox}` below it instead of printing it - it
+`{accordion}`, `{carousel}`, `{wizard}`, `{lightbox}` or `{splitpane}` below it instead of printing it - it
 may stand in an `{if}` or in a loop that makes a tab per row. The set is a radio group: one stop in the tab order, the
 arrow keys move between the tabs, a screen reader hears the label and 'checked'; each panel is
 a `region` named by its tab. No fragment goes into the address, so two sets on a page keep
@@ -3197,6 +3198,53 @@ bar, its link. A label is text; a link of another scheme than http, https and ma
 `--pad-breadcrumb-separator` (`"/"`), the colours `--pad-breadcrumb-text`, `-muted`, `-link` and
 `-line` on `.pad-breadcrumb`, `light-dark()` defaults. A pair without steps and a `data=` that
 names no data are errors under the strict check.
+
+---
+
+### splitpane
+Two panes side by side, or stacked, and the bar between them that resizes them - the WAI-ARIA
+window splitter pattern: an editor beside its preview, a list beside the item it shows
+(`subs/widgets/_lib/splitpane.php`).
+
+```html
+{splitpane size=30, min=20, max=60, collapse}
+  {tab 'Folders'}<ul>...</ul>{/tab}
+  {tab 'Message'}<p>...</p>{/tab}
+{/splitpane}
+
+{splitpane stacked, height='60vh'}{tab 'Source'}...{/tab}{tab 'Preview'}...{/tab}{/splitpane}
+```
+
+**Parameters:**
+
+| Option | Description |
+|--------|-------------|
+| `{tab 'label'}` | A pane - exactly two; the first is the one the bar sizes, the label names each pane and the bar |
+| `size` | The first pane's share in percent, a whole number - `50` when not given |
+| `min`, `max` | The smallest and the largest share of the first pane, in percent - `10` and `90` |
+| `stacked` | Bare option: the panes one above the other, the bar between them across |
+| `collapse` | Bare option: Enter on the bar or a double click folds the first pane away and back |
+| `height` | The height of the panes, a CSS length - `300px`, `24rem`, `60vh`; `20rem` stacked, the content's height side by side when not given |
+
+**Behavior:** the `{tab}` items are collected as `{tabs}` collects them. Each pane is a region
+named by its label; the bar is a `separator` that controls the first pane, named by its label,
+its value the first pane's share - a screen reader says 'Folders, separator, 30'. The bar takes
+the focus: the arrow keys move it by 5 (Shift by 10) - left and right side by side, turned round
+on a right-to-left page, up and down stacked - Home and End to `min` and `max`, and with
+`collapse` Enter folds the first pane away and back. A drag moves it with a mouse, a pen or a
+finger. The share is in percent, so a window that changes its width keeps it; in a box narrower
+than 26rem the panes stand one above the other at their own height and the bar goes. Without
+scripting there is no bar - nothing to focus that does nothing - and the first pane has the
+browser's own resize grip in its corner, held between `min` and `max`. The script, once per
+page with the CSP nonce, sends a `pad-splitpane` event after a move, which bubbles with the
+share in its `detail` - keeping it is the application's. `size`, `min`, `max` and `height` are
+written in a `<style>` of the one splitpane with the nonce, no style attribute. Printed, the
+panes stand one above the other. The colours are `--pad-splitpane-accent`, `-text`, `-muted`,
+`-line` and `-surface` on `.pad-splitpane`, taken from the page's palette (`--accent`,
+`--text` ...) where it has one, so every theme colours it, with `light-dark()` defaults. A
+splitpane without two `{tab}`s, a share that is no whole percentage, a `size` outside `min`
+and `max` and a `height` that is no length are errors under the strict check; the lenient walk
+puts what came after the second tab into the second pane.
 
 ---
 
@@ -5018,6 +5066,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `lightbox` | Widget | A gallery of thumbnails whose pictures open large over the page by `:target` - no JavaScript |
 | `drawer` | Widget | A panel sliding in from a side - a modal `<dialog>` opened as `{modal}`'s, a `:target` overlay without scripting |
 | `breadcrumb` | Widget | The trail from home to the page - from the page's path, the lines of a pair or `data=` rows; no JavaScript |
+| `splitpane` | Widget | Two panes and a bar between them, dragged or moved by the arrow keys - the window splitter pattern; the resize grip without scripting |
 | `img` | Output | Resized, cached thumbnail of a picture, with a 2x srcset |
 | `video` | Output | YouTube or Vimeo as a poster and play button, the iframe only on a click; a local file as `<video>` |
 | `embed` | Output | A video, sound, map, pen or document of another site behind a click-to-load facade - a provider per file of `pad/subs/embeds/types/`; a file as `<video>`, `<audio>` or a lazy frame |

@@ -1,0 +1,92 @@
+(function () {
+  if (window.padSplitpaneReady) return;
+  window.padSplitpaneReady = true;
+  function info(bar) {
+    var box = bar.parentNode;
+    return {
+      box: box,
+      stacked: box.parentNode.classList.contains('pad-splitpane-stacked'),
+      min: parseFloat(box.getAttribute('data-pad-min')) || 0,
+      max: parseFloat(box.getAttribute('data-pad-max')) || 100
+    };
+  }
+  function now(bar) {
+    return parseFloat(bar.getAttribute('aria-valuenow')) || 0;
+  }
+  function tell(bar, value) {
+    bar.dispatchEvent(new CustomEvent('pad-splitpane', { bubbles: true, detail: { size: value, collapsed: info(bar).box.hasAttribute('data-pad-collapsed') } }));
+  }
+  function set(bar, value) {
+    var at = info(bar);
+    value = Math.round(Math.max(at.min, Math.min(at.max, value)) * 10) / 10;
+    at.box.removeAttribute('data-pad-collapsed');
+    at.box.style.setProperty('--pad-splitpane-size', value + '%');
+    bar.setAttribute('aria-valuenow', value);
+    return value;
+  }
+  function fold(bar) {
+    var at = info(bar);
+    if (!at.box.hasAttribute('data-pad-collapse')) return;
+    if (at.box.hasAttribute('data-pad-collapsed')) {
+      set(bar, parseFloat(at.box.getAttribute('data-pad-was')) || at.min);
+    } else {
+      at.box.setAttribute('data-pad-was', now(bar));
+      at.box.setAttribute('data-pad-collapsed', '');
+      bar.setAttribute('aria-valuenow', 0);
+    }
+    tell(bar, now(bar));
+  }
+  document.addEventListener('keydown', function (e) {
+    var bar = e.target;
+    if (!bar.classList || !bar.classList.contains('pad-splitpane-bar') || e.altKey || e.ctrlKey || e.metaKey) return;
+    var at = info(bar), step = e.shiftKey ? 10 : 5, value = now(bar), was = value;
+    var back = at.stacked ? 'ArrowUp' : 'ArrowLeft', forth = at.stacked ? 'ArrowDown' : 'ArrowRight';
+    if (!at.stacked && getComputedStyle(at.box).direction === 'rtl') { back = 'ArrowRight'; forth = 'ArrowLeft'; }
+    if (at.box.hasAttribute('data-pad-collapsed')) {
+      if (e.key === back || e.key === 'Home') { e.preventDefault(); return; }
+      value = 0;
+    }
+    if (e.key === back) value = Math.max(at.min, value - step);
+    else if (e.key === forth) value = Math.max(at.min, value + step);
+    else if (e.key === 'Home') value = at.min;
+    else if (e.key === 'End') value = at.max;
+    else if (e.key === 'Enter') { e.preventDefault(); fold(bar); return; }
+    else return;
+    e.preventDefault();
+    if (set(bar, value) !== was) tell(bar, now(bar));
+  });
+  document.addEventListener('dblclick', function (e) {
+    var bar = e.target.closest && e.target.closest('.pad-splitpane-bar');
+    if (bar) fold(bar);
+  });
+  document.addEventListener('pointerdown', function (e) {
+    var bar = e.target.closest && e.target.closest('.pad-splitpane-bar');
+    if (!bar || e.button !== 0) return;
+    var at = info(bar), rtl = !at.stacked && getComputedStyle(at.box).direction === 'rtl', moved = false;
+    e.preventDefault();
+    bar.focus({ preventScroll: true });
+    try { bar.setPointerCapture(e.pointerId); } catch (error) {}
+    at.box.classList.add('pad-splitpane-dragging');
+    function move(m) {
+      if (m.pointerId !== e.pointerId) return;
+      var box = at.box.getBoundingClientRect(), share;
+      if (at.stacked) share = (m.clientY - box.top) / box.height;
+      else share = rtl ? (box.right - m.clientX) / box.width : (m.clientX - box.left) / box.width;
+      set(bar, share * 100);
+      moved = true;
+    }
+    function end(m) {
+      if (m.pointerId !== e.pointerId) return;
+      at.box.classList.remove('pad-splitpane-dragging');
+      bar.removeEventListener('pointermove', move);
+      bar.removeEventListener('pointerup', end);
+      bar.removeEventListener('pointercancel', end);
+      bar.removeEventListener('lostpointercapture', end);
+      if (moved) tell(bar, now(bar));
+    }
+    bar.addEventListener('pointermove', move);
+    bar.addEventListener('pointerup', end);
+    bar.addEventListener('pointercancel', end);
+    bar.addEventListener('lostpointercapture', end);
+  });
+})();
