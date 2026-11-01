@@ -21,6 +21,11 @@
         return padFormulaError ( '#VALUE!' );
       if ( $old === '' )
         return $text;
+      // The length it comes to is worked out first: a text past 32767 characters is #VALUE!,
+      // and is never built - SUBSTITUTEs in each other grew a text tenfold each.
+      $times = isset ( $args [3] ) ? 1 : substr_count ( $text, $old );
+      if ( $times and mb_strlen ( $text ) + $times * ( mb_strlen ( $new ) - mb_strlen ( $old ) ) > padFormulaMaxText )
+        return padFormulaError ( '#VALUE!' );
       if ( ! isset ( $args [3] ) )
         return str_replace ( $old, $new, $text );
       $at = -1;

@@ -330,12 +330,27 @@
 
   }
 
+  // A text through a section: each @ the text again - a text past 32767 characters is
+  // #VALUE!, found as it grows, where a code of many @ wrote a long text that many times.
+
   function padFormulaFormatText ( $text, $section ) {
 
-    $out = '';
+    $out   = '';
+    $count = 0;
+    $size  = mb_strlen ( $text );
 
-    foreach ( padFormulaFormatParts ( $section ) as [ $kind, $part ] )
-      $out .= ( $kind == 'at' ) ? $text : ( $kind == 'lit' ? $part : '' );
+    foreach ( padFormulaFormatParts ( $section ) as [ $kind, $part ] ) {
+      if ( $kind == 'at' ) {
+        $add    = $text;
+        $count += $size;
+      } else {
+        $add    = ( $kind == 'lit' ) ? $part : '';
+        $count += mb_strlen ( $add );
+      }
+      if ( $count > padFormulaMaxText )
+        return '#VALUE!';
+      $out .= $add;
+    }
 
     return $out;
 

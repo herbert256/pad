@@ -14,17 +14,25 @@
       $empty = padFormulaArgBool ( $args [1], $env );
       if ( $error = padFormulaFirstError ( $glue, $empty ) )
         return $error;
-      $parts = [];
+      // A text past 32767 characters is #VALUE!, found as it grows: never more is built.
+      $text  = '';
+      $count = 0;
+      $first = TRUE;
+      $space = mb_strlen ( $glue );
       foreach ( array_slice ( $args, 2 ) as $arg )
         foreach ( padFormulaIsRange ( $arg ) ? padFormulaFlat ( $arg ) : [ $arg ] as $value ) {
           $part = padFormulaText ( $value );
           if ( padFormulaIsError ( $part ) )
             return $part;
-          if ( $part !== '' or ! $empty )
-            $parts [] = $part;
+          if ( $part === '' and $empty )
+            continue;
+          $count += ( $first ? 0 : $space ) + mb_strlen ( $part );
+          if ( $count > padFormulaMaxText )
+            return padFormulaError ( '#VALUE!' );
+          $text .= ( $first ? '' : $glue ) . $part;
+          $first = FALSE;
         }
-      $text = implode ( $glue, $parts );
-      return mb_strlen ( $text ) > 32767 ? padFormulaError ( '#VALUE!' ) : $text;
+      return $text;
     }
   ];
 

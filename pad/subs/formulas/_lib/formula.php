@@ -35,6 +35,12 @@
   const padFormulaMaxColumn = 16384;      // XFD
   const padFormulaMaxRow    = 1048576;
 
+  // The characters a text holds at most, as a cell of Excel does: a longer one is #VALUE!,
+  // and the functions that make texts longer work out the length before they build one -
+  // eight SUBSTITUTEs in each other built 200 million characters, nine asked for 2 GB.
+
+  const padFormulaMaxText = 32767;
+
   // What an error value says in the title of its cell.
 
   const padFormulaErrorTexts = [
@@ -626,6 +632,8 @@
         } catch ( ArithmeticError $error ) {
           return padFormulaError ( '#NUM!' );
         }
+        if ( is_string ( $result ) and padFormulaTooLong ( $result ) )
+          return padFormulaError ( '#VALUE!' );
         return is_float ( $result ) ? ( padFormulaKept ( $result ) ?? padFormulaError ( '#NUM!' ) ) : $result;
 
     }
@@ -802,7 +810,9 @@
     if ( $operator == '&' ) {
       $a = padFormulaText ( $a );
       $b = padFormulaText ( $b );
-      return padFormulaFirstError ( $a, $b ) ?? $a . $b;
+      if ( $error = padFormulaFirstError ( $a, $b ) )
+        return $error;
+      return padFormulaTooLong ( $a, $b ) ? padFormulaError ( '#VALUE!' ) : $a . $b;
     }
 
     if ( in_array ( $operator, [ '=', '<>', '<', '>', '<=', '>=' ], TRUE ) ) {
@@ -847,6 +857,18 @@
       return NULL;
 
     return abs ( $number ) < PHP_FLOAT_MIN ? 0.0 : (float) $number;
+
+  }
+
+  // Whether texts together hold more characters than a text may - counted only where their
+  // bytes are more, which most texts are not.
+
+  function padFormulaTooLong ( ...$texts ) {
+
+    if ( array_sum ( array_map ( 'strlen', $texts ) ) <= padFormulaMaxText )
+      return FALSE;
+
+    return array_sum ( array_map ( 'mb_strlen', $texts ) ) > padFormulaMaxText;
 
   }
 

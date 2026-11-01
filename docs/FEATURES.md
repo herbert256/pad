@@ -920,7 +920,8 @@ The formulas are spreadsheet syntax, read by a parser of their own (`pad/subs/fo
 formula.php` - not padEval): `=A1+B2*2`, ranges `A1:B3`, whole columns `A:A` and rows `2:5`,
 `$A$1`, texts `"x"` with `""` for a quote, `&`, `= <> < > <= >=`, `%` after a value, `^` - read
 from the left, `=2^3^2` is 64, and a minus binds tighter, `=-2^2` is 4 - TRUE and FALSE, and the
-error values `#DIV/0! #N/A #NAME? #NULL! #NUM! #REF! #VALUE!`, which travel as Excel's do. The
+error values `#DIV/0! #N/A #NAME? #NULL! #NUM! #REF! #VALUE!`, which travel as Excel's do; a text
+holds 32767 characters at most, as a cell of Excel does - a longer one is `#VALUE!`, never built. The
 functions are the files of `pad/subs/formulas/types/` - a function is added by adding its file,
 names are read in any case - and answer what Excel answers: SUM, AVERAGE, MIN, MAX, COUNT,
 COUNTA, COUNTBLANK, COUNTIF(S), SUMIF(S), AVERAGEIF, PRODUCT, MEDIAN, STDEV, VAR, RANK, LARGE,

@@ -11,15 +11,20 @@
     'group' => 'Text',
     'args'  => [ 1, 255 ],
     'call'  => function ( $args ) {
-      $text = '';
+      // A text past 32767 characters is #VALUE!, found as it grows: never more is built.
+      $text  = '';
+      $count = 0;
       foreach ( $args as $arg )
         foreach ( padFormulaIsRange ( $arg ) ? padFormulaFlat ( $arg ) : [ $arg ] as $value ) {
           $part = padFormulaText ( $value );
           if ( padFormulaIsError ( $part ) )
             return $part;
+          $count += mb_strlen ( $part );
+          if ( $count > padFormulaMaxText )
+            return padFormulaError ( '#VALUE!' );
           $text .= $part;
         }
-      return mb_strlen ( $text ) > 32767 ? padFormulaError ( '#VALUE!' ) : $text;
+      return $text;
     }
   ];
 
