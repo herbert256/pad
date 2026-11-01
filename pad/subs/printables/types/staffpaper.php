@@ -41,12 +41,23 @@
   $padStaffMost   = max ( 0, $padStaffFit ( 0 ) );
   $padStaffCount  = padPrintableInt ( 'staves', min ( max ( 1, $padStaffMost ), 99 ), 1, 99 );
 
-  if ( ( $padStaffSystem > $padStaffRoom ( 0 ) or $padStaffPaper [0] - 2 * $padStaffMargin [1] < 10
-         or $padStaffCount * $padStaffSystem > $padStaffRoom ( 0 ) ) and $GLOBALS ['padCheckSyntax'] )
-    padError ( 'the ' . padPrintableWhat () . " has no room for $padStaffCount " . ( $padStaffGrand ? 'grand ' : '' ) . ( $padStaffCount == 1 ? 'staff' : 'staves' )
-               . ' of ' . padPrintableMm ( $padStaffHigh ) . ' mm inside its margin of ' . padPrintableMm ( $padStaffMargin [0] ) . ' by '
-               . padPrintableMm ( $padStaffMargin [1] ) . " mm on $padStaffName, " . padPrintableMm ( $padStaffPaper [0] ) . ' by '
-               . padPrintableMm ( $padStaffPaper [1] ) . ' mm - ' . $padStaffMost . ' fit with room to write between them' );
+  // Staves that do not fit are an error under the strict check - for a sheet with its line
+  // on top, which takes 12 mm of the room, too: only the room without it was checked, and a
+  // sheet with a line left the staves past its bottom out without a word.
+
+  $padStaffNoRoom = function ( $head ) use ( $padStaffCount, $padStaffGrand, $padStaffHigh, $padStaffMargin, $padStaffName, $padStaffPaper, $padStaffFit ) {
+
+    if ( $GLOBALS ['padCheckSyntax'] )
+      padError ( 'the ' . padPrintableWhat () . " has no room for $padStaffCount " . ( $padStaffGrand ? 'grand ' : '' ) . ( $padStaffCount == 1 ? 'staff' : 'staves' )
+                 . ' of ' . padPrintableMm ( $padStaffHigh ) . ' mm inside its margin of ' . padPrintableMm ( $padStaffMargin [0] ) . ' by '
+                 . padPrintableMm ( $padStaffMargin [1] ) . ' mm' . ( $head ? ' under the ' . padPrintableMm ( $head ) . ' mm of the line over them' : '' )
+                 . " on $padStaffName, " . padPrintableMm ( $padStaffPaper [0] ) . ' by '
+                 . padPrintableMm ( $padStaffPaper [1] ) . ' mm - ' . max ( 0, $padStaffFit ( $head ) ) . ' fit with room to write between them' );
+
+  };
+
+  if ( $padStaffSystem > $padStaffRoom ( 0 ) or $padStaffPaper [0] - 2 * $padStaffMargin [1] < 10 or $padStaffCount * $padStaffSystem > $padStaffRoom ( 0 ) )
+    $padStaffNoRoom ( 0 );
 
   return padPrintablePlan ( [
 
@@ -56,7 +67,7 @@
     'exact'     => TRUE,
 
     'item' => function ( $cell, $parts ) use ( $padStaffPaper, $padStaffMargin, $padStaffSpace, $padStaffLines, $padStaffOne, $padStaffGrand,
-                                               $padStaffInner, $padStaffSystem, $padStaffCount, $padStaffColor, $padStaffBox, $padStaffRoom ) {
+                                               $padStaffInner, $padStaffSystem, $padStaffCount, $padStaffColor, $padStaffBox, $padStaffRoom, $padStaffNoRoom ) {
 
       $text  = $parts [''] ?? '';
       $head  = ( $text !== '' ) ? 12 : 0;
@@ -70,6 +81,9 @@
 
       if ( $text !== '' )
         $draw [] = [ 'box', $x0, round ( $padStaffMargin [0], 3 ), round ( $x1 - $x0, 3 ), 9, $text, $padStaffBox ];
+
+      if ( $head and $padStaffCount * $padStaffSystem > $room )
+        $padStaffNoRoom ( $head );
 
       // The staves spread from the top of the room to its bottom - a staff alone at the top.
 
