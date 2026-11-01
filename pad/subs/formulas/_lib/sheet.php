@@ -659,7 +659,7 @@
       case 'f':
         if ( in_array ( $node [1], [ 'date', 'today', 'edate', 'eomonth', 'datevalue' ], TRUE ) ) return 'yyyy-mm-dd';
         if ( $node [1] == 'now' )                                                               return 'yyyy-mm-dd hh:mm';
-        if ( in_array ( $node [1], [ 'sum', 'average', 'min', 'max', 'median', 'large', 'small' ], TRUE ) and isset ( $node [2] [0] ) )
+        if ( in_array ( $node [1], [ 'sum', 'average', 'min', 'max', 'median', 'large', 'small', 'averageifs', 'minifs', 'maxifs' ], TRUE ) and isset ( $node [2] [0] ) )
           return padSheetFormatOf ( $sheet, $node [2] [0], $depth + 1 );
         return NULL;
 

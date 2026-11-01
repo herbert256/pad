@@ -8,6 +8,8 @@
   //                        size of the criteria's range
   //   padFormulaHits       the places of ranges where every criterion holds - SUMIFS,
   //                        COUNTIFS - and how many empty places past the sheet do
+  //   padFormulaIfsValues  the cells of a range where the criteria of other ranges hold -
+  //                        AVERAGEIFS, MINIFS, MAXIFS
   //   padFormulaLookup     where a value is found in a list: exactly, or the largest not
   //                        above it in a list that rises (the smallest not below it in one
   //                        that falls), as VLOOKUP, HLOOKUP and MATCH find it
@@ -79,6 +81,44 @@
         $past = 0;
 
     return [ $hits, $past ];
+
+  }
+
+  // Of the arguments of AVERAGEIFS, MINIFS and MAXIFS - a range, then pairs of a range and its
+  // criteria - the values of the first range at the places where every criterion holds, as a
+  // list: every range the size and shape of the first, else #VALUE!, and an error at one of
+  // those places the answer. The empty places past the sheet hold no value to add.
+
+  function padFormulaIfsValues ( $args, $env ) {
+
+    $target = $args [0];
+
+    if ( ! padFormulaIsRange ( $target ) )
+      return padFormulaError ( '#VALUE!' );
+
+    $pairs = [];
+
+    for ( $at = 1; $at + 1 < count ( $args ); $at += 2 ) {
+      if ( padFormulaIsRange ( $args [$at] ) and ( $args [$at] ['w'] != $target ['w'] or $args [$at] ['h'] != $target ['h'] ) )
+        return padFormulaError ( '#VALUE!' );
+      $pairs [] = [ $args [$at], $args [$at + 1] ];
+    }
+
+    $hits = padFormulaHits ( $pairs, $env );
+
+    if ( padFormulaIsError ( $hits ) )
+      return $hits;
+
+    $values = [];
+
+    foreach ( $hits [0] as [ $row, $column ] ) {
+      $value = padFormulaAt ( $target, $row, $column, $env );
+      if ( padFormulaIsError ( $value ) )
+        return $value;
+      $values [] = $value;
+    }
+
+    return $values;
 
   }
 
