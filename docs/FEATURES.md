@@ -1540,7 +1540,9 @@ A wall calendar (`calendar`) is a month to a sheet: the month over a grid of its
 write in for every day - `year=` its twelve months, `month='2026-09'` from that month on and
 `months=` how many (1 with `month=`), `sunday` the weeks from Sunday, `weeks` the ISO 8601 week
 numbers before them, `holidays=` a country of the holidays subsystem (`'nl'`, `'de-by'`) its public
-holidays red with their names and its observances grey, `color=`, `paper=` and `landscape` - the
+holidays red with their names and its observances grey (a month `year=` or `month=` fixes in a
+year the country's file does not know an error under the strict check, as for `{calendar}`; this
+year, unfixed, with only the days inside those years marked), `color=`, `paper=` and `landscape` - the
 month, the weekdays and the names of the holidays in the language of the page's locale, as
 `{calendar}` writes them; the content between the tags stands over every month, a row of the data
 a month, the rows taken in turn.
