@@ -12,7 +12,6 @@
   //   padFormulaSerial    year, month and day as a serial - a month past 12 or a day past the
   //                       month's end rolls over, as DATE does: DATE(2024,13,1) is 2025-01-01
   //   padFormulaYmd       a serial as [ year, month, day ]
-  //   padFormulaHms       the time of a serial as [ hours, minutes, seconds ]
   //   padFormulaWeekday   0 for Sunday to 6 for Saturday
   //   padFormulaToday     today and now as serials, from padNow - padNowFreeze holds them
 
@@ -68,19 +67,6 @@
     if ( $serial == 0 )  return [ 1900, 1, 0 ];
 
     return padFormulaCivil ( padFormulaDays ( 1899, 12, 30 ) + ( $serial < 60 ? $serial + 1 : $serial ) );
-
-  }
-
-  // The time of a serial, to the second - rounded, so 0.99999999 is no 23:59:59.
-
-  function padFormulaHms ( $serial ) {
-
-    $seconds = (int) round ( ( $serial - floor ( $serial ) ) * 86400 );
-
-    if ( $seconds >= 86400 )
-      $seconds = 86399;
-
-    return [ intdiv ( $seconds, 3600 ), intdiv ( $seconds % 3600, 60 ), $seconds % 60 ];
 
   }
 

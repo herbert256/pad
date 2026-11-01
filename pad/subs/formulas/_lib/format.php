@@ -569,15 +569,24 @@
 
   }
 
-  // A serial through the date and time parts of a section.
+  // A serial through the date and time parts of a section. The whole time is rounded to the
+  // second first, as Excel shows it, and the date, the clock and the hours, minutes and
+  // seconds past them ([h] [m] [s]) all come from that one count: 13:45 less 1:45 is
+  // 0.49999999999999994 of a day, 12:00 under [h]:mm as under h:mm, where [h] floored the
+  // serial unrounded and showed 11:00; a time that rounds to midnight is the next day's
+  // 00:00:00, where the clock stopped at 23:59:59 of the day before.
 
   function padFormulaFormatDate ( $serial, $parts ) {
 
     if ( $serial < 0 or $serial >= padFormulaLastSerial + 1 )
       return '#VALUE!';
 
-    [ $year, $month, $day ] = padFormulaYmd ( $serial );
-    [ $hour, $minute, $second ] = padFormulaHms ( $serial );
+    $total = (int) round ( $serial * 86400 );
+    $days  = intdiv ( $total, 86400 );
+    $clock = $total % 86400;
+
+    [ $year, $month, $day ] = padFormulaYmd ( $days );
+    [ $hour, $minute, $second ] = [ intdiv ( $clock, 3600 ), intdiv ( $clock % 3600, 60 ), $clock % 60 ];
 
     $twelve = FALSE;
 
@@ -619,14 +628,14 @@
                        5 => padFormulaMonths [ $month - 1 ] [0] },
         'd'       => match ( min ( 4, strlen ( $text ) ) ) {
                        1 => $day, 2 => sprintf ( '%02d', $day ),
-                       3 => substr ( padFormulaDayNames [ padFormulaWeekday ( $serial ) ], 0, 3 ),
-                       4 => padFormulaDayNames [ padFormulaWeekday ( $serial ) ] },
+                       3 => substr ( padFormulaDayNames [ padFormulaWeekday ( $days ) ], 0, 3 ),
+                       4 => padFormulaDayNames [ padFormulaWeekday ( $days ) ] },
         'h'       => padFormulaHour ( $hour, $twelve, strlen ( $text ) ),
         's'       => strlen ( $text ) >= 2 ? sprintf ( '%02d', $second ) : $second,
         'elapsed' => match ( $text ) {
-                       'h' => (int) floor ( $serial * 24 ),
-                       'm' => (int) floor ( $serial * 1440 ),
-                       's' => (int) round ( $serial * 86400 ) },
+                       'h' => intdiv ( $total, 3600 ),
+                       'm' => intdiv ( $total, 60 ),
+                       's' => $total },
         'ampm'    => padFormulaHalf ( $hour, $text ),
         'lit'     => $text,
         'point'   => '.',
