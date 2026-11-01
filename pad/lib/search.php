@@ -9,8 +9,8 @@
   // The source is the name of a Markdown collection (_content/blog/), else of a data store,
   // a page's array or a _data file - or the rows themselves, a db() result. The rows found
   // come back the best first, each with its own fields and score and excerpt added (the
-  // excerpt HTML, the matches in <mark>). The options: fields (every text field of the
-  // first row, title^2, body for a collection), lang (en, nl, de, fr, es - the locale's
+  // excerpt HTML, the matches in <mark>). The options: fields (every field with text in a
+  // row, title^2, body for a collection), lang (en, nl, de, fr, es - the locale's
   // language, else en), words (the excerpt's length, 30), excerpt (the field it is cut from,
   // the last of fields) and name - what the index of rows is kept under in
   // DATA/cache/search/<app>/, 'rows' unless given: rows of one name share one index, made

@@ -95,14 +95,26 @@
 
   }
 
-  // The fields of rows when none are named: every field of the first row that holds text.
+  // The fields of rows when none are named: every field that holds text - no number - in
+  // any row, in the order the rows have them. The first row alone was read, and a NULL or a
+  // number there - a db() result with an empty column, a book titled 1984 - left the field
+  // unsearched in every row.
 
   function padSearchGuessFields ( $rows ) {
 
+    $seen = $text = [];
+
+    foreach ( (array) $rows as $row )
+      foreach ( padSearchRow ( $row ) as $name => $value ) {
+        $seen [$name] = TRUE;
+        if ( ! isset ( $text [$name] ) and is_string ( $value ) and ! is_numeric ( $value ) and padValidVar ( (string) $name ) )
+          $text [$name] = TRUE;
+      }
+
     $fields = [];
 
-    foreach ( (array) ( reset ( $rows ) ?: [] ) as $name => $value )
-      if ( is_string ( $value ) and ! is_numeric ( $value ) and padValidVar ( (string) $name ) )
+    foreach ( array_keys ( $seen ) as $name )
+      if ( isset ( $text [$name] ) )
         $fields [] = [ (string) $name, 1.0 ];
 
     return $fields;
@@ -572,7 +584,7 @@
   // score (BM25F, three decimals) and excerpt (HTML: the words around the first match, every
   // match in a <mark>) added, the best first. $source is [ name, sign, rows or a function
   // that answers them, keep the rows with the index, the fields when none are given ('' for
-  // every text field of the first row) ]; the options are fields, lang, words (of the
+  // every field with text in a row - none is an error, no rows find nothing) ]; the options are fields, lang, words (of the
   // excerpt, 30) and excerpt (the field it is cut from, the last of fields). An error is
   // answered as a string.
 
@@ -590,7 +602,9 @@
     else {
       if ( is_callable ( $rows ) )
         $rows = $rows ();
-      $fields = padSearchGuessFields ( $rows );
+      if ( ! $rows )
+        return [];
+      $fields = padSearchGuessFields ( $rows ) ?: 'no field of the rows holds text to search - name the fields with fields=';
     }
 
     if ( is_string ( $fields ) )
