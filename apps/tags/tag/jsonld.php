@@ -25,12 +25,12 @@ PAD;
             . '. The jsonld: type names it as well - <code>{jsonld:article .../}</code>; a kind is never reached bare.' ];
 
   $tagOptions = [
-    'data' => 'The row or rows of the fields: a {data} store, the page\'s array, a field holding a list or a _data file - one row of fields, or rows, which a kind of one object writes as a <code>@graph</code> and faq and breadcrumb as their items. The handling options work on them.',
+    'data' => 'The row or rows of the fields: a {data} store, the page\'s array, a field holding a list or a _data file - one row of fields, or rows, which a kind of one object writes as a <code>@graph</code> and faq, breadcrumb and itemlist as their items. The handling options work on them.',
     'id'   => 'The object\'s <code>@id</code>, an address made absolute - <code>id=\'#org\'</code> - or an IRI of another scheme.',
     'home' => 'breadcrumb without data=: the text of the first step of the trail (Home), as the breadcrumb widget takes it.' ];
 
   // A field of every kind that takes it, with the Schema.org property it fills there: the
-  // fields of the rows of faq and breadcrumb are no options.
+  // fields of the rows of faq, breadcrumb and itemlist are no options.
 
   $tagJsonLdFields = [];
 

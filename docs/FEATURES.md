@@ -153,13 +153,15 @@ template, PHP that only redirects), `{meta sitemap=false/}` and `$padSitemapSkip
 {jsonld:job data='vacancy', salary='3200-3800', currency='EUR', per='month'/}
 {jsonld:software name='Pocket Ledger', category='finance application', price=0, rating='4.6', ratings=1523/}
 {jsonld:profile data='member'/}                           # a member's page, the person its mainEntity
+{jsonld:course name='PAD in a day', description='From the first tag to a shop.', provider='PAD Academy'/}
+{jsonld:itemlist data='recipes', name='Soups'/}            # the pages a summary page lists, numbered
 ```
 ```php
 $url  = padUrl ( '', [], TRUE );                          // the page's own address, for url=
 $data = padJsonLd ( 'event', $concert );                  // the same object as a plain array
 ```
 One `<script type="application/ld+json">` holding a Schema.org object - what search engines read
-for a rich result - from ordinary PAD data, explicitly mapped. Fifteen kinds, each a file of
+for a rich result - from ordinary PAD data, explicitly mapped. Seventeen kinds, each a file of
 `pad/subs/jsonld/types/` whose header lists its fields, a PAD name and the Schema.org property it
 fills: `article` (headline required, description, image, url, author, published, modified,
 publisher, logo), `breadcrumb` (rows of name and url - the rows `{breadcrumb data=}` takes,
@@ -206,7 +208,13 @@ shows the rich result for an application with a rating or a review. `profile`: a
 page of one member of a site, with the person - or `type='organization'` - as its mainEntity: name
 required, handle (alternateName), identifier, description, image, profiles (sameAs), followers and
 posts as InteractionCounters of the FollowAction and the WriteAction, and created and modified,
-the page's own dates.
+the page's own dates. `course`: a Course - name and description required (Google shows its first
+60 characters), provider (an Organization by its name) and providerurl (its sameAs), url, image and
+code (courseCode); Google shows courses as a list, the itemlist kind on the page that lists them.
+`itemlist`: an ItemList - rows of url (required, or link, href - the address of each item's own
+page) and name (or label, title), each a ListItem numbered by its position, a list of plain values
+a list of addresses, and `name=` the list's own name; with a recipe, a course, a restaurant or a
+movie on each page it lists, Google shows the list as a carousel (two items or more, of one kind).
 
 The fields come from the row or rows `data=` names - a `{data}` store, the page's array, a
 field holding a list or a `_data` file (a store holds rows, so a single row in a `{data}` block

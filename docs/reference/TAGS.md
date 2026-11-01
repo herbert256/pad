@@ -651,8 +651,10 @@ of fields and pages. `padJsonLd ( 'article', $post )` answers the same object as
 | `breadcrumb` | BreadcrumbList | rows of **name** (or label, text) and url (or link, href); without `data=` the page's trail, `home=` its first step, a directory that is no page left out |
 | `breadcrumb` | BreadcrumbList | rows of **name** (or label, text) and url (or link, href); without `data=` the page's trail, `home=` its first step |
 | `business` | LocalBusiness (or one of its 151 subtypes, type=) | **name**, **city**, type, description, image, url, phone, email, street, region, postcode, country, latitude, longitude, hours, prices |
+| `course` | Course | **name**, **description**, provider, providerurl, url, image, code |
 | `event` | Event | **name**, **starts**, ends, place, address, description, image, url, price, currency, availability, tickets |
 | `faq` | FAQPage | rows of **question** and **answer** |
+| `itemlist` | ItemList | rows of **url** (or link, href) and name (or label, title), each a numbered ListItem; name= the list's name |
 | `job` | JobPosting | **title**, **description**, **posted**, **company**, expires, employment, companyurl, logo, street, city, region, postcode, country (needed with the place), remote, countries, salary (an amount or a range; needs currency and per), currency, per |
 | `organization` | Organization | **name**, url, logo, description, profiles, phone, email, contact |
 | `person` | Person | **name**, url, image, job, description, profiles |
@@ -4714,7 +4716,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `redirect` | Navigation | HTTP redirect |
 | `restart` | Navigation | Restart processing |
 | `pager` | Navigation | Page links for a tag with the page option |
-| `jsonld` | Navigation | The structured data of a page - a Schema.org object of `pad/subs/jsonld/types/` as JSON-LD: article, breadcrumb, business, event, faq, job, organization, person, product, profile, recipe, restaurant, software, video, website - its fields mapped by name |
+| `jsonld` | Navigation | The structured data of a page - a Schema.org object of `pad/subs/jsonld/types/` as JSON-LD: article, breadcrumb, business, course, event, faq, itemlist, job, organization, person, product, profile, recipe, restaurant, software, video, website - its fields mapped by name |
 | `csrf` | Web | Hidden CSRF token field of the session |
 | `extends` | Layout | Frame the page with a layout |
 | `block` | Layout | A named region of a layout or wrapper, and its override |

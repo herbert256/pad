@@ -1148,7 +1148,7 @@ in `pad/subs/jsonld/_lib/`, included when it runs.
 
 | Function | Answers |
 |----------|---------|
-| `padJsonLd ( $kind, $data = [], $id = NULL )` | The Schema.org object `{jsonld}` writes for the same kind and rows, as a plain PHP array with its `@context` - no HTML: json_encode it, put it in an API answer. `$data` is one row of fields or a list of rows (a `@graph` for a kind of one object, the items of faq and breadcrumb; none for breadcrumb is the page's trail); only the fields the kind maps are taken, by their PAD name or the Schema.org property, the rest of a row left behind. `$id` is the `@id`. Addresses absolute, dates ISO 8601, as the tag writes them. An unknown kind, data that is no row, a missing required field or a value it cannot write is reported with `padError`, and `[]` comes back for a kind or an object that is not there |
+| `padJsonLd ( $kind, $data = [], $id = NULL )` | The Schema.org object `{jsonld}` writes for the same kind and rows, as a plain PHP array with its `@context` - no HTML: json_encode it, put it in an API answer. `$data` is one row of fields or a list of rows (a `@graph` for a kind of one object, the items of faq, breadcrumb and itemlist; none for breadcrumb is the page's trail); only the fields the kind maps are taken, by their PAD name or the Schema.org property, the rest of a row left behind. `$id` is the `@id`. Addresses absolute, dates ISO 8601, as the tag writes them. An unknown kind, data that is no row, a missing required field or a value it cannot write is reported with `padError`, and `[]` comes back for a kind or an object that is not there |
 | `padJsonLdKinds ()` | The kinds, the files of `pad/subs/jsonld/types/`, sorted |
 
 ```php
