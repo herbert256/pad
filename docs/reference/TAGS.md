@@ -3996,8 +3996,8 @@ themes there are, and the subsystem is `pad/subs/themes/`.
 | first parameter | The theme: light, dark, paper, terminal, newspaper, contrast, sepia, ocean, forest, mono |
 
 **Behavior:** single, the tag writes the theme's `<style>` where it stands, with the request's
-nonce, on `:root:root:root` - outweighing the frame's light and dark rules, and the theme the
-`<head>` got from `$padTheme` or a visitor's choice, which stand before it. Under a theme the
+nonce, on `:root:root:root` - outweighing the frame's light and dark rules - and a page that
+has one gets no theme from `$padTheme` or a visitor's choice on its way out. Under a theme the
 frame's light/dark switch is hidden. As a pair the theme colours its content alone, a box with
 the theme's background and text, its style once per page. `$padTheme = 'paper'` puts every page
 of an application in a theme, `{themes/}` lets the visitor choose (kept in a cookie of the

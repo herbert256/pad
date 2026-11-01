@@ -89,6 +89,7 @@
       'themes/a_theme_choice_is_a_cookie_of_its_application_and_starts_no_session' => 'A visitor\'s theme is a padTheme cookie on the application\'s directory, SameSite=Lax, checked on every read: no session started to keep or read it, a page without the frame in an application without a theme of its own not coloured by it, a cross-site post of the switcher refused, Default taking it away',
       'themes/framed'             => 'The fixture for the theme choice: a page that links the frame\'s stylesheet, with the switcher',
       'themes/plain'              => 'The fixture for the theme choice: a page with a design of its own, which a visitor\'s choice leaves alone',
+      'themes/own'                => 'The fixture for the theme choice: a framed page with a {theme \'sepia\'/} of its own, which a visitor\'s choice does not outweigh',
       'themes/chosen'             => 'The fixture for the theme choice: a page without the frame in an application that chose a theme ($padTheme), which a visitor\'s choice colours',
       'sse/ticks'                 => 'padSse with a producer that sends its own events - the retry first, a named event with an id and JSON, text over two lines, a plain message',
       'sse/every'                 => 'padSse calling the producer on an interval - an array sent as the named event, NULL sending nothing, FALSE ending the stream',

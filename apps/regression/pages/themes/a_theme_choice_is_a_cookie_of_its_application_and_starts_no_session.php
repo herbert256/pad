@@ -10,7 +10,8 @@
   // application for a visitor with the host's session cookie - a stale cookie got a new
   // session on every request - a cookieless cross-site post of the switcher started one and
   // planted its theme, and a theme chosen in one application coloured every other one, its
-  // own design or not.
+  // own design or not. A page with a {theme 'sepia'/} of its own (themes/own) gets no other
+  // theme: the hook's went in after the one tidy had moved into the head, and outweighed it.
 
   $thUrl  = $padHost . 'regression/pages/?themes/';
   $thDir  = parse_url ( $padHost, PHP_URL_PATH ) . 'regression/pages/';
@@ -25,7 +26,7 @@
       $input ['post'] = $post;
 
     $got    = padCurl ( $input );
-    $theme  = preg_match ( '/<style data-pad-theme="([a-z-]+)"/', (string) ( $got ['data'] ?? '' ), $m ) ? $m [1] : 'none';
+    $theme  = preg_match_all ( '/<style data-pad-theme="([a-z-]+)"/', (string) ( $got ['data'] ?? '' ), $m ) ? implode ( ' then ', $m [1] ) : 'none';
     $cookie = $got ['cookieAttributes'] ['padTheme'] ?? NULL;
     $value  = $got ['cookies'] ['padTheme'] ?? NULL;
 
@@ -51,5 +52,6 @@
   $thAsk ( 'a name that is no theme',      'framed', [ 'padTheme' => 'nothing' ] );
   $thAsk ( 'chosen from another site',     'framed', [], [ 'padForm' => 'padThemes', 'padTheme' => 'terminal' ], [ 'Sec-Fetch-Site' => 'cross-site' ] );
   $thAsk ( 'Default chosen',               'framed', [ 'padTheme' => 'terminal' ], [ 'padForm' => 'padThemes', 'padTheme' => '' ] );
+  $thAsk ( 'a page in a theme of its own', 'own',    [ 'padTheme' => 'terminal' ] );
 
 ?>

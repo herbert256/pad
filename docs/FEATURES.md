@@ -1483,10 +1483,11 @@ Default taking it away; a post from another site (`Sec-Fetch-Site: cross-site`) 
 on the pages of that application that are built on the frame (they link `_common/pad.css`), or
 on all of them when the application sets a `$padTheme`; else `$padTheme`. A page with a design
 of its own is never coloured by a visitor's choice, and `$padTheme = FALSE` turns both off. That theme's
-`<style>` goes into the page's `<head>` on the way out (`exits/output.php`), after the page
-cache, so a cached page is served in the theme of whoever asks, and the ETag is made from what
-goes out; never into an include request, a `{live}` region's or a fragment's answer, or a page
-that is no HTML. `{theme 'x'/}` comes after the `<head>`'s, so it wins. The switcher is a
+`<style>` goes into the page's `<head>` on the way out (`exits/output.php`) - before `</head>`,
+in a page without one before its `<body>` or after its doctype - after the page cache, so a
+cached page is served in the theme of whoever asks, and the ETag is made from what goes out;
+never into an include request, a `{live}` region's or a fragment's answer, a page that is no
+HTML, or a page with a `{theme 'x'/}` of its own, which is in that theme. The switcher is a
 `<select>` and a button - no script: the page changes when the visitor says so (WCAG 3.2.2) - and
 writes no token of its own, so showing it or choosing starts no session; with `$padCsrf` on it carries the
 session's token as every form then does. Code: `pad/subs/themes/` - `_lib/theme.php`

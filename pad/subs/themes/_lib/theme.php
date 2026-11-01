@@ -27,8 +27,8 @@
   // turns both off. exits/output.php puts its <style> into the page's <head> on the way out
   // (padThemeAdd) - after the page cache has stored the page, as the toolbar goes in, so a
   // cached page is served in the theme of whoever asks for it, and the ETag is made again
-  // from what goes out. {theme 'x'/} writes a theme where it stands; it comes after the
-  // <head>'s in the page, so it wins.
+  // from what goes out - before </head>, else before <body>, else after the doctype. {theme
+  // 'x'/} writes a theme where it stands, and a page that has one gets no other.
   //
   // Every theme's text and its backgrounds - the text, the soft and dim greys and the links
   // on the page and on a panel, a button's text on the accent, the side's texts on the side
@@ -221,10 +221,10 @@
 
   }
 
-  // exits/output.php: the theme's <style> into the page on its way out - before </head>, or
-  // at the start of a page without one - for an HTML page of the web answered 200; never an
-  // include request, a {live} region's or a response fragment's answer, which are parts of a
-  // page that has its theme already.
+  // exits/output.php: the theme's <style> into the page on its way out - before </head>
+  // (padThemeInsert) - for an HTML page of the web answered 200; never an include request, a
+  // {live} region's or a response fragment's answer, which are parts of a page that has its
+  // theme already, and never a page with a {theme 'x'/} of its own.
 
   function padThemeAdd () {
 
@@ -238,18 +238,10 @@
     if ( $padFragmentSent or ( (string) $padFragmentOnly !== '' and ! $padFragmentTarget ) )
       return;
 
-    // The visitor's choice colours a page built on the frame, or any page of an application
-    // that chose a theme of its own; another page gets the application's theme, if any.
+    $theme   = padThemeVisitor ();
+    $setting = padThemeSetting ();
 
-    $theme = padThemeVisitor ();
-
-    if ( $theme !== '' and padThemeSetting () === '' and ! padThemeFramed ( $padOutput ) )
-      $theme = '';
-
-    if ( $theme === '' )
-      $theme = padThemeSetting ();
-
-    if ( $theme === '' )
+    if ( $theme === '' and $setting === '' )
       return;
 
     if ( $padCacheStop == 200 and $padCacheServerGzip ) {
@@ -257,11 +249,40 @@
       $padCacheServerGzip = FALSE;
     }
 
-    $style = padThemeStyle ( $theme );
-    $at    = stripos ( $padOutput, '</head>' );
+    // The visitor's choice colours a page built on the frame, or any page of an application
+    // that chose a theme of its own; another page gets the application's theme, if any.
 
-    $padOutput = ( $at === FALSE ) ? $style . $padOutput : substr_replace ( $padOutput, $style, $at, 0 );
+    if ( $theme === '' or ( $setting === '' and ! padThemeFramed ( $padOutput ) ) )
+      $theme = $setting;
+
+    // A page that wrote a theme of its own - {theme 'x'/}, its style on :root:root:root, where
+    // the tag stands or in the head where tidy moved it - is in that theme: the hook's style,
+    // put after it, outweighed it. A box of a {theme}...{/theme} pair is no such theme.
+
+    if ( $theme === '' or preg_match ( '/<style data-pad-theme="[a-z0-9_-]+"[^>]*>\s*:root:root:root/', $padOutput ) )
+      return;
+
+    $padOutput = padThemeInsert ( $padOutput, padThemeStyle ( $theme ) );
     $padEtag   = padMD5 ( $padOutput );
+
+  }
+
+  // A style into a page: before </head>; in a page without one before its <body>, or after its
+  // doctype, or at its start. It went in front of the doctype of a page without </head> -
+  // valid HTML, the head is optional - which put the browser in quirks mode.
+
+  function padThemeInsert ( $html, $style ) {
+
+    if ( ( $at = stripos ( $html, '</head>' ) ) !== FALSE )
+      return substr_replace ( $html, $style, $at, 0 );
+
+    if ( preg_match ( '/<body\b/i', $html, $m, PREG_OFFSET_CAPTURE ) )
+      return substr_replace ( $html, $style, $m [0] [1], 0 );
+
+    if ( preg_match ( '/\A\s*<!DOCTYPE\b[^>]*>/i', $html, $m ) )
+      return $m [0] . $style . substr ( $html, strlen ( $m [0] ) );
+
+    return $style . $html;
 
   }
 

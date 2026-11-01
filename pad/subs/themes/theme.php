@@ -2,8 +2,8 @@
 
   // The body of {theme 'paper'/} - the <style> of a theme of subs/themes/types/, written where
   // the tag stands, with the request's nonce: the page is in that theme, whatever $padTheme or
-  // a visitor's choice put into its <head>, which the tag's style, standing after it,
-  // outweighs (_lib/theme.php).
+  // a visitor's choice - the hook puts no other theme into a page that has one of its own
+  // (padThemeAdd, _lib/theme.php).
   //
   // As a pair - {theme 'terminal'}...{/theme} - the theme colours its content alone: a box
   // with the theme's background and text, its properties set on the box instead of the page,
