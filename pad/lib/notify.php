@@ -2,9 +2,9 @@
 
   // Notifications: one message to a person - an order shipped, a comment answered - written
   // once as a template and sent on the channels asked for: mail, a list on the site, a push
-  // to the browser, Slack, Discord, Teams, Telegram, ntfy, Matrix, a text message. The
-  // channels are the files of subs/channels/types/ (padKinds): a channel is added by adding
-  // its file. What Laravel's notifications give, as plain functions:
+  // to the browser, Slack, Discord, Teams, Telegram, ntfy, Matrix, a text message, a push
+  // through Pushover. The channels are the files of subs/channels/types/ (padKinds): a
+  // channel is added by adding its file. What Laravel's notifications give, as plain functions:
   //
   //   padNotify ( $user, 'order-shipped', [ 'order' => 42 ], [ 'mail', 'database', 'slack' ] );
   //   padNotify ( $user, 'order-shipped', [ 'order' => 42 ], [ 'mail' ], [ 'queue' => TRUE ] );
@@ -34,9 +34,9 @@
   //
   // The recipient ($to) is an array - a user row: id, email, phone, and a field per channel
   // naming the person there (telegram - a chat id, ntfy - a topic, matrix - a room id,
-  // webpush - the browser's subscriptions) - or an e-mail address alone. A channel's settings
-  // come from the options ([ 'slack' => [ 'url' => ... ] ]), then from that row, then from
-  // padEnv - SLACK_WEBHOOK_URL in the application's .env. An address a request goes to - the
+  // webpush - the browser's subscriptions, pushover - a user key) - or an e-mail address
+  // alone. A channel's settings come from the options ([ 'slack' => [ 'url' => ... ] ]),
+  // then from that row, then from padEnv - SLACK_WEBHOOK_URL in the application's .env. An address a request goes to - the
   // webhook of Slack, Discord or Teams, a homeserver, a gateway - is never the row's, only the
   // options' or padEnv's, and the row's fields are checked: a chat, topic or room that is
   // none, a push endpoint on no browser's push service, is not sent to. A setting that is

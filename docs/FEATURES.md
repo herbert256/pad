@@ -609,7 +609,7 @@ The channels are the files of `pad/subs/channels/types/`: mail (`padMail`), data
 `DATA/notifications/<app>/` - `{notifications/}` lists the unread ones of the user logged in, each
 with a signed link that marks it read; `padNotifications`, `padNotificationRead`), webpush (RFC
 8291 encryption and VAPID with openssl - `padWebPushKeys ()` makes the key pair), slack, discord,
-teams, telegram, ntfy, matrix and sms (a generic HTTP gateway). The recipient is a row - `email`,
+teams, telegram, ntfy, matrix, sms (a generic HTTP gateway) and those below. The recipient is a row - `email`,
 `phone`, and a field per channel naming the person there: `telegram` (a chat id), `ntfy` (a
 topic), `matrix` (a room id), `webpush` (the browser's subscriptions) - or an e-mail address.
 Each setting comes from the options (`[ 'slack' => [ 'url' => ... ] ]`), the row, or `padEnv`:
@@ -626,6 +626,10 @@ and sent by `pad work` - a failing channel is retried alone; the job keeps of th
 `padLogin` keeps of a row, its password hash, tokens and secrets left out. A channel that does not deliver is
 no error: FALSE, logged, and `padNotifyResults ()` says why - and which push subscriptions are
 gone. A channel is added by adding its file: its settings and a `send` function.
+
+- pushover - a push to a Pushover user or group (pushover.net): `PUSHOVER_TOKEN`, the key in the
+  row's `pushover` or `PUSHOVER_USER`; the title, the text - plain, cut at 1024 characters - and
+  the url, the options `priority` (-2 to 1; an emergency, 2, is refused), `sound` and `ttl`.
 
 ### A language model answering in the page
 ```

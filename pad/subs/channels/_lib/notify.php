@@ -7,7 +7,8 @@
   //   settings  what it needs - name => [ 'env' => the padEnv name, 'to' => the recipient's
   //             field (alternatives split by |), 'default' => the value when neither has one,
   //             'address' => TRUE for an address a request goes to, 'pattern' => the regular
-  //             expression a value must match and 'is' => what that is, in a message ]; a
+  //             expression a value must match and 'is' => what that is, in a message,
+  //             'secret' => TRUE for a token that message never shows ]; a
   //             setting without a default is required. Looked for in the options first
   //             ([ 'slack' => [ 'url' => ... ] ]), then in the recipient, then in the
   //             environment. An address - a webhook, a homeserver, a gateway - is never read
@@ -291,7 +292,8 @@
 
       elseif ( $from !== '' and ! padNotifyValid ( $spec, $value ) )
         $bad [] = "the $setting of the $channel channel ($from) is no "
-                  . ( empty ( $spec ['address'] ) ? ( $spec ['is'] ?? $setting ) . ': ' . padNotifyShow ( $value ) : 'absolute http or https address' );
+                  . ( empty ( $spec ['address'] ) ? ( $spec ['is'] ?? $setting ) . ( empty ( $spec ['secret'] ) ? ': ' . padNotifyShow ( $value ) : '' )
+                                                  : 'absolute http or https address' );
 
       $settings [$setting] = $value;
 
@@ -482,7 +484,9 @@
 
   }
 
-  // TRUE for a 2xx answer, else what it said - its error or message field, else its status.
+  // TRUE for a 2xx answer, else what it said - its error or message field (Gotify's
+  // errorDescription before its error, the title of a status), or the list of its errors
+  // (Pushover's), else its status.
 
   function padNotifyAnswer ( $answer, $service ) {
 
@@ -493,13 +497,26 @@
       return "$service did not answer";
 
     $json = $answer ['json'] ?? [];
-    $said = $json ['description'] ?? $json ['message'] ?? $json ['error'] ?? $json ['detail'] ?? '';
+    $said = $json ['description'] ?? $json ['message'] ?? $json ['errorDescription'] ?? $json ['error'] ?? $json ['detail'] ?? '';
     $said = is_scalar ( $said ) ? (string) $said : '';
+
+    if ( $said === '' and is_array ( $json ['errors'] ?? NULL ) )
+      $said = implode ( '; ', array_filter ( $json ['errors'], 'is_string' ) );
 
     if ( $said === '' and $answer ['json'] === NULL )
       $said = $answer ['data'];
 
     return "$service answered HTTP " . $answer ['status'] . ( trim ( $said ) !== '' ? ': ' . padMakeSafe ( trim ( $said ), 160 ) : '' );
+
+  }
+
+  // A text cut to the most characters a service takes, ... the last three when it was cut.
+
+  function padNotifyCut ( $text, $most ) {
+
+    $text = (string) $text;
+
+    return ( mb_strlen ( $text, 'UTF-8' ) > $most ) ? mb_substr ( $text, 0, $most - 3, 'UTF-8' ) . '...' : $text;
 
   }
 
