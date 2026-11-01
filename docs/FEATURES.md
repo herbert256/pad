@@ -1740,7 +1740,8 @@ brick (a wall in any bond, mottled by the seed),
 scales (fish scales or the waves of seigaiha),
 houndstooth (the woven broken check),
 tartan (a sett the seed makes up),
-and guilloche (engraved waves interlacing).
+guilloche (engraved waves interlacing),
+and flowfield (evenly spaced streamlines).
 Every pattern takes `seed=`,
 `colors=` (a list, the background first), `size=` (the motif in pixels), `width=` and `height=`
 (480 by 240; the SVG covers its box), `opacity=`, `title=` and `as='url'`, and its own besides: stripes `angle=`,
