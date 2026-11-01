@@ -11,4 +11,9 @@
 
   padCurlFake ( [ '*' => [ 'status' => 422, 'data' => [ 'error' => [ 'message' => [ 'loc' => 'body', 'msg' => 'field required' ] ] ] ] ] );
 
+  // The warning it logs goes to a day's log of its own: the cases that read the log, run at
+  // the same time, find only their own lines in theirs.
+
+  padNowFreeze ( '2026-01-13 12:00:00' );
+
 ?>

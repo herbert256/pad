@@ -8,9 +8,11 @@
 
   padCurlFake ( [ '*' => 500 ] );
 
-  padNowFreeze ( '2026-11-01 12:00:00' );
+  // A day's log of its own, which no other case writes to while this one reads it.
 
-  $log    = DATA . 'logs/regression/framework/2026-11-01.log';
+  padNowFreeze ( '2026-01-14 12:00:00' );
+
+  $log    = DATA . 'logs/regression/framework/2026-01-14.log';
   $before = is_file ( $log ) ? count ( file ( $log ) ) : 0;
 
   $answers = [ padAi ( 'hello', [ 'provider' => 'anthropic', 'key' => '', 'ttl' => 0 ] ),
