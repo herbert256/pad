@@ -722,7 +722,9 @@ A multiselect holds a list: `{multiselect 'tags'}` posts `tags[]` - the page's P
 `$_POST ['tags']` as an array - and that is the name its rules, `padValidate` and the
 browser's checker know it by (`required` asks for a choice, `in:` holds every one to the list;
 its messages say Tags). Its choices are `options=`, `data=` with `field=`, or a line each between
-its tags, as a combobox's; `value=` - a list or a comma text - the choices made before a post.
+its tags, as a combobox's - a source that holds none when the page runs, a table with no rows
+yet, writes either field without choices, while a tag given no source at all is the template's
+error under the strict check; `value=` - a list or a comma text - the choices made before a post.
 After a post of its form it shows the list posted: nothing chosen when the post left the field
 out, as the browser posts a select with no choice - never `value=` again - and a posted value
 that is no choice is not shown, nor added as an option. A hidden `padLists[]` beside the select,

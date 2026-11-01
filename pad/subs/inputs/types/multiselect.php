@@ -17,10 +17,15 @@
   // rules='in:...' refuses it. The rules are those of the list, interests[], as padValidate
   // names a list; the messages say Interests.
 
+  // A tag that gives no choices at all is named under the strict check; options=, data= or
+  // lines that hold none when the page runs - a store with no rows yet - write the field
+  // with none (_lib/input.php padInputListGiven).
+
+  $padInputGiven   = padInputListGiven ( 'options' );
   $padInputField   = (string) padInputTake ( 'field', '' );
   $padInputChoices = padInputList ( 'options', $padInputField );
 
-  if ( ! $padInputChoices and $GLOBALS ['padCheckSyntax'] )
+  if ( ! $padInputGiven and $GLOBALS ['padCheckSyntax'] )
     padError ( "the " . padInputWhat () . " has no choices - options='a, b', data= or a line each between its tags" );
 
   // The name it posts under ends in [] (lib/input.php padInputPosts): from here on the field

@@ -253,6 +253,22 @@
 
   }
 
+  // Whether the tag gives a list a source at all - the option, data= or a line between its
+  // tags - asked before padInputList takes them, by a kind that cannot be without choices: a
+  // tag that gives none is the template's mistake, named under the strict check, where a
+  // source that holds none when the page runs - a store with no rows yet, an empty list of
+  // the page - is data, and the field is written with no choices. Judged by what the
+  // source held, a page whose table had no rows yet ended on the template error.
+
+  function padInputListGiven ( $option ) {
+
+    $items = $GLOBALS ['padInputNow'] ['items'] ?? [];
+
+    return array_key_exists ( strtolower ( $option ), $items ) or array_key_exists ( 'data', $items )
+        or trim ( padInputSource () ) !== '';
+
+  }
+
   // The rows a data= item names - a {data} store, a sequence store, an array of the page, a
   // field holding a list or a _data file, as a game's or a chart's data= - or NULL without it.
 

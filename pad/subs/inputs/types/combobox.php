@@ -9,10 +9,15 @@
   // a list, or the rows of the store data= names - field= the field of a row they are read
   // from, its first unless given - or the lines between the tags.
 
+  // A tag that gives no choices at all is named under the strict check; options=, data= or
+  // lines that hold none when the page runs - a store with no rows yet - write the field
+  // with none (_lib/input.php padInputListGiven).
+
+  $padInputGiven   = padInputListGiven ( 'options' );
   $padInputField   = (string) padInputTake ( 'field', '' );
   $padInputChoices = padInputList ( 'options', $padInputField );
 
-  if ( ! $padInputChoices and $GLOBALS ['padCheckSyntax'] )
+  if ( ! $padInputGiven and $GLOBALS ['padCheckSyntax'] )
     padError ( "the " . padInputWhat () . " has no choices - options='a, b', data= or a line each between its tags" );
 
   $padInputNow ['value'] = padInputValue ( '' );
