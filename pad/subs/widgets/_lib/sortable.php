@@ -55,8 +55,12 @@
 
     foreach ( $items as $index => $item ) {
 
+      // The item's name is the text it shows: the <style> an effect or a widget inside it
+      // writes - the first of its kind on the page - and a <script> go with their content.
+
       $key  = padWidgetAttr ( $item ['label'] );
-      $text = trim ( preg_replace ( '/\s+/u', ' ', html_entity_decode ( strip_tags ( $item ['content'] ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) );
+      $text = preg_replace ( '#<(style|script)\b[^>]*>.*?</\1\s*>#is', '', $item ['content'] );
+      $text = trim ( preg_replace ( '/\s+/u', ' ', html_entity_decode ( strip_tags ( $text ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) ) );
       $text = padWidgetAttr ( $text !== '' ? mb_strimwidth ( $text, 0, 60, '...', 'UTF-8' ) : $item ['label'] );
       $n    = $index + 1;
       $top  = ( $n == 1 ) ? ' aria-disabled="true"' : '';
