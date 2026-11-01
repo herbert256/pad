@@ -2612,7 +2612,7 @@ of `lib/fake.php`'s sequence.
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The kind, a file of `pad/subs/fakes/types/` - address, boolean, city, colour, company, country, date, decimal, ean, email, firstname, iban, ip, ipv6, isbn, job, lastname, latitude, longitude, mac, name, number, paragraph, phone, postcode, price, sentence, street, time, url, username, uuid, word - or several, `'name, email'`, a field each under its kind's name or as `'field:kind'` says. The fake type names one: `{fake:email/}` |
+| first parameter | The kind, a file of `pad/subs/fakes/types/` - address, boolean, city, colour, company, country, date, decimal, ean, email, firstname, iban, ip, ipv6, isbn, job, lastname, latitude, longitude, mac, name, number, paragraph, phone, postcode, price, sentence, slug, street, time, title, url, username, uuid, word - or several, `'name, email'`, a field each under its kind's name or as `'field:kind'` says. The fake type names one: `{fake:email/}` |
 | `rows` | So many rows of the kinds, the level's data - iterated by the pair's content, kept by `toData=` |
 | `seed` | Values of their own seed: the rows `padFakeRows ( kinds, rows, seed )` gives |
 | `from`, `to` | number (0, 100), decimal (0, 1), price (1, 100): the range; date: two moments padDateParse reads (`-1 year`, `now`); time: two clock times (`08:00`, `18:00`) |
@@ -2620,12 +2620,12 @@ of `lib/fake.php`'s sequence.
 | `decimals` | decimal: the places, 2; latitude, longitude: the places written, 6 |
 | `south`, `north`, `west`, `east` | latitude: the band, -90 to 90; longitude: -180 to 180, a box across the 180th meridian when `west` lies east of `east` |
 | `chance` | boolean: the chance of TRUE in percent, 50 |
-| `words`, `sentences` | sentence: its words; paragraph: its sentences |
+| `words`, `sentences` | sentence, title, slug: their words; paragraph: its sentences |
 | `name` | email: the name it is made from |
 
 **Behavior:** one kind without `rows=` is the tag's value; several kinds, a pair or `rows=` are
 rows - a pair of one kind one row, `{$name}` inside - and a FALSE of boolean, like `rows=0`, is a
-miss, so its `@else@` shows. An email or a username in a row with a name is that person's.
+miss, so its `@else@` shows. An email or a username in a row with a name is that person's, a slug in a row with a title that title's.
 Without `seed=` the `{fake}` tags of a request share a sequence of their own from one seed:
 the page shows the same values on every request (a date relative to now moves with the day).
 The page's own sequence - its `padFakeSeed` and what it made - is put back afterwards, as

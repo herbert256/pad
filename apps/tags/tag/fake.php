@@ -26,7 +26,7 @@ PAD;
     'format'    => 'date: the format of the moment, <code>Y-m-d</code>.',
     'decimals'  => 'decimal: the places it is rounded to, 2; latitude, longitude: the places written, 6.',
     'chance'    => 'boolean: the chance of TRUE in percent, 50.',
-    'words'     => 'sentence: the number of words.',
+    'words'     => 'sentence, title, slug: the number of words.',
     'sentences' => 'paragraph: the number of sentences.',
     'name'      => 'email: the name the address is made from.',
     'south'     => 'latitude: the southern edge of the band, -90.',

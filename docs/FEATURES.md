@@ -415,7 +415,8 @@ passes the check), ip (the documentation ranges), ipv6 (of 2001:db8::/32, kept f
 documentation, as RFC 5952 writes it), isbn (an ISBN-13 of 978 whose check digit holds), job, lastname, latitude and longitude (a
 point of the box south=, north=, west=, east=, across the 180th meridian when west= lies east
 of east=), mac (locally administered, so no maker's), name, number, paragraph,
-phone, postcode, price, sentence, street, time, url, username, uuid, word - each named by
+phone, postcode, price, sentence, slug (lower-case words and dashes), street, time, title (a
+heading of words= words), url, username, uuid, word - each named by
 `padFake ( 'email' )` and in a template:
 ```
 {fake 'email'/}  {fake:city/}  {fake 'number', from=1, to=6/}  {fake 'date', from='2026-01-01', format='j M Y'/}
@@ -429,7 +430,8 @@ gives - a fact of the seed, the sequence put back after them - for a seeder, a p
 table or a designer preview's sample. Without `seed=` the `{fake}` tags of a request share a
 sequence of their own from one seed, so a page looks the same on every request; either way the
 page's own `padFakeSeed` sequence is left where it was. An email or username beside a name is
-that person's. Locale-neutral English, as the helpers; a fake kind is never reached bare - its
+that person's, a slug beside a title that title's - `{fake 'title, slug, paragraph', rows=3/}`
+are the posts of a blog. Locale-neutral English, as the helpers; a fake kind is never reached bare - its
 names are those of fields. A kind is added by adding its file, which reads its options with
 `padFakeOpt`.
 
