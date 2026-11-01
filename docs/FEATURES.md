@@ -2059,7 +2059,7 @@ adding its file. Sequential: viridis, magma, plasma, inferno and cividis, percep
 from matplotlib's published 256-colour tables (`_cm_listed.py`), and ColorBrewer's blues, greens,
 oranges and greys of nine classes and its multi-hue ylgnbu and ylorrd, and batlow, Fabio Crameri's, its lightness rising all the way,
 and turbo, Google's smooth rainbow (Apache-2.0), a hue a value, not for grey print nor colour-blind eyes;
-diverging: ColorBrewer's rdbu, brbg and piyg of eleven, and Crameri's vik;
+diverging: ColorBrewer's rdbu, brbg, piyg, rdylbu and puor of eleven, and Crameri's vik;
 categorical, told apart by colour-blind eyes: okabe-ito (Okabe and Ito's eight, black put last,
 where it vanishes on a dark surface) and Paul Tol's bright, muted and vibrant (from his
 `tol_colors` package), and ColorBrewer's pastel (Pastel1) and PAD's own earth, and for many
