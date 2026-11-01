@@ -1,0 +1,1 @@
+{live 'grid'}{spreadsheet 'grid', data='grid', editable, headers=FALSE/}{/live | php:substr_count(@, '<input name="padSheet[grid]') . ' cells, ' . php:substr_count(@, ' pad-value=') . ' values, ' . php:substr_count(@, 'pad-submit="sheet-grid"') . ' form, ' . ( php:strlen(@) lt 150000 ? 'under' : 'over' ) . ' 150 KB'}

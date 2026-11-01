@@ -249,7 +249,8 @@
       'spreadsheet/form'          => 'The fixture of spreadsheet/a_posted_cell_is_computed_again, fetched bare: an editable {spreadsheet} in a {form}',
       'spreadsheet/live'          => 'The fixture of spreadsheet/a_live_change_comes_back_computed_with_the_other_cells, fetched bare: an editable {spreadsheet} in a {live} region',
       'spreadsheet/a_posted_cell_is_computed_again' => 'An editable {spreadsheet} in a {form} posts its cells back and is computed again - a typed formula too; a cell not to edit and an overlong text are left, a broken formula shows #ERROR!',
-      'spreadsheet/a_live_change_comes_back_computed_with_the_other_cells' => 'A change in an editable {spreadsheet} of a {live} region posts the cell and the others as its value; the region comes back computed',
+      'spreadsheet/a_live_change_comes_back_computed_with_the_other_cells' => 'An editable {spreadsheet} of a {live} region is a form a change submits, the region its first field and every cell once; the region comes back computed',
+      'spreadsheet/a_live_change_carrying_more_than_1000_values_comes_back_computed' => 'A live change of an editable {spreadsheet} carrying more than 1000 values - in padValue or as fields - comes back computed, no 500 from parse_str',
 
     ];
 

@@ -249,38 +249,34 @@
 
   }
 
-  // Where the sheet stands, for where its edits go: in a {live} region, in a {form}, or in
-  // neither - then it is a form of its own.
+  // Where the sheet stands, for where its edits go: in a {form} - wherever a {live} region
+  // stands, a form holds no form of its own - in a {live} region, or in neither, when it is a
+  // form of its own. [ mode, the name of the live region ].
 
   function padSheetMode () {
 
-    global $pad, $padTag, $padType, $padFormStack;
+    global $pad, $padTag, $padType, $padOpt, $padFormStack;
+
+    if ( $padFormStack )
+      return [ 'form', '' ];
 
     for ( $level = $pad - 1; $level >= 0; $level-- )
       if ( ( $padTag [$level] ?? '' ) === 'live' and ( $padType [$level] ?? '' ) === 'pad' )
-        return 'live';
+        return [ 'live', (string) ( $padOpt [$level] [1] ?? '' ) ];
 
-    return $padFormStack ? 'form' : 'own';
+    return [ 'own', '' ];
 
   }
 
-  // The texts posted for the cells to edit, typed into them: the change of a live region
-  // after the texts of the other cells it carries as its value, else the fields of the form.
-  // Only cells to edit, only texts, none longer than 1000 characters.
+  // The texts posted for the cells to edit, typed into them: the fields of the form they
+  // stand in - their own in a live region, which a change submits. Only cells to edit, only
+  // texts, none longer than 1000 characters.
 
   function padSheetPosted ( &$sheet, $name, $inputs ) {
 
-    $posted = [];
-
-    if ( padLiveEvent () === "sheet-$name" ) {
-      parse_str ( padLiveValue (), $state );
-      foreach ( $state as $cell => $text )
-        if ( is_string ( $text ) )
-          $posted [$cell] = $text;
-    }
-
     $all    = $_POST ['padSheet'] ?? NULL;
     $fields = is_array ( $all ) ? ( $all [$name] ?? NULL ) : NULL;
+    $posted = [];
 
     if ( is_array ( $fields ) )
       foreach ( $fields as $cell => $text )

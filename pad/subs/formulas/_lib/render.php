@@ -10,17 +10,17 @@
   //
   // The cells to edit are <input>s named padSheet[<sheet>][<cell>], labelled by the cell and
   // the name of its column. Where they post depends on what the sheet stands in ($view
-  // ['mode']): in a {form} they go with the form; in a {live} region a change posts the
-  // region (pad-change) with the other cells' texts as its value (pad-value), so the region
-  // comes back computed without a script of the page's own; anywhere else the sheet is a form
-  // of its own, posting back with a Recalculate button.
+  // ['mode']): in a {form} they go with the form; in a {live} region the sheet is a form the
+  // live script posts (pad-submit), which a change of a cell submits - every cell's text
+  // once, so the region comes back computed without a script of the page's own; anywhere
+  // else the sheet is a form of its own, posting back with a Recalculate button. Each cell
+  // of a live sheet carried the texts of all the others in its pad-value: 900 cells wrote
+  // 10.7 MB.
 
   function padSheetHtml ( $sheet, $view ) {
 
     $name    = $view ['name'];
     $inputs  = $view ['inputs'];
-    $live    = ( $view ['mode'] == 'live' );
-    $state   = $live ? padSheetState ( $sheet, $inputs ) : '';
     $html    = '<table class="pad-sheet-table">';
 
     if ( $view ['caption'] !== '' )
@@ -40,7 +40,7 @@
       $html .= '<tr>' . ( $view ['headers'] ? "<th scope=\"row\">$row</th>" : '' );
 
       for ( $column = 1; $column <= $sheet ['width']; $column++ )
-        $html .= padSheetCellHtml ( $sheet, $column, $row, $view, isset ( $inputs ["$column:$row"] ), $state );
+        $html .= padSheetCellHtml ( $sheet, $column, $row, $view, isset ( $inputs ["$column:$row"] ) );
 
       $html .= '</tr>';
 
@@ -48,15 +48,42 @@
 
     $html .= '</tbody></table>';
 
+    $script = '';
+
     if ( $view ['mode'] == 'own' and $inputs )
       $html = '<form method="post" class="pad-sheet-form">' . $html
             . '<button type="submit" class="pad-sheet-recalc">' . padChartAttr ( padTransCatalog () ['spreadsheet.recalculate'] ?? 'Recalculate' ) . '</button></form>';
 
-    return padSheetStyle () . '<div class="pad-sheet" data-sheet="' . padChartAttr ( $name ) . '">' . $html . '</div>';
+    // In a live region the region's name is the form's first field: the live script adds it
+    // last, behind every cell, and a post of more fields than PHP's max_input_vars keeps -
+    // 1000 - lost it, and with it the region.
+
+    elseif ( $view ['mode'] == 'live' and $inputs ) {
+      $region = preg_match ( '/^[A-Za-z0-9_-]{1,64}$/D', $view ['region'] ?? '' )
+              ? '<input type="hidden" name="padLive" value="' . $view ['region'] . '">' : '';
+      $html   = '<form method="post" class="pad-sheet-form" pad-submit="sheet-' . padChartAttr ( $name ) . '" data-pad-sheet-live>'
+              . $region . $html . '</form>';
+      $script = padWidgetScript ( 'sheet-live', padSheetLiveScript () );
+    }
+
+    return padSheetStyle () . '<div class="pad-sheet" data-sheet="' . padChartAttr ( $name ) . '">' . $html . '</div>' . $script;
 
   }
 
-  function padSheetCellHtml ( $sheet, $column, $row, $view, $input, $state ) {
+  // The script of a live sheet, once a page: a change of a cell submits the sheet's form,
+  // which the live script posts as the region's event - requestSubmit fires the submit event
+  // it listens for; a browser without it gets the event alone.
+
+  function padSheetLiveScript () {
+
+    return "(function(){if(window.padSheetLive)return;window.padSheetLive=true;"
+         . "document.addEventListener('change',function(e){var f=e.target.form;"
+         . "if(!f||!f.hasAttribute('data-pad-sheet-live'))return;"
+         . "if(f.requestSubmit)f.requestSubmit();else f.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));});})();";
+
+  }
+
+  function padSheetCellHtml ( $sheet, $column, $row, $view, $input ) {
 
     $cell    = $sheet ['cells'] [$row] [$column] ?? NULL;
     $formula = $cell ['formula'] ?? NULL;
@@ -116,12 +143,7 @@
            . ' value="' . padChartAttr ( $cell ['source'] ?? '' ) . '"'
            . ' aria-label="' . padChartAttr ( $label ) . '"'
            . ( ( is_float ( $value ) or is_int ( $value ) ) ? ' inputmode="decimal"' : '' )
-           . ' autocomplete="off"';
-
-    if ( $view ['mode'] == 'live' )
-      $field .= ' pad-change="sheet-' . padChartAttr ( $view ['name'] ) . '" pad-value="' . padChartAttr ( $state ) . '"';
-
-    $field .= '>';
+           . ' autocomplete="off">';
 
     if ( $formula !== NULL )
       $field .= '<output>' . padChartAttr ( $shown ) . '</output>';
@@ -142,22 +164,6 @@
       return $cell ['problem'] [0] . ' (at ' . $cell ['problem'] [1] . ')';
 
     return padFormulaErrorTexts [$error] ?? '';
-
-  }
-
-  // The texts of the cells to edit, as the value a change in a live region posts: a query
-  // string, B2=1.20&C2=3, which padSheetPosted reads back.
-
-  function padSheetState ( $sheet, $inputs ) {
-
-    $state = [];
-
-    foreach ( array_keys ( $inputs ) as $key ) {
-      [ $column, $row ] = explode ( ':', $key );
-      $state [ padFormulaCellName ( (int) $column, (int) $row ) ] = $sheet ['cells'] [$row] [$column] ['source'] ?? '';
-    }
-
-    return http_build_query ( $state );
 
   }
 

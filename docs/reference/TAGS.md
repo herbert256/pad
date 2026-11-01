@@ -3631,8 +3631,8 @@ marked (`class="err"`) and explained in their title; a formula's cell carries it
 `data-formula`, its number in `data-value`. A circle of references answers `#REF!` in every cell
 of it, the title naming the circle (`A1 → B1 → A1`). `editable` cells are `<input>`s labelled by
 the cell and the texts heading its row and column: in a `{form}` they post with it, in a `{live}`
-region a change posts the region with the other cells' texts (`pad-change`, `pad-value`) and it
-comes back computed, elsewhere the sheet is a form of its own with a Recalculate button; a post
+region the sheet is a form (`pad-submit`) a change submits - every cell's text once - and the
+region comes back computed, elsewhere the sheet is a form of its own with a Recalculate button; a post
 types into the cells named only, a formula too, 1000 characters at most. Colours are
 `--pad-sheet-*` custom properties with `light-dark()` defaults, the style written once per page.
 Under the strict check a formula of the template that cannot be read - or calls no function of

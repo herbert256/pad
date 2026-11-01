@@ -937,9 +937,9 @@ answers `#REF!` in each of its cells, the title naming the circle (`A1 â†’ B1 â†
 
 `editable` makes cells `<input>`s - alone every number, date and logical value, or the cells and
 ranges named - and an edit posts back and is computed on the server, no script of the page's
-own: in a `{form}` the cells post with it, in a `{live}` region a change posts the region with
-the other cells' texts as its value and it comes back computed, anywhere else the sheet is a
-form of its own with a Recalculate button. A post types only into the cells named.
+own: in a `{form}` the cells post with it, in a `{live}` region the sheet is a form a change
+submits - every cell's text once - and the region comes back computed, anywhere else the sheet
+is a form of its own with a Recalculate button. A post types only into the cells named.
 Under the strict check a template formula that cannot be read - or calls a function that is not
 there, or with the wrong number of arguments - is an error naming the cell and the position.
 `padFormula ( '=SUM(1,2)' )` and `padSheet ( $cells )` compute formulas for a page's PHP

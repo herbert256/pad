@@ -32,8 +32,9 @@
   //   editable   cells to edit: alone, every cell holding a number, a date or TRUE/FALSE;
   //              editable='B2:C9, F1' the cells named, formulas too, which show their value
   //              under their text. An edit posts back and the sheet is computed again on the
-  //              server - in a {form} with it, in a {live} region on every change, elsewhere
-  //              as a form of its own with a Recalculate button. What is posted is typed
+  //              server - in a {form} with it, in a {live} region on every change (the sheet
+  //              is a form there, which a change submits), elsewhere as a form of its own
+  //              with a Recalculate button. What is posted is typed
   //              into the cell as into a spreadsheet: a formula too, never more than the
   //              cells named, never more than 1000 characters a cell.
   //   seed=      the seed of RAND, 0 unless given
@@ -110,8 +111,7 @@
     $padSheetSeed = 0;
   }
 
-  // The cells to edit, and what was posted for them: a post of the form they stand in, or
-  // the change a live region sends with the texts of the others as its value.
+  // The cells to edit, and what was posted for them: the fields of the form they stand in.
 
   $padSheetEditable = padTagParm ( 'editable', FALSE );
   $padSheetInputs   = [];
@@ -124,7 +124,7 @@
   } elseif ( $padSheetEditable !== FALSE and $padSheetEditable !== '' and $padSheetEditable !== NULL )
     $padSheetInputs = padSheetCells ( $padSheetGrid, (string) $padSheetEditable, $padSheetWhat );
 
-  $padSheetMode = padSheetMode ();
+  [ $padSheetMode, $padSheetRegion ] = padSheetMode ();
 
   if ( $padSheetInputs )
     padSheetPosted ( $padSheetGrid, $padSheetName, $padSheetInputs );
@@ -158,7 +158,8 @@
     'headers' => $padSheetHeaders,
     'formats' => $padSheetFormats,
     'inputs'  => $padSheetInputs,
-    'mode'    => $padSheetMode
+    'mode'    => $padSheetMode,
+    'region'  => $padSheetRegion
   ] );
 
 ?>
