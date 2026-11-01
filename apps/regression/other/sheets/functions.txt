@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 100 functions a formula can call, each a file of
+<p class="sheets-lead">The 106 functions a formula can call, each a file of
 <code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -236,6 +236,42 @@ shows.</p>
       <th scope="row">MINIFS</th>
       <td>MINIFS(min_range, criteria_range, criteria, ...) is the smallest number among the cells of min_range where every criteria_range meets its criteria - pairs of a range and a criterion (see COUNTIF), each range the size and shape of min_range, else #VALUE!. Without any number there it is 0.</td>
       <td><ul class="sheets-examples"><li><code>=MINIFS(C2:C7, A2:A7, &quot;Apples&quot;)</code> <samp>1.1</samp></li><li><code>=MINIFS(B2:B7, C2:C7, &quot;&gt;2&quot;, B2:B7, &quot;&gt;0&quot;)</code> <samp>8</samp></li><li><code>=MINIFS(B2:B7, A2:A7, &quot;Kiwis&quot;)</code> <samp>0</samp></li></ul></td>
+    </tr>
+  
+    <tr id="percentile">
+      <th scope="row">PERCENTILE</th>
+      <td>PERCENTILE(array, k) is PERCENTILE.INC under the name it had before Excel 2010, which Excel, LibreOffice and Google Sheets still read: the k-th percentile, k from 0 to 1, interpolated between the numbers at the place k*(n-1)+1.</td>
+      <td><ul class="sheets-examples"><li><code>=PERCENTILE(B2:B7, 0.3)</code> <samp>6.5</samp></li><li><code>=PERCENTILE(C2:C7, 0.5)</code> <samp>1.725</samp></li></ul></td>
+    </tr>
+  
+    <tr id="percentile.exc">
+      <th scope="row">PERCENTILE.EXC</th>
+      <td>PERCENTILE.EXC(array, k) is the k-th percentile of the numbers - k above 0 and below 1, both left out. Between two numbers it interpolates: the numbers sorted, the percentile stands at the place k*(n+1) among them, and a place before the first number or past the last is #NUM!, as is a k of 0 or 1 or past them, or no number at all; a k that is no number is #VALUE!.</td>
+      <td><ul class="sheets-examples"><li><code>=PERCENTILE.EXC(B2:B7, 0.25)</code> <samp>3.75</samp></li><li><code>=PERCENTILE.EXC(B2:B7, 0.5)</code> <samp>9</samp></li><li><code>=PERCENTILE.EXC(B2:B7, 0.1)</code> <samp>#NUM!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="percentile.inc">
+      <th scope="row">PERCENTILE.INC</th>
+      <td>PERCENTILE.INC(array, k) is the k-th percentile of the numbers - k from 0 to 1, both included, so 0 is the smallest number and 1 the largest. Between two numbers it interpolates: the numbers sorted, the percentile stands at the place k*(n-1)+1 among them. Only the numbers of a range count; without any, or with a k below 0 or above 1, it is #NUM!, and a k that is no number #VALUE!.</td>
+      <td><ul class="sheets-examples"><li><code>=PERCENTILE.INC(B2:B7, 0.3)</code> <samp>6.5</samp></li><li><code>=PERCENTILE.INC(B2:B7, 0.9)</code> <samp>17.5</samp></li><li><code>=PERCENTILE.INC(B2:B7, 1)</code> <samp>20</samp></li><li><code>=PERCENTILE.INC(B2:B7, 1.5)</code> <samp>#NUM!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="quartile">
+      <th scope="row">QUARTILE</th>
+      <td>QUARTILE(array, quart) is QUARTILE.INC under the name it had before Excel 2010, which Excel, LibreOffice and Google Sheets still read: 0 the smallest number, 1 the first quartile, 2 the median, 3 the third quartile, 4 the largest.</td>
+      <td><ul class="sheets-examples"><li><code>=QUARTILE(B2:B7, 1)</code> <samp>5.75</samp></li><li><code>=QUARTILE(B2:B7, 4)</code> <samp>20</samp></li></ul></td>
+    </tr>
+  
+    <tr id="quartile.exc">
+      <th scope="row">QUARTILE.EXC</th>
+      <td>QUARTILE.EXC(array, quart) is a quartile of the numbers, as PERCENTILE.EXC finds it at quart/4: 1 the first quartile, 2 the median, 3 the third. The quart is cut to a whole number toward 0; 0 or below, 4 or above, too few numbers to reach the quartile&#039;s place, or none, is #NUM!.</td>
+      <td><ul class="sheets-examples"><li><code>=QUARTILE.EXC(B2:B7, 1)</code> <samp>3.75</samp></li><li><code>=QUARTILE.EXC(B2:B7, 3)</code> <samp>16.25</samp></li><li><code>=QUARTILE.EXC(B2:B7, 4)</code> <samp>#NUM!</samp></li></ul></td>
+    </tr>
+  
+    <tr id="quartile.inc">
+      <th scope="row">QUARTILE.INC</th>
+      <td>QUARTILE.INC(array, quart) is a quartile of the numbers, as PERCENTILE.INC finds it at quart/4: 0 the smallest number, 1 the first quartile, 2 the median, 3 the third quartile, 4 the largest. The quart is cut to a whole number toward 0; below 0 or above 4, or without a number, it is #NUM!.</td>
+      <td><ul class="sheets-examples"><li><code>=QUARTILE.INC(B2:B7, 1)</code> <samp>5.75</samp></li><li><code>=QUARTILE.INC(B2:B7, 3)</code> <samp>13.75</samp></li><li><code>=QUARTILE.INC(C2:C7, 2)</code> <samp>1.725</samp></li><li><code>=QUARTILE.INC(B2:B7, 5)</code> <samp>#NUM!</samp></li></ul></td>
     </tr>
   
     <tr id="rank">

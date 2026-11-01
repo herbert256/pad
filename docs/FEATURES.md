@@ -1112,7 +1112,9 @@ functions are the files of `pad/subs/formulas/types/` - a function is added by a
 names are read in any case - and answer what Excel answers: SUM, AVERAGE, MIN, MAX, COUNT,
 COUNTA, COUNTBLANK, COUNTIF(S), SUMIF(S), AVERAGEIF(S), MINIFS, MAXIFS, PRODUCT, SUMPRODUCT
 (ranges of one shape multiplied place by place, what is no number 0), MEDIAN, STDEV, VAR, RANK,
-LARGE, SMALL; IF, IFS, AND, OR, NOT, XOR, IFERROR, IFNA; ISBLANK (a reference to an empty cell,
+LARGE, SMALL, PERCENTILE.INC, PERCENTILE.EXC, QUARTILE.INC and QUARTILE.EXC (interpolated
+between the numbers around the place, the older PERCENTILE and QUARTILE the .INC forms); IF,
+IFS, AND, OR, NOT, XOR, IFERROR, IFNA; ISBLANK (a reference to an empty cell,
 never the text ""), ISNUMBER, ISTEXT, ISNONTEXT, ISLOGICAL, ISERROR, ISERR, ISNA, ISEVEN, ISODD
 - an IS function takes the error it tests, never passes it on; ROUND (half away from zero, on 15
 digits), ROUNDUP, ROUNDDOWN, TRUNC, CEILING and FLOOR (Excel's signs - CEILING(2.5,0.1) is 2.5,

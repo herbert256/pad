@@ -13,6 +13,8 @@
   //   padFormulaSame      whether two values are equal as a lookup sees them: a number to a
   //                       number, a text to a text in any case, TRUE to TRUE
   //   padFormulaVector    the values of a range of one row or one column, as a list
+  //   padFormulaPercentile the k-th percentile of numbers, inclusive or exclusive, as
+  //                       PERCENTILE.INC and PERCENTILE.EXC interpolate it
 
   function padFormulaNumbers ( $args, $text = 'error' ) {
 
@@ -243,6 +245,40 @@
     $past = padFormulaRangeSize ( $range ) - $seen;
 
     return [ $hits, ( $past > 0 and $test ( NULL ) ) ? $past : 0 ];
+
+  }
+
+  // The k-th percentile of numbers - k a fraction - at its rank among them sorted, from 1:
+  // inclusive k(n-1)+1, k from 0 to 1, so 0 is the smallest and 1 the largest; exclusive
+  // k(n+1), k above 0 and below 1, and a rank that falls before the first number or past the
+  // last has nothing to interpolate between. A rank between two numbers takes the part of
+  // the way between them it stands at - worked out on its 15 digits, so 0.3*3+1 is 1.9. No
+  // numbers, or a k or rank out of reach, is #NUM!.
+
+  function padFormulaPercentile ( $numbers, $k, $exclusive ) {
+
+    $count = count ( $numbers );
+
+    if ( ! $count )
+      return padFormulaError ( '#NUM!' );
+
+    if ( $exclusive ? ( $k <= 0 or $k >= 1 ) : ( $k < 0 or $k > 1 ) )
+      return padFormulaError ( '#NUM!' );
+
+    $rank = padFormulaRound15 ( $exclusive ? $k * ( $count + 1 ) : $k * ( $count - 1 ) + 1 );
+
+    if ( $rank < 1 or $rank > $count )
+      return padFormulaError ( '#NUM!' );
+
+    sort ( $numbers );
+
+    $low  = (int) floor ( $rank );
+    $part = $rank - $low;
+
+    if ( $part == 0 or $low >= $count )
+      return $numbers [ $low - 1 ];
+
+    return $numbers [ $low - 1 ] + $part * ( $numbers [$low] - $numbers [ $low - 1 ] );
 
   }
 
