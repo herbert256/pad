@@ -18,12 +18,10 @@
     padError ( "the " . padInputWhat () . " has no choices - options='a, b', data= or a line each between its tags" );
 
   // A form that came back without the field had nothing chosen in it - a radio group with no
-  // choice is left out of the post - so value= does not come back in its place.
+  // choice is left out of the post, its padLists[] says it was there - so value= does not
+  // come back in its place (_lib/input.php padInputChoiceValue).
 
-  $padInputNow ['value'] = padInputValue ( '' );
-
-  if ( ( $padInputSource = padFormSource () ) !== NULL and ! padFormFind ( $padInputSource, padInputName () ) [0] )
-    $padInputNow ['value'] = '';
+  $padInputNow ['value'] = padInputChoiceValue ( '' );
 
   return padInputField ( function ( $head, $rest, $label, $error, $id, $worded ) use ( $padInputChoices ) {
 
@@ -48,7 +46,8 @@
     }
 
     return padInputFrame ( 'segmented', $worded,
-             "<legend>$text</legend><span class=\"pi-segs\">$bar</span>",
+             "<legend>$text</legend><span class=\"pi-segs\">$bar</span>"
+           . padInputSentField ( padInputName (), isset ( $padInputNow ['attrs'] ['disabled'] ) ),
              $error, [], 'fieldset' );
 
   } );

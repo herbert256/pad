@@ -916,7 +916,10 @@ that is no choice is not shown, nor added as an option. A hidden `padLists[]` be
 naming the list, tells that post from any other request - a click in a `{live}` region, a post
 of another form of the page, a link with a value to the page of a GET form - which shows
 `value=`, as every other field does; a disabled multiselect, which the browser leaves out of
-the post, keeps `value=` after a post of its form too.
+the post, keeps `value=` after a post of its form too. A segmented and a treepicker, radio
+groups the browser leaves out of a post without a choice, write the same `padLists[]` beside
+their radios: their form sent without a choice shows none, a pager link of a GET form
+(`?shop&page=2`) shows `value=`, and so does a disabled one after a post.
 
 A range is two fields: `{rangeslider 'price'}` posts `price_from` and `price_to`, `{daterange 'stay'}`
 `stay_from` and `stay_to` - `names=` two

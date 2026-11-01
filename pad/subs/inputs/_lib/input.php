@@ -367,6 +367,30 @@
 
   }
 
+  // What a radio group of one choice shows - a segmented, a treepicker: the choice posted when
+  // its form came back with it, else value=. The browser leaves a group without a choice out
+  // of the post, so the field writes padLists[] beside its radios, as a multiselect does: a
+  // request that names it there and leaves the choice out had nothing chosen and shows none.
+  // Any other request without the choice shows value=, as a text field shows it - a link
+  // with a value to the page of a GET form (?shop&page=2), where the default went whenever
+  // the address carried any value, and a post of the form of a disabled group, which the
+  // browser leaves out with its padLists[].
+
+  function padInputChoiceValue ( $default = '' ) {
+
+    global $padFormStack;
+
+    $value  = padInputValue ( $default );
+    $name   = padInputName ();
+    $source = padFormSource ();
+
+    if ( $source === NULL and $padFormStack and end ( $padFormStack ) ['method'] == 'get' and padInputSent ( $_GET, $name ) )
+      $source = $_GET;
+
+    return ( $source !== NULL and ! padFormFind ( $source, $name ) [0] and padInputSent ( $source, $name ) ) ? '' : $value;
+
+  }
+
   // Whether the posted data held the list $name, chosen or empty: padLists[] names it - the
   // hidden field a multiselect writes beside its select, which its form posts with it.
 

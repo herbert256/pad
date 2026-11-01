@@ -44,12 +44,10 @@
     padError ( "the " . padInputWhat () . " has no items - options='Europe > France, Asia > Japan', data= or a line each between its tags, a child indented under its parent" );
 
   // A form that came back without the field had nothing chosen in it - a radio group with no
-  // choice is left out of the post - so value= does not come back in its place.
+  // choice is left out of the post, its padLists[] says it was there - so value= does not
+  // come back in its place (_lib/input.php padInputChoiceValue).
 
-  $padInputNow ['value'] = padInputValue ( '' );
-
-  if ( ( $padInputSource = padFormSource () ) !== NULL and ! padFormFind ( $padInputSource, padInputName () ) [0] )
-    $padInputNow ['value'] = '';
+  $padInputNow ['value'] = padInputChoiceValue ( '' );
 
   return padInputField ( function ( $head, $rest, $label, $error, $id, $worded ) use ( $padInputNodes, $padInputLeaves, $padInputChoose ) {
 
@@ -73,7 +71,8 @@
              "<legend id=\"$legend\">$text</legend>"
            . '<div class="pi-anchor"><button type="button" class="pi-button pi-tree-open" aria-haspopup="tree" aria-expanded="false" hidden>'
            . '<span class="pi-tree-path">' . padInputEscape ( $path ? implode ( ' › ', $path ) : $choose ) . '</span></button></div>'
-           . "<ul class=\"pi-tree-list\">$list</ul>",
+           . "<ul class=\"pi-tree-list\">$list</ul>"
+           . padInputSentField ( padInputName (), isset ( $padInputNow ['attrs'] ['disabled'] ) ),
              $error, [ 'choose' => $choose, 'leaves' => $padInputLeaves ], 'fieldset' );
 
   } );

@@ -3,12 +3,13 @@
   // The rules on a tree picker of the template are checked before the page's PHP as those of
   // {input}: a post without a choice breaks required and comes back with none chosen, an item
   // that is a group - no choice with leaves, so no radio posts it - breaks in: and comes back
-  // with none shown, and a leaf is stored. The style and the script of the field, and the
-  // session's token, are left out of what is compared.
+  // with none shown, and a leaf is stored - each post with the padLists[] the form sends
+  // beside the tree, which tells it sent without a choice. The style and the script of the
+  // field, and the session's token, are left out of what is compared.
 
   $topicResult = '';
 
-  foreach ( [ 'padForm=pick', 'padForm=pick&topic=Forms', 'padForm=pick&topic=Rules' ] as $topicPost ) {
+  foreach ( [ 'padForm=pick&padLists[]=topic', 'padForm=pick&topic=Forms&padLists[]=topic', 'padForm=pick&topic=Rules&padLists[]=topic' ] as $topicPost ) {
 
     $topicCurl = padCurl ( [ 'url'  => $padGoExt . 'request/form_rules_treepicker&padInclude',
                              'post' => $topicPost ] );
