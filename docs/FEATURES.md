@@ -2061,7 +2061,9 @@ oranges and greys of nine classes, and batlow, Fabio Crameri's, its lightness ri
 diverging: ColorBrewer's rdbu, brbg and piyg of eleven, and Crameri's vik;
 categorical, told apart by colour-blind eyes: okabe-ito (Okabe and Ito's eight, black put last,
 where it vanishes on a dark surface) and Paul Tol's bright, muted and vibrant (from his
-`tol_colors` package), and ColorBrewer's pastel (Pastel1) and PAD's own earth; cyclic, for what
+`tol_colors` package), and ColorBrewer's pastel (Pastel1) and PAD's own earth, and for many
+categories glasbey, 32 colours each as far from those before it as Glasbey's method makes them
+(colorcet's, CC BY 4.0), past eight more for a map than a chart; cyclic, for what
 goes round - an angle, a direction, the hour, the month - whose colours run once round a circle,
 the last next to the first: romaO. Crameri's are the 256-colour tables of his Scientific colour
 maps 8.0.1 (MIT licence), made for colour-blind eyes. `steps=` samples a

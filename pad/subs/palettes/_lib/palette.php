@@ -20,8 +20,8 @@
   //                the month: its colours run once round a circle, its last next to its first
   //                again - Crameri's romaO
   //   categorical  colours to tell things apart, no order - okabe-ito and Paul Tol's bright,
-  //                muted and vibrant, which colour-blind eyes tell apart, ColorBrewer's pastel
-  //                and PAD's own earth
+  //                muted and vibrant, which colour-blind eyes tell apart, ColorBrewer's pastel,
+  //                PAD's own earth and glasbey's 32 for many categories
   //
   // Steps: a sequential or diverging palette is sampled evenly from its first colour to its
   // last - the colours between two of its own made by mixing them in sRGB, so nine steps of
