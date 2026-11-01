@@ -16,7 +16,7 @@
   // page, with color-scheme, so every part that follows the scheme with light-dark() - the
   // charts, the widgets, the toys - follows the theme. A theme may set the page's font
   // (--sans), the hero background of the sections (--pad-section-hero), declarations of the
-  // body's own (body - blueprint's grid), which the box of a pair gets too, and rules of its
+  // body's own (body - blueprint's grid, readable's spacing), which the box of a pair gets too, and rules of its
   // own - underlined links. The sections and the effects read their colours from the same palette, so
   // a theme colours them too. The frame's files are not touched: the theme is a <style> on
   // top of them.

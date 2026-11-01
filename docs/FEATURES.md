@@ -1819,16 +1819,16 @@ widgets, the toys - follows the theme, and the sections and the effects, whose c
 to that palette, take it too. The frame's files are not changed: a theme is a `<style>` on top of
 them, on `:root:root:root`, which outweighs the frame's own light and dark rules wherever it
 stands, with the request's nonce. A theme may set the font (`--sans`: paper and newspaper a serif, terminal a
-monospace), the sections' hero background (`--pad-section-hero`), declarations of the body's own (`body` - blueprint's drawing grid), which the box of a pair gets too, and rules of its own - the
+monospace), the sections' hero background (`--pad-section-hero`), declarations of the body's own (`body` - blueprint's drawing grid, readable's size and spacing), which the box of a pair gets too, and rules of its own - the
 contrast themes underline their links and ring the focus thick. The themes are the files of
 `pad/subs/themes/types/` - light, dark, paper, terminal, newspaper, contrast, contrast-dark, sepia, ocean, forest,
-mono, solarized-light, solarized-dark (after Ethan Schoonover's Solarized, MIT, its tones darkened or lightened where AA needs), night (warm colours alone, no blue light), blueprint (white lines on a cyanotype's blue, a faint grid) - a theme is added by adding its file, which sets every one of the 24 colours (the framework case
+mono, solarized-light, solarized-dark (after Ethan Schoonover's Solarized, MIT, its tones darkened or lightened where AA needs), night (warm colours alone, no blue light), blueprint (white lines on a cyanotype's blue, a faint grid), readable (set for readers with dyslexia after the British Dyslexia Association's style guide - cream, a plain sans-serif, 16 pixels, wider letters, words and lines, 70 characters a paragraph, bold for italics) - a theme is added by adding its file, which sets every one of the 24 colours (the framework case
 `themes/every_theme_sets_every_colour_of_the_frame` holds it). Every theme's text reaches WCAG AA on each of its
 backgrounds (4.5 to 1: the text, the soft and dim greys and the links on the page and on a panel,
 a button's text on the accent, the side's texts on the side and the menu, the status colours on
 theirs), a theme whose file declares `'needs' => 7` AAA (7 to 1) - contrast and contrast-dark; the framework case `themes/every_theme_s_text_reaches_wcag_aa_on_its_backgrounds`
 holds the lowest ratio of each - light 4.57, sepia 5.01, forest 5.17, paper 5.36, dark 5.54,
-newspaper 5.97, mono 6.00, terminal 6.01, ocean 6.22, contrast 7.41, contrast-dark 8.98, solarized-light 4.70, solarized-dark 4.86, night 6.46, blueprint 5.75 - and the sections
+newspaper 5.97, mono 6.00, terminal 6.01, ocean 6.22, contrast 7.41, contrast-dark 8.98, solarized-light 4.70, solarized-dark 4.86, night 6.46, blueprint 5.75, readable 5.26 - and the sections
 application lists every pair of every theme. The light and dark themes are the frame's own
 colours, with the four that fall short of AA in its set - the dim grey on the page (4.47), the
 side's headings (3.07 light, 4.09 dark), a link on the accent's tint (4.48) - darkened or
