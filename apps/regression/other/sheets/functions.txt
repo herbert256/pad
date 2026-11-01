@@ -1,4 +1,4 @@
-<p class="sheets-lead">The 112 functions a formula can call, each a file of
+<p class="sheets-lead">The 114 functions a formula can call, each a file of
 <code>pad/subs/formulas/types/</code> in the engine - a function is added by adding its file, and
 this page lists what each file says of itself. Their names are written in any case. The examples
 read the sample sheet below as if they stood in its cell G1, and each shows what that cell
@@ -706,6 +706,12 @@ shows.</p>
       <td><ul class="sheets-examples"><li><code>=ROUND(FV(6%/12, 10, -200, -500, 1), 2)</code> <samp>2581.4</samp></li><li><code>=ROUND(FV(5%/12, 120, -100), 2)</code> <samp>15528.23</samp></li></ul></td>
     </tr>
   
+    <tr id="ipmt">
+      <th scope="row">IPMT</th>
+      <td>IPMT(rate, per, nper, pv, [fv], [type]) is the interest part of the payment of period per - from 1 to nper, else #NUM! - of a loan or a saving whose payment PMT works out: rate the interest of a period, pv what it is worth now, fv at the end (0), type 1 to pay at the start of each period (0, at the end), when the first period pays no interest. The interest of a period is that of what is still owed at its start - what FV gives after the periods before it - so it shrinks as the loan is paid off. Money paid out is negative, as in Excel.</td>
+      <td><ul class="sheets-examples"><li><code>=ROUND(IPMT(10%/12, 1, 36, 8000), 2)</code> <samp>-66.67</samp></li><li><code>=ROUND(IPMT(10%, 3, 3, 8000), 2)</code> <samp>-292.45</samp></li><li><code>=IPMT(10%, 1, 3, 8000, 0, 1)</code> <samp>0</samp></li><li><code>=IPMT(10%, 4, 3, 8000)</code> <samp>#NUM!</samp></li></ul></td>
+    </tr>
+  
     <tr id="irr">
       <th scope="row">IRR</th>
       <td>IRR(values, [guess]) is the internal rate of return of cash flows at regular periods - the rate at which their NPV is 0, the first at once - found by Newton&#039;s method from guess (10%), as Excel finds it: when 150 steps do not settle it to within 0.0000001, #NUM!. The values need a negative and a positive one; of a range only its numbers count.</td>
@@ -728,6 +734,12 @@ shows.</p>
       <th scope="row">PMT</th>
       <td>PMT(rate, nper, pv, [fv], [type]) is the payment of each period of a loan or a saving - rate the interest of a period, nper the number of periods, pv what it is worth now, fv what it is worth at the end (0), type 1 to pay at the start of each period (0, at the end). Money paid out is negative, as in Excel: a loan of 10000 is paid off with a payment below 0. A rate that leaves no period to pay in - -200% over 2 periods grows to 1 again, -100% paid at the start - is #NUM!.</td>
       <td><ul class="sheets-examples"><li><code>=ROUND(PMT(8%/12, 10, 10000), 2)</code> <samp>-1037.03</samp></li><li><code>=ROUND(PMT(8%/12, 10, 10000, 0, 1), 2)</code> <samp>-1030.16</samp></li></ul></td>
+    </tr>
+  
+    <tr id="ppmt">
+      <th scope="row">PPMT</th>
+      <td>PPMT(rate, per, nper, pv, [fv], [type]) is the principal part of the payment of period per - from 1 to nper, else #NUM! - of a loan or a saving: the payment PMT works out less the interest IPMT gives for that period, so IPMT and PPMT of a period add up to PMT, and the principal grows as the interest shrinks. The arguments are those of IPMT; money paid out is negative, as in Excel.</td>
+      <td><ul class="sheets-examples"><li><code>=ROUND(PPMT(10%/12, 1, 24, 2000), 2)</code> <samp>-75.62</samp></li><li><code>=ROUND(PPMT(8%, 10, 10, 200000), 2)</code> <samp>-27598.05</samp></li><li><code>=ROUND(PPMT(0, 2, 4, 1000), 2)</code> <samp>-250</samp></li></ul></td>
     </tr>
   
     <tr id="pv">
