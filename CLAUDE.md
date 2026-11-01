@@ -805,7 +805,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Expression errors](docs/FEATURES.md#expression-errors) | what the strict check says about a malformed expression |
 | [Errors in the template](docs/FEATURES.md#errors-point-into-the-template) | file, line, column and excerpt in every error report |
 | [Application tests](docs/FEATURES.md#application-tests) | `_tests/name.pad` + `name.txt`, `{assert}`, `pad test` |
-| [The frame of the PAD apps](docs/FEATURES.md#the-frame-of-the-pad-applications) | `{common:padFrame}`, `$frameMenu`, `www/_common/pad.css`; the brand top left of every app `{common:padBrand/}`; the playground icon top right of every example, `padPlayLink ()` |
+| [The frame of the PAD apps](docs/FEATURES.md#the-frame-of-the-pad-applications) | `{common:padFrame}`, `$frameMenu`, `www/_common/pad.css`; the brand top left of every app `{common:padBrand/}`; the playground and live icons top right of every example, `padPlayLink ()` |
 | [Common patterns](docs/FEATURES.md#common-patterns) | zebra rows, comma lists, first/last wrappers, counters |
 
 ---
@@ -1171,7 +1171,7 @@ the `claude` line of `./ci.sh`.
 | `nono` | Plain PHP | PHP application without PAD templating |
 | `notes` | Offline | A Markdown notebook on SQLite - tags, search as you type (a `{fragment}`), pins and colours (`{live}`), pictures and PDFs attached (`padUpload`, `padUploadSend`), a JSON export (`$padExpose`) and import - packed by `pad pack notes` it runs in the browser |
 | `pad` | Standard | PAD framework introduction and reference |
-| `live` | Standard | Like the playground, but Run saves the page and this HTTP server answers it as a real page, `live/?page/<id>` - its PHP, request values, forms that post back, sessions, scripts - local requests only |
+| `live` | Standard | Like the playground, but Run saves the page and this HTTP server answers it as a real page, `live/?page/<id>` - its PHP, request values, forms that post back, sessions, scripts, `_common` and its demo database - local requests only; every example of the other applications opens here from its ⚡ icon |
 | `playground` | Standard | Type a template and its data - JSON, YAML, XML or CSV recognised on sight, or PHP code as a page's `.php` (a button switches) - in editors with PAD's colours and see the result - local requests only, no PHP functions in the template, shareable through the URL hash; every example of the other applications opens here from its icon top right |
 | `react` | Standard | PAD + React: components mounted on islands of PAD pages, JSON answers to `fetch()`, forms checked by PAD with the CSRF header, `{fragment}`s, a cart in the session, polling - fourteen examples, each with its sources |
 | `reference` | Standard | Cross-reference and directory utilities |

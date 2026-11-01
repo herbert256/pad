@@ -7,7 +7,7 @@
       {if $about}<p class="example-about">{$about}</p>{/if}
       <div class="example-grid{if not $run} is-static{/if}">
         <div class="cell">
-          <div class="cell-head"><span>Template</span><span class="cell-file">{$file}</span></div>
+          <div class="cell-head"><span>Template</span><span><span class="cell-file">{$file}</span>{if not $run}{!play}{/if}</span></div>
           <pre class="code"><code>{!padHtml}</code></pre>
           {if $php}
           <div class="cell-head"><span>PHP</span><span class="cell-file">{$php}</span></div>

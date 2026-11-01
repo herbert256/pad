@@ -8,10 +8,12 @@
   // relation an empty array. The select subsystem reads $padSelect now, and a relation names
   // the field it is followed by, so it is written in that form here.
 
-  // The examples read the classicModels database through these tables, which the
-  // playground has neither of: they get no icon to it (_common/_lib/playground.php).
+  // The examples read the classicModels tables of the demo database through these
+  // declarations, which the playground has neither of: they get the live application's icon
+  // alone, and its link carries this file as the example's PHP (_common/_lib/playground.php).
 
-  $playExamples = FALSE;
+  $playExamples = 'live';
+  $playLivePhp  = file_get_contents ( __FILE__ );
 
   $padSelect ['customers'] = [ 'db' => 'customers',    'key' => 'customerNumber',          'order' => 'customerName'      ];
   $padSelect ['employees'] = [ 'db' => 'employees',    'key' => 'employeeNumber',          'order' => 'lastName,firstName'];

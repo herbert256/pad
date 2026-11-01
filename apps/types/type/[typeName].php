@@ -22,14 +22,17 @@
   $typeComment    = preg_replace ( '/\s+/', ' ', $typeInfo ['comment'] );
   $typeExamples   = typesExamples ( $typeName );
 
-  // Each example that runs gets the icon that takes it to the playground, at the right of its
-  // result's head (_common/_lib/playground.php).
+  // Each example that runs gets the icons that take it to the playground and the live
+  // application, at the right of its result's head; one shown but not run here the live icon
+  // alone, at the right of its template's head (_common/_lib/playground.php).
 
   include_once COMMON . '_lib/playground.php';
 
   foreach ( $typeExamples as $i => $one ) {
     $typeExamples [$i] ['number'] = $i + 1;
-    $typeExamples [$i] ['play']   = $one ['run'] ? padPlayPage ( APP, $one ['page'], TRUE ) : '';
+    $typeExamples [$i] ['play']   = $one ['run']
+                                  ? padPlayPage ( APP, $one ['page'], TRUE )
+                                  : padPlayLink ( trim ( preg_replace ( '/\A\{meta [^\n]*\}\R?/', '', (string) padFileGet ( APP . $one ['page'] ) ) ) . "\n", '', '', TRUE, 'live' );
   }
 
   $typeMembers     = array_map ( fn ( $one ) => [ 'key' => $one [0], 'link' => $one [1] ], typesMembers ( $typeName ) );

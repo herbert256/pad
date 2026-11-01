@@ -22,7 +22,14 @@ own request, here the page is a page: `padPosted`, `padRequest` and `?name=value
 scripts all work, and its PHP may call any function a page's PHP may.
 
 The address bar holds the boxes in its `#s=` hash, as the playground's does, so copying it
-shares the page; one opened from such a link fills the boxes and waits for **Run**.
+shares the page; one opened from such a link fills the boxes and waits for **Run**. Every
+example of the other applications has such a link, the ⚡ icon at its top right beside the
+playground's ▶ - and some have only that one: an example that needs what only a page of this
+server has, as classicModels' database examples
+([The frame of the PAD applications](../../docs/FEATURES.md#the-frame-of-the-pad-applications)).
+
+The application runs with `_common`, as most PAD applications do: its tags - `{example}`,
+`{demo}` - its library and its demo database are there for a page.
 
 ## What it allows
 
@@ -48,7 +55,7 @@ The live application runs the code it is given, as a page of this server, so:
 | `page/_inits.php` | The PHP of a saved page: its PHP code, or its data text read as PAD reads data |
 | `_lib/live.php` | Where the pages are kept, their id, the sweep, the data reader |
 | `_guard.php` | Turns every non-local request away |
-| `_config/config.php` | CSRF tokens, no `_common`; `$liveMonaco`, where Monaco comes from |
+| `_config/config.php` | CSRF tokens; `$liveMonaco`, where Monaco comes from |
 | `www/live/index.php` | The entry point: hands a saved page's template to the engine (`$padPageSource`) |
 | `www/live/live.js` | The editors, the switch, the boxes in the URL hash, Run on Ctrl+Enter, open alone |
 | `www/live/live.css` | The two-pane layout |

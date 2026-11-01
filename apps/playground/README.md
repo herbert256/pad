@@ -29,8 +29,9 @@ boxes are plain text fields.
 
 The examples of the other applications - the manual's and the sequence application's
 `{example}`s and `{demo}` tables, showcase, charts, tags, types, games, toys, inputs, examples
-- have a little icon at their top right that opens them here, in such a link: the template in
-the template box, and its PHP or its data
+- have a little ▶ icon at their top right that opens them here, in such a link, and beside it
+a ⚡ that opens them in the live application: the template in the template box, and its PHP
+or its data
 ([The frame of the PAD applications](../../docs/FEATURES.md#the-frame-of-the-pad-applications)).
 
 **Render** (or Ctrl+Enter) renders it, **Show the HTML** shows the HTML it produced. The

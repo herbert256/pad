@@ -1,15 +1,20 @@
 <?php
 
-  // The way from an example to the playground: a little icon at the top right of an example,
-  // a link to the playground application with the example in its boxes - the template in the
-  // template box, and its data in the data box or its PHP in the PHP box - carried in the #s=
-  // hash the playground keeps its boxes in (www/playground/playground.js). The playground
-  // fills the boxes and waits for Render, as it does for every link: the hash is anybody's
-  // to write.
+  // The way from an example to the playground and to the live application: two little icons
+  // at the top right of an example, links with the example in the boxes of their editors -
+  // the template in the template box, and its data in the data box or its PHP in the PHP box
+  // - carried in the #s= hash both keep their boxes in (www/playground/playground.js,
+  // www/live/live.js). The playground renders a template inside its own request; the live
+  // application runs it as a page of this server, with its PHP, request values, sessions,
+  // _common and its demo database, forms that post back. Both fill the boxes and wait for
+  // Render or Run, as they do for every link: the hash is anybody's to write.
   //
-  // padPlayLink  the icon, an <a class="pad-play">, with the link to its stylesheet the first
-  //              time on a page (www/_common/play.css); '' offline (padWasm), where there is
-  //              no playground, and for an example without a template
+  // padPlayLink  the icons, <a class="pad-play"> for the playground and <a class="pad-play
+  //              pad-live"> for the live application beside it, with the link to their
+  //              stylesheet the first time on a page (www/_common/play.css); '' offline
+  //              (padWasm), where there is neither, and for an example without a template.
+  //              $only = 'live' leaves the playground's out, for an example only a page of
+  //              its own can run
   // padPlayData  the data text that hands a _data file to a template as the variable named
   //              after it - what data='name' finds in its application
   // padPlayPage  the icon for a page of an application: its template less a {meta} line on
@@ -22,31 +27,41 @@
   // position: relative - the class pad-play-box, or a style of its own. Inline, it floats at
   // the right of the box it stands in, for an example that has no box of its own.
   //
-  // An application whose examples cannot run there - they read its own database, or tables
-  // its _inits.php declares - sets $playExamples = FALSE, and its examples have no icon.
+  // An application whose examples cannot run in the playground - they read the database, or
+  // tables its _inits.php declares - sets $playExamples = 'live', and its examples have the
+  // live icon alone; FALSE leaves both out. $playLivePhp is PHP the live link puts before an
+  // example's own: the declarations of its _inits.php, which its examples need.
   //
   // Loaded with _common's _lib; an application without _common includes the file itself.
 
-  function padPlayLink ( $template, $data = '', $php = '', $inline = FALSE ) {
+  function padPlayLink ( $template, $data = '', $php = '', $inline = FALSE, $only = '' ) {
 
     global $padRoot;
 
     static $styled = FALSE;
 
     $template = (string) $template;
+    $examples = $GLOBALS ['playExamples'] ?? TRUE;
 
-    if ( padWasm () or trim ( $template ) === '' or ( $GLOBALS ['playExamples'] ?? TRUE ) === FALSE )
+    if ( padWasm () or trim ( $template ) === '' or $examples === FALSE )
       return '';
 
-    $boxes = [ 'source' => $template, 'data' => (string) $data, 'mode' => 'data' ];
+    if ( $examples === 'live' )
+      $only = 'live';
 
-    if ( trim ( (string) $php ) !== '' ) {
-      $boxes ['php']  = (string) $php;
-      $boxes ['mode'] = 'php';
-    }
+    $boxes = function ( $php ) use ( $template, $data ) {
+      $boxes = [ 'source' => $template, 'data' => (string) $data, 'mode' => 'data' ];
+      if ( trim ( (string) $php ) !== '' ) {
+        $boxes ['php']  = (string) $php;
+        $boxes ['mode'] = 'php';
+      }
+      $json = json_encode ( $boxes, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE );
+      return base64_encode ( (string) $json );
+    };
 
-    $json = json_encode ( $boxes, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE );
-    $href = ( $padRoot ?? '/' ) . 'playground/#s=' . base64_encode ( (string) $json );
+    $before = (string) ( $GLOBALS ['playLivePhp'] ?? '' );
+    $href   = ( $padRoot ?? '/' ) . 'playground/#s=' . $boxes ( $php );
+    $live   = ( $padRoot ?? '/' ) . 'live/#s=' . $boxes ( ( $before !== '' and trim ( (string) $php ) !== '' ) ? rtrim ( $before ) . "\n" . $php : $before . $php );
 
     $style = '';
 
@@ -60,14 +75,20 @@
 
     include_once PAD . 'icons/_lib/icon.php';
 
+    $class = $inline ? ' pad-play-inline' : '';
+
     return $style
-         . '<a class="pad-play' . ( $inline ? ' pad-play-inline' : '' ) . '" href="' . htmlspecialchars ( $href ) . '"'
-         . ' title="Try it in the playground" aria-label="Try this example in the playground">'
-         . padIcon ( 'play', 16 ) . '</a>';
+         . ( ( $only == 'live' ) ? '' :
+             '<a class="pad-play' . $class . '" href="' . htmlspecialchars ( $href ) . '"'
+           . ' title="Try it in the playground" aria-label="Try this example in the playground">'
+           . padIcon ( 'play', 16 ) . '</a>' )
+         . '<a class="pad-play pad-live' . $class . ( ( $only == 'live' ) ? ' pad-live-alone' : '' ) . '" href="' . htmlspecialchars ( $live ) . '"'
+         . ' title="Run it live, as a page of this server" aria-label="Run this example as a page of this server">'
+         . padIcon ( 'zap', 16 ) . '</a>';
 
   }
 
-  function padPlayPage ( $root, $page, $inline = FALSE ) {
+  function padPlayPage ( $root, $page, $inline = FALSE, $only = '' ) {
 
     $template = trim ( preg_replace ( '/\A\{meta [^\n]*\}\R?/', '', (string) @file_get_contents ( "$root$page.pad" ) ) );
     $php      = is_file ( "$root$page.php" ) ? (string) file_get_contents ( "$root$page.php" ) : '';
@@ -80,7 +101,7 @@
           break;
         }
 
-    return padPlayLink ( ( $template === '' ) ? '' : "$template\n", $data, $php, $inline );
+    return padPlayLink ( ( $template === '' ) ? '' : "$template\n", $data, $php, $inline, $only );
 
   }
 

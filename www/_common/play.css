@@ -1,5 +1,6 @@
-/* PAD - the icon at the top right of an example that takes it to the playground
-   (apps/_common/_lib/playground.php, padPlayLink). A static file: PAD never parses it.
+/* PAD - the icons at the top right of an example that take it to the playground and to the
+   live application (apps/_common/_lib/playground.php, padPlayLink). A static file: PAD never
+   parses it.
 
    The icon stands at the top right of the nearest positioned box - an example's box is
    position: relative, the class pad-play-box gives it - or, inline, floats at the right of
@@ -15,6 +16,12 @@
 }
 
 .pad-play.pad-play-inline { position: static; float: right; margin: 0 0 4px 8px; }
+
+/* The live icon stands beside the playground's, to its left - or alone in its place. */
+
+.pad-play.pad-live { right: 27px; }
+.pad-play.pad-live.pad-live-alone { right: 3px; }
+.pad-play.pad-live.pad-play-inline { margin-right: 0; }
 
 .pad-play:hover, .pad-play:focus-visible { opacity: 1; background: rgba(128, 128, 128, .18); }
 .pad-play:focus-visible { outline: 2px solid currentColor; outline-offset: 1px; }

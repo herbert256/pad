@@ -44,8 +44,10 @@
 
   $tagExampleRows = [];
 
-  // Each example that runs gets the icon that takes it to the playground, at the right of its
-  // result's head (_common/_lib/playground.php).
+  // Each example that runs gets the icons that take it to the playground and the live
+  // application, at the right of its result's head; one shown but not run here - a redirect,
+  // an exit - the live icon alone, at the right of its template's head: as a page of its own
+  // it runs (_common/_lib/playground.php).
 
   include_once COMMON . '_lib/playground.php';
 
@@ -65,7 +67,8 @@
         'source'  => '',
         'app'     => '',
         'open'    => '?' . $example ['page'],
-        'play'    => $example ['run'] ? padPlayPage ( APP, $example ['page'], TRUE ) : '' ];
+        'play'    => $example ['run'] ? padPlayPage ( APP, $example ['page'], TRUE )
+                                      : padPlayLink ( trim ( preg_replace ( '/\A\{meta [^\n]*\}\R?/', '', (string) padFileGet ( APP . $file ) ) ) . "\n", '', '', TRUE, 'live' ) ];
 
     }
 
