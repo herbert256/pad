@@ -54,7 +54,8 @@
 
     return [ 'math' => 'Mathematics', 'chem' => 'Chemistry', 'abc' => 'ABC music', 'chord' => 'Chord boxes',
              'piano' => 'Piano keys', 'braille' => 'Braille', 'morse' => 'Morse code', 'semaphore' => 'Semaphore',
-             'signals' => 'Signal flags', 'chess' => 'Chess', 'go' => 'Go', 'draughts' => 'Draughts' ] [$kind] ?? ucfirst ( $kind );
+             'signals' => 'Signal flags', 'chess' => 'Chess', 'go' => 'Go', 'draughts' => 'Draughts',
+             'tablature' => 'Tablature' ] [$kind] ?? ucfirst ( $kind );
 
   }
 

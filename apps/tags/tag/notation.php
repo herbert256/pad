@@ -4,7 +4,7 @@
 
   $tagKinds   = padKinds ( 'notations' );
 
-  $tagAbout   = 'A text written in a notation, drawn on the server - ' . count ( $tagKinds ) . ' of them, from formulas in AsciiMath and chemical equations to a tune in ABC, guitar chords, braille, morse, signal flags and chess, go and draughts positions.';
+  $tagAbout   = 'A text written in a notation, drawn on the server - ' . count ( $tagKinds ) . ' of them, from formulas in AsciiMath and chemical equations to a tune in ABC, guitar chords and tabs, braille, morse, signal flags and chess, go and draughts positions.';
   $tagGroup   = 'graphics';
   $tagForm    = 'both';
 
@@ -21,6 +21,7 @@
 {chess 'fen', flip, highlight='e2, e4', arrow='e2-e4'/}
 {go '(;SZ[9]AB[cc];W[gg])', numbers/}
 {draughts 'W:W31-50:B1-20', board=8/}
+{tablature tuning='dropd'} e|--0--3--| ... {/tablature}
 PAD;
 
   $tagParms   = [
@@ -32,7 +33,7 @@ PAD;
   $tagOptions = [
     'display'    => 'math, chem: <code>inline</code> (the default) or <code>block</code> - the formula on a line of its own, centred.',
     'alttext'    => 'math, chem: the text a screen reader without MathML says - the formula as written unless given.',
-    'title'      => 'abc, chord, piano, semaphore, signals, chess, go, draughts: the accessible name.',
+    'title'      => 'abc, chord, piano, semaphore, signals, chess, go, draughts, tablature: the accessible name.',
     'size'       => 'The width in pixels - chord (120), semaphore a figure (64), signals a flag (40), chess, go and draughts the board (360) - or the height of the piano (120).',
     'width'      => 'abc: the lines spread over that many pixels; without it each line takes its natural width.',
     'instrument' => 'chord: <code>guitar</code> (the default) or <code>ukulele</code>.',
@@ -46,7 +47,8 @@ PAD;
     'flip'       => 'Bare option. chess, draughts: the board turned, Black at the bottom.',
     'highlight'  => 'chess: squares to mark, <code>\'e2, e4\'</code>; draughts: <code>\'32, 28\'</code>.',
     'arrow'      => 'chess: arrows from square to square, <code>\'e2-e4, g1-f3\'</code>.',
-    'board'      => 'draughts: <code>10</code> (international, the default) or <code>8</code> (English draughts and checkers).' ];
+    'board'      => 'draughts: <code>10</code> (international, the default) or <code>8</code> (English draughts and checkers).',
+    'tuning'     => 'tablature: the tuning of the strings - <code>standard</code>, <code>dropd</code>, <code>dadgad</code>, <code>openg</code>, <code>opend</code>, <code>seven</code>, <code>bass</code>, <code>bass5</code>, <code>ukulele</code>, <code>mandolin</code>, <code>banjo</code> - or their notes from the lowest, <code>\'D A D G B E\'</code>; without it the names before the lines, else the usual tuning of so many strings.' ];
 
   $tagSee     = [ 'diagram', 'chart', 'game' ];
 

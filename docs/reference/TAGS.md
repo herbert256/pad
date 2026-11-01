@@ -2193,7 +2193,7 @@ A missing address, an unknown default or fallback is an error under the strict c
 ### notation
 A text written in a notation, drawn on the server: a formula in AsciiMath, a chemical equation,
 a tune in ABC, a guitar chord, notes on a piano, braille, morse, semaphore, signal flags, a chess,
-go or draughts position. Every notation is a file of `pad/subs/notations/types/`, its functions
+go or draughts position, a guitar tab. Every notation is a file of `pad/subs/notations/types/`, its functions
 in `pad/subs/notations/_lib/`, its style in `www/assets/notations/` - written once per page
 with the CSP nonce - and the files of `types/` are the notations there are; the subsystem is
 `pad/subs/notations/`. Nothing needs a script: MathML, HTML or inline SVG, the same bytes for the
@@ -2211,6 +2211,7 @@ same text.
 {chess 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'/}
 {go '(;SZ[9]AB[cc][gc]AW[cg];B[ee];W[ec])', numbers/}
 {draughts 'W:W31-50:B1-20'/}
+{tablature}e|--0--3--|{/tablature}             # a tab as players write it, a line a string
 ```
 
 A notation is written three ways, the same drawing each time: the tag, `{notation 'math', 'a/b'/}`,
@@ -2235,6 +2236,7 @@ nothing and its `@else@` shows.
 | `chess` | A position in FEN - the built-in tag `{chess}` as well, which comes before a field or store of its name | `flip`, `highlight`, `arrow`, `size`, `title` |
 | `go` | A game record in SGF played out on 9, 13 or 19 lines, captures taken off | `numbers`, `move`, `plain`, `size`, `title` |
 | `draughts` | A position in the FEN of PDN, international 10 by 10 or 8 by 8 | `board` (`10`, `8`), `numbers`, `flip`, `highlight`, `size`, `title` |
+| `tablature` | A tab for a guitar, a bass, a ukulele - a line a string, the highest on top, frets on the lines, `\|` bars - drawn as printed with the signs of the OLGA guide to tab notation: `h` `p` arcs, `b` `r` arrows with the bend's size, `/` `\` slides, `~` `v` vibrato, `t` tap, `x` muted, `<12>` harmonic, `(8)` ghost; text over and under the strings kept in its columns; every note said with its string, fret and pitch | `tuning` (a name - `standard`, `dropd`, `dadgad`, `openg`, `opend`, `seven`, `bass`, `bass5`, `ukulele`, `mandolin`, `banjo` - or the notes from the lowest string), `title` |
 
 **chess:** the first parameter is the position in FEN - the placement alone will do; side to
 move, castling, en passant and the two counters are checked when written. `flip` puts Black at
@@ -2252,8 +2254,8 @@ the stones, the flags, the strings - or MathML, which a screen reader reads itse
 `--pad-<kind>-*` custom properties on `.pad-<kind>` with `light-dark()` defaults (the flags keep
 the code's colours). A name that is no notation, an option a notation does not read or a value
 outside its choices, and a text it cannot read - a FEN with seven ranks, an element the periodic
-table does not have, a character morse has no sign for, a move on a taken point - are errors
-under the strict check, as are a formula longer than 10 000 bytes and ABC slurs nested more than
+table does not have, a character morse has no sign for, a move on a taken point, a sign a
+tab has not - are errors under the strict check, as are a formula longer than 10 000 bytes and ABC slurs nested more than
 8 deep; without it the formula is drawn up to its limit and the slur left out. A byte that is no
 UTF-8 is a character no notation has a sign for.
 
@@ -4794,7 +4796,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `rating` | Output | Stars or hearts for a score as inline SVG, parts clipped, said in words |
 | `icon` | Output | One of 79 built-in line icons as inline SVG in `currentColor` |
 | `gravatar` | Output | Gravatar `<img>` from the SHA-256 of an address, or a local avatar fallback |
-| `notation` | Output | A text in a notation drawn on the server - the files of `pad/subs/notations/types/`: AsciiMath, chemistry, ABC music, chords, piano, braille, morse, semaphore, signal flags, chess, go, draughts |
+| `notation` | Output | A text in a notation drawn on the server - the files of `pad/subs/notations/types/`: AsciiMath, chemistry, ABC music, chords, piano, braille, morse, semaphore, signal flags, chess, go, draughts, tablature |
 | `chess` | Output | A chess position from FEN as inline SVG - the chess notation, as a built-in tag |
 | `game` | Output | A little game played in the browser - 18 of them, the files of `pad/subs/games/types/`: sudoku, crossword, snake, reversi, a quiz ... |
 | `toy` | Output | A small live simulation or visual toy in the browser, the files of `pad/subs/toys/types/`: the Game of Life, boids, the Mandelbrot set, falling sand ... |
