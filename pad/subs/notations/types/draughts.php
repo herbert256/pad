@@ -11,6 +11,9 @@
   //   {draughts 'W:W31-50:B1-20'/}
   //   {draughts 'B:W21-32:B1-12', board=8, numbers/}
 
+  if ( trim ( $padNotationText ) === '' )
+    return '';
+
   $padDraughtsBoard    = (int) padNotationChoice ( 'board', '10', [ '10', '8' ] );
   $padDraughtsPosition = padDraughtsFen ( $padNotationText, $padDraughtsBoard );
 

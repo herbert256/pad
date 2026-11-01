@@ -51,6 +51,18 @@
 
   $padNotationHtml = include PAD . "subs/notations/types/$padNotationKind.php";
 
+  // A text with nothing in it draws nothing, whatever its options say: a page that draws a
+  // formula or a position of every row - {rows}{morse $t, plain}@else@-{/morse}{/rows} - shows
+  // the @else@ for a row whose text is empty. The kind answers nothing before it reads the
+  // options that shape a drawing, so they are marked read here, where the strict sweep named
+  // each one "an option that nothing reads" and the page ended. A kind that draws without a
+  // text - a chord from frets= - answers its drawing and is swept as ever.
+
+  if ( trim ( $padNotationText ) === '' and ( $padNotationHtml === '' or $padNotationHtml === FALSE or $padNotationHtml === NULL ) )
+    foreach ( $padParms [$pad] as $padNotationOne )
+      if ( $padNotationOne ['padPrmKind'] == 'option' )
+        padDone ( $padNotationOne ['padPrmName'] );
+
   // The markup is a value: a level loops over the data a data= option named, and would write
   // the notation once per row - so the level gets its one default occurrence back.
 

@@ -11,6 +11,9 @@
   // Once a built-in tag of its own, now a notation: {chess 'fen'/} reaches it bare, as before,
   // and it is {notation:chess 'fen'/} and {notation 'chess', 'fen'/} as well.
 
+  if ( trim ( $padNotationText ) === '' )
+    return '';
+
   $padChessPosition = padChessFen ( $padNotationText );
 
   if ( is_string ( $padChessPosition ) ) {
