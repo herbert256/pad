@@ -1,0 +1,60 @@
+{meta title='Site search'/}
+
+<p>A search box without a search server: {tag 'search'/} finds the rows of a source that
+match a query and ranks them, the best first. This manual has a little collection of recipes,
+<code>_content/recipes/</code> - six Markdown files - and the examples search it live.</p>
+
+{example 'fragments/search_1'/}
+
+<ul>
+  <li>The source is a Markdown collection, as {tag 'collection'/} reads it, else a
+  {tag 'data'/} store, a page's array - a <code>db()</code> result - or a <code>_data</code>
+  file of the name.</li>
+  <li>A row found is the source's own row with two fields added: <code>score</code> and
+  <code>excerpt</code> - the words around the first match, every matched word marked. The
+  excerpt is HTML, so it is printed raw, <code>{open/}!excerpt{close/}</code>.</li>
+  <li><code>baking</code> found <i>baked</i> and <i>Bake</i> as well: every word is reduced to
+  its stem before it is compared.</li>
+</ul>
+
+<h2>The query</h2>
+
+<p>Words find a row with any of them; the more and the rarer, the higher it ranks. A
+<code>"phrase"</code> must be there, its words in that order; <code>pre*</code> stands for
+every word that begins so; <code>-word</code> and <code>-"a phrase"</code> leave a row out.
+Accents do not count: <code>creme</code> finds the Crème brûlée.</p>
+
+{example 'fragments/search_2'/}
+
+<h2>Fields, languages and PHP</h2>
+
+<p><code>fields='title^2, body'</code> names the fields searched and what each weighs - a
+collection is searched that way by default. <code>lang</code> is the language: its stop words
+are skipped and its stemmer makes <i>wandelingen</i> and <i>wandelen</i> one word in Dutch.
+There are five, a file each in <code>pad/subs/search/types/</code>: <code>en</code>,
+<code>nl</code>, <code>de</code>, <code>fr</code> and <code>es</code>, the stemmers of the
+Snowball project. <code>padSearch</code> does the same for a page's PHP, here over rows of its
+own:</p>
+
+{example 'fragments/search_3'/}
+
+<h2>A list without a template</h2>
+
+<p>Written as a single tag the hits are a numbered list: the first field searched as the
+title, a link when <code>link=</code> names a field with one, and the excerpt -
+<code>words=</code> sets its length.</p>
+
+{example 'fragments/search_4'/}
+
+<ul>
+  <li>The ranking is BM25: a word found often in a short field counts more than once in a long
+  one, a rare word more than a common one.</li>
+  <li>The index is made the first time a source is searched and kept in
+  <code>DATA/cache/search/</code>; it is made again when a file of the collection changes, or
+  the rows do.</li>
+  <li>A page with a search box sends <code>q</code> to itself:
+  <code>&lt;form&gt;&lt;input name="q"&gt;&lt;/form&gt;</code>, its PHP takes
+  <code>$q = padRequest ( 'q', '' );</code> and the template searches with
+  <code>{open/}search 'recipes', q=$q{close/}</code> - an empty query finds nothing, the
+  <code>@else@</code>.</li>
+</ul>

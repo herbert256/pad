@@ -793,6 +793,7 @@ tag is in [TAGS.md](docs/reference/TAGS.md), every function for a page's PHP in
 | [Translations, locale formatting](docs/FEATURES.md#translations-and-locale-formatting) | `{trans}`, `_lang/`, `\| currency`, `\| localDate` |
 | [Markdown](docs/FEATURES.md#markdown) | `{markdown}`, `\| markdown` |
 | [Markdown collections](docs/FEATURES.md#markdown-collections) | `{collection 'blog'}`, `_content/` |
+| [Site search](docs/FEATURES.md#site-search) | `{search 'blog', q=$q, fields='title^2, body'}...{/search}`, `padSearch ()` - BM25, phrases, prefixes, Snowball stemmers en, nl, de, fr, es: a language per file of `pad/subs/search/types/` |
 | [Charts](docs/FEATURES.md#charts) | `{chart 'bar', data=, label=, value=/}` or `{chart:bar .../}` - inline SVG, a kind per file of `pad/subs/charts/types/`; `{sparkline/}`; `client` draws it in the browser (`pad/subs/charts/client/`) |
 | [Games](docs/FEATURES.md#games) | `{game 'memory'/}`, `{game:sudoku/}`, `{crossword}...{/crossword}` - 18 games played in the browser, a game per file of `pad/subs/games/types/` |
 | [Toys](docs/FEATURES.md#toys) | `{toy 'life'/}`, `{toy:mandelbrot/}`, bare `{boids/}` - live simulations in the browser, a toy per file of `pad/subs/toys/types/` |
@@ -984,6 +985,7 @@ if ( ! padRateLimit ( 'login:' . $_SERVER ['REMOTE_ADDR'], 5, 60 ) ) padAbort ( 
 | Dates and logging | `lib/date.php`, `lib/log.php` | `padNow`, `padToday`, `padNowFreeze`, `padDateParse`, `padAgo` (pipe `ago`), `padLog` (PSR-3 levels, `DATA/logs/<app>/<date>.log`) |
 | Hashing and encryption | `lib/crypt.php` | `padHash`, `padHashCheck`, `padHashNeedsRehash`, `padEncrypt`, `padDecrypt` (sodium, key `$padAppKey` or `DATA/keys/<app>.key`), `padSignedUrl`, `padSignatureValid` |
 | Public holidays | `lib/holidays.php` | `padHolidays`, `padIsHoliday`, `padWorkdays`, `padAddWorkdays` - the rules in `pad/subs/holidays/` |
+| Site search | `lib/search.php` | `padSearch` - the index, query and ranking in `pad/subs/search/` |
 
 A wrong argument (an unknown operator, a negative length) is reported with `padError` naming
 the function; the function then answers an empty value of its kind.

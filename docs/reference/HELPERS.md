@@ -35,6 +35,7 @@ no Composer. They are loaded on every request, like every file in `pad/lib/`.
 | [OAuth, notifications and language models](#oauth-notifications-and-language-models) | `padOAuthStart`, `padOAuthUser`, `padNotify`, `padWebPushKeys`, `padAi`, ... | social_login, notifications, language_models |
 | [Patterns](#patterns) | `padPattern`, `padPatternKinds` | - |
 | [Public holidays](#public-holidays) | `padHolidays`, `padIsHoliday`, `padWorkdays`, `padAddWorkdays` | holidays |
+| [Site search](#site-search) | `padSearch` | search |
 | [Engine functions](#engine-functions) | `padRedirect`, `padFlash`, `padValidate`, `padUpload`, `padTagParm`, `db`, `padError`, ... | - |
 
 ---
@@ -1057,6 +1058,14 @@ function, which then answers an empty value of its kind.
 | `padIsHoliday ( $date, $country )` | Whether the date is a public holiday there - an observance is not |
 | `padWorkdays ( $from, $to, $country )` | The Mondays to Fridays from one date to the other that are no public holiday, both ends counted - negative when `$to` comes first |
 | `padAddWorkdays ( $date, $n, $country )` | The date `$n` workdays later - earlier for a negative `$n` - as `YYYY-MM-DD`; the start does not count, `0` is the date itself |
+
+## Site search
+
+`pad/lib/search.php` - the entry of the search subsystem, `pad/subs/search/`.
+
+| Function | Answers |
+|----------|---------|
+| `padSearch ( $source, $query, $options = [] )` | The rows found, the best first, each with its own fields and `score` (BM25F) and `excerpt` (HTML, the matches in `<mark>`) added. `$source` is the name of a Markdown collection (`_content/<name>/`), of a data store, a page's array or a `_data` file - or the rows themselves, a `db()` result. The options: `fields` (`'title^2, body'`), `lang` (`en`, `nl`, `de`, `fr`, `es`), `words` (the excerpt's length, 30), `excerpt` (its field) and `name` - what an index of rows is kept under in `DATA/cache/search/<app>/`, `'rows'` by default; it is made again whenever the rows change. The query as `{search}` reads it: words, `"a phrase"`, `prefix*`, `-word` |
 
 ## Engine functions
 

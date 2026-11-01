@@ -48,6 +48,7 @@ applications show them working.
   - [Translations and locale formatting](#translations-and-locale-formatting)
   - [Markdown](#markdown)
   - [Markdown collections](#markdown-collections)
+  - [Site search](#site-search)
   - [Charts](#charts)
   - [Games](#games)
   - [Diagrams](#diagrams)
@@ -655,6 +656,43 @@ images, quotes, rules. `javascript:` links lose their URL; the HTML of a value s
 A row is the file's front matter (YAML between `---` lines) plus `slug` (file name), `body`
 (the Markdown as HTML - print it raw with `{!body}`) and `source`. `html` lets raw HTML
 through; `padCollection('blog')` gives the rows to PHP.
+
+### Site search
+```
+{search 'blog', q=$q, fields='title^2, body', lang='en', first=10}   # _content/blog/, ranked by BM25
+  <a href="?blog/post&slug={$slug}">{$title}</a> {$score} {!excerpt}
+@else@
+  Nothing found for {$q}.
+{/search}
+{search 'products', q=$q, fields='name^3, about', link='url'/}   # a page's array or db() result; a list
+```
+```php
+$found = padSearch ( 'blog', $q, [ 'fields' => 'title^2, body' ] );
+$found = padSearch ( db ( "ARRAY id, name, about FROM products" ), $q, [ 'name' => 'products', 'lang' => 'nl' ] );
+```
+Site search without a search server. The source is a Markdown collection (`_content/<name>/`,
+read by `padCollection`), else a `{data}` store, a page's array - a `db()` result - or a
+`_data` file of the name; `padSearch` takes the rows themselves too. The first search makes an
+inverted index of it, kept in `DATA/cache/search/<app>/` and made again when the source
+changed: the names, times and sizes of a collection's files, a hash of any other rows. The
+query: words (a row with any of them is found), `"a phrase"` (required, its words in order -
+`"word"` makes one word required), `prefix*`, `-word` and `-"a phrase"` (left out). Words are
+Unicode letters and digits in lower case, stop words dropped, stemmed by the language's
+Snowball stemmer and written without accents, so `baking` finds `baked` and `cafe` finds
+`Café`; the ranking is BM25F - `fields='title^2, body'` weighs a field, k1 1.2, b 0.75. A row
+found is the source's row with `score` (three decimals) and `excerpt` added: the words around
+the first match, every matched word in a `<mark>` (`padExcerpt`, the function of `{excerpt}`;
+`words=` its length, `excerpt=` its field) - HTML, so print it `{!excerpt}`. A collection is
+searched in `title^2, body` by default, other rows in their text fields; a field's HTML is read
+as its text. The languages are the files of `pad/subs/search/types/` - `en` (Porter2), `nl`
+(Kraaij-Pohlmann), `de`, `fr`, `es`, each with Snowball's stop words and its stemmer written
+after the Snowball 3 source and matching Snowball's own test vocabularies word for word -
+`lang=` picks one, the locale's language else English; a language is added by adding its file.
+A name that is a collection is the collection: name a page's array otherwise. No exec, no
+shell: it runs in pad pack's WebAssembly PHP as well. Code: the search subsystem in
+`pad/subs/search/` - `search.php` the body of `{search}`, `_lib/search.php` the index, the
+query and the ranking, `_lib/snowball.php` the stemmers' runtime, `types/` the languages;
+`pad/lib/search.php` the helper.
 
 ### Charts
 ```

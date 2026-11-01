@@ -1,0 +1,9 @@
+{data 'routes'}
+[
+  { "naam": "Langs de dijken", "over": "Fietsen langs de rivier, door de polders.", "link": "?routes/dijken" },
+  { "naam": "Door de bossen", "over": "Wandelingen en fietstochten door de bossen.", "link": "javascript:alert(1)" },
+  { "naam": "Aan zee", "over": "Wandelen over het strand." }
+]
+{/data}
+{search 'routes', q='wandeling', lang='nl', fields='naam^2, over'}{$naam} {/search}|
+{search 'routes', q='bossen', lang='nl', fields='naam^2, over', link='link', words=4/}

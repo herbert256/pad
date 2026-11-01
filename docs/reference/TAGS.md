@@ -306,6 +306,42 @@ rows to a page's PHP.
 
 ---
 
+### search
+Site search without a search server: the rows of a source a query finds, ranked by BM25
+(`pad/subs/search/`).
+
+```html
+{search 'blog', q=$q, fields='title^2, body', lang='en'}
+  <a href="?blog/post&slug={$slug}">{$title}</a> {$score} {!excerpt}
+@else@
+  Nothing found.
+{/search}
+{search 'products', q=$q, link='url'/}                    <!-- a list -->
+```
+
+| Option | Description |
+|--------|-------------|
+| first parameter | The source: a Markdown collection `_content/<name>/`, else a `{data}` store, a page's array (a `db()` result) or a `_data` file of the name |
+| `q` | The query: words (any), `"a phrase"` (required, in order), `prefix*`, `-word` and `-"a phrase"` (left out) |
+| `fields` | The fields searched, each with its boost: `'title^2, body'` - a collection's default; other rows every text field of the first row |
+| `lang` | The language of the stop words and the stemmer - `en`, `nl`, `de`, `fr`, `es`, the files of `pad/subs/search/types/`; default the locale's language, else `en` |
+| `words` | The length of the excerpt in words, default 30 |
+| `excerpt` | The field the excerpt is cut from, default the last of `fields` |
+| `link` | The single tag's list: a field with the link of a hit - http(s), a page or an anchor; never `javascript:` |
+
+**Behavior:** as a pair it hands over the rows found, the best first: the source's own fields
+with `$score` (BM25F, three decimals) and `$excerpt` added - HTML, the words around the first
+match with every matched word in a `<mark>`, escaped as `{excerpt}` escapes it; print it
+`{!excerpt}`. The handling options work on them, `first=10` for the ten best; nothing found is
+the `@else@`. As a single tag it answers an `<ol class="pad-search">`: the first field of
+`fields` as the title, a link when `link=` names a field with one, and the excerpt. The index
+is kept in `DATA/cache/search/<app>/` and made again when the source changed. A source that is
+not there, a language without a file, a `fields=` that is no list of fields or a `words=` that
+is no number is an error under the strict check. `padSearch ( $source, $q, $options )` gives
+the same rows to a page's PHP.
+
+---
+
 ### at
 Evaluate an `@` expression (for example against a sequence or data set).
 
@@ -4078,6 +4114,7 @@ nothing, and has nothing to do with `{cease}`. See [sequences](../sequences/).
 | `check` | Database | Boolean existence test |
 | `at` | Variables | Evaluate @ expression |
 | `collection` | Variables | Markdown files with front matter as rows |
+| `search` | Variables | The rows of a source a query finds, ranked by BM25, with a marked excerpt |
 | `count` | Counters | Check element count |
 | `increment` | Counters | Increment variable |
 | `decrement` | Counters | Decrement variable |

@@ -1,0 +1,303 @@
+<p>A search box without a search server: <b>{search}</b> finds the rows of a source that
+match a query and ranks them, the best first. This manual has a little collection of recipes,
+<code>_content/recipes/</code> - six Markdown files - and the examples search it live.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/search_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><link rel="stylesheet" href="/pad/_common/play.css?v=0710b25258"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiJ7c2VhcmNoICdyZWNpcGVzJywgcT0nYmFraW5nJ31cbiAgPHA+PGI+eyR0aXRsZX08L2I+IDxzbWFsbD4oeyRzY29yZX0pPC9zbWFsbD48YnI+eyFleGNlcnB0fTwvcD5cbkBlbHNlQFxuICA8cD5Ob3RoaW5nIGZvdW5kLjwvcD5cbnsvc2VhcmNofVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7c2VhcmNoICdyZWNpcGVzJywgcT0nYmFraW5nJ31cbiAgPHA+PGI+eyR0aXRsZX08L2I+IDxzbWFsbD4oeyRzY29yZX0pPC9zbWFsbD48YnI+eyFleGNlcnB0fTwvcD5cbkBlbHNlQFxuICA8cD5Ob3RoaW5nIGZvdW5kLjwvcD5cbnsvc2VhcmNofVxuIiwiZGF0YSI6IiIsIm1vZGUiOiJkYXRhIn0=" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue">search </font><font color="red"><font color="black">'</font>recipes<font color="black">'</font><font color="black">,</font> q=<font color="black">'</font>baking<font color="black">'</font></font>}</b><br>  &lt;p&gt;&lt;b&gt;<b>{<font color="green"><font color="red">$</font>title</font>}</b>&lt;/b&gt; &lt;small&gt;(<b>{<font color="green"><font color="red">$</font>score</font>}</b>)&lt;/small&gt;&lt;br&gt;<b>{<font color="green"><font color="red">!</font>excerpt</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;Nothing found.&lt;/p&gt;<br><b>{/<font color="blue">search</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  <p><b>Apple pie</b> <small>(0.9)</small><br><style>:where(.pad-excerpt){--pad-excerpt-mark:#fde68a;--pad-excerpt-marked:#1a1a19}@supports (color:light-dark(#000,#fff)){:where(.pad-excerpt){--pad-excerpt-mark:light-dark(#fde68a,#6b5310);--pad-excerpt-marked:light-dark(#1a1a19,#fdf6dc)}}:where(.pad-excerpt mark){background:var(--pad-excerpt-mark);color:var(--pad-excerpt-marked);border-radius:3px;padding:0 2px}</style><span class="pad-excerpt">A classic apple pie: a buttery crust <mark>baked</mark> golden, filled with sliced apples, sugar and cinnamon. <mark>Bake</mark> it on the lowest shelf so the bottom crust browns, and let the …</span></p>
+
+  <p><b>Country bread</b> <small>(0.9)</small><br><span class="pad-excerpt">Flour, water, salt and yeast, kneaded and left to rise twice. The loaf is <mark>baked</mark> in a very hot oven with steam, so the crust becomes crisp and dark; <mark>baking</mark> …</span></p>
+
+  <p><b>Cr&egrave;me br&ucirc;l&eacute;e</b> <small>(0.746)</small><br><span class="pad-excerpt">Vanilla custard <mark>baked</mark> slowly in a water bath, chilled, then topped with sugar that is caramelised under a hot grill until it cracks like glass.</span></p>
+
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>The source is a Markdown collection, as <b>{collection}</b> reads it, else a
+  <b>{data}</b> store, a page's array - a <code>db()</code> result - or a <code>_data</code>
+  file of the name.</li>
+  <li>A row found is the source's own row with two fields added: <code>score</code> and
+  <code>excerpt</code> - the words around the first match, every matched word marked. The
+  excerpt is HTML, so it is printed raw, <code>{!excerpt}</code>.</li>
+  <li><code>baking</code> found <i>baked</i> and <i>Bake</i> as well: every word is reduced to
+  its stem before it is compared.</li>
+</ul>
+
+<h2>The query</h2>
+
+<p>Words find a row with any of them; the more and the rarer, the higher it ranks. A
+<code>"phrase"</code> must be there, its words in that order; <code>pre*</code> stands for
+every word that begins so; <code>-word</code> and <code>-"a phrase"</code> leave a row out.
+Accents do not count: <code>creme</code> finds the Crème brûlée.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/search_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiI8dWw+XG4gIDxsaT5jcmVtZToge3NlYXJjaCAncmVjaXBlcycsIHE9J2NyZW1lJ317JHRpdGxlfSB7L3NlYXJjaH08L2xpPlxuICA8bGk+XCJob3QgcGFuXCI6IHtzZWFyY2ggJ3JlY2lwZXMnLCBxPSdcImhvdCBwYW5cIid9eyR0aXRsZX0gey9zZWFyY2h9PC9saT5cbiAgPGxpPmxlbSo6IHtzZWFyY2ggJ3JlY2lwZXMnLCBxPSdsZW0qJ317JHRpdGxlfSB7L3NlYXJjaH08L2xpPlxuICA8bGk+c3VnYXIgLWFwcGxlczoge3NlYXJjaCAncmVjaXBlcycsIHE9J3N1Z2FyIC1hcHBsZXMnfXskdGl0bGV9IHsvc2VhcmNofTwvbGk+XG4gIDxsaT56ZWJyYToge3NlYXJjaCAncmVjaXBlcycsIHE9J3plYnJhJ317JHRpdGxlfSBAZWxzZUBub3RoaW5ney9zZWFyY2h9PC9saT5cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIDxsaT5jcmVtZToge3NlYXJjaCAncmVjaXBlcycsIHE9J2NyZW1lJ317JHRpdGxlfSB7L3NlYXJjaH08L2xpPlxuICA8bGk+XCJob3QgcGFuXCI6IHtzZWFyY2ggJ3JlY2lwZXMnLCBxPSdcImhvdCBwYW5cIid9eyR0aXRsZX0gey9zZWFyY2h9PC9saT5cbiAgPGxpPmxlbSo6IHtzZWFyY2ggJ3JlY2lwZXMnLCBxPSdsZW0qJ317JHRpdGxlfSB7L3NlYXJjaH08L2xpPlxuICA8bGk+c3VnYXIgLWFwcGxlczoge3NlYXJjaCAncmVjaXBlcycsIHE9J3N1Z2FyIC1hcHBsZXMnfXskdGl0bGV9IHsvc2VhcmNofTwvbGk+XG4gIDxsaT56ZWJyYToge3NlYXJjaCAncmVjaXBlcycsIHE9J3plYnJhJ317JHRpdGxlfSBAZWxzZUBub3RoaW5ney9zZWFyY2h9PC9saT5cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6ImRhdGEifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  &lt;li&gt;creme: <b>{<font color="blue">search </font><font color="red"><font color="black">'</font>recipes<font color="black">'</font><font color="black">,</font> q=<font color="black">'</font>creme<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b> <b>{/<font color="blue">search</font><font color="red"></font>}</b>&lt;/li&gt;<br>  &lt;li&gt;"hot pan": <b>{<font color="blue">search </font><font color="red"><font color="black">'</font>recipes<font color="black">'</font><font color="black">,</font> q=<font color="black">'</font>"hot pan"<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b> <b>{/<font color="blue">search</font><font color="red"></font>}</b>&lt;/li&gt;<br>  &lt;li&gt;lem*: <b>{<font color="blue">search </font><font color="red"><font color="black">'</font>recipes<font color="black">'</font><font color="black">,</font> q=<font color="black">'</font>lem*<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b> <b>{/<font color="blue">search</font><font color="red"></font>}</b>&lt;/li&gt;<br>  &lt;li&gt;sugar -apples: <b>{<font color="blue">search </font><font color="red"><font color="black">'</font>recipes<font color="black">'</font><font color="black">,</font> q=<font color="black">'</font>sugar -apples<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b> <b>{/<font color="blue">search</font><font color="red"></font>}</b>&lt;/li&gt;<br>  &lt;li&gt;zebra: <b>{<font color="blue">search </font><font color="red"><font color="black">'</font>recipes<font color="black">'</font><font color="black">,</font> q=<font color="black">'</font>zebra<font color="black">'</font></font>}</b><b>{<font color="green"><font color="red">$</font>title</font>}</b> <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>nothing<b>{/<font color="blue">search</font><font color="red"></font>}</b>&lt;/li&gt;<br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <ul>
+  <li>creme: Cr&egrave;me br&ucirc;l&eacute;e </li>
+  <li>"hot pan": Pancakes </li>
+  <li>lem*: Lemonade Pancakes </li>
+  <li>sugar -apples: Cr&egrave;me br&ucirc;l&eacute;e Lemonade </li>
+  <li>zebra: nothing</li>
+</ul>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>Fields, languages and PHP</h2>
+
+<p><code>fields='title^2, body'</code> names the fields searched and what each weighs - a
+collection is searched that way by default. <code>lang</code> is the language: its stop words
+are skipped and its stemmer makes <i>wandelingen</i> and <i>wandelen</i> one word in Dutch.
+There are five, a file each in <code>pad/subs/search/types/</code>: <code>en</code>,
+<code>nl</code>, <code>de</code>, <code>fr</code> and <code>es</code>, the stemmers of the
+Snowball project. <code>padSearch</code> does the same for a page's PHP, here over rows of its
+own:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">fragments/search_3.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/search_3.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $walks </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'naam' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Langs de dijken'</span><span style="color: #007700">, </span><span style="color: #DD0000">'over' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Fietsen langs de rivier en door de polders.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'naam' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Door de bossen'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'over' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Wandelingen en fietstochten door de bossen.' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'naam' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Aan zee'</span><span style="color: #007700">,         </span><span style="color: #DD0000">'over' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Wandelen over het strand, de wind in de rug.' </span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #0000BB">$found </span><span style="color: #007700">= </span><span style="color: #0000BB">padSearch </span><span style="color: #007700">( </span><span style="color: #0000BB">$walks</span><span style="color: #007700">, </span><span style="color: #DD0000">'wandeling'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'walks'</span><span style="color: #007700">, </span><span style="color: #DD0000">'lang' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'nl'</span><span style="color: #007700">, </span><span style="color: #DD0000">'fields' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'naam^2, over' </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;<br></span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtmb3VuZH1cbiAgICA8bGk+eyRuYWFtfSAoeyRzY29yZX0pOiB7IWV4Y2VycHR9PC9saT5cbiAgey9mb3VuZH1cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHdhbGtzID0gW1xuICAgIFsgJ25hYW0nID0+ICdMYW5ncyBkZSBkaWprZW4nLCAnb3ZlcicgPT4gJ0ZpZXRzZW4gbGFuZ3MgZGUgcml2aWVyIGVuIGRvb3IgZGUgcG9sZGVycy4nIF0sXG4gICAgWyAnbmFhbScgPT4gJ0Rvb3IgZGUgYm9zc2VuJywgICdvdmVyJyA9PiAnV2FuZGVsaW5nZW4gZW4gZmlldHN0b2NodGVuIGRvb3IgZGUgYm9zc2VuLicgXSxcbiAgICBbICduYWFtJyA9PiAnQWFuIHplZScsICAgICAgICAgJ292ZXInID0+ICdXYW5kZWxlbiBvdmVyIGhldCBzdHJhbmQsIGRlIHdpbmQgaW4gZGUgcnVnLicgXVxuICBdO1xuXG4gICRmb3VuZCA9IHBhZFNlYXJjaCAoICR3YWxrcywgJ3dhbmRlbGluZycsIFsgJ25hbWUnID0+ICd3YWxrcycsICdsYW5nJyA9PiAnbmwnLCAnZmllbGRzJyA9PiAnbmFhbV4yLCBvdmVyJyBdICk7XG5cbj8+XG4ifQ==" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiI8dWw+XG4gIHtmb3VuZH1cbiAgICA8bGk+eyRuYWFtfSAoeyRzY29yZX0pOiB7IWV4Y2VycHR9PC9saT5cbiAgey9mb3VuZH1cbjwvdWw+XG4iLCJkYXRhIjoiIiwibW9kZSI6InBocCIsInBocCI6Ijw/cGhwXG5cbiAgJHdhbGtzID0gW1xuICAgIFsgJ25hYW0nID0+ICdMYW5ncyBkZSBkaWprZW4nLCAnb3ZlcicgPT4gJ0ZpZXRzZW4gbGFuZ3MgZGUgcml2aWVyIGVuIGRvb3IgZGUgcG9sZGVycy4nIF0sXG4gICAgWyAnbmFhbScgPT4gJ0Rvb3IgZGUgYm9zc2VuJywgICdvdmVyJyA9PiAnV2FuZGVsaW5nZW4gZW4gZmlldHN0b2NodGVuIGRvb3IgZGUgYm9zc2VuLicgXSxcbiAgICBbICduYWFtJyA9PiAnQWFuIHplZScsICAgICAgICAgJ292ZXInID0+ICdXYW5kZWxlbiBvdmVyIGhldCBzdHJhbmQsIGRlIHdpbmQgaW4gZGUgcnVnLicgXVxuICBdO1xuXG4gICRmb3VuZCA9IHBhZFNlYXJjaCAoICR3YWxrcywgJ3dhbmRlbGluZycsIFsgJ25hbWUnID0+ICd3YWxrcycsICdsYW5nJyA9PiAnbmwnLCAnZmllbGRzJyA9PiAnbmFhbV4yLCBvdmVyJyBdICk7XG5cbj8+XG4ifQ==" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000">&lt;ul&gt;<br>  <b>{<font color="blue">found</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>naam</font>}</b> (<b>{<font color="green"><font color="red">$</font>score</font>}</b>): <b>{<font color="green"><font color="red">!</font>excerpt</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">found</font><font color="red"></font>}</b><br>&lt;/ul&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <ul>
+  
+    <li>Door de bossen (0.508): <span class="pad-excerpt"><mark>Wandelingen</mark> en fietstochten door de bossen.</span></li>
+  
+    <li>Aan zee (0.453): <span class="pad-excerpt"><mark>Wandelen</mark> over het strand, de wind in de rug.</span></li>
+  
+</ul>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<h2>A list without a template</h2>
+
+<p>Written as a single tag the hits are a numbered list: the first field searched as the
+title, a link when <code>link=</code> names a field with one, and the excerpt -
+<code>words=</code> sets its length.</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0" class="pad-play-box">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">fragments/search_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><a class="pad-play" href="/pad/playground/#s=eyJzb3VyY2UiOiJ7c2VhcmNoICdyZWNpcGVzJywgcT0nYnJlYWQgc291cCcsIHdvcmRzPTEyL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Try it in the playground" aria-label="Try this example in the playground"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-play" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7Z"/></svg></a><a class="pad-play pad-live" href="/pad/live/#s=eyJzb3VyY2UiOiJ7c2VhcmNoICdyZWNpcGVzJywgcT0nYnJlYWQgc291cCcsIHdvcmRzPTEyL31cbiIsImRhdGEiOiIiLCJtb2RlIjoiZGF0YSJ9" title="Run it live, as a page of this server" aria-label="Run this example as a page of this server"><svg xmlns="http://www.w3.org/2000/svg" class="pad-icon pad-icon-zap" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2.5L5 13.5h6.5l-1 8 8.5-11h-6.5Z"/></svg></a><pre><code style="color: #000000"><b>{<font color="blue">search </font><font color="red"><font color="black">'</font>recipes<font color="black">'</font><font color="black">,</font> q=<font color="black">'</font>bread soup<font color="black">'</font><font color="black">,</font> words=12</font>/}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <style>:where(.pad-search){padding-left:1.4em}:where(.pad-search li){margin:0 0 10px}:where(.pad-search li div){font-size:.92em;opacity:.85}</style><ol class="pad-search"><li><b>Tomato soup</b><div><span class="pad-excerpt">… them in stock and blend the <mark>soup</mark> until smooth. A spoon of …</span></div></li><li><b>Country bread</b><div><span class="pad-excerpt">… crust becomes crisp and dark; baking <mark>bread</mark> takes patience more than skill.</span></div></li></ol>
+
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+<ul>
+  <li>The ranking is BM25: a word found often in a short field counts more than once in a long
+  one, a rare word more than a common one.</li>
+  <li>The index is made the first time a source is searched and kept in
+  <code>DATA/cache/search/</code>; it is made again when a file of the collection changes, or
+  the rows do.</li>
+  <li>A page with a search box sends <code>q</code> to itself:
+  <code>&lt;form&gt;&lt;input name="q"&gt;&lt;/form&gt;</code>, its PHP takes
+  <code>$q = padRequest ( 'q', '' );</code> and the template searches with
+  <code>{search 'recipes', q=$q}</code> - an empty query finds nothing, the
+  <code>
