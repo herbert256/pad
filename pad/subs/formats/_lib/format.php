@@ -365,12 +365,22 @@
   // 2026-11-01 10:30:00Z, 2026-11-01T10:30:00.5+02:00 - and a moment PHP's own parser reads,
   // with its zone when it has one. The answer is [ the moment, whether it has a time, its zone
   // as written ('Z', '+02:00', a zone name, or '' for a local time) ] - or NULL. A date
-  // without a time is midnight; a local time is taken in $zone, UTC unless said.
+  // without a time is midnight; a local time is taken in $zone, UTC unless said - a zone that
+  // is none, a null byte in it, says nothing, where it was a ValueError.
+  //
+  // A date is a moment of its own, never the clock's: an offset is at most 14 hours and 59
+  // minutes - +9999 ended a feed on DateInvalidTimeZoneException, +99:00 moved the moment by
+  // days - and a text PHP reads as a moment that depends on today - yesterday, 10:00, Nov 1 -
+  // is no date, where it wrote another feed or calendar every day. So is a number of seconds
+  // past what a date holds.
 
   function padFormatDate ( $value, $zone = '' ) {
 
     if ( $value instanceof DateTimeInterface )
       return [ DateTimeImmutable::createFromInterface ( $value ), TRUE, $value->format ( 'P' ) ];
+
+    if ( is_float ( $value ) and ( ! is_finite ( $value ) or abs ( $value ) > 1e15 ) )
+      return NULL;
 
     if ( is_int ( $value ) or is_float ( $value ) )
       return [ ( new DateTimeImmutable ( '@' . (int) $value ) ), TRUE, 'Z' ];
@@ -382,8 +392,9 @@
 
     try {
       $tz = new DateTimeZone ( $zone !== '' ? $zone : 'UTC' );
-    } catch ( Exception $e ) {
-      $tz = new DateTimeZone ( 'UTC' );
+    } catch ( Exception | ValueError $e ) {
+      $tz   = new DateTimeZone ( 'UTC' );
+      $zone = '';
     }
 
     if ( preg_match ( '/^(\d{4})-(\d\d)-(\d\d)$/D', $text, $m ) ) {
@@ -396,20 +407,27 @@
       if ( ! checkdate ( (int) $m [2], (int) $m [3], (int) $m [1] ) or $m [4] > 23 or $m [5] > 59 or ( $m [6] ?? 0 ) > 60 )
         return NULL;
       $written = strtoupper ( $m [8] ?? '' );
+      if ( $written !== '' and $written != 'Z' and ( (int) substr ( $written, 1, 2 ) > 14 or (int) substr ( $written, -2 ) > 59 ) )
+        return NULL;
       $at      = "{$m[1]}-{$m[2]}-{$m[3]} {$m[4]}:{$m[5]}:" . ( ( $m [6] ?? '' ) !== '' ? $m [6] : '00' );
-      $moment  = new DateTimeImmutable ( $at, $written === '' ? $tz : new DateTimeZone ( $written == 'Z' ? 'UTC' : $written ) );
+      try {
+        $moment = new DateTimeImmutable ( $at, $written === '' ? $tz : new DateTimeZone ( $written == 'Z' ? 'UTC' : $written ) );
+      } catch ( Exception | ValueError $e ) {
+        return NULL;
+      }
       return [ $moment, TRUE, $written === '' ? ( $zone !== '' ? $zone : '' ) : $written ];
     }
 
-    // Anything else PHP reads as a moment: an RFC 2822 date of a feed, 1 Nov 2026. A number
-    // alone is no date - strtotime reads 2026 as a time of today.
+    // Anything else PHP reads as a moment: an RFC 2822 date of a feed, 1 Nov 2026 - the same
+    // moment whatever day it is, read on two days far apart. A number alone is no date -
+    // strtotime reads 2026 as a time of today - nor is a letter, a military zone of now.
 
-    if ( is_numeric ( $text ) or strtotime ( $text ) === FALSE )
+    if ( is_numeric ( $text ) or ( $once = strtotime ( $text, 86400 ) ) === FALSE or $once !== strtotime ( $text, 1000000000 ) )
       return NULL;
 
     try {
       $moment = new DateTimeImmutable ( $text, $tz );
-    } catch ( Exception $e ) {
+    } catch ( Exception | ValueError $e ) {
       return NULL;
     }
 
