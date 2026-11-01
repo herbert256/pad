@@ -3725,7 +3725,7 @@ server by the map subsystem in `pad/subs/maps/` from Natural Earth's outlines (`
 
 | Option | Description |
 |--------|-------------|
-| first parameter | The view, a file of `pad/subs/maps/types/`: `world` (default), the continents `europe`, `africa`, `asia`, `north-america`, `south-america`, `oceania`, and the regions `middle-east`, `mediterranean`, `eu`, `nordic`, `benelux`, `baltic`, `british-isles`, `iberia`, `dach`, `balkans`, `central-america`, `caribbean`, `east-asia`, `southeast-asia`, `south-asia`, `central-asia`; and the regions of a country: `us-states` |
+| first parameter | The view, a file of `pad/subs/maps/types/`: `world` (default), the continents `europe`, `africa`, `asia`, `north-america`, `south-america`, `oceania`, and the regions `middle-east`, `mediterranean`, `eu`, `nordic`, `benelux`, `baltic`, `british-isles`, `iberia`, `dach`, `balkans`, `central-america`, `caribbean`, `east-asia`, `southeast-asia`, `south-asia`, `central-asia`; and the regions of a country: `us-states`, `nl-provinces` |
 | `data` | The rows - a `{data}` store, a page array or a `_data` file, as for `{chart}`; as a pair the content is the rows (JSON, YAML, XML or CSV). A row that is a value alone takes its key as the country: `[ 'NL' => 1200, 'BE' => 800 ]` |
 | `key` | The field with the country: its ISO 3166 alpha-2 or alpha-3 code or its English name, in any case - on a view of a country's regions the region: its ISO 3166-2 code with or without the country (`US-CA`, `CA`) or its name - else the first field that is no number |
 | `value` | The number - else the first numeric field |
@@ -3762,10 +3762,14 @@ the land around them - its `name` and its `unit`, what one region is called in t
 title. `us-states`: the fifty states, the District of Columbia and Puerto Rico, from Natural
 Earth's 1:10m admin-1 states and provinces with the large lakes cut out (public domain), in
 Albers USA - the lower 48 in the USGS Albers equal-area conic, Alaska, Hawaii and Puerto Rico
-in conics of their own moved in below. A row is keyed by the region's ISO 3166-2 code with or
+in conics of their own moved in below. `nl-provinces`: the twelve provinces of the
+Netherlands, the same source, the IJsselmeer and the Markermeer as water, in a Lambert
+azimuthal equal-area projection centred on the country, Belgium, Germany and a corner of
+France the land around them; a province by its English or its Dutch name (North Holland,
+Noord-Holland, Friesland, Fryslân). A row is keyed by the region's ISO 3166-2 code with or
 without the country (`US-CA`, `CA`) or its name; a country is no region there (`not on the
 map: Canada`), and a region of the country the view has no outline for - Guam, the other
-outlying areas - is named as one it does not show.
+outlying areas, Bonaire, Saba and Sint Eustatius - is named as one it does not show.
 
 ---
 
