@@ -15,7 +15,9 @@ PadInputs.register('rangeslider', function (frame, cfg, kit) {
   var unit = cfg.unit || '';
   var ends = [from, to];
   var outs = ends.map(function (range) {
-    return range.id ? frame.querySelector('output[for="' + (window.CSS && CSS.escape ? CSS.escape(range.id) : range.id) + '"]') : null;
+    var out = range.id ? frame.querySelector('output[for="' + (window.CSS && CSS.escape ? CSS.escape(range.id) : range.id) + '"]') : null;
+    if (out) out.hidden = false;
+    return out;
   });
 
   var rail = kit.el('div', 'pi-range-rail');
