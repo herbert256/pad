@@ -131,6 +131,12 @@
   // in $padChartNow - put back afterwards, for a chart drawn while another one is. A kind
   // reads only the options it draws with, so an option of another kind - stacked on a line
   // chart - is one that nothing reads, which the strict check reports.
+  //
+  // A chart without points draws nothing, and its @else@ shows: a kind returns before it
+  // reads the options it would have drawn with - title=, names=, ranked - so then every
+  // option is marked read, as for a chart drawn in the browser (client.php), where a
+  // dumbbell, errorbar, candlestick, gantt, box plot, waterfall or bullet chart without
+  // rows and with a title= failed with "an option that nothing reads".
 
   function padChartTag ( $kind, $source = '', $handled = NULL ) {
 
@@ -142,6 +148,10 @@
     $svg = include PAD . "subs/charts/types/$kind.php";
 
     $padChartNow = $before;
+
+    if ( $svg === '' )
+      foreach ( array_keys ( $GLOBALS ['padPrm'] [$GLOBALS ['pad']] ?? [] ) as $param )
+        padDone ( $param );
 
     return $svg;
 

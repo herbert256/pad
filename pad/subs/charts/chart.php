@@ -45,11 +45,15 @@
   // The handling options - sort=, first=, where= ... - work on the rows drawn, as on any
   // data tag's, where they ran after the tag on its one default occurrence: a "top 5"
   // chart drew every row in stored order, and a where= failed on a field no row had.
+  //
+  // A where= that leaves no row has the handling stand in with the one empty row of a level
+  // that shows its @else@ (or its else=), which is no row of the chart's: it draws none, where
+  // that row failed a dumbbell or a candlestick with a field no row has.
 
   if ( padChartHandles () ) {
     $padData [$pad] = padData ( padChartRows ( $padChartSource, padChartWhat () ) );
     include PAD . 'handling/handling.php';
-    $padChartRows       = $padData [$pad];
+    $padChartRows       = ( $padElse [$pad] or ( $padHandStoodIn [$pad] ?? 0 ) === $padLevelId [$pad] ) ? [] : $padData [$pad];
     $padHandDone [$pad] = TRUE;
   }
 
