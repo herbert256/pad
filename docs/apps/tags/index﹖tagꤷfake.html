@@ -427,7 +427,7 @@
                 Every kind
               </h3>
               <p class="example-about">
-                The kinds of pad/fakes/types/ as a page array, a value of each - the same on every request.
+                The kinds of pad/fakes/types/ as a page array, a value of each - the same on every request; the date between bounds of its own, as by default it falls in the year before today.
               </p>
               <div class="example-grid">
                 <div class="cell">
@@ -438,13 +438,14 @@
   <span class="hl-brc">{</span><span class="hl-tag">kinds</span><span class="hl-brc">}</span>
   <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-var">$kind</span><span class="hl-brc">}</span><span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">fake</span> <span class="hl-var">$kind</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
   <span class="hl-brc">{</span><span class="hl-tag">/kinds</span><span class="hl-brc">}</span>
+  <span class="hl-htm">&lt;tr</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;code</span><span class="hl-htm">&gt;</span>date<span class="hl-htm">&lt;/code</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;td</span><span class="hl-htm">&gt;</span><span class="hl-brc">{</span><span class="hl-tag">fake</span> <span class="hl-str">'date'</span>, <span class="hl-opt">from</span>=<span class="hl-str">'2026-01-01'</span>, <span class="hl-opt">to</span>=<span class="hl-str">'2026-12-31'</span><span class="hl-brc">/}</span><span class="hl-htm">&lt;/td</span><span class="hl-htm">&gt;</span><span class="hl-htm">&lt;/tr</span><span class="hl-htm">&gt;</span>
 <span class="hl-htm">&lt;/table</span><span class="hl-htm">&gt;</span></code></pre>
                   <div class="cell-head">
                     <span>PHP</span><span class="cell-file">examples/fake/4-kinds.php</span>
                   </div>
                   <pre class="code"><code><span class="hl-tag">&lt;?php</span>
 
-  <span class="hl-var">$kinds</span> <span class="hl-pun">=</span> <span class="hl-fn">array_map</span> <span class="hl-pun">(</span> <span class="hl-kwd">fn</span> <span class="hl-pun">(</span> <span class="hl-var">$kind</span> <span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">[</span> <span class="hl-str">'kind'</span> <span class="hl-pun">=&gt;</span> <span class="hl-var">$kind</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-fn">padKinds</span> <span class="hl-pun">(</span> <span class="hl-str">'fakes'</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
+  <span class="hl-var">$kinds</span> <span class="hl-pun">=</span> <span class="hl-fn">array_map</span> <span class="hl-pun">(</span> <span class="hl-kwd">fn</span> <span class="hl-pun">(</span> <span class="hl-var">$kind</span> <span class="hl-pun">)</span> <span class="hl-pun">=&gt;</span> <span class="hl-pun">[</span> <span class="hl-str">'kind'</span> <span class="hl-pun">=&gt;</span> <span class="hl-var">$kind</span> <span class="hl-pun">]</span><span class="hl-pun">,</span> <span class="hl-fn">array_values</span> <span class="hl-pun">(</span> <span class="hl-fn">array_diff</span> <span class="hl-pun">(</span> <span class="hl-fn">padKinds</span> <span class="hl-pun">(</span> <span class="hl-str">'fakes'</span> <span class="hl-pun">)</span><span class="hl-pun">,</span> <span class="hl-pun">[</span> <span class="hl-str">'date'</span> <span class="hl-pun">]</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span> <span class="hl-pun">)</span><span class="hl-pun">;</span>
 
 <span class="hl-tag">?&gt;</span></code></pre>
                 </div>
@@ -502,18 +503,10 @@
                       </tr>
                       <tr>
                         <td>
-                          <code>date</code>
-                        </td>
-                        <td>
-                          2026-09-28
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
                           <code>decimal</code>
                         </td>
                         <td>
-                          0.08
+                          0.01
                         </td>
                       </tr>
                       <tr>
@@ -521,7 +514,7 @@
                           <code>email</code>
                         </td>
                         <td>
-                          maria.parker@example.org
+                          olivia.morris@example.org
                         </td>
                       </tr>
                       <tr>
@@ -529,7 +522,7 @@
                           <code>firstname</code>
                         </td>
                         <td>
-                          Julia
+                          Ben
                         </td>
                       </tr>
                       <tr>
@@ -537,7 +530,7 @@
                           <code>iban</code>
                         </td>
                         <td>
-                          NL98TEST6147318801
+                          NL31TEST0614731880
                         </td>
                       </tr>
                       <tr>
@@ -545,7 +538,7 @@
                           <code>ip</code>
                         </td>
                         <td>
-                          198.51.100.61
+                          192.0.2.210
                         </td>
                       </tr>
                       <tr>
@@ -553,7 +546,7 @@
                           <code>job</code>
                         </td>
                         <td>
-                          Teacher
+                          Designer
                         </td>
                       </tr>
                       <tr>
@@ -561,7 +554,7 @@
                           <code>lastname</code>
                         </td>
                         <td>
-                          Rogers
+                          Lewis
                         </td>
                       </tr>
                       <tr>
@@ -569,7 +562,7 @@
                           <code>name</code>
                         </td>
                         <td>
-                          Noah Smith
+                          Ben Walker
                         </td>
                       </tr>
                       <tr>
@@ -577,7 +570,7 @@
                           <code>number</code>
                         </td>
                         <td>
-                          47
+                          57
                         </td>
                       </tr>
                       <tr>
@@ -585,7 +578,7 @@
                           <code>paragraph</code>
                         </td>
                         <td>
-                          Esse veniam elit fugiat nostrud nulla. Consectetur veniam reprehenderit lorem commodo enim. In consectetur exercitation enim quis enim et sed exercitation aliqua. Commodo ex cupidatat minim ex ad tempor. Consectetur incididunt sit eiusmod consequat exercitation reprehenderit. Minim labore esse reprehenderit.
+                          Et esse veniam elit fugiat. Nulla amet consectetur veniam reprehenderit. Commodo enim adipiscing in consectetur exercitation enim quis. Et sed exercitation aliqua exercitation commodo ex cupidatat. Ex ad tempor ipsum consectetur incididunt sit eiusmod consequat exercitation. In minim labore esse reprehenderit enim.
                         </td>
                       </tr>
                       <tr>
@@ -593,7 +586,7 @@
                           <code>phone</code>
                         </td>
                         <td>
-                          +1 221-555-0139
+                          +1 387-555-0161
                         </td>
                       </tr>
                       <tr>
@@ -601,7 +594,7 @@
                           <code>postcode</code>
                         </td>
                         <td>
-                          26912
+                          36035
                         </td>
                       </tr>
                       <tr>
@@ -609,7 +602,7 @@
                           <code>price</code>
                         </td>
                         <td>
-                          82.50
+                          83.60
                         </td>
                       </tr>
                       <tr>
@@ -617,7 +610,7 @@
                           <code>sentence</code>
                         </td>
                         <td>
-                          Duis duis dolore cupidatat consectetur cillum nostrud tempor velit cillum.
+                          Duis dolore cupidatat consectetur cillum nostrud tempor velit.
                         </td>
                       </tr>
                       <tr>
@@ -625,7 +618,7 @@
                           <code>street</code>
                         </td>
                         <td>
-                          19 Rogers Square
+                          143 Young Avenue
                         </td>
                       </tr>
                       <tr>
@@ -633,7 +626,7 @@
                           <code>time</code>
                         </td>
                         <td>
-                          11:15
+                          15:57
                         </td>
                       </tr>
                       <tr>
@@ -641,7 +634,7 @@
                           <code>url</code>
                         </td>
                         <td>
-                          https://www.example.net/dolore
+                          https://www.example.com/velit
                         </td>
                       </tr>
                       <tr>
@@ -649,7 +642,7 @@
                           <code>username</code>
                         </td>
                         <td>
-                          alice.clark
+                          sophie_cooper16
                         </td>
                       </tr>
                       <tr>
@@ -666,6 +659,14 @@
                         </td>
                         <td>
                           esse
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>date</code>
+                        </td>
+                        <td>
+                          2026-11-16
                         </td>
                       </tr>
                     </table>
