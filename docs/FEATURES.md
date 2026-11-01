@@ -220,7 +220,8 @@ $padFormatOptions = [ 'title' => 'Talks', 'name' => 'Talks' ];  // the writer's 
   walk. The formats known on sight are known only where the text would have read as CSV, or
   as a JSON document that is none: TOML, INI, GeoJSON and GPX are named, or read by extension.
 - A data file runs as PAD before it is read, as a JSON file does - a `{` in a TOML comment is a
-  tag; an `xlsx` is bytes, read as the file holds them.
+  tag; an `xlsx` is bytes, read as the file holds them - a part of at most 32 MB unpacked,
+  500000 cells and shared strings, columns up to XFD: past that, the format's error.
 - Option names: `title`, `link`, `self`, `description`, `author`, `language`, `id`, `updated`
   (feeds), `name`, `stamp`, `prodid` (ics), `name`, `as`, `creator` (gpx), `sheet` (xlsx),
   `name` (toml, for a list handed over whole).

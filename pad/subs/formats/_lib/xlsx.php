@@ -17,7 +17,8 @@
   // names, a row per row below it: shared strings, inline strings, numbers (an integer where
   // it is whole), booleans, the text of a formula's result, and a number in a date format as
   // the date it is, 2026-11-01 or 2026-11-01T09:30:00. A cell under no name is named after its
-  // column, B; an empty row is no row.
+  // column, B; an empty row is no row. The sheet streams through XMLReader, what it holds
+  // bounded (padXlsxRead).
 
   const padXlsxMain = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main';
   const padXlsxRel  = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships';
@@ -257,12 +258,27 @@
 
   }
 
-  // The reader.
+  // The reader. What it takes is bounded by the input whatever the zip says, so a small file
+  // - a zip bomb, a cell at column ZZZZ - is refused as a format error, never a request
+  // ended on the memory limit: a part is read up to 32 MB unpacked (the sheet and the shared
+  // strings, which stream through XMLReader) or 4 MB (the workbook, its relationships and
+  // the styles, read whole); a column is at most XFD and a row at most 1048576, as in Excel;
+  // the shared strings are at most 500000, and so are the cells with a value and the cells
+  // of the rows the reader answers.
+
+  const padXlsxPartMax   = 33554432;
+  const padXlsxSmallMax  = 4194304;
+  const padXlsxCellMax   = 500000;
+  const padXlsxColumnMax = 16384;
+  const padXlsxRowMax    = 1048576;
 
   function padXlsxRead ( $bytes, $options ) {
 
     if ( ! class_exists ( 'ZipArchive' ) )
       padFormatFail ( 0, "PHP's zip extension is not loaded - an xlsx is a zip" );
+
+    if ( ! class_exists ( 'XMLReader' ) )
+      padFormatFail ( 0, "PHP's xmlreader extension is not loaded - a sheet is read with it" );
 
     if ( ! str_starts_with ( $bytes, "PK\x03\x04" ) )
       padFormatFail ( 0, 'the data is no zip - an xlsx is one' );
@@ -277,14 +293,24 @@
       if ( $zip->open ( $file, ZipArchive::RDONLY ) !== TRUE )
         padFormatFail ( 0, 'the zip cannot be opened' );
 
-      $part = fn ( $name ) => $zip->getFromName ( $name );
+      // A part is unpacked up to the size the zip states for it, and that size is bound: a
+      // part that holds more than it states is cut there, and no more is read.
 
-      $workbook = padXlsxXml ( $part ( 'xl/workbook.xml' ), 'xl/workbook.xml' );
-      $rels     = padXlsxXml ( $part ( 'xl/_rels/workbook.xml.rels' ), 'xl/_rels/workbook.xml.rels' );
+      $part = function ( $name, $max ) use ( $zip ) {
+        $stat = $zip->statName ( $name );
+        if ( $stat === FALSE )
+          return FALSE;
+        if ( $stat ['size'] > $max )
+          padFormatFail ( 0, "$name is larger than " . ( $max / 1048576 ) . ' MB unpacked - more than this reader takes' );
+        return $stat ['size'] ? $zip->getFromName ( $name, $stat ['size'] ) : '';
+      };
+
+      $workbook = padXlsxXml ( $part ( 'xl/workbook.xml', padXlsxSmallMax ), 'xl/workbook.xml' );
+      $rels     = padXlsxXml ( $part ( 'xl/_rels/workbook.xml.rels', padXlsxSmallMax ), 'xl/_rels/workbook.xml.rels' );
       $target   = padXlsxSheetPart ( $workbook, $rels, $options ['sheet'] ?? '' );
-      $sheet    = padXlsxXml ( $part ( $target ), $target );
-      $strings  = ( $zip->locateName ( 'xl/sharedStrings.xml' ) !== FALSE ) ? padXlsxStrings ( padXlsxXml ( $part ( 'xl/sharedStrings.xml' ), 'xl/sharedStrings.xml' ) ) : [];
-      $dates    = ( $zip->locateName ( 'xl/styles.xml' ) !== FALSE ) ? padXlsxDateStyles ( padXlsxXml ( $part ( 'xl/styles.xml' ), 'xl/styles.xml' ) ) : [];
+      $sheet    = $part ( $target, padXlsxPartMax );
+      $strings  = ( $zip->locateName ( 'xl/sharedStrings.xml' ) !== FALSE ) ? padXlsxStrings ( $part ( 'xl/sharedStrings.xml', padXlsxPartMax ), 'xl/sharedStrings.xml' ) : [];
+      $dates    = ( $zip->locateName ( 'xl/styles.xml' ) !== FALSE ) ? padXlsxDateStyles ( padXlsxXml ( $part ( 'xl/styles.xml', padXlsxSmallMax ), 'xl/styles.xml' ) ) : [];
       $base1904 = in_array ( (string) ( $workbook->workbookPr ['date1904'] ?? '' ), [ '1', 'true' ], TRUE );
 
       $zip->close ();
@@ -293,24 +319,12 @@
       @unlink ( $file );
     }
 
-    $grid = [];
+    if ( $sheet === FALSE )
+      padFormatFail ( 0, "the spreadsheet has no $target" );
 
-    foreach ( $sheet->sheetData->row ?? [] as $row ) {
+    $grid = padXlsxCells ( $sheet, $target, $strings, $dates, $base1904 );
 
-      $number = (int) $row ['r'];
-      $column = 0;
-
-      foreach ( $row->c as $c ) {
-
-        $column = isset ( $c ['r'] ) ? padXlsxColumnNumber ( preg_replace ( '/\d+$/', '', (string) $c ['r'] ) ) : $column + 1;
-        $value  = padXlsxValue ( $c, $strings, $dates, $base1904 );
-
-        if ( $value !== NULL )
-          $grid [ $number ?: count ( $grid ) + 1 ] [$column] = $value;
-
-      }
-
-    }
+    unset ( $sheet, $strings );
 
     if ( ! $grid )
       return [];
@@ -323,6 +337,9 @@
     foreach ( $grid as $cells )
       $width = max ( $width, max ( array_keys ( $cells ) ) );
 
+    if ( count ( $grid ) * $width > padXlsxCellMax )
+      padFormatFail ( 0, 'the sheet is ' . count ( $grid ) . " rows of $width columns - more than the " . padXlsxCellMax . ' cells this reader takes' );
+
     $names = [];
 
     for ( $column = 1; $column <= $width; $column++ )
@@ -330,14 +347,182 @@
 
     $rows = [];
 
-    foreach ( $grid as $cells ) {
+    foreach ( $grid as $number => $cells ) {
       $row = [];
       foreach ( $names as $column => $name )
         $row [$name] = $cells [$column] ?? '';
       $rows [] = $row;
+      unset ( $grid [$number] );
     }
 
     return $rows;
+
+  }
+
+  // The cells of a sheet that have a value, [ row => [ column => value ] ], read as the XML
+  // streams by, inside its <sheetData>: a row without its r is the one after the row before
+  // it, a cell without its r the one after the cell before it.
+
+  function padXlsxCells ( $xml, $name, $strings, $dates, $base1904 ) {
+
+    $grid   = [];
+    $count  = 0;
+    $number = 0;
+    $column = 0;
+    $inside = FALSE;
+
+    padXlsxStream ( $xml, $name, function ( $reader ) use ( &$grid, &$count, &$number, &$column, &$inside, $strings, $dates, $base1904 ) {
+
+      $node = $reader->localName;
+
+      if ( $reader->nodeType == XMLReader::END_ELEMENT ) {
+        if ( $node == 'sheetData' )
+          $inside = FALSE;
+        return;
+      }
+
+      if ( $node == 'sheetData' )
+        $inside = ! $reader->isEmptyElement;
+
+      if ( ! $inside )
+        return;
+
+      if ( $node == 'row' ) {
+
+        $at     = (int) $reader->getAttribute ( 'r' );
+        $number = ( $at > 0 ) ? $at : $number + 1;
+        $column = 0;
+
+        if ( $number > padXlsxRowMax )
+          padFormatFail ( 0, "the row $number is past " . padXlsxRowMax . ', the last row of a sheet' );
+
+      } elseif ( $node == 'c' ) {
+
+        $ref     = (string) $reader->getAttribute ( 'r' );
+        $letters = preg_match ( '/^[A-Za-z]+/', $ref, $m ) ? $m [0] : '';
+        $column  = ( $letters === '' ) ? $column + 1 : ( strlen ( $letters ) > 3 ? padXlsxColumnMax + 1 : padXlsxColumnNumber ( $letters ) );
+
+        if ( $column > padXlsxColumnMax )
+          padFormatFail ( 0, 'the cell ' . padMakeSafe ( $ref !== '' ? $ref : "$column of row $number", 20 ) . ' is past XFD, the last column of a sheet' );
+
+        $type   = (string) ( $reader->getAttribute ( 't' ) ?? 'n' );
+        $style  = (int) $reader->getAttribute ( 's' );
+        $v      = NULL;
+        $inline = NULL;
+
+        if ( ! $reader->isEmptyElement ) {
+          $depth = $reader->depth;
+          while ( $reader->read () and ! ( $reader->nodeType == XMLReader::END_ELEMENT and $reader->depth == $depth ) )
+            if ( $reader->nodeType == XMLReader::ELEMENT and $reader->depth == $depth + 1 ) {
+              if ( $reader->localName == 'v' )
+                $v = $reader->readString ();
+              elseif ( $reader->localName == 'is' )
+                $inline = padXlsxText ( $reader );
+            }
+        }
+
+        $value = padXlsxValue ( $type, $v, $inline, $style, $strings, $dates, $base1904 );
+
+        if ( $value === NULL )
+          return;
+
+        if ( ++$count > padXlsxCellMax )
+          padFormatFail ( 0, 'the sheet has more than ' . padXlsxCellMax . ' cells with a value - more than this reader takes' );
+
+        $grid [$number] [$column] = $value;
+
+      }
+
+    } );
+
+    return $grid;
+
+  }
+
+  // The XML of a part walked node by node, the walker handed each element and each end of
+  // one; a fault is the format's error naming the part and the line.
+
+  function padXlsxStream ( $xml, $name, $walk ) {
+
+    if ( (string) $xml === '' )
+      padFormatFail ( 0, "$name cannot be read - it is empty" );
+
+    $reader = new XMLReader ();
+    $errors = libxml_use_internal_errors ( TRUE );
+
+    libxml_clear_errors ();
+
+    try {
+
+      if ( ! $reader->XML ( $xml, NULL, LIBXML_NONET ) )
+        padFormatFail ( 0, "$name cannot be read" );
+
+      while ( $reader->read () )
+        if ( $reader->nodeType == XMLReader::ELEMENT or $reader->nodeType == XMLReader::END_ELEMENT )
+          $walk ( $reader );
+
+      $error = libxml_get_errors () [0] ?? NULL;
+
+      if ( $error )
+        padFormatFail ( 0, "$name cannot be read - line " . $error->line . ': ' . trim ( $error->message ) );
+
+    } finally {
+      libxml_clear_errors ();
+      libxml_use_internal_errors ( $errors );
+      $reader->close ();
+    }
+
+  }
+
+  // The shared strings: an <si> each, its text or the text of its runs - the phonetic ones
+  // left out.
+
+  function padXlsxStrings ( $xml, $name ) {
+
+    $strings = [];
+
+    padXlsxStream ( $xml, $name, function ( $reader ) use ( &$strings, $name ) {
+      if ( $reader->nodeType == XMLReader::ELEMENT and $reader->localName == 'si' and $reader->depth == 1 ) {
+        if ( count ( $strings ) >= padXlsxCellMax )
+          padFormatFail ( 0, "$name holds more than " . padXlsxCellMax . ' strings - more than this reader takes' );
+        $strings [] = padXlsxText ( $reader );
+      }
+    } );
+
+    return $strings;
+
+  }
+
+  // The text of the rich text element the reader stands on - an <si>, an <is> - its <t>, or
+  // the <t> of each of its runs, the phonetic runs (<rPh>) left out; the reader is left on
+  // its end.
+
+  function padXlsxText ( $reader ) {
+
+    if ( $reader->isEmptyElement )
+      return '';
+
+    $depth = $reader->depth;
+    $text  = '';
+    $skip  = -1;
+
+    while ( $reader->read () ) {
+
+      if ( $reader->nodeType == XMLReader::END_ELEMENT ) {
+        if ( $reader->depth == $depth )
+          break;
+        if ( $reader->depth == $skip )
+          $skip = -1;
+      } elseif ( $reader->nodeType == XMLReader::ELEMENT and $skip < 0 ) {
+        if ( $reader->localName == 'rPh' and ! $reader->isEmptyElement )
+          $skip = $reader->depth;
+        elseif ( $reader->localName == 't' )
+          $text .= $reader->readString ();
+      }
+
+    }
+
+    return $text;
 
   }
 
@@ -396,34 +581,6 @@
 
   }
 
-  // The shared strings: a <si> each, its text or the text of its runs - the phonetic ones
-  // left out.
-
-  function padXlsxStrings ( $doc ) {
-
-    $strings = [];
-
-    foreach ( $doc->si as $si )
-      $strings [] = padXlsxRich ( $si );
-
-    return $strings;
-
-  }
-
-  function padXlsxRich ( $node ) {
-
-    if ( isset ( $node->t ) )
-      return (string) $node->t;
-
-    $text = '';
-
-    foreach ( $node->r as $run )
-      $text .= (string) $run->t;
-
-    return $text;
-
-  }
-
   // The cell formats that show a date: [ index => 'date' | 'time' | 'moment' ] - the built-in
   // date formats and every format of the workbook whose code has days, months, years, hours
   // or seconds outside its quoted texts and [ ] parts.
@@ -461,13 +618,10 @@
 
   }
 
-  function padXlsxValue ( $c, $strings, $dates, $base1904 ) {
-
-    $type = (string) ( $c ['t'] ?? 'n' );
-    $v    = isset ( $c->v ) ? (string) $c->v : NULL;
+  function padXlsxValue ( $type, $v, $inline, $style, $strings, $dates, $base1904 ) {
 
     if ( $type == 'inlineStr' )
-      return isset ( $c->is ) ? padXlsxRich ( $c->is ) : NULL;
+      return $inline;
 
     if ( $v === NULL )
       return NULL;
@@ -484,7 +638,7 @@
     if ( ! is_numeric ( $v ) )
       return $v;
 
-    $kind = $dates [ (int) ( $c ['s'] ?? 0 ) ] ?? '';
+    $kind = $dates [$style] ?? '';
 
     if ( $kind !== '' )
       return padXlsxDate ( (float) $v, $kind, $base1904 );
