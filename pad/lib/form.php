@@ -1498,6 +1498,17 @@
 
     $name = padInputPosts ( $tag, $name );
 
+    // A list is judged by the rules that say how - required, the required_* rules, in: and
+    // not_in:, 'list' in their files - and any other refuses it whatever it holds
+    // (padValidateRule): {multiselect 'tags', rules='min:2'} said "Tags must be at least 2
+    // characters" of two good choices, and no post of it could pass, in the browser or here.
+
+    if ( str_ends_with ( $name, '[]' ) )
+      foreach ( padValidateSplit ( $list ) as $whole )
+        if ( ( $rule = padValidateParts ( $whole ) [0] ) !== '' and ! isset ( padRule ( $rule ) ['list'] ) )
+          return padError ( "the rules of $where have $rule, a rule of one text, and the field posts the list $name - a list is judged by "
+                          . implode ( ', ', array_filter ( padRuleTypes (), fn ( $one ) => isset ( padRule ( $one ) ['list'] ) ) ) . ' alone' );
+
     if ( isset ( $rules [$named] [$name] ) and $rules [$named] [$name] !== $list )
       return padError ( "$where has two sets of rules - '" . $rules [$named] [$name] . "' and '$list'" );
 

@@ -512,7 +512,8 @@ required_unless:field,value, required_with:field[,field], required_without:field
 before:field|date and after:field|date (ISO `2026-11-01` or `2026-11-01T14:30`). A
 list passes `required`, the required_* rules, `in:` and `not_in:` (every item) only, and only on a field named for one
 (`tags[]`, in the rules too); on a field of one value it is refused - "must be a
-single value".
+single value" - and any other rule in the `rules=` of a field that posts a list (`tags[]`, a
+`{multiselect}`) is an error when the template is read.
 
 The rules can also stand on the fields, checked before any PHP runs and in the browser too -
 [Form rules](docs/FEATURES.md#form-rules-on-the-fields-and-in-the-browser).

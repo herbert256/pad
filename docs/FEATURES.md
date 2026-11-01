@@ -647,7 +647,10 @@ browser - and the files there are the rules there are: besides `required`, `emai
 `alpha`, `alphanum`, `starts_with:a,b`, `ends_with:a,b`, `lowercase`, `uppercase`, `time`
 (HH:MM), `color` (#rgb, #rrggbb), `uuid`, `ip` (`ip:v4`, `ip:v6`), `slug`, `json` and `iban`
 (its check digits), `not_in:a,b` (the mirror of `in:`, as written). A rule is added by adding its files; an argument a rule cannot use -
-`digits:four`, `between:9,1` - is an error, as a pattern PCRE cannot read is.
+`digits:four`, `between:9,1` - is an error, as a pattern PCRE cannot read is. So is a rule that
+judges one text - `min:2`, `email` - on a field that posts a list (`tags[]`, a `{multiselect}`):
+a list is judged by `required`, the `required_*` rules, `in:` and `not_in:` alone, and any other
+refuses every post of it.
 
 Some rules look at another field of the post:
 ```
