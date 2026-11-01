@@ -610,13 +610,18 @@
 
   }
 
-  // The script element of an object: its JSON, < and > written as \u003C and \u003E.
+  // The script element of an object: its JSON, < and > written as \u003C and \u003E. Its
+  // syntax characters go as PAD's stand-ins, put back when the page is written out: the
+  // script is the subsystem's own text, never template source - under $padProtectValues =
+  // FALSE, where a tag's value is read again as template, the {search_term_string} of a
+  // website's search was a tag, and "there is no tag named 'search_term_string'" ended the
+  // page.
 
   function padJsonLdScript ( $object ) {
 
     $json = json_encode ( $object, JSON_HEX_TAG | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE );
 
-    return ( $json === FALSE ) ? '' : '<script type="application/ld+json">' . $json . '</script>';
+    return ( $json === FALSE ) ? '' : padProtect ( '<script type="application/ld+json">' . $json . '</script>' );
 
   }
 
