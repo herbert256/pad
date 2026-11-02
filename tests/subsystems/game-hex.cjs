@@ -1,0 +1,1 @@
+const a=require('node:assert/strict'),m=require('../../www/assets/games/hex.js');a.equal(m.winner([1,1,1,0,2,0,2,0,2],3,1),true);a.equal(m.winner([2,1,0,2,1,0,2,0,1],3,2),true);a.equal(m.winner([1,0,0,0,1,0,0,0,1],3,1),false);a.equal(m.winner([0,1,1,1,1,0,1,0,0],3,1),true);
