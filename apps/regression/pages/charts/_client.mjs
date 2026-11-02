@@ -28,7 +28,8 @@ const C = globalThis.PadChart;
 const pages = [];
 (function walk(d) {
   for (const f of readdirSync(d).sort()) {
-    if (f.startsWith('_') || f.startsWith('.')) continue;
+    // Timelines share the Charts app but do not use the numeric chart client renderer.
+    if (f.startsWith('_') || f.startsWith('.') || (d === dir && f === 'examples')) continue;
     const p = join(d, f);
     if (statSync(p).isDirectory()) walk(p);
     else if (f.endsWith('.pad') && !(d === dir && f === 'index.pad') && !f.includes('['))

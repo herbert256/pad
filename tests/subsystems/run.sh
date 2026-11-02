@@ -9,7 +9,7 @@ passed=0
 failed=0
 skipped=0
 for file in tests/subsystems/*.php tests/subsystems/*.js tests/subsystems/*.cjs; do
-  case "${file##*/}" in _*|*-example.php|ui-browser.js|ui-browser.cjs) continue ;; esac
+  case "${file##*/}" in _*|*-example.php|ui-browser.js|ui-browser.cjs|showcase-browser.cjs) continue ;; esac
   case "$file" in
     *.php) runner=php ;;
     *) runner=node ;;

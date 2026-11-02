@@ -1,7 +1,7 @@
 <?php
 
   // The cases of the formulas group compute formulas as a cell beside the sample sheet of
-  // the sheets application (apps/sheets/_data/sample.csv) - in G1, as its functions page
+  // the sheets application (apps/tables/_data/sample.csv) - in G1, as its functions page
   // does:
   //
   //        A         B     C      D            E
@@ -22,7 +22,7 @@
 
     padFormulaLoad ();
 
-    $rows = padSheetRead ( (string) file_get_contents ( APPS . 'sheets/_data/sample.csv' ) );
+    $rows = padSheetRead ( (string) file_get_contents ( APPS . 'tables/_data/sample.csv' ) );
     $out  = [];
 
     foreach ( $formulas as $formula ) {
