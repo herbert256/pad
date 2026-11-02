@@ -19,6 +19,10 @@
   $padTimelineRows   = padChartRows ( $padTimelineSource, 'timeline' );
   $padData [$pad]    = padDefaultData ();
 
+  // Explicit record views validate their own fixed field contracts.
+  if ( in_array ( $padTimelineKind, [ 'audit', 'rangecompare' ], TRUE ) )
+    return include PAD . "subs/timelines/types/$padTimelineKind.php";
+
   // The fields: a date= field else the first that reads as a date, then the texts. A bare
   // number of up to four digits is a year only when no field reads as a date: rows as a
   // database gives them, an id first, were drawn in the years 0001, 0002 ...
