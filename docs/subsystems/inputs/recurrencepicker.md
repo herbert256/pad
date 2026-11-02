@@ -5,7 +5,7 @@ Native fieldset emits `{kind,start,timezone,interval,count,byday,exclude}`. Dail
 ## Example
 
 ```pad
-{input:form}{input:recurrencepicker 'schedule', label='Schedule'/}<button type='submit'>Preview</button><button type='reset'>Reset</button>{/input:form}
+{input:form 'recurrencepicker'}{input:recurrencepicker 'schedule', label='Schedule'/}<button type='submit'>Preview</button><button type='reset'>Reset</button>{/input:form}
 ```
 
 Run the focused fixture with `php tests/subsystems/input-recurrencepicker.php`.

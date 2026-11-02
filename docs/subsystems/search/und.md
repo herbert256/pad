@@ -4,8 +4,17 @@ Language-neutral tokens: lowercase Unicode letters/numbers, retaining interior d
 
 ## Example
 
+The paired PHP page supplies the application data:
+
+```php
+<?php
+$catalog=[['name'=>'PAD-42 identifier','link'=>'/tags/'],['name'=>'Města a městům','link'=>'/tags/']];
+```
+
+The PAD template renders it:
+
 ```pad
-{search:und 'catalog', q='PAD-42', fields='name'}{$name}{/search:und}
+{search:und 'catalog', q='PAD-42', fields='name'}<p>{$name}</p>{/search:und}
 ```
 
 Run the focused fixture with `php tests/subsystems/search-und.php`.

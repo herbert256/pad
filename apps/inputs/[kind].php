@@ -10,6 +10,14 @@
   $title    = $kind;
   $about    = inputsCatalog () [$kind] ['text'];
   $template = "{input:form 'try', class='inputs-try'}\n  {input:$kind '$kind', label='" . ucfirst ( $kind ) . "'/}\n  <button class=\"inputs-send\">Send</button>\n{/input:form}";
+  // These fields need structured examples, including trusted image metadata or choices.
+  // Reuse the executable tags examples so the gallery and the documentation stay aligned.
+  if ( in_array ( $kind, [ 'recurrencepicker', 'transferlist', 'imagecrop' ], TRUE ) ) {
+    $example = APPS . "tags/examples/input/$kind";
+    if ( is_file ( "$example.php" ) ) include "$example.php";
+    $template = trim ( file_get_contents ( "$example.pad" ) );
+  }
+
   $source   = padHighlightTokens ( $template, 'pad' );
 
   // The icon at the top right of the template that takes it to the WASM editor

@@ -4,6 +4,15 @@ Each record has unique stable id, label and paired plannedstart/plannedend and a
 
 ## Example
 
+The paired PHP page supplies the application data:
+
+```php
+<?php
+$rangeRecords=[['id'=>'a','label'=>'Design','plannedstart'=>'2026-11-01T00:00:00Z','plannedend'=>'2026-11-03T00:00:00Z','actualstart'=>'2026-11-01T00:00:00Z','actualend'=>'2026-11-04T00:00:00Z'],['id'=>'b','label'=>'Review','plannedstart'=>'2026-11-04T00:00:00Z','plannedend'=>'2026-11-05T00:00:00Z']];
+```
+
+The PAD template renders it:
+
 ```pad
 {timeline:rangecompare data='rangeRecords', timezone='UTC'/}
 ```

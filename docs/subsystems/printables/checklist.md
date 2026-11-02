@@ -4,6 +4,15 @@ Each rendered item is a label; optional `<aside>` names its group. Labels wrap b
 
 ## Example
 
+The paired PHP page supplies the application data:
+
+```php
+<?php
+$checklistItems=[['group'=>'Documents','name'=>'Passport'],['group'=>'Documents','name'=>'Tickets'],['group'=>'Equipment','name'=>'Charger and adapters']];
+```
+
+The PAD template renders it:
+
 ```pad
 {printable:checklist data='checklistItems', title='Departure checks', blankrows=3}<aside>{$group}</aside>{$name}{/printable:checklist}
 ```

@@ -5,7 +5,10 @@
 ## Example
 
 ```pad
+{input:form 'required_if_any'}
 {input:field type='text', 'address', label='Address', rules='required_if_any:delivery,ship;plan,pro'/}
+<button type='submit'>Validate</button>
+{/input:form}
 ```
 
 Run the focused fixture with `php tests/subsystems/rule-required_if_any.php`.

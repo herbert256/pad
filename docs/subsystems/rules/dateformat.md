@@ -5,7 +5,10 @@ Strict formats: `Y-m-d`, `d/m/Y`, `m/d/Y`, `Y-m-dTH:i`. Leading zeroes and four-
 ## Example
 
 ```pad
+{input:form 'dateformat'}
 {input:field type='text', 'date', label='Date', rules='dateformat:Y-m-d'/}
+<button type='submit'>Validate</button>
+{/input:form}
 ```
 
 Run the focused fixture with `php tests/subsystems/rule-dateformat.php`.

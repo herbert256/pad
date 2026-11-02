@@ -4,6 +4,15 @@
 
 ## Example
 
+The paired PHP page supplies the application data:
+
+```php
+<?php
+$record=['name'=>'Weather station','height'=>42.5,'status'=>NULL,'location'=>['city'=>'Amsterdam','country'=>'NL']];$fields=['name'=>'Name','height'=>['label'=>'Height','unit'=>'m'],'status'=>'Status','missing'=>'Unreported','location'=>'Location'];
+```
+
+The PAD template renders it:
+
 ```pad
 {widget:inspector record='record', fields='fields'/}
 ```

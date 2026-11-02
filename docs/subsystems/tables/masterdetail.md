@@ -4,6 +4,15 @@ Visible `columns=` comma list, stable `id=` field (default id), scalar `detail=`
 
 ## Example
 
+The paired PHP page supplies the application data:
+
+```php
+<?php
+$detailRecords=[['id'=>'a','name'=>'Ada','description'=>'Maintains the calendar'],['id'=>'b','name'=>'Bo','description'=>'Reviews the reports']];
+```
+
+The PAD template renders it:
+
 ```pad
 {table:masterdetail data='detailRecords', columns='id,name', detail='description'/}
 ```
