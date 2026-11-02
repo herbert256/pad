@@ -24,7 +24,7 @@
 
     include_once PAD . 'tags/_lib/highlight.php';
 
-    return in_array ( padHighlightLanguage ( $lang ), [ 'pad', 'php', 'html', 'css', 'js', 'json', 'yaml', 'sql', 'bash', 'text' ], TRUE );
+    return padKind ( 'highlighters', padHighlightLanguage ( $lang ) );
 
   }
 

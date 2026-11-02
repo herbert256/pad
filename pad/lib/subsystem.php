@@ -46,6 +46,7 @@
     'formula'  => 'formulas',
     'theme'    => 'themes',
     'palette'  => 'palettes',
+    'highlighter' => 'highlighters',
   ];
 
   // The kinds of the subsystem in pad/subs/<directory>/: the names of the files of its types/,
